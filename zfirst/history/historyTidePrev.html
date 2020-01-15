@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html><title>historyTidePrev</title>
+
+<style type="text/css">
+.left{/*total 974,竖线起始位置：436px*/
+width:350px;
+float:left;
+padding-left:56px;
+padding-right:30px;
+
+}
+.right{/*竖线起始位置：436px*/
+width:500px;
+float:left;
+padding-left:38px;
+
+
+}
+p{
+line-height:16px;
+margin:0;
+padding:0;
+text-indent:-2em;
+}
+</style>
+<script>
+function scrol...(){
+var scl=document.body.scrollHeight/2+30*14;
+window.scrollBy(0,scl);
+}
+</script>
+<body onLoad="scrol()">
+<!--(-0+2020)*nianPX(14)+0+18=--><!--canvas的height属性最大只能达到32000；-->
+<div class="left"><p>历史会因立场不同，而产生不同的解读。</p>
+</div>
+
+<div class="right">
+
+<p>·约170万年前 元谋人生活在云南元谋一带;</p>
+<p>·约70-20万年前 北京人生活在北京周口店一带;</p>
+<p>·约1.8万年前 山顶洞人开始氏族公社的生活;</p>
+<p>·约0.5-0.7万年前 河姆渡、半坡母系氏族公社;</p>
+<p>·4000多年前,大汶口文化中晚期，父系氏族公社;传说中的炎帝、黄帝、尧、舜、禹时期；</p>
+<p>·前3000：埃及<a href="http://baike.baidu.com/subview/3924/5061829.htm">金字塔</a>，是法老的陵墓，也是法老的通往天堂之梯;</p>
+<p>·公元前2690年左右,胡夫金字塔:原高146.5米，因年久风化，顶端剥落10米，现高136.5米；底座每边长230多米，现长220米，三角面斜度52度，塔底面积52900平方米；塔身由230万块石头砌成，每块石头平均重2.5吨，最大的重达160吨；</p>
+</div>
+
+
+<canvas id="myCanvas2" width="974" height="29418" style="border:0px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+
+<script>
+
+var c=document.getElementById("myCanvas2");
+var ctx=c.getContext("2d");
+
+var canvasW=974;
+var dingJiange=18; //顶端间隔 竖线起始位置(Y轴）
+var diJiange=0; //底部间隔 竖线起始位置(Y轴）
+var jianGe=dingJiange+diJiange;
+var Xcor=436; //竖线X坐标的起始位置；
+//因最小的字体需要12它，所以下面的定位需要达到12；
+var nianPX=14; //一年间隔使用的像素；
+
+var nianYprev=2100; //公元前有多少年开始
+var nianYnex=0;//公元前后多少年结束
+var nianYprevPx=nianYprev*nianPX; //公元前有多少年及像素；
+var nianYnexPx=nianYnex*nianPX; //公元后有多少年及像素；
+var Ycor=nianYprevPx+nianYnexPx; //竖线Y坐标的终点位置（长度）；
+
+
+
+var nianL=8; //年线段的长度；
+
+var nianL10=20; //10年线段的长度；
+var nianL100=30; //100年线段的长度；
+var fontsi=nianPX*3;//字体大小
+var fontsi10=nianPX*4;
+var fontsi100=nianPX*5;
+
+//长竖线
+ctx.beginPath();
+ctx.moveTo(Xcor,dingJiange);
+ctx.lineTo(Xcor,Ycor+diJiange);
+ctx.stroke();
+
+//年横线
+for(i=dingJiange;i<=Ycor+diJiange;i+=nianPX){
+ctx.beginPath();
+ctx.moveTo(Xcor,i);
+ctx.lineTo(Xcor-nianL,i);
+ctx.strokeStyle = "rgba(0, 0, 0, 0.4)";  
+ctx.stroke();
+}
+
+//5年横线
+for(i=dingJiange;i<=Ycor+jianGe;i+=nianPX*5){
+ctx.beginPath();
+ctx.moveTo(Xcor,i);
+ctx.lineTo(Xcor-nianL*1.5,i);
+ctx.strokeStyle = "rgba(0, 0, 0, 0.6)";  
+ctx.stroke();
+
+
+}
+
+//10年横线和文本
+for(i=dingJiange;i<=Ycor+jianGe;i+=nianPX*10){
+ctx.beginPath();
+ctx.moveTo(Xcor,i);
+ctx.lineTo(Xcor-nianL*2,i);
+ctx.strokeStyle = "rgba(0, 0, 0, 0.8)"; 
+ctx.stroke();
+ctx.textAlign="right";
+var varmid=(i-dingJiange)/nianPX;
+	if(varmid%100!=0){
+	ctx.font="18px 宋体"; //30px 可以写在里面
+	// Create gradient
+	var gradient=ctx.createLinearGradient(0,0,c.width,0);
+	gradient.addColorStop("0","magenta");
+	gradient.addColorStop("0.5","blue");
+	gradient.addColorStop("1.0","red");
+	// Fill with gradient
+	ctx.fillStyle=gradient;
+	ctx.fillText((i-dingJiange)/nianPX-nianYprev,Xcor-nianL*2,i+6);
+	}
+}
+//100年横线和文本
+for(i=dingJiange;i<=Ycor+jianGe;i+=nianPX*100){
+ctx.beginPath();
+ctx.moveTo(Xcor,i);
+ctx.lineTo(Xcor-nianL*3,i);
+ctx.strokeStyle = "rgba(0, 0, 0, 0.9)"; 
+ctx.stroke();
+ctx.textAlign="right";
+ctx.font="22px 宋体"; //30px 可以写在里面
+// Create gradient
+var gradient=ctx.createLinearGradient(0,0,c.width,0);
+gradient.addColorStop("0","magenta");
+gradient.addColorStop("0.5","blue");
+gradient.addColorStop("1.0","red");
+// Fill with gradient
+ctx.strokeStyle=gradient;
+ctx.strokeText((i-dingJiange)/nianPX-nianYprev,Xcor-nianL*3,i+8);
+
+}
+function txtL(year0,txt){
+	var xc=Xcor-nianL-65; //左边的线条从右边开始到左边结束的位置；
+	var xc2=10;//左边文本从左边开始的位置；
+	var yp;
+	if(year0>=0){
+		yp=dingJiange+nianYprevPx+year0*nianPX;
+		txt="" + year0 + "年," + txt;
+	}else{
+		yp=dingJiange+nianYprevPx+year0*nianPX;
+		yearp=year0*(-1);
+		txt="前" + yearp + "年," + txt;
+	}
+	ctx.fillStyle="#00f";
+	ctx.beginPath();
+	ctx.moveTo(Xcor-60,yp);
+	ctx.lineTo(xc+xc2-25,yp);
+	ctx.stroke();
+		
+	ctx.font="18px Verdana"; 
+	ctx.fillStyle="#000";
+	ctx.textAlign="left";
+//xc的位置是xc=Xcor+nianL100＝974－436－30＝508，可以容纳46个12px的字符(44*12=535)；
+
+
+	var txtN;//右边屏幕可容纳字符串个数；
+	var txtW=18*1;//手工算出是0.945;txtW是一个字符串的宽度；
+	txtN=Math.floor(xc/txtW);	
+	
+
+	if(txt.length>txtN){
+		var fortime=Math.ceil(txt.length/txtN);//需要循环的次数；
+		ctx.fillText(txt.substring(0,txtN),xc2,yp);
+		for(i=0;i<fortime;i++){
+		yp=yp+22;
+			txt=txt.substring(txtN);
+			var txt2="          "+txt.substring(0,txtN);
+			ctx.fillText(txt2,xc2,yp);
+		}
+	}else{
+	ctx.fillText(txt,xc2,yp);
+	}
+	
+
+	
+}
+
+function txtR(year0,txt){
+	var xc=Xcor+nianL100; 
+	var yp;
+
+	if(year0>=0){
+		yp=dingJiange+nianYprevPx+year0*nianPX;
+		txt="" + year0 + "年，" + txt;
+	}else{
+		yp=dingJiange+nianYprevPx+year0*nianPX;
+		yearp=year0*(-1);
+		txt="前" + yearp + "年，" + txt;
+	}
+	ctx.fillStyle="#00f";
+	ctx.beginPath();
+	ctx.moveTo(Xcor+3,yp);
+	ctx.lineTo(xc,yp);
+	ctx.stroke();
+	
+	ctx.font="18px Verdana"; 
+	ctx.fillStyle="#000";
+	ctx.textAlign="left";
+//xc的位置是xc=Xcor+nianL100＝974－436－30＝508，可以容纳46个12px的字符(44*12=535)；	
+	var txtN;//右边屏幕可容纳字符串个数；
+	var txtW=18*1;//手工算出是0.945;txtW是一个字符串的宽度；
+	txtN=Math.floor((canvasW-xc)/txtW);		
+
+	if(txt.length>txtN){
+		var fortime=Math.ceil(txt.length/txtN);//需要循环的次数；
+		ctx.fillText(txt.substring(0,txtN-4),xc,yp);
+		
+		for(i=0;i<fortime;i++){
+		yp=yp+24;
+			txt=txt.substring(txtN-4);
+			var txt2="          "+txt.substring(0,txtN-4);
+			ctx.fillText(txt2,xc,yp);
+		}
+		
+	}else{
+	ctx.fillText(txt,xc,yp);
+	}
+}
+function txtR2(year0,txt){
+	var xc=Xcor+nianL100; 
+	var yp;
+	if(year0>=0){
+		yp=dingJiange+nianYprevPx+year0*nianPX;
+
+	}else{
+		yp=dingJiange+nianYprevPx+year0*nianPX;
+	
+	}
+
+	ctx.fillStyle="#00f";
+	ctx.beginPath();
+	ctx.moveTo(Xcor+3,yp);
+	ctx.lineTo(xc,yp);
+	ctx.stroke();
+	
+	ctx.font="18px Verdana"; 
+	ctx.fillStyle="#000";
+	ctx.textAlign="left";
+//xc的位置是xc=Xcor+nianL100＝974－436－30＝508，可以容纳46个12px的字符(44*12=535)；	
+	var txtN;//右边屏幕可容纳字符串个数；
+	var txtW=18*1;//手工算出是0.945;txtW是一个字符串的宽度；
+	txtN=Math.floor((canvasW-xc)/txtW);		
+
+	if(txt.length>txtN){
+		var fortime=Math.ceil(txt.length/txtN);//需要循环的次数；
+		ctx.fillText(txt.substring(0,txtN-4),xc,yp);
+		
+		for(i=0;i<fortime;i++){
+		yp=yp+22;
+			txt=txt.substring(txtN-4);
+			var txt2="          "+txt.substring(0,txtN-4);
+			ctx.fillText(txt2,xc,yp);
+		}
+		
+	}else{
+	ctx.fillText(txt,xc,yp);
+	}
+}
+
+
+txtR(-2070,"夏朝，前2070-前1600,共470年,十四代、十七王。夏启，鲧的儿子。是黄帝的玄孙。由于治水立了大功，被尊称为“大禹”。他的父亲治水不成而被杀，禹接替治水的工作，采取疏导的方法，经过十三年的努力，终于成功。后继舜为帝。称国号“夏后”，故称“夏禹”。他在涂山大会诸侯，建立了奴隶制国家的雏形，禹铸造九鼎，象征九州。虞在位45年死，葬于会稽山。");
+txtR(-1976,"相，姒——前1976年~前1949年，第4代，仲康的儿子。即位28年后，寒浞攻打他，相被杀。后来的40年间为后羿等篡权。");
+txtR(-1909,"后羿：又称“夷羿”、“羿”，夏朝东夷族有穷氏首领，生于今山东省济宁市。“司羿”就是“世袭的射师”。夏王仲康死后，其子相继位。不久，后羿驱逐了相，自己当了国王，是为夏朝第六任君主，后被家臣寒浞所杀。(后寒浞被姒相的遗腹子，姒少康所杀。)");
+txtR(-1600,"商——前1600-前1046，555——17世31王。高祖商汤建周；商代曾五次迁都。《竹书纪年》记载，商王仲丁“自亳迁于嚣”、河甲“自嚣迁于相”、祖乙迁邢（今邢台市）、南庚“自邢迁于奄”、盘庚“自奄迁于北蒙，曰殷”。不过考古学家至今只发现了偃师二里头、郑州商城、偃师商城和安阳殷墟、邢台邢墟五个都邑遗址。这五个遗址的面积都很大，均在三、四百万平方米以上。");
+
+txtR(-1046,"西周，前1046-前771年，275年，11代12王。由周文王之子周武王姬发灭商后所建立，定都于镐京（今陕西省西安市西部）。由于周朝后来将都城东迁洛邑（今河南洛阳）称东周，所以称这一时期的周朝为西周。");
+txtR2(-1000,"公元前11～前9世纪古希腊荷马时代。");
+txtR(-770,"东周，前770-前256，共515——25王。公元前771年，犬戎杀幽王，灭西周。翌年（即前770年），周平王姬宜臼由镐京迁都于洛邑（今河南省洛阳），史称东迁后之周王朝为东周。周赧王59年（公元前256年），东周为秦所灭，共传25王，历时515年。那时一些较大的诸侯国，为了争夺土地、人口以及对其他诸侯国的支配权，不断进行兼并战争。谁战胜了，谁就召开诸侯国会议，强迫大家公认他的“霸主”地位。 先后起来争当霸主的有：齐桓公、宋襄公、晋文公、秦穆公、楚庄王。历史上把他们称为“春秋五霸”。");
+txtR(-220,"秦朝，前220-前206年，共15年。");
+txtR(-202,"西汉，前202-9——共211年14帝，长安。");
+
+
+
+
+txtR(-776,"古希腊第一次奥林匹克运动会。");
+txtR(-841,"公元前841年(西周共和元年)为中国历史确切纪年的开始。");
+txtR2(-900,"公元前8世纪,古希腊史诗《伊利亚特》、《奥德赛》形成，传为荷马所作;中东地区的帕加马人发明羊皮制成的书籍，称“羊皮书卷”");
+txtR2(-580,"毕达哥拉斯(约-580～-500年)古希腊数学家、哲学家创立毕达哥拉斯学派，提出毕达哥拉斯定理、数和谐说和灵魂轮回说。");
+txtR(-563,"释迦牟尼约-563～前483年佛教创始人建立了完整的佛教教义学说。");
+txtL(-551,"孔子-551.9.28--479.4.11，春秋时期鲁国人.");
+txtR(-552,"孙武齐国乐安人,汉族.公元前527年，年仅25岁的孙武完成旷世圣书——《孙子兵法》。");
+
+txtR(-427,"公元前427～前348／347)年古希腊哲学家柏拉图创立“学园派”，建立以“理念论”为核心的客观唯心主义哲学体系。");
+txtR(-384,"前4世纪，希腊亚里士多德(公元前384年-公元前322年)对数学、动物学等进行综合研究。");
+txtR(-475,"战国(公元前475年--公元前221年)，经过春秋时期（前770年―前476年）的无数次兼并战争，诸侯国的数量大大减少。到战国时期（前475年―前221年）实力最强的七个诸侯国分别为秦、齐、楚、燕、韩、赵、魏，这七个国家被称作“战国七雄”。除战国七雄外，还有越、巴、蜀、宋、中山等大国。小国尚有郑、卫、东周、鲁、滕、邹、费等，但其实力与影响力皆远远不及战国七雄，只能在强国的夹缝中生存，且最终均为七雄所灭。“战国”之名源自西汉刘向编注的《战国策》。");
+txtR(-0,"");
+txtR(-0,"");
+</script>
+</body>
+</html>
