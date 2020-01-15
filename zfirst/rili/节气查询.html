@@ -1,0 +1,71 @@
+<html>
+<body onload = "initial();">
+
+<FORM name="CLD2" id="CLD2">
+	<SELECT style="font-SIZE: 11pt" name="SY2" id="SY2"> 
+		<SCRIPT language=JavaScript>      // 写日期和年份选项
+			for(i=1900;i<2050;i++) 
+				document.write('<option>'+i)
+		</SCRIPT>
+	</SELECT> 年 
+	<SELECT style="font-SIZE: 11pt" name="SM2" id="SM2"> 
+		<SCRIPT language=JavaScript>
+			for(i=1;i<13;i++) 
+				document.write('<option>'+i)
+		</SCRIPT>
+
+	</SELECT>月&nbsp;&nbsp;&nbsp;
+	<button type="button" onClick="myFunc()">查询</button>
+	<br> 
+	节：  <input type="text" name="jie" size="6" />
+	日期：<input type="text" name="jieD" size="6" />
+	<br> 	
+	气：  <input type="text" name="qi" size="6" />
+	日期：<input type="text" name="qiD" size="6" />
+	
+</FORM>
+<script type="text/javascript">
+
+function initial() {
+	var Today = new Date();
+	var tY = Today.getFullYear();
+	var tM = Today.getMonth();
+   CLD2.SY2.selectedIndex=tY-1900;
+   CLD2.SM2.selectedIndex=tM;  
+}
+
+var solarTerm2 =new Array("小寒","大寒",
+						 "立春","雨水","惊蛰","春分","清明","谷雨",
+						 "立夏","小满","芒种","夏至","小暑","大暑",
+						 "立秋","处暑","白露","秋分","寒露","霜降",
+						 "立冬","小雪","大雪","冬至")
+
+var sTermInfo2 =new Array(0,21208, 						//1900年的各个节气到小寒的分钟数
+						  42467,63836,85337,107014,128867,150921,
+						  173149,195551,218072,240693,263343,285989,
+						  308563,331033,353350,375494,397447,419210,
+						  440795,462224,483532,504758)
+
+function sTerm2(y,n) {								//===== 某年的第n个节气为几日(从0小寒起算)
+   var offDate = new Date( ( 31556925974.7*(y-1900)  //  31556925974.7是一年的豪秒数
+   						+ sTermInfo2[n]*60000  )     //  1分钟60000毫秒,sTermInfo记录的是分钟数
+						+ Date.UTC(1900,0,6,2,5) ) 	// 指定的时间距GMT1970年1月1日午夜的毫秒数。
+												 // 1900年1月6号为小寒，小于此时间，则返回负数
+   return(offDate.getUTCDate()) 			//根据世界时从 Date 对象返回月中的一天 (1 ~ 31)。
+}
+
+
+function myFunc(){
+    y  = document.CLD2.SY2.selectedIndex+1900;
+    m  = document.CLD2.SM2.selectedIndex;
+	d1 = sTerm2(y,m*2  )
+	d2 = sTerm2(y,m*2+1)
+	document.CLD2.jie.value = solarTerm2[m*2]
+	document.CLD2.jieD.value = d1
+	document.CLD2.qi.value = solarTerm2[m*2+1]
+	document.CLD2.qiD.value = d2
+}
+</script>
+
+</BODY>
+</HTML>

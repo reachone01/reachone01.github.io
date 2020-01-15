@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4><a href="http://yuedu.163.com/book_reader/41ce31e524424cea99b0eb068046542b_4">01 序言冲突与统一、对称与破缺</a></h4>
+
+<p>宇宙的庞大而广阔无垠，给人一种威慑的感觉，它一直深深地埋藏在人类的心灵中。太阳西沉，星空闪烁，由此产生了一种缥缈与不确定之感。探究宇宙世界的内在结构，往往使我们十分吃惊。它让我们知道事物要比我们想象的更为深奥、合理，并让我们了解到我们错的时候要比对的时候多。它使我们变得谦卑，鼓励我们珍视忍耐、坚持不懈和自我完善的美德。人类在探求真理的过程中，充满了大胆的猜想和创造。科学思想史，也是人类想象的历史。科学思想史上无数创造性成果都是由于科学家们对于真理的坚忍不拔、热情追求而获得的。</p>
+
+<p>世界科学文明的发展史是冲突与统一的历史。哲学上，古希腊的毕达哥拉斯用“数”统一世界，认为万物皆数。柏拉图用“理念”统一了虚拟与现实，亚里士多德把自古以来的人类“经验”进行了知识化的集大成。数学上，欧几里得用“演绎”把人类的几何思想进行了伟大的综合，《几何原本》至今仍是经典中的经典。物理上，阿基米德自豪地说用一个支点可以撬动地球，托勒密把地球当作宇宙中心，建立了完美的宇宙图景。一千多年之后，哥白尼说，宇宙的中心不是地球，是太阳！开普勒用三大定律为宇宙立法。伽利略用“实验”统一过程与运动。笛卡尔把“数与形”结合，让几何和代数统一起来，创立解析几何。牛顿、莱布尼茨的微积分统一了运动与变化。柯西的极限理论统一了数学中的变量与常量、有限与无限。牛顿用万有引力统一了天上与地下的所有事物，从此开启了探寻一种能够把推动自然运转的基本力的理论解释统一起来的思想。法拉第用“场”发现了电与磁的关系，麦克斯韦用优美的数学方程深刻地统一了光和电磁波。爱因斯坦用“波粒二象性”统一了光的粒子说和波动说。波尔兹曼用“熵”统一了宏观与微观世界的状态。爱因斯坦的狭义相对论用“光”统一了时间和空间，进一步，广义相对论的“等效原理”统一引力质量和惯性质量，从而把牛顿理论和狭义相对论统一起来，把人类的时空观向宇宙深处拓展。康托尔用集合论统一了无穷大和无穷小，量子力学的“标准模型”统一了所有基本粒子，弦论则向着把广义相对论和量子力学统一起来的征途上迈进。</p>
+<img src="01.bmp" /><br /><br />
+<p class="picsay">科学思想史，也是人类想象的历史。科学思想史上无数创造性成果都是由于科学家们对于真理的坚忍不拔、热情追求而获得的。</p>
+
+<p>分久必合，合久必分，在统一的进程中，这些优美的理论和公式背后，却伴随着宏大的观念冲突，从“地球是平的”到“地球是圆的”，从古希腊“万物皆流”与“万物静止”观念的冲突，到地心说与日心说的冲突，直接改变了人类的思维范式。数学史上，在解析几何和光学的问题上，笛卡尔和费马争论不休；在微积分的首创权上，牛顿和莱布尼茨之间的冲突影响了英国数学发展的一百年；在数学的逻辑基础问题上，庞加莱和罗素之间深刻的冲突引发了第三次数学危机；“集合论之父”康托尔的集合论终结了自古希腊亚里士多德以来统治人们2000多年的“整体大于部分之和”的观念，但康托尔本人却受到另一位大数学家、直觉主义代表人物之一克罗内克的攻击，进了精神病院；波尔兹曼在与以马赫为代表的实证主义者就原子与分子是否存在的争论中，亲手结束了自己的生命。整体论与还原论的冲突，确定性与不确定性的冲突，简化理论与复杂理论的冲突，直到今天，物质与反物质，明物质与暗物质，不断的冲突与不断的统一，反复演绎着惊心动魄的科学进步史。</p>
+
+<p>在追求大一统的道路上，人们认定宇宙存在着深刻的对称性。科学家们早就坚信大自然有一种潜在的对称性设计。规律的对称性意味着当我们从不同的视角观察自然现象时，我们会发现这些现象完全由同样的自然规律所掌控。对称代表了转换后维持不变的公式、规律和数学对象的永恒的本质。对称性是物理学之美的一个重要体现。麦克斯韦方程组的美学价值之一就体现在对称性上，麦克斯韦本人则评论说：“我总是把数学看成是获得事物的最佳形态和维度的方法，这不仅是指最实用的和最经济的，更主要是指最和谐的和最美的。”近代物理，有三个相当重要的对称：一个是左右对称，就是通常说的宇称守恒与不守恒；一个是正反粒子对称，正粒子变成反粒子；一个是时间反演过去、将来的对称。这三个对称与自然界和整个宇宙的演变有极为密切的关系，与我们的存在有极为密切的关系。对称性是审美的，是简单的，是整体的，是相对的。</p>
+
+<p>对称是美的化身，是同时空的几何形状结合在一起的。我们所熟悉的各种对称——宇称、旋转、洛伦兹不变性及广义协变性——是精确和绝对的，是凝固在完美之中的对称。荷兰物理学家洛伦兹为了调和牛顿力学与光速不变的实验的矛盾，对一种非凡的对称性描述方程的变换，以洛伦兹协变而著称。爱因斯坦的数学老师、德国数学家闵可夫斯基使用对称性将狭义相对论建立在坚实的数学基础之上。闵可夫斯基证明，就像球体可以在三维空间中旋转一样，空间和时间也可以像一个四维实体那样“旋转”，这种旋转是对称的。这就使得爱因斯坦的狭义相对论方程在这些时空旋转时也是对称的，物理学就叫“协变式的”。经典力学和量子力学研究的很多系统都体现了整体对称性。爱因斯坦相对论的理性基础是对对称性的深刻理解。狭义相对论将物理学规律的对称性的范围扩展到所有匀速运动的观测者。爱因斯坦的狭义相对论告诉我们质量与能量是对称的，时间与空间是对称的，物质与运动是对称的！四维时空连续统显示出精确的对称性原理，时空对称性规定着其他的对称性：电荷和电流、电场和磁场、能量和动量等的对称性。还有一个相当重要的对称，就是标度对称。标度对称与现在所有的地图上的气候、水体的分类都有密切关系。标度对称是指，你知道它一部分的样子，你就可以推导出全部的样子，这种对称叫标度对称或伸缩对称，也叫作分形。</p>
+
+<p>20世纪，物理学家了解到他们在19世纪所谈论的动量和能量守恒定律，事实上是建立于空间和时间对称的基础之上；也就是说，在一个物理系统中，动量和能量在物理作用前后保持不变，是建立在“物理作用不会因为作用的时间和地点改变而不同”的基础之上。随着狭义相对论和广义相对论的出现，对称性定律获得了新的重要性。任何一个对称，都相对有一个守恒定律；同样，任何一个守恒定律，也相对有一个对称。</p>
+
+<p>有着“Lord of Symmetry”（对称的上帝）之美誉的诺贝尔物理学奖获得者杨振宁曾评论，麦克斯韦方程在写出来的时候，它里面两个最重要的现象是它的两个对称性。这两个对称性麦克斯韦当时并没有意识到。其中一个对称性是他的狭义相对论的对称性，这是1905年爱因斯坦所指出来的。另外一个对称性，是他的规范对称性，这是在20世纪，从1918年到1970年以后，经过漫长的五六十年，才被了解到的。这两个对称性对麦克斯韦方程式在宇宙结构的意义有着深远的影响，这两个对称性是20世纪末物理学最重要的思想之一。这不是麦克斯韦写下方程式时所能预料到的。</p>
+
+<p>20世纪50年代，杨振宁和罗伯特·米尔斯写了一篇划时代的论文，他们发明了一种新的、具有炫目的数学美的精确对称。这种对称并非像之前那样受到实验观察的启发，它是以美学为基础的一种学术创造。这个精确对称在经过深刻的拷问之后，最后发展成局域对称或规范对称，并成为标准模型的基础，而标准模型则是探索宇宙基本物质构成单位的强大工具。后来的物理科学中“规范不变性”的概念，不容易用通俗的语言描述，它是一种复杂的对称。</p>
+
+<p>一直以来，从麦克斯韦到粒子物理学的标准模型，以及弦论中的超对称理论，许多伟大的物理学家认为，越是基础的理论，越需要具备更多的对称性。群论表明，一切对称都可以在一个单一的主要基本对称中找到其自然的起源。人们发现，较为复杂的对称都可以通过非常简单的组合得到。所有的力都来自局部对称性的共同要求，人们从这里便能够瞥见一个令人得到深刻满足的秩序。杨振宁曾说：“大自然似乎利用了对称法则的简单数学表达方式。当你歇下来想一想有关数学推理的精致而美妙的完整性，并将此与复杂而影响深远的物理后果相对照时，一种对对称法则之威力的深深敬意一定会油然而生。”然而，从经典物理到量子力学与粒子物理，更深层次的物理事实却是对称性的“破缺”。</p>
+
+<p>设想你站在镜子前面，你的右边在镜像里成了左边。这是镜像对称，镜像对称的学名叫宇称守恒。宇称守恒定律说的是，物理规律在最深的层次上是不分左右的。也就是说，依照这个定律，一物体及其左右相反的镜像，所发生的运作是相同的。宇称守恒定律和能量守恒定律、物质守恒定律一样，在预言自然界行为时似乎向来正确。事实上，真正物理作用中的宇称守恒定律，并不仅止于“镜像对称”而已。在真正的物理作用当中，应该是左右、上下、前后整个空间的置换对称，而在量子力学中讨论的，是空间坐标变量的宇称数守恒的问题。</p>
+
+<p>还是在20世纪50年代，科学家已经在对宇宙射线的探测中，看到许多新的粒子。这些粒子由于没有理论预测过它们的存在，因此被称为“奇异粒子”。美籍华裔物理学家李政道和杨振宁发现了当时没有见过的“奇异粒子”，原有的物理理论不能解释这些粒子的一些令人迷惑的现象。当时，他们就大胆地设想，如果不接受宇称守恒这个假设，那么很多令人迷惑的现象就会得到解释。整个问题的关键，事实上也是被人忽略的一个想法，就是要把弱作用中的宇称守恒和强作用中的宇称守恒分开来看待。</p>
+
+<p>在研究时，他们猜想在弱相互作用里，宇称可能是不守恒的，这就是所谓的“宇称的失效”。他们的猜想得到了另一位伟大实验物理学家吴健雄的实验验证。在吴健雄的实验结果尘埃落定以前，整个科学界的气氛是倾向于不相信杨、李的猜想的，也就是说不相信在弱作用中宇称真的是不守恒的。杨振宁认为，由于时间和空间的对称性，在原子、分子和原子核物理中极为有用，这种有用的价值，使人们自然地假定这些对称是金科玉律，当然是不可置疑的。</p>
+
+<img src="02.bmp" /><br /><br />
+<p class="picsay">杨振宁和李政道猜想，在弱相互作用里，宇称可能是不守恒的，这就是 “宇称的失效”。他们的猜想得到了另一位伟大实验物理学家吴健雄的实验验证。由于这一工作，杨振宁和李政道共同获得了1957年诺贝尔物理学奖。</p>
+
+<p>吴健雄的实验结果震撼了世界物理学界，宇称是不守恒的！宇称不守恒成了以后物理学中弱作用理论的基石。由于这一工作，杨振宁和李政道共同获得了1957年诺贝尔物理学奖。对于宇称不守恒，量子物理学家泡利曾经说：“我不能相信上帝是弱的左撇子。”许多科学家们开始怀疑其他守恒定律是不是也有问题。如果宇称不始终如一，那么也许其他的守恒定律也会存在同样问题。也许对称性根本不应该看成是一个普遍适用的原理。其实在开普勒时代，当开普勒第一定律告诉人们行星运行的轨道是椭圆时，几千年来人们认为最完美、最对称的圆，这一完美的对称就开始破缺了。对称性这一重要的思维前提正在被不断打破，对称破缺不断地打破着对称的优雅。</p>
+<img src="01.bmp" /><br /><br />
+<p class="picsay">维纳斯的美是对称破缺的。</p>
+<p>量子力学早期的哥本哈根学派海森堡的“测不准原理”把精确的对称美学打碎了。海森堡的对称是测不准的，是独立于时空之外、没有因果关系的。对称这一根深蒂固的美学原则正在被重新定义。我们宇宙中似乎存在的有效法则充满了偶然性，因为它们同时也是某个打破对称性结论的产物。由此看来，只有对称破缺才真正体现了大自然和宇宙的创造性。</p>
+
+<p>空间和时间的性质为我们提供了一个背景，人类关于时空的认识演化就是在这个背景中发生的。贯穿整个自然科学的历史，空间和时间起着一种框架的作用，物理系统的动力学甚至整个宇宙都是在这个框架上进行观测、描述、分析和解释的。直到20世纪初，人们还认为这种框架的存在与在它上面发生的戏剧性事件无关，它的性质也不因物质的存在和物理对象的存在而受到影响，发生改变。实际情况是，随着人类知识的增加，对时间和空间性质的认识不断深入，使得我们理解时空的观念和视角远远背离我们日常经验的直觉。</p>
+
+<p>本书从时空范式的视角提出一个新的观点，即时空观对我们认识自然的影响；而且还提出了影响人类思维范式的宇宙时空观，谈到了不同时期的时空观无论在科学史，还是在人类认识自然规律的发展上所产生的巨大影响，以及对现实的启示意义。</p>
+
+<p>朱海松</p>
+
+<p>2018年6月</p>
+
+
+
+<p style='float:right;'>本页共21段，4837个字符，14355 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

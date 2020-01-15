@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>﻿GitHub到底为啥这么受欢迎，我们为你整理一份使用攻略</h4>
+
+<p>雷锋网 2018-08-02 15:24:19</p>
+
+<p>雷锋网按：这里是，油管 Artificial Intelligence Education 专栏，原作者 Siraj Raval 授权雷锋字幕组编译。</p>
+
+<p>原标题：How to Use GitHub</p>
+
+<p>翻译 | 于志鹏朱海振校对| 余杭整理 | MY</p>
+
+<p>GitHub，全世界开发者的安全空间，在这里，你可以分享你的代码为大家所用，也可以和全世界的开发者一起共建完善你的代码。在这里，你可以学习借鉴前辈的经验快速提升技能，也可以更好地展示自己的学习成果为未来发展撰写自己的名片。本期视频就由网红小哥 Siraj 为大家讲解 Git 协议是如何工作的，并教你建立自己的代码仓库以及用社交媒体提升你的 GitHub 代码。</p>
+
+<p>1. 什么是 Git 协议</p>
+
+<p>你可能会发现 GitHub 有个很鲜明的特色，它允许开发者通过一个共享界面实现合作，在这里你可以以你认为好的方式修改他人的开放代码，也可以邀请他人来协助你完善你的。这种合作就像特斯拉公司要发布一辆新车型，他们会用一年时间来请负责每个部分的小组进行设计、协调并与其它小组设计的新特征保持同步，从而实现设计的最优化。这是一个充分发挥民主的过程。</p>
+
+<p>那你可能会疑惑，是什么驱使世界各地的开发者互相协作，并且一旦发生问题，是否有可能修改或还原呢？</p>
+
+<p>答案很简单，因为使用了 Git 协议存储代码库。</p>
+
+<p>十几年前，大名鼎鼎的程序员 Linus Torvalds 正忙于构建一个操作系统，并且与其它开发者一起不断修改代码，因此他需要一个方式去追踪代码是如何随着时间更改的，这样一旦发生问题可以很轻易的回到之前的版本。一般来说我们会不断地保存副本并重命名，我想你写论文也碰见过这种情况：一稿、二稿···绝不修改版本···再次修改版本···这简直是噩梦，所以 Linus 写了 Git 协议，用来提供项目最新的注释合集和按时间排序的代码更改历史。直到现在，Git 协议几乎是每一个现代开发工作流的核心。</p>
+
+<p>2. 如何理解 Git 协议中的指令</p>
+
+<p>Git 协议中有大量指令，当你第一次试着去理解的时候它的结构可能令人费解。不过我们还是以特斯拉公司为例。</p>
+
+<p>我们需要研发新车型，事实上在给定的任意时间我们存在四个版本的设计：（1）实时版本，也就是消费者熟悉的在售现行版本；（2）计划中明年版本，只要所有小组同意，这个版本将成为新的实时版本，它代表着远程数据库，储存了我们最新的优化后的设计版本；（3）最新版本充分考虑了其他小组的建议，但还未向其他小组展示并获得许可，它代表本地库；（4）开发中版本，它需要进一步的内测和审核，这是一个缓存区。</p>
+
+<p>每个阶段都对应着不同层次的贡献，对代码来说也是一样，我们的代码在落地前必须经历四个阶段，每个阶段都进一步降低了与其它小组相冲突的风险。</p>
+
+<p>Git 协议中还有一个声明，表示我们完成了一个完整的设计并且我们对它十分满意，Git 协议中的提交意味着即使还需要测试和审核，我们仍然对自己的设计充满信息，并且已经对它进行了所有标准化的测试。</p>
+
+<p>3. Git 协议如何运作</p>
+
+<p>一旦我们准备好将我们的设计展示给其他人，就可以将我们的设计从本地库复制到远程存储库中，在 Git 协议中我们可以使用 push 指令，过程存储库保存在云端，本地库则保存在我们的电脑上。一旦所有人都表示满意，我们就可以将它部署到我们的网站或手机应用上。</p>
+
+<p>在生产中，这实际上不是一个 Git 指令而是代表着从实际版本到生产的过程。</p>
+
+<p>事实上我们可能为每个新版本都建立了存储库，但因为他们都很多共同点，我们可以只为每个版本建立分支，分支可以让我们基于相同的代码库保持多个版本。如果使用后发现在现有版本中加入某个特征会更好，我们就可以用 merge 指令来整合两个分支。</p>
+
+<p>加入有人推送了一个新的特征或代码到远程存储库中，我们可以通过 Git 协议中的 pull 指令提取新特征到我们的本地库。如果这个新特征与我们的存储库冲突，我们可以让代码恢复到改变前的状态，或者调整推送一个更新的版本到远程存储库。</p>
+
+<p>Git 协议可以帮我们追踪并快速定位冲突，使得优化和修复都更加简单。</p>
+
+<p>4. 如何使用 Github</p>
+
+<p>我们已经知道 Github 使用了 Git 协议，我们继续建立自己的存储库，在完成注册后然后将它存在 Github 上，这里相当于一个开发者的社交网络平台，我们可以下载最新的 Git 协议。</p>
+
+<p>我们通过在 Github.com 上使用 git config 指令确定自己的用户名和邮箱，然后就可以通过在命令行使用 git init 指令建立自己的本地 Git 库。可以新建一个代码文件夹，并且通过直接把更改添加到缓存区来将其添加到 Git。</p>
+
+<p>每一个开发者只负责自己的分支，我们可以在本地匹配他们，然后提交方案，不同的提交来自于不同的分支，所有分支逐渐导向 master 节点，这也是为什么 Git 会呈现树形结构。</p>
+
+<p>GitHub 是一个社交网络平台，你可以关注并追踪其他开发者的最新代码，关注你的开发者越多，他们越有可能提升你的开源项目。而良好的文件记录极有助于让其他开发者关注你的代码。所以你还在等什么？快加入 GitHub 吧！</p>
+
+<p>视频原址：https://www.youtube.com/watch?v=Loav1kbA640</p>
+
+
+
+<p style='float:right;'>本页共28段，2218个字符，5819 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

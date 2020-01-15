@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0055)file://E:\desktop\myjs\htm\time\darkvn参赛作品-时钟.htm -->
+<!-- saved from url=(0050)http://darkvn.top263.net/myscript/clock/clock2.htm --><HTML><HEAD><TITLE>darkvn参赛作品-时钟</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<SCRIPT> 
+function setLights(){
+	var sx=Math.cos(slightDir)*slightr;
+	var sy=Math.sin(slightDir)*slightr;
+	var mx=Math.cos(mlightDir)*mlightr;
+	var my=Math.sin(mlightDir)*mlightr;
+	var hx=Math.cos(hlightDir)*hlightr;
+	var hy=Math.sin(hlightDir)*hlightr;
+	sconDiv.filters.Light.clear();
+	sconDiv.filters.Light.addCone(sx+72,sy+72,1,73,72,215,255,5,20,1);
+	sconDiv.filters.Light.addCone(mx+72,my+72,1,73,72,255,10,0,20,2);
+	sconDiv.filters.Light.addCone(hx+72,hy+72,1,73,72,15,100,255,20,4);
+	sconDiv.filters.Light.addAmbient(155,155,155,100);
+}
+ 
+function timeGo(){
+	var tt=new Date();
+	slightDir=(tt.getSeconds())/60*6.28-1.57;
+	mlightDir=(tt.getMinutes())/60*6.28-1.57;
+	hlightDir=(tt.getHours())/12*6.28-1.57+mlightDir/6.28*0.52+0.05;
+	dateDiv.innerText=tt.getMonth()+"-"+tt.getDate();
+	setLights();
+}
+ 
+function InitClock(){
+	slightr=110;
+	mlightr=90;
+	hlightr=60;
+	timeGo();
+	setInterval("timeGo()",1000);
+}
+window.onload=InitClock;
+</SCRIPT>
+<STYLE type=text/css>.light {
+	FILTER: Light
+}
+.date {
+	COLOR: #000000; FONT-FAMILY: "Geneva", "Arial", "Helvetica", "san-serif"; FONT-SIZE: 12px; FONT-WEIGHT: bold; TEXT-ALIGN: center
+}
+</STYLE>
+ 
+
+</HEAD>
+<BODY>
+
+<DIV id=clockDiv 
+style="HEIGHT: 222px; LEFT: 145px; POSITION: absolute; TOP: 12px; WIDTH: 233px; Z-INDEX: 1">
+<DIV class=light id=sconDiv 
+style="HEIGHT: 70px; LEFT: 27px; POSITION: absolute; TOP: 22px; WIDTH: 70px; Z-INDEX: 1"><IMG 
+height=144 src="img/clockm.gif" width=144></DIV><IMG height=200 
+src="img/clock2.gif" width=200> 
+<DIV id=clLayer 
+style="HEIGHT: 25px; LEFT: 88px; POSITION: absolute; TOP: 80px; WIDTH: 25px; Z-INDEX: 2"><IMG 
+height=26 src="img/clockd.gif" width=26></DIV>
+<DIV class=date id=dateDiv 
+style="HEIGHT: 16px; LEFT: 85px; POSITION: absolute; TOP: 178px; WIDTH: 32px; Z-INDEX: 3">11-26</DIV></DIV>
+
+</BODY></HTML>
+

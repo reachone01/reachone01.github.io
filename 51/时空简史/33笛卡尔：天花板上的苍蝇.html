@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>33笛卡尔：天花板上的苍蝇</h4>
+
+<p>1619年11月10日深夜，法国著名哲学家、数学家、物理学家笛卡尔躺在床上，眼睛盯着天花板，看见一只苍蝇爬来爬去。他突然灵机一动，产生了一个伟大的灵感。这个场景如此生动，以至于在晚年，笛卡尔还把这个精确的日期称为他一生转折点的伟大瞬间。</p>
+
+<p>笛卡尔通过那个伟大的灵感，发明了一种最富有成效的数学工具，即解析几何。从技术的观点来看，解析几何彻底改变了数学研究方法。他被公认为解析几何之父。这项伟大的发明把算术和代数与几何学紧密地联系起来，它们之间产生了精确的一一对应。就这样，笛卡尔改变了自古希腊以来代数和几何分离的现状，提出了坐标系和曲线方程的思想，把“数”与“形”统一了起来，使几何曲线与代数方程相结合，把古典几何纳入代数学支配之下。笛卡尔认为，任何问题都可以转化为数学问题，进而转化为代数问题，最终转化为方程求解的问题。</p>
+
+<p>笛卡尔对现代数学的发展做出了重要的贡献。笛卡尔认为，人类应该可以使用数学的方法——也就是理性——来进行哲学思考。笛卡尔断言：“坦率地说，我坚信数学是迄今为止人类智慧赋予我们的最有力的认识工具，它是万物之源。”这后来成了机械论中一个最为重要的公理。笛卡尔成功地把自然界全部转化成了运动中的简单描述。他把质量完全变成了数量。在笛卡尔的世界里，万物各得其所，相互关系十分和谐，世间一切都精确无误，不存在任何混乱。笛卡尔坚持认为物质最基本最可靠的性质就是形状、空间中的广延和在时空中的运动，而所有这些都是可用数学描述的。客观世界就是一个静止不动的空间，它具体体现在几何学中，因而其性质可从几何的基本原理中得出。笛卡尔宣称：“如果给我广延和运动，我就能构造宇宙。”</p>
+
+<p>伽利略当时已经抓住了一个深刻的远见，那就是在一个物体的运动中，绝对没有什么东西不能以数学来表示；而且他还发现，只有把超出几何特性之外的某些基本特性也赋予物体，才能对运动给出一个完整的数学处理。笛卡尔也充分认识到了构成这个必然性基础的事实：一切自然现象都可以按照数学原理和给予它们的可靠论证来说明。</p>
+
+<p>恩格斯指出：“数学中的转折点是笛卡尔的变数。有了变数，运动进入了数学；有了变数，辩证法进入了数学；有了变数，微分和积分就立刻成为必要的了。”在物理学上，笛卡尔认为宇宙空间中充满某种特殊的物质，称为“以太”。太阳的转动在以太中形成宇宙涡旋，涡旋运动带动各个行星运动，从而有我们所见到的天象奇观。这一解释从哲学上来说，其成功是前所未有的，它首次提出了一个不诉诸神力的宇宙动力学模型，是当时欧洲大陆各大学标准的宇宙学说。“以太”是一种想象中的物质存在，一种纯思辨的产物，它排除了神灵在物质运动中的作用，但也为探究自然规律设置了新的障碍。</p>
+
+<p>在笛卡尔看来，物体之间的所有作用力都必须通过某种中间媒介物质来传递，不存在任何超距作用。因此，空间不可能是空无所有的，它被以太这种媒介物质所充满。以太虽然不能为人的感官所感觉，但却能传递力的作用，如磁力和月球对潮汐的作用力。笛卡尔提出的“以太”概念为后来爱因斯坦颠覆牛顿的经典时空观埋下了伏笔。</p>
+
+<p>笛卡尔建立了系统的、清晰的和有说服力的新科学哲学。这贯穿在他的基本著作《方法论》中。他的哲学极为重要，因为它主宰了17世纪人们的思想，甚至影响到牛顿和莱布尼茨这样的巨人。笛卡尔的“我思故我在”（I think,therefore I am）是这位西方现代哲学思想的奠基人最著名的思想，出自他的著作《方法论》。笛卡尔的著名的二元论：一方面是由一部在空间中延展的巨大的数学机器构成的世界，这是具有第一性质的物质实体；另一方面是由没有广延的思想灵魂构成的世界，这是具有第二性质的精神实体。如果这两个实体中的每一个都绝对独立于另一个而存在，那么具有广延的事物的运动是如何产生没有广延的感觉的呢？笛卡尔回答：“我思故我在。”每个现象必有一个原因；结果不能大于原因；完美、空间、时间和运动的观念是头脑中固有的。笛卡尔也就是从他的“我思故我在”来证明“上帝的存在”。因为“我”这个思想的主体不能被“怀疑”，那么就有一个使“我”存在的更高“存在体”。换句话说，因为我存在，所以必须有一个使我存在的“存在者”，而那个使我存在的“存在者”，也必定是使万物存在的“存在者”。因此，能够使万物存在的“存在者”，就必然只有上帝才有可能了。</p>
+
+<p>伽利略的《关于两种科学的对话》、笛卡尔的《方法论》和培根的《新工具》的出现，使17世纪开始真正爆发自古希腊以来数学哲学上的第一次革命，开始摆脱亚里士多德几千年的思想束缚。这场疾风暴雨式的革命异常迅速，从哥白尼1543年出版的《天体运行论》，到笛卡尔1644年出版的《哲学原理》还不足一百年；从笛卡尔的《哲学原理》到牛顿的《自然哲学之数学原理》还不足四十年。17世纪，人类的心灵经历了一场深刻的革命，这场革命改变了我们思维的框架和模式；现代科学和现代哲学则是它的根源和成果。在此期间，数学和科学之间的结合完美到了极点，科学革命引发了数学大爆发，也是数学大爆发的结果，加速了被亚里士多德束缚在一起的物质和物体以及潜在的和实在的之间的分离。其中，力、运动、质量和作为公式的定律组成了理解现实世界如何运转的新范式。</p>
+
+<p>笛卡尔是17世纪及其后的欧洲哲学界和科学界最有影响的巨匠之一，被誉为“近代科学的始祖”。如果说笛卡尔给了人类一个“信念”，即人类能够揭示世界的奥秘，成为世界的主人，那么牛顿则使物理学完全走上独立发展的道路。他在力学、数学和光学中进行了伟大的创造。</p>
+
+
+
+<p style='float:right;'>本页共10段，2251个字符，6647 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

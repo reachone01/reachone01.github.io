@@ -1,0 +1,444 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>电脑传奇（中篇）智能之争</h3>
+
+<p>
+</p>
+
+<p>黄铁军
+</p>
+
+<p>电脑传奇智能之争，人工智能神经网络深度学习
+</p>
+
+<p>黄铁军教授的《电脑传奇》系列文章在《中国计算机学会通讯》上共刊登4篇，此篇为第二篇。
+</p>
+
+<p><h4>人工智能</h4>
+</p>
+
+<p>从1956年在美国达特茅斯学院举行的“人工智能夏季研讨会”(Summer Research Project on Artificial Intelligence)算起，人工智能概念登上历史舞台已经60年了。这次历史性会议如今已成经典，但它的主要发起人当时都是刚入道的“青椒”（青年教师）。主推手约翰·麦卡锡(John McCarthy, 1927-2011)是位数学天才，冯·诺伊曼的一次报告给他种下计算机专业的种子，他1951年从普林斯顿大学数学专业博士毕业，辗转斯坦福大学，1955年到达特茅斯学院数学系任助理教授。另一位组织者马文·明斯基(Marvin Lee Minsky, 1927-2016)算是麦卡锡在普林斯顿大学数学专业的学弟，1954年获得博士学位，当时任哈佛大学初级研究员。1953年夏，他俩在贝尔实验室遇到克劳德·艾尔伍德·香农(Claude Elwood Shannon, 1916-2001)。1955年夏，麦卡锡在IBM学术访问时，又遇到IBM第一代通用计算机701主设计师纳撒尼尔·罗彻斯特(Nathaniel Rochester, 1919-2001)。罗彻斯特一直对神经网络感兴趣，于是两人商定邀请香农和明斯基一起，联名向洛克菲勒基金委提交申请，计划邀请10位专家，来年夏天在达特茅斯学院举行为期两个月的“人工智能夏季研讨会”。
+</p>
+
+<p>麦卡锡等4人的申请书列出了计划研讨的7个话题。
+</p>
+
+<p>(1)自动计算机(automatic computer)：“自动”指可编程，并无超出“计算机”这个概念的新含义；
+</p>
+
+<p>(2)编程语言(how can a computer be programmed to use a language)：没有超出软件编程的其他含义；
+</p>
+
+<p>(3)神经网络(neuron nets)：研究“一群神经元如何形成概念”；
+</p>
+
+<p>(4)计算规模理论(theory of size of a calculation)：即计算复杂性理论；
+</p>
+
+<p>(5)自我改进(self-improvement)：真正的智能应能自我提升；
+</p>
+
+<p>(6)抽象(abstractions)：对感知及其他数据进行抽象；
+</p>
+
+<p>(7)随机性和创造性(randomness and creativity)：创造性思维可能来自受控于直觉的随机性。
+</p>
+
+<p>今天来看，(1)、(2)和(4)都是计算机科学的基本内容，虽未完全解决，至少问题十分清晰，(3)是神经网络，(5)和(6)可以归入机器学习，(7)属于强人工智能，这4个问题尚未解决，甚至问题本身都还没界定清楚。
+</p>
+
+<p>再回过来看看这个申请书的基本思想。开宗明义，申请书把这次研讨会的基础建立在 “学习——以及智能的其他所有特征的方方面面，原则上都可以精确描述，从而可以制造出仿真它的机器(every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it)”。这个基本思想实际上蕴含了一个前提假设，或者说预设了实现人工智能的技术路线：先精确描述智能。有些智能的确可以精确描述，经典人工智能的符号主义和知识工程进行了成功的尝试。有些智能却不能形式化地描述，例如会议第七个话题涉及的直觉和创造性。经典人工智能的兴与衰，正是这个基本思想的结果。
+</p>
+
+<p>关于人工智能和计算机的关系，第一个研讨话题“自动计算机”说得很直接：“目前计算机的速度和存储能力还不足以模拟大多数人脑功能，但这并不是主要障碍，问题在于我们写不出能充分发挥既有潜力的程序”。1953年IBM发布了第一台电子计算机产品IBM701，1954年贝尔实验室组装出第一台晶体管计算机TRADIC，会议的4名提案人中，既有701的主设计师，又有贝尔实验室的香农，他们推测“计算机的速度和存储能力不是障碍”基本靠谱。问题在于，到底能否靠写程序“模拟大多数人脑智能”？如果是冯·诺伊曼、维纳、麦卡洛克或皮茨评审这个申请，盯上这句话，八成会否定这个项目。可惜的是，那个夏天冯·诺伊曼被查出癌症，维纳和麦卡洛克及皮茨的关系3年前就已经分崩离析，没机会和这些年轻人争论计算机和形式逻辑的局限性。不过洛克菲勒基金会倒也没手软：把麦卡锡预算的13500美元砍到7500美元。
+</p>
+
+<p>达特茅斯会议给人留下深刻印象的是，艾伦·纽厄尔(Alan Newell, 1927-1992)和赫伯特·西蒙（Herbert A. Simon，中文名：司马贺，1916-2001） 报告的“逻辑理论家(the Logic Theorist)”程序，能够证明《数学原理》中命题逻辑的大部分。之后，两人合作开发“通用问题求解器(General Problem Solver)”，提出“物理符号系统学说”，开创了人工智能符号主义学派。
+</p>
+
+<p>要“精确描述智能”，除了逻辑，还需要知识。20世纪70年代，知识工程和专家系统成为经典人工智能的研究主流。1984年，道格拉斯·莱纳特(Doug Lenat)发起Cyc工程，试图将各个领域的本体及常识综合集成，以此为基础实现知识推理。Cyc被称为“人工智能历史上最有争议的项目”之一，最主要的反对意见来自对“人工”构造智能这个技术路线的质疑。这种质疑实质上是对经典人工智能基本思想的质疑：决定智能的规则是人工设计的，人是人工智能的造物主。经典人工智能的兴衰，根源就在“人工”二字，正应了“成也萧何败也萧何”。
+</p>
+
+<p><h4>神经网络</h4>
+</p>
+
+<p>皮茨和麦卡洛克是神经网络模型的提出者，威廉·沃尔特(William Grey Walter, 1910-1977)则是神经网络实践的先驱，他们都对控制论的创立产生了重要影响。沃尔特是一位神经生理学家，对神经连接何以产生复杂行为十分感兴趣，开发了第一台脑电图仪。与基于计算发展智能不同，沃尔特坚持用纯模拟电路仿真大脑。他在1948年前后制作了一系列电动自主机器人，最著名的称为“乌龟(tortoises)”，其中一款带有光感受器，可自行寻找电源插座；另一款内置两个条件反射神经环路，可重现巴普洛夫条件反射行为。沃尔特是机器人学的开创者，“真正人工生命(real artificial life)的先驱”，影响了一代又一代机器人学家，例如被称为麻省理工学院人工智能实验室“反叛者”的罗德尼·布鲁克斯(Rodney Brooks)，卡耐基梅隆大学机器人研究所的汉斯·莫拉维克(Hans Moravec)，马克·蒂尔登(Mark Tilden)等。
+</p>
+
+<p>在麦卡洛克、皮茨、维纳和冯·诺伊曼在美国东北部为大脑模型和控制论争论得不可开交时，加拿大生理心理学家唐纳德·赫布(Donald Olding Hebb, 1904-1985)却认为大猩猩才是可塑之才，于是来到位于美国东南部佛罗里达的耶基斯国家灵长类研究中心，设计了一套大猩猩情感测试方法。七年下来，虽然对大猩猩的情感教育效果寥寥，赫布自己却悟出了一套《行为产生的神经心理学理论》。这本1949年出版的专著最著名的贡献是赫布法则(Hebb·ˉs Law)：神经网络的学习过程发生在神经元之间的突触部位，突触的联结强度会随着突触前后神经元的活动而变化。“同时激发的神经元之间的突触连接会增强”在人工神经网络模型中得到广泛采用。
+</p>
+
+<p>第一个尝试赫布法则的应该是马文·明斯基。1950年，他还是大四学生时就对神经网络感兴趣。1951年，明斯基到普林斯顿大学数学专业读博士，就用真空管搭建了一个人工神经网络自学习机器，名为SNARC（Stochastic Neural Analog Reinforcement Calculator，随机神经模拟强化计算器），采用随机连接按照赫布法则实现神经网络学习。毫不奇怪，这个学生的“科研实践项目”当时并未引起什么关注。
+</p>
+
+<p>明斯基读高中时有位低一届的同学弗朗克·罗森布拉特(Frank Rosenblatt, 1928-1971)，明斯基高中毕业后到海军服役一年，所以两人同年入读大学：明斯基到哈佛大学读数学，罗森布拉特到康奈尔大学读心理学，都在1950年毕业。1956年，罗森布拉特从康奈尔大学获得博士学位，进入康奈尔航空实验室认知系统部从事心理学研究，得到美国海军研究办公室资助，研制“感知机(Perceptron)”。1957年第一个版本的感知机是运行在IBM 704上的仿真软件，后来才开发出硬件“马克1号”(Mark 1 Perceptron)：视觉输入是一个20×20感光单元阵列，通过随机方式和响应神经元层相连，学习过程就是自动调整连接权重（用电动马达调整电压计），通过这种方式，机器能够认识不同的形状。1958年，《纽约时报》以《海军新装备‘做中学’：心理学家展示能够阅读和越来越聪明的计算机雏形》 为题，对感知机报道说，“有望能说会写、能看会走，能够自我复制，并能意识到自我存在”。1962年，罗森布拉特出版《神经动力学原理：感知机和脑机制理论》，全球很多实验室纷纷仿效，应用于文字识别、声音识别、声纳信号识别以及学习记忆问题的研究，神经网络研究达到第一次高潮。
+</p>
+
+<p>感知机在新兴的人工智能领域引起广泛争议，其中就包括明斯基。明斯基比罗森布拉特早两年获得博士学位，回到哈佛任教，申请国防项目却一路不顺。更想不通的是，自己10年前还在海军服过役，海军却把大把经费投给自己的学弟，支持的事竟然是自己六年之前就干过的，还没头脑地对学弟的项目大肆宣传，是可忍孰不可忍！于是明斯基拿起自己擅长的数学武器，抱着十年不晚的君子精神，对人工神经网络进行理论分析。1969年和佩帕特(Seymour Papert)出版《感知机》，指出罗森布拉特的感知机功能有限，甚至不能解决“异或(XOR)”这样的线性不可分问题。书中言到：“我们认为，证实（或者推翻）我们有关把感知机推广到多层的想法没有希望这一直观看法，乃是一个重要的研究问题”，有意暗示多层神经网络研究是浪费时间。既然人工智能发起人都这么说了，大量旁观者自觉抬不起头来，神经网络研究自此陷入低潮。更为可惜的是，两年后，罗森布拉特43岁生日那天遭遇船难，不幸逝世，两位校友之争戛然而止。
+</p>
+
+<p>事实上，只要感知机从单层改为多层，就可以解决线性不可分问题，罗森布拉特及其他一些人也想到过，只是当时没找到有效的训练算法。1985年，戴维·阿克莱(David H. Ackley)、 杰弗里·辛顿(Geoffrey E. Hinton)和泰伦斯·索诺斯基(Terrence J. Sejnowski)将模拟退火算法应用到神经网络训练中，提出了玻尔兹曼(Boltzmann)机，算法具有能够逃离极值的优点，但训练时间过长。1986年，大卫·鲁姆哈特(David Everett Rumelhart, 1942-2011)、杰弗里·辛顿和罗纳德·威廉姆斯(Ronald J. Williams)在《自然》撰文，提出了多层前馈神经网络学习算法（即BP算法，类似思想之前多次提出），从理论上证明了只含一个隐层的前馈网络可以在闭区间上一致逼近任意连续函数，掀起人工神经网络研究第二轮热潮。然而，BP算法存在容易陷入局部极小、过拟合与样本依赖、收敛速度慢、网络结构选择依赖人工等问题，特别是实现复杂度高，利用当时的计算机难以模拟大规模神经网络。人工神经网络第二次热潮在90年代逐渐退却，1995年笔者读博士时，所在研究所博士生开题，有老师总结为“四小波，三分形，两模糊，一神经”，很好地反映了第二次神经网络热潮退却时的情形。
+</p>
+
+<p><h4>深度学习
+</p>
+
+<p></h4>
+</p>
+
+<p>历史进入新世纪。2004年，执着于神经网络研究的杰弗里·辛顿获得加拿大高级研究院(CIFAR)每年50万加元的经费支持，召集为数不多的同道，启动了“神经计算和自适应感知(Neural Computation and Adaptive Perception, NCAP)”项目。2006年，辛顿在《科学》发表论文，提出深度信念网络(Deep Belief Networks, DBNs)，掀起了汹涌至今的人工神经网络第三次浪潮。从网络结构来看，深度信念网络仍然是传统的多层感知机，但增加了一个初始权值训练阶段：利用待处理的样本数据，采用受限玻尔兹曼机，以输出层重构输入层为目标，采用无监督的方法逐层训练，使得多层网络能够高效表达训练数据，一定程度上可以避免反向传播算法陷入局部极小的问题。由于这次浪潮的核心是多层网络（相对于浅层网络更深）的有效学习问题，往往用“深度学习”来指代。更纯粹地体现深度学习精髓的是自动编码器(Auto encoder)，由深度学习另一位代表人物约舒瓦·本吉奥(Yoshua Bengio)进行了深入研究，采用无监督逐层训练的方法，可让多层神经网络有效表征训练数据的内隐结构。
+</p>
+
+<p>2012年6月，《纽约时报》报道了谷歌大脑(Google Brain)项目。吴恩达和谷歌大规模计算专家杰夫·狄恩(Jeff Dean)合作，用1.6万台计算机搭建了一个深度学习神经网络，拥有10亿连接。向这个网络输入1000万幅从Youtube上随机选取的视频缩略图，在无监督的情况下，这个系统具备了检测人脸、猫脸等对象的能力。2012年10月，辛顿团队把深度学习用于图像识别，将ImageNet视觉对象分类错误率从26%降低到15%，引发深度学习的全球高潮。至今计算机识别图像的能力已经和人相差无几，人工智能成为互联网之后全球瞩目的热点。
+</p>
+
+<p>神经网络第三次浪潮已经成为驱动人工智能新浪潮的主力。2016年3月，阿尔法狗(AlphaGo)综合深度学习、特征匹配和线性回归、蒙特卡洛搜索和强化学习思想，利用高性能计算(CPU+GPU)和大数据（16万局人类对弈及3000万局自我博弈），一举战胜围棋九段高手李世石，并在数月之内名列世界职业围棋第一位。更多深度学习解读：www.yangfenzi.com/tag/shenduxuexi
+</p>
+
+<p>人工智能的快速进步吸引了全球目光，世界各国纷纷推出政策或计划推进相关研究，产业界投入也急剧攀升。比神经网络前两次浪潮幸运的是，计算机性能已经大幅提升。1957年，罗森布拉特仿真感知机所用的IBM 704每秒完成1.2万次浮点加法，如今超级计算机速度已经达到IBM 704的10万亿倍，通过软件模拟方式构造大规模神经网络具备了技术可行性，特别是通用GPU适合神经网络并行的特点，能更好地发挥神经网络的威力。
+</p>
+
+<p>但是，以计算机为平台模拟实现神经网络只是过渡性的权宜之计，嫁接在计算机上的人工智能就像一头“半人半马”的怪兽。例如，AlphaGo就使用了1920个中央处理器和280个GPU，功耗达到了1兆瓦，是与之对战的李世石大脑功率（20多瓦）的5万倍。
+</p>
+
+<p><h4>智能之路
+</p>
+
+<p></h4>
+</p>
+
+<p>明斯基和罗森布拉特之争既是书生意气，更是两条技术路线之争。1955年3月，明斯基和麦卡锡还没开始酝酿人工智能创始会议时，美国西部计算机联合大会就举行了“学习机讨论会”(Session on Learning Machine)，主持人正是神经网络概念模型提出者沃尔特·皮茨。讨论会的两位主角是奥利弗·赛弗里奇(Oliver Selfridge, 1926-2008)和艾伦·纽厄尔，他们都参加了次年举行的达特茅斯会议。赛弗里奇10年前开始跟着维纳读博士，从神经网络角度研究模式识别，却一直未获得学位，他在会上发表的就是这方面的文章。纽厄尔1954年在兰德公司工作，期间听了赛弗里奇用计算机程序识别文字和模式的报告，受启发研制了下棋程序，这也是他在这次会议上报告的内容。赫伯特·西蒙在兰德学术访问期间被这个下棋程序吸引，力邀纽厄尔到卡耐基梅隆大学商学院读自己的“在职博士”。两人一同参加了1956年的达特茅斯会议。1957年，纽厄尔获得博士学位，从此这对师生成为长期合作伙伴。皮茨在会议总结时认为，赛弗里奇和纽厄尔代表了两派观点：“（一派人）企图模拟神经系统，而纽厄尔则企图模拟心智……但殊途同归”，这为随后数十年人工智能“结构”与“功能”两条路线的交织斗争埋下了伏笔。
+</p>
+
+<p>经典人工智能主张人工智能应从功能模拟入手，将智能视为符号处理过程，采用形式逻辑实现智能，故称为“符号主义(Symbolism)”或“逻辑主义(Logicism)”。符号主义学派初期过于乐观，赫伯特·西蒙1958年就曾预测计算机10年内就会成为国际象棋冠军。事实上，40年后“深蓝”才战胜国际象棋冠军。符号主义对能够形式化表达的问题（例如下棋、定理证明）有效，但很多事物（包括大多数人类常识）并不能显式表达，而且即使勉强形式化了，还存在与物理世界的对应问题。相比之下，视听觉等基本智能，看起来不如逻辑推理“高级”，但符号主义至今难以有效应对。想象、情感、直觉和创造等人脑特有的认知能力，符号主义更是遥不可及。
+</p>
+
+<p>经典人工智能的潮起潮落，引起了对人工智能概念的大讨论，结果之一就区分出弱人工智能(weak AI)和强人工智能(strong AI)。强人工智能也称通用人工智能(Artificial General Intelligence, AGI)，是指达到或超越人类水平的、能够自适应地应对外界环境挑战的、具有自我意识的人工智能。至今为止的人工智能系统都还是实现特定或专用智能，不像人类智能那样能够不断适应复杂的新环境并不断涌现出新的功能，因此都还是弱人工智能，或称专用智能(applied AI)。
+</p>
+
+<p>20世纪80年代，经典人工智能式微，机器学习崛起。机器学习研究机器怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能，简言之，机器学习把人工智能的重心从如何“制造”智能转移到如何“习得”智能。机器学习有很多分支，其中部分与人工智能各个流派的基本思想有千丝万缕的联系，例如强化学习与行为主义、深度学习与多层神经网络。统计学习是机器学习十分重要的一部分，它基于数据构建概率统计模型并运用模型对数据进行预测和分析，因而被称为“贝叶斯主义”(Bayesiansim)”，或者更一般化地称为统计主义。机器学习跳出了经典符号主义的思想束缚，让机器自动从数据中获得知识，特别是新世纪以来，数据驱动的人工智能取得了巨大成功。然而，机器学习的模型仍然是“人工”的，因此仍有其局限性，期望这种“人工模型”能够产生通用人工智能，同样没有坚实依据。
+</p>
+
+<p>进化主义(evolutionism)在20世纪80年代到90年代掀起人工智能的另一波浪潮。进化主义也称行为主义(behaviourism)，思想源头是控制论，认为智能并不只是来自计算引擎，也来自环境世界的场景、感应器内的信号转换以及机器人和环境的相互作用。90年代，行为主义代表人物麻省理工学院的罗德尼·布鲁克斯领导研制的各种机器人就走出实验室，进入家庭（吸尘和洗地），登上火星。近年来，万众瞩目的机器大狗BigDog也是这一流派的力作，由麻省理工学院另一名教授马克·雷波特(Marc Raibert)领导。行为主义的重要贡献是强调环境和身体对智能的重要性。然而，就像心理学中行为主义由盛到衰一样，行为主义如果不打开“大脑”这个黑盒，仍然不可能制造出强人工智能，就像黑猩猩再训练也学不会说话一样，被训练的“智能引擎”如果不到位，训练得再多也没用。
+</p>
+
+<p>与经典人工智能自顶向下(top down)功能模拟的方法论相反，神经网络走的是自底向上(bottom up)的结构仿真路线。其基本思想是：既然人脑智能是由神经网络产生的，那就通过人工方式构造神经网络，进而产生智能。因为强调智能活动是由大量简单单元通过复杂相互连接后并行运行的结果，因而被称为“连接主义(connectionism)”。从罗森布拉特的感知机，到当今如日中天的深度学习网络，人们提出了各种各样的人工神经网络，也开发出了越来越强的智能系统，但是，迄今为止的人工神经网络都过度简化，与生物大脑神经网络至少在三个层次还远远不能相提并论。首先，人工神经网络采用的神经元模型是麦卡洛克和皮茨在1943年提出的，与生物神经元的数学模型相距甚远；第二，人类大脑是由数百种不同类型的上千亿的神经元所构成的极为复杂的生物组织，每个神经元通过数千甚至上万个神经突触和其他神经元相连接，即使采用适当简化的神经元模型，用目前最强大的计算机来模拟人脑，也还有两个数量级的差异；第三，生物神经网络采用动作电位表达和传递信息，按照非线性动力学机制处理信息，目前的深度学习等人工神经网络在引入时序特性方面还很初级。因此，期望“人工”神经网络产生强人工智能，也还只是“碰运气”式的梦想。
+</p>
+
+<p>如果说强人工智能是技术峰顶上闪耀的圣杯，那么符号主义、连接主义、进化主义和机器学习就是指向四条登顶道路的路标。然而，60年艰苦攀登之后，圣杯不仅没有越来越近，相反比出发时显得更加遥远。驻足沉思，突然发现横亘在脚下和圣杯之间的山谷日渐清晰……这个深不见底的山谷，就是我们自己的大脑。
+</p>
+
+<p>这正是：
+</p>
+
+<p>人工智能一甲子，结构功能两相争；
+</p>
+
+<p>符号系统Top down，神经网络向上攻；
+</p>
+
+<p>进化主义玩互动，机器学习调模型；
+</p>
+
+<p>欲破智能千古谜，先剖大脑再人工。
+</p>
+
+<p>作者：黄铁军，CCF杰出会员。北京大学教授，北京大学计算机科学技术系主任、数字媒体研究所所长。主要研究方向为视觉信息处理和类脑计算。
+</p>
+
+<p>来源：《中国计算机学会通讯》2017年第1期《专栏》—电脑传奇（中篇）智能之争
+</p>
+
+
+
+<p style='float:right;'>本页共50段，8888个字符，22838 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<title>批处理学习：基础语法 - Wiliz - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=62IP_0cEz3HhbrLfyt0yP7LqLTBi71fpE28OaYc_AIs1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/ThinkInside/bundle-ThinkInside.css?v=RRjf6pEarGnbXZ86qxNycPfQivwSKWRa4heYLB15rVE1"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/adforce/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/adforce/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/adforce/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'adforce', cb_enable_mathjax=false;</script>
+<script src="/bundles/blog-common.js?v=PlJ9KQtkGa_ccgZxU9Fon-EDNUyrm0y3GKrHRkjy4p81" type="text/javascript"></script>
+</head><style>
+#main{
+width:78%;
+margin:auto;
+text-indent:2em;
+
+
+}
+.cnblogs_code{
+border:#ccc 1px solid;
+text-indent:0em;
+
+}
+</style>
+<body>
+
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h4 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/adforce/archive/2013/01/03/2842893.html">批处理学习：基础语法</a>
+		</h4>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>批处理文件是无格式的文本文件，它包含一条或多条命令。它的文件扩展名为 .bat 或 .cmd（.bat是dos下的批处理文件，.cmd是nt内核命令行环境的另一种批处理文件）。<br />在命令提示下键入批处理文件的名称，或者双击该批处理文件，系统就会调用Cmd.exe按照该文件中各个命令出现的顺序来逐个运行它们。<br />使用批处理文件（也被称为批处理程序或脚本），可以简化日常或重复性任务。</p>
+<p><span style="color: #993300;"><strong>一、参数</strong></span></p>
+<p><span style="color: #000080;"><strong>1、系统参数</strong></span></p>
+<div class="cnblogs_code">
+<pre>%<span style="color: #0000ff;">CD</span>%            ===<span style="color: #000000;">  当前路径 current directory
+%SystemRoot%    </span>===  C:\WINDOWS (%windir% 同样)<span style="color: #000000;">
+%ProgramFiles%  </span>===  C:\Program <span style="color: #0000ff;">Files</span><span style="color: #000000;">
+%USERPROFILE%   </span>===  C:\Documents and Settings\Administrator (子目录有&ldquo;桌面&rdquo;,&ldquo;开始菜单&rdquo;,&ldquo;收藏夹&rdquo;等)<span style="color: #000000;">
+%APPDATA%       </span>===  C:\Documents and Settings\Administrator\<span style="color: #000000;">Application Data
+%TEMP%          </span>===  C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp (%TEM% 同样)<span style="color: #000000;">
+%APPDATA%       </span>===  C:\Documents and Settings\Administrator\<span style="color: #000000;">Application Data
+%OS%            </span>===  Windows_NT (系统)<span style="color: #000000;">
+%</span><span style="color: #0000ff;">Path</span>%          ===  %SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem (原本的设置)<span style="color: #000000;">
+%HOMEDRIVE%     </span>===  C: (系统盘)<span style="color: #000000;">
+%HOMEPATH%      </span>===  \Documents and Settings\<span style="color: #000000;">Administrator
+
+</span><span style="color: #008000;">::</span><span style="color: #008000;"> 枚举当前的环境变量</span>
+<span style="color: #0000ff;">setlocal</span><span style="color: #000000;"> enabledelayedexpansion
+</span><span style="color: #0000ff;">FOR</span> /F "usebackq delims==" %%i IN (`<span style="color: #0000ff;">set</span>`) <span style="color: #0000ff;">DO</span> <span style="color: #0000ff;">@echo</span> %%i  !%%i!</pre>
+</div>
+<p><span style="color: #000080;"><strong>2、传递参数给批处理文件</strong></span></p>
+<p>%[1-9]表示参数，参数是指在运行批处理文件时在文件名后加的以空格(或者Tab)分隔的字符串。<br />变量可以从%0到%9，%0表示批处理命令本身，其它参数字符串用 %1 到 %9 顺序表示。</p>
+<p><span style="color: #000000;"><span style="color: #0000ff;">Sample1：</span>执行同目录下的&ldquo;test2.bat&rdquo;文件，并输入两个参数</span></p>
+
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">call</span> test2.bat "hello" "haha"<span style="color: #000000;"> 
+在&ldquo;test2</span>.<span style="color: #000000;">bat&rdquo;文件里写:
+</span><span style="color: #0000ff;">echo</span> <span style="color: #800080;">%0</span>  (打印: test2.bat)
+<span style="color: #0000ff;">echo</span> <span style="color: #800080;">%1</span>  (打印: "hello")
+<span style="color: #0000ff;">echo</span> <span style="color: #800080;">%2</span>  (打印: "haha")
+<span style="color: #0000ff;">echo</span> <span style="color: #800080;">%19</span> (打印: "hello"9)</pre>
+</div>
+
+<p><span style="color: #0000ff;">Sample2：</span><br />当我们要建立一个IPC$连接地时候总要输入一大串命令，弄不好就打错了，所以我们不如把一些固定命令写入一个批处理，把肉鸡地ip password username 当着参数来赋给这个批处理，这样就不用每次都打命令了。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span><span style="color: #000000;">
+@</span><span style="color: #0000ff;">net</span> <span style="color: #0000ff;">use</span> ////1%//ipc$ "2%" /u:"3%"<span style="color: #000000;"> 注意哦，这里PASSWORD是第二个参数。
+@</span><span style="color: #0000ff;">if</span> <span style="color: #0000ff;">errorlevel</span> 1 <span style="color: #0000ff;">echo</span> connection failed</pre>
+</div>
+
+
+<p><span style="color: #993300;"><strong>二、简单批处理内部命令简介</strong></span></p>
+<p><span style="color: #0000ff;">1、Echo 命令</span><br />打开回显或关闭请求回显功能，或显示消息。如果没有任何参数，echo 命令将显示当前回显设置。<br />语法<br />echo [{ on|off }] [message]<br />Sample：@echo off / echo hello world<br />在实际应用中我们会把这条命令和重定向符号（也称为管道符号，一般用&gt; &gt;&gt; ^）结合来实现输入一些命令到特定格式的文件中，这将在以后的例子中体现出来。</p>
+<p><span style="color: #0000ff;">2、@ 命令</span><br />表示不显示@后面的命令，在入侵过程中（例如使用批处理来格式化敌人的硬盘）自然不能让对方看到你使用的命令啦。<br />Sample：@echo off<br />@echo Now initializing the program,please wait a minite...<br />@format X: /q/u/autoset (format 这个命令是不可以使用/y这个参数的，可喜的是微软留了个autoset这个参数给我们，效果和/y是一样的。)<br />Sample2: <span><span style="color: #000000;">@echo off</span><br />　　del test.doc <span style="color: #ff0000;">2&gt;nul<br /></span></span>1&gt;nul　意思是不显示命令运行的正确提示；<br />2&gt;nul　意思是不显示错误提示；<br />&gt;nul&nbsp; &nbsp; 意思是屏蔽命令输出内容。</p>
+<p><span style="color: #0000ff;">3、Goto 命令</span><br />指定跳转到标签，找到标签后，程序将处理从下一行开始的命令。<br />语法：goto label （label是参数，指定所要转向的批处理程序中的行。）<br />Sample：<br />if { %1 }=={ } goto noparms<br />if { %2 }=={ } goto noparms（如果这里的if、%1、%2你不明白的话，先跳过去，后面会有详细的解释。）<br />@Rem check parameters if null show usage<br />:noparms<br />echo Usage: monitor.bat ServerIP PortNumber<br />goto end<br />标签的名字可以随便起，但是最好是有意义的字母啦，字母前加个：用来表示这个字母是标签，goto命令就是根据这个：来寻找下一步跳到到那里。最好有一些说明这样你别人看起来才会理解你的意图啊。</p>
+<p><span style="color: #0000ff;">4、Rem 命令 </span><span style="color: #0000ff;">(小技巧：用::代替rem)</span><br />注释命令，在C语言中相当与/*--------*/，它并不会被执行，只是起一个注释的作用，便于别人阅读和你自己日后修改。<br />Rem Message<br />Sample：@Rem Here is the description.<br /><br />:: 确实可以起到rem 的注释作用, 而且更简洁有效; 但有两点需要注意: <br />第一, 除了 :: 之外, 任何以 :开头的字符行, 在批处理中都被视作标号, 而直接忽略其后的所有内容, 只是为了与正常的标号相区别, 建议使用 goto 所无法识别的标号, 即在 :后紧跟一个非字母数字的一个特殊符号。<br />第 二, 与rem 不同的是, ::后的字符行在执行时不会回显, 无论是否用echo on打开命令行回显状态, 因为命令解释器不认为他是一个有效的命令行, 就此点来看, rem 在某些场合下将比 :: 更为适用; 另外, rem 可以用于 config.sys 文件中。</p>
+<p><span style="color: #0000ff;">5、Pause 命令</span><br />运行 Pause 命令时，将显示下面的消息：<br />Press any key to continue . . .<br />Sample：<br />@echo off<br />:begin<br />copy a:*.* d：//back<br />echo Please put a new disk into driver A<br />pause<br />goto begin<br />在这个例子中，驱动器 A 中磁盘上的所有文件均复制到d://back中。显示的注释提示您将另一张磁盘放入驱动器 A 时，pause 命令会使程序挂起，以便您更换磁盘，然后按任意键继续处理。</p>
+<p><span style="color: #0000ff;">6、Call 命令</span><br />从一个批处理程序调用另一个批处理程序，并且不终止父批处理程序。call 命令接受用作调用目标的标签。如果在脚本或批处理文件外使用 Call，它将不会在命令行起作用。<br />语法<br />call [[Drive:][Path] FileName [BatchParameters]] [:label [arguments]]<br />参数<br />[Drive: }[Path] FileName<br />指定要调用的批处理程序的位置和名称。filename 参数必须具有 .bat 或 .cmd 扩展名。</p>
+<p><span style="color: #0000ff;">7、start 命令</span><br />调用外部程序，所有的DOS命令和命令行程序都可以由start命令来调用。<br />入侵常用参数：<br />MIN 开始时窗口最小化<br />SEPARATE 在分开的空间内开始 16 位 Windows 程序<br />HIGH 在 HIGH 优先级类别开始应用程序<br />REALTIME 在 REALTIME 优先级类别开始应用程序<br />WAIT 启动应用程序并等候它结束<br />parameters 这些为传送到命令/程序的参数<br />执行的应用程序是 32-位 GUI 应用程序时，CMD.EXE 不等应用程序终止就返回命令提示。如果在命令脚本内执行，该新行为则不会发生。</p>
+<p><span style="color: #0000ff;">8、choice 命令</span><br />choice 使用此命令可以让用户输入一个字符，从而运行不同的命令。使用时应该加/c:参数，c:后应写提示可输入的字符，之间无空格。它的返回码为1234&hellip;&hellip;<br />如: choice /c:dme defrag,mem,end<br />将显示<br />defrag,mem,end[D,M,E]?<br />Sample：<br />Sample.bat的内容如下:<br />@echo off<br />choice /c:dme defrag,mem,end<br />if errorlevel 3 goto defrag （应先判断数值最高的错误码）<br />if errorlevel 2 goto mem<br />if errotlevel 1 goto end</p>
+<p>:defrag<br />c://dos//defrag<br />goto end<br />:mem<br />mem<br />goto end<br />:end<br />echo good bye</p>
+<p>此文件运行后，将显示 defrag,mem,end[D,M,E]? 用户可选择d m e ，然后if语句将作出判断，d表示执行标号为defrag的程序段，m表示执行标号为mem的程序段，e表示执行标号为end的程序段，每个程序段最后都以goto end将程序跳到end标号处，然后程序将显示good bye，文件结束。</p>
+<p><span style="color: #0000ff;">9、If 命令</span><br />if 表示将判断是否符合规定的条件，从而决定执行不同的命令。 有三种格式:<br />(1) if "参数" == "字符串" 待执行的命令<br />参数如果等于指定的字符串，则条件成立，运行命令，否则运行下一句。(注意是两个等号）<br />如if "%1"=="a" format a:<br />if { %1 }=={ } goto noparms<br />if { %2 }=={ } goto noparms</p>
+<p>(2) <strong><span style="color: #808000;">if exist</span></strong> 文件名　 待执行的命令<br />如果有指定的文件，则条件成立，运行命令，否则运行下一句。<br />如if exist config.sys edit config.sys</p>
+<p>(3) <strong><span style="color: #808000;">if errorlevel</span></strong> / if not errorlevel 数字 待执行的命令<br />如果返回码等于指定的数字，则条件成立，运行命令，否则运行下一句。<br />如if errorlevel 2 goto x2 　<br />DOS程序运行时都会返回一个数字给DOS，称为错误码errorlevel或称返回码，常见的返回码为0、1。<br />以下就是几个常用命令的返回值及其代表的意义： <br /><br />backup <br />0 备份成功 <br />1 未找到备份文件 <br />2 文件共享冲突阻止备份完成 <br />3 用户用ctrl-c中止备份 <br />4 由于致命的错误使备份操作中止 <br /><br />diskcomp <br />0 盘比较相同 <br />1 盘比较不同 <br />2 用户通过ctrl-c中止比较操作 <br />3 由于致命的错误使比较操作中止 <br />4 预置错误中止比较 <br /><br />diskcopy <br />0 盘拷贝操作成功 <br />1 非致命盘读/写错 <br />2 用户通过ctrl-c结束拷贝操作 <br />3 因致命的处理错误使盘拷贝中止 <br />4 预置错误阻止拷贝操作 <br /><br />format <br />0 格式化成功 <br />3 用户通过ctrl-c中止格式化处理 <br />4 因致命的处理错误使格式化中止 <br />5 在提示"proceed with format（y/n）?"下用户键入n结束 <br /><br />xcopy <br />0 成功拷贝文件 <br />1 未找到拷贝文件 <br />2 用户通过ctrl-c中止拷贝操作 <br />4 预置错误阻止文件拷贝操作 <br />5 拷贝过程中写盘错误 <br /><br />chkdsk <br />0 未找到错误 <br />255 找到一个或多个错误 <br /><br />choice <br />0 用户按下ctrl+c/break <br />1 用户按下第一个键 <br />255 检测到命令行中的错误条件 <br />其它 用户按下的有效字符在列表中的位置 <br /><br />defrag <br />0 碎片压缩成功 <br />1 出现内部错误 <br />2 磁盘上没有空簇。要运行DEFRAG，至少要有一个空簇 <br />3 用户用Ctrl+C退出了DEFRAG <br />4 出现一般性错误 <br />5 DEFRAG在读簇时遇到错误 <br />6 DEFRAG在写簇时遇到错误 <br />7 分配空间有错 <br />8 内存错 <br />9 没有足够空间来压缩磁盘碎片 <br /><br />deltree <br />0 成功地删除一个目录 <br /><br />diskcomp <br />0 两盘相同 <br />1 发现不同 <br />2 按CTRL+C 终止了比较 <br />3 出现严重错误 <br />4 出现初始化错误 <br /><br />find <br />0 查找成功且至少找到了一个匹配的字符串 <br />1 查找成功但没找到匹配的字符串 <br />2 查找中出现了错误 <br /><br />keyb <br />0 键盘定义文件装入成功 <br />1 使用了非法的键盘代码，字符集或语法 <br />2 键盘定义文件坏或未找到 <br />4 键盘、监视器通讯时出错 <br />5 要求的字符集未准备好 <br /><br />move <br />0 成功地移动了指定的文件 <br />1 发生了错误 <br /><br />msav /N <br />86 检查到了病毒 <br /><br />replace <br />0 REPLACE成功地替换或加入了文件 <br />1 MS-DOS版本和REPLACE不兼容 <br />2 REPLACE找不到源文件 <br />3 REPLACE找不到源路径或目标路径 <br />5 不能存取要替换的文件 <br />8 内存不够无法执行REPLACE <br />11 命令行句法错误 <br /><br />restore <br />0 RESTORE成功地恢复了文件 <br />1 RESTORE找不到要恢复的文件 <br />3 用户按CTRL+C终止恢复过程 <br />4 RESTORE因错误而终止 <br /><br />scandisk <br />0 ScanDisk在它检查的驱动器上未检测到任何错误 <br />1 由于命令行的语法不对，不能运行ScanDisk <br />2 由于内存用尽或发生内部错误，ScanDisk意外终止 <br />3 用户让ScanDisk中途退出 <br />4 进行盘面扫描时，用户决定提前退出 <br />254 ScanDisk找到磁盘故障并已全部校正 <br />255 ScanDisk找到磁盘故障，但未能全部校正 <br /><br />setver <br />0 SETVER成功地完成了任务 <br />1 用户指定了一个无效的命令开关 <br />2 用户指定了一个非法的文件名 <br />3 没有足够的系统内存来运行命令 <br />4 用户指定了一个非法的版本号格式 <br />5 SETVER在版本表中未找到指定的项 <br />6 SETVER未找到SETVER.EXE文件 <br />7 用户指定了一个非法的驱动器 <br />8 用户指定了太多的命令行参数 <br />9 SETVER检测到丢失了命令行参数 <br />10 在读SETVER.EXE文件时，SETVER检测到发生错误 <br />11 SETVER.EXE文件损坏 <br />12 指定的SETVER.EXE文件不支持版本表 <br />13 版本表中没有足够的空间存放新的项 <br />14 在写SETVER.EXE文件时SETVER检测到发生错误</p>
+<p><span style="color: #0000ff;">10、for 命令</span><br />for 命令是一个比较复杂的命令，主要用于参数在指定的范围内循环执行命令。<br />在批处理文件中使用 FOR 命令时，指定变量请使用 %%variable</p>
+<p>for { %variable|%%variable } in (set) do command [ CommandLineOptions]<br />%variable 指定一个单一字母可替换的参数。<br />(set) 指定一个或一组文件。可以使用通配符。<br />command 指定对每个文件执行的命令。<br />command-parameters 为特定命令指定参数或命令行开关。<br />在批处理文件中使用 FOR 命令时，指定变量请使用 %%variable而不要用 %variable。<br />变量名称是区分大小写的，所以 %i 不同于 %I。</p>
+<p>Sample：<br />建立C:\TEST1.BAT，文件内容如下： <br />@ECHO OFF <br />FOR %%C IN (*.BAT *.TXT *.SYS) DO TYPE %%C <br />运行： <br />C:\&gt;TEST1<br />执行以后，屏幕上会将C:盘根目录下所有以BAT、TXT、SYS为扩展名的文件内容显示出来（不包括隐藏文件）。</p>
+<p><span style="color: #0000ff;">11、比较运算符</span><br />&nbsp;&nbsp;&nbsp; EQU - 等于&nbsp;&nbsp; (一般使用&ldquo;==&rdquo;)<br />&nbsp;&nbsp;&nbsp;&nbsp;NEQ - 不等于 (没有 &ldquo;!=&rdquo;,改用&ldquo; if not 1==1 &rdquo;的写法)<br />&nbsp;&nbsp;&nbsp;&nbsp;LSS - 小于<br />&nbsp;&nbsp;&nbsp;&nbsp;LEQ - 小于或等于<br />&nbsp;&nbsp;&nbsp;&nbsp;GTR - 大于<br />&nbsp;&nbsp;&nbsp;&nbsp;GEQ - 大于或等于</p>
+<p><br /><span style="color: #993300;"><strong>三、如何使用组合命令(Compound Command)</strong></span></p>
+<p><span style="color: #0000ff;">1、&amp;</span><br />Usage：第一条命令 &amp; 第二条命令 [&amp; 第三条命令...]<br />用这种方法可以同时执行多条命令，而不管命令是否执行成功<br />Sample：<br />C://&gt;dir z: &amp; dir c://Ex4rch<br />The system cannot find the path specified.<br />Volume in drive C has no label.<br />Volume Serial Number is 0078-59FB<br />Directory of c://Ex4rch<br />2002-05-14 23:51 &lt;DIR&gt; .<br />2002-05-14 23:51 &lt;DIR&gt; ..<br />2002-05-14 23:51 14 sometips.gif</p>
+<p><span style="color: #0000ff;">2、&amp;&amp;</span><br />Usage：第一条命令 &amp;&amp; 第二条命令 [&amp;&amp; 第三条命令...]<br />用这种方法可以同时执行多条命令，当碰到执行出错的命令后将不执行后面的命令，如果一直没有出错则一直执行完所有命令；<br />Sample：<br />C://&gt;dir z: &amp;&amp; dir c://Ex4rch<br />The system cannot find the path specified.<br />C://&gt;dir c://Ex4rch &amp;&amp; dir z:<br />Volume in drive C has no label.<br />Volume Serial Number is 0078-59FB<br />Directory of c://Ex4rch<br />2002-05-14 23:55 &lt;DIR&gt; .<br />2002-05-14 23:55 &lt;DIR&gt; ..<br />2002-05-14 23:55 14 sometips.gif<br />1 File(s) 14 bytes<br />2 Dir(s) 768,671,744 bytes free<br />The system cannot find the path specified.</p>
+<p>在做备份的时候可能会用到这种命令会比较简单，如：<br />dir <a>file://192.168.0.1/database/backup.mdb</a> &amp;&amp; copy <a>file://192.168.0.1/database/backup.mdb</a> E://backup<br />如果远程服务器上存在backup.mdb文件，就执行copy命令，若不存在该文件则不执行copy命令，这种用法可以替换IF exist了。</p>
+<p><span style="color: #0000ff;">3、||</span><br />Usage：第一条命令 || 第二条命令 [|| 第三条命令...]<br />用这种方法可以同时执行多条命令，当碰到执行正确的命令后将不执行后面的命令，如果没有出现正确的命令则一直执行完所有命令；<br />Sample：<br />C://Ex4rch&gt;dir sometips.gif || del sometips.gif<br />Volume in drive C has no label.<br />Volume Serial Number is 0078-59FB<br />Directory of C://Ex4rch<br />2002-05-14 23:55 14 sometips.gif<br />1 File(s) 14 bytes<br />0 Dir(s) 768,696,320 bytes free</p>
+<p>组合命令使用的例子：<br />sample：<br />@copy trojan.exe ////%1//admin$//system32 &amp;&amp; if not errorlevel 1 echo IP %1 USER %2 PASS %3 &gt;&gt;victim.txt</p>
+
+<p><span style="color: #993300;"><strong>四、管道命令的使用</strong></span></p>
+<p><span style="color: #0000ff;">1、| 命令</span><br />Usage：第一条命令 | 第二条命令 [| 第三条命令...]<br />将第一条命令的结果作为第二条命令的参数来使用，记得在unix中这种方式很常见。<br />sample：<br />time /t&gt;&gt;D://IP.log<br />netstat -n -p tcp|find ":3389"&gt;&gt;D://IP.log<br />start Explorer<br />看出来了么？用于终端服务允许我们为用户自定义起始的程序，来实现让用户运行下面这个bat，以获得登录用户的IP。</p>
+<p><span style="color: #0000ff;">2、&gt;、&gt;&gt;输出重定向命令</span><br />将一条命令或某个程序输出结果的重定向到特定文件中, &gt; 与 &gt;&gt;的区别在于，&gt;会清除调原有文件中的内容后写入指定文件，而&gt;&gt;只会追加内容到指定文件中，而不会改动其中的内容。<br />sample1：<br />echo hello world&gt;c://hello.txt (stupid example?)<br />sample2:<br />时下DLL木马盛行，我们知道system32是个捉迷藏的好地方，许多木马都削尖了脑袋往那里钻，DLL马也不例外，针对这一点我们可以在安装好系统和必要的应用程序后，对该目录下的EXE和DLL文件作一个记录：<br />运行CMD--转换目录到system32--dir *.exe&gt;exeback.txt &amp; dir *.dll&gt;dllback.txt,<br />这样所有的EXE和DLL文件的名称都被分别记录到exeback.txt和dllback.txt中,<br />日后如发现异常但用传统的方法查不出问题时,则要考虑是不是系统中已经潜入DLL木马了.<br />这时我们用同样的命令将system32下的EXE和DLL文件记录到另外的exeback1.txt和dllback1.txt中,然后运行:<br />CMD--fc exeback.txt exeback1.txt&gt;diff.txt &amp; fc dllback.txt dllback1.txt&gt;diff.txt.(用FC命令比较前后两次的DLL和EXE文件,并将结果输入到diff.txt中),这样我们就能发现一些多出来的DLL和EXE文件,然后通过查看创建时间、版本、是否经过压缩等就能够比较容易地判断出是不是已经被DLL木马光顾了。没有是最好，如果有的话也不要直接DEL掉，先用regsvr32 /u trojan.dll将后门DLL文件注销掉,再把它移到回收站里，若系统没有异常反映再将之彻底删除或者提交给杀毒软件公司。</p>
+<p><span style="color: #0000ff;">3、&lt; 、&gt;&amp; 、&lt;&amp;</span><br />&lt; 从文件中而不是从键盘中读入命令输入。<br />&gt;&amp; 将一个句柄的输出写入到另一个句柄的输入中。<br />&lt;&amp; 从一个句柄读取输入并将其写入到另一个句柄输出中。<br />这些并不常用，也就不多做介绍。</p>
+<p><span style="color: #993300;"><strong>五、注册表操作</strong></span></p>
+<p><strong><span style="color: #000080;">1、备份注册表</span></strong>，将[HKEY_LOCAL_MACHINE ... Run]的内容，备份到&ldquo;c:\windows\1.reg&rdquo;</p>
+<div class="cnblogs_code" style="width: 95%; height: 56px;">
+<pre>reg export HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\<span style="color: #0000ff;">Run</span> c:\windows\1.reg<br />reg export HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\<span style="color: #0000ff;">Run</span> c:\windows\2.reg</pre>
+</div>
+<p><strong><span style="color: #000080;"><br />2、修改/添加注册表内容</span></strong></p>
+<p>a.一般的添加或修改</p>
+<div class="cnblogs_code">
+<pre>reg add "HKCU\Environment" /v Java_Home /t reg_sz /d "D:\Java\jdk1.6.0_07" /f</pre>
+</div>
+<p>上句解析：&ldquo;HKCU&rdquo;是&ldquo;HKEY_CURRENT_USER&rdquo;的缩写，不用缩写用全称也可以；<br />添加名称为&ldquo;Java_Home&rdquo;的变量；类型为&ldquo;reg_sz&rdquo;，另一种常见类型是&ldquo;reg_dword&rdquo;；值为 D:\Java\jdk1.6.0_07；</p>
+<p>b.使用变量</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">set</span> SoftWareHome=HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\<span style="color: #000000;">Java
+reg add </span>"%SoftWareHome%Web Start\1.6.0_07" /v Home /t reg_sz /d "%cd%\jre1.6.0_07\bin" /f</pre>
+</div>
+<p>c.如果注册表的名称有空格，或者数据用特殊符号时</p>
+<div class="cnblogs_code">
+<pre>reg add "%SoftWareHome2%\HelpCommands" /v "01:Online Documentation" /t reg_sz /d "\"%cd%\Documentation\Index.htm\"" /<span style="color: #000000;">f
+传入值为</span>(值用双引号括起来的)："D:\ProgramFiles\1.work_soft\Sybase\PowerDesigner_12\Documentation\Index.htm"<span style="color: #000000;">
+reg add </span>"%SoftWareHome2%\Paths" /v ReportTemplates /t reg_sz /d "%cd%\Resource Files\Report Templates\\" /<span style="color: #000000;">f
+传入值为</span>(&ldquo;\&rdquo;结尾的)： E:\Holemar\1.notes\90. Windows\Resource <span style="color: #0000ff;">Files</span>\Report Templates\</pre>
+</div>
+<p>d.增加空的内容</p>
+<div class="cnblogs_code">
+<pre>reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Shared Tools\MSConfig\startupreg\IMJPMIG8.1"</pre>
+</div>
+<p>e.添加或修改默认值</p>
+<div class="cnblogs_code">
+<pre>reg add "%vpath%InstallPath" /ve /t reg_sz /d "%cd%" /f</pre>
+</div>
+<p>这里用&ldquo;/ve&rdquo;来代替一般修改时的&ldquo;/v 变量名&rdquo;,即可修改默认值了</p>
+<p><br /><span style="color: #000080;"><strong>3、删除注册表的内容</strong></span></p>
+<p>双引号里面的是注册表的目录，下面两句将删除这目录下的所有信息</p>
+<div class="cnblogs_code">
+<pre>reg delete "HKEY_CURRENT_USER\Software\RealVNC" /<span style="color: #000000;">f
+reg delete </span>"HKEY_LOCAL_MACHINE\SOFTWARE\RealVNC" /f</pre>
+</div>
+<p>双引号里面的是注册表的目录，下面一句将删除这目录下指定的某个信息</p>
+<div class="cnblogs_code">
+<pre>reg delete "HKEY_LOCAL_MACHINE\Software\RealVNC" /v VNC_Server /f</pre>
+</div>
+<p><br /><span style="color: #000080;"><strong>4、注册表的常用位置</strong></span></p>
+<p>a.系统启动项：</p>
+<p>[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run]<br />[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run]</p>
+<p>example:</p>
+<div class="cnblogs_code">
+<pre>REG ADD HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\<span style="color: #0000ff;">Run</span> /v VNC_Server /t REG_SZ /d "%cd%\VNC_Server.bat" /f</pre>
+</div>
+<p>b.系统环境变量：</p>
+<p>[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment]</p>
+<p>c.当前用户的环境变量：</p>
+<p>[HKEY_CURRENT_USER\Environment]</p>
+<p><br /><span style="color: #000080;"><strong>5、修改注册表之后，结束并重新加载explorer.exe进程，可刷新注册表，令其生效</strong></span></p>
+<div class="cnblogs_code">
+<pre>taskkill /f /im explorer.exe &gt;<span style="color: #000000;">nul
+</span><span style="color: #0000ff;">start</span> "" "explorer.exe"</pre>
+</div>
+
+<p><span style="color: #993300;"><strong>六、系统服务</strong></span></p>
+<p><span style="color: #000080;"><strong>1、启停服务</strong></span></p>
+<p>停止服务：NET STOP 服务名<br />启动服务：NET Start 服务名</p>
+<p><strong><span style="color: #000080;">2、设置启动类型</span></strong></p>
+<p>自动：&nbsp; SC CONFIG 服务名 START= auto<br />手动：&nbsp; SC CONFIG 服务名 START= demand<br />已禁用：SC CONFIG 服务名 START= disabled<br />附：&ldquo;START= &rdquo;等号后面必须要有一个空格。(start还有boot,system两个值)<br />Sample:&nbsp; </p>
+<div class="cnblogs_code">
+<pre>SC CONFIG Spooler <span style="color: #0000ff;">START</span>= demand (打印机加载项，设置成手动，默认自动)</pre>
+</div>
+<p><strong><span style="color: #000080;">3、查看系统服务</span></strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">start</span> %SystemRoot%\system32\services.msc /s</pre>
+</div>
+
+<p><span style="color: #993300;"><strong>七、其他命令</strong></span></p>
+<p><span style="color: #000080;"><strong>1、ping 命令</strong></span></p>
+<p>测试网络联接状况以及信息包发送和接收状况，但是不能够测试端口。<br />语法：ping IP地址或主机名 [-t] [-a] [-n count] [-l size]<br />参数含义：<br />&nbsp; -t 不停地向目标主机发送数据；<br />&nbsp; -a 以IP地址格式来显示目标主机的网络地址；<br />&nbsp; -n count 指定要Ping多少次，具体次数由count来指定；<br />&nbsp; -l size 指定发送到目标主机的数据包的大小。</p>
+<div class="cnblogs_code">
+<pre>Sample: ping 192.168.0.1 -t (不停的测试192.168.0.1，按ctrl+c停止)<span style="color: #000000;">
+Sample: </span><span style="color: #0000ff;">for</span> /L %%a in (0,1,255) <span style="color: #0000ff;">do</span> ping 192.168.0.%%a -n 1 &gt;&gt; tmp.txt (ping一下所有的局域网电脑)</pre>
+</div>
+<p><span style="color: #000080;"><strong>2、telnet 命令</strong></span><br />测试端口使用 telnet IP地址或主机名端口，使用tcp协议</p>
+<div class="cnblogs_code">
+<pre>Sample:  telnet 192.168.0.1 80 (测试192.168.0.1的80端口)</pre>
+</div>
+<p><span style="color: #000080;"><strong>3、color 命令</strong></span></p>
+<p>设置背景及字体颜色<br />语法： color bf<br />b 是指定背景色的十六进制数字； f 指定前景颜色(即字体颜色)。<br />颜色值:&nbsp;&nbsp;&nbsp;&nbsp; 0:黑色&nbsp;&nbsp;&nbsp; 1:蓝色&nbsp;&nbsp;&nbsp; 2:绿色&nbsp;&nbsp;&nbsp; 3:湖蓝&nbsp;&nbsp;&nbsp; 4:红色&nbsp;&nbsp;&nbsp; 5:紫色&nbsp;&nbsp;&nbsp; 6:黄色&nbsp;&nbsp;&nbsp; 7:白色<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8:灰色&nbsp;&nbsp;&nbsp; 9:淡蓝&nbsp;&nbsp;&nbsp; A:淡绿&nbsp;&nbsp;&nbsp; B:浅绿&nbsp;&nbsp;&nbsp; C:淡红&nbsp;&nbsp;&nbsp; D:淡紫&nbsp;&nbsp;&nbsp; E:淡黄&nbsp;&nbsp;&nbsp; F:亮白<br />如果没有给定任何参数，该命令会将颜色还原到 CMD.EXE 启动时的颜色。<br />如果两参数一样，视为无效输入。只有一个参数时，设置字体。</p>
+<p><span style="color: #000080;"><strong>4、random 命令</strong></span></p>
+<p>产生随机数(正整数0~)</p>
+<p><strong><span style="color: #000080;">5、exit 命令</span></strong></p>
+<p>结束程序。即时是被调用的程序，结束后也不会返回原程序</p>
+<p><span style="color: #000080;"><strong>6、shutdown命令</strong></span></p>
+<p>shutdown -s 关机</p>
+<p>7、 所有内置命令的帮助信息</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">ver</span> /<span style="color: #000000;">?
+</span><span style="color: #0000ff;">cmd</span> /<span style="color: #000000;">?
+</span><span style="color: #0000ff;">set</span> /<span style="color: #000000;">?
+<span style="color: #0000ff;">rem</span> /?
+</span><span style="color: #0000ff;">if</span> /<span style="color: #000000;">?
+</span><span style="color: #0000ff;">echo</span> /<span style="color: #000000;">?
+</span><span style="color: #0000ff;">goto</span> /<span style="color: #000000;">?
+</span><span style="color: #0000ff;">for</span> /<span style="color: #000000;">?
+</span><span style="color: #0000ff;">shift</span> /<span style="color: #000000;">?
+</span><span style="color: #0000ff;">call</span> /?</pre>
+</div>
+<p>其他需要的常用命令</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">type</span> /<span style="color: #000000;">?
+</span><span style="color: #0000ff;">find</span> /<span style="color: #000000;">?
+findstr </span>/<span style="color: #000000;">?
+</span><span style="color: #0000ff;">copy</span> /?</pre>
+</div>
+
+<p><span style="color: #808080;">---------------------------------------------------------------------------------------------------------------------------------------------</span></p>
+<p>自己工作中，经常要同步几个目录下的文件或目录，所以自己看了下批处理语法，写了个下面的bat：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">::</span><span style="color: #008000;"> 覆盖目录或单个文件</span>
+<span style="color: #000000;">
+@</span><span style="color: #008000;">rem</span><span style="color: #008000;"> 关闭显示"输出命令"</span>
+<span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+
+<span style="color: #008000;">::</span><span style="color: #008000;"> 定义全局变量</span>
+<span style="color: #008000;">::</span><span style="color: #008000;"> 源文件/目录相对路径(如果是文件夹，末尾要加\)</span>
+<span style="color: #0000ff;">set</span> FILE_NAME=application\modules\all\views\interfaceJS_tiny.<span style="color: #000000;">phtml
+</span><span style="color: #008000;">::</span><span style="color: #008000;"> 源文件/目录绝对路径</span>
+<span style="color: #0000ff;">set</span> SOU_PATH=E:\ProjectFile\work\ousucms\trunk\<span style="color: #000000;">%FILE_NAME%
+</span><span style="color: #008000;">::</span><span style="color: #008000;"> 目标文件/目录绝对路径</span>
+<span style="color: #0000ff;">set</span> DES_PATH=E:\ProjectFile\<span style="color: #000000;">work
+</span><span style="color: #0000ff;">set</span> DES_CMS=%DES_PATH%\ousucms\trunk\<span style="color: #000000;">%FILE_NAME%
+</span><span style="color: #0000ff;">set</span> DES_OA=%DES_PATH%\ousuoa\trunk\<span style="color: #000000;">%FILE_NAME%</span><span style="color: #008000;">::</span><span style="color: #008000;">goto :end</span>
+
+<span style="color: #008000;">::</span><span style="color: #008000;"> CMS</span>
+<span style="color: #0000ff;">if</span> "%DES_CMS%"=="" <span style="color: #0000ff;">goto</span> <span style="color: #800000;">:skip</span>
+<span style="color: #0000ff;">if</span> "%DES_CMS%" NEQ "%SOU_PATH%" (
+    <span style="color: #0000ff;">if</span> <span style="color: #0000ff;">exist</span> %DES_CMS% (
+        (pushd %DES_CMS% 2&gt;nul) || (<span style="color: #0000ff;">goto</span> <span style="color: #800000;">:isfile</span>)
+        <span style="color: #0000ff;">echo</span> 开始删除目录 "DES_CMS"<span style="color: #000000;">:
+        </span><span style="color: #0000ff;">rmdir</span> %DES_CMS% /s /<span style="color: #000000;">q
+        </span><span style="color: #0000ff;">if</span> "%errorlevel%" == "0" (<span style="color: #0000ff;">echo</span> 删除成功) <span style="color: #0000ff;">else</span> (<span style="color: #0000ff;">echo</span> 删除失败)
+        <span style="color: #0000ff;">echo</span> 开始复制目录 "%SOU_PATH%" 到 "%DES_CMS%"<span style="color: #000000;">:
+        </span><span style="color: #0000ff;">xcopy</span> %SOU_PATH%* %DES_CMS% /e /h /d /<span style="color: #000000;">y
+        popd
+        </span><span style="color: #0000ff;">goto</span> <span style="color: #800000;">:skip</span>
+    )
+)
+<span style="color: #800000;">:isfile</span>
+<span style="color: #0000ff;">copy</span> %SOU_PATH% %DES_CMS% /<span style="color: #000000;">y
+</span><span style="color: #800000;">:skip</span>
+
+<span style="color: #008000;">::</span><span style="color: #008000;"> OA</span>
+<span style="color: #0000ff;">if</span> "%DES_OA%"=="" <span style="color: #0000ff;">goto</span> <span style="color: #800000;">:skip</span>
+<span style="color: #0000ff;">if</span> "%DES_OA%" NEQ "%SOU_PATH%" (
+    <span style="color: #0000ff;">if</span> <span style="color: #0000ff;">exist</span> %DES_OA% (
+        (pushd %DES_OA% 2&gt;nul) || (<span style="color: #0000ff;">goto</span> <span style="color: #800000;">:isfile</span>)
+        <span style="color: #0000ff;">echo</span> 开始删除目录 "DES_OA"<span style="color: #000000;">:
+        </span><span style="color: #0000ff;">rmdir</span> %DES_OA% /s /<span style="color: #000000;">q
+        </span><span style="color: #0000ff;">if</span> "%errorlevel%" == "0" (<span style="color: #0000ff;">echo</span> 删除成功) <span style="color: #0000ff;">else</span> (<span style="color: #0000ff;">echo</span> 删除失败)
+        <span style="color: #0000ff;">echo</span> 开始复制目录 "%SOU_PATH%" 到 "%DES_OA%"<span style="color: #000000;">:
+        </span><span style="color: #0000ff;">xcopy</span> %SOU_PATH%* %DES_OA% /e /h /d /<span style="color: #000000;">y
+        popd
+        </span><span style="color: #0000ff;">goto</span> <span style="color: #800000;">:skip</span>
+    )
+)
+<span style="color: #800000;">:isfile</span>
+<span style="color: #0000ff;">copy</span> %SOU_PATH% %DES_OA% /<span style="color: #000000;">y
+</span><span style="color: #800000;">:skip</span>
+
+<span style="color: #800000;">:end</span>
+<span style="color: #0000ff;">pause</span></pre>
+</div>
+
+
+
+
+		</div>
+		
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=87269,cb_entryId=2842893,cb_blogApp=currentBlogApp,cb_blogUserGuid='7d6a6560-e908-e011-ac81-842b2b196315',cb_entryCreatedDate='2013/1/3 13:57:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+
+
+</body>
+</html>

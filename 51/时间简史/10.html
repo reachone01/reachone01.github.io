@@ -1,0 +1,817 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>第十章 虫洞和时间旅行 </title>
+
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.body.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000">红色</option><option value="#006600">绿色</option><option value="#0000ff">蓝色</option><option value="#660000">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+
+
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+
+
+padding-bottom:5px;
+}
+
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="container">
+<h3></h3>
+<div class="layout">
+<p>CHAPTER 10
+WORMHOLES AND TIME TRAVEL</p>
+
+<p>第十章 虫洞和时间旅行</p>
+</div>
+
+<div class="layout">
+<p>The last chapter discussed why we see time go forward: why disorder increases and why we remember the
+past but not the future. Time was treated as if it were a straight railway line on which one could only go one way
+or the other.
+</p>
+
+<p>我们在上一章讨论了，为什么我们看到时间向前进；为什么无序度增加并且我们记住过去而不是将来。时间好像是一条笔直的铁轨，人们只能往一个方向前进。</p>
+</div>
+
+<div class="layout">
+<p>But what if the railway line had loops and branches so that a train could keep going forward but come back to a
+station it had already passed? In other words, might it be possible for someone to travel into the future or the
+past?
+</p>
+
+<p>如果该铁轨有环圈以及分叉，使得一直往前开动的火车却返回原先通过的车站，这是怎么回事呢？换言之，人们可能旅行到未来或过去吗？，</p>
+</div>
+
+<div class="layout">
+<p>H. G. Wells in The Time Machine explored these possibilities as have countless other writers of science fiction.
+Yet many of the ideas of science fiction, like submarines and travel to the moon, have become matters of
+science fact. So what are the prospects for time travel?</p>
+
+<p>H·G·韦尔斯在《时间机器》中探讨了这些可能性，正好像其他无数的科学幻想作家那样。科学幻想的许多观念，如潜水艇以及飞往月亮等等都被科学实现了。那么，时间旅行的前景如何呢？</p>
+</div>
+
+<div class="layout">
+<p>The first indication that the laws of physics might really allow people to travel in time came in 1949 when Kurt
+Godel discovered a new space-time allowed by general relativity. Godel was a mathematician who was famous
+for proving that it is impossible to prove all true statements, even if you limit yourself to trying to prove all the
+true statements in a subject as apparently cut and dried as arithmetic. Like the uncertainty principle, Godel’s
+incompleteness theorem may be a fundamental limitation on our ability to understand and predict the universe,
+but so far at least it hasn’t seemed to be an obstacle in our search for a complete unified theory.
+</p>
+
+<p>1949年库尔特·哥德尔发现了广义相对论允许的新的时空。这首次表明物理学定律的确允许人们在时间里旅行。哥德尔是一名数学家，他因证明了不完备性定理而名震天下。该定理是说，不可能证明所有真的陈述，哪怕你把自己限制去证明在像算术这么一目了然而且枯燥的学科中所有真的陈述。这个定理也许是我们理解和预言宇宙能力的基本极限，然而迄今它还未成为我们寻求完整统一理论的障碍。</p>
+</div>
+
+<div class="layout">
+<p>Godel got to know about general relativity when he and Einstein spent their later years at the Institute for
+Advanced Study in Princeton. His space-time had the curious property that the whole universe was rotating.
+One might ask: “Rotating with respect to what?” The answer is that distant matter would be rotating with
+respect to directions that little tops or gyroscopes point in.</p>
+
+<p>哥德尔在和爱因斯坦于普林斯顿高级学术研究所度过他们晚年时通晓了广义相对论。他的时空具有一个古怪的性质：整个宇宙都在旋转。人们也许会问：“它相对于何物而旋转？”其答案是远处的物体绕着小陀螺或者陀螺仪的指向旋转。</p>
+</div>
+
+<div class="layout">
+<p>This had the side effect that it would be possible for someone to go off in a rocket ship and return to earth
+before he set out. This property really upset Einstein, who had thought that general relativity wouldn’t allow time
+travel. However, given Einstein’s record of ill-founded opposition to gravitational collapse and the uncertainty
+principle, maybe this was an encouraging sign. The solution Godel found doesn’t correspond to the universe
+we live in because we can show that the universe is not rotating. It also had a non-zero value of the
+cosmological constant that Einstein introduced when he thought the universe was unchanging. After Hubble
+discovered the expansion of the universe, there was no need for a cosmological constant and it is now
+generally believed to be zero. However, other more reasonable space-times that are allowed by general
+relativity and which permit travel into the past have since been found. One is in the interior of a rotating black
+hole. Another is a space-time that contains two cosmic strings moving past each other at high speed. As their
+name suggests, cosmic strings are objects that are like string in that they have length but a tiny cross section.
+Actually, they are more like rubber bands because they are under enormous tension, something like a million
+million million million tons. A cosmic string attached to the earth could accelerate it from 0 to 60 mph in 1/30th
+of a second. Cosmic strings may sound like pure science fiction but there are reasons to believe they could
+have formed in the early universe as a result of symmetry-breaking of the kind discussed in Chapter 5.
+Because they would be under enormous tension and could start in any configuration, they might accelerate to
+very high speeds when they straighten out.</p>
+
+<p>这导致了一个附加的效应，一位航天员可以在他出发之前即回到地球。这个性质使爱因斯坦非常沮丧，他曾经以为广义相对论不允许时间旅行。然而，鉴于爱因斯坦对引力坍缩和不确定原理的无端反对，这也许反而是一个令人鼓舞的迹象。因为我们可以证明，我们生存其中的宇宙是不旋转的，所以哥德尔找到的解并不对应于它。它还有一个非零的宇宙常数。宇宙常数是当爱因斯坦以为宇宙是不变时引进的。在哈勃发现了宇宙的膨胀后，就不再需要宇宙常数，而现在普遍认为它应为零。然而，之后从广义相对论又找到其他一些更合理的时空，它们允许旅行到过去。其中之一即是旋转黑洞的内部。另外一种是包含两根快速穿越的宇宙弦的时空。顾名思义，宇宙弦是弦状的物体，它具有长度，但是截面很微小。实际上，它们更像在巨大张力下的橡皮筋，其张力大约为1亿亿亿吨。把一根宇宙弦系到地球上，就会把地球在1/3O秒的时间里从每小时零英里（1英里= 1.609公里）加速到每小时60英里（1英里=1.609公里）。宇宙弦初听起来像是科学幻想物，但有理由相信，它在早期宇宙中可由在第五章讨论过的那种对称破缺机制而产生。因为宇宙弦具有巨大的张力，而且可以从任何形态起始，所以它们一旦伸展开来，就会加速到非常高的速度。</p>
+</div>
+
+<div class="layout">
+<p>The Godel solution and the cosmic string space-time start out so distorted that travel into the past was always
+possible. God might have created such a warped universe but we have no reason to believe he did.
+Observations of the microwave background and of the abundances of the light elements indicate that the early
+universe did not have the kind of curvature required to allow time travel. The same conclusion follows on
+theoretical grounds if the no boundary proposal is correct. So the question is: if the universe starts out without
+the kind of curvature required for time travel, can we subsequently warp local regions of space-time sufficiently
+to allow it?
+</p>
+
+<p>哥德尔解和宇宙弦时空一开始就扭曲，使得总能旅行到过去。上帝也许会创生了一个如此卷曲的宇宙，但是我们没有理由相信他上帝会这样做。微波背景和轻元素丰度的观测表明，早期宇宙并没有允许时间旅行的曲率。如果无边界设想是正确的，从理论的基础上也能导出这个结论。这样问题就变成：如果宇宙初始就没有时间旅行所必须的曲率，我们能否随后把时空的局部区域卷曲到这种程度，以至于允许时间旅行？</p>
+</div>
+
+<div class="layout">
+<p>A closely related problem that is also of concern to writers of science fiction is rapid interstellar or intergalactic
+travel. According to relativity, nothing can travel faster than light. If we therefore sent a spaceship to our nearest
+neighboring star, Alpha Centauri, which is about four light-years away, it would take at least eight years before
+we could expect the travelers to return and tell us what they had found. If the expedition were to the center of
+our galaxy, it would be at least a hundred thousand years before it came back. The theory of relativity does
+allow one consolation. This is the so-called twins paradox mentioned in Chapter 2.</p>
+
+<p>快速恒星际或星系际旅行是一个密切相关的问题，也是科学幻想作家所关心的。根据相对论，没有东西比光运动得更快。因此，如果我们向我们最近邻的恒星α-半人马座——发送空间飞船，由于它大约在4光年那么远，所以我们预料至少要8年才能等到旅行者们回来报告他们的发现。如果要去银河系中心探险，至少要10万年才能返回。相对论确实给了我们一些宽慰。这就是在第二章提及的双生子佯谬。</p>
+</div>
+
+<div class="layout">
+<p>Because there is no unique standard of time, but rather observers each have their own time as measured by
+clocks that they carry with them, it is possible for the journey to seem to be much shorter for the space travelers
+than for those who remain on earth. But there would not be much joy in returning from a space voyage a few
+years older to find that everyone you had left behind was dead and gone thousands of years ago. So in order to
+have any human interest in their stories, science fiction writers had to suppose that we would one day discover
+how to travel faster than light. What most of thee authors don’t seem to have realized is that if you can travel
+faster than light, the theory of relativity implies you can also travel back in the, as the following limerick says:
+</p>
+
+<p>因为时间不存在惟一的标准，而每一位观察者都拥有他自己的时间。这种时间是用他携带的时钟来测量的，这样航程对于空间旅行者比对于留在地球上的人显得更短暂是可能的。但是，这对于那些只老了几岁的回程的空间旅行者，并没有什么值得高兴的，因为他发现留在地球上的亲友们已经死去几千年了。这样，科学幻想作家为了使人们对他们的故事有兴趣，必须设想有朝一日我们能运动得比光还快。大部分这些作家似乎未意识到的是，如果你能运动得比光还快，则相对论意味着，你能向时间的过去运动，正如以下五行打油诗所描写的那样：</p>
+</div>
+<div class="layout2">
+<div class="left">
+<p>There was a young lady of Wight</p>
+<p>Who traveled much faster than light.</p>
+<p>She departed one day,</p>
+<p>In a relative way,</p>
+<p>And arrived on the previous night</p>
+</div>
+
+<div class="right">
+<p>有位年轻小姐名怀特，</p>
+
+
+<p>她能行走得比光还快。</p>
+
+
+<p>她以相对性的方式，</p>
+
+
+<p>在当天刚刚出发，</p>
+
+
+<p>却已在前晚到达。</p>
+</div>
+</div>
+<div class="layout">
+<p>The point is that the theory of relativity says hat there is no unique measure of time that all observers will agree
+on Rather, each observer has his or her own measure of time. If it is possible for a rocket traveling below the
+speed of light to get from event A (say, the final of the 100-meter race of the Olympic Games in 202) to event B
+(say, the opening of the 100,004th meeting of the Congress of Alpha Centauri), then all observers will agree
+that event A happened before event B according to their times. Suppose, however, that the spaceship would
+have to travel faster than light to carry the news of the race to the Congress. Then observers moving at
+different speeds can disagree about whether event A occurred before B or vice versa. According to the time of
+an observer who is at rest with respect to the earth, it may be that the Congress opened after the race. Thus
+this observer would think that a spaceship could get from A to B in time if only it could ignore the speed-of-light
+speed limit. However, to an observer at Alpha Centauri moving away from the earth at nearly the speed of light,
+it would appear that event B, the opening of the Congress, would occur before event A, the 100-meter race.
+The theory of relativity says that the laws of physics appear the same to observers moving at different speeds.</p>
+
+<p>关键在于相对论认为不存在让所有观察者同意的惟一的时间测量。相反地，每位观察者各有自己的时间测量。如果一枚火箭能以低于光的速度从事件A（譬如 2012年奥林匹克竞赛的100米决赛）至事件B（譬如α-半人马座议会第 100，004届会议的开幕式），那么根据所有观察者的时间，他们都同意事件A发生于事件B之先。然而，假定飞船必须以超过光的速度才能把竞赛的消息送到议会，那么以不同速度运动的观察者关于事件A和事件B何为前何为后就众说纷纭。按照一位相对于地球静止的观察者，议会开幕也许是在竞赛之后。这样，这位观察者会认为，如果他不理光速限制的话，该飞船能及时地从A赶到B。然而，在α-半人马座上以接近光速在离开地球方向飞行的观察者就会觉得事件B，也就是议会开幕，先于事件A，也就是百米决赛发生。相对论告诉我们。对于以不同速度运动的观察者，物理定律是完全相同的。</p>
+</div>
+
+<div class="layout">
+<p>This has been well tested by experiment and is likely to remain a feature even if we find a more advanced
+theory to replace relativity Thus the moving observer would say that if faster-than-light travel is possible, it
+should be possible to get from event B, the opening of the Congress, to event A, the 100-meter race. If one
+went slightly faster, one could even get back before the race and place a bet on it in the sure knowledge that
+one would win.
+</p>
+
+<p>这已被实验很好地检验过。人们认为，即使用更高级的理论去取代相对论，它仍然会被作为一个特性而保留下来。这样，如果超光速旅行是可能的，运动的观察者会说，就有可能从事件B，也就是议会开幕式，赶到事件A，也就是百米竞赛。如果他运动得更快一些，他甚至还来得及在赛事之前赶回，并在得知谁是赢家的情形下放下赌金。</p>
+</div>
+
+<div class="layout">
+<p>There is a problem with breaking the speed-of-light barrier. The theory of relativity says that the rocket power
+needed to accelerate a spaceship gets greater and greater the nearer it gets to the speed of light. We have
+experimental evidence for this, not with spaceships but with elementary particles in particle accelerators like
+those at Fermilab or CERN (European Centre for Nuclear Research). We can accelerate particles to 99.99
+percent of the speed of light, but however much power we feed in, we can’t get them beyond the speed-of-light
+barrier. Similarly with spaceships: no matter how much rocket power they have, they can’t accelerate beyond
+the speed of light.
+</p>
+
+<p>要打破光速壁垒存在一些问题。相对论告诉我们，飞船的速度越接近光速，用以对它加速的火箭功率就必须越来越大。对此我们已有实验的证据，但不是空间飞船的经验，而是在诸如费米实验室或者欧洲核子研究中心的粒子加速器中的基本粒子的经验。我们可以把粒子加速到光速的99．99％，但是不管我们注入多少功率，也不能把它们加速到超过光速壁垒。空间飞船的情形也是类似的：不管火箭有多大功率，也不可能加速到光速以上。</p>
+</div>
+
+<div class="layout">
+<p>That might seem to rule out both rapid space travel and travel back in time. However, there is a possible way
+out. It might be that one could warp space-time so that there was a shortcut between A and B One way of doing
+this would be to create a wormhole between A and B. As its name suggests, a wormhole is a thin tube of
+space-time which can connect two nearly flat regions far apart.</p>
+
+<p>这样看来，快速空间旅行和往时间过去旅行似乎都不可行了。然而，还可能有办法。人们也许可以把时空卷曲起来，使得A和B之间有一近路。在A和B之间创造一个虫洞就是一个法子。顾名思义，虫洞就是一个时空细管，它能把两个几乎平坦的相隔遥远的区域连接起来。</p>
+</div>
+
+<div class="layout">
+<p>There need be no relation between the distance through the wormhole and the separation of its ends in the
+nearly Hat background. Thus one could imagine that one could create or find a wormhole that world lead from
+the vicinity of the Solar System to Alpha Centauri. The distance through the wormhole might be only a few
+million miles even though earth and Alpha Centauri are twenty million million miles apart in ordinary space. This
+would allow news of the 100-meter race to reach the opening of the Congress. But then an observer moving
+toward 6e earth should also be able to find another wormhole that would enable him to get from the opening of
+the Congress on Alpha Centauri back to earth before the start of the race. So wormholes, like any other
+possible form of travel faster than light, would allow one to travel into the past.
+</p>
+
+<p>虫洞两个端点之间在几乎平坦的背景里的分离和通过虫洞本身的距离之间没必要有什么关系。这样，人们可以想像，他可以创造或者找到一个从太阳系附近通到。半人马座的虫洞。虽然在通常的空间中地球和α-半人马座相隔20万亿英里（1英里=1.609公里），而通过虫洞的距离却只有几百万英里（1英里=1.6O9公里）。这样百米决赛的消息就能赶在议会开幕式前到达。然后一位往地球飞去的观察者也应该能找到另一个虫洞，使他从α-半人马座议会开幕在赛事之前回到地球。因此，虫洞正和其他可能的超光速旅行方式一样，允许人们往过去旅行。</p>
+</div>
+
+<div class="layout">
+<p>The idea of wormholes between different regions of space-time was not an invention of science fiction writers
+but came from a very respectable source.</p>
+
+<p>时空不同区域之间的虫洞的思想并非科学幻想作家的发明，它的起源是非常令人尊敬的。</p>
+</div>
+
+<div class="layout">
+<p>In 1935, Einstein and Nathan Rosen wrote a paper in which they showed that general relativity allowed what
+they called “bridges,” but which are now known as wormholes. The Einstein-Rosen bridges didn’t last long
+enough for a spaceship to get through: the ship would run into a singularity as the wormhole pinched off.
+However, it has been suggested that it might be possible for an advanced civilization to keep a wormhole open.
+To do this, or to warp space-time in any other way so as to permit time travel, one can show that one needs a
+region of space-time with negative curvature, like the surface of a saddle. Ordi-nary matter, which has a
+positive energy density, gives space-time a positive curvature, like the surface of a sphere. So what one needs,
+in order to warp space-time in a way that will allow travel into the past, is matter with negative energy density.
+</p>
+
+<p>1935年爱因斯坦和纳珍·罗森写了一篇论文。在该论文中他们指出广义相对论允许他们称为“桥”，而现在称为虫洞的东西。爱因斯坦——罗森桥不能维持得足够久，使得空间飞船来得及穿越：虫洞会缩紧，而飞船撞到奇点上去。然而，有人提出，一个先进的文明可能使虫洞维持开放。人们可以把时空以其他方式卷曲，使它允许时间旅行。可以证明这需要一个负曲率的时空区域，如同一个马鞍面。通常的物质具有正能量密度，赋予时空以正曲率，如同一个球面。所以为了使时空卷曲成允许旅行到过去的样子，人们需要负能量密度的物质。</p>
+</div>
+
+<div class="layout">
+<p>Energy is a bit like money: if you have a positive balance, you can distribute it in various ways, but according to
+the classical laws that were believed at the beginning of the century, you weren’t allowed to be overdrawn. So
+these classical laws would have ruled out any possibility of time travel. However, as has been described in
+earlier chapters, the classical laws were superseded by quantum laws based on the uncertainty principle. The
+quantum laws are more liberal and allow you to be overdrawn on one or two accounts provided the total
+balance is positive. In other words, quantum theory allows the energy density to be negative in some places,
+provided that this is made up for by positive energy densities in other places, so that the total energy re-mains
+positive. An example of how quantum theory can allow negative energy densities is provided by what is called
+the Casimir effect. As we saw in Chapter 7, even what we think of as “empty” space is filled with pairs of virtual
+particles and antiparticles that appear together, move apart, and come back together and annihilate each other.
+Now, suppose one has two parallel metal plates a short distance apart. The plates will act like mirrors for the
+virtual photons or particles of light. In fact they will form a cavity between them, a bit like an organ pipe that will
+resonate only at certain notes. This means that virtual photons can occur in the space between the plates only
+if their wavelengths (the distance between the crest of one wave and the next) fit a whole number of times into
+the gap between the plates. If the width of a cavity is a whole number of wavelengths plus a fraction of a
+wave-length, then after some reflections backward and forward between the plates, the crests of one wave will
+coincide with the troughs of another and the waves will cancel out.</p>
+
+<p>能量有点像金钱：如果你有正的能量，就可以用不同方法分配，但是根据本世纪初相信的经典定律，你不允许透支。这样，这些经典定律排除了时间旅行的任何可能性。然而，正如在前面几章所描述的，量子定律已经超越了经典定律。量子定律是以不确定性原理为基础的。量子定律更慷慨些，只要你总的能量是正的，你就允许从一个或两个账号透支。换言之，量子理论允许在一些地方的能量密度为负，只要它可由在其他地方的正的能量密度所补偿，使得总能量保持为正的。量子理论允许负能量密度的一个例子是所谓的卡西米尔效应。正如我们在第七章看到的，甚至我们认为是“空”的空间也充满了虚粒子和虚反粒子对，它们一起出现分离开，再返回一起并且相互湮灭。现在，假定人们有两片距离很近的平行金属板。金属板对于虚光子起着类似镜子的作用。事实上，在它们之间形成了一个空腔。它有点像风琴管，只对指定的音阶共鸣。这意味着，只有当平板间的距离是虚光子波长（相邻波峰之间的距离）的整数倍时，这些虚光子才会在平板之中的空间出现。如果空腔的宽度是波长的整数倍再加上部分波长，那么在前后反射多次后，一个波的波峰就会和另一个波谷相重合，这样波动就被抵消了。</p>
+</div>
+
+<div class="layout">
+<p>Because the virtual photons between the plates can have only the resonant wavelengths, there will be slightly
+fewer of them than in the region outside the plates where virtual photons can have any wavelength. Thus there
+will be slightly fewer virtual photons hitting the inside surfaces of the plates than the outside surfaces. One
+would therefore expect a force on the plates, pushing them toward each other. This force has actually been
+detected and has the predicted value. Thus we have experimental evidence that virtual particles exist and have
+real effects.
+</p>
+
+<p>因为平板之间的虚光子只能具有共振的波长，所以虚光子的数目比在平板之外的区域要略少些，在平板之外的虚光子可以具有任意波长。所以人们可以预料到这两片平板遭受到把它们往里挤的力。实际上已经测量到这种力。并且和预言的值相符。这样，我们得到了虚粒子存在并具有实在效应的实验证据。</p>
+</div>
+
+<div class="layout">
+<p>The fact that there are fewer virtual photons between the plates means that their energy density will be less
+than elsewhere. But the total energy density in “empty” space far away from the plates must be zero, because
+otherwise the energy density would warp the space and it would not be almost flat. So, if the energy density
+between the plates is less than the energy density far away, it must be negative.</p>
+
+<p>在平板之间存在更少虚光子的事实意味着它们的能量密度比它处更小。但是在远离平板的“空的”空间的总能量密度必须为零，因为否则的话，能量密度会把空间卷曲起来，而不能保持几乎平坦。这样，如果平板间的能量密度比远处的能量密度更小，它就必须为负的。</p>
+</div>
+
+<div class="layout">
+<p>We thus have experimental evidence both that space-time can be warped (from the bending of light during
+eclipses) and that it can be curved in the way necessary to allow time travel (from the Casimir effect). One
+might hope therefore that as we advance in science and technology, we would eventually manage to build a
+time machine. But if so, why hasn’t anyone come back from the future and told us how to do it? There might be
+good reasons why it would be unwise to give us the secret of time travel at our present primitive state of
+development, but unless human nature changes radically, it is difficult to believe that some visitor from the
+future wouldn’t spill the beans. Of course, some people would claim that sightings of UFOs are evidence that
+we are being visited either by aliens or by people from the future. (If the aliens were to get here in reasonable
+time, they would need faster-than-light travel, so the two possibilities may be equivalent.)</p>
+
+<p>这样，我们对以下两种现象都获得了实验的证据。第一，从日食时的光线弯折得知时空可以被卷曲。第二，从卡西米尔效应得知时空可被弯曲成允许时间旅行的样子。所以，人们希望随着科学技术的推进，我们最终能够造出时间机器。但是，如果这样的话，为什么从来没有一个来自未来的人回来告诉我们如何实现呢？鉴于我们现在处于初级发展阶段，也许有充分理由认为，让我们分享时间旅行的秘密是不智的。除非人类本性得到彻底改变，非常难以相信，某位从未来飘然而至的访客会贸然泄漏天机。当然，有些人会宣称，观察到幽浮就是外星人或者来自未来的人们来访的证据（如果外星人在合理的时间内到达此地，他们则需要超光速旅行，这样两种可能性其实是等同的）。</p>
+</div>
+
+<div class="layout">
+<p>However, I think that any visit by aliens or people from the future would be much more obvious and, probably,
+much more unpleasant. If they are going to reveal themselves at all, why do so only to those who are not
+regarded as reliable witnesses? If they are trying to warn us of some great danger, they are not being very
+effective.
+</p>
+
+<p>然而，我认为，任何外星来的或者来自未来的人的造访应该是更加明显，或许更加令人不悦。如果他们有意显灵的话，为何只对那些被认为不太可靠的证人进行？如果他们试图警告我们大难临头，这样做也不是非常有效的。</p>
+</div>
+
+<div class="layout">
+<p>A possible way to explain the absence of visitors from the future would be to say that the past is fixed because
+we have observed it and seen that it does not have the kind of warping needed to allow travel back from the
+future. On the other hand, the future is unknown and open, so it might well have the curvature required. This
+would mean that any time travel would be confined to the future. There would be no chance of Captain Kirk and
+the Starship Enterprise turning up at the present time.</p>
+
+<p>一种对来自未来的访客缺席的可能解释方法是，因为我们观察了过去并且发现它并没有允许从未来旅行返回所需的那类卷曲，所以过去是固定的。另一方面，未来是未知的开放的，所以也可能有所需的曲率。这意味着，任何时间旅行都被局限于未来。此时此刻，柯克船长和星际航船没有机会出现。</p>
+</div>
+
+<div class="layout">
+<p>This might explain why we have not yet been overrun by tourists from the future, but it would not avoid the
+problems that would arise if one were able to go back and change history. Suppose, for example, you went
+back and killed your great-great-grandfather while he was still a child. There are many versions of this paradox
+but they are essentially equivalent: one would get contradictions if one were free to change the past.
+</p>
+
+<p>这也许可以解释，当今世界为何还没被来自未来的游客所充斥。但是如果人们能够回到以前并改变历史，则问题就不能回避。例如，假定你回到过去并且将你的祖先在他仍为孩童时杀死。这类佯谬有许多版本，但是它们根本上是等效的：如果一个人可以自由地改变过去，则他就会遇到矛盾。</p>
+</div>
+
+<div class="layout">
+<p>There seem to be two possible resolutions to the paradoxes posed by time travel. One I shall call the consistent
+histories approach. It says that even if space-time is warped so that it would be possible to travel into the past,
+what happens in space-time must be a consistent solution of the laws of physics. According to this viewpoint,
+you could not go back in time unless history showed that you had already arrived in the past and, while there,
+had not killed your great-great-grandfather or committed any other acts that would conflict with your current
+situation in the present. Moreover, when you did go back, you wouldn’t be able to change recorded history.
+That means you wouldn’t have free will to do what you wanted. Of course, one could say that free will is an
+illusion anyway. If there really is a complete unified theory that governs everything, it presumably also
+determines your actions. But it does so in a way that is impossible to calculate for an organism that is as
+complicated as a human being. The reason we say that humans have free will is because we can’t predict what
+they will do. However, if the human then goes off in a rocket ship and comes back before he or she set off, we
+will be able to predict what he or she will do because it will be part of recorded history. Thus, in that situation,
+the time traveler would have no free will.</p>
+
+<p>看来有两种方法解决由时间旅行导致的佯谬。我把一种称为协调历史方法。它是讲，甚至当时空被卷曲得可能旅行到过去时，在时空中所发生的必须是物理定律的协调的解。根据这一观点，除非历史表明，你曾经到达过去，并且当时并没有杀死你的祖先或者没有任何行为和你的现状相冲突，你才能回到过去。况且，当你回到过去，你不能改变历史记载。那表明你并没有自由意志为所欲为。当然，人们可以说，自由意志反正是虚幻的。如果确实存在一套制约万物的完整的统一理论，它也应该决定你的行动。但是对于像人类这么复杂的机体，其制约和决定方式是不可能计算出来的。我们之所以说人们具有意志，乃在于我们不能预言他们未来的行动。然而，如果一个人乘火箭飞船出发并在这之前已经回返，我们就将能预言其未来行为，因为那将是历史记载的一部分。这样，在这种情形下，时间旅行者没有自由意志。</p>
+</div>
+
+<div class="layout">
+<p>The other possible way to resolve the paradoxes of time travel might be called the alternative histories
+hypothesis. The idea here is that when time travelers go back to the past, they enter alternative histories which
+differ from recorded history. Thus they can act freely, without the constraint of consistency with their previous
+history. Steven Spiel-berg had fun with this notion in the Back to the Future films: Marty McFly was able to go
+back and change his parents’ courtship to a more satisfactory history.
+</p>
+
+<p>解决时间旅行的其他可能的方法是称为选择历史假想。其思想是，当时间旅行者回到过去，他就进入和历史记载不同的另外的历史中去。这样，他们可以自由地行动，不受和原先的历史相一致的约束。史蒂芬·斯匹柏十分喜爱影片《回归未来》中的创意：玛提·马克弗莱能够返回而且把他双亲恋爱的历史改得更令人满意。</p>
+</div>
+
+<div class="layout">
+<p>The alternative histories hypothesis sounds rather like Richard Feynman’s way of expressing quantum theory
+as a sum over histories, which was described in Chapters 4 and 8. This said that the universe didn’t just have a
+single history: rather it had every possible history, each with its own probability. However, there seems to be an
+important difference between Feynman’s proposal and alternative histories. In Feynman’s sum, each history
+comprises a complete space-time and everything in it. The space-time may be so warped that it is possible to
+travel in a rocket into the past. But the rocket would remain in the same space-time and therefore the same
+history, which would have to be consistent. Thus Feynman’s sum over histories proposal seems to support the
+consistent histories hypothesis rather than the alternative histories.</p>
+
+<p>选择历史假想听起来，和理查德·费因曼把量子理论表达成历史求和的方法相类似，这已在第四章和第八章描述过。它是说宇宙不仅仅有一个单独历史，它有所有可能的历史，每一个历史都有自己的概率。然而，在费因曼的设想和选择历史之间似乎存在一个重要的差别。在费因曼求和中，每一个历史都是由完整的时空和其中的每一件东西组成的。时空可以被卷曲成可能乘火箭旅行到过去。但是火箭要留在同一时空即同一历史中，因而历史必须是协调的。这样，费因曼的历史求和设想似乎支持协调历史假想，而不支持选择历史假想。</p>
+</div>
+
+<div class="layout">
+<p>The Feynman sum over histories does allow travel into the past on a microscopic scale. In Chapter 9 we saw
+that the laws of science are unchanged by combinations of the operations C, P, and T. This means that an
+antiparticle spinning in the anticlockwise direction and moving from A to B can also be viewed as an ordinary
+particle spinning clockwise and moving backward in time from B to A. Similarly, an ordinary particle moving
+forward in time is equivalent to an antiparticle moving backward in time. As has been discussed in this chapter
+and Chapter 7, “empty” space is filled with pairs of virtual particles and antiparticles that appear together, move
+apart, and then come back together and annihilate each other.
+</p>
+
+<p>费因曼历史求和允许在微观的尺度下旅行到过去。我们在第九章看到，科学定律在CPT联合对称下不变。这表明，一个在反时钟方向自旋并从A运动到B的反粒子还可以被认为是在时钟方向自旋并从B运动回A的通常粒子。类似地，一个在时间中向前运动的通常粒子等价于在时间中往后运动的反粒子。正如在本章以及第七章讨论过的，“空” 的空间充满了虚的粒子和反粒子对，它们一道出现、分离，然后回到一块并且相互湮灭。</p>
+</div>
+
+<div class="layout">
+<p>So, one can regard the pair of particles as a single particle moving on a closed loop in space-time. When the
+pair is moving forward in time (from the event at which it appears to that at which it annihilates), it is called a
+particle. But when the particle is traveling back in time (from the event at which the pair annihilates to that at
+which it appears), it is said to be an antiparticle traveling forward in time.</p>
+
+<p>这样，人们可以把这对粒子认为是在时空中沿着一个闭合图运动的单独粒子。当对子在时间中向前运动时（从它出现的事件出发到达它湮灭的事件），它被称为粒子。但是，当粒子在时间中往回运动时（从对湮灭的事件出发到达它出现的事件），可以说成反粒子在时间中向前运动。</p>
+</div>
+
+<div class="layout">
+<p>The explanation of how black holes can emit particles and radiation (given in Chapter 7) was that one member
+of a virtual particle/ antiparticle pair (say, the antiparticle) might fall into the black hole, leaving the other
+member without a partner with which to annihilate. The forsaken particle might fall into the hole as well, but it
+might also escape from the vicinity of the black hole. If so, to an observer at a distance it would appear to be a
+particle emitted by the black hole.
+</p>
+
+<p>在解释黑洞何以发射粒子并辐射（见第七章）时认为，虚的粒子/反粒子对中的一个成员（譬如反粒子）会落到黑洞中去，另一个成员留下来，失去和它湮灭的伙伴。这个被抛弃的粒子也可以落入黑洞，但是它也可以从黑洞的邻近挣脱。如果这样的话，对于一位远处的观察者，它就作为从黑洞发射出的粒子而出现。</p>
+</div>
+
+<div class="layout">
+<p>One can, however, have a different but equivalent intuitive picture of the mechanism for emission from black
+holes. One can regard the member of the virtual pair that fell into the black hole (say, the antiparticle) as a
+particle traveling backward in time out of the hole. When it gets to the point at which the virtual
+particle/antiparticle pair appeared together, it is scattered by the gravitational field into a particle traveling
+forward in time and escaping from the black hole. If, instead, it were the particle member of the virtual pair that
+fell into the hole, one could regard it as an antiparticle traveling back in time and coming out of the black hole.
+Thus the radiation by black holes shows that quantum theory allows travel back in time on a microscopic scale
+and that such time travel can produce observable effects.</p>
+
+<p>然而，人们对于黑洞辐射的机制可有不同的却是等价的图像。人们可以把虚对中的那个落入黑洞的成员（譬如反粒子）看成从黑洞出来的在时间中往回运动的粒子。当它到达虚粒子反粒子对一道出现的那一点，它被引力场散射成从黑洞逃脱的在时间中向前运动的粒子。相反地，如果是虚对中的粒子成员落入黑洞，人们可以把它认为是从黑洞出来的在时间中往回运动的反粒子。这样，黑洞辐射表明，量子理论在微观尺度上允许在时间中的往回运动，而且这种时间旅行能产生可观测的效应。</p>
+</div>
+
+<div class="layout">
+<p>One can therefore ask: does quantum theory allow time travel on a macroscopic scale, which people could
+use? At first sight, it seems it should. The Feynman sum over histories proposal is supposed to be over all
+histories. Thus it should include histories in which space-time is so warped that it is possible to travel into the
+past. Why then aren’t we in trouble with history? Suppose, for example, someone had gone back and given the
+Nazis the secret of the atom bomb?
+</p>
+
+<p>因此产生这样的问题：量子理论在宏观尺度上允许人们可以利用的时间旅行吗？初看起来应该是可以的。费因曼历史求和的设想是指对所有的历史进行的。这样，它应包括被卷曲成允许旅行到过去的时空。那么，为什么我们并没有受到历史的骚扰？例如，假定有人回到过去，并把原子弹秘密提供给纳粹？</p>
+</div>
+
+<div class="layout">
+<p>One would avoid these problems if what I call the chronology protection conjecture holds. This says that the
+laws of physics conspire to prevent macroscopic bodies from carrying information into the past. Like the cosmic
+censorship conjecture, it has not been proved but there are reasons to believe it is true.</p>
+
+<p>如果我称作时序防卫猜测成立的话，这些问题便可以避免。它是讲，物理学定律防止宏观物体将信息传递到过去。它正如宇宙监督猜测一样，还未被证明，但是有理由相信它是成立的。</p>
+</div>
+
+<div class="layout">
+<p>The reason to believe that chronology protection operates is that when space-time is warped enough to make
+travel into the past possible, virtual particles moving on closed loops in space-time can become real particles
+traveling forward in time at or below the speed of light. As these particles can go round the loop any number of
+times, they pass each point on their route many times. Thus their energy is counted over and over again and
+the energy density will become very large. This could give space-time a positive curvature that would not allow
+travel into the past. It is not yet clear whether these particles would cause positive or negative curvature or
+whether the curvature produced by some kinds of virtual particles might cancel that produced by other kinds.
+Thus the possibility of time travel remains open. But I’m not going to bet on it. My opponent might have the
+unfair advantage of knowing the future.</p>
+
+<p>相信时序防卫有效的原因是，当时空被卷曲得可以旅行到过去时，在时空中的闭圈上运动的虚粒子，在时间前进的方向以等于或者低于光速的速度运动时，就会变成实粒子。由于这些粒子可以任意多次地绕着圈子运动，它们通过路途中的每一点许多次。这样，它们的能量被一次又一次地计算，使能量密度变得非常大。这也许赋予时空以正的曲率，因而不允许旅行到过去。这些粒子引起正的还是负的曲率，或者由某种虚粒子产生的曲率是否被别种粒子产生的抵消，仍然不清楚。这样，时间旅行的可能性仍然未决。但是我不准备为之打赌，我的对手或许具有通晓未来的不公平的优势。 </p>
+</div>
+<div>
+<div id="ftsize1"><a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em">大</a></div>
+<div id="ftsize2"><a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em">中</a></div>
+<div id="ftsize3"><a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em">小</a></div>
+<div id="fPage"><a id="fPagea" href="javascript:void(null)" target="_self">上<br />一<br />页</a></div>
+<div id="menuPage"><a href="index.html" target="_self">目<br />录</a></div>
+<div id="lPage"><a id="LPagea" href="javascript:void(null)" target="_self">下<br />一<br />页</a></div>
+<div style="display:none" id="goTopBtn"><a target="_self" style="color:#fff;">&and;</a></div>
+<div style="display:none" id="shangy">
+	<a onclick="shangy()" target="_self" style="color:#fff;">&uarr;</a></div>
+<div id="xiay">
+	<a onclick="xiay()" target="_self" style="color:#fff;">&darr;</a></div>
+<div id="goBottom">
+	<a onclick="downn()" target="_self" style="color:#fff;">&or;</a></div>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 68){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+
+</script>
+</div>
+</body>
+</html>
+<script language="javascript"> 
+bg_evensssss("tbrowser","#fff","#F5F5F5","#FFFFCC","#FFDDFF");/*#FFFF84*/
+</script>
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换：
+\s*<br />\s*
+------------------
+</p>
+
+<p></p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+[\s*</p>\s*]
+[\s*<p>\s*]
+------------------
+</p>
+
+<p></p>
+
+<p>
+
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+-->

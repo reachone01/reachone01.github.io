@@ -1,0 +1,426 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>电脑传奇（外篇）视“觉”</h3>
+
+<p>
+</p>
+
+<p>黄铁军
+</p>
+
+<p><h4>12.青蛙之眼</h4>
+</p>
+
+<p>真实的历史从来都比后世叙述更诡秘。
+</p>
+
+<p>1946年，冯·诺伊曼对逻辑大脑模型提出尖锐批评，但似乎并未产生什么影响，皮茨1947年在控制论会议上还介绍自己正在撰写概率三维神经网络的博士论文。维纳在《控制论》序言中也提到，1947年麦卡洛克和皮茨“接受了一个设计一种帮助盲人用耳代目阅读印刷品的装置的任务……能够把一个形象和另一个大小与它不同的标准形象做比较……引起了冯·博宁博士的注意，他立刻问道：‘这是不是一张大脑视觉皮质第四层的图？’受到这个启发后，麦卡洛克博士在皮茨先生的帮助下创造了一个把视觉皮质的解剖学和生理学联系起来的学说”。这就是他们1947年发表的《论我们何以认识世界：对视听形式的感知》。
+</p>
+
+<p>当然，维纳也没把冯·诺伊曼的忠告忘在脑后。1951年，他说服麻省理工学院电子研究实验室副主任杰里·威斯纳，邀请神经生理学家成立“实验认识论(Experimental Epistemology)”研究组。梅西控制论会议常任主席麦卡洛克已经年过半百，毅然辞去正教授职位而低就副教授，介绍三人认识的“媒人”莱特文也从最初级职位做起。“控制论”金三角聚首麻省理工学院。就在历史“准备再次伟大”时，1952年正在墨西哥学术休假的维纳突然发电报给威斯纳：“请告诉（皮茨和莱特文），我跟他们，以及你的项目从此一刀两断。”
+</p>
+
+<p>维纳发飙的原因，一种说法是皮茨和莱特文之前兴冲冲地给他写过信，说：“很多先进设备已到位，要做最好的研究。你快回来，回来晚了这个世界就都变了！”另一种广为传播的说法是，维纳太太捏造说，女儿被“那位波希尼亚人（指麦卡洛克）”的“男孩们”玷污了。
+</p>
+
+<p>维纳断交肯定对皮茨造成了很大打击。对于15岁离家出走的皮茨来说，维纳既是知音和导师，还像父亲。而如今突然火冒三丈，不可理喻地绝交，而且闭口不谈为什么，真的不合逻辑好吗！
+</p>
+
+<p>真正不合逻辑的更大打击还在后头。
+</p>
+
+<p>少了维纳，实验认识论组并未消亡。1955~1965年，他们合作发表了5篇论文，其中最著名的是《青蛙的眼睛告诉了大脑什么？》这篇论文的第一作者是莱特文。莱特文本想成为一名诗人（他一生确实笔耕不辍），但他妈妈立场更坚定，“不学医，没学费”，他只得选择医学院。加入实验认识论组后，莱特文给自己的定位是，“为神经生理学的问题以及更清晰地定义这些问题设计新方法”。
+</p>
+
+<p>莱特文研究青蛙开始于1956年。1953年，英国神经科学家荷瑞斯·巴洛(Horace Basil Barlow, 1921-)就发现青蛙视网膜有一种神经节细胞对运动斑点敏感（被形象地称为“小虫检测器”）。莱特文的这篇文章则发现4种新功能的神经节细胞。正如后来巴洛总结的：“单个神经元可以完成的任务比人们过去所想象的要复杂得多，也精确得多。”
+</p>
+
+<p>皮茨参加了青蛙实验，有照片为证，他本来期望实验能为他的逻辑大脑模型提供实证。但是，莱特文回忆说：“我们完成青蛙眼睛的研究后，他很明显地意识到，就算逻辑在这个过程中发挥了作用，也并非如我们所想的那样承担了重要或核心的工作，……这让他失望透顶。”
+</p>
+
+<p>从12岁读完《数学原理》开始，逻辑就成为皮茨内心抵抗外部复杂世界的强大力量，冯·诺伊曼的批评和维纳的断交都未能击垮他。可如今，逻辑竟然连青蛙的大脑都对付不了，这从根本上撼动了皮茨的世界观。他把研究报告、笔记和论文付之一炬，不再跟任何人说话，还经常失踪。莱特文回忆说： “我们几天几夜地找他。”一代数理逻辑天才就此一蹶不振。
+</p>
+
+<p><h4>13.动物视觉</h4>
+</p>
+
+<p>青蛙眼睛和大脑的会话未必符合数理逻辑，但符合生死时速的大逻辑。
+</p>
+
+<p>研究青蛙视网膜的巴洛，他妈妈的爷爷达尔文在《物种起源》中曾写道：“如果假定眼睛能由自然选择而形成，我坦白承认，这种说法好像是极其荒谬的。”为此，达尔文花了大量篇幅论证进化出眼睛的可能性（全书60多处提到眼睛）。例如，“在关节动物这一大纲里，我们可以看到最原始的单纯被色素层包围着的视神经，这种色素层有时形成一个瞳孔，但没有晶状体或其他光学装置。”瑞典隆德大学丹·克尼尔森教授把眼睛进化分为无向光感受器、有向光感受器、低分辨率视觉和高分辨率视觉4个阶段，估计50万年之内就足以进化出眼睛。
+</p>
+
+<p>最近已知，视感受器出现在6亿年前，鱼眼出现在5.5亿年前，而昆虫复眼出现在1.6亿年前。人们往往想当然地认为，动物眼中的世界和自己看到的类似，实际上大相径庭。立方水母全身神经元也就1万多个，却有24只眼睛，4片膜上各有一只像不倒翁一样永远向上的眼睛，用以辨别身处开阔水面还是食物丰富的红树林。夜间活动的飞蛾用复眼感知光线方向，但不分距离，靠遥远的月亮导航没问题，遇上人造灯火就麻烦了：或者扑火而亡，或者围绕灯光不停旋转，除非偶然离去，否则就只能撞死或累死。猫在昏暗环境下捕食，感知亮度的视杆细胞比人眼多，但感知色彩的视锥细胞很少，因此猫看到的世界是灰色的。古巴岩鬣蜥的世界五彩缤纷，它有4种视锥细胞，而人类只有3种，极少数女士有4种。螳螂虾进化出12种视锥细胞，能够感知红外和紫外光，而且还能灵活转动，更加顾盼神飞。有种跳蛛的视感受器排成V字形，功能就是识别配偶背上的V字形状。
+</p>
+
+<p>接下来的问题就是：动物的神经系统是如何实现这些视觉功能的？生物控制论创始人沃纳·赖夏特(Werner E. Reichardt, 1924-1992)1950年对伯恩哈德·哈森施坦因(Bernhard Hassenstein, 1922-2016)的甲虫视动反应实验感兴趣，两人提出了昆虫运动视觉感知模型，并于1958年在德国马普学会生物所共同创立控制论研究组，1968年独立为生物控制论研究所。赖夏特作为创始所长，继续开展昆虫视觉信息处理过程的研究。他选中的是脑复杂度适中的家蝇。1971年，刚拿到物理学博士学位的托马索·波焦(Tomaso Armando Poggio, 1947- )加入这项研究，发现了家蝇视觉飞行控制系统的秘密，并给出了精确的定量描述：家蝇的视觉器官并不感知人类熟悉的三维世界，而是直接感知一对方向角，再通过5个相互独立的固定快速反应（从视觉刺激到改变扭矩仅需2毫秒），实现起飞、着陆和追逐等动作。
+</p>
+
+<p>1982~1984年，我国神经生理学家郭爱克院士(1940- )在赖夏特研究组作为访问学者参加家蝇视觉系统图形与背景分辨研究。采用类似实验手段，郭爱克和唐世明在2001年发现果蝇具有抉择这种高级认知行为。2006年，郭爱克和郭增强发现果蝇视觉和嗅觉的学习记忆可以跨模态增强。2016年9月，果蝇全脑神经网络三维精细模型绘制完成，从神经元网络层次破解蝇视觉的秘密，曙光在前。
+</p>
+
+<p><h4>14.视觉计算</h4>
+</p>
+
+<p>与蝇视觉相比，人类视觉要复杂得多。果蝇全部神经元约25万个，人类初级视皮层神经元就有2.8亿个，两者差距上万倍，更遑论结构复杂性。但是，视觉的难度在人工智能早期被严重低估。1967年，明斯基宣称，“创建‘人工智能’只需要一代人”。他的同事佩帕特则表示，“计算机联上摄像头，‘描绘它看到什么’这个问题一个暑期项目就能搞定”。两人在1969年出版《感知机》，挑起人工智能和神经网络之战。麻省理工学院人工智能实验室也在1970年正式成立。然而好景不长，1971年，神经网络旗手罗森布拉特猝然辞世，神经网络进入寒冬。唇亡齿寒，人工智能也未能坚持太久，1974年，英国和美国相继斩断对人工智能的资助。
+</p>
+
+<p>人工智能寒冬将至未至的1973年，大卫·马尔(David Courtnay Marr, 1945-1980)加入麻省理工学院人工智能实验室。明斯基和佩帕特延揽马尔，是希望他收拾机器视觉这个牛皮吹破的“烂摊子”。马尔曾引用一段话描述当时的状况：“一些（计算机视觉）研究者都有一种共同的、几乎是令人绝望的感受：在一幅图像中任何事情都可能发生，而且事实上所有的事情也都在图像中发生。”
+</p>
+
+<p>马尔1966年从剑桥大学获得硕士学位，本科和硕士专业都是数学，后转向神经生理学，1972年获得生理学博士学位。博士论文的内容是基于解剖学和生理学数据的小脑功能建模。1973年10月，马尔在给自己博士导师的信中说，决定把研究兴趣转到视觉，12月又写信说，“再也不准备写任何理论神经生理学方面的论文了”。
+</p>
+
+<p>马尔说到做到，全身心投入视觉计算研究，1977年获生理学系正式教职，1980年升任教授，当年因白血病辞世。马尔的同事和学生把他尚未完成的《视觉》补充完善出版，成为计算机视觉的开山之作。
+</p>
+
+<p>马尔对视觉计算理论的重大贡献是把神经生理学和计算机科学深度结合。据波焦回忆，他1973年初次造访波士顿就见到了马尔，两人当时谈论的是马尔感兴趣的视网膜特征检测器。1976年，波焦再次到麻省理工学院短期访问。两人讨论认为，大脑和计算机都是信息处理系统，而理解一个复杂的信息系统，至少应该分成三个层次：计算理论（对功能和行为的理解）、表征和处理、物理实现，这奠定了《视觉》一书的基本思想。这个思想对神经生理学是一股新风，但在计算机学科却是常识：底层物理实现就是计算机本身（主要是体系结构）；中层的表征对应数据结构，处理对应算法；顶层是对要解决的问题进行理论分析建模。马尔把重点放在中间层，因此把“人对视觉信息的表征和处理的计算研究”作为《视觉》一书的副标题 。
+</p>
+
+<p>马尔在著作中描述了自己的“思想转变”过程：“我也曾相信，真理从根本上是属于神经的，研究的中心任务就是对神经系统的结构做彻底的功能分析”，转变为“用神经元（除作为实现一种计算方法的手段外）对视觉现象所做的任何解释已经不堪回首了。取代它们的是对一系列问题的明确认识：要计算的是什么东西？怎样才能进行这种计算？计算使用的方法基于哪些物理假设？对可执行这种计算的算法怎样进行分析？”
+</p>
+
+<p>马尔的视觉计算理论影响至今，但基于这套理论开发的计算机视觉系统，即使经过多年改进，也还远远不能和生物视觉系统相提并论。回过头来看，马尔的视觉计算理论固然是一座重要的里程碑，但也是一个先天不足的早产儿。
+</p>
+
+<p>马尔的视觉计算理论采纳了当时最新的神经生理学成果，但当时的神经生理学还不足以支撑这个新兴学科，马尔只能猜测视觉信息的处理过程。“表征”是马尔视觉计算理论的核心之一，马尔将之划分为“要素图→物体2.5维描述→3维描述”三个层级，但是提取这些表征的算法很难获得可靠结果。“处理”是这套理论的核心之二，是“从一种表征获得另一种表征的一个映射”，处理流程自底向上，而实际的生物视觉系统是“自顶向下”和“自底向上”相互作用的双向动态过程。20世纪70年代神经生理学家转向解剖学和可塑性，马尔认为是“停滞了”，这种看法失之偏颇。大脑皮层需要映射大千世界的各种复杂结构，必须有可塑性，这是大脑信息处理能力强大的关键。因此，这个“转向”不是停滞，而是正确选择。当然，即使在今天，要突破计算机视觉，脑科学和神经科学仍然还有很长的路要走。
+</p>
+
+<p>马尔假定底层“物理实现”是计算机，这个将要创立的新学科不是机器视觉，而是计算机视觉，这在当时对促进两个学科结合意义重大。但是，计算机并非实现机器视觉的理想平台。生物大脑是个复杂的结构，已经为一些复杂功能进化出了专门的结构，因此“算法”就可以相对简单。经典计算机是个简单的串行结构，实现视觉功能需要复杂的算法，有些视觉功能难以实现，甚至不能实现，必须依靠神经网络才能实现。
+</p>
+
+<p>“先结构，后功能”是最终解决视觉计算问题的必由之路。近年来，深度学习利用海量数据训练出特征滤波器，采用多层神经网络结构提高表达能力，在图像识别等方面已经超越人类，说明“结构先行”的路线是有效的。当然，目前深度学习针对专门视觉任务“就事论事”，还远不是视觉的全部。下一步应该从生物视觉系统中获得更多支持：视网膜是亿万年“进化大数据”训练的结果，是更为合适的视觉滤波器；视皮层不仅仅是多层结构，而是层级结构，这对人工神经网络设计也有重要参考价值；生物视觉对时空信息的处理机制更为巧妙，前馈、反馈和侧向互动更是机器视觉应该学习的。
+</p>
+
+<p>机器视觉要逼近乃至超越人类视觉，需要以人类视觉系统神经网络解析为基础，先构造具有类似视觉功能的机器视觉系统，再对该系统的信息加工过程进行分析，从而理解视觉功能背后的原理，进而设计更优的机器视觉系统。纵使马尔这样的天才，也不能逆转这个历史过程。
+</p>
+
+<p><h4>15.回归结构</h4>
+</p>
+
+<p>机器视觉对生物视觉的借鉴，首先是视网膜信号加工和信息处理过程。神经形态工程开创者卡弗·米德就对生物视觉特别着迷。他曾表示：“我对动物视觉系统背后的机制越来越佩服，我总是对自己说，‘我永远也想不到这一点，但这确实是个好主意’。”在他的指导下，1985年入学的博士生米莎(Misha Mahowald)研制出硅视网膜(silicon retina)，采用与亚阈值MOS晶体管耦合的光电转换器件仿真视感受器，用二维电阻网络模拟视网膜水平细胞，将光电转换信号和水平细胞之差作为双极细胞输出，能够再现赫尔曼格点这样的视错觉现象。米莎入学时的专业方向是计算与神经系统(computation and neural systems)，1992年获得了计算神经科学(computational neuroscience)博士学位，这也是这个新兴学科确立的重要标志。
+</p>
+
+<p>接手米莎工作的师弟博阿汉实现了基于地址事件表达(Address Event Representation, AER)异步传输的视网膜形态视觉系统（之后他到斯坦福大学做神经形态计算系统Neurogrid）。米莎1995年加入瑞士苏黎世大学和联邦理工学院联合创办的神经信息学研究所，至今视觉神经计算仍然是该所的重要研究方向。另外，多所大学也纷纷开展相关研究和芯片研制，仿视网膜应用日益增多。例如，IBM TrueNorth团队就采用神经信息学研究所的DVS芯片进行目标检测。加里克·奥查德(Garrick Orchard)等人提出了一种利用AER视觉传感器所蕴含的时域信息进行对象识别的方法。
+</p>
+
+<p>仿视网膜芯片抓住了生物视网膜的部分特性，但还只是冰山一角。正如2010年的综述论文《眼睛比科学家认为的更聪明：视网膜网络中的神经计算》所言，生物视网膜还有大量巧妙特性等待发现。为了获得视网膜的精细结构，麻省理工学院脑和认知科学系的承现峻（Sebastian Seung，现在普林斯顿大学）2012年发起Eyewire众包行动，来自150多个国家的20多万网友参与鼠视网膜电镜扫描图像的标注，发现了支持方向选择的具有时空连接特异性的精细网络结构。
+</p>
+
+<p>视皮层是大脑皮层中研究最多，也了解最多的部分，但就像大卫·休伯尔(David H. Hubel, 1926-2013)所言，“我们可以看见中等距离的山峦，但还远远看不到尽头”。从他和威塞尔(Torsten Wiesel, 1924-)1959年在猫初级视皮层(V1)发现对特定朝向敏感的神经元以及眼优势柱开始，至今灵长类视皮层各功能区的精细分区已很清晰，从接收视束输入的V1（纹状皮层）到纹外V2、V3、V4、V5各分区之间的介观连接图谱已经绘制完成，但神经元和突触层次的微观网络绘制还需要艰苦努力。2016年3月，美国情报高级研究计划署MICrONS（大脑皮层网络机器智能）计划对1立方毫米的鼠视皮层进行反向工程，希望改进机器学习和人工智能算法，这是计算机视觉研究回归神经网络结构基础的重要标志。
+</p>
+
+<p>在北京“脑科学与类脑研究”计划《脑初级视觉系统解析仿真平台研究与应用验证》的支持下，北京大学对灵长类视网膜中央凹进行了精细解析和仿真建模。唐世明研究组对基因标记的清醒猴视皮层神经元和树突活动进行了长时间稳定清晰成像，开启了微观层面研究视觉乃至高级认知功能的大门。
+</p>
+
+<p><h4>16.意识开关</h4>
+</p>
+
+<p>眼睛是心灵之窗，是大脑感知外部世界最重要的通道。通往人类大脑的视觉、听觉、触觉和味觉等感知神经共计300多万根，其中每只眼睛各100多万根。这些感知通道都采用神经脉冲向大脑皮层报告外界环境的信息。1978年，美国神经学家弗农·蒙特卡斯特（Vernon Mountcastle, 1918-2015，1950年发现皮层功能柱结构）在《大脑功能的组织原理》中提出，大脑皮层处理视、听、触等感知信息的原理是一样的。因此，一旦发现了大脑的视觉“算法”，也适合其他感知通道。
+</p>
+
+<p>对于计算机视觉研究者来说，视觉往往就是指识别，但识别只是视觉的外显功能。视觉首先是“觉”，即知觉或意识(awareness或consciousness)。清醒状态下外部世界“如影随形”，意识丧失前“眼前一黑”，就是视觉意识在起作用。闭上眼睛，即使最熟悉的人站在你面前，你也回忆不起长相细节。这说明我们习以为常的视觉是一个转瞬即逝的状态，维护这个状态就是生物视觉的基本任务。视觉占大脑功耗的一半，占全身1/10。我们“闭上眼睛想想”，实际上是要把能量调配到负责高级意识活动的脑区。
+</p>
+
+<p>今天已经普及的高清视频（200万像素，30帧/秒）的原始带宽为1.5Gbps，人类两只眼睛加起来的空间分辨率与之相当。但是，眼睛通往大脑的视神经束的“数据带宽”还不到10Mbps。那么，幽居于颅骨内的大脑如何从这稀疏的神经脉冲流中解码出清晰的世界？如果能揭开生物神经系统的编码机理，就能找到极高效的视觉信息编解码算法。
+</p>
+
+<p>意识是活体大脑这个复杂神经网络系统的动力学现象，视觉是揭示意识奥秘的重要突破口。在采用自然科学方法解决意识问题的科学家中，弗朗西斯·克里克(Francis H. Crick, 1916-2004)是最著名的一位。克里克是坚定的还原主义者。1953年，他发现DNA双螺旋结构，为复杂生命现象找到了精细的物质基础。为了研究意识，1976年克里克加入美国圣迭亚哥索尔克研究所。1979年，克里克邀请马尔和波焦来访，探讨视皮层结构和典型视觉功能的关系，例如初级视皮层的4cβ层的图像插值和锐度提升作用。1981年，克里克在德国马普生物控制论研究所遇到波焦的博士生克里斯托夫·科赫(Christof Koch，1956-)。科赫毕业后先在麻省理工学院跟随波焦数年，1986年加入加州理工学院。他指导博士生伊狄(Laurent Itti)开启的视觉显著计算广为人知，但他来加州理工学院的主要目的是与克里克相会。1990年，两人合作发表《意识的神经生物学理论刍议》，提出意识问题必须从也只能从神经基础进行逐步揭示，论文以视觉为例展开。2003年，两人发表《意识的框架》，提出人类意识可能是大脑皮层前扣带回的一组神经元以伽马振荡形式产生的。同年，科赫出版《意识探秘》，仍然围绕视觉展开，猜测在腹侧视觉通路较高层最有可能找到视觉意识相关的神经元。2004年，克里克去世那天还在修改一篇论文，猜测屏状核可能是意识这首交响乐的总指挥。2014年，对一位左屏状核附近安装了电极的癫痫病人进行实验表明，刺激确实可以起到意识开关作用。
+</p>
+
+<p>从道理上讲，用透颅磁刺激正常人屏状核，就有可能体验到意识的暂停或重启，眼前世界就会消失或重现。但大脑如果没有自动重启，那就真玩过火了！所以还是老老实实仿照生物大脑制造“电脑”和“电眼”吧，这样就有机会动动它的“电屏状核”，当然是它在苏醒之前……
+</p>
+
+
+
+<p style='float:right;'>本页共44段，7844个字符，21612 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,921 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type=text/css>
+.{
+margin:0;
+padding:0;
+}
+td,body{
+	font-size: 14px;
+	vertical-align:middle;
+	text-align:center;
+}
+#mainTable{
+margin:auto;
+width:550px;
+}
+#txt{
+margin:auto;
+width:550px;
+height:22px;
+text-align:left;
+}
+table td{
+	vertical-align:middle;
+	}
+body{
+	margin-top:0px;
+	margin-left:0px;
+	margin-right:0px;
+	background-color: #fcfff7;
+} 
+#txt p{
+line-height:22px;
+font-size:14px;
+}
+input{
+	width:48px;
+	height:30px;
+}
+button[disabled]{
+background-color:#CCCCCC;
+background-color:#fff;
+}
+</style>
+<title>智能计算器</title>
+<script language=javascript>
+<!--
+var endNumber 	=true  				// 按了数字键以外的键标识数字输入结束
+var mem			=0					// 存储的值
+var carry		=10
+var hexnum		="0123456789abcdef"
+var angle		="d"
+var stack		=""
+var expres		=""
+var level		="0"				// 运算符的优先级计算
+var layer		=0					// 括号层数
+
+function inputkey(key) 					// 数字键做为参数key输入
+{
+	var index=key.charCodeAt(0);					// 返回字符串中指定索引的字符 unicode 编码
+	if ((carry== 2 &&  (index==48 || index==49)) 	// 0、1的ASCII是48、49
+	 || (carry== 8 &&   index>=48 && index<=55)									// 0-7
+	 || (carry==10 &&  (index>=48 && index<=57 || index==46)) 					// 0-9、.
+	 || (carry==16 && ((index>=48 && index<=57) || (index>=97 && index<=102))))	// 0-9、A-F
+		if(endNumber)
+		{
+			endNumber=false
+			document.calc.display.value = key
+			expres+=key
+		}
+		else if(document.calc.display.value == null || document.calc.display.value == "0")
+		{
+			document.calc.display.value = key
+			expres=key
+		}
+		else
+		{
+			document.calc.display.value += key
+			expres+=key
+		}
+	
+	document.calc.display2.value = expres
+	//tb代表id为u的文本框
+	var tb = document.getElementById("display2");
+	//获取文本框的长度
+	var leng = tb.value.length;
+	//alert(leng)
+	tb.selectionStart = leng;
+	tb.align = right;
+}
+
+function changeSign()
+{
+    if (document.calc.display.value!="0")
+    	if(document.calc.display.value.substr(0,1) == "-")//substr(start,length)
+        	document.calc.display.value = document.calc.display.value.substr(1)
+    	else
+        	document.calc.display.value = "-" + document.calc.display.value
+	if (expres!="0")
+    	if(expres.substr(0,1) == "-")//substr(start,length)
+		{
+			expres = expres.substr(1)
+			document.calc.display2.value = expres
+		}
+    	else
+		{
+			expres = "-(" + expres + ") "
+			document.calc.display2.value = expres
+		}
+}
+
+function inputfunction(fun,shiftfun)	// 函数键
+{
+	endNumber=true
+	if (document.calc.shiftf.checked)
+	{
+		document.calc.display.value=decto(funcalc(shiftfun,(todec(document.calc.display.value,carry))),carry)
+	}
+	else
+	{
+		document.calc.display.value=decto(funcalc(fun,(todec(document.calc.display.value,carry))),carry)
+
+	}
+	document.calc.shiftf.checked=false
+	document.calc.hypf.checked  =false	
+	inputshift()
+}
+
+function inputtrig(trig,arctrig,hyp,archyp) // 角度值、弧度值
+{
+	if (document.calc.hypf.checked)
+		inputfunction(hyp,archyp)
+	else
+		inputfunction(trig,arctrig)
+}
+// 运算符
+function operation(join,newlevel) // join是运算符，newlevel是优先级
+{
+	endNumber=true
+	expres+=join
+	document.calc.display2.value = expres
+	var temp=stack.substr(stack.lastIndexOf("(")+1)+document.calc.display.value
+	while (newlevel!=0 && (newlevel<=(level.charAt(level.length-1))))
+	{
+		temp=parse(temp)
+		level=level.slice(0,-1) 
+		// slice(start, end)，如果某个参数为负，则从字符串的结尾开始计数。
+	}
+	if (temp.match(/^(.*\d[\+\-\*\/\%\^\&\|x])?([+-]?[0-9a-f\.]+)$/))
+		document.calc.display.value=RegExp.$2
+	stack=stack.substr(0,stack.lastIndexOf("(")+1)+temp+join
+	document.calc.operator.value=""+join+" "
+	level=level+newlevel
+	
+}
+
+// 括号
+function addbracket()
+{
+	endNumber=true
+	document.calc.display.value=0
+	stack=stack+"("
+	document.calc.operator.value=" "
+	level=level+0
+	layer+=1
+	document.calc.bracket.value="(="+layer
+}
+
+function disbracket()
+{
+	endNumber=true
+	var temp=stack.substr(stack.lastIndexOf("(")+1)+document.calc.display.value
+	while ((level.charAt(level.length-1))>0)
+	{
+		temp=parse(temp)
+		level=level.slice(0,-1)
+	}	
+	document.calc.display.value=temp
+	stack=stack.substr(0,stack.lastIndexOf("("))
+	document.calc.operator.value=" "
+	level=level.slice(0,-1)
+
+	layer-=1
+	if (layer>0)
+		document.calc.bracket.value="(="+layer
+	else
+		document.calc.bracket.value=""
+}
+
+// 等号
+function result()
+{
+	endNumber=true
+	while (layer>0)
+		disbracket()
+	var temp=stack+document.calc.display.value
+	while ((level.charAt(level.length-1))>0)
+	{
+		temp=parse(temp)
+		level=level.slice(0,-1)
+	}
+
+	document.calc.display.value=temp
+	document.calc.bracket.value=""
+	document.calc.operator.value=""
+	stack=""
+	level="0"
+	expres=expres+"="+temp + "  "
+	document.calc.display2.value=expres
+}
+// 修改键
+function backspace()
+{
+	if (!endNumber)
+	{
+		if(document.calc.display.value.length>1)
+		{
+			document.calc.display.value=document.calc.display.value.substring(0,document.calc.display.value.length - 1)
+		}
+		else
+			document.calc.display.value=0
+	}
+	if(expres.length>0)
+	{
+		expres = expres.substring(0,expres.length-1)
+		document.calc.display2.value=expres
+	}
+}
+
+function clearall()
+{
+	document.calc.display.value=0
+	endNumber=true
+	stack=""
+	level="0"
+	layer=""
+	document.calc.operator.value =""
+	document.calc.bracket.value  =""
+	expres=""
+	document.calc.display2.value=expres
+}
+
+function inputChangCarry(newcarry)			// 转换键
+{
+	endNumber=true
+	document.calc.display.value=(decto(todec(document.calc.display.value,carry),newcarry))
+	carry=newcarry
+
+	document.calc.sin.disabled=(carry!=10)
+	document.calc.cos.disabled=(carry!=10)
+	document.calc.tan.disabled=(carry!=10)
+	document.calc.bt.disabled =(carry!=10)
+	document.calc.pi.disabled =(carry!=10)
+	document.calc.e.disabled  =(carry!=10)
+	document.calc.kp.disabled =(carry!=10)
+				
+	document.calc.k2.disabled=(carry<=2)
+	document.calc.k3.disabled=(carry<=2)
+	document.calc.k4.disabled=(carry<=2)
+	document.calc.k5.disabled=(carry<=2)
+	document.calc.k6.disabled=(carry<=2)
+	document.calc.k7.disabled=(carry<=2)
+	document.calc.k8.disabled=(carry<=8)
+	document.calc.k9.disabled=(carry<=8)
+	document.calc.ka.disabled=(carry<=10)
+	document.calc.kb.disabled=(carry<=10)
+	document.calc.kc.disabled=(carry<=10)
+	document.calc.kd.disabled=(carry<=10)
+	document.calc.ke.disabled=(carry<=10)
+	document.calc.kf.disabled=(carry<=10)
+}
+
+function inputChangAngle(angletype)  // 角度转换
+{
+	endNumber=true
+	angle=angletype
+	if (angle=="d")
+	{
+		expres = "radiansTodegrees("+ document.calc.display.value + ") =" + radiansTodegrees(document.calc.display.value) + " "
+		document.calc.display2.value = expres;
+		document.calc.display.value=radiansTodegrees(document.calc.display.value)
+	}
+	else
+	{
+		expres = "degreesToRadians("+ document.calc.display.value + ") =" + degreesToRadians(document.calc.display.value) + " "
+		document.calc.display2.value = expres;
+		document.calc.display.value=degreesToRadians(document.calc.display.value)
+	}
+	endNumber=true
+}
+
+function inputshift()				// 逆运算切换
+{
+	if (document.calc.shiftf.checked)
+	{
+		document.calc.bt.value	="deg"
+		document.calc.ln.value	="exp"
+		document.calc.log.value	="expd"
+		
+		if (document.calc.hypf.checked)
+		{
+			document.calc.sin.value="ahs"
+			document.calc.cos.value="ahc"
+			document.calc.tan.value="aht"
+		}
+		else
+		{
+			document.calc.sin.value="asin"
+			document.calc.cos.value="acos"
+			document.calc.tan.value="atan"
+		}
+		
+		document.calc.sqr.value		="√2"
+		document.calc.cube.value	="√3"
+		document.calc.floor.value	="小数"
+	}
+	else
+	{
+		document.calc.bt.value	="d.ms"
+		document.calc.ln.value	="ln"
+		document.calc.log.value	="log"
+
+		if (document.calc.hypf.checked)
+		{
+			document.calc.sin.value="hsin"
+			document.calc.cos.value="hcos"
+			document.calc.tan.value="htan"
+		}
+		else
+		{
+			document.calc.sin.value="sin"
+			document.calc.cos.value="cos"
+			document.calc.tan.value="tan"
+		}
+		document.calc.sqr.value		="x^2"
+		document.calc.cube.value	="x^3"
+		document.calc.floor.value	="取整"
+	}
+}
+
+// 存储器部分
+function clearmemory()
+{
+	mem=0
+	document.calc.memory.value=" "
+}
+
+function getmemory()
+{
+	endNumber=true
+	document.calc.display.value=decto(mem,carry)
+	expres+= " " + document.calc.display.value
+	document.calc.display2.value = expres
+}
+
+function putmemory()
+{
+	endNumber=true
+	if (document.calc.display.value!=0)
+	{
+		mem=todec(document.calc.display.value,carry)
+		document.calc.memory.value="M"
+
+	}
+	else
+		document.calc.memory.value=" "
+}
+
+function addmemory()
+{
+	endNumber=true
+	mem=parseFloat(mem)+parseFloat(todec(document.calc.display.value,carry))
+	if (mem==0)
+		document.calc.memory.value=" "
+	else
+		document.calc.memory.value="M"
+}
+
+function multimemory()
+{
+	endNumber=true
+	mem=parseFloat(mem)*parseFloat(todec(document.calc.display.value,carry))
+	if (mem==0)
+		document.calc.memory.value=" "
+	else
+		document.calc.memory.value="M "
+}
+
+function todec(num,oldcarry) // 十进制转换
+{
+	if (oldcarry==10 || num==0) return(num)
+	var neg=(num.charAt(0)=="-")
+	if (neg) num=num.substr(1)
+	var newnum=0
+	for (var index=1;index<=num.length;index++)
+		newnum=newnum*oldcarry+hexnum.indexOf(num.charAt(index-1))
+		//如357， n=3→n=n*jz+5→n*jz+7，如果是10进制,3 35 357
+	if (neg)
+		newnum=-newnum
+	return(newnum)
+}
+
+function decto(num,newcarry)
+{
+	var neg=(num<0)
+	if (newcarry==10 || num==0) return(num)
+	num=""+Math.abs(num)
+	var newnum=""
+	while (num!=0)
+	{
+		newnum=hexnum.charAt(num%newcarry)+newnum
+		num=Math.floor(num/newcarry)
+	}
+	if (neg)
+		newnum="-"+newnum
+	return(newnum)
+}
+
+// 表达式解析
+function parse(string) //JS内置的parse()只是解析一个日期时间字符串
+{
+	if (string.match(/^(.*\d[\+\-\*\/\%\^\&\|x\<])?([+-]?[0-9a-f\.]+)([\+\-\*\/\%\^\&\|x\<])([+-]?[0-9a-f\.]+)$/))
+		return(RegExp.$1+cypher(RegExp.$2,RegExp.$3,RegExp.$4))
+	else
+		return(string)
+}
+
+// 数学运算和位运算
+function cypher(left,join,right)
+{
+	left  = todec(left,carry)
+	right = todec(right,carry)
+	if (join=="+")
+		return(decto(parseFloat(left)+parseFloat(right),carry))
+	if (join=="-")
+		return(decto(left-right,carry))
+	if (join=="*")
+		return(decto(left*right,carry))
+	if (join=="/" && right!=0)
+		return(decto(left/right,carry))
+	if (join=="%")
+		return(decto(left%right,carry))
+	if (join=="&")
+		return(decto(left&right,carry))
+		
+	if (join=="|")
+		return(decto(left|right,carry))
+	if (join=="^")
+		return(decto(Math.pow(left,right),carry))
+
+	if (join=="x")
+		return(decto(left^right,carry))
+	if (join=="<")
+		return(decto(left<<right,carry))
+	alert("除数不能为零")
+	return(left)
+}
+
+// 函数计算
+function funcalc(fun,num)
+{
+	with(Math)
+	{
+		if (fun=="pi")
+		{
+			expres = expres+PI+ " "
+			document.calc.display2.value = expres
+			return(PI)
+		}
+		if (fun=="e")
+		{
+			expres = expres+E+ " "
+			document.calc.display2.value = expres
+			return(E)
+		}
+
+		if (fun=="abs")
+		{
+			expres = "abs("+ num +") = "+ abs(num)+ " "
+			document.calc.display2.value = expres		
+			return(abs(num))
+		}
+		if (fun=="ceil")
+		{
+			expres = "ceil("+ num +") = "+ ceil(num)+ " "
+			document.calc.display2.value = expres		
+			return(ceil(num))
+		}
+		if (fun=="round")
+		{
+			expres = "round(" + num + ") = " + round(num) + " "
+			document.calc.display2.value = expres			
+			return(round(num))
+		}
+
+		if (fun=="floor")
+		{
+			expres = "floor("+num+") = "+ floor(num)+ " "
+			document.calc.display2.value = expres
+			return(floor(num))
+		}
+		if (fun=="deci")
+		{
+			expres = "deci("+num+") = "+ num-floor(num)+ " "
+			document.calc.display2.value = expres			
+			return(num-floor(num))
+		}
+
+		if (fun=="ln" && num>0)
+		{
+			expres = "ln(" + num + ") = " + log(num) + " "
+			document.calc.display2.value = expres
+			return(log(num))
+		}
+		if (fun=="exp")
+		{
+			expres = "exp("+num+") = "+ exp(num)+ " "
+			document.calc.display2.value = expres		
+			return(exp(num))
+		}
+		if (fun=="log" && num>0)
+		{
+			expres = "log(" + num + ") = " + log(num)*LOG10E + " "
+			document.calc.display2.value = expres
+			return(log(num)*LOG10E)
+		}
+		if (fun=="expdec")
+		{
+			expres = "pow(10^"+num+") = "+ pow(10,num)+ " "
+			document.calc.display2.value = expres			
+			return(pow(10,num))
+		}
+		if (fun=="cube")
+		{
+			expres = "cube("+num+") = "+ num*num*num+ " "
+			document.calc.display2.value = expres			
+			return(num*num*num)
+		}
+		if (fun=="cubt")
+		{
+			expres = "√"+num+" = "+ pow(num,1/3)+ " "
+			document.calc.display2.value = expres			
+			return(pow(num,1/3))
+		}
+		if (fun=="sqr")
+		{
+			expres = "sqr(" + num + ") = "+num*num + " "
+			document.calc.display2.value = expres
+			return(num*num)	
+		}
+		if (fun=="sqrt" && num>=0)
+		{
+			expres = "sqrt("+num+") = "+ sqrt(num)+ " "
+			document.calc.display2.value = expres			
+			return(sqrt(num))
+		}
+
+		if (fun=="!")
+		{
+			expres = "factorial("+num+") = "+ factorial(num)+ " "
+			document.calc.display2.value = expres			
+			return(factorial(num))
+		}
+
+		if (fun=="recip" && num!=0)
+		{
+			expres = "1/"+num+" = "+ 1/num+ " "
+			document.calc.display2.value = expres		
+			return(1/num)
+		}
+		
+		if (fun=="dms")
+		{
+			expres = "dms("+num+") = "+ dms(num)+ " "
+			document.calc.display2.value = expres		
+			return(dms(num))
+		}
+		if (fun=="deg")
+		{
+			expres = "deg("+num+") = "+ deg(num)+ " "
+			document.calc.display2.value = expres	
+			return(deg(num))
+		}
+
+		if (fun=="~")
+		{
+			expres = "~"+num+" = "+ ~num+ " "
+			document.calc.display2.value = expres	
+			return(~num)
+		}
+	
+		if (angle=="d")
+		{
+			if (fun=="sin")
+			{
+				expres = "sin("+num+") = "+ sin(degreesToRadians(num))+ " "
+				document.calc.display2.value = expres	
+				return(sin(degreesToRadians(num)))
+			}
+			if (fun=="cos")
+			{
+				expres = "cos("+num+") = "+ cos(degreesToRadians(num))+ " "
+				document.calc.display2.value = expres				
+				return(cos(degreesToRadians(num)))
+			}
+			if (fun=="tan")
+			{
+				expres = "tan("+num+") = "+ tan(degreesToRadians(num))+ " "
+				document.calc.display2.value = expres				
+				return(tan(degreesToRadians(num)))
+			}
+			if (fun=="arcsin" && abs(num)<=1)
+			{
+				expres = "arcsin("+num+") = "+ radiansTodegrees(asin(num))+ " "
+				document.calc.display2.value = expres					
+				return(radiansTodegrees(asin(num)))
+			}
+			if (fun=="arccos" && abs(num)<=1)
+			{
+				expres = "arccos("+num+") = "+ radiansTodegrees(acos(num))+ " "
+				document.calc.display2.value = expres				
+				return(radiansTodegrees(acos(num)))
+			}
+			if (fun=="arctan")
+			{
+				expres = "arctan("+num+") = "+ radiansTodegrees(atan(num))+ " "
+				document.calc.display2.value = expres		
+				return(radiansTodegrees(atan(num)))
+			}
+		}
+		else
+		{
+			if (fun=="sin")
+			{
+				expres = "sin("+num+") = "+ sin(num)+ " "
+				document.calc.display2.value = expres			
+				return(sin(num))
+			}
+			if (fun=="cos")
+			{
+				expres = "cos("+num+") = "+ cos(num)+ " "
+				document.calc.display2.value = expres			
+				return(cos(num))
+			}
+			if (fun=="tan")
+			{
+				expres = "tan("+num+") = "+ tan(num)+ " "
+				document.calc.display2.value = expres			
+				return(tan(num))
+			}
+
+			if (fun=="arcsin" && abs(num)<=1)
+			{
+				expres = "arcsin("+num+") = "+ asin(num)+ " "
+				document.calc.display2.value = expres			
+				return(asin(num))
+			}
+			if (fun=="arccos" && abs(num)<=1)
+			{
+				expres = "arccos("+num+") = "+ acos(num)+ " "
+				document.calc.display2.value = expres			
+				return(acos(num))
+			}
+			if (fun=="arctan")
+			{
+				expres = "arctan("+num+") = "+ atan(num)+ " "
+				document.calc.display2.value = expres			
+				return(atan(num))
+			}
+		}
+	
+		if (fun=="hypsin")
+		{
+			expres = "(exp("+num+")-exp(0-"+num+"))*0.5) = "+ (exp(num)-exp(0-num))*0.5+ " "
+			document.calc.display2.value = expres			
+			return((exp(num)-exp(0-num))*0.5)
+		}
+		if (fun=="hypcos")
+		{
+			expres = "(exp("+num+")+exp(-"+num+"))*0.5) = "+ (exp(num)+exp(-num))*0.5+ " "
+			document.calc.display2.value = expres			
+			return((exp(num)+exp(-num))*0.5)
+		}
+		if (fun=="hyptan")
+		{
+			expres = "(exp("+num+")-exp(-"+num+"))/(exp("+num+")+exp(-"+num+")) = " + (exp(num)-exp(-num))/(exp(num)+exp(-num)) + " "
+			document.calc.display2.value = expres
+			return((exp(num)-exp(-num))/(exp(num)+exp(-num)))
+		}
+		if (fun=="ahypsin" | fun=="hypcos" | fun=="hyptan")
+		{
+			alert("对不起,公式还没有查到!")
+			return(num)
+		}
+		
+		alert("超出函数定义范围")
+		return(num)
+	}
+}
+
+function factorial(n)
+{
+	n=Math.abs(parseInt(n))
+	var fac=1
+	for (;n>0;n-=1)
+		fac*=n
+	return(fac)
+}
+
+function dms(n) // 度→度分秒，如3.52→3.3112
+{
+	var neg=(n<0)
+	with(Math)
+	{	
+		n=abs(n)
+		var d=floor(n)
+		var m=floor(60*(n-d))
+		var s=(n-d)*60-m
+	}
+	var dms=d+m/100+s*0.006
+	if (neg) 
+		dms=-dms
+	return(dms)
+}
+
+function deg(n) // dms的逆运算
+{
+	var neg=(n<0)
+	with(Math)
+	{
+		n=abs(n)
+		var d=floor(n)
+		var m=floor((n-d)*100)
+		var s=(n-d)*100-m
+	}
+	var deg=d+m/60+s/36
+	if (neg) 
+		deg=-deg
+	return(deg)
+}
+
+function degreesToRadians(degrees)
+{
+	return(degrees*Math.PI/180)
+}
+
+function radiansTodegrees(radians)
+{
+	return(radians*180/Math.PI)
+}
+function txtMove() //输入时执行
+{
+		var tb = document.getElementById("display2");
+		var leng = tb.value.length;
+		tb.selectionStart = leng+100;
+}
+-->
+</script>
+<!--界面-->
+<body bgcolor="fcfff7" leftmargin="0" topmargin="0" marginwidth="0">
+<br>
+
+<FORM name=calc>
+<table id="mainTable"  height=250 bgcolor="#E6F2E7" style="border-width:1px 1px 1px 1px;border-style:solid;border-color:#8AB78A;">
+  <tbody>
+  <tr>
+    <td height=30 bgcolor="#E6F2E7">
+
+      <input type="text" onClick="txtMove()" name=display2 id="display2" value=0 align="left" style=" font-size:18px; width:95%; padding-left:4px; text-align:left"></td>
+
+  </tr>
+  <tr>
+    <td height=30 bgcolor="#E6F2E7">
+
+      <input name=display size=50 value=0 style=" font-size:18px; width:400px; padding-left:4px;"></td>
+
+  </tr>
+  
+  <tr>
+    <td bgcolor="#E6F2E7">
+      <table width=100% style="border-width:1px 0px 0px 0px;border-style:solid;border-color:#8AB78A;">
+        <tbody>
+        <tr>
+          <td style="color:#205001; text-align:left; padding-left:4px;">
+<input name=carry onclick=inputChangCarry(16) type=radio style="width:14px; height:14px;"><span style="font-size:4px;">&nbsp;</span>十六进制&nbsp;&nbsp;
+<input CHECKED name=carry onclick=inputChangCarry(10) type=radio style="width:14px; height:14px;"><span style="width:4px;">&nbsp;</span>十进制&nbsp;&nbsp;
+<input name=carry onclick=inputChangCarry(8) type=radio style="width:14px; height:14px;"><span style="width:4px;">&nbsp;</span>八进制&nbsp;&nbsp;
+<input name=carry onclick=inputChangCarry(2) type=radio style="width:14px; height:14px;"><span style="width:4px;">&nbsp;</span>二进制&nbsp;&nbsp;</td>
+          <td width="187" style="color:#205001; text-align:right; padding-right:4px;">
+		<input CHECKED name=angle onClick="inputChangAngle('d')" type=radio style="width:14px; height:14px;" value=d> 角度制&nbsp;&nbsp;
+		<input name=angle onClick="inputChangAngle('r')" type=radio style="width:14px; height:14px;" value=r> 弧度制</td>
+          </tr></tbody></table>
+      <table width=100%>
+        <tbody>
+        <tr>
+          <td width=33.33% style="color:#205001;  text-align:left; padding-left:6px;"><span title="切换有相反操作的按键">
+  <input name=shiftf onclick=inputshift() type=checkbox style="width:12px; height:14px;"><span style="width:4px;">&nbsp;</span>上档功能&nbsp;&nbsp;</span>
+  <input name=hypf onclick=inputshift() type=checkbox style="width:12px; height:14px;"><span style="width:4px;">&nbsp;</span>双曲函数</td>
+  
+<td width=33.33% align="center"><span title="标识增加或去除括号bracket">
+<input name=bracket readOnly size=3 style="BACKGROUND-COLOR: lightgrey; line-height:24px; text-align:center; padding-left:0px; font-size:18px;"></span>
+<span title="标识是否有储存">
+<input name=memory readOnly size=3 style="BACKGROUND-COLOR: lightgrey; line-height:24px; text-align:center; padding-left:0px; font-size:18px;"> 
+<span title="标识操作符">
+<input name=operator readOnly size=3 style="BACKGROUND-COLOR: lightgrey; line-height:24px; text-align:center; padding-left:0px; font-size:18px;"> </td>
+
+          <td width=33.33% style="text-align:right; padding-right:4px;">
+<!--退格 清屏 全清-->
+<input onclick=backspace() style="COLOR: B50506; line-height:24px;" type=button value="退格"> 
+<input onClick="document.calc.display.value = 0 " style="COLOR: #B50506; line-height:24px;" type=button value="清屏"> 
+<input onclick=clearall() style="COLOR: #B50506; line-height:24px;" type=button value="全清">          </td>
+        </tr></tbody></table>
+      <table width=100%>
+        <tbody>
+        <tr>
+          <td>
+            <table>
+              <tbody>
+              <tr align=middle><td>
+<!--PI E d.ms-->			  
+<input name=pi onClick="inputfunction('pi','pi')" style="COLOR: #1919CD; line-height:24px; width:48px; text-align:center; " type=button value="PI"></td>
+              <td>
+<input name=e onClick="inputfunction('e','e')" style="COLOR: #1919CD; line-height:24px; width:48px; text-align:center; " type=button value="E"></td>
+              <td><a href="javascript:void(null)" title="将按小数写的角度值转换为度分秒的写法">
+<input name=bt onClick="inputfunction('dms','deg')" style="COLOR: #D316D3; line-height:24px; width:48px; text-align:center; " type=button value="d.ms"></a></td></tr>
+              
+			  <tr align=middle>
+<!--( ) ln-->			  
+<td><input onclick=addbracket() style="COLOR: #D316D3; line-height:24px;" type=button value="("></td>
+<td><input onclick=disbracket() style="COLOR: #D316D3; line-height:24px;" type=button value=")"></td>
+<td><input name=ln onClick="inputfunction('ln','exp')" style="COLOR: #D316D3; line-height:24px;" type=button value="ln"></td></tr>
+              <tr align=middle>
+			  
+<!--sin x^y log-->
+<td><input name=sin onClick="inputtrig('sin','arcsin','hypsin','ahypsin')" style="COLOR: #D316D3; line-height:24px;" type=button value="sin"></td>
+<td><input onClick="operation('^',7)" style="COLOR: #D316D3; line-height:24px;" type=button value="x^y"></td>
+<td><input name=log onClick="inputfunction('log','expdec')" style="COLOR: #D316D3; line-height:24px;" type=button value="log"></td></tr><tr align=middle>
+			  
+<!--cos x^3 n!-->
+<td><input name=cos onClick="inputtrig('cos','arccos','hypcos','ahypcos')" style="COLOR: #D316D3; line-height:24px;" type=button value="cos"></td>
+<td><input name=cube onClick="inputfunction('cube','cubt')" style="COLOR: #D316D3; line-height:24px;" type=button value="x³"></td>
+<td><input onClick="inputfunction('!','!')" style="COLOR: #D316D3; line-height:24px;" type=button value="n!"></td></tr><tr align=middle>
+
+<!--tan x^2 1/x-->
+<td><input name=tan onClick="inputtrig('tan','arctan','hyptan','ahyptan')" style="COLOR: #D316D3; line-height:24px;" type=button value="tan"></td>
+<td><input name=sqr onClick="inputfunction('sqr','sqrt')" style="COLOR: #D316D3; line-height:24px;" type=button value="x²"></td>
+<td><input onClick="inputfunction('recip','recip')" style="COLOR: #D316D3; line-height:24px;" type=button value="1/x"></td></tr></tbody></table></td>
+          <td width=30></td>
+          <td>
+            <table>
+              <tbody>
+<tr><td align="center"><input onclick=putmemory() style="COLOR: #B50506; line-height:24px;" type=button value="储存"> </td></tr>
+<tr><td><input onclick=getmemory() style="COLOR: #B50506; line-height:24px;" type=button value="取存"></td></tr>
+<tr><td><input onclick=addmemory() style="COLOR: #B50506; line-height:24px;" type=button value="累存"></td></tr>
+<tr><td><input onclick=multimemory() style="COLOR: #B50506; line-height:24px;" type=button value="积存"></td></tr>
+<tr><td><input onclick=clearmemory() style="COLOR: #B50506; line-height:24px;" type=button value="清存"></td></tr></tbody></table></td>
+          <td width=30></td>
+          <td>
+            <table>
+              <tbody>
+              <tr align=middle>
+
+<td><input name=k7 onClick="inputkey('7')" style="COLOR: #1919CD; font-size:16px; line-height:24px; " type=button value="7"></td>
+<td><input name=k8 onClick="inputkey('8')" style="COLOR: #1919CD; font-size:16px; line-height:24px;" type=button value="8"></td>
+<td><input name=k9 onClick="inputkey('9')" style="COLOR: #1919CD; font-size:16px; line-height:24px;" type=button value="9"></td>
+
+<td><input onClick="operation('/',6)" style="COLOR: #B50506; font-size:20px; line-height:24px;" type=button value="/"></td>
+<td><input onClick="operation('%',6)" style="COLOR: #B50506; font-size:14px; line-height:24px;" type=button value="取余 "></td>
+<td><input onClick="operation('&amp;',3)" style="COLOR: #B50506; font-size:14px; line-height:24px;" type=button value="与"></td></tr>
+
+<tr align=middle>
+<td><input name=k4 onClick="inputkey('4')" style="COLOR: #1919CD; font-size:16px; line-height:24px;" type=button value="4"></td>
+<td><input name=k5 onClick="inputkey('5')" style="COLOR: #1919CD; font-size:16px; line-height:24px;" type=button value="5"></td>
+<td><input name=k6 onClick="inputkey('6')" style="COLOR: #1919CD; font-size:16px; line-height:24px;" type=button value="6"></td>
+
+<td><input onClick="operation('*',6)" style="COLOR: #B50506; font-size:20px; line-height:24px;" type=button value="*"></td>
+<td><input name=floor onClick="inputfunction('floor','deci')" style="COLOR: #B50506; font-size:14px; line-height:24px;" type=button value="取整 "></td>
+<td><input onClick="operation('|',1)" style="COLOR: #B50506; font-size:14px; line-height:24px;" type=button value="或"></td></tr>
+
+<tr align=middle>
+<td><input onClick="inputkey('1')" style="COLOR: #1919CD; font-size:16px; line-height:24px;" type=button value="1"></td>
+<td><input name=k2 onClick="inputkey('2')" style="COLOR: #1919CD; font-size:16px; line-height:24px;" type=button value="2"></td>
+<td><input name=k3 onClick="inputkey('3')" style="COLOR: #1919CD; font-size:16px; line-height:24px;" type=button value="3"></td>
+
+<td><input onClick="operation('-',5)" style="COLOR: #B50506; font-size:24px; line-height:24px;" type=button value="-"></td>
+<td><input onClick="operation('<',4)" style="COLOR: #B50506; font-size:14px; line-height:24px;" type=button value="左移 "></td>
+<td><input onClick="inputfunction('~','~')" style="COLOR: #B50506; font-size:14px; line-height:24px;" type=button value="非"></td></tr>
+
+<tr align=middle>
+<td><input onClick="inputkey('0')" style="COLOR: #1919CD; font-size:16px; line-height:24px;" type=button value="0"></td>
+<td><input onclick=changeSign() style="COLOR: #1919CD; font-size:16px; line-height:24px;" type=button value="+/- "></td>
+<td><input name=kp onClick="inputkey('.')" style="COLOR: #1919CD; font-size:24px; line-height:24px; vertical-align:top; padding-top:-6px;" type=button value="."></td>
+<td><input onClick="operation('+',5)" style="COLOR: #B50506; font-size:20px; line-height:24px;" type=button value="+"></td>
+<td><input onclick=result() style="COLOR: #B50506; font-size:24px; line-height:24px;" type=button value="="></td>
+<td><input onClick="operation('x',2)" style="COLOR: #B50506; font-size:14px; line-height:24px;" type=button value="异或 "></td></tr>
+<tr align=middle>
+<td><input disabled name=ka onClick="inputkey('a')" style="COLOR: #1919CD; font-size:14px; line-height:24px;" type=button value="A "></td>
+<td><input disabled name=kb onClick="inputkey('b')" style="COLOR: #1919CD; font-size:14px; line-height:24px;" type=button value="B "></td>
+<td><input disabled name=kc onClick="inputkey('c')" style="COLOR: #1919CD; font-size:14px; line-height:24px;" type=button value="C "></td>
+<td><input disabled name=kd onClick="inputkey('d')" style="COLOR: #1919CD; font-size:14px; line-height:24px;" type=button value="D"></td>
+<td align="center"><input disabled name=ke onClick="inputkey('e')" style="COLOR: #1919CD; font-size:14px; line-height:24px;" type=button value="E ">                </td>
+<td align="center"><input disabled name=kf onClick="inputkey('f')" style="COLOR: #1919CD; font-size:14px; line-height:24px;" type=button value="F ">    </td>
+</tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table>
+
+</FORM>
+<div id="txt">
+<p>储存(MS)：MemoryStore，将当前值存到暂存器</p>
+<p>取存(MR)：MemoryRecall，将暂存器的值取出</p>
+<p>累存(M+)：存储器的暂存值+输入值，再存入暂存器（先按数字或后按数字没有区别）</p>
+<p>减存(M-)：存储器的暂存值-输入值，再存入暂存器（先按数字或后按数字没有区别）</p>
+<p>积存(M*)：存储器的暂存值*输入值，再存入暂存器</p>
+<p>清存(MC)：MemoryClear</p>
+<p>dms(n)：度→度.分秒(60进制，分、秒用两位数表示)，如3.52→3.3112，deg是逆运算</p>
+<p>取余：23%7=2</p>
+<p>取整：23.7=23</p>
+</div>
+</DIV>
+
+</body>
+</html>

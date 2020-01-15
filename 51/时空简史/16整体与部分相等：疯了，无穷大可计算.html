@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>16整体与部分相等：疯了，无穷大可计算</h4>
+
+<p>亚里士多德的“潜无穷”思想对以后2000年里在数学上处理无穷大的思考方式产生了非常负面的影响，这种影响直到19世纪。1831年，大数学家高斯说：“我反对把一个无穷的量作为一个现实的实体来使用。这在数学中是绝不允许的，数学中的无穷大只是一种叙述的方式。用这种方式，我们可以正确地说某些比值可以非常接近于一个极限，而其他的无穷大则允许没有界限的增长。”这段话清楚表明，自亚里士多德以来数学家们认同其对无穷大划分为潜无穷和实无穷的思维范式。</p>
+
+<p>第一位认真思考实无穷的科学家是伟大的伽利略。他想，自然数的全体是存在的，它们组成一个实在的无穷。伽利略考虑两个实无穷，一个是全体自然数（1,2,3…）构成的实无穷集合，另一个是全体偶数（2,4,6,8…）构成的实无穷集合。伽利略问了自己一个问题：是自然数多，还是偶数多？一方面，似乎应该是第一个较大，因为它不仅包含第二个集合中所有的数，而且还包含其他的奇数。但另一方面，对于第一个集合中的每个数，在第二个集合中都有一个确定的数与之对应。对于第二个集合中的每个数，在第一个集合中也有一个确定的数与之对应。按照两个集合中这种一一对应的关系，第一个集合应该与第二个集合一样大。在证明这个结论时，伽利略表现出了一个显著的重点转变，因为他没有像亚里士多德那样，从量的角度考虑无穷大，而是像柏拉图那样，把注意力集中到作为数或者集合的无穷大上面。但是，伽利略通过一一对应发现“部分与整体相同”时，他没敢再往下想，得出结论说：“无穷量和无理数在本质上对我们来说是不可理解的。”</p>
+<img src="15.bmp" />
+<p class="picsay">伽利略通过一一对应发现自然数集合和正偶数集合“部分与整体相同”时，他没敢再往下想。到了康托尔时代，他没犹豫就认定，由于满足一一对应，所以它们是相等的。</p>
+
+<p>在高斯发表了反对无穷大的言论之后，过了半个多世纪，德国数学家康托尔说，无穷大也可以计算！这彻底颠覆了人们对无穷大的认识，是范式革命！当康托尔把无穷集看成一个可以被人的心智思考的整体时，他的与常识相反而又在逻辑上可靠的结论，就打破了长久以来的思维定式，两千多年来一直被亚里士多德压制的“实无穷”终于名正言顺地登上历史舞台，让人们大开眼界。</p>
+
+<p>康托尔曾提出这样的问题：一个线段上的点与一条无穷长的直线上的点一样多吗？一个平面上的点能和一条线上的点一一对应吗？在直觉上，答案似乎很明显是“不能”，证明它似乎显得多此一举。但是，康托尔经过几年的思考和探索，利用他著名的“对角线法”解决了这个“无聊”的问题。他的答案是：“能”。康托尔在1874年发表的论文，证明了一条线段上的点要比自然数多；不同长短的两条线段上的点也是一样多；线段上的点和平面上的点以及立体空间上的点一样多！这是他最重要的贡献。这个结论是两千多年来经常谈到无穷的思想家们想都没有想过的，而康托尔却给了这个事实以简明清晰的论证。</p>
+
+<img src="16.bmp" />
+<br>
+<p class="picsay">（1）线段AB的点与半圆CD的点一一对应，证明这条线段与这个半圆有一样多的点。（2）这个半圆的点现在与整条直线的点一一对应，所以，一条有限的线段与一条无限的直线有正好相同数目的点！为什么在康托尔之前无人得到这个发现？这说明我们把一条直线看作是由很多物理上的点组成这个观念，在本质上是错误的，物理上的点与数学上的点是完全不同的。</p>
+
+<p>康托尔是从建立明确的无穷集的定义入手而获得成功的。一一对应，是人们认识事物间数量关系的最基本的方法。什么是无穷集呢？康托尔认为，可以和自己的某一部分之间建立一一对应的集合叫无穷集。无穷集合的最基本特性是它能够与其自身的真子集一一对应。事实上，康托尔正是使用这个事实本身作为无穷集的定义，这是有史以来首次以一种清晰而精确的方式定义这个概念。也就是说，“一样多”的唯一意义是“可以一一对应”。比较两个无穷集的大小，设法建立两个集合元素间的一一对应；能建立一一对应，就是一样多。这个结论彻底颠覆自古以来固有的观念。亚里士多德的整体论思想归结为“整体大于它的各部分之和”，康托尔的结论是“整体与部分相等”。这就是康托尔提出的惊世骇俗的观点，却是现代数学实数理论的基础。</p>
+
+<p>康托尔在1874年获得的历史性发现是：尽管有理数具有稠密性，但它们是可数的。有理数是可数的这一发现违反我们的直觉，他证明了一条直线上的点和一个平面上的点，或者多维立体空间上的点之间存在着一一对应。康托尔对自己用一一对应导致的结果惊愕不已。他在1877年给戴德金的一封信中写道：“我看到了它，却不敢相信它。”最终，他还是信了。康托尔决定给所有可数集一个标记——ℵ（Aleph，阿列夫），这是犹太人希伯来语字母表的第一个字母，也有上帝绝对无穷大的意味。</p>
+
+<p>如果有理数集合是可数的，人们开始推测可能所有无穷集都是可数的。然而，康托尔却证明有一些集合非常稠密以至于无法数，这种集合中的一种是处在一条无穷直线上的点的集合，这些点又对应于我们的实数系统。1873年底，他已经成功证明了实数集不能与自然数集一一对应，它是“不可数的无穷”。实数集合不仅是良序的、稠密的，而且是完备的。一个集合既是良序的又是完备的，康托尔给这种集合取名“连续统”。实数集就是连续统。康托尔提出的连续统假设标志着集合论的诞生。同时，不同规模集合的观念形成了。用通俗的话说，就是数轴上任何一点，都可以指定一个唯一的实数与之对应；反过来，任何一个实数都可以用唯一的方法以数轴上的一点来表示。这就是有名的“戴德金-康托尔公理”。康托尔首先在数学中引进了包括有理数和无理数的所有实数集合的思想。他实际上证明了无穷是无穷的。有一个无穷，就有一个更大的无穷。具体地说，任何一个无穷集，它的所有子集的数目总比它的元素多！就这样，康托尔的理论直接证明，潜无穷实际上依赖于一个逻辑上优先的实无穷，实无穷的集合是可以理解和计算的。</p>
+
+<p>康托尔最终发现了芝诺悖论的奥秘，不仅发现，还进行了证明。数轴显然是无限长的，包含无穷多个点。即使如此，在0至1区间内的点却和整个数轴上的点一样多！无限长的数轴上有无穷多个有理数，这些数在数轴上是无穷密的！对任意给定的有理数的任意两个有理数之间总存在第三个有理数！虽然如此，康托尔证明无穷多的有理数联合起来也只是数轴的无穷小的一部分，基本上说就是什么都没有！就是说，有理数所占据的数轴长度的总百分比是零，也就是空、无！因为实数包括有理数和无理数，如果有理数可数，那么实数的不可数意味着无理数也是不可数的。这就意味着，由于一些点对应于无理数这一事实，在实数直线上所留下的“空隙”实际上比有理数的“非空隙”要多得多！这是我们有限的直觉难以接受的。事实上，可以在数学上证明，把一根针随机扔到数轴上，它们击中一个有理数点的概率是零！反过来说就是，在任何种类的连续的直线上，大量的点对应的是无理数。所以，实数轴才真的是一条直线！而所有有理数组成的数轴，虽然看起来是无穷密的，但实际上99.9999…%都是空的！这就是康托尔证明的。</p>
+
+<p>在数学的离散和连续现象之间的最重要的区别是前者可以只用有理数来表征，而连续则需要所有的实数，也就是无理数。因此，当康托尔引入实无穷集时，就与过去最伟大的数学家们所固有的观念背道而驰。他意识到自己正在和前辈们彻底决裂。1883年，康托尔说：“我使自己同普遍的关于数学中无穷的观点和经常被保持的关于数的本质的观点处于敌对位置。”到了1873年，他不仅主张把无穷集合看成一个存在的全体，还开始对它们加以分类并计算。</p>
+
+<p>亚里士多德说的“整体大于部分之和”，这符合我们的直觉。这个观点也统治了人类的思维两千多年。在探索无穷的数学历史中，康托尔的实无穷理论告诉我们，整体与部分之和相等！这虽然违反我们的直觉，却是千真万确的数学真理。这对当时的思想家来说很荒谬，也促使他们抵制有关无穷集的任何成果。康托尔的无穷集合论激起了激烈的抗议。</p>
+
+<p>集合论一经问世，立即遭到当时一批有名的数学家的猛烈进攻。当时的学界领袖，19世纪最著名的数学家庞加莱认为，无穷集合论是病态的。庞加莱评论说：“后人将把康托尔的集合论当作一种疾病，而人们已经从中恢复过来了。”</p>
+
+<p>攻击得最为激烈，也最为长久的却是康托尔的导师——比他年长22岁的直觉主义代表人物之一，著名数学家克罗内克。克罗内克只承认“潜无穷”，他相信只有整数在数学上是真实的。因为只有它们是“绝对直觉的”，也就是说，小数、无理数、无穷集合都是数学上的怪胎。他认为只有他研究的数论及代数才最可靠。克罗内克的名言是“只有整数是上帝创造的，其余的都是人类的工作”。康托尔为自己的工作辩护，他声称自己是一个柏拉图主义者，相信存在一个独立于人的客观世界。康托尔在1885年就宣称纯数学可以归结为集合理论。</p>
+
+<p>最初，无论是康托尔还是克罗内克，都认为他们的冲突在某种程度上是关于数学观点正确的争论。但是，克罗内克对康托尔的研究对象和论证手段都表示强烈反对。他拒绝接受无穷集和超限数。他认为，康托尔在这一领域的工作不是数学，而是玄学。由于德国柏林是当时的世界数学中心，克罗内克又是柏林学派的领袖人物，所以他对康托尔及其集合论的发展阻碍非常大。克罗内克认为，康托尔关于集合论的研究工作简直是一种非常危险的“数学疯病”，并在许多场合下，用各种刻薄的语言，对康托尔冷嘲热讽达十年之久。康托尔经受不住克罗内克等人连续粗暴的围攻，精神渐渐崩溃了。这期间，康托尔决定证明英国文艺复兴时期的哲学家弗朗西斯·培根是莎士比亚剧本的真正作者。他患上了严重的抑郁症，整日极度沮丧，惶惶不安，最终在精神病院默默死去。英国科学史家贝尔在回顾这段令人痛惜的往事时说，克罗内克认为集合论的出现是一种数学疯病，然而被送进精神病院的并不是集合论，而是康托尔。克罗内克的攻击实际上打垮了这一理论的创造者。</p>
+
+<p>克罗内克基于对学术信仰的坚持，捍卫的不是学术的尊严，而是一个时代的无知。他的反对不仅对事，也对人。德国数学家康托尔的遭遇让人扼腕痛惜。</p>
+
+<p>克罗内克和康托尔之间的斗争不是传统和创新的数学意识之间的冲突，而是新旧数学范式之间的竞争。克罗内克不是数学上的传统主义者，为了反对当时的无穷和无理数、超越数和超限数等观念，他被迫在一个激进的新基础上构建一门新数学。正如康托尔成为形式主义运动的先驱一样，克罗内克的成果预示着20世纪直觉学派的诞生。两个派别都希望数学变得更严密，但在如何达到这个要求上，他们有很深的分歧。</p>
+
+<p>时间证明，康托尔的新观点和新理论对数学分析、函数理论、拓扑学和非欧几何的进一步发展有极其重要的作用。从普遍意义上来说，要对数学有更基本的理解，康托尔的理论是个重要基础。形式主义创始人希尔伯特认为，深入研究无穷大十分必要。他说，其他任何一个问题都不曾如此深刻地影响人类的精神文明，其他任何一个观点都不曾如此有效地激励人类的智力。他断言：“没有人能把我们从康托尔为我们创造的乐园中驱逐出去。”他在1926年评价康托尔的工作说：“这对我来说是最值得钦佩的数学理智之花，也是在纯粹理性的范畴中人类活动所取得的最高成就之一。”</p>
+
+<p>罗素称康托尔是19世纪最伟大的智士之一。罗素在1910年说：“解决了先前围绕着数学无限的难题，可能是我们这个时代值得夸耀的最伟大的工作。”戴德金和康托尔都是柏拉图主义者，他们相信数学的世界不是像可感知的世界那样是经验性的。戴德金说：“我完全独立于空间和时间的概念或直觉来思考数的概念，认为它是一个人思维规律得出的直接结果。”康托尔说：“数是人类心灵的自由创造物。”康托尔和戴德金在数学史上几乎同时出现，标志着这正是无穷集合论的时代。</p>
+
+
+
+<p style='float:right;'>本页共20段，4691个字符，13873 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

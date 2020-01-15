@@ -1,0 +1,363 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>不理解草原文明，就无法理解中国历史</h4>
+
+<p></p>
+
+<p>魏坚，现任中国人民大学考古文博系主任、教授、博士生导师、北方民族考古研究所所长。此前长期在内蒙古文物考古研究所从事考古工作。澎湃新闻于今年四月专访了魏坚教授，他在受访时回顾了自己从吉林到内蒙的人生轨迹、张忠培先生对他的影响，到人民大学之后结合人大的区位优势及自己的学术经历进而提出“北方民族考古”的学科发展方向，以及草原文明在中国历史中的重要性等问题谈了自己的看法与体会。</p>
+
+<p>澎湃新闻：您学生时代是在吉林大学度过的，吉林大学的老师们和学术氛围，给了您怎样的启迪？</p>
+
+<p>魏坚：这是两个阶段的经历。首先是在吉林大学求学。1978年在文革后恢复高考的第二年，我以下乡知青的身份考入了吉林大学历史系考古专业，当时我填报的五所高校的十个专业方向中，几乎都是考古与历史，因为那个时候我十分单纯地认为，只有这个学科才是真正的学问。能够进入吉大学习考古，可以说是我人生中最重要的一个选择。</p>
+
+<p>吉大特有的气质就是不尚奢华、不吹牛，踏踏实实做学问，这种气质润物细无声地影响着每一个学生的日常学习以及日后生活的每一个方面。长春的冬天比较长，那时的学生都穿着朴素，女生们几乎都是戴一副小套袖，胳膊下夹一个棉椅垫，中间夹着两本书，行色匆匆地忙着去读书。所以我说过，吉大是个读书的好地方，即便你没有能力考上吉大，到吉大旁听四年也能成为一个合格的毕业生。</p>
+
+<p>吉大的考古也是朴实无华，吉大的考古就是在两位朴实无华的老师带动下发展起来的，这就是张忠培和林沄先生，他们也是我的两位导师。吉大考古的学生就是在这种氛围中养成了艰苦朴素的工作作风。我们出去考古实习的时候，都是自己背行李，准备生活用品，大家也从不乱花钱，当然那个时候也没钱可花。实习工地的食堂很多时候就是吃着小米饭和蒸鸡蛋羹，几乎没有肉吃，但我们都坚持过来了。</p>
+
+<p>吉大考古的重要特色是重视田野，张忠培先生就是以田野考古为第一要务，我们四年的本科学习中，有三个学期是在田野度过的。正因为如此，才使吉大的考古走上了比其他大学发展更快的一条道路。从中国高校考古专业的发展来看，50年代就有了北大考古，到1973年吉大才开始考古专业的招生，这当然和张忠培先生的苦心经营分不开，到我们78级才是第5届学生。但是经过近20年的发展，到三峡考古的时候（注：始于上世纪90年代，在修建三峡大坝前开展的大规模考古发掘和文物保护工作），从考古领队到队员，据说百分之六七十都是吉大毕业的，这就是一个学科成功的见证。可以说，吉大有这样的成功，是靠着老师的带领，靠着艰苦朴素的作风，靠着踏踏实实地做田野，才成就了吉大特有的气质，也由此而影响、造就了她的学生。</p>
+
+<p>澎湃新闻：您从吉大毕业以后去了内蒙古，在内蒙的经历对您的学术研究有着怎样的影响？</p>
+
+<p>魏坚：我从吉大毕业后我就回到了内蒙古。毕业的时候张忠培先生几次找我谈，希望我能留校工作，可能也是希望我能够带田野实习，当考古队长。可我在当时家里长辈的影响下，就想回天地广阔的内蒙古开始我的考古生涯。我就说我父母年纪大了，弟弟妹妹都还小，我要回家掌握门户去。此外，东北和内蒙古有着很不一样的文化传统和习惯，加上我从小在内蒙古的生活经历，促使我想回到家乡。由于内蒙古广阔的地理范围和丰富的考古学文化遗存，我在内蒙古的工作从一开始就非常繁忙。在地方上做考古工作，不可能像国家院所——社科院考古研究所那样，分开做新石器、商周的、汉唐，研究方向跨度分得很细很严格，在地方上做工作不可能分这么细。我上大学时候我的老师张忠培先生是研究新石器时代考古的，我跟着学习，田野工作做起来也得心应手。后来回到内蒙古工作，不同年代、多层堆积的遗址都会遇到，我们不可能只去选择发掘自己愿意挖的遗址，需要遇到什么遗址和墓葬都要去做，没有挑剔的余地。又赶上那些年配合基本建设的考古发掘比较多，因此，那些年我主持发掘的遗址、墓葬、城址就有六十多项，从旧石器时代的洞穴遗址到辽金元时期的城址和墓葬都有，出版的发掘报告和发表的文章在那个年代的省级考古所中也算是比较多的。那时候衡量我们学术研究的最高标准就是完成一部考古发掘报告，一部考古报告涵盖立项、发掘、整理、拼对复原和研究，再到多学科的合作研究，最后形成一本书需要长久的时间和多方面的工作才可能完成，每一部报告都需要主持者倾注心血，十分不易，因为这是最原始的资料和研究集成，具有极大的学术价值。完全不同于现在，只写几篇文章发在核心期刊上就可以了。这样的报告，我完成了大概五、六部，应该说无愧于心了。</p>
+
+<p>此外，那时候内蒙古每年都要举办各种类型的考古和文物田野培训班，我们作为主要业务干部都要全力以赴地投入其中。时至今日，内蒙古各盟市旗县从事文博工作的专业人员，百分之六七十都做过我的学生。同时，我们在内蒙古大学还开办了研究生班，培养高层次的研究人才。可以说，作为一个热爱自己家乡的文物考古工作者，我们在20年前就把内蒙古100多个旗县的文物所差不多都建立起来了，与全国相比处在前列。到今天为止，全国很多省份的地县级文物管理部门都不健全。还有就是在内蒙古农村做知青的经历对我影响很大。那个年代，可能有一些人得到了锻炼，但也有人被耽搁了。我们把对这一段历史的评价暂且放下，我要说的是，那段生活对我后来从事考古研究有很大帮助，即便不从事考古，去做任何事情我认为都会有帮助。那时候我们关心国际局势、国家政策、经济发展、社会文化，这些都融合在我们的生活中，是最接地气的。知青生活的经历，以及后来在乡下做考古工作，使我们和老百姓以及现实生活离得比较近，因此我也不会因为辛苦，待遇不好就轻易放弃。</p>
+
+<p>“立足北方，重视西域，挺进中原”</p>
+
+<p>澎湃新闻：人大的考古特色为北方民族考古，您作为学科带头人，能否为我们介绍一下北方民族考古这个研究方向是如何产生的呢？</p>
+
+<p>魏坚：“北方民族考古”的研究方向，是我到人大之后根据过去的工作、研究经历提炼出来的。第一，过去我在内蒙古做考古工作，地域上属于北方。内蒙古东西狭长，地域辽阔，又处于农牧交错地带，以阴山为界，南边宜农，北边宜牧，而这一地域自北方民族兴起以来，民族间的文化交融就从未间断。就我们做的研究而言，春秋战国以来这里发现的墓葬就体现着北方游牧文明与中原农业文明的相互交融，即便是形制上典型的汉墓，也会体现出北方民族、特别是匈奴的文化因素；匈奴的墓葬也常有汉文化因素，比如墓葬结构。此后历史时期的南北文化交融就更为普遍了，它们总是交织在一起。我在内蒙古做的发掘和研究工作都是北方的、民族的。但是，更早的新石器时代称“民族的”是不合适的。所以在我们现在的定位中，原史文化时期的研究强调北方，进入历史时期则强调民族。</p>
+
+<p>第二，中国人民大学的区位也在北方。提出北方民族考古这个方向，直到后来向学校申请成立北方民族考古研究所，也是斟酌了许久。这样既能涵盖人大考古将来的研究方向，突出我们的特色，也能整合我们目前已形成的学术积累。国内考古专业成立早，学科建设搞得比较好的高校都有体现自己特色的学术刊物。北京大学多年来从事中原地区夏商周的考古研究，他们有《中国考古》；吉林大学崛起了，因地处东北、偏居一隅，重视边疆考古研究，于是办了《边疆考古研究》；山东大学占有东方，他们有《东方考古》；地处西边的西北大学，他们的刊物不能叫西方考古，所以人家叫《西部考古》；南边有近年来发展较快的四川大学，因为南方少数民族众多，于是刊物叫《南方民族考古》；我们做北方民族研究，与其相对应，我们的出版物就叫《北方民族考古》。这样，我们就凑齐了《中国考古》、《边疆考古》、《东方考古》、《西部考古》、《南方民族考古》、《北方民族考古》六个大方向的研究，犹如天地六合般的契合。这就是因为过去的工作经历和研究方向，形成了以北方民族研究为主的学术体系和研究方向，也成为人大考古的特色和学科体系。</p>
+
+<p>我们人大目前的学科目标是：“立足北方，重视西域，挺进中原，发展长江流域”。到今天为止我们的教学科研都是按照这个目标体系来布局的。要想完成这样一个目标，就必须有一个齐心合力团结做事的高水准团队。这些年我们通过人才引进，逐渐组建了一支水平突出、勤奋工作的团队，在学术界也赢得了一定的声誉。考古学是个靠团队力量来做事的行当，单枪匹马很难完成任务。因此，我们特别注重团结协作精神的培养，使教师队伍始终保持旺盛的工作热情和彼此包容的集体主义精神。外校来人大参会的学者们，特别是年轻学者们，都会有这样一种感受，到了人大就像回了家一样，气氛特别融洽。我本人是从艰苦时代知青生活过来的人，如今就要想方设法创造条件，支持年轻学者们的工作，让年轻教师在学术上伸展拳脚，引进的老师们感到愉快，自然没有办不好的事，因此中国人民大学的考古文博学科才能发展得比较快。</p>
+
+<p>澎湃新闻：您为学科发展、培养年轻学者方面做了很多工作，能否再请您介绍一下您自己的学术研究？</p>
+
+<p>魏坚：说到我自己的研究方向，其实我大学刚毕业时，就发掘了一处春秋战国时期北方民族的墓葬，我做了很认真的研究分析，没想到后来发表在了我们考古学领域最高级别的刊物《考古学报》上。当时，我的老所长李逸友拿着文章到北京去给编辑部看，编辑部开始说太长了，但最终三万多字几乎没动，很顺利地就发了（注：《凉城崞县窑子墓地》，《考古学报》1989年第1期）。那是我关于北方民族研究的第一篇文章 ，主要观点是：崞县窑子这处墓地不是匈奴墓葬，而可能是北狄，因为那时的文献还没有匈奴的称谓。直到公元前300年前后，即赵武灵王时才有了“匈奴”这个称谓。</p>
+
+<p>1985年，我开始发掘庙子沟遗址，当时乌兰察布盟察右前旗文物所的同事送来几件仰韶时期的陶片和石器，我记得是在10月10号，单位派了个吉普车我们就去做调查了，发现是一处大型的仰韶晚期阶段的遗址和墓地，回去跟单位申请了800块钱，挖了半个月，获得了一大批有价值的出土物，因此也就搞清楚了遗址的性质，后来又连续挖了两年。我们发现，遗址里的人骨并非正常埋葬，而是遗留在房址或者灰坑、窖穴内，而且在遗址里有人骨的房子就有成套的器物，没有器物的房子也就没有人骨，应该是房子的主人带着器物离开了。综合多学科的研究，我推论遗址的毁灭是由瘟疫造成的。这是我研究用时最长的一个遗址，从1985年到2004年离开内蒙古，花费了近20年的时光，最终在2003年出版了考古发掘报告，确立了一个新的考古学文化——庙子沟文化，这应该是我的主要成果之一。在这部报告里，我把遗址里的资料全都发表了，还加了人骨研究、动物骨骼研究和环境考察报告等，这在当时都是创新之举。</p>
+
+<p>随后，我在内蒙古主持工作期间，和文化厅的分管领导提出了“两个重心转移”战略构想，即把重视农区转移到重视草原地带，把重视早期遗存转移到重视历史时期遗存考古上来。其实，这种战略重心转移一时半会儿很难实现。一是多年形成的研究方向很难改变，二是一个遗址连续挖两三年都挖不完，自然没法转。1992年元上都发生了盗墓事件，我和自治区人大常委会的一位副主任及文化厅、公安厅的几个干部组成一个调查组，去处理这个盗墓事件，到现场后确定这是几处元代的祭祀遗址。因为元朝的皇帝都实行秘葬，这些祭祀遗址或许与秘葬有关。当时我就去考察了附近的元上都遗址，并被其雄浑壮阔的景象所震撼，随后查阅资料发现，我的前辈很多人都去做过调查，但就是没有人坚持把它做完。我在此前原本一直是在做新石器和商周阶段研究的，这就直接转到元代。在这个过渡期间，我还做了汉墓和鲜卑墓葬的发掘等，并很快就出版了两部研究报告。</p>
+
+<p>我从1992年到2004年，在元上都一共做了13年的考古调查、测绘、发掘和申遗工作，直到2012年在第36届联合国教科文组织大会上，成功申报世界文化遗产。这期间我还去了内蒙古最西端的额济纳旗，调查、测绘和发掘了居延地区的古代遗存，将发掘的一批汉代简牍，整理出版了《额济纳汉简》一书。如果总结一下那些年的工作，那就是关注内蒙古中南部地区新石器时代遗址的发掘研究，确立了几个新的考古学文化类型，建立了这一区域的考古学文化编年体系；发掘和研究汉墓，奠定内蒙古中南部汉代墓葬研究的基础；整理汉简，复原了汉代边防的鲜活历史；探讨鲜卑，基本厘清了鲜卑的考古学文化面貌和分期；着力元上都研究，用物质文化诠释了蒙元帝国发展的波澜壮阔，促使元上都申遗取得成功。正是因为有了这些基础，来到人大之后，我才能提出一个北方民族考古的学科方向，作为既定目标和指导方针。</p>
+
+<p>“因有边疆，方有中国”</p>
+
+<p>澎湃新闻：在古代，北方草原是连通中原地区和欧亚大草原的一个渠道，现在在“一带一路”的文化大战略背景下，您觉得这个北方大草原会发挥什么样的作用呢？</p>
+
+<p>魏坚：应该说，在中华文明产生的几个大的地理单元中，北方草原也是重要区域之一，而在以前学术界重视不够。现在的研究认为，文明的产生大致可以分为三大类，即农耕文明、海洋文明和草原文明，它们的特质是不一样的。</p>
+
+<p>我们读的二十四史基本都是中原王朝秉持下的产物，即使是少数民族建立的政权，史书的主要编撰者还是中原的汉人，史料的运用者也是汉人。长期以来，因为边疆地区和少数民族的记载比较匮乏，所以经常被中原的史书加上一些想象的成分，甚至篡改和诋毁。你看，北方民族的称谓都不怎么好听：匈奴、鲜卑、突厥等等。大概在上世纪90年代中期，香港商务印书馆的总编陈万雄先生准备出版一套“十三地域文化大系”，其中一册是《草原文化》，为此我们曾多次深入内蒙古的各地收集文物资料，因此有了许多共同的认识。随后我到香港做了一次演讲，充分阐释了我对草原文化的理解和认识，当时香港著名的学者饶宗颐、杨建芳和很多媒体朋友都出席了，陈先生很认同我的观点，并计划将来一定出版一部自己对草原文化认识的书。时光已经过了20多年，他的新书终于在去年完成了，邀我为他的新书作序。去年7月我去香港参加了他的新书出版首发式，并在演讲中阐释了我在序言中的基本观点。曾有同行写了一本书《何以中国》，我说若要回答的话，那就是“因有边疆”，因为如果没有边疆四域，也就无所谓中央之国。</p>
+
+<p>从新石器时代考古学文化的十大区系类型，到三皇五帝夏商周，中国就像滚雪球一样，不断慢慢地长大。史籍说“伊洛竭而夏亡”，可见夏的统治区域并非很广，从商的扩张到周的分封，再到秦汉统一，才逐渐形成了今天的中国。但是，我们现在叙述中国的历史王朝时，常常开口就是“唐宋元明清”一以贯之，这样的表述，实际上并不能代表一个完整意义上的中国。唐朝疆域其实比汉朝小很多。宋可以代表中国吗？跟宋并存的还有契丹建立的辽、女真建立的金和党项建立的西夏，他们都是切实的存在，却常常被忽略，虽然后来补修了《辽史》和《金史》，但还是粗糙的错缪百出，西夏到现在也没有正式修史。</p>
+
+<p>从各王朝的管辖面积来说，北宋只有280万平方公里、南宋才200万平方公里。就算后来灭亡了元朝，建立了“大一统”王朝的明朝，因为修了一道长城，干脆放弃了北方草原，到明朝统治的晚期，其面积也只有350万平方公里。大家都知道，今天的中国领土面积有960万公里，而清朝时是1350万平方公里，这是近现代以来，世界上国家政体逐渐形成的产物，国与国之间有了边界和条约的约束。所以，如果我们只认为宋、明这样的王朝可以代表中国，而忽略了边疆民族建立的辽、金、西夏区域政权和元、清这样的统一王朝及其拥有的国土，我们就不要怪怨洋人瞧不起中国。</p>
+
+<p>我们和前苏联关系不好的时候，苏联就认为中国应该回到长城以南去！因为我们自己也经常不把长城以北当做自己的文化。还有一些学者居然把南宋的灭亡和元朝的统一，说成是“崖山之后无中国”。重庆合川钓鱼城申遗的开始阶段，在许多学者的论文和展板说明文字中，就经常自然地出现“抗蒙山城”和“抗元山城”这样的词汇，这不就把中华民族间的争斗和“抗日”等同看待了吗？这实在是狭隘的民族观、狭隘的历史观！我认为，长城固然伟大，它是历史时期各区域政权和各族人民耗费巨资甚至于生命代价修筑的，但是它更多只是一个伟大的军事工程，而且主要是中原政权修建的。当然鲜卑入主中原后也在阴山以北修筑了长城，女真也曾修建被称作金界壕的长城，这些军事工程都是为了防御更北边强大的游牧部族的。因此，长城作为文化遗产应该给予保护，但把它上升到作为中华民族脊梁的高度却实在不合历史。</p>
+
+<p>没有边疆何以中国？中国的历史就是边疆民族不断融入发展的历史，特别是北方民族的南下和交融，才使中国不断发展壮大，由原来的华夏形成了现在的中华，造就了今天的多元一体，才葆有了不断攀升的原动力。所以要客观地看待这些事实，才能对中国的历史有清醒的认识。不断地学术探索使我们不断地更新我们的观念。近年来，我们的学术研究也在向外拓展，和蒙古、俄罗斯有了更多的交流。这几年我们经常去北方蒙古高原的更北边——俄罗斯西伯利亚参加学术会议，你会发现所谓的中国的北边（蒙古高原）的更北边的西伯利亚是一片非常广袤的黑土地，有非常深厚的文化，所以才会支撑中国北方的蒙古高原。蒙古高原上的游牧部族，向南可以接近农耕文明，获取农业区域的生活用品，向北进入去西伯利亚，也可以获取生活必需品。这样你就会理解蒙古高原在文化互动中的作用了。</p>
+
+<p>澎湃新闻：北方草原如此重要，我们作为学者，可以为此做些什么呢？</p>
+
+<p>魏坚：我有本还没有写完的书，叫做《碰撞与融合——蒙古高原文明探源》，书的中心内容主要是探讨北方民族不断南下，融合中原文化，逐渐形成今天中华民族多元一体格局的历史进程。文化的融合是相互的，中原和北方一直处在交融和互动之中。当然我不否认南方民族也有同样的现象，但是历史时期的融合主要还是从北往南，二十四史中从没有一个南方民族入主中原建立王朝的。如果一定要讲由南向北的推进，最主要的也有两次，一次是东晋南朝“闻鸡起舞”的“祖逖北伐”，一次是近代史上人人皆知的蒋介石指挥的北伐，但无一例外地都归于了失败。</p>
+
+<p>不过，同样在北方兴起的民族，其表现可能由于分布地域和所受影响的不同，以及所处历史阶段或机遇不同而结局并不完全一样。在诸多中国北方民族当中，最强的两个民族——匈奴和突厥最终都没有入主中原，这可能和他们遇到了强大的汉、唐王朝有关。在几个主要的北方民族中，若从其兴起的地理位置看，突厥位于最西端，她似乎一直也没有南下立足的意思，也没有在蒙古高原南部建立自己的王朝，前后两个突厥汗国也都是以漠北的西部为中心的，西迁的突厥一直向西到达博斯普鲁斯海峡，在土耳其建立了奥斯曼帝国，并最终全部伊斯兰化，也即是今天的土耳其。</p>
+
+<p>匈奴位于蒙古高原的中部，考古发现也多位于这个区域，在与汉朝和周边民族的争斗中，逐渐分成了漠南漠北的南北匈奴，北边叫北匈奴，南边叫南匈奴，南匈奴逐渐与汉人融合，北匈奴则西迁了，并由此灭亡了东、西罗马帝国，造成了世界性的民族大迁徙。只有位于最东边的鲜卑、契丹、女真、蒙古和满清，统统南下，从地域性政权逐渐发展成为全国性政权。这就说明，中国北方诸民族，由于其所兴起的地域不一样，与中原华夏的关系也有所变化，由于存在不同的向心力，因此其所向往的中心也不一样。即便是在蒙古高原的东部地区，以兴安岭为界，东、西两侧的民族与生业形态也不一样，兴安岭以西是以畜牧业为主的游牧民族，如东胡、鲜卑、乌桓、契丹、蒙古，兴安岭以东则是以农业和捕捞、狩猎为主的渔猎民族，如肃慎、邑娄、勿吉、女真和满清等。我们只有对北方真正了解之后，才会知道北方对中国的重要性，以及北方民族对中华多元一体格局形成的重要贡献。</p>
+
+<p>正因为如此，我来人大工作之后，就特别注意招收有志于做北方民族考古研究的研究生，特别是少数民族的学生。这些年招收的研究生中，很多蒙古族学生都来自新疆，他们不但懂蒙语，而且了解维吾尔语、哈萨克语、塔吉克语等，有语言优势，文化背景也相似。有一个蒙古族的学生从新疆师范大学毕业考过来的时候，汉语说得都磕巴，经过在人大四五年的学习，各方面都有了很大的进步，现在已经读到了博士二年级，近期准备去俄罗斯交流两年，以加强对俄罗斯考古新资料的了解，同时辅修俄语。其实，我们在国家实施“一带一路”倡议之前，为了新疆和中亚的考古，就已经在培养这方面的人才。</p>
+
+<p>这些年，我们按照2012年制定的学科规划之“新疆北疆考古工作规划”，在新疆阿勒泰、博乐、伊犁和昌吉奇台开展了发掘工作，都是为了配合“一带一路”的学术研究。2015年中俄蒙三国元首在俄罗斯乌法举行了合作共赢的元首会晤，此后三年来，我们开展了中俄蒙三国岩画联合考察，每年在一个国家考察和举行论坛，出版论文集，已经做完一轮了。我们还在学校申请到了赴蒙古高原考古的项目——“一带一路视野下的蒙古高原考古学研究”，目前主要是研究鲜卑从内蒙古东部南下进入到中原的问题。之前我在蒙古国看他们很多发掘，都把这类遗存当做匈奴而不是鲜卑，对此我们有不同看法，近年蒙古国的学者发掘了一片墓地，我认为属于鲜卑遗存。当时正好有个蒙古国的学生在我们这里读研究生，因此，我指导他的硕士论文就是关于这个问题的讨论。学生写完后翻译成蒙文交给他们，蒙古国的学者很惊讶。他们后来拿了30多个测试样品交给我们做测试，于是今年我们向学校申请了这个项目，并获得了批准。最近几年我们要去蒙古国开展发掘和研究工作。同时，我们还与瑞士日内瓦大学有合作，是“一带一路”视野下的中瑞合作研究，这样我们就可以带学生出去学习，进行国际交流。另外，今年我们还招了一个伦敦大学博士毕业学考古的比利时人来任教，她英语、法语、意大利语、汉语都很流利，还会拉丁语。我们要开展“一带一路”倡议下的学术研究，就需要有这样的国际眼光，才能发展得更好。</p>
+
+<p>责任编辑：熊丰</p>
+
+
+
+<p style='float:right;'>本页共36段，8718个字符，25905 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

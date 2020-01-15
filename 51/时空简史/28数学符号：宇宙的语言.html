@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>28数学符号：宇宙的语言</h4>
+
+<img src="29.1.bmp">
+<br>
+<p class="picsay">中文符号表示的是清朝数学家李善兰对微分方程dy/dx+by<sup>n</sup>=ax<sup>m</sup>的演示，如果不做说明，就像天书一样，无法让人看懂，更无法快速传播。</p>
+
+<p>上面的中文符号表示的是清朝数学家李善兰对微分方程dy/dx+byn=axm的演示，如果不做说明，就像天书一样，无法让人看懂，更无法快速传播。这体现了在清朝把微积分刚刚引入中国时，表达方式的笨拙。中国古代就一直用文字描述各种规律，比如“求邪至日者，以日下为勾，日高为股，勾股各自乘，并而开方除之，得邪至日”，再比如“圆周盈数三丈一尺四寸一分五厘九毫二秒七忽，朒数三丈一尺四寸一分五厘九毫二秒六忽，正数在盈朒二限之间”，用现代数学语言表达就是“x2+y2=z2”和“3.1415926＜π＜3.1415927”，两种表达方式高低立判。中西数学符号差异，是由中西传统文化的差异造成的，需要从文化传统心理的深层次进行剖析。李善兰是19世纪后半叶中国最重要的数学家、天文学家，牛顿力学就是1858年被李善兰引入中国的。</p>
+
+<p>数学关系和证明不是归纳的而是演绎的，是形式的。换句话说，数学是一个形式系统。“形式的”意味着纯粹的形式，百分之百的抽象。正是古希腊人把数学变成一个抽象系统，一种特别的符号语言。这使人们不仅可以描述具体的现实世界，而且可以解释它最深层的模式和规律。数学符号简化的记法，常常是深奥的理论的源泉，没有数学符号就没有今日的数学。国际数学教育委员会前主席、数学家H.弗赖登塔尔（H.Freudenthal，1908—1990）有一句名言：“没有一种数学思想，以它被发现时的那个样子发表出来。一个问题被解决以后，相应地发展成一种形式化的技巧，结果使得火热的思考变成了冰冷的美丽。”凡是接触数学的人，都将看到简洁、端庄、和谐、奇异，兼具艺术美和科学美的符号。数学符号是数学科学专门使用的特殊符号，是一种含义高度概括、形体高度浓缩的抽象的科学语言。</p>
+
+<p>第一个自觉运用数学符号的是希腊数学家丢番图（约246—330）。他创用的数学符号仅是文字的缩写，且比较随便，还算不上真正的数学符号体系。到了16世纪，科学的迅速发展，对数学尤其是代数学提出了新的要求，促使代数学变革，应运而生地出现了真正的代数符号。这项工作首推法国数学家韦达（1540—1603），他在前人基础上对代数符号体系的建立做出了重要贡献；后来的法国数学家笛卡尔等人加盟，才逐渐使数学符号体系基本形成。这一探索、演变过程，从古至今花了三千多年的时间。</p>
+
+<p>微积分是发明还是发现？它在内容上是发现，形式上是发明。莱布尼茨在微积分方面的贡献突出地表现在他发明了一套非常完备的符号系统。在对微积分本身的纯数学的推导上，这套体系非常优越。1675年，他引入dx表示x的微分，“∫”表示积分。他比别人更早更明确地认识到，好的符号能大大节省思维劳动，运用符号的技巧是数学成功的关键之一。他自觉和格外慎重地引入每一个数学符号，常常对各种符号进行长期的比较研究，然后再选择他认为最好的、富有启示性的符号。在20世纪初的算子理论，像微分算子、积分算子等研究中，莱布尼茨的体系显得更加有效。</p>
+
+<p>∫fxdx</p>
+
+<p>微积分是发明还是发现？它在内容上是发现，形式上是发明。</p>
+
+<p>1859年，英国传教士伟列亚力与清代数学家李善兰共译《代数学》，此为西方符号代数第一次被系统地介绍到我国。李善兰译本书名取的是《代微积拾级》，“代”指的是解析几何（当时叫代数几何），“微”指“微分”，“积”指“积分”。李善兰与徐光启一样，具有聪明才智和出众的技巧，这本书的译文十分优美。</p>
+
+<p>李善兰的功绩很大，但因受了中国古代传统数学影响，他在翻译西方算学符号方面，严守“祖宗家法”，更多地用汉字代替西方算学符号，甚至煞费苦心地沿用中算符号或硬造汉字符号，使用了一套光怪陆离的符号体系，使中算符号难写、难认，表意抽象，不易理解和推广，今人读之，宛若天书。如函数符号f（x）他用“函天”表示，加减号（+，-）改为（⊥，┬）（取上下两字之形）等，甚至坚持竖式排版。中国明代以后领先世界的数学渐衰，这与没有使用先进符号是有关系的。</p>
+
+<p>李善兰等中外译者所译的符号系统与形式，为中国数学的进一步发展，为中国数学和世界的交流，设下了许多障碍。直到辛亥革命之后，他创造的那套笨重的数学符号才被弃用，而直接代之以国际通用的符号体系，至此，数学在中国终于实现符号化，并与世界接轨。</p>
+
+<p>中国古代数学的不足之一，就是很少创用先进的数学符号，大都用文字叙述。我国不完善的符号体系对中国数学发展的重大影响：第一，不完善的符号体系影响了中国古代数学的逻辑推理和证明，使中国古代数学很难产生和形成公理化体系；第二，不完善的符号体系使中国传统数学很难产生符号代数、解析几何和微积分近代变量数学。</p>
+
+<p>我国数学史家梁宗巨先生曾说：“一套合适的符号，能够精确、深刻地表达某种概念、方法和逻辑关系。”数学家索绪尔说：“哲学家和逻辑学家所忘记的是，从一个符号系统独立于它所指代的物体开始，它自己就发生了逻辑学家所无法估量的飞跃。”数学符号就是数学的“文字”。伽利略曾说：“数学是上帝用来描绘宇宙的语言。”</p>
+
+
+
+<p style='float:right;'>本页共14段，2105个字符，6057 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

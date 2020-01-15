@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>34牛顿：定义质量</h4>
+
+<p>牛顿是在伽利略去世那年出生的，牛顿说自己的成就是站在巨人的肩膀上获得的，这话不假。他所指的巨人主要是指开普勒、伽利略以及笛卡尔。像伽利略和笛卡尔一样，对于牛顿来说，物质世界是一个根本上具有数学特征的世界。他相信万物在量度、数学和重量上井然有序。牛顿的《自然哲学之数学原理》是想证明，一切自然现象都可以按照数学的力学来说明。他发明的微积分提供了一个其操作不可能完全在几何上加以表达的工具。牛顿所创立的引力理论，认为有质量的物体之间所作用的万有引力是行星绕着太阳转和卫星绕着行星转的推动力的理论，是现代精确科学的源头。</p>
+
+<p>如果说伽利略抽象出了“质量”的概念，那么牛顿则把“质量”的概念进一步从数学定义的角度量化了。牛顿洞察到，任何运动的变化都是力的作用的结果，而且物体对力的反应与物体自身的一种性质有关，这种性质被他称作“质量”。同时，任何物体拥有两种明显区别的性质：质量和重量。质量是物体对其速度或运动方向之改变的抵抗，是改变物体运动状态的难易程度。而重量是地球吸引一个物体的力。在牛顿理论中，物体的质量是常量，而重量取决于物体离地球中心的距离。在地心，物体质量不变而重量为零。牛顿在他的《自然哲学之数学原理》一书中，开篇第一页的第一个定义的概念就是质量：物质的量是物质的度量，可由其密度和体积共同求出。</p>
+
+<p>牛顿是按照密度和体积来定义质量的。在与地心有不同距离的地方，同样的质量有不同的重量，这个发现加上对开普勒运动定律的数学解释，逐渐导致了牛顿对万有引力定律的宏伟表述。万有引力定律把天文学和力学统一在一门关于运动物质的数学科学中。</p>
+
+<p>有了质量的定义，牛顿详细研究物体在受到同样的力的作用下（第二、第三定律），不同的物体便不同地偏离静止状态或匀速运动状态。也就是说，它们被不同地加速了。那些差别是而且只能是加速度的差别，就此而言，可以用数学术语对它们进行精确比较。我们可以认为一切物体都具有惯性，而惯性可以用一个给定外力对物体施加的加速度来测量，在这个意义上，它是一个严格的数学特征。由此可见，力和质量是完全的关联项，但一旦发现了质量，按照质量来定义力而不是反其道而行就变得很容易了。因为力是不可见的，而一个标准质量是可以感觉和使用的物理对象。</p>
+
+<p>牛顿成功地把运动通过质量进行了数学还原。这样，通过使用这些定义和概念，主要的物理现象就逐渐服从于数学处理了。他不仅发现了力、质量、惯性这样的概念的精确的数学用法，而且还赋予时间、空间和运动这样的老词项以新的意义。那些词在牛顿之前毫无价值，现在正成为人们思维的基本范式。</p>
+
+<p>在牛顿的世界体系中，每个物体都趋向于每个别的物体，这种趋向与两物体质量之积成正比，与它们中心的距离的平方成反比。实际上，通过牛顿流传下来的质量、力、加速度的概念，尤其是通过使用他发明的微积分作为有效而迅速的处理运动问题的工具，很难设想有什么运动变化是不能用他的术语在数学上加以简化的。他对力学的一切基本单位都可以用质量、空间和时间的单位来定义。他按照质量把物质的运动还原到严格的数学公式中。</p>
+
+<p>毕达哥拉斯曾思考物体为什么运动，他认为有速度的物体就有力。经过伽利略在比萨斜塔的实验和牛顿的总结，力的产生主要是加速度，是速度的变化，而不是力和速度直接挂钩。牛顿在17世纪构建了当今经典物理学的基础，解释了物质间的相互影响如何改变了它们的运动状态。他的运动定律乍一看非常“明显”简单。第一条：物质在没有外力作用下会保持静止或者匀速直线运动。这也被称为牛顿惯性定律或牛顿第一定律。牛顿赋予物质以某种固有之力，它是某反抗的力量，每个物体都通过它自身的这种力量尽可能地去保持当下的状态，不论它是静止还是沿着一条直线匀速运动。牛顿称这种力为惯性力。物质是“懒惰”的，不喜欢改变运动状态。要改变它的速度，需要加载一些外部因素促进，即一个力。外力越大，加速度越大。</p>
+
+<p>牛顿第二定律是指物体的力和加速度有关系：F=ma，其中a为加速度，加速度是速度的变化率，加速度的本质是单位时间内速度的极限。牛顿发明微积分就是为在第二定律中计算瞬时速度。前文讨论过导数的概念是：某段无穷小时间内的速度。速度是距离对时间的导数，加速度就是速度对时间的导数。牛顿利用这些结论可以进行轨道研究。m是什么呢？m是物质的一种属性。它可以通过测量物体对力的反应来得到。施加相同的力，m越大，物体的反应就越小。这种性质通常称为惯性。m的全称叫作“惯性质量”。F代表力。力是改变物体运动状态的原因。在所有情况下，物体的运动轨迹都是由运动开始时的速度和方向决定的，这就是初始条件。这里的“初始条件”具有深刻的哲学含义。对特定的物体给以确定的初始条件，并且知道了作用在物体上的力，那么物体的运动就是可以预测的。牛顿的世界观就是可预测而且确定的！牛顿的科学是决定论的科学。牛顿对哲学和宗教的影响丝毫不亚于他对物理学的贡献，这一切都来自他这个关键的公式：F=ma。“牛顿第二运动定律”是其第一个惯性定律的延伸。实际上，第一定律只是第二定律的一个特殊情况：如果力消失了，那么加速度也会消失，物体就会保持之前的运动状态。</p>
+
+<p>牛顿发现物体相互之间存在着相等的引力，这就是第三条基本的运动定律或公理，即作用力与反作用力相等的一种情形。第三定律在《自然哲学之数学原理》中表述如下：对于每一个作用，总是存在一个相等相反的反作用；两个物体之间的相互作用总是相等的，而且指向各自的对方。</p>
+
+<p>如果一个物体撞击另一物体，它的作用力改变另一物体的运动，这个物体本身（由于相等压力）的运动也会发生相等于沿相反方向的变化。由这些作用产生的变化是相等的，这不是指速度，而是指物体的运动。这就是说，如果这些物体没有受到别的障碍的话，上述相等关系才成立。由于运动的改变是相等的，所以指向对方所产生的速度变化与物体的质量成反比。这一定律在吸引力时也成立。</p>
+
+<p>牛顿的宇宙代表着一种统一，并且使支配宇宙的定律得到了惊人的简化。牛顿被认为是“全能”的。他发明的微积分，使得天上地下的引力能够被证明是一致的，并且把无限宇宙中最小与最大的物体——星体与原子——联系起来。牛顿创立的“世界体系”把自然数学化，因而也几乎等同于把科学数学化。牛顿的世界由三种成分构成：（1）物质，即无限多彼此分离的、坚硬的、不变的——但互不相同——微粒；（2）运动，这是一种奇特的悖论式的关系状态，它并不影响微粒的本质，而仅把它们在无限的同质的虚空中到处传递；（3）空间，即那种无限的同质的虚空，微粒在其中运动而不对其产生任何影响。</p>
+
+<p>一位神父曾向牛顿请教，如果物质最初是被均匀散布在空间中的，那么这个世界体系能否纯粹由于自然原因的作用而产生，以及行星一旦被上帝创造，是否单凭万有引力的作用就可以产生目前的运动。牛顿这样回答：我的回答是，行星现有的运动不能单单出于某个自然原因，而是由于一个全智的作用者的推动。牛顿有着深深的宗教情怀，在牛顿的信仰里面，相信有一个“第一推动”的力量存在。这个第一推动的力量就是上帝。</p>
+
+
+
+<p style='float:right;'>本页共13段，2854个字符，8508 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

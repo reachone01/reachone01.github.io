@@ -1,0 +1,1697 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<script language="javascript"> 
+//bg_even("表格ID属性名","奇数行背景色","偶数行背景色","鼠标经过背景色","点击后背景色");
+function bg_even(o,a,b,c,d){
+        var t=document.getElementById(o).getElementsByTagName("tr");
+        for(var i=0;i<t.length;i++){
+                t[i].style.backgroundColor=(t[i].sectionRowIndex%2==0)?a:b;
+                t[i].onclick=function(){
+                        if(this.x!="1"){
+                                this.x="1";
+                                this.style.backgroundColor=d;
+                        }else{
+                                this.x="0";
+                                this.style.backgroundColor=(this.sectionRowIndex%2==0)?a:b;
+                        }
+                }
+                t[i].onmouseover=function(){
+                        if(this.x!="1")this.style.backgroundColor=c;
+                }
+                t[i].onmouseout=function(){
+                        if(this.x!="1")this.style.backgroundColor=(this.sectionRowIndex%2==0)?a:b;
+                }
+        }
+}
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:75.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:100%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+#tbrowser {
+	width:100%;
+	margin:auto;
+	border-collapse:collapse;
+font-family:"宋体";
+	text-align:left;
+	line-height:1.3em;
+	table-layout:fixed;
+}
+
+#tbrowser th,#tbrowser td{
+border:1px solid #ddd;
+font-size:1em;
+color:#000000;
+text-align:left;
+font-family: "宋体";
+vertical-align:top;
+padding-left:3px;
+height:28px;
+//white-space:nowrap;
+//overflow:hidden; 
+//text-overflow:ellipsis; 
+}
+
+
+#tbrowser thead th{
+border-bottom:2px solid #3d580b;
+background-color:#8fc629;
+color:#fff;
+padding:5px 0px;
+}
+#tbrowser .nd{
+border-bottom:2px solid #3d580b;
+background-color:#8fc629;
+background-color:#D3D3A9;
+color:red;
+}
+
+#tbrowser th{
+border-bottom:2px solid #3d580b;
+background-color:#8fc629;
+color:#fff;
+padding:5px 0px;
+padding-left:2px;
+}
+#tbrowser th.title{
+background-color:#e3e685;
+}
+
+#tbrowser caption{
+font-weight:bold;
+padding:1px 0px;
+color:#3d580b;
+font-size:18px;
+}
+
+
+#tbrowser .xhx{
+border-bottom:0px solid #aaa;
+}
+
+
+#tbrowser tr{
+height:6px;
+}
+
+#tbrowser tr>td{/*1*/
+font-size:1em;
+text-align:left;
+/*width:13%;*/
+}
+#tbrowser tr>td+td{/*2*/
+text-align:left;
+/*width:8%;*/
+font-size:1em;
+}
+#tbrowser tr>td+td+td{/*3*/
+font-size:1em;
+/*width:5%;*/
+}
+#tbrowser tr>td+td+td+td{/*4*/
+font-size:1em;
+text-align:left;
+/*width:6%;*/
+}
+#tbrowser tr>td+td+td+td+td{/*5*/
+font-size:1em;
+text-align:left;
+/*width:5%;*/
+}
+#tbrowser tr>td+td+td+td+td+td{/*6*/
+/*width:13%;*/
+font-size:1em;
+}
+#tbrowser tr>td+td+td+td+td+td+td{/*7*/
+/*width:59%;*/
+font-size:1em;
+}
+
+
+#tbrowser tfoot td{
+border-width:0px;
+text-align:left;
+line-height:18px;
+font-size:16px;
+color:#777;
+}
+
+#tbrowser th a:link {
+	text-decoration: none;
+	color:white;
+}
+#tbrowser th a:hover {
+	text-decoration: none;
+	color:white;
+}
+#tbrowser th a:active {
+	text-decoration: none;
+	color:white;
+}
+#tbrowser th a:visited {
+	text-decoration: none;
+	color:white;
+}
+#tbrowser caption{
+font-size:1.2em;
+text-align:left;
+}
+#tbrowser thead td{
+font-size:0.8em;
+text-align:left;
+}
+</style>
+</head>
+
+<body> 
+<table id="tbrowser">
+  <col width="110" />
+  <col width="68" />
+  <col width="606" />
+  <tr>
+    <td width="110">1、十大明君</td>
+    <td width="68"></td>
+    <td width="606">秦始皇、刘邦、李世民、武则天、赵匡胤、朱元璋、成吉思汗、康熙、雍正、乾隆</td>
+  </tr>
+  <tr>
+    <td>2、十大后妃</td>
+    <td></td>
+    <td>吕雉、王政君、贾南风、冯氏、伽罗、张氏、萧燕燕、刘娥、布木布泰、慈禧</td>
+  </tr>
+  <tr>
+    <td>3、十大奸臣</td>
+    <td></td>
+    <td>伯喜、刘濞、尔朱荣、杨国忠、蔡京、张邦昌、阿合马、严嵩、鳌拜、和绅</td>
+  </tr>
+  <tr>
+    <td>4、十大阴谋家</td>
+    <td></td>
+    <td>王莽、董卓、司马昭、李林甫、安禄山、朱温、秦桧、贾似道、吴三桂、袁世凯</td>
+  </tr>
+  <tr>
+    <td>5、十大才女</td>
+    <td></td>
+    <td>班昭、蔡文姬、谢道韫、薛涛、鱼玄机、花蕊夫人、李清照、朱淑真、黄道婆、秋瑾</td>
+  </tr>
+  <tr>
+    <td>6、十大宰相</td>
+    <td></td>
+    <td>管仲、李斯、萧何、曹操、诸葛亮、狄仁杰、赵普、耶律楚材、张居正、</td>
+  </tr>
+  <tr>
+    <td>7、十大商人</td>
+    <td></td>
+    <td>范蠡、吕不韦、桑弘羊、张骞、盛宣怀、胡雪岩、刘鸿生、孔祥熙、徐润、章乃器</td>
+  </tr>
+  <tr>
+    <td>8、十大名臣</td>
+    <td></td>
+    <td>周公、商鞅、房玄龄、魏征、王安石、刘晏、于成龙、海瑞、曾国藩、李鸿章</td>
+  </tr>
+  <tr>
+    <td>9、十大昏君</td>
+    <td></td>
+    <td>商纣王、胡亥、汉献帝、司马衷、唐高宗、明思宗、石敬瑭、隋炀帝、宋徵宗、明武宗</td>
+  </tr>
+  <tr>
+    <td>10、十大豪杰</td>
+    <td></td>
+    <td>陈胜、班超、李密、窦建德、黄巢、辛弃疾、李自成、王聪儿、洪秀全、石达开</td>
+  </tr>
+  <tr>
+    <td>11、十大宦官</td>
+    <td></td>
+    <td>赵高、石显、和士开、高力士、鱼朝恩、童贯、郑和、刘瑾、魏忠贤、李莲英</td>
+  </tr>
+  <tr>
+    <td>12、十大高僧</td>
+    <td></td>
+    <td>法显、鸠摩罗什、真谛、智凯、玄奘、义净、惠能、法藏、一行、鉴真</td>
+  </tr>
+  <tr>
+    <td>13、十大美女</td>
+    <td></td>
+    <td>妲已、褒姒、西施、貂蝉、王昭君、赵飞燕、徐艳华、上官婉儿、杨贵妃、萧观音</td>
+  </tr>
+  <tr>
+    <td>14、十大科学家</td>
+    <td></td>
+    <td>张衡、张仲景、祖冲之、郦道元、孙思邈、沈括、郭守敬、李时珍、徐光启、宋应星</td>
+  </tr>
+  <tr>
+    <td>15、十大思想家</td>
+    <td></td>
+    <td>老子、孔子、孟子、王充、王守仁、李贽、顾炎武、龚自珍、魏源、康有为</td>
+  </tr>
+  <tr>
+    <td>16、十大才子</td>
+    <td></td>
+    <td>司马相如、谢灵运、李贺、李商隐、刘禹锡、唐伯虎、李渔、纪晓岚、张之洞、苏曼殊</td>
+  </tr>
+  <tr>
+    <td>17、十大名妓</td>
+    <td></td>
+    <td>绿珠、苏小小、李师师、如是、董小宛、陈圆圆、顾媚、李香君、小凤仙、赛金花</td>
+  </tr>
+  <tr>
+    <td>18、十大将帅</td>
+    <td></td>
+    <td>孙武、白起、王翦、韩信、郭子仪、项羽、岳飞、徐达、戚继光、左宗棠</td>
+  </tr>
+  <tr>
+    <td>19、十大文豪</td>
+    <td></td>
+    <td>屈原、司马迁、曹植、李白、杜甫、白居易、苏轼、陆游、汤显祖、曹雪芹</td>
+  </tr>
+  <tr>
+    <td>20、十大谋略家</td>
+    <td></td>
+    <td>姜尚、孙膑、苏秦、张仪、范睢、张良、王允、郭嘉、刘基、范文程</td>
+  </tr>
+  <tr>
+    <td>1、十大明君</td>
+    <td></td>
+    <td>秦始皇、刘邦、李世民、武则天、赵匡胤、朱元璋、成吉思汗、康熙、雍正、乾隆</td>
+  </tr>
+  <tr>
+    <td>千古一帝</td>
+    <td>秦始皇</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>布衣皇上</td>
+    <td>刘邦</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>盛世明君</td>
+    <td>李世民</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>风流女皇</td>
+    <td>武则天</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>士兵皇帝</td>
+    <td>赵匡胤</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>大明太祖</td>
+    <td>朱元璋</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>一代天骄</td>
+    <td>成吉思汗</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>开创盛世</td>
+    <td>康熙</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>一代明君</td>
+    <td>雍正</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>风流倜傥</td>
+    <td>乾隆</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>2、十大后妃</td>
+    <td></td>
+    <td>吕雉、王政君、贾南风、冯氏、伽罗、张氏、萧燕燕、刘娥、布木布泰、慈禧</td>
+  </tr>
+  <tr>
+    <td>野鸟皇后</td>
+    <td>吕雉</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>挽歌圣手</td>
+    <td>王政君</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>魂断金城</td>
+    <td>贾南风</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>太和改制</td>
+    <td>冯氏</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>独孤奇妒</td>
+    <td>伽罗</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>乱世惊鸿</td>
+    <td>张氏</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>铁马红颜</td>
+    <td>萧燕燕</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>垂帘风流</td>
+    <td>刘娥</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>草原之花</td>
+    <td>布木布泰</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>铁血太后</td>
+    <td>慈禧</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>3、十大奸臣</td>
+    <td></td>
+    <td>伯喜、刘濞、尔朱荣、杨国忠、蔡京、张邦昌、阿合马、严嵩、鳌拜、和绅</td>
+  </tr>
+  <tr>
+    <td>谮忠祸吴</td>
+    <td>伯喜</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>朝廷叛逆</td>
+    <td>刘濞</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>弑君跋扈</td>
+    <td>尔朱荣</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>盛唐大奸</td>
+    <td>杨国忠</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>三起三落</td>
+    <td>蔡京</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>一代国贼</td>
+    <td>张邦昌</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>生财有道</td>
+    <td>阿合马</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>马屁天王</td>
+    <td>严嵩</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>跋扈第一</td>
+    <td>鳌拜</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>第一贪官</td>
+    <td>和绅</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>4、十大阴谋家</td>
+    <td></td>
+    <td>王莽、董卓、司马昭、李林甫、安禄山、朱温、秦桧、贾似道、吴三桂、袁世凯</td>
+  </tr>
+  <tr>
+    <td>伪忠伪孝</td>
+    <td>王莽</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>豪强独夫</td>
+    <td>董卓</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>虚伪狡诈</td>
+    <td>司马昭</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>口蜜腹剑</td>
+    <td>李林甫</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>外憨内奸</td>
+    <td>安禄山</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>反复无常</td>
+    <td>朱温</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>汉奸鼻祖</td>
+    <td>秦桧</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>湖上平章</td>
+    <td>贾似道</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>红颜一怒</td>
+    <td>吴三桂</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>窃国大盗</td>
+    <td>袁世凯</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>5、十大才女</td>
+    <td></td>
+    <td>班昭、蔡文姬、谢道韫、薛涛、鱼玄机、花蕊夫人、李清照、朱淑真、黄道婆、秋瑾</td>
+  </tr>
+  <tr>
+    <td>史笔千秋</td>
+    <td>班昭</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>名垂千古</td>
+    <td>蔡文姬</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>凤仪高迈</td>
+    <td>谢道韫</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>雁过留声</td>
+    <td>薛涛</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>道观哀艳</td>
+    <td>鱼玄机</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>出水芙蓉</td>
+    <td>花蕊夫人</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>词国俊杰</td>
+    <td>李清照</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>断肠英女</td>
+    <td>朱淑真</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>纺织大师</td>
+    <td>黄道婆</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>巾帼英雄</td>
+    <td>秋瑾</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>6、十大宰相</td>
+    <td></td>
+    <td>管仲、李斯、萧何、曹操、诸葛亮、狄仁杰、赵普、耶律楚材、张居正、</td>
+  </tr>
+  <tr>
+    <td>成就霸业</td>
+    <td>管仲</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>芝过昭著</td>
+    <td>李斯</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>开国丞相</td>
+    <td>萧何</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>权术之王</td>
+    <td>曹操</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>千古名相</td>
+    <td>诸葛亮</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>知人善任</td>
+    <td>狄仁杰</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>佐定天下</td>
+    <td>赵普</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>北国卧龙</td>
+    <td>耶律楚材</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>独裁良相</td>
+    <td>张居正</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>7、十大商人</td>
+    <td></td>
+    <td>范蠡、吕不韦、桑弘羊、张骞、盛宣怀、胡雪岩、刘鸿生、孔祥熙、徐润、章乃器</td>
+  </tr>
+  <tr>
+    <td>富甲陶朱</td>
+    <td>范蠡</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>营国巨商</td>
+    <td>吕不韦</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>官商大鳄</td>
+    <td>桑弘羊</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>实业巨子</td>
+    <td>张骞</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>商界巨擘</td>
+    <td>盛宣怀</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>第一商人</td>
+    <td>胡雪岩</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>火柴大王</td>
+    <td>刘鸿生</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>家族首富</td>
+    <td>孔祥熙</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>地产大王</td>
+    <td>徐润</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>双栖勇士</td>
+    <td>章乃器</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>8、十大名臣</td>
+    <td></td>
+    <td>周公、商鞅、房玄龄、魏征、王安石、刘晏、于成龙、海瑞、曾国藩、李鸿章</td>
+  </tr>
+  <tr>
+    <td>天下归心</td>
+    <td>周公</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>改革斗士</td>
+    <td>商鞅</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>流芳千古</td>
+    <td>房玄龄</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>千秋镜鉴</td>
+    <td>魏征</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>改革大师</td>
+    <td>王安石</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>治国奇才</td>
+    <td>刘晏</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>第一清官</td>
+    <td>于成龙</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>扶棺谏君</td>
+    <td>海瑞</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>千古完人</td>
+    <td>曾国藩</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>千秋功罪</td>
+    <td>李鸿章</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>9、十大昏君</td>
+    <td></td>
+    <td>商纣王、胡亥、汉献帝、司马衷、唐高宗、明思宗、石敬瑭、隋炀帝、宋徵宗、明武宗</td>
+  </tr>
+  <tr>
+    <td>暴虐之君</td>
+    <td>商纣王</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>亡国之君</td>
+    <td>胡亥</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>傀儡皇帝</td>
+    <td>汉献帝</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>白痴皇帝</td>
+    <td>司马衷</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>名义皇帝</td>
+    <td>唐高宗</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>苦难皇帝</td>
+    <td>明思宗</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>儿皇帝</td>
+    <td>石敬瑭</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>杀兄弑父</td>
+    <td>隋炀帝</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>异国囚徒</td>
+    <td>宋徵宗</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>淫君之首</td>
+    <td>明武宗</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>10、十大豪杰</td>
+    <td></td>
+    <td>陈胜、班超、李密、窦建德、黄巢、辛弃疾、李自成、王聪儿、洪秀全、石达开</td>
+  </tr>
+  <tr>
+    <td>王侯无种</td>
+    <td>陈胜</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>书生使节</td>
+    <td>班超</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>乱世英豪</td>
+    <td>李密</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>北国侠士</td>
+    <td>窦建德</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>冲天太保</td>
+    <td>黄巢</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>飞虎将军</td>
+    <td>辛弃疾</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>乱世闯王</td>
+    <td>李自成</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>女中英雄</td>
+    <td>王聪儿</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>天国之王</td>
+    <td>洪秀全</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>天国骁将</td>
+    <td>石达开</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>11、十大宦官</td>
+    <td></td>
+    <td>赵高、石显、和士开、高力士、鱼朝恩、童贯、郑和、刘瑾、魏忠贤、李莲英</td>
+  </tr>
+  <tr>
+    <td>指鹿为马</td>
+    <td>赵高</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>借刀杀人</td>
+    <td>石显</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>诌媚有术</td>
+    <td>和士开</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>忠诚老奴</td>
+    <td>高力士</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>宦官监军</td>
+    <td>鱼朝恩</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>六贼之首</td>
+    <td>童贯</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>阉国英豪</td>
+    <td>郑和</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>立地皇帝</td>
+    <td>刘瑾</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>宦官第一</td>
+    <td>魏忠贤</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>第一奴才</td>
+    <td>李莲英</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>12、十大高僧</td>
+    <td></td>
+    <td>法显、鸠摩罗什、真谛、智凯、玄奘、义净、惠能、法藏、一行、鉴真</td>
+  </tr>
+  <tr>
+    <td>取经第一</td>
+    <td>法显</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>译经大师</td>
+    <td>鸠摩罗什</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>不幸经僧</td>
+    <td>真谛</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>智者大师</td>
+    <td>智凯</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>饮誉华夏</td>
+    <td>玄奘</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>著名唐僧</td>
+    <td>义净</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>禅宗祖师</td>
+    <td>惠能</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>以法济世</td>
+    <td>法藏</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>丈量地球</td>
+    <td>一行</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>六次东渡</td>
+    <td>鉴真</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>13、十大美女</td>
+    <td></td>
+    <td>妲已、褒姒、西施、貂蝉、王昭君、赵飞燕、徐艳华、上官婉儿、杨贵妃、萧观音</td>
+  </tr>
+  <tr>
+    <td>倾国倾城</td>
+    <td>妲已</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>一笑亡国</td>
+    <td>褒姒</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>绝代佳人</td>
+    <td>西施</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>色情间谋</td>
+    <td>貂蝉</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>千古留名</td>
+    <td>王昭君</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>花中魁首</td>
+    <td>赵飞燕</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>闭月羞花</td>
+    <td>徐艳华</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>多才风雅</td>
+    <td>上官婉儿</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>忠于爱情</td>
+    <td>杨贵妃</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>秀色煞人</td>
+    <td>萧观音</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>14、十大科学家</td>
+    <td></td>
+    <td>张衡、张仲景、祖冲之、郦道元、孙思邈、沈括、郭守敬、李时珍、徐光启、宋应星</td>
+  </tr>
+  <tr>
+    <td>通天知地</td>
+    <td>张衡</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>医家方祖</td>
+    <td>张仲景</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>数学泰斗</td>
+    <td>祖冲之</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>笔注华夏</td>
+    <td>郦道元</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>长寿药王</td>
+    <td>孙思邈</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>科学巨星</td>
+    <td>沈括</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>天文巨子</td>
+    <td>郭守敬</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>华夏神医</td>
+    <td>李时珍</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>中西会通</td>
+    <td>徐光启</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>启蒙先驱</td>
+    <td>宋应星</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>15、十大思想家</td>
+    <td></td>
+    <td>老子、孔子、孟子、王充、王守仁、李贽、顾炎武、龚自珍、魏源、康有为</td>
+  </tr>
+  <tr>
+    <td>道家鼻祖</td>
+    <td>老子</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>百世师表</td>
+    <td>孔子</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>东方亚圣</td>
+    <td>孟子</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>无神先师</td>
+    <td>王充</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>心学大师</td>
+    <td>王守仁</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>传统叛逆</td>
+    <td>李贽</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>经世匹夫</td>
+    <td>顾炎武</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>光耀百世</td>
+    <td>龚自珍</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>放眼世界</td>
+    <td>魏源</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>维新志士</td>
+    <td>康有为</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>16、十大才子</td>
+    <td></td>
+    <td>司马相如、谢灵运、李贺、李商隐、刘禹锡、唐伯虎、李渔、纪晓岚、张之洞、苏曼殊</td>
+  </tr>
+  <tr>
+    <td>盛世文豪</td>
+    <td>司马相如</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>诗名天下</td>
+    <td>谢灵运</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>唐代诗鬼</td>
+    <td>李贺</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>天才浪子</td>
+    <td>李商隐</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>百代文宗</td>
+    <td>刘禹锡</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>一生风流</td>
+    <td>唐伯虎</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>人间大隐</td>
+    <td>李渔</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>第一才子</td>
+    <td>纪晓岚</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>大清奇才</td>
+    <td>张之洞</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>浪漫诗僧</td>
+    <td>苏曼殊</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>17、十大名妓</td>
+    <td></td>
+    <td>绿珠、苏小小、李师师、如是、董小宛、陈圆圆、顾媚、李香君、小凤仙、赛金花</td>
+  </tr>
+  <tr>
+    <td>天生尤物</td>
+    <td>绿珠</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>傲骨持洁</td>
+    <td>苏小小</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>绝代名妓</td>
+    <td>李师师</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>天生尤物</td>
+    <td>如是</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>风尘奇葩</td>
+    <td>董小宛</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>红颜祸水</td>
+    <td>陈圆圆</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>诗禅三味</td>
+    <td>顾媚</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>桃花遗恨</td>
+    <td>李香君</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>千秋侠妓</td>
+    <td>小凤仙</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>花国状元</td>
+    <td>赛金花</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>18、十大将帅</td>
+    <td></td>
+    <td>孙武、白起、王翦、韩信、郭子仪、项羽、岳飞、徐达、戚继光、左宗棠</td>
+  </tr>
+  <tr>
+    <td>兵家鼻祖</td>
+    <td>孙武</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>常胜将军</td>
+    <td>白起</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>统一六国</td>
+    <td>王翦</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>一代兵仙</td>
+    <td>韩信</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>再造唐朝</td>
+    <td>郭子仪</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>悲剧英雄</td>
+    <td>项羽</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>英名长存</td>
+    <td>岳飞</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>开国第一</td>
+    <td>徐达</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>驱逐倭寇</td>
+    <td>戚继光</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>心忧天下</td>
+    <td>左宗棠</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>19、十大文豪</td>
+    <td></td>
+    <td>屈原、司马迁、曹植、李白、杜甫、白居易、苏轼、陆游、汤显祖、曹雪芹</td>
+  </tr>
+  <tr>
+    <td>伟大诗人</td>
+    <td>屈原</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>史家第一</td>
+    <td>司马迁</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>才高八斗</td>
+    <td>曹植</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>冲天大鹏</td>
+    <td>李白</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>诗中圣哲</td>
+    <td>杜甫</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>诗坛领袖</td>
+    <td>白居易</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>文坛全才</td>
+    <td>苏轼</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>驰骋疆场</td>
+    <td>陆游</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>剧作大师</td>
+    <td>汤显祖</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>红楼绝唱</td>
+    <td>曹雪芹</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>20、十大谋略家</td>
+    <td></td>
+    <td>姜尚、孙膑、苏秦、张仪、范睢、张良、王允、郭嘉、刘基、范文程</td>
+  </tr>
+  <tr>
+    <td>谋略始祖</td>
+    <td>姜尚</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>忍辱膑脚</td>
+    <td>孙膑</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>纵横捭阖</td>
+    <td>苏秦</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>强秦弱楚</td>
+    <td>张仪</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>远交近攻</td>
+    <td>范睢</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>一代谋圣</td>
+    <td>张良</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>精计奇谋</td>
+    <td>王允</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>算无遗策</td>
+    <td>郭嘉</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>缔造明朝</td>
+    <td>刘基</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>佐清入关</td>
+    <td>范文程</td>
+    <td></td>
+  </tr>
+</table>
+<div id="container">
+<h3></h3>
+<!--
+<table id="tbrowser">
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />	
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+-->
+<!--
+height="*\w*"
+width="*\w*"
+</p>
+<p>
+-->
+
+
+
+
+</div>
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+</body>
+</html>
+<script language="javascript"> 
+bg_evensssss("tbrowser","#fff","#F5F5F5","#FFFFCC","#FFDDFF");/*#FFFF84*/
+</script>
+
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换：
+\s*<br />\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+\s*</p>\s*
+\s*<p>\s*
+------------------
+</p>
+
+<p>
+4 把第和章两个字去掉
+第(\S*)章
+------------------
+$1
+
+5 正则表达式参考：
+https://www.toutiao.com/i6370960744082571778/
+
+6
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+-->
+
+
+

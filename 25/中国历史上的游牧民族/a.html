@@ -1,0 +1,535 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+  <p align="left"><strong>10</strong><strong>分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真…… </strong></p>
+
+<p>水煮百年&nbsp;2018-08-13 14:09:27</p>
+
+<p><img width="640" height="394" src="a_clip_image001.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+
+<p><strong>匈奴、东胡、突厥、回鹘、蒙古、契丹、女真、鞑靼、鲜卑、羌、党项、乌苏、柔然、哈萨克……</strong></p>
+
+<p>这些游牧民族，你可能甚至不会读～但是它们不停的出现，所以下面的介绍，绝对值得你收藏！</p>
+
+<p><strong>从商周时代开始，匈奴和东胡就存在了，</strong>他们的位置大概是这样的：</p>
+
+<p><img width="640" height="384" src="a_clip_image002.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+
+<p>然后匈奴把东胡干了。情况是这样的：</p>
+
+<p><img width="640" height="384" src="a_clip_image003.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+
+<p>东胡好可怜！由于遭受得意忘形的匈奴的打击，变得分裂，分裂成了两部分，<strong>鲜卑和乌桓：</strong></p>
+
+<p><img width="640" height="384" src="a_clip_image004.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+
+<p>终于，强大的汉王朝来了！结果就成了这样：</p>
+
+<p><img width="640" height="384" src="a_clip_image005.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+
+<p>汉朝时，匈奴分裂成为南匈奴和北匈奴，这就好比南朝鲜和北朝鲜，你把汉朝当美国就行了，南匈奴是汉朝离间来打北匈奴的，俗称匈奴奸：</strong></p>
+
+<p><img width="640" height="384" src="a_clip_image006.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+<p>北匈奴宣传资料：</p>
+
+<p>你每花一文钱买南人的粮食，都会变成敌人射向我们的弓箭！难道你们还想让我们在汉货上花的钱继续制成弓箭射进我们同胞的头颅里面吗？南匈奴那些拿汉人钱的傻逼，你们就是汉朝人养的一条狗！！！！</p>
+
+<p>鲜卑说：</p>
+
+<p>别哔哔了。</p>
+<p><img width="640" height="384" src="a_clip_image007.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+
+<p>鲜卑势力变得异常强大，正是在东汉末年分三国时干的，毕竟中原内乱顾及不了他们，匈奴已经被弄得半死了，乌桓被曹操灭了，鲜卑反倒强大起来。</p>
+
+<p>从晋朝到后来的五胡乱华时期，鲜卑分成了东、北、西三大部落。</p>
+
+<p><img width="640" height="384" src="a_clip_image008.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+
+<p><strong>拓跋鲜卑其实就是北鲜卑。</strong></p>
+
+<p>鲜卑贵族慕容氏在西鲜卑和东鲜卑都很有地位，西鲜卑后来在慕容氏的带领下跑到青海东部安营扎寨<strong>，这就是赫赫有名的吐谷浑</strong>。鲜卑参与了晋朝之后的五胡乱华：</p>
+
+<p><img width="600" height="422" src="a_clip_image009.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+
+<p><strong>在上图中，吐谷浑就是西鲜卑的后裔。</strong></p>
+
+<p><strong>鲜卑拓跋部创立了北魏，</strong>这就是南北朝中长江以北的王朝，北魏一直跟柔然死磕。那也是没办法的事情，柔然原本隶属于鲜卑拓跋部，是拓跋的奴隶，成天干苦力，后来拓跋南迁，小柔然也就闯荡成了大柔然，并跟原来的主人掐起了架。</p>
+
+<p><img width="640" height="384" src="a_clip_image010.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+
+<p><img width="640" height="384" src="a_clip_image011.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+
+<p>在南北朝时期，柔然也有了自己的奴隶，常常对奴隶拳打脚踢。</p>
+
+<p><strong>负责给柔然炼铁的部落，是突厥部落，被唤作“煅奴”</strong>，意思就是打铁的奴隶，十分卑微。当时的情况是这样的：</p>
+
+<p>后来的事情你也知道了，突厥把柔然灭了：</p>
+
+<p><img width="640" height="384" src="a_clip_image012.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+
+<p>注意，这个室韦不是突然出现的，有人认为室韦的发音其实就是鲜卑，鲜卑-森被-室韦。如果的确如此，那么室韦显然就是鲜卑后裔了。因此多数观点认为，室韦主体就是鲜卑，本源一定是东胡。</p>
+
+<p>再说靺鞨，靺鞨其实一直也都存在，一直在中国东北生存。<strong>周代、秦朝、西汉时，被唤作肃慎，东汉到魏晋谓之挹娄，南北朝称勿吉，隋唐时叫靺鞨</strong>。</p>
+
+<p>因为大突厥汗国分裂了，这得益于隋朝文臣的离间计，总之，分裂了，分裂成了东西两部分，就是东突厥和西突厥。</p>
+
+<p>情况是这样的：</p>
+
+<p><img width="640" height="384" src="a_clip_image013.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+
+<p>原本突厥可以很牛的。可惜南面的隋朝灭亡了以后，迎来的是唐朝。再想南下捞一把，是不可能了。反而被唐朝一窝端，被一窝端的，还有高句丽等等。</p>
+
+<p>于是情况变成了这样：</p>
+
+<p><img width="640" height="384" src="a_clip_image014.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+
+<p>然而突厥后来复国了，不过这次复国，突厥内部的部落已经有很多势力。</p>
+
+<p><img width="640" height="384" src="a_clip_image015.jpg" alt="10分钟读懂：匈奴、鲜卑、回鹘、契丹、党项、女真……" /></p>
+
+<p>为了遏制后突的嚣张气焰，在唐帝国主义伟大领袖玄宗李隆基同志的亲切关怀下，回纥（后来叫回鹘）发誓要跟李老板混，并在李老板的大力支持下把后突给干死了，建立了回鹘汗国。</p>
+<img src="1.jpeg" />
+<p>到了唐末，事情就坏了。</p>
+
+<p>想想吧，想想李存勖他爹临死前跟他说过的话。在五代十国之前，契丹已经崛起了。而回鹘，则被撵到了西边。</p>
+<img src="2.jpeg" />
+<p>被撵到西边避难的回鹘，意志力坚强的回鹘，怎么可能在这种地方就放弃呢？</p>
+
+<p>经过一系列的斗争，回鹘分成了三大部：</p>
+<img src="3.jpeg" />
+<p>注意，高昌回鹘就是西州回鹘，西州回鹘就是畏兀儿，畏兀儿就是维吾尔。</p>
+
+<p>为什么？</p>
+
+<p>回鹘--畏护--畏兀儿--维吾尔</p>
+
+<p>发音都一样，只是写法不一样。</p>
+
+<p>好了，我们知道，契丹继续壮大，建立了辽朝。</p>
+
+<p>与此同时，南面是宋朝。</p>
+
+<p>请回顾上一幅图，注意中国东北角那一坨粉红色的可爱印记，是的，那是女真，人家原来是黑水靺鞨，靺鞨的祖先是肃慎，是挹娄，是勿吉。</p>
+
+<p>他们没死。</p>
+
+<p>他们还活着。</p>
+
+<p>好顽强！</p>
+
+<p>还特别能生。</p>
+
+<p>最终，他们和契丹、宋朝撕逼，建立了金朝。</p>
+<img src="4.jpeg" />
+<p>然而……</p>
+
+<p>曾经，突厥征伐烧杀的时候，作为柔然底下的两个小部落被灭族了，他们分别是乞颜部落和捏古思部落。他们只剩下两男两女，跑到了远方定居。但就是这几个人，在外兴安岭以南休养生息，逐渐壮大，被称为蒙兀室韦。</p>
+
+<p>回想一下吧！</p>
+
+<p>回想一下回鹘崛起时的画面：</p>
+<img src="5.jpeg" />
+<p>上图中的红点，代表蒙兀室韦，是室韦的一支，也就是说，他们的祖先，往上推是鲜卑，再往上推是东胡。</p>
+
+<p>接下来，蒙兀室韦干了啥事儿，大家都知道了。</p>
+
+<p>蒙兀，就是蒙古。</p>
+<img src="6.jpeg" />
+<p>室韦在突厥语中发音就叫鞑靼。</p>
+
+<p>蒙兀室韦，又称黑鞑靼。</p>
+
+<p>这不是乱讲，因为是宋朝到辽朝期间用来黑他们的。</p>
+
+<p>的确很野蛮。</p>
+
+<p>所以汉化程度高的，就被唤作白鞑靼或熟鞑靼，汉化程度低的，就叫黑鞑靼或生鞑靼。</p>
+
+<p>蒙兀室韦的领袖，也就是铁木真他爷爷，建立了蒙兀国，蒙兀国就是蒙古帝国的雏形。</p>
+
+<p>蒙元时期，南方百姓是没地位的。</p>
+
+<p>可以这么看：</p>
+<img src="7.jpeg" />
+<p>所以没法活了的百姓闹了革命。</p>
+
+<p>注意上图中那个存在于濠州的绿点。</p>
+
+<p>他建立了明朝，明朝把蒙古撵了回去。</p>
+
+<p>情况是这样的：</p>
+<img src="8.jpeg" />
+<p>后期的北蒙，分裂为鞑靼和瓦剌。</p>
+<img src="9.jpeg" />
+<p>明初揍鞑靼，导致瓦剌有发展机会。</p>
+
+<p>瓦剌发达后，一度南下跟明朝干仗，发生了驰名历史的土木之变。</p>
+
+<p>瓦剌后来分裂成了四大部：</p>
+
+<p>杜尔伯特（绰罗斯氏）</p>
+
+<p>准噶尔（绰罗斯氏）</p>
+
+<p>和硕特（成吉思汗二弟合撒儿之后）</p>
+
+<p>土尔扈特</p>
+
+<p>准噶尔强暴了其他部落，霸占了天山南北。</p>
+
+<p>与此同时，女真再度崛起，建立后金。</p>
+
+<p>入主中原，名为大清。</p>
+<img src="10.jpeg" />
+<p>（本图源自网络）</p>
+
+<p>至于说哈萨克，那是蒙古帝国四大汗国（窝阔台汗国、察合台汗国、金帐汗国、伊尔汗国）中的金帐汗国分离出来的。哈萨克汗国后来分裂成了大玉茲、中玉茲、小玉茲，一直受准噶尔的欺负。准噶尔后来被清朝灭了，但此前由于太委屈，小玉茲和中玉茲都加入了俄国阵营，只有大玉茲加入了清朝。</p>
+
+<p>清和俄也撕逼，这个大家都知道。</p>
+
+<p>俄罗斯，原本是东欧地盘上的种族，一开始中原王国只有元朝跟它接触过，被叫做“斡罗思”，其实就是俄罗斯。</p>
+
+<p>它扩张的情况是这样的：</p>
+<img src="11.jpeg" />
+<img src="12.jpeg" />
+<p>来源公众号历史教师王汉周 lishi139</p>
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换
+\s*</p>
+
+<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+
+
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+\s*</p>\s*
+\s*<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+
+4 把第和章两个字去掉
+第(\S*)章
+------------------
+$1
+_____________________________________________________________________________________
+
+7 正则表达式参考：
+https://www.toutiao.com/i6370960744082571778/
+_____________________________________________________________________________________
+
+8
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+9 将标注序号更改为上标，红色，需一个个替换，英文html中有[1]
+(\[\d\])
+------------------
+<sup>$1</sup>
+_____________________________________________________________________________________
+10 替换章不是以1-9。?！…”“结尾的段落
+([^1-90。?！…”：？“章])</p>
+<p>
+------------------
+$1
+-->
+
+

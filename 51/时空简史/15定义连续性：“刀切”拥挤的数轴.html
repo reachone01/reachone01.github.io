@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>15定义连续性：“刀切”拥挤的数轴</h4>
+
+<p>“芝诺悖论”引发的关于连续性的哲学问题中，柏拉图主义认为，数学上的连续性是精神的实在，而经验是对精神实在的认识。亚里士多德认为，当两个互相接触的物体各自的端点成为两者的共同端点时，就会出现连续的连接，连续统（直线）可以被分割，但不能被分割尽。这就是说，不能把线段无限地分割到最终变成“点集状态下”。他不承认连续直线由无穷多点组成的说法，从根本上反对“点组成连续统”的观点，认为一个真连续统没有点！</p>
+
+<p>芝诺悖论涉及“点”的语义学表达：一个点有没有体积？如果体积是零，加起来岂不还是零？如果体积不是零，无穷的点加起来体积应该是无限大的？亚里士多德可能已经看到这个困难，所以坚决反对直线（或物体）由无穷多个点组成的看法。但是，正如伽利略指出的那样，由有穷的不可分的东西组成的东西，又怎能连续变化呢？</p>
+
+<p>我们感官所感觉的运动乃是某种个别的，不可分割和无间断的东西，将运动分解为各个元素，其结果足以破坏我们决心保持的连续性。但是，为了与数类比的目的，直线必须被看作无限小的静止位置的次第相续，这恰恰与我们所想象的与静止完全相反的那种运动观念相冲突。这就是芝诺论证振振有词的理由。</p>
+
+<p>一般来说，直觉上人们认为“连续性”的感觉和概念是不言而喻的，但数学上的“连续性”问题却要复杂得多。芝诺悖论导致了连续性的问题，而连续性与无理数的奥秘相关，与无穷大及无限细分密不可分。芝诺实际上想要表明连续性是不可能的。芝诺既不同意“实无穷”，也不认可“潜无穷”，这是他与亚里士多德的根本区别。</p>
+
+<p>如果没有发现毕达哥拉斯定理，就不会发现无理数。无理数的发现在数学史上是极其重要的。在数学上，无理数就像芝诺的二分悖论一样，是试图表达和解释数轴上连续性的一个结果。二分悖论就是把一个连续的物理过程分解成一个无穷多步的离散过程。所以，二分悖论可以看成是历史上第一次企图在数学上表示连续性。无理数是有理数轴在技术上不连续的原因。无理数代表有理数轴上的缝隙或洞眼。通过这些缝隙，无穷大没完没了地闯进并搅乱了整洁的古希腊数学。</p>
+
+<p>甚至直到18世纪，欧洲最好的数学家都还在坚持古希腊的选择，拒绝无理数。直到19世纪后期，人们发现，揭示无穷大或无穷小最直观的方法可以使用古希腊的一项数学遗产：数轴。德国数学家戴德金提出了无理数的一个严格理论或定义，而对实数在数轴上地位的最全面充分的处理来自康托尔。</p>
+
+<p>人类对数的认识，经历了自然数、整数、分数、有理数、无理数和实数等阶段，这些数在数轴上都可以体现出来。数轴是规定了唯一的原点、唯一的正方向和唯一的单位长度的直线。所有的实数都可以用数轴上的点来表示，也可以用数轴来比较两个实数的大小。实数（R）包括自然数、整数、分数、有理数、无理数。</p>
+
+<p>通过数轴可以把数和几何形状看成差不多一样的东西。数轴是一个威力无穷的工具。同时，它也是一个连续体，即一个结构或分布是连续的不可分割的实体和物体的理想连续统。通过数轴，可以完美体现芝诺悖论所要表达的内容。数学实体和实际物理空间之间的关系就是离散和连续的关系。</p>
+
+<p>每个数对应一个点。数轴不仅包含所有的点，而且也决定了它们的顺序。所以，数完全可以由它们在数轴上相对其他数的位置来定义。根据定义，数轴是可以无限延伸的，是无穷密的，即任意两个点之间总是存在第三个点，它们都是相继排列或有序的。人们常说：“自然数无穷多，实数轴无限长。”</p>
+
+<p>可以想象，尽管有理数稠密，但它们还是在实数轴上留下了“空隙”。也就是说，有些点不对应于任何有理数！数轴上0到1的有限区间不可想象地拥挤，非常稠密。这里不仅有无穷多个分数的无穷序列，还有无穷多个无理数。每个无理数只有用无限不循环的十进制数序列来表示。</p>
+
+<p>1872年，德国数学家戴德金在他的划时代论文《连续性与无理数》中阐述了他的思考：“直线上的点的个体比之有理数域中的数的个体要丰富无限倍。所以，想用算术的方法探求直线具有的各种性质，有理数域是不够用的。如果数域需要具有如直线那样的完备性，或者说具有连续性，则绝对需要创造出一种新数以改进此工具。”戴德金所指的新数就是无理数。有了无理数就可以填充数轴上的空隙。戴德金写道：“若把直线看作具有完备性、无空隙、连续性，则有理数域和直线比较起来，是有很多空隙的，也是不完备和不连续的。那么，直线的连续性体现在什么地方呢？我思考的结果是：我们已经注意到了直线上的每一点都将直线划分为两个部分，其中一部分的所有点都在另一部分所有点的左边。我发现，连续性的精髓在其逆命题中，就是说，如果直线上所有的点分成两组，使一组中的每一点都在它组中每点的左边，那么，存在唯一的点，它将线上的一切点划分为这样两组，也就把直线切割成两个部分。”</p>
+
+<p>是什么东西使数轴具有连续性，数轴连续性的真正原因是组成它的点的无穷致密性，即在数轴上的任意两个点之间，总能找到第三个点。而戴德金通过反向思维，没有把连续性的焦点放在无穷致密性上，而是放在相反的性质上，可分性。这就是著名的戴德金分割理论。</p>
+
+<p>设想用一把锋利无比的刀，猛地砍向数轴，会发生什么情况呢？这一刀应当砍在数轴上的某一点上，否则就会砍在空隙里。如果是这样，数轴还能叫无缝连接的吗？如此细的数轴被斩为两截，问题是：数轴上的切割点在左边还是右边呢？我们只能说，不在左边，就在右边。这样一想，数轴的连续性就归结为一个直观而简单的事实：不论从什么地方切割，切割的地方总有一个点。</p>
+
+<p>“戴德金分割”是说，有理数的一个分割确定一个实数。如果分割不产生空隙，这个实数也许是有理数；如果有空隙，也许是无理数。这样问题就很简单，把有理数之间的缝隙用无理数都填上，数轴就连续了！说白了，实数就是有理数的分割。从某种意义上说，戴德金的实数是独立于任何空间和时间直觉的人类智力的产物。</p>
+
+<p>无理数是真正的“连续性的奥秘”，对数轴进行分割有助于定义无理数。每个有理数都对应一个分割，但不是每个分割都对应一个有理数。戴德金从数轴被无理数划分成的两个集合的性质出发，清楚地建立了无理数的定义。</p>
+
+<p>戴德金分割完全可以用有理数来定义无理数。这是一个百分之百严格演绎的实数理论。这个定义，用自然语言来说，让一个无理数是一个分割对应的点的值。这个分割把数轴分成两个完备的集合。正是这个定义建立了连续统，即所有实数的集合，并把有理数轴变成了实数轴。对于传统数学家来说，无理数的问题涉及诸如线、面和体之类的几何量。而戴德金的全部工作是摆脱几何直觉，使分析完全基于算术。戴德金肯定地认为，数不是由时间和空间的感觉得来，而是“一种纯粹思维规律的直接产物”。有了数，我们才有时间和空间的精确概念。戴德金说：“对我来说，分析算术化更优美的地方是，人类不需要任何可测量的概念，仅仅通过简单的思维步骤的有限系统，就能先见之明地造出纯粹连续的数域。”</p>
+
+<p>在数学史上，1872年是重要的一年，三位德国伟大的数学家，戴德金、康托尔和魏尔斯特拉斯不约而同地提出了实数理论。实数理论的核心问题，就是怎样利用有理数概念去定义无理数的问题，从而完整地解决连续、无限的基本问题。</p>
+
+
+
+<p style='float:right;'>本页共18段，2875个字符，8574 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

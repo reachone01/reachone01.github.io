@@ -1,0 +1,419 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:100%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>﻿卫士揭秘第三次庐山会议上毛泽东与林彪的激烈斗争</h4>
+
+<p>1970年，意义非凡的第三次庐山会议，围绕是否设立国家主席的问题，展开了一场激烈斗争；</p>
+
+<p>作为会议保卫工作的主要负责人之一，他从一个特殊的视角，带我们回顾这次不寻常的会议，并细细体味那些置身其中的高层领袖无暇关顾的细节……</p>
+
+<p>1</p>
+
+<p>林彪批准在庐山修建飞机场，毛泽东知道后什么也没说</p>
+
+<p>当中共中央确定九届二中全会的会期和地点后，汪东兴即召集中央办公厅的有关部门开会，布置会务事项，主要是两大块：一是秘书工作；一是警卫和服务工作。</p>
+
+<p>在“文革”前和“文革”初期，中央办公厅警卫局和中央警卫团属两个不同的建制，警卫局属中央办公厅，同时也是公安部的九局；中央警卫团则属总参建制。</p>
+
+<p>1969年10月，经中央批准两单位正式合并为中央办公厅警卫处，中央办公厅的各局也都改称了处。这样一来，汪东兴成为警卫处的党委书记、处长，同时是中央警卫团的最高首长，但他始终没有挂过中央警卫团的团长或政委的头衔；原来警卫处的副处长都成了警卫团的副团长或副政委；原来警卫团的团长、政委、副团长或副政委，亦成为警卫处的副处长，以至警卫处除处长汪东兴外，有16位副处长。</p>
+
+<p>机构变动后，原警卫局的警卫一、二处，合并为警卫值班室，下设一科，即中南海科；二科，即钓鱼台科。邬吉成的头衔多了起来，他是警卫处的副处长，警卫团的副团长，警卫值班室的副主任。</p>
+
+<p>在7月2日的会议上，汪东兴对九届二中全会的警卫和服务工作进行了细致部署，并特别嘱咐说：到江西后，所有事务只与江西省军区联系，而不要向福州军区打招呼，保卫会议所动用的部队，也只限制在江西省军区内。</p>
+
+<p>会务工作部署完毕，汪东兴就随毛泽东，先期离开北京前往南方。在北京具体组织已经开始的会议会务前期准备工作的，是中共中央办公厅的副主任王良恩和中办警卫处副处长、中央警卫团的政委杨德中。</p>
+
+<p>汪东兴曾在会前上了一趟庐山，检查打前站的工作情况。</p>
+
+<p>在准备安排毛泽东入住的庐林一号，他发现上边的山顶正轰隆轰隆地炸石头。汪东兴问和他一起上山的江西省军区政委、省革命委员会主任程世清：“这是在搞什么？”</p>
+
+<p>程世清说是在修飞机场。“怎么能在这里修飞机场？”汪东兴感到意外。“这块地方大，飞机起降比较安全。”“你们在这里修飞机场，是经过哪里批准的？”汪东兴觉得，这么大的事，他不该事先一点消息都没得到。</p>
+
+<p>“是军委批准的。”程世清答。汪东兴马上追问：“你是什么时间接到的命令？”“前天刚收到。”</p>
+
+<p>汪东兴到施工现场看了一下，见工程已完成了过半。他对程世清说：“这个机场就在毛主席的住所上面，这样会影响毛主席休息和办公。”</p>
+
+<p>汪东兴将此事向毛泽东作了汇报。毛泽东问修机场的命令是谁下的，汪东兴说他也不清楚。“你打电话问问总理，他知道不知道。”毛泽东吩咐。</p>
+
+<p>周恩来也是在接到汪东兴的询问时，才知道修机场一事。他马上追问总参谋长黄永胜。黄永胜说到庐山开会有许多老同志，坐汽车走那么长时间盘山公路不行，乘飞机又快又安全，空军就准备了几架直升机，所以要修个小停机坪，并说这件事报告了林彪。</p>
+
+<p>问明情况，周恩来打电话告诉汪东兴，修飞机场一事，是林彪批准的。汪东兴随即转报了毛泽东，毛泽东听后点了点头，什么也没说。</p>
+
+<p>“九·一三事件”后，有把修庐山飞机场和林彪篡党夺权阴谋相联系的说法。对此，邬吉成颇不以为然：“开九届二中全会时，我到那个机场看过，就那么一点点大。修了以后谁都知道，也不是什么秘密工程。我推想修机场大概有两个作用：一个是为了传送个紧急文件；一个是为防备万一有什么紧急情况，如老同志突发病症，需要抢救什么的。”</p>
+
+<p>2</p>
+
+<p>江青让他下山了解主席的安全保卫情况，其实主席早已到了庐山水库游泳</p>
+
+<p>林彪上庐山开会，途中的警卫工作中央办公厅警卫部门没有具体管，他们只负责安排了其他中央政治局成员的行程。参加会议的中央政治局委员分为五个组，于8月19日在北京的西郊机场登机。</p>
+
+<p>周恩来、李先念、余秋里和中央办公厅副主任王良恩是第一组；朱德、叶剑英和陈伯达是第二组；董必武、康生和李作鹏是第三组；江青、张春桥和姚文元是第四组；第五组的吴法宪、邱会作，也是在同一天离京的。</p>
+
+<p>留在北京没有走的政治局委员有黄永胜、纪登奎，分别负责主持军委和中央政府的工作。他们是在毛泽东写了《我的一点意见》，点名批判陈伯达后，才和李德生、李先念换班上山的；谢富治则因病请了假始终没有上庐山。</p>
+
+<p>由于九江的飞机场比较小，像伊尔-14、子爵号这样的当时算是大型的飞机，无法在那里降落，所以乘机赴会的政治局委员们，都先到达安徽省的安庆机场，换乘安-24型小飞机，再前往九江机场。负责周恩来警卫的杨德中，把周恩来护送上了庐山后，随即返回北京，主持中央办公厅的工作。</p>
+
+<p>第四小组的人都住在钓鱼台，故而邬吉成是随第四小组乘机到的九江。江青上庐山后，住的是过去蒋介石和宋美龄住过的美庐。毛泽东在第一、第二次庐山会议期间，都住在这里。</p>
+
+<p>她刚安顿下来，就问邬吉成：“主席上山了没有？”邬吉成是和她一同上的山，毛泽东的行动不掌握，就回答说：“还没有听到主席已经上山的消息。”江青吩咐说：“那你现在就乘汽车下山到九江，找吴法宪了解主席什么时候上山，要特别注意有没有安全问题。”</p>
+
+<p>邬吉成当即乘车下山，到九江宾馆找到吴法宪。吴法宪当时正在吃西瓜，说：“来，来，来，你也一块儿吃。”邬吉成说：“我哪有你那么逍遥，吴司令。江青同志让我来询问毛主席的行踪。”</p>
+
+<p>吴法宪先是告诉他说：“主席已经上山了，安全没有问题。”随后又说了一声：“我也不知道。”邬吉成立即又折回山上，与警卫值班室联系，那边说：“你下山的时候，主席已经在庐山水库游泳啦。”</p>
+
+<p>因为毛泽东的安全警卫，是汪东兴直接领导，中央警卫团的团长张耀祠具体负责，一般没有交代，别人都不过问。但邬吉成负责着江青等人的警卫，江青吩咐的事情，他不能不办理，结果瞎折腾了一通。</p>
+
+<p>3</p>
+
+<p>陈伯达长叹一声：“上庐山，我这恐怕是最后一次喽。”</p>
+
+<p>在8月23日下午九届二中全会开幕式上，林彪突然抢先发言，为设国家主席造势；在当晚周恩来主持的各大区召集人会议上，吴法宪的各组听林彪讲话录音、展开讨论提议得到附和，改变了会议的议程；24日，陈伯达要求打印和分发马克思、列宁、毛泽东论天才的语录；部分上当受骗的中央委员和候补中央委员，联名给毛泽东、林彪写信，拥护毛泽东当国家主席；25日，产生更为严重影响的全会第六号简报（华北组二号简报）印发，毛泽东开始反击，制止对林彪讲话的讨论，停发六号简报，要求吴法宪等作检查，写出《我的一点意见》，点名批评陈伯达。</p>
+
+<p>上述后来众所周知的会议内情，在当时，甚至是邬吉成这样负责核心警卫的人，都未能及时知晓。然而作为一个多次参与党的会议保卫工作的负责干部，邬吉成还是可以凭借蛛丝马迹，感觉到几分反常。</p>
+
+<p>他记得开幕的那天下午，会议进行的时间不长。因为林彪的突然发言，占去了一个半小时，打乱了原定的议程，使毛泽东不悦。原来的两位主要报告人周恩来、康生，都以有材料下发，大家可以看材料的寥寥数语，把报告给省略了。五常委从南侧小门出来时，守候在那里的邬吉成、刘兰荪，看见毛泽东拉着脸，好像不高兴的样子。</p>
+
+<p>接着，是在毛泽东宣布停止开会期间，周恩来寓所分外“热闹”。周恩来住的编号为“9”的别墅，最初的拥有者是美国传教士苏曼，40年代中期，美国总统特使马歇尔，为“调解”国共两党冲突，在蒋介石、周恩来之间穿梭，曾“八上庐山”，都是住的这座别墅。</p>
+
+<p>在那两天的下午和晚上，周恩来都在自己住的别墅小会议室召开政治局会议。每次都开得时间挺长，要求严格警卫，谁也不让进，显得有点紧张。邬吉成后来才知道，那是在小范围批评陈伯达。</p>
+
+<p>每当9号别墅的会议结束，周恩来必去庐林一号毛泽东的住所。庐山别名云雾山，在七八月间，傍晚以后到次日上午10点，山腰之上多被大雾笼罩，一两米开外就不见路径，难辨东西，能见度极低。从9号别墅到庐林一号，大约有三里路的样子，周恩来每次都是乘车往返，为了安全行驶，李钊、邬吉成只好派人手提马灯，在汽车的前面引路。还有一次夜间11点多，毛泽东要请叶剑英到他那里去，也逢云雾弥漫。这次就是派刘兰荪等同志手提马灯，在轿车前边领的路。在毛泽东《我的一点意见》发表之后，对陈伯达的批评转成批判。再开大会时，原先主席台上常委的席位，从五位变成了四位。这个明显的变化，在会场负责警卫的干部们一下子就发现了。而就在邬吉成内心感觉惊异并揣度因由之际，中央办公厅的副主任王良恩向他打招呼说：“让你们的警卫，多注意一下陈伯达，别出什么事情。他的情况要多汇报。”</p>
+
+<p>邬吉成问：“怎么啦，有什么情况吗？”他想了解更多一点信息，但王良恩并没有更明确的透露：“情况嘛，有些复杂，总之你们提高警惕就是啦。”</p>
+
+<p>然而，仅从王良恩这个看似没有超出一般警卫的嘱咐中，邬吉成已能体味出陈伯达肯定是有点问题了。但当时的他还想象不到，陈伯达已经从政治顶点一跌到底，他只是意识到对陈伯达的行止要比以往更多加留意。</p>
+
+<p>他随即和负责陈伯达警卫的孙凤山打了招呼：“对陈伯达跟紧点，别出问题。”而他自己有时看见陈伯达独自一人转悠时，也要随之跟着走一段。</p>
+
+<p>此时此刻，邬吉成发现陈伯达不再对此发脾气了，以往他总说他是小小老百姓，不需要警卫跟着；而且这时他的情绪神态，和刚上山时有很大差异，隐隐约约地露出几分消沉和颓丧。</p>
+
+<p>有一次，陈伯达散步去了含鄱口，孙凤山在他身边跟随。走到含鄱亭，孙凤山听陈伯达长叹一声，像是对他，也像是自言自语地说：“上庐山，我这恐怕是最后一次喽。”当时孙凤山还没听出他话中有话，直到会议后期陈伯达挨批在庐山已经不是秘密，大家才想到陈伯达那天的叹息，并非即兴为之，而是含有更深意味。</p>
+
+<p>4</p>
+
+<p>汪东兴深有体会，当毛泽东用你的职务称呼你的时候，情况就有些不妙了</p>
+
+<p>更让邬吉成惊异的，是在这次会议上，他的老上级汪东兴也因“受蒙蔽”而犯了错误。</p>
+
+<p>当吴法宪关于放林彪讲话录音、组织小组讨论的提议被采纳后，汪东兴参加了华北小组的讨论。陈伯达正好也来到这个小组，他做了极富煽动性的发言，配合林彪集团鼓吹“天才论”，以实现在修宪中恢复设立国家主席的目标。</p>
+
+<p>陈伯达的蛊惑发言，把小组里绝大多数人的激愤挑了起来。特别是他“有的反革命分子听说毛主席不当国家主席，欢喜得跳起来”一语，加上他手舞足蹈的表演，使汪东兴的热血也沸腾了起来。</p>
+
+<p>汪东兴随之表态拥护林彪的讲话，还说：“中央办公厅机关和八三四一部队讨论修改宪法时的意见，热烈希望毛主席当国家主席，林副主席当国家副主席。”</p>
+
+<p>早在第三次庐山会议准备时期，毛泽东就多次谈到，不主张设立国家主席，自己也不当这个主席。有些相关的谈话，还是让汪东兴向其他中央负责同志传达的。</p>
+
+<p>可林彪的讲话，陈伯达的煽动，用汪东兴自己的话说，是“没有识破他的阴谋，凭着自己朴素的阶级感情，一听说有人反对毛主席，反对毛泽东思想，我就火冒三丈被他煽动起来了”。</p>
+
+<p>偏偏这些话都被编进了全会的第六号简报，而且还“把别人发言的内容与我发言的内容混在一起，以我的名义刊登了出来”，汪东兴的回忆说这些文字在刊发前，没有拿给他最后过目。</p>
+
+<p>这份简报毛泽东马上就看到了，他立即把汪东兴召了去。“看到六号简报了吗？”毛泽东见面就问。“刚看到。”汪东兴还没想到问题的严重性。</p>
+
+<p>“他们已经来过了。”毛泽东所说的他们，是指江青、张春桥、姚文元，“他们说六号简报影响很大。”紧接着，毛泽东的口吻严厉了起来：“你汪主任了解我不当国家主席的意见，还派你回北京向政治局传达过，你怎么又要我当国家主席呢？”当毛泽东用你的职务称呼你的时候，你的情况就有些不妙了，这一点汪东兴早有体会。</p>
+
+<p>汪东兴解释说：“我听陈伯达发言说，有人听到毛主席不当国家主席就欢喜得跳起来，我很气愤。”“在群众讨论修改宪法时，大家都拥护你当国家主席。”毛泽东立即反问道：“不当国家主席，就不代表群众吗？你强调群众拥护，难道我不当，群众就不拥护了？我就不代表群众了吗？”</p>
+
+<p>毛泽东的批评，使汪东兴的心里非常难受，他感觉自己辜负了“毛主席对我的教导和信任”。他的这种极度不安的心情，邬吉成不久也感受到了。</p>
+
+<p>一天，参与毛泽东身边工作的王海容、唐闻生，在碰见邬吉成时打招呼，说江西省的同志送到庐林一号一些瓷器。她们因工作常在毛泽东身边，与从事警卫工作的邬吉成比较熟悉，特意询问邬吉成想不想买一些瓷器，如果想要的话，就赶快到庐林一号去挑选。</p>
+
+<p>江西景德镇的瓷器很有名，邬吉成就到庐林一号王海容、唐闻生那里，买了几个小酒盅、小碟子。孰料一回到办公的楼里，就接到汪东兴的电话，把他一通好训：“庐林一号那边的工作不归你管，谁叫你跑到那边去的？去干什么了？”</p>
+
+<p>对汪东兴劈头盖脸的指责，邬吉成当时很纳闷。直到后来听说汪东兴在华北小组会议上犯了错误，受到毛泽东批评，做了检讨，他才省悟到，汪东兴动肝火大概与当时心情不佳有关。</p>
+
+<p>九届二中全会是9月6日结束的，大概是7日或8日晚上8时，在会议办公驻地的邬吉成，看见叶群带领着黄永胜、吴法宪、李作鹏和邱会作四员大将，到美庐探访江青。据说他们是向江青表示敬意的，见面的气氛还算融洽。</p>
+
+<p>邬吉成后来分析，这种政治性的拜访，和庐山会议出现的较量有关；也表明林家和江青的关系非比寻常，直到1971年8月，江青还在《解放军画报》上发表林彪读毛主席著作的照片。</p>
+
+<p>会议期间出现的较量，以毛泽东把陈伯达先分割出来，进行批判而告一段落。林彪集团对设立国家主席，以使林彪有所“安排”的诉求失败。因为多数人在当时还不曾认识到这后一点，所以会议结束了，大家都松了一口气。在下庐山之前，邬吉成和担任警卫的部分干部，去了周恩来的住所，在院子、前厅，和周恩来、邓颖超及他们身边的工作人员合影，“留下一份永远的纪念”。</p>
+
+<p>9月9日下午，毛泽东在庐山礼堂，应全会的服务人员的请求，接见了为全会服务的会务人员，也一起照了相。照完相，毛泽东遂乘车离开庐山。</p>
+
+
+
+本页共64段，5598个字符，16620 Byte(字节)﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

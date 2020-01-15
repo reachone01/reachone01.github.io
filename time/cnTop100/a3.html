@@ -1,0 +1,1410 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+
+
+  <table border="1" cellspacing="0" cellpadding="0" width="662">
+    <tr>
+      <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/kongzi.html" target="_blank"><strong>孔子</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-551.html">前551</a>～<a href="http://ren.bytravel.cn/Celebrity/-479.html">前479</a>)&nbsp;孔丘 </p>
+          <ul>
+            <li><a href="http://ren.bytravel.cn/history/kongzi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image001.jpg" alt="孔子" /></a> </li>
+          </ul>
+        <p align="left">　　 孔子(公元前551—前479年)，名丘，字仲尼，鲁国昌平陬邑(今山东曲阜东南)人。春秋末期的思想家、教育家和政治家，儒家学派的创始人，是对中国历史文化影响最大的人物之一，在全世界，特别是在东南亚各国也有很大影响，是世界文化名人之一。    孔子的先祖是殷末纣王之庶兄微子启，启奉商祀，封于宋。六世祖孔父嘉，始以孔为姓。五世祖木金父避难奔鲁，后乃定居鲁国陬邑。父叔梁纥为鲁武士，以勇力闻于诸侯，晚年与……<a href="http://ren.bytravel.cn/history/kongzi.html" target="_blank">[详细]</a></p></td>
+    </tr>
+  </table>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/zheng(qinshihuang).html" target="_blank"><strong>秦始皇嬴政</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-259.html">前259</a>～<a href="http://ren.bytravel.cn/Celebrity/-210.html">前210</a>)&nbsp;中国首位皇帝 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/zheng(qinshihuang).html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image002.jpg" alt="秦始皇嬴政" /></a> </li>
+            </ul>
+          <p align="left">　　秦始皇(前259—前210)，嬴姓(一说赵姓)，名政，秦庄襄王之子，中国历史上杰出的政治家、军事家、统帅。    秦始皇于秦昭王四十八年正月生于赵国邯郸，是秦庄襄王与吕不韦的姬妾所生，所以有人说秦始皇为吕不韦之子。出生后，姓赵。公元前247年，庄襄王死，嬴政即秦王位，时年13岁。相国吕不韦掌握实权。 公元前238年，22岁的秦王政加冕亲政。这年，宦官嫪毐发动宫廷政变，秦始皇派昌平君、昌文君……<a href="http://ren.bytravel.cn/history/zheng(qinshihuang).html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/laozi.html" target="_blank"><strong>老子</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-571.html">前571</a>～<a href="http://ren.bytravel.cn/Celebrity/-471.html">前471</a>)&nbsp;国学三圣 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/laozi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image003.jpg" alt="老子" /></a> </li>
+            </ul>
+          <p align="left">　　老聃，姓李名耳，字伯阳，聃是谥号，春秋时楚国苦县(今河南省鹿邑县东)人，生卒年不详。他曾担任周朝的守藏室之史，后又为柱下史，通晓上下古今之变，晚年隐居于沛，躬耕授徒，讲德论道，后西入关中，客死于秦。入战国后，他的语录流传浙广，经环渊最后整理，成《道德经》上、下篇，即今本《老子》。在《老子》书中，把宇宙万物的本看作道或朴，有时称无。道是创造一切的母力，超绝时空的绝对存在，永远不可感知的精神实体，而它……<a href="http://ren.bytravel.cn/history/laozi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/cailun.html" target="_blank"><strong>蔡伦</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/61.html">61</a>～<a href="http://ren.bytravel.cn/Celebrity/121.html">121</a>)&nbsp;中国古代十大太监 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/cailun.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image004.jpg" alt="蔡伦" /></a> </li>
+            </ul>
+          <p align="left">　　 蔡 伦 ( —121) 东汉湖南耒阳县人。字敬仲，生年不详。明帝末年入宫充宦官，中历小黄门。和帝时，为中常待，开始参预朝政。曾任主管宫廷御用器物制造的尚方令。    以前，人们用缣帛或竹、木简写字。“缣贵而简重，不便于人”。至西汉时，出现一种原始纸。人们在漂洗丝絮时，经常在篾席上揭出一层薄絮，可以书写，人称絮纸；漂麻时，也有类似发现，称为麻纸。这种原……<a href="http://ren.bytravel.cn/history/cailun.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/liuche(hanwudi).html" target="_blank"><strong>汉武帝刘彻</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-156.html">前156</a>～<a href="http://ren.bytravel.cn/Celebrity/-87.html">前87</a>)&nbsp;西汉第七位皇帝 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/liuche(hanwudi).html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image005.jpg" alt="汉武帝刘彻" /></a> </li>
+            </ul>
+          <p align="left">　　汉武帝刘彻（公元前156年7月14日 －公元前87年3月29日），西汉第七位皇帝，杰出的政治家、战略家、诗人。汉武帝十六岁时登基，    为巩固皇权，汉武帝设置中朝，在地方设置刺史，开创察举制选拔人才。采纳主父偃的建议，颁行推恩令，解决王国势力，并将盐铁和铸币权收归中央。文化上采用了董仲舒的建议，“罢黜百家，独尊儒术”，结束先秦以来“师异道，人异论，百家殊方”的局面。汉武帝时期攘夷拓土、国威远扬，东……<a href="http://ren.bytravel.cn/history/liuche(hanwudi).html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/maozedong.html" target="_blank"><strong>毛泽东</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1893.html">1893</a>～<a href="http://ren.bytravel.cn/Celebrity/1976.html">1976</a>)&nbsp;中国人民的领袖，马克思主义者，伟大的无产阶级革命家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/maozedong.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image006.jpg" alt="毛泽东" /></a> </li>
+            </ul>
+          <p align="left">　　毛泽东（1893年12月26日－1976年9月9日），字润之（原作咏芝，后改润芝），笔名子任。湖南湘潭人。中国人民的领袖，马克思主义者，伟大的无产阶级革命家、战略家和理论家，中国共产党、中国人民解放军和中华人民共和国的主要缔造者和领导人，诗人，书法家。 1949至1976年，毛泽东担任中华人民共和国最高领导人。他对马克思列宁主义的发展、军事理论的贡献以及对共产党的理论贡献被称为毛泽东思想。因毛泽……<a href="http://ren.bytravel.cn/history/maozedong.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/mengzi.html" target="_blank"><strong>孟子</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-372.html">前372</a>～<a href="http://ren.bytravel.cn/Celebrity/-289.html">前289</a>)&nbsp;战国时期的思想家、政治家、教育家，儒家思孟学派的代表人物 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/mengzi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image007.jpg" alt="孟子" /></a> </li>
+            </ul>
+          <p align="left">　　孟子（约公元前372—前289年），战国时期的思想家、政治家、教育家，儒家思孟学派的代表人物；名轲，字子舆，鲁国邹（今山东邹县东南）人。被认为孔子学说的继承者，有“亚圣”之称。相传孟子是鲁国贵族孟孙氏的后裔，幼年丧父，家庭贫困，曾受业于子思的学生。学成以后，以士的身份游说诸侯，企图推行自己的政治主张，先后到过梁（魏）国、齐国、宋国、滕国，虽曾被齐宣王尊之为客卿，但终不见用。晚年退居讲学，和他的学生……<a href="http://ren.bytravel.cn/history/mengzi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/yangjian(suiwendi).html" target="_blank"><strong>隋文帝杨坚</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/541.html">541</a>～<a href="http://ren.bytravel.cn/Celebrity/604.html">604</a>)&nbsp;中国十大皇帝 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/yangjian(suiwendi).html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image008.jpg" alt="隋文帝杨坚" /></a> </li>
+            </ul>
+          <p align="left">　　杨坚(541～604年)，即隋文帝，小名那罗延，弘农华阴(今陕西华阴市)人。隋王朝的建立者，我国历史上著名的政治家。杨坚出身名门望族。相传他是西汉太尉杨震的十四代世孙。其父杨忠，是北周名将之一，早年随宇文泰在关西起义。赐姓普六茹氏。立过大功，位至柱国、大司空、隋国公。杨坚14岁担任京兆尹曹，15岁因父望被授散骑常侍、车骑大将军、仪同三司。16岁迁为骠骑大将军、加开府。周明帝时，任右小宫伯、进封大兴……<a href="http://ren.bytravel.cn/history/yangjian(suiwendi).html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/zhu.html" target="_blank"><strong>朱熹</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1130.html">1130</a>～<a href="http://ren.bytravel.cn/Celebrity/1200.html">1200</a>)&nbsp;南宋哲学家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/zhu.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image009.jpg" alt="朱熹" /></a> </li>
+            </ul>
+          <p align="left">　　朱熹，字元晦，后改仲晦，号晦庵，别称紫阳，江西婺源人，生于福建尤溪。父朱松于宋宣和五年(1123年)任尤溪县尉，任满寄居于该县水南郑安道馆舍。建炎四年(1130年)九月十五日，朱熹出生。朱熹自幼聪敏好学，7岁，随父母迁居建州(今福建建瓯)。14岁时，遵照其父临终嘱咐，投奔崇安县友人胡宪、刘勉之。胡、刘视朱熹如子侄，安排生活，热情教诲。刘勉之还将女儿嫁给朱熹。绍兴十八年(1148年)，朱熹登进士。绍……<a href="http://ren.bytravel.cn/history/zhu.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/dengxiaoping.html" target="_blank"><strong>邓小平</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1904.html">1904</a>～<a href="http://ren.bytravel.cn/Celebrity/1997.html">1997</a>)&nbsp;共和国36位军事家,政治家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/dengxiaoping.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image010.jpg" alt="邓小平" /></a> </li>
+            </ul>
+          <p align="left">　　 邓小平（1904～1997）　伟大的马克思主义者，无产阶级革命家、政治家、军事家、外交家，中国共产党、中国人民解放军、中华人民共和国的主要领导人之一，中国社会主义改革开放和现代化建设的总设计师，邓小平理论的创立者。    四川广安人。1904年8月22日生。……<a href="http://ren.bytravel.cn/history/dengxiaoping.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/simaqian.html" target="_blank"><strong>司马迁</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-145.html">前145</a>～<a href="http://ren.bytravel.cn/Celebrity/-87.html">前87</a>)&nbsp;中国古代十大文豪 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/simaqian.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image011.jpg" alt="司马迁" /></a> </li>
+            </ul>
+          <p align="left">　　司马迁（前145—前87年后），字子长，西汉夏阳（今陕西韩城，一说山西河津）人，我国西汉伟大的史学家、思想家、文学家，著有《史记》，又称《太史公记》，他记载了上自中国上古传说中的黄帝时代，下至汉武帝太初四年（公元前100年），共3000多年的历史。　司马迁（公元前145—公元前87）以其“究天人之际，通古今之变，成一家之言”的史识，使《史记》成为中国历史上第一部纪传体通史，对后世的影响极为巨大，被……<a href="http://ren.bytravel.cn/history/simaqian.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/liubang(hangaozu).html" target="_blank"><strong>汉高祖刘邦</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-256.html">前256</a>～<a href="http://ren.bytravel.cn/Celebrity/-195.html">前195</a>)&nbsp;汉朝皇帝,中国古代十大贤君 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/liubang(hangaozu).html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image012.jpg" alt="汉高祖刘邦" /></a> </li>
+            </ul>
+          <p align="left">　　汉太祖高皇帝刘邦（公元前256年冬月 二十四—前195年四月二十五），沛丰邑中阳里 人，汉朝开国皇帝，汉民族和汉文化伟大的开拓者之一、中国历史上杰出的政治家、卓越的战略家和指挥家。    对汉族的发展，以及中国的统一和强大有突出贡献。刘邦出身农家，为人豁达大度， 不事生产。历任沛县泗水亭长、 沛公、汉王。秦时因释放刑徒而亡匿芒砀山中。陈胜起事后不久，集合县中约3千子弟响应起义，攻占沛县等地，称……<a href="http://ren.bytravel.cn/history/liubang(hangaozu).html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/zhuangzi.html" target="_blank"><strong>庄子</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-369.html">前369</a>～<a href="http://ren.bytravel.cn/Celebrity/-289.html">前289</a>)&nbsp;道家学说的主要创始人 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/zhuangzi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image013.jpg" alt="庄子" /></a> </li>
+            </ul>
+          <p align="left">　　庄子是我国先秦时期伟大的思想家、哲学家、和文学家。战国时期宋国蒙(今安徽蒙城县）人，是道家学说的主要创始人。与道家始祖老子并称为“老庄”，他们的哲学思想体系，被思想学术界尊为“老庄哲学”。代表作为寓言《庄子》，被唐明皇封为《南华经》，他本人也被封为南华真人，并被尊崇者演绎出多种版本，名篇有《逍遥游》、《齐物论》等，庄子主张“天人合一”和“清静无为”。庄子（约前369年—前286年),名周，字子休（……<a href="http://ren.bytravel.cn/history/zhuangzi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/lishimin(tangtaizong).html" target="_blank"><strong>唐太宗李世民</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/599.html">599</a>～<a href="http://ren.bytravel.cn/Celebrity/649.html">649</a>)&nbsp;唐朝皇帝,中国古代十大贤君 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/lishimin(tangtaizong).html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image014.jpg" alt="唐太宗李世民" /></a> </li>
+            </ul>
+          <p align="left">　　唐太宗李世民（公元598年1月28日 【一说599年1月23日 】－公元649年7月10日），祖籍陇西成纪，是唐高祖李渊和窦皇后的次子，唐朝第二位皇帝，杰出的政治家、战略家、军事家、诗人。李世民少年从军，曾去雁门关营救隋炀帝。唐朝建立后，李世民官居尚书令、右武候大将军，受封为秦国公，后晋封为秦王，先后率部平定了薛仁杲、刘武周、窦建德、王世充等军阀，在唐朝的建立与统一过程中立下赫赫战功。公元62……<a href="http://ren.bytravel.cn/history/lishimin(tangtaizong).html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/zhangzhongjing.html" target="_blank"><strong>张仲景</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/150.html">150</a>～<a href="http://ren.bytravel.cn/Celebrity/219.html">219</a>)&nbsp;中国古代十大名医之祖,古代十圣 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/zhangzhongjing.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image015.jpg" alt="张仲景" /></a> </li>
+            </ul>
+          <p align="left">　　张仲景，字玑，东汉著名医学家。约生于桓帝和平元年（公元150年），卒于献帝建安二十四年（公元219年）,南阳郡涅阳（今河南省南阳县）人。 张仲景少年时期勤奋好学，博览群书，对医学有极大兴趣，从史书中受到古代名医扁鹊的影响和启发，又曾拜同乡著名中医张伯祖为师，对于当时那种追逐权势名利、不精究医药方术的士人极为愤慨，认为有病求助于巫祝迷信者是“降志屈节，钦望巫祝，告穷归天，束手受败”。    公元196年至……<a href="http://ren.bytravel.cn/history/zhangzhongjing.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/lisi.html" target="_blank"><strong>李斯</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-280.html">前280</a>～<a href="http://ren.bytravel.cn/Celebrity/-208.html">前208</a>)&nbsp;秦代著名的政治家、文学家和书法家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/lisi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image016.jpg" alt="李斯" /></a> </li>
+            </ul>
+          <p align="left">　　李斯（约公元前284年—公元前208年），李氏，名斯，字通古。战国末期楚国上蔡（今河南上蔡）人    。秦代著名的政治家、文学家和书法家。李斯早年为郡小吏 ，后从荀子学帝王之术，学成入秦 。初被吕不韦任以为郎 。后劝说秦王政灭诸侯、成帝业，被任为长史 。秦王采纳其计谋，遣谋士持金玉游说关东六国    ，离间各国君臣，又任其为客卿 。秦王政十年（前237年）由于韩人间谍郑国入秦，秦王下令驱逐六国客……<a href="http://ren.bytravel.cn/history/lisi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/zhaokuang.html" target="_blank"><strong>宋太祖赵匡胤</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/927.html">927</a>～<a href="http://ren.bytravel.cn/Celebrity/976.html">976</a>)&nbsp;宋朝开国皇帝 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/zhaokuang.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image017.jpg" alt="宋太祖赵匡胤" /></a> </li>
+            </ul>
+          <p align="left">　　宋太祖赵匡胤(927.3.21—976.11.14)，祖籍涿郡(今河北涿州)，宋朝开国皇帝，史称宋太祖，杰出的政治家、军事家、战略家、统帅。    公元755年(唐玄宗天宝十四年)，中国这块宁静的土地上发生了安史之乱。 唐王朝的平卢、范阳、河东三镇节度使、杨贵妃养子安禄山和平卢兵马使史思明，以诛宰相杨国忠为名，率所部及同罗、奚、契丹、室韦、突厥兵15万，号称20万之众，发动兵变。一时间狼烟四起，战争的阴……<a href="http://ren.bytravel.cn/history/zhaokuang.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/zhougongdan.html" target="_blank"><strong>周公旦</strong></a>&nbsp;(?～<a href="http://ren.bytravel.cn/Celebrity/-1105.html">前1105</a>) </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/zhougongdan.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image018.jpg" alt="周公旦" /></a> </li>
+            </ul>
+          <p align="left">　　姬旦(?～前1105年)史称周公。姬昌的第四子，姬发同母弟，即周公旦。武王死后，子成王年幼，不能管理国家，由姬旦辅政当国。七年之后，还政成王。史称“周公摄政”。周公摄政后，管叔、蔡叔、霍叔有意争权，散布流言说“周公将不利于孺子(成王)。”引起周贵族内部不和。灭殷后的第三年，武庚发起叛周，并联合东方徐夷、奄、蒲姑等东方旧属国发动大规模武装叛乱，面对这样严重局势，周公耐心说服召公奭和诸大臣，作《君奭》……<a href="http://ren.bytravel.cn/history/zhougongdan.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/quyuan.html" target="_blank"><strong>屈原</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-339.html">前339</a>～<a href="http://ren.bytravel.cn/Celebrity/-278.html">前278</a>)&nbsp;中国古代十大文豪 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/quyuan.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image019.jpg" alt="屈原" /></a> </li>
+            </ul>
+          <p align="left">　　屈原（前340年－前278年），战国时期楚国人，芈姓，屈氏，名平，字原，以字行；又在《离骚》中自云：“名余曰正则兮，字余曰灵均”。出生于楚国丹阳（今湖北省宜昌市境内    ），是楚武王熊通之子屈瑕的后代，是一个黄老之学的传播者[2-3] ，屈原是中国最早的浪漫主义诗人，中国文学史上第一位留下姓名的伟大的爱国诗人。    他的出现，标志着中国诗歌进入了一个由集体歌唱到个人独唱的新时代。屈原是“楚辞”的创立……<a href="http://ren.bytravel.cn/history/quyuan.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/dongzhongshu.html" target="_blank"><strong>董仲舒</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-179.html">前179</a>～<a href="http://ren.bytravel.cn/Celebrity/-104.html">前104</a>)&nbsp;汉武大帝 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/dongzhongshu.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image020.jpg" alt="董仲舒" /></a> </li>
+            </ul>
+          <p align="left">　　 董仲舒（公元前179-前104年） 西汉广川(德州)人。汉代思想家。他少年时攻读《春秋公羊传》，曾“三年不窥园”。后受齐鲁文化的熏陶而起于燕赵。他以自己的哲学论著不仅与赵人毛诗学开创者毛苌    、燕人韩诗学开创者韩英，在燕赵古地组成了西汉前期的一个地域文化圈，而且他还是当时的群儒之首，以文章道德冠名于世。 公元前156年(汉景帝元年)，23岁的董仲舒去京城长安应试，被授为《春秋》博士。他精通……<a href="http://ren.bytravel.cn/history/dongzhongshu.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <table border="1" cellspacing="0" cellpadding="0" width="662">
+    <tr>
+      <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/zhuyuanzhang.html" target="_blank"><strong>明太祖朱元璋</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1328.html">1328</a>～<a href="http://ren.bytravel.cn/Celebrity/1398.html">1398</a>)&nbsp;明王朝的开国皇帝 </p>
+          <ul>
+            <li><a href="http://ren.bytravel.cn/history/zhuyuanzhang.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image001_0000.jpg" alt="明太祖朱元璋" /></a> </li>
+          </ul>
+        <p align="left">　　明太祖朱元璋（1328年-1398年6月24日），别名朱重八、朱国瑞、朱洪武、洪武帝，明朝开国皇帝。1368年，朱元璋在应天府称帝，国号大明，年号洪武。朱元璋推翻蒙元统治，恢复华夏政权，结束民族压迫制度，恢复民族平等，统一中国；废丞相、设三司、加强中央集权，澄清吏治，发展经济，恢复生产，开创洪武之治。1398年，朱元璋驾崩，谥号开天行道肇纪立极大圣至神仁文义武俊德成功高皇帝，庙号太祖，葬于紫金山孝……<a href="http://ren.bytravel.cn/history/zhuyuanzhang.html" target="_blank">[详细]</a></p></td>
+    </tr>
+  </table>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/8/daoan.html" target="_blank"><strong>道安</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/312.html">312</a>～<a href="http://ren.bytravel.cn/Celebrity/385.html">385</a>)&nbsp;东晋时代杰出的佛教学者 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/8/daoan.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image002_0000.jpg" alt="道安" /></a> </li>
+            </ul>
+          <p align="left">　　道安，是东晋时代杰出的佛教学者，生于东晋怀帝永嘉六年（312），卒于孝武太元十年（385），年七十四（一说年七十二），出生于常山扶柳县（今河北省冀州境）的一个读书人家里。由于世乱，早丧父母，从小就受外兄孔氏的抚养，七岁开始读书，到十五岁的时候，对于五-义已经相当通达，就转而学习佛法。十八岁出家（此据《名僧传抄》之说，《高僧传》等作“年十二出家”）。东晋孝武帝太元四年，当前秦王苻坚攻克襄阳时，他曾说……<a href="http://ren.bytravel.cn/history/8/daoan.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/ran2821.html" target="_blank"><strong>冉闵</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/322.html">322</a>～<a href="http://ren.bytravel.cn/Celebrity/352.html">352</a>)&nbsp;中国古代十大勇将 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/ran2821.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image003_0000.jpg" alt="冉闵" /></a> </li>
+            </ul>
+          <p align="left">　　冉闵（？-公元352年），别名石闵、李闵、染闵，是十六国时期冉魏政权建立者。石琨及张举、王朗率领七万士众攻打邺城，冉闵带领千余骑兵，在城北抵抗他们。冉闵手执两刃矛，飞驰进攻，对手应刃而败，斩杀首级三千。352年冉闵突围不遂，为前燕皇帝慕容儁所擒，冉闵被送到龙城，并在遏陉山将其斩杀，谥号武悼天王、平皇帝。人物生平一战成名冉闵，字永曾，小字棘奴，是后赵武帝石虎的养孙。冉闵的父亲冉良，字弘武，是魏郡内黄……<a href="http://ren.bytravel.cn/history/ran2821.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/zhang1622.html" target="_blank"><strong>张骞</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-164.html">前164</a>～<a href="http://ren.bytravel.cn/Celebrity/-114.html">前114</a>)&nbsp;汉武大帝 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/zhang1622.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image004_0000.jpg" alt="张骞" /></a> </li>
+            </ul>
+          <p align="left">　　张骞(?～前114年)，汉中郡城固(今陕西城固县)人。西汉杰出的外交家、古“丝绸之路”的开辟者。汉武帝时期，为联合大月氏以夹攻匈奴，遂募使使大月氏，张骞以郎官应募。建元三年(前138)，张骞率众一百余人向西域进发，西行途中，为匈奴人俘虏，拘禁十年之久，为匈奴人做苦工，牧羊、放马等。十年中，他精心保管使者节杖，牢记着使命。后乘机逃脱，西行数十日到达大宛。那时大月氏已自伊犁河流域迁到中亚，张骞乃经康居……<a href="http://ren.bytravel.cn/history/zhang1622.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/shang(wei).html" target="_blank"><strong>商鞅</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-390.html">前390</a>～<a href="http://ren.bytravel.cn/Celebrity/-338.html">前338</a>)&nbsp;战国期政治家，法家代表人物 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/shang(wei).html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image005_0000.jpg" alt="商鞅" /></a> </li>
+            </ul>
+          <p align="left">　　商鞅，战国期政治家，法家代表人物，又名公孙鞅、卫鞅，卫国(今河南濮阳)人，约生于公元前390年，死于公元前338年。商鞅是战国时没落贵族的后裔。他从小就好刑名之学。所谓刑名之学，即指建立和巩固地主阶级-的一套法家学说。年轻时，商鞅在魏国进一步研究了法家思想，总结了李悝、吴起的变法经验，完善了自己的法家理论。公元前361年，秦孝公下令求贤，商鞅应召入秦，进献富国强兵之策，便提出变法重点放在两面个方面……<a href="http://ren.bytravel.cn/history/shang(wei).html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/chengjisihan.html" target="_blank"><strong>成吉思汗铁木真</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1162.html">1162</a>～<a href="http://ren.bytravel.cn/Celebrity/1227.html">1227</a>)&nbsp;元太祖 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/chengjisihan.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image006_0000.jpg" alt="成吉思汗铁木真" /></a> </li>
+            </ul>
+          <p align="left">　　 成吉思汗，本名铁木真，孛儿只斤氏，姓孛儿只斤，乞颜氏，蒙古族，元代追上庙号太祖。在蒙语中，“成吉思”是“大海”的意思，颂扬他和海洋一样伟大。生于1162年，卒于1227年。1206年，进位蒙古帝国大汗（皇帝），统一蒙古各部落。在位期间，征服地域西达黑海海滨，东括几乎整个东亚，为世界历史上著名的横跨欧亚两洲的大帝国之一，1995年12月31日成吉思汗被美国《华盛顿邮报》评选为“千年风云第一人”。这……<a href="http://ren.bytravel.cn/history/chengjisihan.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/libai.html" target="_blank"><strong>李白</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/701.html">701</a>～<a href="http://ren.bytravel.cn/Celebrity/762.html">762</a>)&nbsp;中国古代十大文豪,饮中八仙,唐诗四大家,唐朝诗人,仙宗十友 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/libai.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image007_0000.jpg" alt="李白" /></a> </li>
+            </ul>
+          <p align="left">　　诗仙李白（701年2月8日-762年12月），字太白，号青莲居士、谪仙人，别名李十二，唐代诗人，与杜甫并称为“李杜”。李白有《李太白集》传世，代表作有《静夜思》、《将进酒》、《梦游天姥吟留别》等；创造了古代浪漫主义文学、高峰歌行体和七绝达到后人难及的高度。李白的乐府、歌行及绝句成就为最高；风格豪迈奔放，清新飘逸，想象丰富，意境奇妙，语言奇妙，浪漫主义，立意清晰。关于李白之死，历来众说纷纭，莫衷一是……<a href="http://ren.bytravel.cn/history/libai.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/dufu.html" target="_blank"><strong>杜甫</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/712.html">712</a>～<a href="http://ren.bytravel.cn/Celebrity/770.html">770</a>)&nbsp;中国古代十大文豪,唐诗四大家,古代十圣,唐朝诗人 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/dufu.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image008_0000.jpg" alt="杜甫" /></a> </li>
+            </ul>
+          <p align="left">　　杜甫（公元712年－公元770年），字子美，别名杜少陵、杜工部等，唐朝著名现实主义诗人，自号少陵野老，有“诗圣”之称。杜甫与李白合称“李杜”，他的诗被称为“诗史”，代表作有《杜工部集》、《三吏》、《三别》等。他的诗词以古体、律诗见长，风格多样，他是新乐府诗体的开路人，对后世影响甚大。杜甫的诗兼备众体，除五古、七古、五律、七律外，还写了不少排律、拗体，运用的艺术手法多种多样，是唐诗思想艺术的集大成者……<a href="http://ren.bytravel.cn/history/dufu.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/bisheng.html" target="_blank"><strong>朱琦</strong></a></p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/bisheng.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image009_0000.jpg" alt="朱琦" /></a> </li>
+            </ul>
+          <p align="left">　　朱琦，1962年生，山西永济市人，著名旅美学者、作家，中文系1979级校友。主要学习工作经历：先后获山西大学中文系学士学位，山西大学硕士学位，并于1990年在北京大学中文系获文学博士学位，次年春游学日本东京，1992年秋到美国访学。曾任教于加州大学伯克利分校东亚语言文学系，1999年至今任教于斯坦福大学亚洲语言文化系。主要成果及奖励：朱琦以中国文化讲座闻名海外，先后在华人电视台主讲唐诗系列和中国文……<a href="http://ren.bytravel.cn/history/bisheng.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/8/huineng35122883.html" target="_blank"><strong>慧能</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/638.html">638</a>～<a href="http://ren.bytravel.cn/Celebrity/713.html">713</a>) </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/8/huineng35122883.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image010_0000.jpg" alt="慧能" /></a> </li>
+            </ul>
+          <p align="left">　　慧能（638~713)亦作惠能。俗姓卢。范阳（今涿州人）。其父是一位官员，被贬到岭南，落籍新州（治今广东新兴）。慧能幼年丧父，与寡母又迁至南海，因家境贫寒，稍长以卖柴为业养母度日。他虽不识字，却悟性极强，一次听人诵《金刚般若经》便心有所感，发愿学佛。24岁时，他辞家往蕲州黄梅（今属湖北省），投禅宗五祖弘忍门下作“行者”。慧能初到蕲州，弘忍令慧能在寺内做劈柴舂米等劳役，在僧众中地位很低，大约过了8个……<a href="http://ren.bytravel.cn/history/8/huineng35122883.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/zhouwuwang.html" target="_blank"><strong>周武王姬发</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-1087.html">前1087</a>～<a href="http://ren.bytravel.cn/Celebrity/-1043.html">前1043</a>)&nbsp;周朝帝王 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/zhouwuwang.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image011_0000.jpg" alt="周武王姬发" /></a> </li>
+            </ul>
+          <p align="left">　　周武王，中国周代第一代王。姬姓，名发，周文王次子。他继承父亲遗志，于公元前11世纪消灭殷商朝，夺取全国政权，建立了西周王朝，表现出卓越的军事、政治才能，成为中国历史上一代名君。周原为商朝地处西陲的一个小属国。文王周文王在位50年，实行许多正确的政策，国力逐渐强大，逝世时天下三分已得其二，为灭商奠定了基础。武王姬发继位后，对内重用贤良，继续以姜太公（即姜尚）为军师，并用弟弟姬旦为太宰，召公、毕公、康……<a href="http://ren.bytravel.cn/history/zhouwuwang.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/libing.html" target="_blank"><strong>李冰</strong></a>&nbsp;战国时期的水利家 <br />
+          今山西运城人，是战国时期的水利家，对天文地理也有研究。秦昭襄王末年（约公元前256~前251年）为蜀郡守，在今四川省都江堰市（原灌县）岷江出山口处主持兴建了中国早期的灌溉工程都江堰，因而使成都平原富庶起来。    据《华阳国志·蜀志》记载，李冰曾在都江堰安设石人水尺，这是中国早期的水位观测设施。他还在今宜宾、乐山境开凿滩险，疏通航道，又修建汶井江（今崇庆县西河）、白木江（今邛崃南河）、洛水（今石亭江）、……<a href="http://ren.bytravel.cn/history/libing.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/caocao.html" target="_blank"><strong>曹操</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/155.html">155</a>～<a href="http://ren.bytravel.cn/Celebrity/220.html">220</a>)&nbsp;曹孟德 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/caocao.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image012_0000.jpg" alt="曹操" /></a> </li>
+            </ul>
+          <p align="left">　　曹操（155年7月18日－220年3月15日），字孟德，一名吉利，小字阿瞒，汉族，沛国谯（今安徽省亳州市）人。中国东汉末年著名的军事家、政治家和诗人，三国时代魏国的奠基人和主要缔造者，后为魏王。其子曹丕称帝后，追尊为魏武帝。曹操祖父曹腾在汉桓帝时担任官职，封为费亭侯。据说父亲曹嵩出身不明，《三国志·武帝纪》中说他是“莫能审其本末”，而在宋人裴松之注《三国志》时间接引用三国吴人所著《曹瞒传》中称曹嵩……<a href="http://ren.bytravel.cn/history/caocao.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/kangxi.html" target="_blank"><strong>康熙爱新觉罗·玄烨</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1654.html">1654</a>～<a href="http://ren.bytravel.cn/Celebrity/1722.html">1722</a>)&nbsp;清圣祖,玄烨 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/kangxi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image013_0000.jpg" alt="康熙爱新觉罗·玄烨" /></a> </li>
+            </ul>
+          <p align="left">　　康熙皇帝爱新觉罗·玄烨（1654年5月4日-1722年12月20日），清朝第四位皇帝，蒙古称之为“恩赫阿木古朗汗”。康熙皇帝8岁登基，14岁亲政，在位时间61年，是我国历史上在位时间最长的皇帝；他在位期间蠲免赋税、发展经济、巩固统一的多民族国家，收复台湾、开府设县，抵制沙俄侵略，大败准噶尔汗国    ，编修文化典籍等，是“康乾盛世”的奠基人。1722年，崩于北京畅春园清溪书屋，终年69岁，谥号合天弘运文……<a href="http://ren.bytravel.cn/history/kangxi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/7/zhangling1.html" target="_blank"><strong>张陵</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/34.html">34</a>～<a href="http://ren.bytravel.cn/Celebrity/156.html">156</a>) <br />
+          张陵（公元34-156年），字辅汉，又名张道陵，东汉沛国丰邑（今江苏丰县）人。汉文成侯张良九世孙。7岁开始读《诗》、《书》、《礼》、《易》、《春秋》等五经及天文、地理之类的书，继入太学。永平二年（公元59年）任巴郡江州（今重庆市）县令。汉明帝中后期，弃官入洛阳北邙山研习“黄老之道”。汉章帝、和帝诏征皆不就。30岁与弟子王长入江西贵溪云锦山（今龙虎山）研究丹术及民间宗教。汉顺帝（126-144年）时……<a href="http://ren.bytravel.cn/history/7/zhangling1.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/sunzhongshan.html" target="_blank"><strong>孙中山</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1866.html">1866</a>～<a href="http://ren.bytravel.cn/Celebrity/1925.html">1925</a>)&nbsp;孙文，南粤先贤，中华民国主要领导人 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/sunzhongshan.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image014_0000.jpg" alt="孙中山" /></a> </li>
+            </ul>
+          <p align="left">　　孙中山（1866年—1925年），名文，字载之，号日新，又号逸仙，幼名帝象，化名中山樵，常以中山为名。    生于广东省香山县（今中山市）翠亨村的农民家庭。 青少年时代受到广东人民斗争传统的影响，向往太平天国的革命事业。是中国近代民族民主主义革命的开拓者，中国民主革命伟大先行者，中华民国和中国国民党的缔造者，-的倡导者，创立《五权宪法》。他首举彻底反封建的旗帜，“起共和而终两千年封建帝制”。1905……<a href="http://ren.bytravel.cn/history/sunzhongshan.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/sudongpo.html" target="_blank"><strong>苏轼</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1037.html">1037</a>～<a href="http://ren.bytravel.cn/Celebrity/1101.html">1101</a>)&nbsp;北宋著名文学家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/sudongpo.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image015_0000.jpg" alt="苏轼" /></a> </li>
+            </ul>
+          <p align="left">　　苏轼（1037～1101），字子瞻，号东坡居士，眉州眉山（今属四川）人。他的家庭富有文学传统，祖父苏序好读书，善作诗。父亲苏洵是古文名家，曾对苏轼和其弟苏辙悉心指导。母亲程氏有知识且深明大义，曾为幼年的苏轼讲述《后汉书•范滂传》，以古代志士的事迹勉励儿子砥砺名节。当苏轼21岁出蜀进京时，他的学识修养已经相当成熟了。 苏轼学识渊博，思想通达，在北宋三教合一的思想氛围中如鱼得水。苏辙记述苏……<a href="http://ren.bytravel.cn/history/sudongpo.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/mingchengzuzhudi.html" target="_blank"><strong>明成祖朱棣</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1360.html">1360</a>～<a href="http://ren.bytravel.cn/Celebrity/1424.html">1424</a>)&nbsp;明朝第三代皇帝,永乐 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/mingchengzuzhudi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image016_0000.jpg" alt="明成祖朱棣" /></a> </li>
+            </ul>
+          <p align="left">　　明成祖朱棣（1360年－1424年）是明朝第三代皇帝。明太祖朱元璋第四子，生于应天，时事征伐，并受封为燕王，后发动靖难之役，起事攻打侄儿建文帝，夺位登基。死后原庙号为“太宗”，百多年后由明世宗朱厚熜改为“成祖”，明成祖的统治时期被称为“永乐盛世”。安徽凤阳人，洪武三年（1370年），朱棣受封燕王。曾居凤阳，对民情颇有所知。十三年就藩北平(今北京)，多次受命参预北方军事活动，两次率师北征，加强了他在……<a href="http://ren.bytravel.cn/history/mingchengzuzhudi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/hanfei.html" target="_blank"><strong>韩非</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-280.html">前280</a>～<a href="http://ren.bytravel.cn/Celebrity/-233.html">前233</a>) </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/hanfei.html" target="_blank"><img border="0" width="300" height="339" src="a_clip_image017_0000.jpg" alt="韩非" /></a> </li>
+            </ul>
+          <p align="left">　　韩非，又称韩非子(约公元前280年——前233年)，战国晚期韩国(主要区域在河南省)人，著名法学家，他的学说一直是中国封建统治阶级运用的基础。他的文学功底深厚，为后世留下了大量名言、名著。韩非子简介韩非(约前280—前233)是韩国的贵族，“喜刑名法术之学”，后世称他为韩非子。他和李斯都是荀子的弟子。当时韩国很弱，常受邻国的欺凌，他多次向韩王提出富强的计策，但未被韩王采纳。韩非写了《孤愤》《五蠹》……<a href="http://ren.bytravel.cn/history/hanfei.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/wuzetian.html" target="_blank"><strong>武则天</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/624.html">624</a>～<a href="http://ren.bytravel.cn/Celebrity/705.html">705</a>)&nbsp;中国女皇 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/wuzetian.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image018_0000.jpg" alt="武则天" /></a> </li>
+            </ul>
+          <p align="left">　　武则天(624年-705年）是中国历史上唯一一位女皇帝，尊为武周圣神皇帝。本名武媚娘，即位后改名武曌（zhào），取意“日月当空”（有另一种写法，瞾，取其“双目当空”之意）。并州文水人（今山西文水）她的国号为周，不是唐。    武则天，是一个颇具历史魅力的名字，是一个似传奇而非传奇的历史名人。她是唐王朝开国功勋武士镬之次女，千古名帝唐太宗之嫔妾，高宗李治之皇后。她在佐执朝政30年后，亲临帝位，自封“圣神……<a href="http://ren.bytravel.cn/history/wuzetian.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <table border="1" cellspacing="0" cellpadding="0" width="662">
+    <tr>
+      <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/sunwu(sunzi).html" target="_blank"><strong>孙武</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-545.html">前545</a>～<a href="http://ren.bytravel.cn/Celebrity/-470.html">前470</a>)&nbsp;孙子、孙武子、兵圣 </p>
+          <ul>
+            <li><a href="http://ren.bytravel.cn/history/sunwu(sunzi).html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image001_0001.jpg" alt="孙武" /></a> </li>
+          </ul>
+        <p align="left">　　 孙武，字长卿，春秋末期齐国人。其主要活动时期为公元前5世纪末至公元前4世纪初。我国历史上著名的大军事家。他所撰写的《孙子兵法》，是我国古代军事名著，我国现存最早的兵书，历来被称为“兵学圣典”，置于《武经七书》之首，受到国内外的推崇。该书对军事学的发展做出了杰出贡献。孙武祖姓陈，原居陈国(今河南淮阴一带)，后避难齐国而定居。其祖父陈书是齐国战将，因伐莒有功受赐姓孙。孙武年轻时曾入吴-队，做过几年军……<a href="http://ren.bytravel.cn/history/sunwu(sunzi).html" target="_blank">[详细]</a></p></td>
+    </tr>
+  </table>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/yuefei.html" target="_blank"><strong>岳飞</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1103.html">1103</a>～<a href="http://ren.bytravel.cn/Celebrity/1142.html">1142</a>)&nbsp;南宋抗金名将，民族英雄 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/yuefei.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image002_0001.jpg" alt="岳飞" /></a> </li>
+            </ul>
+          <p align="left">　　岳飞（1103—1142），字鹏举，相州汤阴（今属河南）人，北宋卓越的军事家、战略家。    岳飞父岳和，母姚氏，世代务农。岳飞青少年时先后向周同、陈广学习射箭、枪技，成为全县武艺最高强的人，但因家境贫困，后到相州（今安阳），“为韩魏公（琦）家庄客，耕种为生”。    宣和四年（1122）初，岳飞初次从军。同年十月，在北宋攻辽战争中，曾到达辽燕京（今北京）城下，见到高大的城墙后留下了深刻的印象，但误认为这是金……<a href="http://ren.bytravel.cn/history/yuefei.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/taoyuanming(taoqian).html" target="_blank"><strong>陶渊明</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/365.html">365</a>～<a href="http://ren.bytravel.cn/Celebrity/427.html">427</a>)&nbsp;浔阳三隐 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/taoyuanming(taoqian).html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image003_0001.jpg" alt="陶渊明" /></a> </li>
+            </ul>
+          <p align="left">　　陶渊明（352或365年-427年），别名陶元亮，陶潜，东晋末至南朝宋初期伟大的诗人、辞赋家。陶渊明最喜欢的花是菊花，他也是田园诗派创始人，田园诗数量最多，成就最高，文学史第一个大量写饮酒诗的诗人。陶渊明归隐田园，纵情山水，被称为“古今隐逸诗人之宗”，代表作有归园田居、桃花源记、五柳先生传等。公元427年，渊明卒于浔阳，友人私谥为“靖节”，后世称“陶靖节”。人物生平早年生活渊明曾祖或为陶侃（尚存争……<a href="http://ren.bytravel.cn/history/taoyuanming(taoqian).html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/yiyin.html" target="_blank"><strong>伊尹</strong></a>&nbsp;古代十大名厨 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/yiyin.html" target="_blank"><img border="0" width="300" height="360" src="a_clip_image004_0001.jpg" alt="伊尹" /></a> </li>
+            </ul>
+          <p align="left">　　商朝辅国宰相，商汤一代名厨，有“烹调之圣”美称，“伊尹汤液”为人传颂千年而不衰。伊尹（约公元前17世纪初） 名伊，一说名挚，号阿衡。商代莘（今山东莘县）人。是我国最早的美食家和创制中药汤液的始祖。伊尹先耕于莘野，后做厨师。他曾尝负鼎俎，以滋味（烹调术）游说于汤，商汤派使者以礼聘迎他，并拜为宰相，尊之为“阿衡”，他助商灭夏建国。汤去世后，他辅左外丙，任壬二王。任壬死后，其侄太甲无道，破坏商场法制，……<a href="http://ren.bytravel.cn/history/yiyin.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/ci.html" target="_blank"><strong>慈禧</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1835.html">1835</a>～<a href="http://ren.bytravel.cn/Celebrity/1908.html">1908</a>)&nbsp;中国古代三大女性统治者 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/ci.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image005_0001.jpg" alt="慈禧" /></a> </li>
+            </ul>
+          <p align="left">　　慈禧太后（1835年11月29日—1908年11月15日），叶赫那拉氏，咸丰皇帝妃嫔，同治皇帝生母。慈禧太后又称西太后    、那拉太后、老佛爷、孝钦显皇后，辛酉政变后夺权听政，形成“二宫垂帘，亲王议政”的格局，清王朝进入同治中兴时期。光绪皇帝登基后再度垂帘听政，之后发动“甲申易枢”罢免恭亲王，独揽大权。溥仪继位后被尊为太皇太后。1908年11月15日，慈禧太后于中南海仪鸾殿病逝，享年七十四岁，谥号“孝……<a href="http://ren.bytravel.cn/history/ci.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/sunsi.html" target="_blank"><strong>孙思邈</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/581.html">581</a>～<a href="http://ren.bytravel.cn/Celebrity/682.html">682</a>)&nbsp;中国古代十大名医之祖 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/sunsi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image006_0001.jpg" alt="孙思邈" /></a> </li>
+            </ul>
+          <p align="left">　　孙思邈，汉族，唐朝京兆华原（现陕西耀县）人，是著名的医师与道士。他是中国乃至世界史上著名的医学家和药物学家，被誉为药王，许多华人奉之为医神。孙思邈，出生于西魏时代，生于581年卒于682年，是个百岁老人，孙思邈的年龄现今有六种说法：最小的101岁，第二种说法是120岁，第三种说法是131岁，第四种说法是141岁，第五种说法是165岁，甚至还有168岁的说法。为唐代著名道士，医药学家。被人称为“药王……<a href="http://ren.bytravel.cn/history/sunsi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/zhoudunyi.html" target="_blank"><strong>周敦颐</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1017.html">1017</a>～<a href="http://ren.bytravel.cn/Celebrity/1073.html">1073</a>)&nbsp;宋理学家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/zhoudunyi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image007_0001.jpg" alt="周敦颐" /></a> </li>
+            </ul>
+          <p align="left">　　周敦颐（1017-1073 ），宋理学家。原名敦实，后避宋英宗讳，改名敦颐，字茂叔，宋真宗天禧元年（1017）生，道州营道县（今道县）人。晚年居庐山莲花峰下，筑室讲学，取营道故里濂溪命名为濂溪书堂，世称濂溪先生。父辅成，曾任贺州桂岭县令。敦颐15岁时丧父，依舅父龙图阁直学士郑向抚育。24岁以荫受任为洪州分宁县主簿。仁宗庆历五年（1045）调南安军司理参军。转运史王逵受人指使，判杀一罪不当死之囚犯，……<a href="http://ren.bytravel.cn/history/zhoudunyi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/kuang(zi).html" target="_blank"><strong>荀况荀子</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-313.html">前313</a>～<a href="http://ren.bytravel.cn/Celebrity/-238.html">前238</a>)&nbsp;战国末期赵国思想家、教育家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/kuang(zi).html" target="_blank"><img border="0" width="300" height="377" src="a_clip_image008_0001.jpg" alt="荀况荀子" /></a> </li>
+            </ul>
+          <p align="left">　　荀子（约公元前313年－公元前238年），名况，字卿，华夏族（汉族），战国末期赵国人    。著名思想家、文学家、政治家，时人尊称“荀卿”。西汉时因避汉宣帝刘询讳，因“荀”与“孙”二字古音相通，故又称孙卿。曾三次出任齐国稷下学宫的祭酒，后为楚兰陵（位于今山东兰陵县）令。荀子对儒家思想有所发展，在人性问题上，提倡性恶论，主张人性有恶，否认天赋的道德观念，强调后天环境和教育对人的影响。其学说常被后人拿来跟……<a href="http://ren.bytravel.cn/history/kuang(zi).html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/zengguofan.html" target="_blank"><strong>曾国藩</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1811.html">1811</a>～<a href="http://ren.bytravel.cn/Celebrity/1872.html">1872</a>)&nbsp;清朝时期的军事家、理学家、政治家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/zengguofan.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image009_0001.jpg" alt="曾国藩" /></a> </li>
+            </ul>
+          <p align="left">　　曾国藩（1811-1872） 初名子城，字伯函，号涤生，谥文正，湖南长沙府湘乡（今湖南省双峰县）人。中国清朝时期的军事家、理学家、政治家，书法家，「中兴名臣」之一，也是文学家，晚清散文「湘乡派」创立人。官至两江总督、直隶总督、武英殿大学士，封一等毅勇侯。湖南长沙府湘乡白杨坪人，现属湖南省双峰县荷叶镇天子坪。    曾国藩是中国历史上最有影响的人物之一，道光十四年(1834)求学岳麓书院，师从欧阳厚均。从……<a href="http://ren.bytravel.cn/history/zengguofan.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/1/yangyan.html" target="_blank"><strong>杨炎</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/727.html">727</a>～<a href="http://ren.bytravel.cn/Celebrity/781.html">781</a>)&nbsp;唐朝宰相 <br />
+          杨炎（727年－781年），字公南，凤翔府天兴县人（今陕西凤翔县），中国唐朝中期的政治家，两税法的创造和推行者。杨炎（727—781），唐代大臣，财政改革家。生于唐玄宗开元十五年，卒于德宗建中二年，年五十五岁。美须眉，峻风寓，文藻雄丽，豪爽尚气。父丧庐墓，号慕不废声。河西节度使吕崇辟掌书记。德宗时，累拜门下侍郎，同中书门下平章事。作两税法，一变租庸调旧制。当时便之。初炎矫饬志节，颇得名。后党元载，……<a href="http://ren.bytravel.cn/history/1/yangyan.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/lilongji(tangxuanzong).html" target="_blank"><strong>唐玄宗李隆基</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/685.html">685</a>～<a href="http://ren.bytravel.cn/Celebrity/762.html">762</a>)&nbsp;唐朝第六位皇帝 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/lilongji(tangxuanzong).html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image010_0001.jpg" alt="唐玄宗李隆基" /></a> </li>
+            </ul>
+          <p align="left">　　唐玄宗李隆基（685年9月8日—762年5月3日），712年至756年在位。唐朝在位最久的皇帝，唐睿宗李旦第三子，母窦德妃。庙号“玄宗”，又因其谥号为“至道大圣大明孝皇帝”，故亦称为唐明皇。清朝为避讳康熙皇帝之名“玄烨”，多称其为唐明皇，另有尊号“开元圣文神武皇帝”。垂拱元年（685年）八月，李隆基生于东都洛阳，生性英明果断，多才多艺，知晓音律，擅长书法，仪表雄伟俊丽。永昌年间（689年）过继给李……<a href="http://ren.bytravel.cn/history/lilongji(tangxuanzong).html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/mozi.html" target="_blank"><strong>墨子</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-468.html">前468</a>～<a href="http://ren.bytravel.cn/Celebrity/-390.html">前390</a>)&nbsp;战国初期思想家、墨家学派创始人 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/mozi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image011_0001.jpg" alt="墨子" /></a> </li>
+            </ul>
+          <p align="left">　　墨子（约公元前476—前390年），战国初期思想家、墨家学派创始人。姓墨，名翟，鲁国人，曾为宋之大夫。墨子出身于社会下层，生活接近“农与工肆之人”。他自称“今翟上无君上之事，下无耕农之难”，似属当时“士”阶层。但他又承认自己是“0”。他可能当过工匠或小工业主，具有相当丰富的生产工艺技能。他“日夜不休，以自苦为极”，长期奔走于各诸侯国之间，宣传他的政治主张。据传，他曾止楚攻宋，实施兼爱、非攻的主张。……<a href="http://ren.bytravel.cn/history/mozi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/liuxiuguangwudi.html" target="_blank"><strong>光武帝刘秀</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-5.html">前5</a>～<a href="http://ren.bytravel.cn/Celebrity/57.html">57</a>)&nbsp;汉朝皇帝,中国古代十大贤君 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/liuxiuguangwudi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image012_0001.jpg" alt="光武帝刘秀" /></a> </li>
+            </ul>
+          <p align="left">　　汉世祖光武皇帝刘秀（公元前5年1月15日—57年3月29日），字文叔，南阳郡蔡阳县人，出生于陈留郡济阳县    ，东汉王朝开国皇帝，中国历史上著名的政治家、军事家。 新朝王莽末年，海内分崩，天下大乱，身为一介布衣却有前朝血统的刘秀在家乡乘势起兵。公元25年，刘秀与更始政权公开决裂，于河北鄗南千秋亭登基称帝，[3-4] 为表刘氏重兴之意，仍以“汉”为其国号，史称“东汉”。    经过长达十二年之久的统一战争……<a href="http://ren.bytravel.cn/history/liuxiuguangwudi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/hubilie(yuanshizu).html" target="_blank"><strong>元世祖忽必烈</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1215.html">1215</a>～<a href="http://ren.bytravel.cn/Celebrity/1294.html">1294</a>)&nbsp;元朝皇帝 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/hubilie(yuanshizu).html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image013_0001.jpg" alt="元世祖忽必烈" /></a> </li>
+            </ul>
+          <p align="left">　　元世祖孛儿只斤·忽必烈（1215年-1294年），别名薛禅可汗，成吉思汗之孙，元朝开国皇帝。1260年，忽必烈继承汗位，并与1271年改“大蒙古”国号为元，迁都大都（今天的北京）。忽必烈在位期间消灭南宋大理，统一全国    ；改革政体，首创行省制度；定都大都，开凿大运河。公元1294年2月18日，忽必烈病逝，谥号圣德神功文武皇帝，庙号世祖。人物生平潜邸岁月忽必烈生于1215年9月23日。是铁木真之孙，拖……<a href="http://ren.bytravel.cn/history/hubilie(yuanshizu).html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/jiangjieshi.html" target="_blank"><strong>蒋介石</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1887.html">1887</a>～<a href="http://ren.bytravel.cn/Celebrity/1975.html">1975</a>)&nbsp;中华民国主要领导人 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/jiangjieshi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image014_0001.jpg" alt="蒋介石" /></a> </li>
+            </ul>
+          <p align="left">　　蒋介石（1887年10月31日－1975年4月5日），名中正，字介石。幼名瑞元、谱名周泰、学名志清。祖籍江苏宜兴，生于浙江奉化，是近代中国著名政治人物及军事家，历任黄埔军校校长、国民革命军总司令、国民政府主席、行政院院长、国民政府军事委员会委员长、中华民国特级上将、中国国民党总裁、-青年团团长、第二次世界大战同盟国中国战区最高统帅、中华民国总统等职。蒋中正受孙中山赏识而崛起於民国政坛，在孙去世后长……<a href="http://ren.bytravel.cn/history/jiangjieshi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/hanyu.html" target="_blank"><strong>韩愈</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/768.html">768</a>～<a href="http://ren.bytravel.cn/Celebrity/824.html">824</a>)&nbsp;唐代文学家、哲学家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/hanyu.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image015_0001.jpg" alt="韩愈" /></a> </li>
+            </ul>
+          <p align="left">　　韩愈(768～824)唐代文学家、哲学家。字退之。河南河阳(今孟县)人，郡望昌黎，世称韩昌黎。因官吏部侍郎，又称韩吏部。谥号文，又称韩文公。生平他三岁而孤，受兄嫂抚育，早年流离困顿，有读书经世之志。20岁赴长安考进士，三试不第。25～35岁，他先中进士，三试博学鸿词科不成，赴汴州董晋、徐州张建封两节度使幕府任职。后回京任四门博士。36～49岁，任监察御史，因-论天旱人饥状，请减免赋税，贬阳山令。宪……<a href="http://ren.bytravel.cn/history/hanyu.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/wangzhi.html" target="_blank"><strong>王羲之</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/330.html">330</a>～<a href="http://ren.bytravel.cn/Celebrity/361.html">361</a>)&nbsp;东晋著名书法家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/wangzhi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image016_0001.jpg" alt="王羲之" /></a> </li>
+            </ul>
+          <p align="left">　　书圣王羲之（303年-361年，一作321年-379年），东晋时期著名书法家，被誉为“书圣”，与其子王献之合称“二王”。王羲之兼善隶、草、楷、行各体，精研体势，心摹手追，广采众长，备精诸体，冶于一炉，摆脱了汉魏笔风，自成一家，影响深远。代表作有《黄庭经》《乐毅论》《十七帖》《兰亭集序》《初月帖》等，其中《兰亭序》被誉为“天下第一行书”。公元361年，王羲之卒于会稽金庭，葬于金庭瀑布山。人物生平入木……<a href="http://ren.bytravel.cn/history/wangzhi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/lvshang(jiangtaigong).html" target="_blank"><strong>姜子牙</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-1156.html">前1156</a>～<a href="http://ren.bytravel.cn/Celebrity/-1017.html">前1017</a>)&nbsp;中国商末周初兵学奠基人 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/lvshang(jiangtaigong).html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image017_0001.jpg" alt="姜子牙" /></a> </li>
+            </ul>
+          <p align="left">　　姜子牙（约前1156年—约前1017年），姜姓，吕氏，名尚，一名望，字子牙，或单呼牙，也称吕尚，别号飞熊。商朝末年人。其先祖为四岳，佐禹平水土甚有功，虞夏之际封于吕，从其封姓，故以吕为氏。出生地主要有东海说和河内说。《孟子》的《离娄上》和《尽心上》两章都提到姜子牙“居东海之滨”；《吕氏春秋·首时》也说，“太公望，东夷之士也”；《史记·齐太公世家》也说他是“东海上人”。但这些说法都很笼统含糊。晋代张……<a href="http://ren.bytravel.cn/history/lvshang(jiangtaigong).html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/zhouenlai.html" target="_blank"><strong>周恩来</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1898.html">1898</a>～<a href="http://ren.bytravel.cn/Celebrity/1976.html">1976</a>)&nbsp;共和国36位军事家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/zhouenlai.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image018_0001.jpg" alt="周恩来" /></a> </li>
+            </ul>
+          <p align="left">　　周恩来是马克思主义者，无产阶级革命家、政治家、军事家和外交家，中国共产党、中华人民共和国主要领导人之一，中国人民解放军创建人之一，中华人民共和国总理（1949～1976）。原籍浙江绍兴，出生于江苏淮安。1917年在天津南开学校毕业后赴日本求学。1919年回国，9月入南开大学，在五四运动中成为天津学生界的领导人，并与运动中的其他活动分子共同组织进步团体觉悟社。1920年去法国勤工俭学。1921年参加……<a href="http://ren.bytravel.cn/history/zhouenlai.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/hanxin.html" target="_blank"><strong>韩信</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/-231.html">前231</a>～<a href="http://ren.bytravel.cn/Celebrity/-196.html">前196</a>)&nbsp;西汉开国功臣、军事家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/hanxin.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image019_0000.jpg" alt="韩信" /></a> </li>
+            </ul>
+          <p align="left">　　韩信（约公元前231年－公元前196年），汉族，淮阴（原江苏省淮阴县，今淮阴区）人，西汉开国功臣，中国历史上杰出的军事家，与萧何、张良并列为汉初三杰，与彭越、英布并称为汉初三大名将。早年家贫，常从人寄食。    秦末参加反秦斗争投奔项羽，后经夏侯婴推荐，拜治粟都尉， 未得到重用。萧何向刘邦保举韩信， 于是，刘邦拜韩信为大将军。韩信对刘邦分析了楚汉双方的形势，举兵东向，三秦可以夺取。刘邦采纳了这一建……<a href="http://ren.bytravel.cn/history/hanxin.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <table border="1" cellspacing="0" cellpadding="0" width="662">
+    <tr>
+      <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/lihongzhang.html" target="_blank"><strong>李鸿章</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1823.html">1823</a>～<a href="http://ren.bytravel.cn/Celebrity/1901.html">1901</a>)&nbsp;晚清名臣，洋务运动的主要领导人之一 </p>
+          <ul>
+            <li><a href="http://ren.bytravel.cn/history/lihongzhang.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image001_0002.jpg" alt="李鸿章" /></a> </li>
+          </ul>
+        <p align="left">　　李鸿章（1823年2月15日-1901年11月7日），号少荃、仪叟，别名李中堂、章桐，晚清重臣，曾任直隶总督、北洋通商大臣，封爵一等肃毅侯。李鸿章与曾国藩、张之洞、左宗棠被称为“中兴四大名臣”，与俾斯麦、格兰特并称“十九世纪世界三大伟人”。李鸿章在职期间镇压太平天国运动、参与洋务运动，积极倡建近代海军、建立北洋水师；最终却不得不以外交代表身份签署《越南条约》《马关条约》等一系列丧权辱国的条约。李鸿……<a href="http://ren.bytravel.cn/history/lihongzhang.html" target="_blank">[详细]</a></p></td>
+    </tr>
+  </table>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/weiqing.html" target="_blank"><strong>卫青</strong></a>&nbsp;(?～<a href="http://ren.bytravel.cn/Celebrity/-106.html">前106</a>)&nbsp;十七史百将传 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/weiqing.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image002_0002.jpg" alt="卫青" /></a> </li>
+            </ul>
+          <p align="left">　　卫青是汉武帝时期抗击匈奴的主要将领，霍去病的舅舅，二者并称“帝国双璧”。卫青开启了汉对匈战争的新篇章，七战七捷，无一败绩，为历代兵家所敬仰。    元光二年汉武帝决定改变西汉初期和匈奴和亲的政策，靠“文景之治”积累的财富和兵力，对匈奴发动了大规模的反击。卫青从公元前129年被封车骑将军开始，共有七次领兵打击匈奴，立下了赫赫战功。    按《史记》记载其所得封邑总共有一万六千七百户，《汉书》则有为二万二百户及三……<a href="http://ren.bytravel.cn/history/weiqing.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/8/zhuji2294386.html" target="_blank"><strong>朱镕基</strong></a><br />
+          朱镕基,1928年10月生，湖南长沙人，1949年10月加入中国共产党，1948年12月参加工作，清华大学电机系电机制造专业毕业，大学文化，高级工程师。曾任第十四届、十五届中央政治局委员、常委，国务院总理。个人履历1947年至1951年在清华大学电机系电机制造专业学习并参加“新民主主义青年联盟”。1951年至1952年任东北工业部计划处生产计划室副主任。1952年至1958年在国家计委燃动局、综合……<a href="http://ren.bytravel.cn/history/8/zhuji2294386.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/xuguangqi.html" target="_blank"><strong>徐光启</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1562.html">1562</a>～<a href="http://ren.bytravel.cn/Celebrity/1633.html">1633</a>) </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/xuguangqi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image003_0002.jpg" alt="徐光启" /></a> </li>
+            </ul>
+          <p align="left">　　徐光启（1562年4月24日－1633年11月10日），中国明末科学家，农学家，政治家，中西文化交流的先驱之一。字子先，号玄扈，教名保禄。汉族。南直隶松江府上海县（今上海市）人，天主教徒，并且被称为“圣教三柱石”之首。万历三十二年（1604）进士。通天文、历算，习火器。入天主教，与意大利人利玛窦研讨学问。四十年，充历书纂修官，与传教士熊三拔共制天、地盘等观象仪。次年遭讦，称病去职，屯耕于天津。四十……<a href="http://ren.bytravel.cn/history/xuguangqi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/gehong.html" target="_blank"><strong>葛洪</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/283.html">283</a>～<a href="http://ren.bytravel.cn/Celebrity/343.html">343</a>)&nbsp;东晋道教学者 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/gehong.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image004_0002.jpg" alt="葛洪" /></a> </li>
+            </ul>
+          <p align="left">　　葛洪，字稚川，丹阳句容（今江苏）人。出身江南豪族。13岁时丧父，家境渐贫。他以砍柴所得，换回纸笔，在劳作之余抄书学习，常至深夜。乡人因而称其为抱朴之士，他遂以“抱朴子”为号。他性格内向，不善交游，只闭门读书，涉猎甚广。葛洪伯祖父葛玄曾师从炼丹家左慈学道，号葛仙公，以炼丹秘术传于弟子郑隐。葛洪约16岁时拜郑为师，因潜心向学，深得郑隐器重。郑隐的神仙、遁世思想对葛洪一生影响很大，自此有意归隐山林炼丹修……<a href="http://ren.bytravel.cn/history/gehong.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/simaguang.html" target="_blank"><strong>司马光</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1019.html">1019</a>～<a href="http://ren.bytravel.cn/Celebrity/1086.html">1086</a>)&nbsp;昭勋阁二十四功臣,宋朝宰相 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/simaguang.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image005_0002.jpg" alt="司马光" /></a> </li>
+            </ul>
+          <p align="left">　　司马光（1019年11月17日－1086年），字君实，号迂叟，汉族，陕州夏县（今山西夏县）涑水乡人 ，世称涑水先生。北宋政治家、史学家、文学家。历仕仁宗、英宗、神宗、哲宗四朝，卒赠太师、温国公，谥文正，为人温良谦恭、刚正不阿；做事用功刻苦、勤奋。以“日力不足，继之以夜”自诩，其人格堪称儒学教化下的典范，历来受人景仰。    宋仁宗时中进士，英宗时进龙图阁直学士。宋神宗时，反对王安石施行变法，朝廷内外……<a href="http://ren.bytravel.cn/history/simaguang.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/zhugeliang.html" target="_blank"><strong>诸葛亮</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/181.html">181</a>～<a href="http://ren.bytravel.cn/Celebrity/234.html">234</a>)&nbsp;三国时期杰出的政治家、战略家、发明家、军事家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/zhugeliang.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image006_0002.jpg" alt="诸葛亮" /></a> </li>
+            </ul>
+          <p align="left">　　诸葛亮（181年7月23日—234年8月28日），字孔明，号卧龙（也作伏龙），汉族，琅琊阳都（今山东临沂市沂南县）人，蜀汉丞相，三国时期杰出的政治家、战略家、发明家、军事家。在世时被封为武乡侯，谥曰忠武侯；后来的东晋政权为了推崇诸葛亮的军事才能，特追封他为武兴王。代表作有《前出师表》、《后出师表》、《诫子书》等。发明木牛流马、孔明灯等。成都有武侯祠。另，大诗人杜甫有《蜀相》名篇传世。诸葛亮于汉灵帝……<a href="http://ren.bytravel.cn/history/zhugeliang.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/kangyouwei.html" target="_blank"><strong>康有为</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1868.html">1868</a>～<a href="http://ren.bytravel.cn/Celebrity/1927.html">1927</a>)&nbsp;南粤先贤 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/kangyouwei.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image007_0002.jpg" alt="康有为" /></a> </li>
+            </ul>
+          <p align="left">　　康有为(1858年3月19日～1927年3月31日），又名祖诒，字广厦，号长素，又号长素、明夷、更甡、西樵山人、游存叟、天游化人，晚年别署天游化人，广东南海人，人称“康南海”，清光绪年间进士，官授工部主事。出身于士宦家庭，乃广东望族，世代为儒，以理学传家。近代著名政治家、思想家、社会改革家、书法家和学者，他信奉孔子的儒家学说，并致力于将儒家学说改造为可以适应现代社会的国教，曾担任孔教会会长。主要著……<a href="http://ren.bytravel.cn/history/kangyouwei.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/yangguang(suidi).html" target="_blank"><strong>隋炀帝杨广</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/569.html">569</a>～<a href="http://ren.bytravel.cn/Celebrity/618.html">618</a>)&nbsp;隋朝皇帝 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/yangguang(suidi).html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image008_0002.jpg" alt="隋炀帝杨广" /></a> </li>
+            </ul>
+          <p align="left">　　杨广(569～618年)，即隋炀帝，又名杨英。是我国历史上有名的暴君之一。杨广从小好学，善写诗文，能言善辩，颇得独孤皇后的欢心，隋文帝对他也特别钟爱。当杨坚还是北周大臣时，杨广就以父功受封为雁门郡公。杨坚称帝后于开皇元年(581)封年仅13岁的杨广为晋王，拜位柱国，担任并州(今山西太原)总管。开皇二年(582)，设置河北道行台尚书省，杨广任武卫大将军、上柱国兼河北道行台尚书令。他上任后，广揽人才，……<a href="http://ren.bytravel.cn/history/yangguang(suidi).html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/2/yuanlongping.html" target="_blank"><strong>袁隆平</strong></a>&nbsp;杂交水稻之父，中国工程院院士·农业学部 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/2/yuanlongping.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image009_0002.jpg" alt="袁隆平" /></a> </li>
+            </ul>
+          <p align="left">　　袁隆平，男，汉族，江西省九江市德安县人，1930年9月7日生于北京，现居湖南长沙。1953年8月参加工作，大学学历，无党派，研究员。 中国杂交水稻育种专家，被称为中国的“杂交水稻之父”，中国工程院院士。2006年4月当选美国国家科学院外籍院士。 2010年荣获澳门科技大学荣誉博士学位。2011年获得马哈蒂尔科学奖。    袁隆平是曾任政协十二届全国委员会常务委员，湖南省政协副主席，湖南省科协副主席。……<a href="http://ren.bytravel.cn/history/2/yuanlongping.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/baiqi.html" target="_blank"><strong>白起</strong></a>&nbsp;(?～<a href="http://ren.bytravel.cn/Celebrity/-257.html">前257</a>)&nbsp;战国四大名将,中国古代著名的将领、军事家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/baiqi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image010_0002.jpg" alt="白起" /></a> </li>
+            </ul>
+          <p align="left">　　白起（？—公元前257年），又称公孙起，战国时期秦国郿县（今陕西省眉县常兴镇白家村）人，中国古代著名的将领、军事家。白起在秦昭王时征战六国，为秦国统一六国做出了巨大的贡献。曾在伊阕之战大破魏韩联军，攻陷楚国国都郢城，长平之战重创赵国主力，功勋赫赫，白起是继中国历史上自孙武、吴起之后又一个杰出的军事家、统帅，与廉颇、李牧、王翦并称为战国四大名将，位列战国四大名将之首。展露头角白起出生的年代，秦的国力……<a href="http://ren.bytravel.cn/history/baiqi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/wudaozi.html" target="_blank"><strong>吴道子</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/680.html">680</a>～<a href="http://ren.bytravel.cn/Celebrity/759.html">759</a>)&nbsp;中国古代十大画家,古代十圣 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/wudaozi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image011_0002.jpg" alt="吴道子" /></a> </li>
+            </ul>
+          <p align="left">　　吴道子（约公元680年～公元759年），唐朝著名画家，汉族，阳翟（今河南禹州）人。被后世尊称为“百代画圣”，被民间画工尊为祖师。他是中国山水画的祖师，被后人尊称为“画圣”，人物绘画“冠绝于世”。他善于从复杂的物体形态中吸收精髓，把凹凸面，阴阳面，归纳成为不可再减的“线”，构成线条的组织规律，如衣纹的高、侧、深、斜、卷、折、飘、举的姿势。所绘人物，善用状如兰叶或蓴菜条之线条表现衣褶，使有飘举之势，人……<a href="http://ren.bytravel.cn/history/wudaozi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/wanganshi.html" target="_blank"><strong>王安石</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1021.html">1021</a>～<a href="http://ren.bytravel.cn/Celebrity/1086.html">1086</a>)&nbsp;政治家、文学家、思想家、改革家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/wanganshi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image012_0002.jpg" alt="王安石" /></a> </li>
+            </ul>
+          <p align="left">　　王安石（1021年12月18日－1086年5月21日），字介甫，号半山，谥文，封荆国公。世人又称王荆公。北宋临川人（今江西东乡上池村人）。中国历史上杰出的政治家、文学家、思想家、改革家。北宋帝国首相、新党领袖。欧阳修称赞王安石：“翰林风月三千首，吏部文章二百年。老去自怜心尚在，后来谁与子争先。”有《王临川集》、《临川集拾遗》等存世。其亦擅长诗词，流传最著名的莫过于〈泊船瓜洲〉里：“春风又绿江南岸，……<a href="http://ren.bytravel.cn/history/wanganshi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/2/qianxuesen.html" target="_blank"><strong>钱学森</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1911.html">1911</a>～<a href="http://ren.bytravel.cn/Celebrity/2009.html">2009</a>)&nbsp;“两弹一星”功勋,国家杰出贡献科学家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/2/qianxuesen.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image013_0002.jpg" alt="钱学森" /></a> </li>
+            </ul>
+          <p align="left">　　钱学森（1911.12.11－2009.10.31），汉族，吴越王钱镠第33世孙，生于上海，祖籍浙江省杭州市临安。世界著名科学家，空气动力学家，中国载人航天奠基人，中国科学院及中国工程院院士，中国两弹一星功勋奖章获得者，被誉为“中国航天之父”“中国导弹之父”“中国自动化控制之父”和“火箭之王”，由于钱学森回国效力，中国导弹、原子弹的发射向前推进了至少20年。钱学森1934年毕业于交通大学（现西安交……<a href="http://ren.bytravel.cn/history/2/qianxuesen.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/wangfuzhi.html" target="_blank"><strong>王夫之</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1619.html">1619</a>～<a href="http://ren.bytravel.cn/Celebrity/1692.html">1692</a>)&nbsp;明末三大儒,清初五大师 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/wangfuzhi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image014_0002.jpg" alt="王夫之" /></a> </li>
+            </ul>
+          <p align="left">　　王夫之（1619年10月7日－1692年2月18日），字而农，号姜斋、又号夕堂，湖广衡州府衡阳县（今湖南衡阳）人。他与顾炎武、黄宗羲并称明清之际三大思想家。其著有《周易外传》、《黄书》、《尚书引义》、《永历实录》、《春秋世论》、《噩梦》、《读通鉴论》、《宋论》等书。王夫之自幼跟随自己的父兄读书，青年时期王夫之积极参加反清起义，晚年王夫之隐居于石船山，著书立传，自署船山病叟、南岳遗民，学者遂称之为船……<a href="http://ren.bytravel.cn/history/wangfuzhi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/wangshouren.html" target="_blank"><strong>王守仁</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1472.html">1472</a>～<a href="http://ren.bytravel.cn/Celebrity/1529.html">1529</a>)&nbsp;明代著名的思想家、文学家、哲学家和军事家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/wangshouren.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image015_0002.jpg" alt="王守仁" /></a> </li>
+            </ul>
+          <p align="left">　　王守仁（1472～1529），中国明代哲学家，心学唯心主义集大成者。字伯安，号阳明，浙江余姚人。明代著名的思想家、文学家、哲学家和军事家，陆王心学之集大成者，精通儒家、道家、佛家。王守仁与孔子、孟子、朱熹并称为孔、孟、朱、王。王守仁的学说思想王学（阳明学），是明代影响最大的哲学思想。其学术思想传至中国、日本、朝鲜半岛以及东南亚，立德、立言于一身，成就冠绝有明一代。弟子极众，世称姚江学派。其文章博大……<a href="http://ren.bytravel.cn/history/wangshouren.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/dengjiaxian.html" target="_blank"><strong>邓稼先</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1924.html">1924</a>～<a href="http://ren.bytravel.cn/Celebrity/1986.html">1986</a>)&nbsp;中国科学院院士,核物理学家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/dengjiaxian.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image016_0002.jpg" alt="邓稼先" /></a> </li>
+            </ul>
+          <p align="left">　　邓稼先 ( 1924.6.25－1986.7.29. )安徽省怀宁县人。核物理学家，中国-理论研究工作的奠基者和开拓者之一，中国研制和发展-的技术组织领导者之一，中国原子弹理论设计总负责人。中国科学院院士。1924年6月25日出生于安徽省怀宁县祖居铁砚山房，父亲邓以蛰是北京大学教授，母亲王淑蠲持家，清代大书法家邓石如是六世祖。5岁在北平读小学，11岁入中学，12岁插班考入北平崇德中学初二年级，读到……<a href="http://ren.bytravel.cn/history/dengjiaxian.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/liqingzhao.html" target="_blank"><strong>李清照</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1084.html">1084</a>～<a href="http://ren.bytravel.cn/Celebrity/1155.html">1155</a>)&nbsp;南宋杰出的女词人 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/liqingzhao.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image017_0002.jpg" alt="李清照" /></a> </li>
+            </ul>
+          <p align="left">　　李清照（1084—约1155年），号易安居士，章丘（今属山东济南市）人。南宋杰出的女词人。父李格非为当时著名学者，官至礼部员外郎、京东路提点刑狱。后因被列入元祐党籍而罢官。母王氏，亦知书能文。李清照自幼受到良好的文化教养。早年随父住在汴京、洛阳，工书能文，兼通音律。建中靖国元年（１１０１）１８岁时与吏部侍郎赵挺之之子太学生赵明诚结婚，夫妻志同道合，感情甚笃。喜好收藏金石碑帖，共同搜求寻访，鉴赏研究……<a href="http://ren.bytravel.cn/history/liqingzhao.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/yuanshikai.html" target="_blank"><strong>袁世凯</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1859.html">1859</a>～<a href="http://ren.bytravel.cn/Celebrity/1916.html">1916</a>)&nbsp;民国政治家、军事家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/yuanshikai.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image018_0002.jpg" alt="袁世凯" /></a> </li>
+            </ul>
+          <p align="left">　　袁世凯（1859年9月16日－1916年6月6日），字慰亭（又作慰庭），号容庵，汉族，河南项城人，是中国近代史上著名的政治人物。曾是北洋军阀的领导人，在辛亥革命，成为中华民国首任大总统，在位期间积极发展实业，统一币制，创立近代化司法和教育制度。但后来在杨度等立宪人士的鼓惑下复辟称帝被推翻。1859年9月16日，袁世凯生于河南省项城市王明口镇袁寨一个世代官宦的家族。父祖多为地方名流。袁家在清道光年间……<a href="http://ren.bytravel.cn/history/yuanshikai.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/yanzhenqing.html" target="_blank"><strong>颜真卿</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/709.html">709</a>～<a href="http://ren.bytravel.cn/Celebrity/784.html">784</a>)&nbsp;中国古代十大书法家,楷书四大家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/yanzhenqing.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image019_0001.jpg" alt="颜真卿" /></a> </li>
+            </ul>
+          <p align="left">　　颜真卿，唐代中期杰出书法家，伟大的爱国主义家。他创立的“颜体”楷书与赵孟頫、柳公权、欧阳询并称“楷书四大家”。和柳公权并称：“颜筋柳骨”。　颜真卿，（709--784），汉族，字清臣，京兆万年人，祖籍唐琅琊临沂（今山东临沂）。开元间中进士。安史之乱，抗贼有功，入京历任吏部尚书，太子太师，封鲁郡开国公，故又世称颜鲁公。德宗时，李希烈叛乱，他以社稷为重，亲赴敌营，晓以大义，终为李希烈缢杀，终年77岁。……<a href="http://ren.bytravel.cn/history/yanzhenqing.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <table border="1" cellspacing="0" cellpadding="0" width="662">
+    <tr>
+      <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/luoguanzhong.html" target="_blank"><strong>罗贯中</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1330.html">1330</a>～<a href="http://ren.bytravel.cn/Celebrity/1400.html">1400</a>)&nbsp;明清小说四大家 </p>
+          <ul>
+            <li><a href="http://ren.bytravel.cn/history/luoguanzhong.html" target="_blank"><img border="0" width="225" height="256" src="a_clip_image001_0003.jpg" alt="罗贯中" /></a> </li>
+          </ul>
+        <p align="left">　　罗贯中（约1330－约1400），汉族，山东东原人（今山东东平县）名本，字贯中，号湖海散人。他是元末明初著名小说家、戏曲家。罗贯中的一生着作颇丰，主要作品有剧本《赵太祖龙虎风云会》等、小说《三国演义》、《隋唐两朝志传》、《残唐五代史演义》等，其中《三国演义》是其力作，这部长篇小说对后世影响深远，深受读者喜爱。关于罗贯中的故里有多种说法，山东东平罗庄、山西太原、清徐、福建建阳等。贯中被称为中国章回小……<a href="http://ren.bytravel.cn/history/luoguanzhong.html" target="_blank">[详细]</a></p></td>
+    </tr>
+  </table>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/1/xushen3379.html" target="_blank"><strong>许慎</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/58.html">58</a>～<a href="http://ren.bytravel.cn/Celebrity/147.html">147</a>)&nbsp;东汉时期著名的经学家 <br />
+          许慎，字叔重(约公元58年——147年)，东汉汝南召陵万岁里人（今姬石乡许庄），东汉时期著名的经学家、文字学家、训诂学家和词汇学家，著有《说文解字》等。许慎(公元58-147年)《与说文解字》汉字是世界上最古老的文字，是历史最长的象形文字。今天，人们发现，汉字输入计算机的方便程度，是世界任何一种文字所无法比拟的，当人们开始热衷于研究汉字时，首先会想到许慎。许慎是东汉时期的经学家、文学学家，他编撰的……<a href="http://ren.bytravel.cn/history/1/xushen3379.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/guzhi.html" target="_blank"><strong>顾恺之</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/348.html">348</a>～<a href="http://ren.bytravel.cn/Celebrity/409.html">409</a>)&nbsp;中国古代十大画家,六朝三丹青 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/guzhi.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image002_0003.jpg" alt="顾恺之" /></a> </li>
+            </ul>
+          <p align="left">　　顾恺之（348—409）字长康，小字虎头，汉族，晋陵无锡（今江苏焦溪）人。工诗词文赋，尤精绘画。擅肖像、历史人物、道释、禽兽、山水等题材。画人物主张传神，重视点睛，认为“传神写照，正在阿堵(指眼睛)中”。精于人像、佛像、禽兽、山水等，时人称之为三绝：画绝、文绝和痴绝。顾恺之与曹不兴、陆探微、张僧繇合称“六朝四大家”。顾恺之作画，意在传神，其“迁想妙得”“以形写神”等论点，为中国传统绘画的发展奠定了……<a href="http://ren.bytravel.cn/history/guzhi.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/shenkuo.html" target="_blank"><strong>沈括</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1031.html">1031</a>～<a href="http://ren.bytravel.cn/Celebrity/1095.html">1095</a>)&nbsp;宋代科学家，文学家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/shenkuo.html" target="_blank"><img border="0" width="300" height="375" src="a_clip_image003_0003.jpg" alt="沈括" /></a> </li>
+            </ul>
+          <p align="left">　　沈括（1031—1095），字存中，宋钱塘（今余杭）人。青少年时期先后学过儒学、佛学、道学和医学，博学多识。至和元年（1054），任海州沭阳县主簿，见境内主流沭水长期失修，泛滥成灾，就着手整治，拓宽挖深，疏通河道，筑成百渠九堰，使沿流7000余顷农田受到灌溉之利，成为良田。嘉祐六年（1061），任宣州宁国县令，受江南转运使张颗委派，有“以工代赈”办法，联合附近8县民工14000余人，修复太平州芜湖……<a href="http://ren.bytravel.cn/history/shenkuo.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/yangyuhuan.html" target="_blank"><strong>杨贵妃杨玉环</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/719.html">719</a>～<a href="http://ren.bytravel.cn/Celebrity/756.html">756</a>)&nbsp;四大美女,中国古代十大美女 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/yangyuhuan.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image004_0003.jpg" alt="杨贵妃杨玉环" /></a> </li>
+            </ul>
+          <p align="left">　　杨玉环（719年~756年），父亲杨玄琰，任蜀州（今四川崇庆县）司户。祖籍宏农华阴（今陕西华阴），后徙居于蒲州永乐县独头村（今永济市）。玉环幼年父母双亡，寄养于叔父家。开元二十二年（734年），15岁的杨玉环被选为寿王李瑁的妃子，成了唐玄宗的儿媳妇。开元二十四年（736年），唐玄宗最迷恋的武惠妃死去，玄宗深为悼惜，“后庭数千，无可意者”（《旧唐书·玄宗杨贵妃传》）。有人上奏说，杨玄琰的女儿“姿色冠……<a href="http://ren.bytravel.cn/history/yangyuhuan.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/xuan.html" target="_blank"><strong>玄奘</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/600.html">600</a>～<a href="http://ren.bytravel.cn/Celebrity/664.html">664</a>)&nbsp;唐著名佛教法师 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/xuan.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image005_0003.jpg" alt="玄奘" /></a> </li>
+            </ul>
+          <p align="left">　　玄奘(602～664年)，俗姓陈，名祎，唐著名佛教法师、佛经理论家、翻译家。河南偃师县陈家河村人。一生专事研究佛教经论，不畏艰险，远度重山，由印度运回梵文经卷，在长安讲经传教19年，在中国佛教史上有着重要地位。玄奘13岁那年，朝廷派大理卿郑善果到洛阳度僧27名。玄奘因不满15岁，考试落榜。主考官郑善果见他“年虽小而志怀远大”，就被破格录取。在净土寺削发成为沙弥。唐武德元年，玄奘和二哥长捷从洛阳入长……<a href="http://ren.bytravel.cn/history/xuan.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/liangqichao.html" target="_blank"><strong>梁启超</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1873.html">1873</a>～<a href="http://ren.bytravel.cn/Celebrity/1929.html">1929</a>)&nbsp;南粤先贤 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/liangqichao.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image006_0003.jpg" alt="梁启超" /></a> </li>
+            </ul>
+          <p align="left">　　梁启超，中国近代史上著名的政治活动家、启蒙思想家、资产阶级宣传家、教育家、史学家和文学家。戊戌变法(百日维新)领袖之一。曾倡导文体改良的“诗界革命”和“小说界革命”。其著作合编为《饮冰室合集》。梁启超，字卓如，号任公，又号饮冰室主人、饮冰子、哀时客、中国之新民、自由斋主人等。汉族，广东新会人。中国近代维新派领袖，学者。    梁启超自幼在家中接受传统教育，1889年中举。1890年赴京会试，没中。回粤路……<a href="http://ren.bytravel.cn/history/liangqichao.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/tuobahong(beiweixiaowendi).html" target="_blank"><strong>北魏孝文帝元宏</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/467.html">467</a>～<a href="http://ren.bytravel.cn/Celebrity/499.html">499</a>)&nbsp;中国古代十大贤君,北魏皇帝 <br />
+          北魏孝文帝元宏（467年—499年），原姓拓跋，后改姓元，名宏，鲜卑人。他是中国历史上一位有雄才大略的政治家，在位期间，大力推行汉化改革。北魏皇兴三年（469年）六月，不满两周岁的拓跋宏被立为太子。他自幼由祖母冯太后抚养，深受汉文化的熏陶。皇兴五年（471年）八月，年仅5岁的他继皇帝位，由冯太后临朝称制。冯太后一方面继续培养教育年幼的皇帝，使其逐渐了解治国方略；另一方面对北魏进行了许多改革，如推行……<a href="http://ren.bytravel.cn/history/tuobahong(beiweixiaowendi).html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/guanhanqing.html" target="_blank"><strong>关汉卿</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1219.html">1219</a>～<a href="http://ren.bytravel.cn/Celebrity/1301.html">1301</a>)&nbsp;元曲四大家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/guanhanqing.html" target="_blank"><img border="0" width="300" height="441" src="a_clip_image007_0003.jpg" alt="关汉卿" /></a> </li>
+            </ul>
+          <p align="left">　　关汉卿（1219——1301年），号“己斋叟”，金末元初人，活跃于约1210年至约1300年（元成宗大德）间，解州（今山西运城)人元代杂剧奠基人，我国历史上最伟大的戏剧家，“元曲四大家”之首。 以杂剧的成就最大，今知有67部，现存18部，最著名的是《窦娥冤》。关汉卿的戏剧创作在中国戏剧史和文学史上占有重要的地位，被称为“元杂剧的鼻祖”；关汉卿在世界文学艺术史上也享有盛誉，被称为“东方的莎士比亚”。……<a href="http://ren.bytravel.cn/history/guanhanqing.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/pengdehuai.html" target="_blank"><strong>彭德怀</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1898.html">1898</a>～<a href="http://ren.bytravel.cn/Celebrity/1974.html">1974</a>)&nbsp;十大元帅,共和国36位军事家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/pengdehuai.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image008_0003.jpg" alt="彭德怀" /></a> </li>
+            </ul>
+          <p align="left">　　彭德怀(1898-1974) 中共中央政治局委员,国务院副总理兼-长,中华人民共和国元帅。湖南省湘潭县人,原名彭得华,1898年10月24日出生在湘潭县石潭乡乌石寨一个贫苦农民家庭。从小饱受苦难,养成倔强、刚直的性格。1916年春,他怀着扶弱救贫的理想,投入湘军当兵。1922年考入湖南军官讲武堂,历任连长、营长、团长,参加了北伐战争。 1928年4月,在中国革命处于低潮……<a href="http://ren.bytravel.cn/history/pengdehuai.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/caoxueqin.html" target="_blank"><strong>曹雪芹</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1715.html">1715</a>～<a href="http://ren.bytravel.cn/Celebrity/1763.html">1763</a>)&nbsp;中国古代十大文豪,明清小说四大家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/caoxueqin.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image009_0003.jpg" alt="曹雪芹" /></a> </li>
+            </ul>
+          <p align="left">　　曹雪芹（约1715-约1763），我国清代最伟大的小说家。名沾，字梦阮，雪芹是其号，又号芹圃、芹溪。祖籍辽阳，先世原是汉人，后为满洲正白旗“包衣”人，是为旗人。中国长篇名著《红楼梦》的作者。《红楼梦》写于曹雪芹凄凉困苦的晚年，原名《石头记》，基本定稿80回，曾以手抄本流传。1791年，程伟元、高鹗第一次以活字版印刷出版，全书120回，书名改为《红楼梦》。 人物生平康熙五十四年（1715）正月，时任……<a href="http://ren.bytravel.cn/history/caoxueqin.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/lishizhen.html" target="_blank"><strong>李时珍</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1518.html">1518</a>～<a href="http://ren.bytravel.cn/Celebrity/1593.html">1593</a>)&nbsp;中国古代十大名医之祖,古代十圣 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/lishizhen.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image010_0003.jpg" alt="李时珍" /></a> </li>
+            </ul>
+          <p align="left">　　李时珍（1518年 --- 1593年），字：东璧，时人谓之：李东璧。号濒湖，晚年自号濒湖山人，湖北蕲州（今湖北省黄冈市蕲春县蕲州镇）人，汉族，生于明武宗正德十三年（公元1518年），卒于神宗万历二十二年（公元1593年）。中国古代伟大的医学家、药物学家、博物学家、著述家。李时珍对道家医学的继承是多方面的，曾参考历代有关医药及其学术书籍八百余种，结合自身经验和调查研究，历时27年编成《本草纲目》一……<a href="http://ren.bytravel.cn/history/lishizhen.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/caiyuanpei.html" target="_blank"><strong>蔡元培</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1868.html">1868</a>～<a href="http://ren.bytravel.cn/Celebrity/1940.html">1940</a>)&nbsp;著名的思想家、教育家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/caiyuanpei.html" target="_blank"><img border="0" width="300" height="440" src="a_clip_image011_0003.jpg" alt="蔡元培" /></a> </li>
+            </ul>
+          <p align="left">　　 蔡元培(1868～1940)，字鹤卿、孑民，号孑农，绍兴山阴(今越城区)人。少年时曾在绍兴古越藏书楼校书，得以博览群书。光绪十五年(1889)举人，十六年会试贡士，未殿试。十八年补殿试，为进士，授翰林院庶吉士，二十年补翰林院编修。甲午战争后，开始接触西学，同情维新。二十四年九月返绍兴，任绍兴中西学堂监督，提倡新学。二十七年七月奔赴上海，出任南洋公学教习。二十八年与蒋观云等组织中国教育会，任事……<a href="http://ren.bytravel.cn/history/caiyuanpei.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/bangu.html" target="_blank"><strong>班固</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/32.html">32</a>～<a href="http://ren.bytravel.cn/Celebrity/92.html">92</a>)&nbsp;汉赋四大家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/bangu.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image012_0003.jpg" alt="班固" /></a> </li>
+            </ul>
+          <p align="left">　　班固(公元32年～公元92年)，字孟坚，扶风安陵(今陕西咸阳东北)人。他是继司马迁之后又一位杰出的史学家、文学家。    班固出身于仕宦世家，书香门第。父亲班彪是当时有名的学者，曾做过望都长。班固幼年时聪慧好学，9岁时就能做文章、诵诗赋。13岁那年，王充见到了他，拍着他的脊背对班彪说：“此儿必记汉事。”【注：见《谢承书》，转引自范晔《后汉书•班固传》注】后来班固入太学学习，博览群书，儒、道、……<a href="http://ren.bytravel.cn/history/bangu.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/4/chaliangjinyong.html" target="_blank"><strong>查良镛金庸</strong></a>&nbsp;新派武侠小说最杰出的代表作家 </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/4/chaliangjinyong.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image013_0003.jpg" alt="查良镛金庸" /></a> </li>
+            </ul>
+          <p align="left">　　金庸是新派武侠小说最杰出的代表作家，汉族，被普遍誉为武侠小说史上前无古人后无来者的“绝代宗师”和“泰山北斗”，更有金迷们尊称其为“金大侠”或“查大侠”。与黄沾、蔡澜、倪匡并称“香港四大才子”。金庸享有三个“第一”盛誉，即：香江第一才子（指才华）、香港第一健行（指社评）、世界第一侠笔（指武侠）。金庸祖籍为江西省婺源县，1924年出生在浙江海宁。查家为当地名门望族，有“唐宋以来巨族，江南有数人家”之誉……<a href="http://ren.bytravel.cn/history/4/chaliangjinyong.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/6/chenzhenlong.html" target="_blank"><strong>陈振龙</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1543.html">1543</a>～<a href="http://ren.bytravel.cn/Celebrity/1619.html">1619</a>) <br />
+          陈振龙(约1543～1619)陈振龙，青桥人。约明嘉靖二十二年(1543)生于书香家庭。他自幼饱读诗书，年未二十中秀才。后弃儒经商，寓居福州达道铺，随众商人乘船往吕宋(今菲律宾群岛)经商。他在吕宋见当地人民种植朱薯，当时福建沿海一带旱涝无常，常闹饥荒，振龙想到福建多山，若在山上及旷地种植朱薯，可以救荒，决心把朱薯带回国内引种。当时吕宋政府严禁薯种外传，振龙爱国爱乡心切，不顾当地-，用高价向当地人密……<a href="http://ren.bytravel.cn/history/6/chenzhenlong.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/8/mahuateng.html" target="_blank"><strong>马化腾</strong></a></p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/8/mahuateng.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image014_0003.jpg" alt="马化腾" /></a> </li>
+            </ul>
+          <p align="left">　　马化腾，男，1971年10月29日生于广东省汕头市潮南区。腾讯公司主要创办人之一，现担任腾讯公司控股董事会主席兼首席执行官；全国青联副主席。他曾在深圳大学主修计算机及应用，于1993年取得深大理科学士学位。在创办腾讯之前，马化腾曾在中国电信服务和产品供应商深圳润迅通讯发展有限公司主管互联网传呼系统的研究开发工作，在电信及互联网行业拥有10多年经验。1998年和好友张志东注册成立深圳市腾讯计算机系统……<a href="http://ren.bytravel.cn/history/8/mahuateng.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/chensheng.html" target="_blank"><strong>陈胜</strong></a>&nbsp;(?～<a href="http://ren.bytravel.cn/Celebrity/-208.html">前208</a>)&nbsp;秦朝末年反秦义军的首领 <br />
+          陈胜，字涉，汝南阳城（今河南省方城县东孟洼村人）人。吴广起义领袖者。陈胜（?－公元前208），字涉，楚国阳城县人。秦朝末年反秦义军的首领之一，与吴广一同在大泽乡（今安徽宿州西南）率众起兵，成为反秦义军的先驱；不久后在陈郡称王，建立张楚政权。后被秦将章邯所败，遭车夫刺杀而死。    当时正值秦朝的残暴统治时期，阶级压迫极深。他不甘心受人奴役，同情和自己命运相同的人。有一天，他对一起耕田的伙伴们说：“苟富贵……<a href="http://ren.bytravel.cn/history/chensheng.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/zhangzeduan.html" target="_blank"><strong>张择端</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1085.html">1085</a>～<a href="http://ren.bytravel.cn/Celebrity/1145.html">1145</a>) </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/zhangzeduan.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image015_0003.jpg" alt="张择端" /></a> </li>
+            </ul>
+          <p align="left">　　张择端（Zhang Zeduan，1085年    --- 1145年），字正道。汉族，琅邪东武（今山东诸城）人。中国北宋时期著名画家，艺术大师。他的风俗画《清明上河图》，是世界名画之一，也是他的代表作，描绘当年汴京近郊在清明时节社会各阶层的生活景象，真实生动，是一件具有重要历史价值和杰出艺术成就的优秀风俗画。经过近千年的漫长岁月，至今仍完好地保存在北京故宫博物院。人物生平张择端自幼好学，早年游学汴京(……<a href="http://ren.bytravel.cn/history/zhangzeduan.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <table border="1" cellspacing="0" cellpadding="0" width="662">
+      <tr>
+        <td valign="top"><p align="left"><a href="http://ren.bytravel.cn/history/3/lixiaolong11144938.html" target="_blank"><strong>李小龙</strong></a>&nbsp;(<a href="http://ren.bytravel.cn/Celebrity/1940.html">1940</a>～<a href="http://ren.bytravel.cn/Celebrity/1973.html">1973</a>) </p>
+            <ul>
+              <li><a href="http://ren.bytravel.cn/history/3/lixiaolong11144938.html" target="_blank"><img border="0" width="300" height="417" src="a_clip_image016_0003.jpg" alt="李小龙" /></a> </li>
+            </ul>
+          <p align="left">　　 李小龙（1940～1973年），原名李振藩，乳名细凤，英文名Bruce/ Lee（布鲁士·李），祖籍顺德均安镇上村。祖父李震彪武功超卓，青年时期受聘于佛山一家著名镖局，举家迁佛山定居。其父李海泉为著名粤剧武生，居住在佛山山紫村拱北里，抗日战争爆发后移居香港。母亲何金棠，是欧亚混血人种。1940年，李海泉携眷赴美国巡回演出时，于11月27日在美国旧金山三藩市积臣街医院生下李小龙，翌年举家返回香港。……<a href="http://ren.bytravel.cn/history/3/lixiaolong11144938.html" target="_blank">[详细]</a></p></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换
+\s*<br />\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+
+
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+\s*</p>\s*
+\s*<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+
+4 把第和章两个字去掉
+第(\S*)章
+------------------
+$1
+_____________________________________________________________________________________
+
+7 正则表达式参考：
+https://www.toutiao.com/i6370960744082571778/
+_____________________________________________________________________________________
+
+8
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+9 将标注序号更改为上标，红色，需一个个替换，英文html中有[1]
+(\[\d\])
+------------------
+<sup>$1</sup>
+_____________________________________________________________________________________
+10 替换章不是以1-9。?！…”“结尾的段落
+([^1-90。?！…”：？“章])</p>
+<p>
+------------------
+$1
+-->
+
+

@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>13 无穷的烦恼：“潜无穷”与“实无穷”</h4>
+
+<p>芝诺悖论的争论在人类文明史中是从三条线索展开的，哲学、数学和物理。自古希腊以来，哲学家、神学家和数学家就已经开始努力探索无穷这个观念和它的深刻含义。什么是无穷？无穷就是没有尽头。什么是无限？无限就是没完没了。数学的线索是从两条路径展开的，第一个是贯穿于整个数学发展史上的无穷大和无穷小之间纠缠不清的抽象争论，最终由19世纪的集合论画上了句号；第二种是考察数学历史上围绕表示连续所发生的争论，连续意味着光滑的流动或运动和现实世界过程中没有空隙的相继移位。我们知道微积分的基础就是连续性和极限。微积分的极限理论完美地解决了芝诺悖论。第三种是物理的，直到量子力学出现，人们才理解世界并不是连续的，而是离散的。</p>
+
+<p>一般而言，古希腊文化不承认“无限”或“无穷”的概念。毕达哥拉斯学派认为有限是善、无限是恶；欧几里得的《几何原本》中的“直线”只是“线段”，线段可按需要加以延伸，无穷延伸的直线是没有意义的。“无穷”的问题在19世纪前还没有人能用一种严密的方法来回答。法国哲学家和数学家笛卡尔就说过：“无穷可以被认知，但不能被理解。”</p>
+
+<p>从古希腊开始，数学家们就把无穷分为“实无穷”和“潜无穷”。我们知道，自然数列“1,2,3,…,n,…”可以被看成一个永远在增长的没完没了的数列，这叫作“潜无穷”；也可以理解成为一个完成了的整体性无限集合，而一切自然数都在其内，这叫作“实无穷”。“实无穷”就是说“无穷”是实在的，这是柏拉图的观点。他的学生亚里士多德不承认“实无穷”，不认为线段是由无穷个点组成，但承认“潜无穷”，认为“无穷”只是“潜在”地存在，无限只是表现为变化发展的过程，所以叫“潜无穷”。“潜无穷”的认识是，能够“接近”，但实际上不必达到。</p>
+
+<p>亚里士多德对“实无穷”和“潜无穷”的本体论划分，被基督教的教会变成教义：只有上帝才是“实无穷”，他所创造的其他东西都不可能是。直到17世纪，伽利略在他写的《两门新科学的对话》中通过一个方法嘲弄了这种看法。他说，当一条线段是直的时候，你声称它只是潜在包含无穷多个部分，但如果你把线段弯成一个圆时，你却把线段所包含的无穷多个部分变成了实在的东西。</p>
+
+<p>亚里士多德使用“潜无穷”的概念暂时避免了人类与无穷大的直接交锋。在两千多年中，多数哲学家和科学家赞同亚里士多德的“潜无穷”观点。但是，潜无穷的思维范式也使微积分的发现耗费了1700年的时间，一个重要原因是亚里士多德的“潜无穷”概念把无穷大边缘化到一个形而上学的虚幻境界里。实际上，从公元5世纪开始，人们在求解复杂物体的面积体积、计算物体运动轨迹等具体问题时逐渐发展了穷竭法等技巧，最终发现了微积分。而微积分涉及极限和无穷小量，这就使得数学家们不可避免地要去处理实无穷。19世纪的数学家抛弃了亚里士多德的“潜无穷”学说，主要是研究重点从几何无穷大转换到算术无穷大，数学家所面临的最重要的任务似乎是构建一个无穷大的理论。</p>
+
+<p>在19世纪，人们发现，为了使微积分的核心基础极限理论得到完善，必须明确定义无理数概念，而无理数的存在性又必须以实无穷为前提。为了定义无理数，德国数学家戴德金和康托尔引入了无穷集合。无穷集合虽然有悖常理，但符合数学逻辑。康托尔通过集合、幂集、一一对应等几个基本的定义得到一种无穷大数类，他称之为超限数。更进一步，康托尔还发现存在不同的无穷大数类，这些数类之间有可能是以二次方的跳跃增加的。从直观上看，这些是不可思议、难以想象的。但是，从逻辑上讲，如果人们能够接受无理数的存在，那么无穷大和无穷小的存在同样是合理的。现在，无穷大量和无穷小量已经成为数学上的事实。</p>
+
+<p>康托尔是公认的抽象集合论和超限数学之父。在19世纪晚期，他大胆始创“无穷数学理论”。康托尔尝试了计算无穷大，并获得成功。按照康托尔的说法，无限有三种，一是“绝对无限”，又称形而上学的无限，二是“物理无限”，三是“数学无限”。“绝对无限”可以联系到上帝概念，这始终为宗教界人士所赞赏。“物理无限”是指宇宙时空的无限性概念和时间与空间的无限可分割性质。康托尔把分析数学中使用的无限概念和自己始创的超穷基数与序数都归入数学无限范畴。</p>
+
+<p>现代的观点是，只要没有逻辑矛盾，我们可以自由地使用一切无穷集合。现代数学的大厦就是建立在“实无穷”这种观点上的。20世纪30年代的一位数学史家说：“没有一个关于无穷大的相容的数学理论就不会有无理数的理论，没有无理数的理论就不会有任何形式的数学分析；没有了数学分析，现在数学的主要部分，包括几何和绝大部分的应用数学，将不复存在。”无穷或无限的数学符号为∞。无穷大符号：将8水平放成“∞”来表示。“无穷大”符号是在英国人沃利斯（John Wallis）1655年出版的论文《算术的无穷大》一书中首次使用的。</p>
+
+<p>无穷大符号：将8水平放成“∞”来表示。“无穷大”符号是在英国人沃利斯1655年出版的论文《算术的无穷大》一书中首次使用的。</p>
+
+
+
+<p style='float:right;'>本页共10段，2026个字符，5960 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

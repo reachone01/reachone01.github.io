@@ -1,0 +1,861 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>20个领域，20本经典</title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000">红色</option><option value="#006600">绿色</option><option value="#0000ff">蓝色</option><option value="#660000">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select></div>');   
+</script>
+<script language="javascript"> 
+//bg_even("表格ID属性名","奇数行背景色","偶数行背景色","鼠标经过背景色","点击后背景色");
+function bg_even(o,a,b,c,d){
+        var t=document.getElementById(o).getElementsByTagName("tr");
+        for(var i=0;i<t.length;i++){
+                t[i].style.backgroundColor=(t[i].sectionRowIndex%2==0)?a:b;
+                t[i].onclick=function(){
+                        if(this.x!="1"){
+                                this.x="1";
+                                this.style.backgroundColor=d;
+                        }else{
+                                this.x="0";
+                                this.style.backgroundColor=(this.sectionRowIndex%2==0)?a:b;
+                        }
+                }
+                t[i].onmouseover=function(){
+                        if(this.x!="1")this.style.backgroundColor=c;
+                }
+                t[i].onmouseout=function(){
+                        if(this.x!="1")this.style.backgroundColor=(this.sectionRowIndex%2==0)?a:b;
+                }
+        }
+}
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:75.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+#tbrowser {
+	width:100%;
+	margin:auto;
+	border-collapse:collapse;
+font-family:"宋体";
+	text-align:left;
+	line-height:1.3em;
+	table-layout:fixed;
+}
+
+#tbrowser th,#tbrowser td{
+border:1px solid #ddd;
+font-size:1em;
+color:#000000;
+text-align:left;
+font-family: "宋体";
+vertical-align:top;
+padding-left:3px;
+height:28px;
+//white-space:nowrap;
+//overflow:hidden; 
+//text-overflow:ellipsis; 
+}
+
+
+#tbrowser thead th{
+border-bottom:2px solid #3d580b;
+background-color:#8fc629;
+color:#fff;
+padding:5px 0px;
+}
+#tbrowser .nd{
+border-bottom:2px solid #3d580b;
+background-color:#8fc629;
+background-color:#D3D3A9;
+color:red;
+}
+
+#tbrowser th{
+border-bottom:2px solid #3d580b;
+background-color:#8fc629;
+color:#fff;
+padding:5px 0px;
+padding-left:2px;
+}
+#tbrowser th.title{
+background-color:#e3e685;
+}
+
+#tbrowser caption{
+font-weight:bold;
+padding:1px 0px;
+color:#3d580b;
+font-size:18px;
+}
+
+
+#tbrowser .xhx{
+border-bottom:0px solid #aaa;
+}
+
+
+#tbrowser tr{
+height:6px;
+}
+
+#tbrowser tr>td{/*1*/
+font-size:1em;
+text-align:left;
+/*width:13%;*/
+}
+#tbrowser tr>td+td{/*2*/
+text-align:left;
+/*width:8%;*/
+font-size:1em;
+}
+#tbrowser tr>td+td+td{/*3*/
+font-size:1em;
+/*width:5%;*/
+}
+#tbrowser tr>td+td+td+td{/*4*/
+font-size:1em;
+text-align:left;
+/*width:6%;*/
+}
+#tbrowser tr>td+td+td+td+td{/*5*/
+font-size:1em;
+text-align:left;
+/*width:5%;*/
+}
+#tbrowser tr>td+td+td+td+td+td{/*6*/
+/*width:13%;*/
+font-size:1em;
+}
+#tbrowser tr>td+td+td+td+td+td+td{/*7*/
+/*width:59%;*/
+font-size:1em;
+}
+
+
+#tbrowser tfoot td{
+border-width:0px;
+text-align:left;
+line-height:18px;
+font-size:16px;
+color:#777;
+}
+
+#tbrowser th a:link {
+	text-decoration: none;
+	color:white;
+}
+#tbrowser th a:hover {
+	text-decoration: none;
+	color:white;
+}
+#tbrowser th a:active {
+	text-decoration: none;
+	color:white;
+}
+#tbrowser th a:visited {
+	text-decoration: none;
+	color:white;
+}
+#tbrowser caption{
+font-size:1.2em;
+text-align:left;
+}
+#tbrowser thead td{
+font-size:0.8em;
+text-align:left;
+}
+</style>
+</head>
+
+<body> 
+<div id="container">
+<h3>20个领域，20本经典</h3>
+<table id="tbrowser">
+  <col width="26" />
+  <col width="64" />
+  <col width="195" />
+  <col width="400" />
+  <tr height="19">
+    <td height="19" width="26">sn</td>
+    <td width="64">领域</td>
+    <td width="195">名称</td>
+    <td width="400">作者</td>
+  </tr>
+  <tr height="19">
+    <td height="19">1</td>
+    <td>社会学</td>
+    <td>社会学的邀请作者</td>
+    <td>[美]乔恩•威特</td>
+  </tr>
+  <tr height="19">
+    <td height="19">2</td>
+    <td>政治学</td>
+    <td>政治科学作者</td>
+    <td>[美] 迈克尔•罗斯金等</td>
+  </tr>
+  <tr height="19">
+    <td height="19">3</td>
+    <td>心理学</td>
+    <td>心理学与生活作者</td>
+    <td>[美] 理查德•格里格 / 菲利普•津巴多</td>
+  </tr>
+  <tr height="19">
+    <td height="19">4</td>
+    <td>逻辑学</td>
+    <td>逻辑学十五讲作者</td>
+    <td>陈波</td>
+  </tr>
+  <tr height="19">
+    <td height="19">5</td>
+    <td>经济学</td>
+    <td>经济学原理作者</td>
+    <td>[美] N 格里高利•曼昆</td>
+  </tr>
+  <tr height="19">
+    <td height="19">6</td>
+    <td>科普</td>
+    <td>从一到无穷大作者</td>
+    <td>[美] G 伽莫夫</td>
+  </tr>
+  <tr height="19">
+    <td height="19">7</td>
+    <td>科学史</td>
+    <td>万物简史作者</td>
+    <td>[美] 比尔•布莱森  </td>
+  </tr>
+  <tr height="19">
+    <td height="19">8</td>
+    <td>美术史</td>
+    <td>艺术的故事作者</td>
+    <td>[英] 贡布里希</td>
+  </tr>
+  <tr height="19">
+    <td height="19">9</td>
+    <td>哲学</td>
+    <td>大问题作者</td>
+    <td>[美] 罗伯特•所罗门</td>
+  </tr>
+  <tr height="19">
+    <td height="19">10</td>
+    <td>伦理学</td>
+    <td>伦理学与生活作者</td>
+    <td>[美] 雅克•蒂洛 / [美] 基思•克拉斯曼  </td>
+  </tr>
+  <tr height="19">
+    <td height="19">11</td>
+    <td>中国史</td>
+    <td>中国通史作者</td>
+    <td>吕思勉  </td>
+  </tr>
+  <tr height="19">
+    <td height="19">12</td>
+    <td>世界史</td>
+    <td>全球通史作者</td>
+    <td>(美) 斯塔夫里阿诺斯</td>
+  </tr>
+  <tr height="19">
+    <td height="19">13</td>
+    <td>互联网与创业</td>
+    <td>登高四书作者</td>
+    <td>李善友 / 龚焱</td>
+  </tr>
+  <tr height="19">
+    <td height="19">14</td>
+    <td>广告</td>
+    <td>一个广告人的自白作者</td>
+    <td>大卫•奥格威</td>
+  </tr>
+  <tr height="19">
+    <td height="19">15</td>
+    <td>品牌营销</td>
+    <td>超级符号就是超级创意作者</td>
+    <td>华杉 / 华楠</td>
+  </tr>
+  <tr height="19">
+    <td height="19">16</td>
+    <td>建筑史</td>
+    <td>中国古代建筑史作者</td>
+    <td>刘敦桢</td>
+  </tr>
+  <tr height="19">
+    <td height="19">17</td>
+    <td>地理学</td>
+    <td>地理学与生活作者</td>
+    <td>[美] 阿瑟•格蒂斯/朱迪丝•格蒂斯/杰尔姆•D•费尔曼</td>
+  </tr>
+  <tr height="19">
+    <td height="19">18</td>
+    <td>法学</td>
+    <td>法律之门作者</td>
+    <td>[美] 博西格诺等</td>
+  </tr>
+  <tr height="19">
+    <td height="19">19</td>
+    <td>设计</td>
+    <td>写给大家看的设计书作者</td>
+    <td>[美] Robin Williams </td>
+  </tr>
+  <tr height="19">
+    <td height="19">20</td>
+    <td>天文学</td>
+    <td>大众天文学作者</td>
+    <td>[法] C弗拉马里翁</td>
+  </tr>
+</table>
+<p></p>
+
+
+<p>20个领域，20本经典入门书， 你和另一个领域的距离，或许就只有这一本入门书的厚度！</p>
+
+<p>2016年4月14日 15:36&nbsp;阅读 4663</p>
+
+<p>读书的目的之一，是完善我们的知识结构。好的知识结构是“T”字形的：深钻一个领域，兼顾涉猎其他，能让我们既“专”又“博”。</p>
+
+<p></p>
+
+<p>以下20本书，是参考媒体和书友评价，按照“入门为主，兼顾普及”的原则，选出了分属心理学，美术史，经济学，设计、天文学等20个领域的经典入门书。希望它们成为你建构自己知识大厦的基石。</p>
+
+<p></p>
+
+<p>为什么会挑出这20个领域呢？钻研一个领域是立足之本，涉猎其他领域则是创新之源——关于创新最重要的规律，就是它往往诞生于多领域的交叉地带。</p>
+
+<p></p>
+
+<p>你和另一个领域的距离，或许就只有这一本入门书的厚度。</p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p><strong>1. </strong><strong>社会学</strong> </p>
+<img src="1.jpg" />
+
+<p><strong>社会学的邀请</strong><strong> </strong></p>
+
+<p>作者：[美]乔恩·威特</p>
+
+<p>译者：林聚任&nbsp;</p>
+
+<p>北京大学出版社 </p>
+<p align="left">“社会学是一条在常识之外寻求日常生活新意的自由之旅”。这本书的作者在说明一些社会学观点时，结合了影像材料和自己的亲身经历，很好地体现了这个主题。 </p>
+<p><strong>2. </strong><strong>政治学</strong> </p>
+<p><img src="2.jpg" /></p>
+
+<p><strong>政治科学</strong><strong> </strong></p>
+
+<p>作者:[美] 迈克尔·罗斯金 &nbsp;等&nbsp;</p>
+
+<p>译者：林震&nbsp;/&nbsp;王锋&nbsp;/&nbsp;闭恩高&nbsp;</p>
+
+<p>中国人民大学出版社 </p>
+<p align="left">这本书非常便于了解政治学的基本问题、基本概念，而且提出了学科相关的问题，有引导和启发兴趣的作用，是为政治学入门读物。 </p>
+<p><strong>3. </strong><strong>心理学</strong> </p>
+<p><img src="3.jpg" /></p>
+
+<p><strong>心理学与生活</strong><strong> </strong></p>
+
+<p>作者: [美] 理查德·格里格 / 菲利普·津巴多&nbsp;</p>
+
+<p>译者：王垒 / 王甦 等&nbsp;</p>
+
+<p>人民邮电出版社 </p>
+<p align="left">不用多解释。 </p>
+<p><strong>4. </strong><strong>逻辑学</strong> </p>
+<p><img src="4.jpg" /></p>
+
+<p><strong>逻辑学十五讲</strong><strong> </strong></p>
+
+<p>作者:陈波</p>
+
+<p>北京大学出版社 </p>
+<p align="left">逻辑学也是个大坑，这本感觉比较浅显和基本，适合入门。 </p>
+<p><strong>5. </strong><strong>经济学</strong> </p>
+<p><img src="5.jpg" /></p>
+
+<p><strong>经济学原理</strong></p>
+
+<p><strong>（宏观经济学分册、</strong><strong>微观经济学分册）</strong></p>
+
+<p>作者: [美] N.格里高利·曼昆&nbsp;</p>
+
+<p>译者：梁小民 / 梁砾&nbsp;</p>
+
+<p>北京大学出版社 </p>
+<p align="left">世界上最流行的经济学教材，条理清晰，易于理解。不用多解释。 </p>
+<p><strong>6. </strong><strong>科普</strong> </p>
+<p><img src="6.jpg" /></p>
+
+<p><strong>从一到无穷大</strong><strong> </strong></p>
+
+<p>作者: [美] G. 伽莫夫&nbsp;</p>
+
+<p>译者：暴永宁&nbsp;</p>
+
+<p>科学出版社 </p>
+<p align="left">被公认的经典科普著作，不仅通俗易懂，有趣味、有故事性，还同时能传达科学的思维方法和基于科学的世界观，对提高科学素养很有助益。 </p>
+<p><strong>7. </strong><strong>科学史</strong> </p>
+<p><img src="7.jpg" /></p>
+
+<p><strong>万物简史</strong><strong> </strong></p>
+
+<p>作者: [美] 比尔·布莱森 &nbsp;</p>
+
+<p>译者：严维明 / 陈邕&nbsp;</p>
+
+<p>接力出版社 </p>
+<p align="left">看完这本书，有人感觉世界观、人生观都被刷新了！ </p>
+<p><strong>8. </strong><strong>美术史</strong> </p>
+<p><img src="8.jpg" /></p>
+
+<p><strong>艺术的故事</strong><strong> </strong></p>
+
+<p>作者: &nbsp;[英] 贡布里希</p>
+
+<p>译者：范景中 / 杨成凯&nbsp;</p>
+
+<p>广西美术出版社 </p>
+<p align="left">不用多解释。 </p>
+<p><strong>9. </strong><strong>哲学</strong> </p>
+<p><img src="9.jpg" /></p>
+
+<p><strong>大问题</strong><strong> </strong></p>
+
+<p>作者：[美] 罗伯特·所罗门&nbsp;</p>
+
+<p>译者：张卜天&nbsp;</p>
+
+<p>广西师范大学出版社 </p>
+<p align="left">以哲学基本问题划分章节，结合讨论“做哲学”的方式很适合行外读者，而且也传达出了研究哲学的基本态度。 </p>
+<p><strong>10. </strong><strong>伦理学</strong> </p>
+<p><img src="10.jpg" /></p>
+
+<p><strong>伦理学与生活</strong><strong> </strong></p>
+
+<p>作者：[美] 雅克·蒂洛 / [美] 基思·克拉斯曼 &nbsp;</p>
+
+<p>译者：程立显 / 刘建 等&nbsp;</p>
+
+<p>世界图书出版公司 </p>
+<p align="left">这本书直接面对日常生活的道德疑难，真诚的探询和反思，富有哲学意味。 </p>
+<p><strong>11. </strong><strong>中国史</strong> </p>
+<p><img src="11.jpg" /></p>
+
+<p><strong>中国通史</strong><strong> </strong></p>
+
+<p>作者：吕思勉 &nbsp;</p>
+
+<p>上海古籍出版社 </p>
+<p align="left">从宏观角度梳理了中国历史的演变，文化为经、政治为纬，编织成网，也颇能感受到史学研究的大家态度。 </p>
+<p><strong>12. </strong><strong>世界史</strong> </p>
+<p><img src="12.jpg" /></p>
+
+<p><strong>全球通史</strong><strong> </strong></p>
+
+<p>作者：(美) 斯塔夫里阿诺斯&nbsp;</p>
+
+<p>译者：吴象婴 / 梁赤民 / 董书慧 / 王昶 &nbsp;</p>
+
+<p>北京大学出版社 </p>
+<p align="left">不用多解释。 </p>
+<p><strong>13. </strong><strong>互联网与创业</strong> </p>
+<p><img src="13.jpg" /></p>
+
+<p><strong>登高四书</strong><strong> </strong></p>
+
+<p>作者：李善友 / 龚焱&nbsp;</p>
+
+<p>机械工业出版社 </p>
+<p align="left">书名已为自己代言。 </p>
+<p><strong>14. </strong><strong>广告</strong> </p>
+<p><img src="14.jpg" /></p>
+
+<p><strong>一个广告人的自白</strong><strong> </strong></p>
+
+<p>作者：大卫•奥格威</p>
+
+<p>中信出版社 </p>
+<p align="left">不用多解释。 </p>
+<p><strong>15. </strong><strong>品牌营销</strong> </p>
+<p><img src="15.jpg" /></p>
+
+<p><strong>超级符号就是超级创意</strong><strong> </strong></p>
+
+<p>作者：华杉 / 华楠&nbsp;</p>
+
+<p>天津人民出版社 </p>
+<p align="left">传说中的“华与华方法”首次结集，本土营销界第一套成体系的营销思想。 </p>
+<p><strong>16. </strong><strong>建筑史</strong> </p>
+<p><img src="16.jpg" /></p>
+
+<p><strong>中国古代建筑史</strong><strong> </strong></p>
+
+<p>作者：刘敦桢&nbsp;</p>
+
+<p>中国建筑工业出版社 </p>
+<p align="left">语言通俗，深入浅出，文字不多，图很充分，读起来不至于太损耗耐心。执笔人都是大牛：梁思成、刘敦桢、刘致平、陈明达、陈从周、王世仁、赵立瀛、潘谷西、郭湖生、罗哲文及卢绳，后来的中国工程院院士傅熹年先生，在当时仅是绘图员。可见此书分量。 </p>
+<p><strong>17. </strong><strong>地理学</strong> </p>
+<p><img src="17.jpg" /></p>
+
+<p><strong>地理学与生活</strong><strong> </strong></p>
+
+<p>作者：[美] 阿瑟·格蒂斯 / 朱迪丝·格蒂斯 / 杰尔姆·D·费尔曼</p>
+
+<p>译者：黄润华 / 韩慕康 / 孙颖&nbsp;</p>
+
+<p>世界图书出版公司·后浪出版公司 </p>
+<p align="left">美国大学的地理教材，除了深度和广度，最重要的是它“有意思”。 </p>
+<p><strong>18. </strong><strong>法学</strong></p>
+
+<p><strong></p>
+
+<p></strong></p>
+
+<p><img src="18.jpg" /></p>
+
+<p><strong>法律之门</strong><strong> </strong></p>
+
+<p>作者：[美] 博西格诺 等</p>
+
+<p>译者：邓子滨</p>
+
+<p>华夏出版社 </p>
+<p align="left">一番纠结后，书单君还是选择了这一本。这是美国各大学法学院比较通用的一本法律教科书，全面介绍了英美法，描述了英美法的整个适用过程，将法理、判例、资料甚至文学素材有机地结合起来，采取讨论的方法陈述法理。说是入门，但读起来并不一定轻松容易。 </p>
+<p><strong>19. </strong><strong>设计</strong> </p>
+<p><img src="19.jpg" /></p>
+
+<p><strong>写给大家看的设计书</strong><strong> </strong></p>
+
+<p>作者：[美] Robin  Williams&nbsp;</p>
+
+<p>译者：苏金国 / 刘亮&nbsp;</p>
+
+<p>人民邮电出版社 </p>
+<p align="left">清晰地为读者揭示出优秀设计所遵循的4个基本原则：亲密性、对齐、重复和对比。对于设计这样实践为重的领域，这本书很适合对设计有兴趣的读者，也适合要与设计师打交道的“甲方”们。 </p>
+<p><strong>20. </strong><strong>天文学</strong> </p>
+<p><img src="20.jpg" /></p>
+
+<p><strong>大众天文学</strong><strong> </strong></p>
+
+<p>作者：[法] C.弗拉马里翁&nbsp;</p>
+
+<p>译者：李珩&nbsp;</p>
+
+<p>广西师范大学出版社 </p>
+<p align="left">诞生于1880年，时间检验过的经典，被誉为“法国图书馆镇馆之宝”！ </p>
+<p> </p>
+<!--
+<table id="tbrowser">
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />	
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+-->
+
+<!--
+height="*\w*"
+width="*\w*"
+</p>
+<p>
+-->
+<p></p>
+
+
+
+</div>
+<div>
+<div id="ftsize1"><a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em">大</a></div>
+<div id="ftsize2"><a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em">中</a></div>
+<div id="ftsize3"><a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em">小</a></div>
+
+<div style="display:none" id="goTopBtn"><a target="_self" style="color:#fff;">&and;</a></div>
+<div style="display:none" id="shangy">
+	<a onclick="shangy()" target="_self" style="color:#fff;">&uarr;</a></div>
+<div id="xiay">
+	<a onclick="xiay()" target="_self" style="color:#fff;">&darr;</a></div>
+<div id="goBottom">
+	<a onclick="downn()" target="_self" style="color:#fff;">&or;</a></div>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+</body>
+</html>
+<script language="javascript"> 
+bg_evensssss("tbrowser","#fff","#F5F5F5","#FFFFCC","#FFDDFF");/*#FFFF84*/
+</script>
+
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换：
+\s*</p>
+
+<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+[\s*</p>\s*]
+[\s*<p>\s*]
+------------------
+</p>
+
+<p>
+4 把第和章两个字去掉
+第(\S*)章
+------------------
+$1
+
+5 正则表达式参考：
+https://www.toutiao.com/i6370960744082571778/
+
+6
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+-->
+
+
+

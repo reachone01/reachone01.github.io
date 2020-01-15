@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>17反驳芝诺：芝诺的意义</h4>
+
+<p>芝诺提出的悖论论证方法为数学和科学的发展做出了巨大的贡献。芝诺悖论的历史，就是连续性、无穷大和无穷小这些概念的历史。芝诺悖论在历史上的重要性，是怎样评价也不过分的，它们促使希腊人对时空有了新的认识。芝诺悖论引发了几乎整个关于时间、空间和无限的理论探讨，这些理论从他那时起直到今天，一直在被人们发展着。</p>
+
+<p>美国数学史家贝尔说，芝诺毕竟曾“以非数学的语言，记录下了最早同连续性和无限性格斗的人们所遭遇到的困难”。芝诺的功绩在于把动和静的关系、无限和有限的关系、连续和离散的关系惹人注意地摆了出来，并进行了辩证的考察。近代德国哲学家黑格尔在《哲学史讲演录》中表示，芝诺主要是客观而辩证地考察了运动。他称芝诺是“辩证法的创始人”。</p>
+
+<p>芝诺所指出的矛盾，与其说是与运动的自身有关，不如说是与我们头脑中所虚构的运动有关。芝诺悖论所揭示出的困难，显示了语言的十足含糊性。这种在悖论中诉诸感官经验而非推理的情形，无疑是主要障碍。数学家只要承认他所创造的符号世界不等于他所感觉的世界，那就可以处理这些含糊性了。黑格尔在《哲学史讲演录》中的“芝诺篇”指出，芝诺所论述的连续统（概指时间、空间和反映时空本质的运动连续统）都是具有“点积性”与“连续性”的双向性结构物。在概念上，点积性与连续性是互为否定的，因为点积性是突出表明了元素间（即位置点之间）的区别性，而连续性恰恰是抹杀了点与点的区别性，甚至无视点的单独存在性。</p>
+
+<p>在“芝诺篇”中，黑格尔解释了产生芝诺悖论的根源：那就是因为只把连续统（时空及运动）的“点积性”——一种抽象孤立的特定性质——作为整个有效环节的缘故。他说：“造成困难的永远是思维。因为思维常常把一个对象在实际中紧密联系在一起的诸环节彼此区分开来。”事实上，连续统本来就具有连续性与点积性相互结合在一起的环节，而概念思维对其强行分离，扬弃了实际中存在的连续性环节，只把抽象出来的单纯的“点积性”作为整个有效的单一环节来考虑，这样就不可避免地产生悖论。</p>
+
+<p>芝诺的目的是为证明“运动不存在”，用现代术语解释芝诺的思路，就是“如果运动存在，那么就存在无穷集合；因为无穷集合是荒谬的，所以运动不存在”。芝诺悖论只有通过时空的现代数学概念和无穷集合理论，才能给出令人满意的回答。二分法和阿喀琉斯悖论取决于相关集合是否完备的问题，飞矢悖论根据瞬时速度或者导数的定义可以完美回答，而近代数学仅仅根据建立在导数概念基础上的思想就已经回答了这两个问题。</p>
+
+<p>在“阿喀琉斯永远追不上乌龟”的悖论中，龟跑过的点与阿喀琉斯跑过的点一样多。因为在赛跑中这段时间的每一时刻，他们各自要占据一个确切的空间位置。因此，龟所通过的无穷的点的集合，与阿喀琉斯所通过的无穷的点的集合，两者之间有一种一一对应的关系。但是，如果说阿喀琉斯必须跑过更长的距离才能赢得比赛，所以他必须比龟跑过更多的点，则是错误的！因为康托尔的集合理论明确地告诉我们：任意两条线段，无论它们的长度如何，都具有相同数量的点！</p>
+
+<p>芝诺悖论的问题并非阿喀琉斯将什么时候或者在什么地方追上乌龟，而是他怎样追上乌龟。芝诺悖论让人的思维认为：无穷个无穷小相加（也即乌龟每次都在阿喀琉斯前边，但这个间距越来越小）=无穷大（无论跑多远）！事实上，上面的等式是错误的！学过极限的人肯定知道，在这里无穷个无穷小相加等于一个有限值（阿喀琉斯追上乌龟的距离），数学上称为极限，并非无穷大（无限远），所谓无穷大只是人们思维想象的结果。但是，极限概念要等到18世纪才开始出现，19世纪才严密化！由于没有“极限”的范式思维，芝诺悖论让人类困惑了两千多年！</p>
+
+<p>在“飞矢不动”悖论中，芝诺说，在紧邻的下一个时刻，它将处于另一个位置。那么，什么时候这支箭从一个位置飞到另一个位置呢？答案是：没有下一个时刻！因为在任何两个时刻之间，其间的其他时刻数量是无限的！实际上，微积分以极限为基础的导数理论可以完美地解释“飞矢不动”悖论。</p>
+
+<p>从数学上完整地推翻芝诺悖论的是无穷集合之父康托尔的无穷大理论。康托尔仅仅使用有序、集合、可数、一一对应等就成功地解决了关于空间、时间、运动的本质的一些使人困惑的问题。正是康托尔的无穷集合理论解决了芝诺悖论。罗素称赞他“确定无疑地解决”了二分悖论背后的深刻问题。</p>
+
+<p>罗素评论芝诺悖论说：“从芝诺时代到我们今天，每一代最杰出的知识分子都反过来攻击这类问题，但宽泛地说，一无所获。然而，在我们所在的时代，三位杰出的人，魏尔斯特拉斯、戴德金和康托尔，不仅推进了这些问题，而且完全解决了它们。这些解释，对熟悉数学的人来说，是如此清楚以致不再有任何最轻微的疑问或困难，在无穷大、无穷小和连续性这三个问题当中，魏尔斯特拉斯解决了无穷小的问题，其他两个问题的解答由戴德金开始，最后由康托尔完成。”</p>
+
+<p>数学史上的三次危机都与芝诺悖论讨论的问题有关。第一次危机的结果，是严格的实数理论的建立，数学家回答了“什么是连续性”这个古老的哲学问题。第二次危机的结果，是微积分的严密基础的建立，数学家掌握了描述运动与变化的有效方法，彻底弄清了“芝诺悖论”，回答了“运动是怎么回事”这个古老的哲学问题。第三次数学危机，涉及“数学自身的基础是什么”。在这次危机产生前后，一些卓越的数学家卷入了关于数学本质问题的激烈争论之中，形成了直觉主义、逻辑主义和形式主义三大数学流派。</p>
+
+<p>如果按牛顿的思维范式反驳芝诺，应该是这样的：空间和时间是绝对的，不可切割。如果按爱因斯坦的范式反驳芝诺：空间和时间是一体的，切了空间也就切了时间，切了时间也就切了空间；如果非要切，请以光的速度来切！</p>
+
+
+
+<p style='float:right;'>本页共13段，2284个字符，6826 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

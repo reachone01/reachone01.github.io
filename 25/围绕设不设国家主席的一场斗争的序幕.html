@@ -1,0 +1,395 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:100%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>﻿围绕设不设国家主席的一场斗争的序幕</h4>
+
+<p>－——关于一九七○年修改宪法的一些情况</p>
+
+<p>从1970年3月起，我参加了修改中华人民共和国宪法的具体工作，了解一些修改宪法的情况，写在这里，供读者参考。</p>
+
+<p>1970年修改五四宪法(即1954年制定的宪法)时，对设不设国家主席产生了不同意见。中共九届二中全会前，不同意见主要表现在毛泽东主张不设国家主席，林彪坚持设国家主席，而在中央政治局历次会议上并未就此发生争论，表面上显得很平静。然而毛、林的不同意见，围绕设不设国家主席而发生的激烈斗争的序幕已经拉开。</p>
+
+<h4>一、问题的提出</h4>
+
+<p>1970年3月17日晚上，康生、张春桥到中南海怀仁堂西厅向毛选五卷整理小组传达毛泽东主席关于召开四届人大、修改宪法的意见，并根据中央政治局的决定，布置整理小组具体作修改宪法的起草工作。这是我第一次见到张春桥。他话不多，给人以冷峻、莫测、功于心计的感觉。</p>
+
+<p>康生说：“3月8日，主席提出召开四届人大和修改宪法的意见，同时提出关于改变国家体制、不设国家主席的建议。3月9日，中央政治局遵照毛主席的指示，开始了修改宪法的准备工作。3月16日，中央政治局就修改宪法的指导思想和修改宪法中的一些原则性问题，向主席写了《关于修改宪法问题的请示》。主席阅批了这个《请示》。”毛泽东是在武汉提出召开四届人大和修改宪法的。时任中共中央政治局候补委员、中央办公厅主任的汪东兴回京向周恩来总理传达了毛泽东的意见和建议、3月8日晚，周恩来主持中央政治局会议，传达、讨论毛泽东关于召开四届人大和修改宪法的意见。会议一致赞成毛泽东的意见和建议，决定立即开始进行相关工作：(一)成立由周恩来、张春桥、黄永胜、谢富治、汪东兴组成的工作小组，负责四届人大代表名额和选举工作，并约各省、市、自治区负责人商量；(二)成立由康生、张春桥、吴法宪、李作鹏、纪登奎组成的工作小组，负责修改宪法工作，先将修改要点写出，至4月8日完成修改工作；(三)由周恩来、姚文元主持起草政府工作报告稿，集中讲当前政策和计划问题等。这几条，就是《关于修改宪法问题的请示》的主要内容。</p>
+
+<p>康生说：“今天(17日)召开的中央工作会议，讨论了召开四届人大和修改宪法的问题，到会的同志都拥护主席关于召开四届人大、修改宪法和不设国家主席的建议。”康生这里讲到的中央工作会议，是3月17日—20日在北京召开的。出席会议的有各省、市、自治区革命委员会党的核心小组和各大军区、军委各总部、各军兵种负责人103人。会议一致同意毛泽东提出的关于召开四届人大和修改宪法的意见；修改通过了《中华人民共和国第四届全国人民代表大会代表名额和选举的决定》；一致赞成毛泽东、林彪及中央政治局委员、政治局候补委员由各地、各部门选举为四届人大代表；讨论、修改关于四届人大代表名额分配的协商和调整方案；关于各地、各部门候选代表的推选工作和修改宪法进一步征求意见的部署。</p>
+
+<p>康生说完后，张春桥简单说了几句，意思是大家没有搞过宪法，不要怕，大胆工作，出了错也不要紧。</p>
+
+<p>康生、张春桥要求我们立即开始修改宪法的工作：</p>
+
+<p>一、按《请示》确定的指导思想修改。</p>
+
+<p>二、先起草序言和总纲；序言的篇幅不要超过1954年宪法序言太多，约1000字；序言的语言尽可能与九大通过的党章一致。</p>
+
+<p>三、总纲里可以写毛主席是中华人民共和国的缔造者，但在毛主席名字前不要加形容词(康、张没有说明是什么形容词，但大家都明白，因为当时固定化的形容词有“四个伟大”即“伟大导师、伟大领袖、伟大统帅、伟大舵手”和“三个副词”即“天才地、创造性地、全面地”)，因为形容词加得越多，毛主席就勾得越厉害。</p>
+
+<p>四、毛主席对周总理说：“宪法要短，不能长了。”修改后的宪法要比五四宪法大大简化，五四宪法106条，修改后的宪法只要几十条。</p>
+
+<p>五、一周内修改出一个草稿，两周后即3月3l日送政治局讨沦。</p>
+
+<p>会后，我们即不分昼夜地进行修改宪法的起草工作。经过一周的奋斗，拿出了一个草案，这个草案，突出了共产党的领导，国家性质将“人民民主国家”改写为“社会主义国家”；所有制由五种所有制改写为全民所有制、集体所有制，增写了人民公社、“四大”(大鸣、大放、大辩论、大字报)；改变国家体制，不设国家主席，不设检察院、国防委员会，地方政府由人民委员会改成革命委员会。这个宪法草案只有60条，比五四宪法少了46条。</p>
+
+<p>对60条的宪法修改草案，中央政治局进行了多次讨论。7月7日中央政治局再次讨论时，江青提出这个方案还太长了，记不住。政治局委员们提出了几种修改方案。周总理说：序言不动，总纲和权利义务合并，国家机构还要，简化；民族部分保留，也简化。</p>
+
+<p>按照周总理的意见，我们又突击修改，几天之内拿出了一个30条的宪法修改草案，并经中央政治局讨论。同时还搞了一个70条的修改方案。</p>
+
+<h4>二、毛、林的分歧</h4>
+
+<p>在起草修改草案过程中，先后两次传达了毛主席关于不设国家主席的指示。</p>
+
+<p>一次是：4月11日，林彪提出要设国家主席，并要毛泽东再任国家主席。11日夜11时30分，林彪在苏州叫秘书于运深打电话给中央政治局，提出：“一、关于这次‘人大’国家主席的问题，林彪同志仍然建议由毛主席兼任。这样做对党内、党外、国内、国外人民的心理状态适合。否则，不适合人民的心理状态。二、关于副主席问题，林彪同志认为可设可不设，可多设和少设，关系都不大。三、林彪同志认为，他自己不宜担任副主席的职务。”(电话记录)4月12日，中央政治局将林彪的意见向毛泽东作了请示报告。毛泽东批示：“我不能再作此事，此议不妥。”</p>
+
+<p>一次是：4月下旬，毛泽东主席在中央政治局会议上再次提出他不当国家主席、不设国家主席，并借用了三国故事。他说：孙权劝曹操当皇帝，曹操说，孙权是要把他放在火炉上烤。我劝你们不要把我当曹操，你们也不要做孙权。</p>
+
+<p>孙权劝曹操当皇帝的故事见《三国演义》第七十八回 “治风疾神医身死传遗命奸雄数终”。原文是：“却说曹操自杀华佗之后，病势愈重，又忧吴、蜀之事。正虑间，近臣忽奏东吴遣使上书。曹取书拆视之，略曰：臣孙权久知天命已归王上，伏望早正大位，遣将早剿灭刘备，扫平两川，臣即率群下纳土归降矣。</p>
+
+<p>曹观毕大笑，出示群臣曰：‘是儿欲使吾居炉火上耶！’侍中陈群等奏曰：‘汉室久已衰微，殿下功德巍巍，生灵仰望。今孙权称臣归命，此天人之应，异气齐声。殿下宜应天顺人，早正大位。’曹笑曰：‘吾事汉多年，虽有功德及民，然位至于王，名爵已极，何敢更有他望？苟天命在孤，孤为周文王矣。’”</p>
+
+<p>毛泽东此时讲这个三国故事，显然是告诫林彪等人不要再提设国家主席的事。有一点要特别强调的，根据毛泽东主席不设国家主席的意见，我们先后起草的三个修改草案(60条、30条、70条)都没有写“国家主席”的条文，中央政治局讨论修改草案时也没有人提出写“国家主席”的条文。</p>
+
+<p>但是，林彪还是坚持要设国家主席。5月中旬，他对吴法宪说：“不设国家主席，国家没有一个头，名不正言不顺。”林彪要吴法宪和李作鹏在宪法工作小组会上提出写上设国家主席。7月，叶群对吴法宪说：“如果不设国家主席，林副主席怎么办？往哪儿摆？这里说出了林彪及其一伙坚持设国家主席的真正意图。</p>
+
+<h4>三、表面的平静</h4>
+
+<p>7月10日，周恩来主持中央政治局会议，审议《中央准备召开党的九届二中全会和四届人大的工作计划(送审稿)》。工作计划包括：(一)建议成立由毛泽东、林彪分别担任正、副主任的中央修改宪法起草委员会；(二)七月十一日至八日二十日，完成宪法修改的准备工作，讨论通过四届人大代表名单，同时准备政府工作报告、国民经济计划等文件；(三)八月二十一日至二十八日，召开九届二中全会；(四)九月十五日至二十四日，召开四届人大会议。次日，周恩来将工作计划稿分别报送毛泽东、林彪。</p>
+
+<p>7月17日，中共中央修改宪法起草委员会在京西宾馆举行全体会议，与会的委员55人；中央修改宪法委员会委员57人，毛泽东、林彪没有出席会议。会议由周恩来总理主持。17日大会。18日开始小组讨论。</p>
+
+<p>18日下午，周总理参加东北、西南组会议，我也去这组听会。</p>
+
+<p>东北、西南组的委员包括东北地区和西南地区的中央委员。委员们进会场不一会儿，周总理就到了。他满面笑容，亲切地和大家打招呼。小组会议由沈阳军区司令员陈锡联主持。这位将军是员战将，看来不善言辞，主持会议，开场白没几句话。第一个发言的是辽宁的工人出身的中央委员尉凤英。她第一句就说：“伟大导师、伟大领袖、伟大统帅、伟大舵手毛主席教导我们说……</p>
+
+<p>周总理打断她的话，说：“尉凤英同志，你已经是中央委员，不是普通工人，以后说活要注意。主席多次提出不要‘四个副词’(指四个‘伟大’)，我们就不要这样用了。学习毛泽东思想，不在于能引用毛主席的只言片语，而是要学习、领会毛泽东思想的科学体系，要学会运用毛泽东思想的立场、观点、方法去分析问题，解决问题。四个副词，引用只言片语，主席是不赞成的。前不久，主席、林副主席和我到人民大会堂开会。主席一下车，看见北门上挂着他的画像，就发脾气，说：我的像到处挂，叫我给你们站岗放哨，风吹雨打日头晒，残酷无情！统统摘下来，不摘下来，我就再也不进大会堂。一进北大厅，主席看到原来挂画的地方，都挂上了毛主席语录，又生气了：我那几句话就有这么大的作用？到处写，到处挂，讨嫌。主席对我说：恩来，叫人统统摘下来。我请大会堂的党委书记刘剑同志布置工作人员将大会堂北门、南门、西门的主席像摘下来，只保留东门的。大会堂各厅的语录，大多数换成画，少数主席手写体的诗词。作为艺术品保留。刘剑同志布置时，大会堂的工作人员不干，说刘剑敢把毛主席像、毛主席语录摘下来，就把他倒吊起来。刘剑同志为难了，他又不好说是主席叫摘的。怎么办呢？最后只好说是我布置的。京西宾馆也参照大会堂进行了处理，只留少数几处毛主席手写体的诗词。”周总理说：“我在这里说这些，是想请大家注意，我们要尊重主席的意愿，学习毛泽东思想要讲科学。在修改宪法过程中，我们要宣传主席对马列主义国家学说的发展。”</p>
+
+<p>总理这番话给了我极大的震动。从大家的眼神、表情可以看出，所有与会者听了总理的话，都为之震惊。因为这是当时最具政治性、最尖锐、最敏感、最不能议论的问题。而今天，总理以如此明确的态度，如此毫不含糊的语言谈沦这个问题，并要求大家改变几年里风靡全国的说法、做法，改变多年里形成的被认为是正确的态度，自然震惊不小。</p>
+
+<p>总理讲完，继续讨论。讨论中涉及不少问题。在议论到《通知》没有写不设国家主席这一内容时，周总理说：原来写了，后来考虑，还是不写好，口头上对群众讲，是否可以不设国家主席，为什么不设国家主席。国家主席实际上只接受国书，可以不设。但要注意讲清楚：在宪法上突出毛主席是中华人民共和国的缔造者，党是我们的核心力量，毛泽东是全国武装部队的统帅。</p>
+
+<p>下午的讨论会，相当活跃，大家都很高兴。据我的感觉，很大程度是因为周总理在场。这是我作为工作人员第一次参加中央召开的会议。在以后的多次会议上，我都感受到、看到，周总理走到哪里，都给人们带来一股和煦的春风，让人感到特别亲切，气氛融洽、活跃。</p>
+
+<p>7月18日晚，中南组开会。中南组五位委员，是五省的第一书记，但都有军职，所以穿军装。参加这个小组的五位政治局委员也是军人，两位记录也都是军人。只有我这个旁听会议意见的是老百姓。朱总司令、叶帅是德高望重的长者，人们对二位怀着明显的尊敬。朱总司令我已见过几次。我们在中南海丙楼办公，朱总司令住处紧挨丙楼西南角(后来搬出了中南海)，是近邻。总司令和夫人康克清大姐在院子里散步时，有时遇上还说几句话。叶帅是第一次见面，给我的感觉是气宇轩昂，又文质彬彬。黄永胜、李作鹏也是第一次见。对黄永胜没有什么特别的印象，印象最深的是会议开始后，他老与坐在他身边的叶群说悄悄话，有时还递个小纸条。对李作鹏的感觉是一个字：冷。这也许是他带着黑色眼镜，面无表情。叶群迟到了。她一进来，就谦恭地哈着腰与会议室的每个人握手，操着公鸭嗓音一个一个问好，并一面说：哎，我迟到了，太忙了，忙得连吃饭的时间都没有。果然，她还没有吃晚饭，刚落座，服务员就用托盘送饭进来了。叶群表示着歉意。与会者有人说：叶群同志真辛苦，忙得吃饭的时间都没有。当时我想，反正迟到了，何不在休息室吃完了再进来，真是！这十位，都是不久以后召开的九届二中全会(庐山会议)的参加者。而讨论的问题，两个会议都以宪法为议题，一个是完全讨论修改宪法，一个是讨论宪法修改草案为议程之一。因此，这次会议密切关系到庐山会议(中共九届二中全会)那场斗争。</p>
+
+<p>在中南组小组会上。主要是讨沦中共中央关于修改宪法的《通知》、宪法序言和总纲。委员们对《通知》中没说不设国家主席一事有意见。中途参加中南组讨论的康生对此作了解释。叶剑英、李作鹏就回去怎么传达说了自己的意见。讨论中议论最多的是国家的性质如何表述、要不要允许非农业的个体劳动存在、怎样组织群众讨论修改宪法等问题。</p>
+
+<p>每天晚上小组会结束后．我们几个工作人员就集中汇报各组情况，将各组意见汇集在一起。最后形成简报，报中央政治局。这里需要特别说明一下：在这次中央修改宪法起草委员会全体会议和小组会上，没有任何人提出要在宪法上写上“天才地、创造性地、全面地”三个副词(宪法草案上也从来没有写上)。</p>
+
+<p>在会上有少数人提出：如果毛主席当国家主席就设国家主席的意见。毛泽东知道后，第四次提出不设国家主席，并说：那是形式，不要因人设事。8月10日，中央政治局讨论了宪法修改起草委员会会议上和各地报来的意见。会议确定：</p>
+
+<p>(一)序言不与总纲合并，以三十条方案的序言为基础修改。</p>
+
+<p>(二)宪法结构不变。</p>
+
+<p>(三)宪法为“不设国家主席”的方案。</p>
+
+<p>这次会议是讨论工作，否定了一些意见，但并没有争执。一些文章和著作说，在这次中央政治局会议上，对要不要在宪法上写国家主席的条文，陈伯达与康生、张春桥之间爆发了一场论战，是不符合事实的。</p>
+
+<p>根据中央政治局会议的精神，我们逐条研究了宪法修改委员会和各省、市、自治区报来的意见，对宪法修改草案(三十条)进行了修改。修改内容多为文字性的，实质性的内容最重要的是增加了“毛泽东思想是全国一切工作的指导方针”。这是8月12日我们综合一些地方和单位的建议，请示康生后加的，加在序言里。8月13日，经修改宪法小组讨论，由序言移至总纲的第二条。</p>
+
+<h4>四、一点理解</h4>
+
+<p>这里有个问题要说一下，即对毛泽东当时提出改变国家体制、不设国家主席的意见如何理解。</p>
+
+<p>如前面所说，对设不设国家主席当时有不同意见，但在中央政治局会议上并没有因此发生争论，表面上是平静的。实际上，在酝酿着一场尖锐的斗争。不久，在中共九届二中全会上围绕设不设国家主席发生了激烈争论，最后演变为你死我活的斗争，以“9．13”事件了结。多少年之后，研究者们对设不设国家主席做出了自己的评论，对当时不设国家主席提出了批评。比如，梁漱溟先生在《梁漱溟“文革”自述》中说：“比如设国家主席，一国的元首，不能没有。设国家主席是一回事，选谁当国家主席是一回事。国家主席不可不设，什么人当国家主席则可以经过法定手续来选。”</p>
+
+<p>又如，张友渔先生在1982年4月就宪法修改草案答记者问谈到恢复国家主席的问题时说：“本来，从国家制度来说，对内对外代表国家的国家主席是不可缺少的。……并且，国家主席的设置，是符合我国各族人民的习惯和愿望的。”</p>
+
+<p>两位先生的意见都是不错的。但是，当时毛泽东考虑的主要不在这方面。当时，中共九大刚刚开过。九大前后暴露出来的问题，使毛泽东担心：国家动乱的局面要继续下去，甚至更加严重，国家可能分裂，党可能分裂。这主要是林彪已经形成以他为核心的势力，并在极力扩张自己的权力和地盘；同时，林彪及其一伙加紧排斥、打击党、政、军老干部，又与他们认为的“文人”力量对立，要从“文人”手中夺权。毛泽东要制止林彪势力再膨胀，如果设国家主席，在当时的政治形势下，在毛泽东坚持不出任国家主席的条件下，国家主席就肯定是林彪担任。这是林彪及其一伙梦寐以求的，却是毛泽东一定要阻止其发生的。当时，设不设国家主席，确实关系党和国家的安危，是一个现实的尖锐的政治问题，而不是一个理论问题。王年一说：“毛泽东提出不设国家主席的建议，与错误的打倒国家主席刘少奇相联系，与错误的得出了所谓‘大权旁落’的教训相关联。”我们在修改宪法过程中，没有议论过这样的问题，也没有听说中央政治局有这样的议论，更没有听说泽东说过这样的话，不知王先生的根据是什么。</p>
+
+<p>1970年修改宪法的起草工作，至8月13日告一段落。下一步就是等待召开中共九届二中全会，听取全会的意见，再作修改。人们没有想到，即将到来的是一场严重的斗争。</p>
+
+<p>（本文作者曾多年参加毛泽东著作编辑、整理工作，多次参加宪法、党章、政府工作报告和有关文件的起草，长期从事毛泽东、毛泽东思想和当代中国史的研究；是大型丛书《当代中国》、《伟人毛泽东》编辑出版工作的主要组织者之一。）</p>
+
+<p>来源：《中国人大》</p>
+
+
+
+本页共52段，6847个字符，20110 Byte(字节)﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

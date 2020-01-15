@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+
+<meta charset="utf-8">
+<title>批处理for语句详解</title>
+<link type="text/css" rel="stylesheet" href="blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="/bundle-ThinkInside.css">
+<style>
+#main{
+width:78%;
+margin:auto;
+text-indent:2em;
+
+
+}
+.cnblogs_code{
+border:#ccc 1px solid;
+text-indent:0em;
+
+}
+</style>
+</head>
+<body>
+
+
+
+
+
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h3>
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/adforce/p/3282591.html">批处理for语句详解</a>
+		</h3>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p><span style="color: #993300;"><strong><br>大纲</strong></span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;"><br>一 前言
+二 for语句的基本用法
+三 </span><span style="color: #0000ff;">for</span> /<span style="color: #000000;">f （<span style="color: #ff0000;">delims</span>、<span style="color: #ff0000;">tokens</span>、<span style="color: #ff0000;">skip</span>、<span style="color: #ff0000;">eol</span>、<span style="color: #ff0000;">userbackq</span>、<span style="color: #ff0000;">变量延迟</span>）
+四 </span><span style="color: #0000ff;">for</span> /<span style="color: #000000;">r （递归遍历）
+五 </span><span style="color: #0000ff;">for</span> /<span style="color: #000000;">d （遍历目录）
+六 </span><span style="color: #0000ff;">for</span> /l （计数循环）</pre>
+</div>
+<p>&nbsp;</p>
+<p><span style="color: #993300;"><strong><br>一、前言</strong></span></p>
+<p>在批处理中，for是最为强大的命令语句，它的出现，使得解析文本内容、遍历文件路径、数值递增/递减等操作成为可能；配合if、call、
+goto等流程控制语句，更是可以实现脚本复杂的自动化、智能化操作；合理使用for语句，还能使代码大为简化，免除各位编写大量重复语句之苦。而能否熟
+练使用for语句，已经成为衡量一个人批处理水平高低最主要的标准。</p>
+<p>在这个系列教程中，我将通过实际应用中频繁出现的例子，带领大家步入for语句的神奇之门，一步步迈向for语句的魔幻殿堂，使得大家在实际的应用中，能独立写出简洁高效的代码，在批处理的世界里自由驰骋。</p>
+<p>注意：以下的讲解，都是基于简体中文版Windows XP Pro SP3的操作系统环境。</p>
+<p><span style="color: #993300;"><strong><br>二、for语句的基本用法</strong></span></p>
+<p>正如色彩缤纷的七彩光芒是由红绿蓝三原色构成的一样，最复杂的for语句，也有其基本形态，它的模样是这样的：</p>
+<p>在cmd窗口中：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">FOR</span> %variable IN (<span style="color: #0000ff;">set</span>) <span style="color: #0000ff;">DO</span> <span style="color: #0000ff;">command</span> [<span style="color: #0000ff;">command</span>-parameters]</pre>
+</div>
+<p>在批处理文件中：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">FOR</span> %%variable IN (<span style="color: #0000ff;">set</span>) <span style="color: #0000ff;">DO</span> <span style="color: #0000ff;">command</span> [<span style="color: #0000ff;">command</span>-parameters]</pre>
+</div>
+<p>具体例子：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">For</span> %i in (1 2 3) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">@echo</span> %i</pre>
+</div>
+<p><br>之所以要区分cmd窗口和批处理文件两种环境，是因为在这两种环境下，命令语句表现出来的行为虽然基本一样，但是在细节上还是稍有不同。<br>最明显的一个差异就是：<span style="color: #ff0000;">在cmd窗口中，for之后的形式变量I必须使用单百分号引用，即%i；而在批处理文件中，引用形式变量i必须使用双百分号，即%%i。</span><br>为了方便起见，若不是特别强调，以下的讲解都以批处理文件环境为例。<br>
+<br>
+我们先来看一下for语句的基本要素都有些什么：<br>&nbsp; 1、for、in和do是for语句的关键字，它们三个缺一不可；<br>&nbsp; 2、%%I是for语句中对形式变量的引用，就算它在do后的语句中没有参与语句的执行，也是必须出现的；<br>&nbsp; 3、in之后，do之前的括号不能省略；<br>&nbsp; 4、command1表示字符串或变量，command2表示字符串、变量或命令语句；</p>
+<p>现在，你可能已经会写一个简单的for语句了，比如：<br><span style="color: blue;">[code1]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> %%I in (bbs.bathome.<span style="color: #0000ff;">net</span>) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%I
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>保存为批处理文件并执行，将会在弹出的批处理窗口中看到这样的信息：<br><br></p>
+<div class="cnblogs_code">
+<pre>bbs.bathome.<span style="color: #0000ff;">net</span><span style="color: #000000;">
+请按任意键继续</span>...</pre>
+</div>
+<p>很快地，你会觉得这个for语句是如此的简单，简单到你丝毫感受不出它的强大：这个for语句，和我直接用echo语句没什么两样啊！<br>
+<br>
+是的，演示代码永远都只是演示而已，就像大多数高级语言的教科书一样，在引导新手学习的时候，基本上都是千篇一律地告诉大家如何编写一个能显示 
+hello world! 
+的窗口，从这些演示代码中，你看不到它们具有多少实用性，你只是感到有点好奇：咦，居然弹出了一个窗口？片刻之后，你就会觉得索然无味。<br>
+<br>
+那好吧，为了让大家对for更加感兴趣，我们先来分析一下for语句的一些注意事项，之后，再让大家看看更为强大的for语句实例。</p>
+<p>&nbsp;&nbsp; 1、for语句的形式变量I，可以换成26个字母中的任意一个，<span style="color: #ff0000;">这些字母会区分大小写</span>，也就是说，%%I和%%i会被认为不是同一个变量；形式变量I还可以换成其他的字符，但是，<span style="color: #ff0000;">为了不与批处理中的%0～%9这10个形式变量发生冲突，请不要随意把%%I替换为%%0 ～%%9中的任意一个</span>；<br>&nbsp;&nbsp;
+2、in和do之间的command1表示的字符串或变量可以是一个，也可以是多个，每一个字符串或变量，<span style="color: #ff0000;">我们称之为一个元素，每个元素之间，用空格键、跳格键、逗号、分号或等号分隔</span>；<br>&nbsp;&nbsp;
+
+3、for语句依次提取command1中的每一个元素，把它的值赋予形式变量I，带到do后的command2中参与命令的执行；并且每次只提取一个元
+素，然后执行一次do后的命令语句，而无论这个元素是否被带到command2中参与了command2的运行；当执行完一次do后的语句之后，再提取
+command1中的下一个元素，再执行一次command2，如此循环，直到command1中的所有元素都已经被提取完毕，该for语句才宣告执行结
+束；</p>
+<p>其中，第3点是最为关键的，它描述了for语句的执行过程，是for语句的精髓所在，大家一定要牢记这一条，才能深刻理解更为复杂的for流程。<br>
+<br>
+有了以上的基础，我们再来看一个例子，这个例子修改了[code1]的部分内容，结果将大不一样：<br><span style="color: blue;">[code2]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> %%I in (bbs,bathome,<span style="color: #0000ff;">net</span>) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%I
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>和[code1]的执行结果[result1]相比，[result2]发生了如下变化：<br>&nbsp;&nbsp;
+1、显示结果分成了3行（不算最后一行中文提示）；<br>
+　2、每一行都从逗号处被切分；</p>
+<p>如果把 bbs.bathome.net 这个字符串中的点号换为空格、跳格或等号，执行结果将和example2的执行结果别无二致。</p>
+<p>现在，我们来分析一下[code2]代码中for语句的执行过程：<br>
+　首先，for语句以逗号为分隔符，把 bbs,bathome.net 这个字符串切分成三个元素：bbs、bathome和cn，由此决定了do后的语句将会被执行3次；<br>
+　然后，第一次执行过程是这样的：先把 bbs 这个字符串作为形式变量I的值，带入do后的语句中加以执行，也就是执行 echo %%I 
+语句，此时的I值为bbs，因此，第一次执行的结果，将会在屏幕上显示bbs这个字符串；第二次执行和第一次执行的过程是一样的，只不过此时I的值已经被替换为command1中的第二个元素了，也就是 bathome 
+这个字符串；如此循环，当第三次echo执行完毕之后，整条for语句才算执行完毕，此时，将执行下一条语句，也就是pause命令。</p>
+<p>其实，这个例子只比上一个例子多了一点花样，有趣了那么一点点：一条for语句的执行结果居然被分成了3行！</p>
+<p>为了让大家见识一下for的真正威力，本人绞尽脑汁，翻帖无数，不得要领，万般无奈之下，只好亮出了尘封在箱底多年的一段代码：<span style="color: #ff6600;">检测当前硬盘都有哪些分区</span>。</p>
+<p><span style="color: blue;">[code3]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">set</span> str=<span style="color: #000000;">c d e f g h i j k l m n o p q r s t u v w x y z
+</span><span style="color: #0000ff;">echo</span><span style="color: #000000;"> 当前硬盘的分区有：
+</span><span style="color: #0000ff;">for</span> %%i in (%str%) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">if</span> <span style="color: #0000ff;">exist</span> %%i: <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i:
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>这段代码能检测硬盘都有哪些分区，包括U盘和移动硬盘的分区，但是，当光驱中有盘的时候，也会被列出来，这是本代码的一个缺憾，在以后的讲解中，我将向大家讲述如何消除这个瑕疵，敬请关注本系列的后续章节。</p>
+<p><span style="color: blue;">高级应用：</span></p>
+<p>想知道<span style="color: #ff6600;">当前目录下都有哪些文件</span>吗？请用下面的代码：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> %%i in (*.*) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span> "%%i"
+<span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>想<span style="color: #ff6600;">列出当前目录下所有的文本文件</span>吗？请用下面的代码</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> %%i in (*.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span> "%%i"
+<span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>想<span style="color: #ff6600; background-color: #ffffff;">列出只用两个字符作为文件名的文本文件</span>吗？(注:实际上这个代码是输出少于或等于两个字符作为文件名的文本文件)请用下面的代码：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> %%i in (??.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span> "%%i"
+<span style="color: #0000ff;">pause</span></pre>
+</div>
+<p><span style="color: blue;">题外话：</span></p>
+<p>&nbsp; 1、列出当前目录下各种文件的方法，最简单的还是用dir命令，但是，从以上代码中，各位可以加深对for语句执行流程的理解（用到了通配符*和?）；<br>&nbsp; 2、注意：以上代码不能列出含有隐藏或系统属性的文件；（注：这里其实有一个很有趣的现象，<span style="color: #ff0000;">windows中的系统文件一般具备两种属性——隐藏和系统</span>；但是你如果测试的话就会发现，加上+s属性，但是不加+h的文件是可以被简单的for显示出来的。<br>
+例如：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">attrib</span> +s 1.<span style="color: #000000;">txt
+</span><span style="color: #0000ff;">For</span> %%i in (*.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">Echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>这里的1.txt在结果中显示出来了。所以“以上代码不能列出含有隐藏或系统属性的文件”是不准确的，而因该说成“<span style="color: red;">以上代码不能列出含有隐藏属性的文件</span>”）</p>
+<p>&nbsp;</p>
+<p><span style="color: #993300;"><strong>三、文本解析显神威：for /f 用法详解</strong></span></p>
+<p>前言<br>　for /f 是个十分强大的家伙。<br>　如果说，for语句是批处理中最强大的语句的话，那么，for /f 就是精华中的精华。<br>　for /f 的强大，和它拥有众多的开关密切相关。因为开关众多，所以用法复杂，本章将分成若干小节，为大家逐一介绍强大的 for /f 语句。</p>
+<p><span style="color: #000080;"><strong>（一）为解析文本而生：for /f 的基本用法</strong></span></p>
+<p>所有的对象，无论是文件、窗体、还是控件，在所有的非机器语言看来，无外乎都是形如"c:\test.txt"、"CWnd"之类的文本信息；而所
+有的对象，具体的如ini文件中的某条配置信息、注册表中的某个键值、数据库中的某条记录……都只有转化为具有一定格式的文本信息，方可被代码识别、操
+控。可以说，编程的很大一部分工作，都是在想方设法绞尽脑汁如何提取这些文本信息。</p>
+<p>而提取文本信息，则是for /f的拿手好戏：读取文件内容；提取某几行字符；截取某个字符片段；对提取到的内容再切分、打乱、杂糅……只要你所能想到的花样，for /f 都会想方设法帮你办到，因为，<span style="color: #ff0000;">for /f 就是被设计成专门用于解析文本的</span>。</p>
+<p>先来看个例子。</p>
+<p>假如有个文本文件test.txt，内容如下：<br><span style="color: blue;">[txt1]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">论坛的目标是：不求最大，但求最好，做最实用的批处理论坛。
+论坛地址：bbs</span>.bathome.<span style="color: #0000ff;">net</span><span style="color: #000000;">。
+这里是：新手晋级的福地，高手论剑的天堂。</span></pre>
+</div>
+<p>那么，将如下代码保存为test.cmd，并放在test.txt同一目录下运行，将会在屏幕上原样显示test.txt的内容：<br><span style="color: blue;">[code4]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f %%i in (test.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>这段代码，主要是让你树立这样一种观念：读取文本文件的内容（<span style="color: red;">注：改为“逐行分析文本文件的内容”，因为读取文本文件内容的方法命令有很多，比如重定向输入，又比如type/more/find/sort等命令</span>），请使用 for /f 语句！<br><br></p>
+<p><span style="color: #000000;"><span style="color: #0000ff;">进阶话题：</span>for /f 语句是<span style="color: #ff6600;">把整个test.txt一次性显示出来</span>的？</span></p>
+<p>在这段代码中，虽然执行结果是把test.txt中的所有内容都显示出来了，貌似 for /f 语句是把整个test.txt一次性显示到屏幕上，实际上并非如此。</p>
+<p>无论for语句做何种变化，它的执行过程仍然遵循基本的for流程：依次处理每个元素，直到所有的元素都被处理为止。只不过在for 
+/f语句中，这里的元素是指文件中的每一行，也就是说，<span style="color: #ff0000;">for /f 
+语句是以行为单位处理文本文件的</span>。这是一条极为重要的规则，在上一章中也强调过它的重要性，希望在接下来的学习过程中，你能时刻牢记这一原则，那么，很多问题将会迎刃而解。以下是验证这一说法的演示代码（在[code4]的基础上添加了&amp;pause语句）：<br>
+<span style="color: blue;">[code5]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f %%i in (test.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span> %%i&amp;<span style="color: #0000ff;">pause</span>
+<span style="color: #0000ff;">pause</span></pre>
+</div>
+<p><span style="color: #000080;"><strong><br>（二） 切分字符串的利器：delims=</strong></span></p>
+<p>也许你对[code4]这段代码不屑一顾：不就是把test.txt的内容显示出来了么？好像用处不大啊。</p>
+<p>好吧，我们来玩个魔术。</p>
+<p>还是[txt1]这段文本，把[code4]改造一下：<br><span style="color: blue;">[code6]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f "delims=，" %%i in (test.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>再次运行test.cmd，看到什么变化了吗？<br><span style="color: blue;">[result2]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">论坛的目标是：不求最大
+论坛地址：bbs</span>.bathome.<span style="color: #0000ff;">net</span><span style="color: #000000;">。
+这里是：新手晋级的福地
+请按任意键继续</span>...</pre>
+</div>
+<p>结果，你惊奇地发现，每行第一个逗号之后的所有内容都不见了（如果有不存在逗号的行，则保留原样），也就说，你成功地提取到了每行第一个逗号之前的所有内容！</p>
+<p>试想一下，这段代码会有什么用呢？</p>
+<p>如果别人给了你一个软件清单，每行都是"英文软件名（逗号）中文软件名"的格式，而你却只想保留英文名的时候，这段代码将是多么有用啊！再假设，有
+这么一个IP文件，第一列是数字格式的IP地址，第二列是具体的空间地址，列与列之间用逗号分隔，而你想提取其中数字格式的IP，呵呵，我不说你也知道该
+怎么办了吧？</p>
+<p>要是文本内容不是以逗号分隔，而是以其他符号分隔，那么，把"delims=,"的逗号换成相应的符号就可以了。</p>
+<p><span style="color: #ff0000;">在这里，我们引入了一个新的开关："delims=，"，它的含义是：以逗号作为被处理的字符串的分隔符号。</span></p>
+<p>在批处理中，指定分隔符号的方法是：添加一个形如 "delims=符号列表" 的开关，这样，被处理的每行字符串都会被符号列表中罗列出来的符号切分开来。</p>
+<p>需要注意的是：如果没有指定"delims=符号列表"这个开关，那么，for /f 语句默认以空格键或跳格键作为分隔符号。请把[txt1]中不同位置上的标点符号改为空格或跳格，再运行[code4]试试。<br><br></p>
+<p><span style="color: #0000ff;">进阶话题：</span>如果我<span style="color: #ff6600;">要指定的符号不止一个</span>，该怎么办？</p>
+<p>在上面的讲解中，我提到了指定分隔符号的方法：添加一个形如"delims=符号列表"的开关。不知道你注意到没有，我的说法是"符号列表"而非"符号"，这是大有讲究的，因为，你可以一次性指定多个分隔符号！</p>
+<p>还是以[txt1]为例，把[code6]再改造一下<br><span style="color: blue;">[code7]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f "delims=.，" %%i in (test.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>结果显示：<br><span style="color: blue;">[result3]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">论坛的目标是：不求最大
+论坛地址：bbs
+这里是：新手晋级的福地
+请按任意键继续</span>...</pre>
+</div>
+<p>这样，第一个点号或第一个逗号之前的内容都被提取出来了。</p>
+<p>[code7]的执行过程是：逐行读取test.txt中的内容，以点号和逗号切分每一行的内容（不存在点号和逗号的行，则不再切分，<span style="color: #ff0000;">为了描述的方便，我们把被点号或逗号切分的一个一个的字符串片段，称之为节</span>），然后，for /f 会提取第一节的内容作为最终结果，显示在屏幕上。需要注意的是，在这里，所有行的字符串被切分成了两个以上的节，但是，[code7]的代码只会提取第一节字符串的内容，<span style="color: #ff0000;">因为 for /f 语句默认只提取第一节的符串</span>。</p>
+<p>&nbsp;</p>
+<p><span style="color: #000080;"><strong>（三） 定点提取：tokens=</strong></span></p>
+<p>上一节在讲解 delims= 的时候，我一再强调 for /f 默认只能提取到第一节的内容，现在我们来思考一个问题：如果我要提取的内容不在第一节上，那怎么办？</p>
+<p>这回，就该轮到 tokens= 出马了。</p>
+<p>tokens= 后面一般跟的是数字，如 tokens=2，也可以跟多个，但是每个数字之间用逗号分隔，如 
+tokens=3,5,8，它们的含义分别是：提取第2节字符串、提取第3、第5和第8节字符串。注意，这里所说的“节”，是由 delims= 
+这一开关划分的，它的内容并不是一成不变的。</p>
+<p>下面来看一个例子：<br><span style="color: blue;">[txt2]</span></p>
+<div class="cnblogs_code">
+<pre>尺有所短，寸有所长，学好批处理没商量，考虑问题复杂化，解决问题简洁化。</pre>
+</div>
+<p>对[txt2]这段文本，假设它们保存在文件test.txt中，如果我想提取“学好批处理没商量”这句话，该如何写代码呢？</p>
+<p>我们稍微观察一下[txt2]就会发现，如果以逗号作为切分符号，就正好可以把“学好批处理没商量”化为单独的一“节”，结合上一节的讲解，我们知
+道，"delims=，" 这个开关是不可缺少的，而要提取的内容在以逗号切分的第3节上，那么，tokens= 
+后面的数字就应该是3了，最终的代码如下：<br>
+<span style="color: blue;">[code8]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f "delims=， tokens=3" %%i in (test.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>如果我们现在要提取的不只一个“节”，而是多个，那又怎么办呢？比如，要提取以逗号切分的第2节和第5节字符串，是写成这样吗？<br><span style="color: blue;">[code9]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f "delims=， tokens=2,5" %%i in (test.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>运行批处理后发现，执行结果只显示了第2节的内容。</p>
+<p>原来，echo 后面的 %%i 只接收到了 tokens=2,5 中第一个数值2所代表的那个字符串，而第二个数值5所代表的字符串因为没有变量来接收，所以就无法在执行结果中显示出来了。</p>
+<p>那么，要如何接收 tokens= 后面多个数值所指代的内容呢？</p>
+<p>for /f 语句对这种情况做如下规定：</p>
+<p><span style="color: #ff0000;">如果 tokens= 后面指定了多个数字，如果形式变量为%%i，那么，第一个数字指代的内容用第一个形式变量%%i来接收，第二个数字指代的内容用第二个形式变量%%j来接收，第三个数字指代的内容用第三个形式变量%%k来接收……</span>第N个数字指代的内容用第N个形式变量来接收，其中，形式变量遵循字母的排序，第N个形式变量具体是什么符号，由第一个形式变量来决定：如果第一个形式变量是%%i，那么，第二个形式变量就是%%j；如果第一个形式变量用的是%%x，那么，第二个 形式变量就是%%y。</p>
+<p>现在回头去看[code9]，你应该知道如何修改才能满足题目的要求了吧？修改结果如下：<br>
+<span style="color: blue;">[code10]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f "delims=， tokens=2,5" %%i in (test.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i %%j
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>如果有这样一个要求：显示[txt2]中的内容，但是逗号要替换成空格，如何编写代码？</p>
+<p>结合上面所学的内容，稍加思索，你可能很快就得出了答案：<br><span style="color: blue;">[code11]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f "delims=， tokens=1,2,3,4,5" %%i in (test.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i %%j %%k %%l %%m
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>写完之后，你可能意识到这样一个问题：假如要提取的“节”数不是5，而是10，或者20，或者更多，难道我也得从1写到10、20或者更多吗？有没有更简洁的写法呢？</p>
+<p>答案是有的，那就是：如果要提取的内容是连续的多“节”的话，<span style="color: #ff0000;">那么，连续的数字可以只写最小值和最大值，中间用短横连接起来即可</span>，比如 tokens=1,2,3,4,5 可以简写为 tokens=1-5 。</p>
+<p>还可以把这个表达式写得更复杂一点：tokens=1,2-5，tokens=1-3,4,5，tokens=1-4,5……怎么方便就怎么写吧。</p>
+<p>大家可能还看到一种比较怪异的写法：<br>
+<span style="color: blue;">[code12]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f "delims=， tokens=1,*" %%i in (test.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i %%j
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>结果，第一个逗号不见了，取代它的是一个空格符号，其余部分保持不变。</p>
+<p>其中奥妙就在这个星号上面。</p>
+<p><span style="color: #ff0000;">tokens=后面所接的星号具备这样的功能：字符串从左往右被切分成紧跟在*之前的数值所表示的节数之后，字符串的其余部分保持不变，整体被*所表示的一个变量接收。</span></p>
+<p>理论讲解是比较枯燥的，特别是为了严密起见，还使用了很多限定性的修饰词，导致句子很长，增加了理解的难度，我们还是结合[code12]来讲解一下吧。</p>
+<p>[txt2] 的内容被切分，切分符号为逗号，当切分完第一节之后，切分动作不再继续下去，因为 tokens=1,* 
+中，星号前面紧跟的是数字1；第一节字符串被切分完之后，其余部分字符串不做任何切分，整体作为第二节字符串，这样，[txt2]就被切分成了两节，分别
+ 被变量%%i和变量%%j接收。</p>
+<p>以上几种切分方式可以结合在一起使用。不知道下面这段代码的含义你是否看得懂，如果看不懂的话，那就运行一下代码，然后反复揣摩，你一定会更加深刻地理解本节所讲解的内容的：<br>
+<span style="color: blue;">[code13]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f "delims=， tokens=1,3-4,*" %%i in (test.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i %%j %%k %%l
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>&nbsp;</p>
+<p><span style="color: #000080;"><strong>（四） 跳过无关内容，直奔主题：skip=n</strong></span></p>
+<p>很多时候，有用的信息并不是贯穿文本内容的始终，而是位于第N行之后的行内，为了提高文本处理的效率，或者不受多余信息的干扰，for /f 允许你跳过这些无用的行，直接从第N+1行开始处理，这个时候，<span style="color: #ff0000;">就需要使用参数 skip=n，其中，n是一个正整数，表示要跳过的行数</span>。例如：<br>
+<span style="color: blue;">[code14]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f "skip=2" %%i in (test.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>这段代码将跳过头两行内容，从第3行起显示test.txt中的信息。</p>
+<p>&nbsp;</p>
+<p><span style="color: #000080;"><strong>（五） 忽略以指定字符打头的行：eol=</strong></span></p>
+<p>&nbsp;在cmd窗口中敲入：for /?，相关的解释为：</p>
+<div class="cnblogs_code">
+<pre>eol=c    -指一个行注释字符的结尾(就一个)</pre>
+</div>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">FOR</span> /F "eol=; tokens=2,3* delims=, " %i in (myfile.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">@echo</span><span style="color: #000000;"> %i %j %k
+会分析 myfile</span>.txt 中的每一行，忽略以分号打头的那些行……</pre>
+</div>
+<p>第一条解释狗屁不通，颇为费解：行注释字符的结尾是什么意思？“(就一个)”怎么回事？结合第二条解释，才知道eol有忽略指定行的功能。但是，这两条解释是互相矛盾的：到底是忽略以指定字符打头的行，还是忽略以指定字符结尾的行？</p>
+<p>实践是检验真理的唯一标准，还是用代码来检验一下eol的作用吧：<br><span style="color: blue;">[code15]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f "eol=;" %%i in (test.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>结果，那些以分号打头的行没有显示出来。</p>
+<p>由此可见，第二条解释是正确的，eol= 的准确含义是：忽略以指定字符打头的行。而第一条的“结尾”纯属微软在信口开河。</p>
+<p>那么，“(就一个)”又作何解释呢？</p>
+<p>试试这个代码：<br>
+<span style="color: blue;">[code16]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f "eol=,;" %%i in (test.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>此时，屏幕上出现“此时不应有" ;"。”的报错信息。<span style="color: #ff0000;">可见，在指定字符的时候，只能指定1个</span>——在很多时候，我对这样的设计颇有微词而又无可奈何：为什么只能指定1个而不是多个？<span style="color: #ff0000;">要忽略多个还得又是if又是findstr加管道来多次过滤</span>，那效率实在太低下了——能用到的功能基本上都提供，但是却又做不到更好，批处理，你的功能为什么那么弱？</p>
+<p>不知道大家注意到没有，如果test.txt中有以分号打头的行，那么，这些行在代码[code14]的执行结果中将凭空消失。</p>
+<p>原来，f<span style="color: #ff0000;">or /f 语句是默认忽略以分号打头的行内容的</span>，正如它默认以空格键或跳格键作为字符串的切分字符一样。（注：eol=;这种默认设置，在delims=;时变得无效。）</p>
+<p>很多时候，我们可以充分利用这个特点，比如，在设计即将用for读取的配置文件的时候，可以在注释文字的行首加上分号，例如在编写病毒文件查杀代码的时候，可以通过for语句来读取病毒文件列表，那么，病毒文件列表.ini这个配置文件可以这样写：</p>
+<div class="cnblogs_code">
+<pre>;<span style="color: #000000;">以下是常见的病毒文件，请见一个杀一个
+</span>;copyleft<span style="color: #800000;">:没有</span><span style="color: #000000;">
+qq</span>.<span style="color: #000000;">exe
+msn</span>.<span style="color: #000000;">exe
+iexplore</span>.exe</pre>
+</div>
+<p><span style="color: #0000ff;">如果要取消这个默认设置</span>，可选择的办法是：<br>&nbsp; 1、为eol=指定另外一个字符；<br>&nbsp; 2、使用 for /f "eol=" 语句，也就是说，强制指定字符为空，就像对付delims=一样。</p>
+<p>&nbsp;</p>
+<p><span style="color: #000080;"><strong>（六）如何决定该使用 for /f 的哪种句式？（兼谈usebackq的使用）</strong></span></p>
+<p>for /f %%i in (……) do (……) 语句有好几种变形语句，不同之处在于第一个括号里的内容：有的是用单引号括起来，有的是用双引号包住，有的不用任何符号包裹，具体格式为：</p>
+<div class="cnblogs_code">
+<pre>1、<span style="color: #0000ff;">for</span> /f %%i in (文件名) <span style="color: #0000ff;">do</span> (……)
+2、<span style="color: #0000ff;">for</span> /f %%i in ('命令语句') <span style="color: #0000ff;">do</span> (……)
+3、<span style="color: #0000ff;">for</span> /f %%i in ("字符串") <span style="color: #0000ff;">do</span> (……)</pre>
+</div>
+<p>看到这里，我想很多人可能已经开始犯了迷糊了：如果要解决一个具体问题，面对这么多的选择，如何决定该使用哪一条呢？</p>
+<p>实际上，当我在上面罗列这些语句的时候，已经有所提示了，不知道你是否注意到了。</p>
+<p>如果你一时无法参透其中奥妙，那也无妨，请听我一一道来便是。</p>
+<p>&nbsp;&nbsp;&nbsp; 1、<span style="color: #ff6600;">当你希望读取文本文件中的内容的话，第一个括号中不用任何符号包裹</span>，应该使用的是第1条语句；例如：你想显示test.txt中的内容，那么，就使用 for /f %%i in (test.txt) do echo %%i；<br>　 2、<span style="color: #ff6600;">当你读取的是命令语句执行结果中的内容的话，第一个括号中的命令语句必须使用单引号包裹</span>，应该使用的是第2条语句；例如：你想显示当前目录下文件名中含有test字符串的文本文件的时候，应该使用 for /f %%i in ('dir /a-d /b *test*.txt') do echo %%i 这样的语句；<br>　 3、<span style="color: #ff6600;">当你要处理的是一个字符串的时候，第一个括号中的内容必须用双引号括起来</span>，
+应该是用的是第3条语句；例如：当你想把bbs.bathome.net这串字符中的点号换为短横线并显示出来的话，可以使用 for /f 
+"delims=. tokens=1-3" %%i in ("bbs.bathome.net") do echo %%i-%%j-%%k 
+这样的语句。<br><br>很显然，第一个括号里是否需要用符号包裹起来，以及使用什么样的符号包裹，取决于要处理的对象属于什么类型：如果是文件，则无需包裹；如果是命令语句，则用单引号包裹；如果是字符串，则使用双引号括起来。</p>
+<p>当然，事情并不是绝对如此，如果细心的你想到了批处理中难缠的特殊字符，你肯定会头大如斗。</p>
+<p>或许你头脑中灵光一闪，已经想到了一个十分头痛的问题：在第1条语句中，如果文件名中含有空格或&amp;，该怎么办？</p>
+<p>照旧吗？</p>
+<p>拿个叫 test 1.txt 的文件来试试。</p>
+<p>你很快写好了代码，新建文件--&gt;码字--&gt;保存为批处理，前后费时不到1分钟：<br>[code17]</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f %%i in (test 1.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>你兴冲冲地双击批处理，运行后，屏幕上出现了可耻的报错信息：系统找不到文件 test 。</p>
+<p>当你把 test 1.txt 换成 test&amp;1.txt 后，更怪异的事情发生了：CMD窗口在你眼前一闪而过，然后，优雅地消失了。</p>
+<p>你可能觉得自己的代码写错了某些符号，你再仔细的检查了一次，确认没有笔误，然后，你再次双击批处理，结果问题照旧；你开始怀疑其他程序对它可能有影响，于是关掉其他窗口，再运行了一次，问题依旧；你不服气地连续运行了好几次，还是同样的结果。</p>
+<p>怪哉！</p>
+<p>你一拍大腿，猛然想起了一件事：当路径中含有特殊字符的时候，应该使用引号把路径括起来。对，就是它了！</p>
+<p>但是，当你把代码写出来之后，你很快就焉了：for /f %%i in ("test 1.txt") do echo %%i，这不就是上面提到的第3条 for /f 命令的格式吗？批处理会把 test 1.txt 这个文件名识别为字符串啊！</p>
+<p>你百无聊赖地在CMD窗口中输入 for /? ，并重重地敲下了回车，漫无目的地在帮助信息中寻找，希望能找到点什么。</p>
+<p>结果还真让你到了点什么。</p>
+<p>你看到了这样的描述：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">usebackq     - 指定新语法已在下类情况中使用:
+               在作为命令执行一个后引号的字符串并且一个单引号字符为文字字符串命令并允许在 filenameset 中使用双引号扩起文件名称。</span></pre>
+</div>
+<p>但是，通读一遍之后，你却如坠五里雾中，不知所云。</p>
+<p>还好，下面有个例子，并配有简单的说明：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">FOR</span> /F "usebackq delims==" %i IN (`<span style="color: #0000ff;">set</span>`) <span style="color: #0000ff;">DO</span> <span style="color: #0000ff;">@echo</span><span style="color: #000000;"> %i
+会枚举当前环境中的环境变量名称。</span></pre>
+</div>
+<p>你仔细对比了for /f语句使用usebackq和不使用usebackq时在写法上的差别，很快就找到了答案：<span style="color: #ff0000;">当使用了usebackq之后，如果第一个括号中是一条命令语句，那么，就要把单引号'改成后引号`</span>（键盘左上角esc键下面的那个按键，与~在同一键位上）。</p>
+<p>回过头去再看那段关于usebackq的描述，字斟句酌，反复揣摩，终于被你破译了天机：<span style="color: #ff0000;">usebackq
+ 
+是一个增强型参数，当使用了这个参数之后，原来的for语句中第一个括号内的写法要做如下变动：如果第一个括号里的对象是一条命令语句的话，原来的单引号
+'要改为后引号`；如果第一个括号里的对象是字符串的话，原来的双引号"要改为单引号'；如果第一个括号里的对象是文件名的话，要用双引号"括起来。</span></p>
+<p>验证一下，把[code17]改写成如下代码：<br>[code18]</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /f "usebackq" %%i in ("test 1.txt") <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>测试通过！</p>
+<p>此时，你很可能会仰天长叹：Shit，微软这该死的机器翻译！</p>
+<p>至于把[code17]代码中的空格换成&amp;后，CMD窗口会直接退出，那是因为&amp;是复合语句的连接符，CMD在预处理的时候，会优
+先把&amp;前后两部分作为两条语句来解析，而不是大家想象中的一条完整的for语句，从而产生了严重的语法错误。因为牵涉到预处理机制问题，不属于本
+节要讨论的内容，在此不做详细讲解。</p>
+<p>这个时候，我们会吃惊地发现，区区一条for语句，竟然有多达6种句型：</p>
+<div class="cnblogs_code">
+<pre>1、<span style="color: #0000ff;">for</span> /f %%i in (文件名) <span style="color: #0000ff;">do</span> (……)
+2、<span style="color: #0000ff;">for</span> /f %%i in ('命令语句') <span style="color: #0000ff;">do</span> (……)
+3、<span style="color: #0000ff;">for</span> /f %%i in ("字符串") <span style="color: #0000ff;">do</span> (……)
+4、<span style="color: #0000ff;">for</span> /f "usebackq" %%i in ("文件名") <span style="color: #0000ff;">do</span> (……)
+5、<span style="color: #0000ff;">for</span> /f "usebackq" %%i in (`命令语句`) <span style="color: #0000ff;">do</span> (……)
+6、<span style="color: #0000ff;">for</span> /f "usebackq" %%i in ('字符串') <span style="color: #0000ff;">do</span> (……)</pre>
+</div>
+<p>其中，4、5、6由1、2、3发展而来，他们有这样的对应关系：1--&gt;4、2--&gt;5、3--&gt;6。</p>
+<p>好在后3种情形并不常用，所以，牢牢掌握好前三种句型的适用情形就可以了，否则，要在这么多句型中确定选择哪一条语句来使用，还真有点让人头脑发懵。</p>
+<p>至于 for /f 
+为什么要增加usebacq参数，我只为第4条语句找到了合理的解释：为了兼容文件名中所带的空格或&amp;。它在第5、6条语句中为什么还有存在的必
+要，我也不是很明白，这有待于各位去慢慢发现。（注：这种解释虽然有点不靠谱，但也算一种解释，大家将就看看吧。启用usebackq选项的时候，“文件
+名”取代了“字符串”，那么“字符串”只好改变为“命令语句”，“命令语句”只好用后引号重新表示——简而言之，是“文件名”符号改变引起的蝴蝶效应。言
+外之意：usebackq除了在处理带空格的文件名时会用到外，根本就没有其它的出场机会和存在价值。）</p>
+<p>&nbsp;</p>
+<p><span style="color: #000080;"><strong>（七）变量延迟详解</strong></span></p>
+<p>变量延迟在for语句中起着至关重要的作用，不只是在for语句中，在其他的复合语句中，它也在幕后默默地工作着，为了突出它的重要性，本节内容在单独的楼层中发出来，希望引起大家的重视。</p>
+<p>对于批处理新手而言，“变量延迟”这个概念很可能闻所未闻，但是，它却像一堵横亘在你前进道路上的无形高墙，你感受不到它的存在，但当你试图往前冲
+时，它会把你狠狠地弹回来，让你无法逾越、无功而返；而一旦找到了越过它的方法，你就会发现，在for的世界里，前面已经是一片坦途，而你对批处理的理
+解，又上升到了一个新的境界。</p>
+<p>例如，你编写了这样一个代码：<br>
+<span style="color: blue;">[code19]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">set</span> num=0&amp;&amp;<span style="color: #0000ff;">echo</span><span style="color: #000000;"> %num%
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>你的本意是想对变量num赋值之后，再把这个值显示出来，结果，显示出来的并不是0，而是显示：ECHO 处于关闭状态。</p>
+<p>之所以会出错，是因为“变量延迟”这个家伙在作怪。</p>
+<p>在讲解变量延迟之前，我们需要了解一下批处理的执行过程，它将有助于我们深入理解变量延迟。</p>
+<p><span style="color: #0000ff;">批处理的执行过程是怎样的呢？</span></p>
+<p>“自上而下，逐条执行”，我想，这个经典的说法大家都已经耳熟能详了，没事的时候倒着念，也还别有一番古韵呢，但是，我想问大家的是，大家真的深刻地理解了这句话的含义了吗？</p>
+<p>“自上而下”，这一条和我们本节的讲解关系不大，暂时略过不说，后一条，“逐条执行”和变量延迟有着莫大的干系，它是我们本节要关注的重点。</p>
+<p>很多人往往认为一行代码就是一条语句，从而把“逐条执行”与“逐行执行”等同起来，这就大错特错了。</p>
+<p>莫非“逐条执行”里暗藏着玄机？</p>
+<p>正是如此。</p>
+<p><span style="color: #ff0000;">“逐条”并不等同于“逐行”。这个“条”，是“一条完整的语句”的意思，并不是指“一行代码”。在批处理中，是不是一条完整的语句，并不是以行来论的，而是要看它的作用范围。</span></p>
+<p><span style="color: #0000ff;">什么样的语句才算“一条完整的语句”呢？</span><br>&nbsp; 1、在复合语句中，整个复合语句是一条完整的语句，而无论这个复合语句占用了多少行的位置。常见的复合语句有：for语句、if……else语句、用
+连接符&amp;、||和&amp;&amp;连接的语句，用管道符号|连接的语句，以及用括号括起来的、由多条语句组合而成的语句块；<br>&nbsp; 2、在非复合语句中，如果该语句占据了一行的位置，则该行代码为一条完整的语句。<br>
+例如：<br>
+<span style="color: blue;">[code20]</span></p>
+<p>&nbsp;</p>
+
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #008080;"> 2</span> <span style="color: #0000ff;">set</span> num=0
+<span style="color: #008080;"> 3</span> <span style="color: #0000ff;">for</span> /f %%i in ('<span style="color: #0000ff;">dir</span> /a-d /b *.exe') <span style="color: #0000ff;">do</span> (
+<span style="color: #008080;"> 4</span>     <span style="color: #0000ff;">set</span> /a num+=1
+<span style="color: #008080;"> 5</span>     <span style="color: #0000ff;">echo</span><span style="color: #000000;"> num 当前的值是 %num%
+</span><span style="color: #008080;"> 6</span> )
+<span style="color: #008080;"> 7</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> 当前目录下共有 %num% 个exe文件
+</span><span style="color: #008080;"> 8</span> <span style="color: #0000ff;">dir</span> /a-d /b *.txt|findstr "test"&gt;nul&amp;&amp;(
+<span style="color: #008080;"> 9</span>     <span style="color: #0000ff;">echo</span><span style="color: #000000;"> 存在含有 test 字符串的文本本件
+</span><span style="color: #008080;">10</span> ) || <span style="color: #0000ff;">echo</span><span style="color: #000000;"> 不存在含有 test 字符串的文本文件
+</span><span style="color: #008080;">11</span> <span style="color: #0000ff;">if</span> <span style="color: #0000ff;">exist</span> test.ini (
+<span style="color: #008080;">12</span>     <span style="color: #0000ff;">echo</span> 存在 test.<span style="color: #000000;">ini 文件
+</span><span style="color: #008080;">13</span> ) <span style="color: #0000ff;">else</span> <span style="color: #0000ff;">echo</span> 不存在 test.<span style="color: #000000;">ini 文件
+</span><span style="color: #008080;">14</span> <span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>&nbsp;</p>
+<p>上面的代码共有14行，但是只有完整的语句只有7条，它们分别是：<br>
+　　第1条：第1行的echo语句；<br>
+　　第2条：第2行的set语句；<br>
+　　第3条：第3、4、5、6行上的for复合语句；<br>
+　　第4条：第7行的echo语句；<br>
+　　第5条：第8、9、10行上用&amp;&amp;和||连接的复合语句；<br>
+　　第6条：第11、12、13行上的if……else复合语句；<br>
+　　第7条：第14行上的pause语句。</p>
+<p>在这里，我之所以要花这么长的篇幅来说明一行代码并不见得就是一条语句，是因为批处理的执行特点是“逐条”执行而不是“逐行”执行，澄清了这个误解，将会更加理解批处理的预处理机制。</p>
+<p>在代码“逐条”执行的过程中，cmd.exe这个批处理解释器会对每条语句做一些预处理工作，这就是批处理中大名鼎鼎的“预处理机制”。</p>
+<p><span style="color: #ff0000;">预处理的大致情形是这样的：首先，把一条完整的语句读入内存中（不管这条语句有多少
+行，它们都会被一起读入），然后，识别出哪些部分是命令关键字，哪些是开关、哪些是参数，哪些是变量引用……如果代码语法有误，则给出错误提示或退出批处
+理环境；如果顺利通过，接下来，就把该条语句中所有被引用的变量及变量两边的百分号对，用这条语句被读入内存之就已经赋予该变量的具体值来替换……当所有
+的预处理工作完成之后，批处理才会执行每条完整语句内部每个命令的原有功能。也就是说，如果命令语句中含有变量引用（变量及紧邻它左右的百分号对），并且
+某个变量的值在命令的执行过程中被改变了，即使该条语句内部的其他地方也用到了这个变量，也不会用最新的值去替换它们，因为某条语句在被预处理的时候，所
+有的变量引用都已经被替换成字符串常量了，变量值在复合语句内部被改变，不会影响到语句内部的其他任何地方。</span></p>
+<p>顺便说一下，运行代码[code20]之后，将在屏幕上显示当前目录下有多少个exe文件，是否存在含有 test 
+字符串的文本文件，以及是否存在 test.ini 
+这个文件等信息。让很多人百思不得其解的是：如果当前目录下存在exe文件，那么，有多少个exe文件，屏幕上就会提示多少次 "num 当前的值是 
+0" ，而不是显示1到N（N是exe文件的个数）。</p>
+<p>结合上面两个例子，我们再来分析一下，为什么这两段代码的执行结果和我们的期望有一些差距。</p>
+<p>在[code19]中，set num=0&amp;&amp;echo %num%是一条复合语句，它的含义是：把0赋予变量num，成功后，显示变量num的值。</p>
+<p>虽然是在变量num被赋值成功后才显示变量num的值，<span style="color: #ff0000;">但是，因为这是一条复合语句，在预处理的时候，&amp;&amp;后的%num%只能被set语句之前的语句赋予变量num的具体值来替换，而不能被复合语句内部、&amp;&amp;之前的set语句对num所赋予的值来替换，可见，此num非彼num。</span>可
+是，在这条复合语句之前，我们并没有对变量num赋值，所以，&amp;&amp;之后的%num%是空值，相当于在&amp;&amp;之后只执行了 
+echo 这一命令，所以，会显示 echo 命令的当前状态，而不是显示变量num的值（虽然该变量的值被set语句改变了）。</p>
+<p>在[code20]中，for语句的含义是：列举当前目录下的exe文件，每发现一个exe文件，变量num的值就累加1，并显示变量num的值。</p>
+<p>看了对[code19]的分析之后，再来分析[code20]就不再那么困难了：第3、4、5行上的代码共同构成了一条完整的for语句，而语
+句"echo num 当前的值是 %num%"与"set /a 
+num+=1"同处复合语句for的内部，那么，第4行上set改变了num的值之后，并不能对第5行上的变量num有任何影响，因为在预处理阶段，第5
+行上的变量引用%num%已经被在for之前就赋予变量num的具体值替换掉了，它被替换成了0（是被第2行上的set语句赋予的）。</p>
+<p>如果想让代码[code19]的执行结果中显示&amp;&amp;之前赋予num的值，让代码[code20]在列举exe文件的时候，从1到N地显示exe文件的数量，那又该怎么办呢？</p>
+<p>对代码[code19]，可以把用&amp;&amp;连接复合语句拆分为两条单独的语句，写成：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">set</span> num=0
+<span style="color: #0000ff;">echo</span><span style="color: #000000;"> %num%
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>但是，这不是我们这次想要的结果。</p>
+<p>对这两段代码都适用的办法是：使用变量延迟扩展语句，让变量的扩展行为延迟一下，从而获取我们想要的值。</p>
+<p>在这里，我们先来充下电，看看“变量扩展”有是怎么一回事。</p>
+<p>用CN-DOS里批处理达人willsort的原话，那就是：“在许多可见的官方文档中，均将使用一对百分号闭合环境变量以完成对其值的替换行为称
+之为“扩展（expansion）”，这其实是一个第一方的概念，是从命令解释器的角度进行称谓的，而从我们使用者的角度来看，则可以将它看作是引用
+（Reference）、调用（Call）或者获取（Get）。”（见：什么情况下该使用变量延迟？http://www.cn-dos.net
+/forum/viewthread.php?tid=20733）说得直白一点，所谓的“变量扩展”，实际上就是很简单的这么一件事情：用具体的值去替
+换被引用的变量及紧贴在它左右的那对百分号。</p>
+<p>既然只要延迟变量的扩展行为，就可以获得我们想要的结果，那么，具体的做法又是怎样的呢？</p>
+<p>一般说来，延迟变量的扩展行为，可以有如下选择：<br>&nbsp; 1、在适当位置使用 setlocal enabledelayedexpansion 语句；<br>&nbsp; 2、在适当的位置使用 call 语句。</p>
+<p>使用 setlocal enabledelayedexpansion 语句，那么，[code19]和[code20]可以分别修改为：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">setlocal</span><span style="color: #000000;"> enabledelayedexpansion
+</span><span style="color: #0000ff;">set</span> num=0&amp;&amp;<span style="color: #0000ff;">echo</span><span style="color: #000000;"> !num!
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">set</span> num=0
+<span style="color: #0000ff;">setlocal</span><span style="color: #000000;"> enabledelayedexpansion
+</span><span style="color: #0000ff;">for</span> /f %%i in ('<span style="color: #0000ff;">dir</span> /a-d /b *.exe') <span style="color: #0000ff;">do</span> (
+    <span style="color: #0000ff;">set</span> /a num+=1
+    <span style="color: #0000ff;">echo</span><span style="color: #000000;"> num 当前的值是 !num!
+</span>)
+<span style="color: #0000ff;">echo</span><span style="color: #000000;"> 当前目录下共有 %num% 个exe文件
+</span><span style="color: #0000ff;">dir</span> /a-d /b *.txt|findstr "test"&gt;nul&amp;&amp;(
+    <span style="color: #0000ff;">echo</span><span style="color: #000000;"> 存在含有 test 字符串的文本本件
+</span>)||<span style="color: #0000ff;">echo</span><span style="color: #000000;"> 不存在含有 test 字符串的文本文件
+</span><span style="color: #0000ff;">if</span> <span style="color: #0000ff;">exist</span> test.ini (
+    <span style="color: #0000ff;">echo</span> 存在 test.<span style="color: #000000;">ini 文件
+</span>) <span style="color: #0000ff;">else</span> <span style="color: #0000ff;">echo</span> 不存在 test.<span style="color: #000000;">ini 文件
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>使用第call语句，那么，[code19]和[code20]可以分别修改为：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">set</span> num=0&amp;&amp;<span style="color: #0000ff;">call</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%num%%
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">set</span> num=0
+<span style="color: #0000ff;">for</span> /f %%i in ('<span style="color: #0000ff;">dir</span> /a-d /b *.exe') <span style="color: #0000ff;">do</span> (
+    <span style="color: #0000ff;">set</span> /a num+=1
+    <span style="color: #0000ff;">call</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> num 当前的值是 %%num%%
+</span>)
+<span style="color: #0000ff;">echo</span><span style="color: #000000;"> 当前目录下共有 %num% 个exe文件
+</span><span style="color: #0000ff;">dir</span> /a-d /b *.txt|findstr "test"&gt;nul&amp;&amp;(
+    <span style="color: #0000ff;">echo</span><span style="color: #000000;"> 存在含有 test 字符串的文本本件
+</span>)||<span style="color: #0000ff;">echo</span><span style="color: #000000;"> 不存在含有 test 字符串的文本文件
+</span><span style="color: #0000ff;">if</span> <span style="color: #0000ff;">exist</span> test.ini (
+    <span style="color: #0000ff;">echo</span> 存在 test.<span style="color: #000000;">ini 文件
+</span>) <span style="color: #0000ff;">else</span> 不存在 test.<span style="color: #000000;">ini 文件
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>由此可见，<span style="color: red;">如果使用 setlocal enabledelayedexpansion 语句来延迟变量，就要把原本使用百分号对闭合的变量引用改为使用感叹号对来闭合；如果使用call语句，就要在原来命令的前部加上 call 命令，并把变量引用的单层百分号对改为双层。</span>
+ 其中，因为call语句使用的是双层百分号对，容易使人犯迷糊，所以用得较少，常用的是使用 setlocal 
+enabledelayedexpansion 
+语句（set是设置的意思，local是本地的意思，enable是能够的意思，delayed是延迟的意思，expansion是扩展的意思，合起来，
+ 就是：让变量成为局部变量，并延迟它的扩展行为）。</p>
+<p>通过上面的分析，我们可以知道：</p>
+<p>&nbsp;&nbsp; 1、<span style="color: #0000ff;">为什么要使用变量延迟？</span>因为要让复合语句内部的变量实时感知到变量值的变化。<br>　2、<span style="color: #0000ff;">在哪些场合需要使用变量延迟语句？</span>在
+复合语句内部，如果某个变量的值发生了改变，并且改变后的值需要在复合语句内部的其他地方被用到，那么，就需要使用变量延迟语句。而复合语句有：for语
+句、if……else语句、用连接符&amp;、||和&amp;&amp;连接的语句、用管道符号|连接的语句，以及用括号括起来的、由多条语句组合而
+成的语句块。最常见的场合，则是for语句和if……else语句。<br>　3、<span style="color: #0000ff;">怎样使用变量延迟？</span><br>　　方法有两种：<br>　　① 使用 setlocal enabledelayedexpansion 语句：在获取变化的变量值语句之前使用setlocal enabledelayedexpansion，并把原本使用百分号对闭合的变量引用改为使用感叹号对来闭合；<br>　　② 使用 call 语句：在原来命令的前部加上 call 命令，并把变量引用的单层百分号对改为双层。 </p>
+<p>“变量延迟”是批处理中一个十分重要的机制，它因预处理机制而生，用于复合语句，特别是大量使用于强大的for语句中。只有熟练地使用这一机制，才
+能在for的世界中如鱼得水，让自己的批处理水平更上一层楼。很多时候，对for的处理机制，我们一直是雾里看花，即使偶有所得，也只是只可意会难以言
+传。希望大家反复揣摩，多加练习，很多细节上的经验，是只有通过大量的摸索才能得到的。</p>
+<p>本节内容在原理上参考了这篇文章：什么情况下该使用变量延迟？http://www.cn-dos.net/forum
+/viewthread.php?tid=20733，在本论坛中的地址是：http://bbs.bathome.net
+/viewthread.php?tid=2899</p>
+<p>&nbsp;</p>
+<p><span style="color: #993300;"><strong>四、翻箱倒柜遍历文件夹：for /r</strong></span></p>
+<p><span style="color: #000080;"><strong>（一）for /r 的作用及用法</strong></span></p>
+<p>按照帮助信息里文绉绉的说法，for /r 的作用是“递归”，我们换一个通俗一点的，叫“遍历文件夹”。</p>
+<p>更详细的解释就是：在下面的语句中，如果“元素集合”中只是一个点号，那么，这条语句的作用就是：列举“目录”及其之下的所有子目录，对这些文件夹都
+执行“命令语句集合”中的命令语句。其作用与嵌套进 for /f 复合语句的 "dir /ad /b /s 路径" 
+功能类似。如果省略了“目录”，将在当前目录下执行前面描述的操作。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">for</span> /r 目录 %%i in (元素集合) <span style="color: #0000ff;">do</span> 命令语句集合</pre>
+</div>
+<p>先来个代码增强一下印象：<br>
+<span style="color: blue;">[code21]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /r d:\test %%i in (.) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>执行的结果如下所示：</p>
+<div class="cnblogs_code">
+<pre>d:\test\.<span style="color: #000000;">
+d:</span>\test\1\.<span style="color: #000000;">
+d:</span>\test\2\.<span style="color: #000000;">
+d:</span>\test\3\.</pre>
+</div>
+<p>效果就是显示 d:\test 目录及其之下是所有子目录的路径，<span style="color: #0000ff;">其效果与 dir /ad /b /s d:\test 类似</span>。若要说到两者的区别，可以归纳出3点：<br>
+　1、<span style="color: #ff6600;">for /r 列举出来的路径最后都带有斜杠和点号</span>，而 dir 语句则没有，会对获取到的路径进行进一步加工产生影响；<br>
+　2、<span style="color: #ff6600;">for /r 不能列举带隐藏属性的目录</span>，而 dir 语句则可以通过指定 /a 后面紧跟的参数来获取带指定属性的目录，更加灵活；<br>
+　3、若要对获取到的路径进行进一步处理，则需要把 dir 语句放入 for /f 语句中进行分析，写成 <span style="color: #ff0000;">for /f %%i in ('dir
+ /ad /b /s') do ……</span> 的形式；由于 for /r 语句是边列举路径边进行处理，所以，在处理大量路径的时候，前期不会感到有停顿，而
+ for /f 语句则需要等到 dir /ad /b /s 
+语句把所有路径都列举完之后，再读入内存进行处理，所以，在处理大量路径的时候，前期会感到有明显的停顿。</p>
+<p>第2点差别很容易被大家忽视，导致用 for /r 列举路径的时候会造成遗漏；而第3点则会让大家有更直观的感受，很容易感觉到两者之间的差别。</p>
+<p>要是“元素集合”不是点号呢？那又如何？</p>
+<p>来看看这个代码：<br>
+<span style="color: blue;">[code22]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /r d:\test %%i in (a b c) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>运行的结果是：</p>
+<div class="cnblogs_code">
+<pre>D:\test\1\<span style="color: #000000;">a
+D:</span>\test\1\<span style="color: #000000;">b
+D:</span>\test\1\<span style="color: #000000;">c
+D:</span>\test\2\<span style="color: #000000;">a
+D:</span>\test\2\<span style="color: #000000;">b
+D:</span>\test\2\<span style="color: #000000;">c
+D:</span>\test\3\<span style="color: #000000;">a
+D:</span>\test\3\<span style="color: #000000;">b
+D:</span>\test\3\c</pre>
+</div>
+<p>原来，它的含义是：列举 d:\test 及其所有的子目录，对所有的目录路径都分别添加a、b、c之后再显示出来。</p>
+<p>再来看一个代码：<br>
+<span style="color: blue;">[code23]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">for</span> /r d:\test %%i in (*.txt) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span></pre>
+</div>
+<p>运行结果是：</p>
+<div class="cnblogs_code">
+<pre>D:\test\test.<span style="color: #000000;">txt
+D:</span>\test\1\1.<span style="color: #000000;">txt
+D:</span>\test\1\2.<span style="color: #000000;">txt
+D:</span>\test\2\a.<span style="color: #000000;">txt
+D:</span>\test\2\b.<span style="color: #000000;">txt
+D:</span>\test\3\1.txt</pre>
+</div>
+<p>这段代码的含义是：列举 d:\test 及其所有子目录下的txt文本文件（以.txt结尾的文件夹不会被列出来）。</p>
+<p>我们再回过头来归纳一下这个语句的作用：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">for</span> /r 目录 %%i in (元素集合) <span style="color: #0000ff;">do</span> 命令语句集合</pre>
+</div>
+<p>上面语句的作用是：</p>
+<p>&nbsp; 1、<span style="color: #ff0000;">列举“目录”及该目录路径下所有子目录，并把列举出来的目录路径和元素集合中的每一个元素拼接成形如“目录路径\元素”格式的新字符串</span>，然后，对每一条这样的新字符串执行“命令语句集合”中的每一条命令；<br>
+　　特别的是：<span style="color: #ff0000;">当“元素集合”带以点号分隔的通配符?或*的时候，把“元素集合”视为文件（不视为文件夹），整条语句的作用是匹配“目录”所指文件夹及其所有子文件夹下匹配的文件；若不以点号分隔，则把“元素集合”视为文件夹（不视为文件）</span>；<br>
+　2、当省略掉“目录”时，则针对当前目录；<br>
+　3、<span style="color: #ff0000;">当元素集合中仅仅是一个点号的时候，将只列举目录路径</span>；<br><br></p>
+<p><span style="color: #000080;"><strong>（二）for /r 还是 dir /ad /b /s？列举目录时该如何选择</strong></span></p>
+<p>前面已经说过，当列举目录时，for /r 和 dir /ad /b /s 的效果是非常类似的，这就产生了一个问题：当我要获取目录路径并进行进一步处理的时候，两者之间，我该如何选择？</p>
+<p>这个问题，前面其实已经有过一些讨论，现在我们再来作详细的分析。</p>
+<p>我们来看一下两者各自的优缺点：</p>
+<p>1、for /r：</p>
+<p>&nbsp; 1）优点：</p>
+<p>&nbsp;&nbsp;&nbsp; ① 只通过1条语句就可以同时实现获取目录路径和处理目录路径的操作；<br>
+　 ② 遍历文件夹的时候，是边列举边处理的，获取到一条路径就处理一条路径，内存占用小，处理大量路径的时候不会产生停顿感；</p>
+<p>&nbsp; 2）缺点： </p>
+<p>&nbsp;&nbsp;&nbsp; ① 不能获取到带隐藏属性的目录，会产生遗漏；<br>
+　 ② 不能获取带指定属性的目录</p>
+<p>2、dir /ad /s：</p>
+<p>&nbsp; 1）优点：</p>
+<p>&nbsp;&nbsp;&nbsp; ① 能一次性获取带任意属性的目录，不会产生遗漏；<br>
+　 ② 能通过指定不同的参数获取带任意属性的目录，更具灵活性。</p>
+<p>&nbsp; 2）缺点：</p>
+<p>&nbsp;&nbsp;&nbsp; ① dir /ad /s 语句仅能获取到目录路径，若要实现进一步的处理，还需要嵌入 for /f 语句中才能实现，写法不够简洁；<br>
+　 ② 嵌入 for /f 语句之后，需要写成 for /f "delims=" %%i in ('dir /ad /b /s') do 
+…… 的格式，受 for /f 
+语句运行机制的制约，需要先列举完所有的路径放入内存之后，才能对每一条路径进行进一步的处理，处理大量路径时，内存占用量偏大，并且在前期会产生明显的
+停顿感，用户体验度不够好；</p>
+<p><span style="color: #0000ff;">综合上述分析，可以做出如下选择：</span><br><span style="color: #0000ff;">&nbsp;&nbsp;&nbsp; 1、若仅仅是为了获取某文件夹及其所有子文件夹的路径的话，请选择 dir /ad /b /s 语句；</span><br><span style="color: #0000ff;">
+　 2、若需要过滤带隐藏属性的文件夹的话，for /r 和 dir 语句都可以实现，但 for /r 内存占用小，处理速度快，是上上之选；</span><br><span style="color: #0000ff;">
+　 3、若需要获取所有文件夹，则除了 dir /ad /b /s 外，别无选择，因为 for /r 语句会遗漏带隐藏属性的文件夹；</span></p>
+<p>在实际的使用中，我更喜欢使用 for /f 和 dir 
+的组合，因为它不会产生遗漏，并能给我带来更灵活的处理方式，唯一需要忍受的，就是它在处理大量路径时前期的停顿感，以及在这背后稍微有点偏高的内存占
+用；在我追求速度且可以忽略带隐藏属性的目录的时候，我会换用 for /r 的方案，不过这样的情形不多——有谁会愿意为了追求速度而容忍遗漏呢？</p>
+<p>&nbsp;</p>
+<p><span style="color: #993300;"><strong>五、仅仅为了匹配第一层目录而存在：for /d</strong></span></p>
+<p>for /d 中 /d ，完整的含义是 /directory，本意是为了处理文件夹，它的完整语句应该是这样的：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">for</span> /d %%i in (元素集合) <span style="color: #0000ff;">do</span> 命令语句集合</pre>
+</div>
+<p>当“元素集合”中包含有通配符?或*时，它会匹配文件夹，但是，<span style="color: #ff0000;">相比 for /r 而言，这个时候的for /d，其作用就小得可怜了：它仅能匹配当前目录下的第一级文件夹，或是指定位置上的文件夹，而不能匹配更深层次的子文件夹。</span></p>
+<p>例如：for /d %%i in (d:\test*) do echo %%i 这样的语句 ，会匹配到形如：d:\test、d:\test1、d:\test2之类的文件夹，若不存在这样的路径，将不会有任何回显。</p>
+<p><span style="color: #ff0000;">当“元素集合”中不包含任何的通配符时，它的作用和 "for %%i in (元素集合) do 命令语句集合" 这样的语句别无二致。</span></p>
+<p>因此，for /d 的角色就变得很微妙了：当“元素集合”中包含通配符?或*时，它的作用就是匹配文件夹，此时，它仅能匹配当前目录下的第一级文件夹，或是指定位置上的文件夹，在层次深度上不及 for /r，<span style="color: #ff0000;">但和 for /r 一样的坏脾气：不能匹配带隐藏属性的文件夹</span>；在灵活性上不及for /f和dir的组合；当“元素集合”中不包含任何统配符的时候，它完全是 "for %%i in (元素集合) do ……" 语句的翻版，但是又稍显复杂。</p>
+<p>for /d 的作用是如此有限，我使用的次数是如此之少，以至于我一度找不到它的用武之地，认为它食之无味，弃之可惜，完全是鸡肋一块。</p>
+<p>某年某月，我在cmd窗口里写下了这样的代码：<br>
+<span style="color: blue;">[code24]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">for</span> /d %i in (test*) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">@echo</span> %i</pre>
+</div>
+<p>我的本意是想查看在我的临时目录下，长年累月的测试工作到底建立了多少测试文件夹，以便我随后把echo换成rd删除之。这个时候，我发现这条代码
+是如此 的简洁，是 for /r 或 for和 dir /ad /b 的组合所无法替代的（echo换成rd就可以直接删除掉这些测试目录）。</p>
+<p>简洁的代码给我带来的喜悦仅仅持续了短短10几秒的时间，我便开始了迷惘——能用到for /d的类似情形，貌似少之又少且乏善可陈啊。</p>
+<p>（注：正如qzwqzw所言，<span style="color: #ff0000;">for /r /d是可以一起使用的</span>；【在for有限的4个参数中，据我所知只有/r /d可以一起使用】。<br>例如：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">@echo</span> <span style="color: #0000ff;">off</span>
+<span style="color: #0000ff;">For</span> /r /d %%i in (*) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span><span style="color: #000000;"> %%i
+</span><span style="color: #0000ff;">pause</span>&gt;nul</pre>
+</div>
+<p>效果：<br>
+<span style="color: #ff0000;">显示当前目录下所有的文件夹【包括子文件夹】；等价于 "dir /ad /s /b"。</span></p>
+<p>for /r /d 其实是对 /d 参数的扩展，/d参数本身只能处理第一层文件夹，但是加上/r参数后就可以处理所有的子文件夹；</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">for</span> /r /d依然不能处理隐藏文件夹。</pre>
+</div>
+<div class="cnblogs_code">
+<pre>这里给出使用for /r /<span style="color: #000000;">d的一般条件：
+</span>1.要对文件夹进行操作（<span style="color: #0000ff;">dir</span> /ad /s /<span style="color: #000000;">b可以显示，但不能对文件夹进行操作）；
+</span>2.不处理隐藏文件夹（说到底，还是for /f 和dir结合的命令更强大些）。</pre>
+</div>
+<p>&nbsp;</p>
+<p><span style="color: #993300;"><strong>六、计数循环：for /l</strong></span></p>
+<p>/l 者，/loop的缩写是也，从鸟语翻译过来，loop就是循环的意思。实际上，所有的for语句，都可以看成是一种“循环”，<span style="color: #ff0000;">只是在/l中，特指按照指定次数进行循环罢了</span>。</p>
+<p>for /l 语句的完整格式是这样的：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">for</span> /l %%i in (x,y,z) <span style="color: #0000ff;">do</span> (……)</pre>
+</div>
+<p>在这个语句中，x、y和z都只能取整数，正负皆可，x指代起始值，y指代步长，z为终止值，具体含义为：从x开始计数，以y为步长，直至最接近 z的那个整数值为止，这之间有多少个数，do后的语句就执行多少次。</p>
+<p>举个具体的例子：<br>
+<span style="color: blue;">[code25]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">for</span> /l %%i in (1,2,10) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span> bathome</pre>
+</div>
+<p>在以上的代码中，初始值是1，步长为2，终止值为10，表明计数从1开始，每隔2个数计算一次，直至最接近10的那个整数，罗列出来，就是1,3,5,7,9，再下一个就是11，超过10了，不再计算在内，所以，do后的语句只执行5次，将连续显示5个bathome。</p>
+<p>实际上，x，y和z的值可正可负，甚至为0，限制非常宽松：<br>&nbsp;1、步长y的值不能为0；<br>&nbsp;2、当步长y的值为正整数时，终止值z不能小于初始值x；<br>&nbsp;3、当步长y的值为负整数的时候，终止值z不能大于初始值x。</p>
+<p>换而言之，必须保证in和do之间能取到一个有效的数组序列。</p>
+<p>例如：<br><span style="color: blue;">[code26]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">for</span> /l %%i in (-1,2,5) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span> bathome</pre>
+</div>
+<p><span style="color: blue;">[code27]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">for</span> /l %%i in (5,-2,-1) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span> bathome</pre>
+</div>
+<p>以上两条代码的功能完全一样，都将显示4次bathome，区别就在于[code26]是正序计算，而[code27]是逆序计数而已。</p>
+<p>以下几条代码都是有问题的：<br>
+<span style="color: blue;">[code28]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">for</span> /l %%i in (1,0,1) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span> bathome</pre>
+</div>
+<p><span style="color: blue;">[code29]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">for</span> /l %%i in (2,1,1) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span> bathome</pre>
+</div>
+<p><span style="color: blue;">[code30]</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">for</span> /l %%i in (1,-1,2) <span style="color: #0000ff;">do</span> <span style="color: #0000ff;">echo</span> bathome</pre>
+</div>
+<p>其中，[code28]违反了步长不能为0的限制，将陷入无限循环中；[code29]和[code30]都犯了同样的错误：无法获得有效的数列元素，导致in和do之间取到的值为空元素，从而使得整条for语句无从执行。</p>
+<p>当大家明白了 for /l 的具体功能之后，是否会想到了与它有异曲同工之妙的goto循环语句呢？似乎，for /l 和 goto 循环语句可以相互替换？</p>
+<p>一般而言，for /l语句可以换成goto循环，但是，goto循环并不一定能被 for /l 
+语句替换掉。具体原因，请大家仔细想想，我在此不再详细解说，只是就大家非常关心的一个问题提供一个简洁的答案，那就是：什么时候该用 for /l 
+计数循环，而什么时候又该用goto条件循环？</p>
+<p>答案非常简单：当循环次数确定的时候，首选 for /l 语句，也可使用goto语句但不推荐；当循环次数不确定的时候，用goto语句将是唯一的选择，因为，这个时候需要用if之类的条件语句来判断何时结束goto跳转。</p>
+<p>&nbsp;</p>
+<p>转载：http://www.bathome.net/thread-2189-1-1.html</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/adforce/category/432786.html">DOS</a></div>
+
+
+</div>
+
+
+</div>
+
+
+		</div>
+		
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=87269,cb_entryId=3282591,cb_blogApp=currentBlogApp,cb_blogUserGuid='7d6a6560-e908-e011-ac81-842b2b196315',cb_entryCreatedDate='2013/8/27 10:59:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+
+
+	</div><!--end: forFlow -->
+
+
+
+
+
+
+
+
+</body></html>

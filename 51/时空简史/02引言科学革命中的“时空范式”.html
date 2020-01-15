@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>02引言科学革命中的“时空范式”</h4>
+
+<p>宇宙就是时空。上下四方曰宇，空间；往古今来为宙，时间。自古以来，对时间和空间的认识构筑了人类的知识框架和思维方式。科学与文明的进步是通过人类对时间和空间认识的深入而推动的。不同的时空观会导致不同的文明与进步，并影响到人类社会生活的方方面面。时间和空间的问题是科学的基本问题。时空的基本认识是知识体系建立的核心基础和根本前提。不同的时空观就会有不同的认识基础，时空观的改变往往产生认识上的革命。本书中，我们把“时空观”用科学哲学史上的一个重要名词“范式”来阐释，不同时期的时空观就是当时的思维范式。时空观的改变也意味着范式的转移，也就是科学革命。</p>
+
+<p>托马斯·库恩的“范式”</p>
+
+<p>《科学革命的结构》是20世纪科学哲学的经典名著，该书作者美国科学哲学家托马斯·库恩认为，科学发展的历史是一部同科学共同体密切联系的历史，科学作为一个在时间和空间上扩展的复杂过程，其发展规律的内在性是同这个过程的主体不可分割地结合在一起的。在库恩看来，科学作为科学共同体活动的结果，它表现为科学“范式”的不断完善和更迭。库恩所指的“范式”是一种看待时间和空间的思维方式。库恩认为，“范式就是一个公认的模型或模式”，“科学共同体取得一个范式就是有了一个选择问题的标准，当范式被视为理所当然时，这些选择的问题可被认为是有解的问题”。他认为“范式是一个成熟的科学共同体在某段时间内所接纳的研究方法、问题领域和解题标准的源头活水。因此，接受新范式，常常需要重新定义相应的科学”。</p>
+
+<p>库恩进一步指出，“范式”是形而上学的、高于规则之上的观念约定：“历史研究还有规则展示出，有一类更高层次的，准形而上学的承诺，虽然这些承诺还不是科学的不变特征，但却较少受时空的局限。”“这套承诺既是形而上学的，又是方法论的。”“我认为，规则发扬光大于范式，但即使没有规则，范式仍能指导研究。”“范式的存在并不意味着有任何整套规则存在。”</p>
+
+<p>库恩在论述“范式”时所提到的科学共同体，是指具有共同思考前提和思维“范式”的科学共同体。科学革命就是新“范式”对原有“范式”造成强烈的冲击，使旧范式向新范式进行了转移，导致科学革命。</p>
+
+<p>“反常”带来的“危机”是思维“范式”变革的前奏</p>
+
+<p>所有的“反常”现象都是人们在旧的时空范式下审视现象的结果。当开普勒把行星运行的轨道从完美的圆周“压扁”后成为椭圆时，原来行星运行的所有反常的本轮现象得到完美解决，而那根深蒂固的圆周思维范式被彻底打破，新的椭圆运行轨道范式成为主导的基本认识。库恩认为：“一种反常虽然没有明显的基本重要性，但它所禁止的应用却具有特殊的实践重要性。”库恩说，“有时，一个反常能使人们对范式中清晰而基本的概括明显地产生疑问”，“所有危机都始于范式变得模糊，随之而使常规研究的规则松弛”。</p>
+
+<p>科学史上对光的认识，经历了光的粒子说和光的波动说。光到底是粒子还是波，最终量子力学告诉我们，二者都是！光具有波粒二象性。这个历时几百年的争论，充分体现了不同的范式之间的竞争与融合。光的粒子说是一个科学基本范式，波动说也是一个范式。粒子说盛行时，光的波动反常现象就出现；当波动说占上风时，粒子说的反常现象就出现。从牛顿的粒子说开始，直到爱因斯坦光的波粒二象性一统江湖，人类对光的认识不断深化。对光的认识就是对时空的认识，对宇宙的认识。正像库恩所说的那样，“当一种反常现象达到看来是常规科学的另一个难题的地步时，就开始转化为危机和非常科学。于是，这种反常现象本身就这样被同行们更为普遍地认识了。该领域中越来越多的杰出人物对它越来越注意”。</p>
+
+<p>库恩认为：“从一个处于危机的范式，转变到一个常规科学的新传统能从其中产生出来的新范式，远不是一个积累的过程，即远不是一个可以经由对旧范式的个性或扩展所能达到的过程。不如说它是这个领域按新原理的一种重建，是一种变革这个领域的某些最基本的理论推广，以及它的许多规范方法和应用的重建。在过渡时期，会有一大批问题，既能由旧范式解决，也能由新范式解决，在这些问题之间绝不会完全重叠。但是，解决的方式也会有决定性的差别。当转变完成时，专业的视野、方法和目标都将变革。”</p>
+
+<p>托马斯·库恩在《科学革命的结构》一书中，为我们描绘和分析了科学革命发生的前后过程。库恩认为，科学的发生和发展一般要经历几个阶段：前科学时期、常规科学时期、反常和危机时期、科学革命时期，以及动态的周而复始过程。</p>
+
+<p>任何一次科学革命都不是只带来个别或少数要领的变化，而是常常带来一系列新概念、新术语的飞跃式的增生，甚至常常出现一个内容广泛的“概念场”或“理论概念群”。在复杂网络和混沌分形的“破碎时空”理论中，复杂网络、中心节点、幂律分布、小世界、弱关系、无标度、人类动力学、自相似、对称破缺、破碎化等新概念、新理念大量出现，这些都为“范式”革命进行了量化的积累，是“革命”将要发生的“种子”，将随时引发质变！“没有理论的事实是模糊的，没有事实的理论是空洞的”，大量的“反常”已经给我们提供了无数的事实，需要适当的创新理论建立新的“范式”！</p>
+
+<p>托马斯·库恩在他的《科学革命的结构》一书中深刻地阐明了科学的演进不仅是“渐进性”的、“选择性”的，而且是“革命性”的，即通过基本的解释原则或范式的革命来实现。本书根据库恩的观点，把时空范式提到一个哲学高度，时空观支配着我们的世界观。时空范式的革命不仅意味着世界观的拓展，而且意味着世界观的结构本身发生了改变。一些时空范式统治着一个时代的科学认识，当一个旧的时空范式让位给新的时空范式时就发生了科学革命的大变动，也就是说，对于时空的认识信念发生的改变，往往就是世界观的革命。</p>
+
+<p>科学革命是新世界观的革命：范式不是认识，而是信念</p>
+
+<p>库恩认为，由于范式不是认识，而是信念，因而从旧时空范式到新时空范式的转换，不是科学共同体的认识的深化，而是信念的转变。当“日心说”替代“地心说”时，就是以太阳为中心的信念代替了以地球为中心的信念，这是范式的转移。结果就是，以地心说为核心的知识体系被以日心说为核心的知识体系所取代，最终确立了牛顿的经典时空观。当爱因斯坦的相对论时空观摧毁了牛顿经典时空观的基石时，一个全新的宇宙图景出现在人们面前。而量子力学的时空观更把我们的视野从超大尺度拉回到超小尺度，又从超小尺度伸展到超大尺度，经过几个回合的时空认识，产生了重大的科学革命，并对我们的时空观造成重大的冲击。直到今天，量子力学所带来的时空基本认识，仍然困惑着科学家。</p>
+<img src="04.bmp" /><br /><br />
+<p class="picsay">当“日心说”替代“地心说”时，就是以太阳为中心的信念代替了以地球为中心的信念，这是范式的转移。结果就是，以地心说为核心的知识体系被以日心说为核心的知识体系所取代，最终确立了牛顿的经典时空观。时空范式一定是美的！</p>
+
+<p>库恩指出，在科学的演进中，新知识所取代的是无知：“范式的转化，就是科学革命。一种范式经过革命向另一种范式逐步过渡，正是成熟科学的通常发展模式。”“科学革命在这里是指科学发展中的非累积性事件，其中旧范式全部或部分地为一个与其完全不能并立的崭新范式所取代。”“范式为除了反常之外的所有现象提供一个在科学家视野内的确定的理论位置。”</p>
+
+<p>除确立新的世界观之外，科学范式兴起的最重要的标志是建立起一套自己的基本概念、理论和模型等，以构成科学范式的核心。这些并不是传统思维下的新生事物，也无法用传统的知识来解读这些新事物，这些新事物包含着革命的种子。库恩强调：“科学革命也起源于科学共同体中某一小部分人逐渐感觉到，他们无法利用现有范式有效地探究自然界的某一方面，而以前范式在这方面的研究中是起引导作用的。”</p>
+
+<p>库恩说：“大部分新范式的早期形态都是粗糙的。等到其美学上的吸引力得以全部展现时，科学共同体的大部分人早已为其他方式所说服。然而，美学上的考虑的重要性有时却是决定性的。”时空范式一定是美的！</p>
+
+
+
+<p style='float:right;'>本页共19段，3187个字符，9531 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

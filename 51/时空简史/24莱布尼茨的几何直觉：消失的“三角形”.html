@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>24莱布尼茨的几何直觉：消失的“三角形”</h4>
+
+<p>与牛顿同时，德国的莱布尼茨（1646—1716）也独立地建立了微积分理论。莱布尼茨是一个博学多才的学者。他的微积分思想最初来源于对和、差可逆性的研究，洞察到和与差之间的互逆性，正与依赖于坐标之差的切线问题及依赖于坐标之和的求积问题的互逆性相一致。他是从求曲线的切线和求曲边梯形面积着手研究的。他注意到求曲线的切线时需要确定曲线的纵坐标之差和横坐标之差的比，而求曲边梯形的面积则要确定曲线的纵坐标之和。他最先认识到，作为求和过程的积分是微分的逆。牛顿已用反微分求面积，莱布尼茨则第一次正确地表述了求和与微分的关系。莱布尼茨还创造了现在通用的微分和积分符号，提出了主要的求导法则等。</p>
+
+<p>莱布尼茨的微积分创造始于研究“切线问题”和“求积问题”，他从微分三角形认识到：求曲线的切线依赖于纵坐标之差与横坐标之差的比值；求曲边图形的面积则依赖于在横坐标的无限小区间上的纵坐标之和或无限薄的矩形之和。莱布尼茨认识到求和与求差运算是可逆的。莱布尼茨用无穷小的思想给出了微积分的基本定理。</p>
+
+<p>对于当时数学界密切关注的切线问题和求积问题，莱布尼茨在前人的基础上提出了一个普遍方法。这个方法的核心是特征三角形（characteristic triangle）。对微分三角形的研究，使他意识到求切线和求积问题是一对互逆的问题。莱布尼茨通过研究特征三角形，越来越强烈地意识到，微分（主要是导数、求切线）与积分（求和）必定是相反的过程。在1675年10月29日的手稿中，他就提到面积被微分时必定给出长度，开始探讨“∫”的运算（积分）和“d”的运算（微分）之间的关系，认识到要从y回到dy，必须做出y的微差或者取y的微分。经过这种不充分的讨论，他断定一个事实：作为求和过程的积分是微分的逆。这样，莱布尼茨第一个表达出求和（积分）与微分之间的互逆关系。</p>
+
+<p>莱布尼茨建立了由dx,dy和PQ（弦）组成的特征三角形，如图2.5，其中dx,dy的意义是这样的：用dx表示相邻的序数之差，dy表示两个相邻项值之差，然后在数列项的顺序中插入若干dx,dy，于是过渡到了任意函数的dx,dy。特征三角形的两条边就是任意函数的dx,dy；而PQ则是“P和Q之间的曲线，而且是T点的切线的一部分”,T是曲线y=f（x）上的一点，dx,dy分别是横坐标、纵坐标的差值。</p>
+
+<img src="27.bmp">
+<br>
+<p class="picsay">特征三角形。通过考虑图中△PQR和△STU，发现△PQR∽△STU，从而有dy/dx=TU/SU。也就是说，曲线f（x）上过T点的切线的斜率是dy/dx，刚好是曲线函数本身。</p>
+
+<p>利用这个特征三角形，他很快就意识到两个问题：求曲线的切线，依赖于纵坐标的差值dy与横坐标的差值dx，当这些差值变成无限小时之比；而求曲线下的面积，则依赖于无限小区间上的纵坐标之和（即宽度为无限小的矩形面积之和），并看到了这两类问题的互逆性。莱布尼茨在给洛必达的一封信中总结说：“求切线不过是求差，求积不过是求和。”</p>
+
+<img src="28.bmp">
+<br>
+<p class="picsay">从这张图得出导数的定义f'(x)=dy/dx，而dx和dy被称为x和y的微分，都为无穷小量，所以导数也被莱布尼茨称为微商（微分之商）。</p>
+
+<p>（1）曲线的切线依赖于纵坐标的差值与横坐标的差值（当这些差值变成无穷小时）之比。通过考虑图中△PQR和△STU，发现△PQR∽△STU，从而有dy/dx=TU/SU。也就是说，曲线f（x）上过T点的切线的斜率是dy/dx，刚好是曲线函数本身。莱布尼茨在论文中对微分下的定义是：“横坐标x的微分dx是一个任意量，而纵坐标y的微分dy则可以定义为它与dx之比等于纵坐标与次切线之比的那个量。”y与次切线之比就是切线的斜率，该定义与现代的导数定义一致。但是，莱布尼茨并没有解释特征三角形在dx趋于无限小时，“消失”到哪里去了，只是理所当然地让特征三角形“消失”。</p>
+
+<p>（2）求积（面积）依赖于横坐标的无限小区间的纵坐标之和或无限窄矩形之和。他就计算矩形的和并说能忽略剩余的“三角形，因为它们同矩形相比是无穷小……因此在他的微积分中，用∫ydx表示面积……”。</p>
+
+<p>莱布尼茨深刻地认识到和与差的互逆关系，求切线不过是求差，求积不过是求和。他说：“作为求和过程的积分是微分的逆。”莱布尼茨于1675—1676年给出了微积分基本定理，后来又称为牛顿莱布尼茨公式。积分和微分是互逆的，积分就是微分的逆运算。在牛顿和莱布尼茨之前的很多数学大家，他们多数是因为没有注意到微分和积分的互逆性质而和“发现微积分”无缘。</p>
+
+<img src="29.bmp">
+<br>
+<p class="picsay">Δx变得比任何正实数都小，被称为无穷小量，记作dx，即x的微分。微小的面积ds=ydx，使得y1dx+y2dx+y3dx+…就等于曲线下的面积，即S=∫ydx。而面积的变化率刚好是函数本身。</p>
+
+<p>1684年，莱布尼茨首次发表了现在世界上认为是最早的微积分文献，这篇文章有一个很长的名字《一种求极大极小和切线的新方法，它也适用于分式和无理量，以及这种新方法的奇妙类型的计算》。这篇文献是他自1673年以来的微积分研究的概括与成果，就是这样一篇说理也颇含糊的文章，却有划时代的意义，因为它含有现代的微分符号和基本微分法则。其中定义了微分，广泛地采用了微分符号dx,dy，还给出了和、差、积、商及乘幂的微分法则；同时包括了微分法在求切线、极大值、极小值及拐点方面的应用。但是，在这篇文章中，dx,dy的意义仍然是不清楚的。两年后，莱布尼茨又发表了一篇积分学论文《深奥的几何与不变量及其无限的分析》，其中首次使用积分符号“∫”，他所创设的微积分符号，远远优于牛顿的符号，这对微积分的发展有极大的影响。现在我们使用的微积分通用符号就是当时莱布尼茨精心选用的，他是历史上最伟大的符号学者之一。在这篇文章中，他初步论述了积分（或求积）问题与微分求切线问题的互逆问题，即今天大家熟知的牛顿-莱布尼茨公式：</p>
+<img src="26.bmp">
+
+<p>莱布尼茨时代，正是中国的清朝时期，莱布尼茨曾经通过传教士，建议康熙皇帝在北京建立科学院，但他的建议没有被当时的清朝政府采纳。康乾盛世中，中国的科学技术跟欧洲相比处于停滞状态，落后是全方位的。欧洲爆炸性发展之后必然向全世界扩张，因此鸦片战争也就不可避免。</p>
+
+
+
+<p style='float:right;'>本页共17段，2511个字符，7013 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

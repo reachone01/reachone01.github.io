@@ -1,0 +1,470 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>电脑传奇（上篇）：计算机出世</h3>
+<p><a href="电脑传奇（中篇）：智能之争.html">电脑传奇（中篇）：智能之争</a></p>
+<p><a href="电脑传奇（下篇）：电脑涅槃之路.html">电脑传奇（下篇）：电脑涅槃之路</a></p>
+<p><a href="电脑传奇（外篇）：视“觉”.html">电脑传奇（外篇）：视“觉”</a></p>
+<p>黄铁军
+</p>
+
+<p>你所不知道的电脑秘史你应该知道的电脑未来
+</p>
+
+<p>电脑，顾名思义，电子大脑是也。我们中国人把这样一顶帽子扣在计算机头上，名不副实。但从另一个角度看，“电脑”很好地概括了人类制造智能机器的梦想。2016年是图灵提出计算机概念模型80周年，第一台计算机ENIAC发明70周年，人工智能概念提出60周年，深度学习10周年，神经网络再次发力，人工智能风云再起，各国“脑计划”脚步匆匆，人造神经元和突触竞争白热化，神经形态计算浮出水面……越来越多的迹象表明，经典计算机正在脱胎换骨为神经计算机，2016年极有可能作为电脑涅槃元年载入史册，基于神经计算机的强人工智能有望在数十年内实现，人类社会将面临天翻地覆的沧桑巨变！在这个决定人类命运和电脑命运的历史关口，让我们静下心来，一起回溯曾经浇灌计算机的思想细流，回顾电脑发展的波折历程，寻找照亮智能未来的火把……
+</p>
+
+<p>这正是：
+</p>
+
+<p>人工智能百年论争，史海钩沉，众说纷纭，依然莫衷一是；
+</p>
+
+<p>电子大脑一旦苏醒，魂归何处，正道沧桑，唯有慨然前行。
+</p>
+
+<p><h3>我的计算机简史</h3>
+</p>
+
+<p>众所周知，现代计算机产生的数学基础是数理逻辑，物理基础是开关电路，计算机实际上是自动执行计算和逻辑操作的开关电路系统。
+</p>
+
+<p>1936年，阿兰·麦席森·图灵(Alan Mathison Turing, 1912~1954)为证明“不可计算数”的存在而提出图灵机模型。这一“思想实验”抓住了数理逻辑和抽象符号处理的本质：一台仅能处理0和1二元符号的机械设备，就能够模拟任意计算过程——这就是现代计算机的概念模型。
+</p>
+
+<p>1938年，克劳德·艾尔伍德·香农(Claude Elwood Shannon, 1916~2001)开创了开关电路理论，在数理逻辑和物理实现之间架起了桥梁。
+</p>
+
+<p>1940年，针对当时纷纷出现的计算机特别是模拟计算机，诺伯特·维纳(Norbert Wiener, 1894~1964)提出计算机设计的五原则：(1)计算机负责运算的中心部件不应是模拟式，而应是数字式；(2)开关装置应该采用电子元件；(3)采用二进制，而不是十进制；(4)运算和逻辑判断都由机器完成，中间应该没有人的干预；(5)内部要有存贮数据的装置，支持快速读写。
+</p>
+
+<p>1945年2月，图灵向英国国家物理实验室提交了50页的“自动计算机(Automatic Computing Engine, ACE)”设计报告，提出了详细的计算机设计方案。报告建议研制第一台计算机，预算为11200英镑，却未获批准。1950年英国研制出了简化版自动计算机。这份报告却保密了27年后才被公开。
+</p>
+
+<p>1945年6月，约翰·冯·诺依曼(John von Neumann, 1903~1957)公开了离散变量自动电子计算机(Electronic Discrete Variable Automatic Computer, EDVAC)逻辑设计报告草案，提出了存储和计算分离的存储程序结构（即冯·诺伊曼体系结构），这实际是图灵机的一种通用物理实现方案，同一套硬件（负责逻辑和计算的通用中央处理器）可以执行多种功能（存放在存储器中的程序）。
+</p>
+
+<p>1946年，宾夕法尼亚大学研制成功第一台电子数值积分计算机(Electronic Numerical Integrator And Computer, ENIAC)，它实际上是用约1.8万个“电开关”（电子管）搭建的大型开关电路系统（尚未采用冯·诺伊曼体系结构）。更多计算机解读：www.yangfenzi.com/tag/computer
+</p>
+
+<p>1947年底至1948年初，贝尔实验室发明了晶体管，成为替代电子管的更小、更高效的开关。1954年，贝尔实验室组装出第一台晶体管计算机。
+</p>
+
+<p>1958年，仙童半导体与德州仪器分别发明集成电路。
+</p>
+
+<p>1964年，戈登·摩尔(Gordon Earle Moore)提出摩尔定律。
+</p>
+
+<p>……
+</p>
+
+<p>1984年，邓小平同志提出“计算机的普及要从娃娃做起”，苹果公司Apple II个人计算机来到中国，其中五台来到我就读的县城高中。1986年，也就是计算机40岁那年，我16岁，与计算机相遇在高中二年级计算机兴趣班课堂上，计算机给我的见面礼是兜头一盆凉水：传说中的“电脑”竟然连一元二次方程都不会解，需要我用Basic语言一步一步告诉它怎么做，不仅要分解成最基本的加减乘除，而且连有根无根的边界条件都要帮它界定清楚，这算什么“电脑”？好在我甘愿“忍辱负重”，很快玩转了“锯齿獠牙”的编程，在河北省的计算机竞赛中取得了不错的成绩，因此还获得了一台Apple II专用权。
+</p>
+
+<p>接下来二十多年，我被计算机裹挟着一路飞奔，穿越计算机应用专业学士、文字识别硕士、计算机视觉和虚拟现实博士、图像识别和视频编码标准等关口，来到2014年的北京大学“计算机系统导论”课堂。
+</p>
+
+<p>“计算机系统导论”是计算机科学技术专业主干基础课，从美国卡内基梅隆大学引进，采用大班授课、小班讨论的方式进行，我作为十多名小班教师之一，“啃”了这块“硬骨头”。
+</p>
+
+<p>那年年底，我被推到计算机系主任的位置，开始认真思考计算机的前世今生和未来走向。
+</p>
+
+<p><h4>1. 逻辑大脑</h4>
+</p>
+
+<p>1942年5月，在美国纽约，梅西基金会(Josiah Macy Jr. Foundation)邀请六位专家研讨 “脑抑制”问题，会议有两个主题：催眠术和条件反射，但最吸引人的却是阿图罗·罗森勃吕特(Arturo Rosenblueth, 1900~1970)的报告“机器和目标导向的生物之间的行为相似性”。当时罗森勃吕特是哈佛大学医学院访问学者，跟随生理学系主任沃尔特·坎农(Walter Bradford Cannon, 1871~1945)教授，基于“动态平衡(homeostasis)”理念从反馈角度研究应激反应。他的报告内容来自他和麻省理工学院的维纳及其助手朱利安·毕格罗(Julian Bigelow, 1913~2003)开展的合作研究。1943年1月，这份报告以《行为、目的和目的论》之名发表，“控制论”就此萌芽，这次聚会也被追认为赫赫有名的“控制论组(Cybernetics Group)”核心成员第一次聚。
+</p>
+
+<p>罗森勃吕特的报告非常吸引人，以至于参会的人类学家玛格丽特·米德(Margaret Mead)后来回忆说自己掉了一颗牙齿都没注意到。被报告深深吸引的还有伊利诺伊大学芝加哥分校精神病学系的神经生理学家沃伦·麦卡洛克(Warren Sturgis McCulloch, 1898~1969)，他马上把这个新观念和自己的研究领域联系起来。1943年底，麦卡洛克和数理逻辑学家沃尔特·皮茨(Walter Harry Pitts, 1923~1969)共同发表了《神经活动中内在思想的逻辑演算》，提出了神经元的数学模型，这个模型作为人工神经网络的重要基础沿用至今。
+</p>
+
+<p>细心如你，可能已经注意到“数理逻辑学家”皮茨发表这篇论文时才20岁。其实，他12岁时就用三天时间读完了2000页的《数学原理》，还指出了其中的一些错误，并写信给伯特兰·罗素(Bertrand Arthur William Russell, 1872~1970)，得到罗素高度赞赏，并被邀请到英国读研究生。皮茨18岁那年，得知罗素要到芝加哥大学做讲座，就一头扎到芝加哥。旁听罗素讲座期间，他认识了医学院研究生杰罗姆·莱特文(Jerome Ysroael Lettvin, 1920~2011)，后者把他介绍给了麦卡洛克，两人一见如故。基于两人合作的这篇论文，皮茨从已经混迹了五年的芝加哥大学获得“文科副学士”学位。
+</p>
+
+<p>麦卡洛克和皮茨这篇开创性论文的思想是这样的：大脑是一台逻辑机器，神经元的发放行为就像一个“全或无”的逻辑门，大脑运行过程其实可以形式化为《数学原理》中的那些精确逻辑推理过程。一个信号进入一个神经元环路，就会一直循环，这不就是记忆吗？神经环路一层套一层，实现对信息的抽取和处理，这就是思维啊！
+</p>
+
+<p>1943年秋，皮茨跟着莱特文到麻省理工学院见维纳。维纳慧眼识才，直接推荐没有正式上过大学的皮茨就读麻省理工学院博士。维纳认为皮茨和麦卡洛克的逻辑大脑模型意义重大，还直接告诉皮茨真空管就是实现他的神经元线路和系统模型的理想方法。维纳还认为在他们的逻辑大脑模型中还需要加入随机性：大脑神经连接开始是随机的，随着神经元阈值的不断调整，随机性让位于有序性，信息就会出现，也就是说，用这个扩展模型制造的机器就会有学习能力。
+</p>
+
+<p>黄铁军:计算机出世—你所不知道的电脑秘史你应该知道的电脑未来
+</p>
+
+<p><h4>2. 约翰·冯·诺依曼的101页草稿</h4>
+</p>
+
+<p>几乎与皮茨遇见维纳同时，冯·诺伊曼在1943年9月20日正式来到新墨西哥州的阿拉莫斯参加“曼哈顿计划”，他的原子弹内爆模型需要大量计算。1944年春，哈佛大学的自动程序控制计算器（the Automatic Sequence Controlled Calculator，ASCC，代号Harvard Mark I）启动，运行的最早程序之一就是冯·诺伊曼的内爆模型可行性验证程序。
+</p>
+
+<p>1944年夏，约翰·冯·诺依曼在火车站候车时遇到美国陆军弹道实验室的戈尔斯坦，后者告诉他正参与ENIAC计算机的研制，随后冯·诺伊曼成了宾夕法尼亚大学ENIAC研制组顾问。
+</p>
+
+<p>1945年6月，冯·诺伊曼公开了101页的EDVAC计算机设计报告草稿，堪称为经典计算机的“葵花宝典”。
+</p>
+
+<p>冯·诺伊曼是标准的数学家，图灵也是标准的数学家，为什么图灵的ACE计算机方案只有50页，而冯·诺伊曼的报告写了101页还没写完？打开这个秘密的钥匙，就是麦卡洛克和皮茨的《神经活动中内在思想的逻辑演算》——这是整个报告的唯一参考文献。
+</p>
+
+<p>EDVAC报告分15章（第15章 还没写完）。第1章 是“自动计算系统”的定义，1页左右。第2章 是系统构成，首先简要介绍了三个部分：中央运算器、中央控制器和内存，之后，冯·诺伊曼说“这三个部分对应人类神经系统中相互联结的神经元”，顺理成章，“还需要感知神经元(sensory or afferent neuron)和运动神经元(motor or efferent neurons)”，因此，自动计算系统也需要另外两个组成部分：输入和输出。这就是计算机教科书中标准的“冯·诺伊曼体系结构”，至于“牵强附会”的神经元比拟，严肃的教科书就删去了。
+</p>
+
+<p>第3章 很短，是关于报告撰写的安排。
+</p>
+
+<p>第4章 标题是“基元、同步性、神经元类比(Elements, Synchronism, Neuron Analogy)”。4.1节定义“基元”：能够保持两个或两个以上稳定状态的器件，在接受“刺激(stimuli)”（最原始的刺激来自“输入”部分）时可以发生状态翻转，也能发射“刺激”给其他基元。基元可以是当时已经在使用的十进制数轮(wheel)和电报系统用的继电器，不过最好是电子管（晶体管三年后才发明出来）。4.2节第一段开门见山：“高等动物的神经元毫无疑问就是上面定义的一种基元”，“神经元的‘全或无(all-or-none)’特性即（基元的）两种状态：休眠或兴奋”，对于基元接收“刺激”以及“传播”刺激的描述更是直接源于当时对神经系统的理解。第二段，冯·诺伊曼干脆直接引用了麦卡洛克和皮茨的文章。
+</p>
+
+<p>第6章 是“电子基元(E-elements)”，是那个时代人们对神经元的认识，具体来说，是麦卡洛克和皮茨文章中所描述的神经元，其中6.4节再次引用麦卡洛克和皮茨的文章，其中充满了神经元、轴突、树图、突触等神经网络词汇。
+</p>
+
+<p>很清楚，大脑和神经系统就是冯·诺伊曼设计计算机时的基本隐喻！
+</p>
+
+<p><h4>3. 计算机非电脑</h4>
+</p>
+
+<p>冯·诺伊曼用“脑”类比计算机，并不是他个人的灵感，而是当时“圈内的共识”，维纳在1948年出版的《控制论：或关于在动物和机器中控制和通讯的科学》的导言部分有详细记录。
+</p>
+
+<p>“从那时起，我们已经清楚地认识到，以替续的开关装置为基础的快速计算必定会是神经系统中发生的各种问题的几乎合乎理想的模型。神经元兴奋的全或无的性质，完全类似于二进制中决定数字时的单一选择，……突触无非是这样一种机构，它决定来自别的一些选定元件的输出的特定组合是否将成为足以使下一个元件产生兴奋的刺激，而且这种决定的精确性要类似计算机”。“在这方面有兴趣的人们经常来往。我们得到了和同事们交流思想的机会，特别是同哈佛大学的艾肯博士、高级研究所的冯·诺伊曼博士、宾西法尼亚大学研究ENIAC和EDVAC计算机的戈德斯汀博士。只要我们碰在一起，我们就互相细心倾听，不久工程师们的词汇中就渗进了神经生理学家和生理学家的专门名词”。“到了进程的这个阶段，冯·诺伊曼和我都感到需要召开一次所有对于我们现在叫做控制论的这门科学感兴趣的人全都参加的会议，这个会在1943~1944年之间的冬末在普林斯顿召开。工程师们、生理学家们和数学家们全都有代表参加。……生理学家们从他们的观点对控制论问题提出了集体意见，同样地，计算机设计者们也提出了他们的方法和目标。会议后期，大家都明白了，在不同领域的工作中之间确实存在着一个实在的共同思想基础”。
+</p>
+
+<p>尽管维纳是从控制论角度记录这段历史，但毫无疑问这个“共同思想基础”也是当时设计计算机的“思想基础”，维纳在《控制论》就明确地说“计算机，乃至大脑，是一种逻辑机器”，并对计算机和神经系统进行了不少类比。冯·诺伊曼的101页报告，不过是这种“共同思想”的详细展开而已。
+</p>
+
+<p>但是，冯·诺伊曼很快就认识到这种思想的问题所在，这集中体现在1946年11月他写给维纳的一封信中。冯·诺伊曼先回顾说“为了理解自动机的功能及背后的一般原理，我们选择了太阳底下最复杂的一个对象”，但是神经系统的既有模型对发展自动机帮不上忙，“在整合了图灵、皮茨和麦卡洛克的伟大贡献后，情况不仅没有好转，反而日益恶化”，“这些人都向世人展示了一种绝对的且无望的通用性：所有、任何事物……都能按照某种机制完成，特别地通过一种神经机制，一种确定机制竟然是‘万能的’”。
+</p>
+
+<p>因此，冯·诺伊曼决定和神经系统模拟分道扬镳，因为“仅靠我们对生物功能的了解，如果不借助‘显微镜’，就不可能在细胞层次上更深入地认识神经机制”，基于此，他决定转向研究更简单的生物系统，例如能够自我繁殖的病毒和细菌。也许正是因为这个原因，冯·诺伊曼甚至不愿意再花时间修改那份充满了神经系统隐喻的101页设计草案，转向怎样用不可靠元件设计可靠的自动机，以及建造自己能再生产的自动机。
+</p>
+
+<p>图灵当然更清楚计算机只是执行形式逻辑的机器，它的能力极限已经由哥德尔定理和“不可计算数”框定了，不能和“脑”相提并论。1950年10月，图灵在《心智》(Mind)发表《计算机与智能(Computing Machinery and Intelligence)》，提出“机器能思考吗·(Can Machines Think·)”这个经典问题。图灵认为真正的智能机器必须具有学习能力，他以人的成长为参照模型描述了制造这种机器的方法：先制造一个模拟童年大脑的机器，再进行教育训练。
+</p>
+
+<p>1952年，图灵发表《形态发生的化学基础》，注意力转向数学生物学(Mathematical Biology)：用“（化学）反应-扩散方程”解释生物体何以发展出各种形态，例如人体骨骼形态、树叶形状、老虎花纹等，这一假说在60年后得到实验证实，图灵因此成为形态发生理论(Morphogenesis)的奠基人。不幸的是，就在这一年，图灵因同性恋获罪。大洋彼岸，维纳突然中断与皮茨和麦卡洛克的联系，雪上加霜的是，皮茨也意识到用纯粹逻辑建模大脑存在根本性问题，因此拒绝在自己的博士论文上签字，把包括三维神经网络研究在内的所有作品付之一炬，陷入酒精的麻痹和抑郁中。
+</p>
+
+<p>1954年，图灵逝世。那一年，贝尔实验室组装出第一台晶体管计算机。更多图灵解读：www.yangfenzi.com/tag/tuling
+</p>
+
+<p>1957年，冯·诺伊曼与世长辞。那一年，贝尔实验室发明晶体管的“八天才叛逆”，创办仙童半导体。一年后，根据冯·诺伊曼为耶鲁大学西列曼演讲准备的未完成讲稿整理而成的《计算机与人脑》一书出版。同年，仙童与德州仪器分别发明集成电路，大幅度提高了晶体管集成度和性能，成为制造“大型开关电路”通用硬件方案。
+</p>
+
+<p>1964年，维纳去世，围绕控制论的争论告一段落，计算机基本原理尘埃落定。那一年，摩尔提出集成电路指数提升的摩尔定律，计算机大步踏入半个世纪的辉煌历程。这一年，计算机正好18岁。
+</p>
+
+<p>1969年5月，一蹶不振的皮茨郁郁而终，四个月后，麦卡洛克步其后尘，这对惺惺相惜的忘年之交所引发的关于大脑、逻辑、智能、计算机和控制论的争论，与应用上取得巨大成功的计算机相比，越发显得黯淡无光。但是，智能的种子一旦种下，就不可抑制，神经网络和人工智能这两股力量早已暗暗角力，如今开山高手悉数西去，再不需要遮遮掩掩，一位出身神经网络派的人工智能派顶级高手，运起理论内功，在麦卡洛克弥留之际向神经网络派新首领（虽然曾是自己的高中校友）发出致命一击……
+</p>
+
+<p>这正是：
+</p>
+
+<p>计算本有道，至简又至真；
+</p>
+
+<p>零壹数不尽，真假理已分；
+</p>
+
+<p>开关归一统，软硬定乾坤；
+</p>
+
+<p>电脑七十载，智能尚浮云。
+</p>
+
+<p>来源：《中国计算机学会通讯》2016年第12期《专栏》
+</p>
+
+
+
+<p style='float:right;'>本页共58段，7064个字符，18450 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

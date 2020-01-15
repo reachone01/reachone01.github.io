@@ -1,0 +1,750 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>苏菲的世界 Sophies World</title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000">红色</option><option value="#006600">绿色</option><option value="#0000ff">蓝色</option><option value="#660000">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select></div>');   
+</script>
+<script language="javascript"> 
+//bg_even("表格ID属性名","奇数行背景色","偶数行背景色","鼠标经过背景色","点击后背景色");
+function bg_even(o,a,b,c,d){
+        var t=document.getElementById(o).getElementsByTagName("tr");
+        for(var i=0;i<t.length;i++){
+                t[i].style.backgroundColor=(t[i].sectionRowIndex%2==0)?a:b;
+                t[i].onclick=function(){
+                        if(this.x!="1"){
+                                this.x="1";
+                                this.style.backgroundColor=d;
+                        }else{
+                                this.x="0";
+                                this.style.backgroundColor=(this.sectionRowIndex%2==0)?a:b;
+                        }
+                }
+                t[i].onmouseover=function(){
+                        if(this.x!="1")this.style.backgroundColor=c;
+                }
+                t[i].onmouseout=function(){
+                        if(this.x!="1")this.style.backgroundColor=(this.sectionRowIndex%2==0)?a:b;
+                }
+        }
+}
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:89.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+#tbrowser {
+	width:100%;
+	margin:auto;
+	border-collapse:collapse;
+font-family:"宋体";
+	text-align:left;
+	line-height:1.3em;
+	table-layout:fixed;
+}
+
+#tbrowser th,#tbrowser td{
+border:1px solid #ddd;
+font-size:1em;
+color:#000000;
+text-align:left;
+font-family: "宋体";
+vertical-align:top;
+padding-left:3px;
+height:28px;
+//white-space:nowrap;
+//overflow:hidden; 
+//text-overflow:ellipsis; 
+}
+
+
+#tbrowser thead th{
+border-bottom:2px solid #3d580b;
+background-color:#8fc629;
+color:#fff;
+padding:5px 0px;
+}
+#tbrowser .nd{
+border-bottom:2px solid #3d580b;
+background-color:#8fc629;
+background-color:#D3D3A9;
+color:red;
+}
+
+#tbrowser th{
+border-bottom:2px solid #3d580b;
+background-color:#8fc629;
+color:#fff;
+padding:5px 0px;
+padding-left:2px;
+}
+#tbrowser th.title{
+background-color:#e3e685;
+}
+
+#tbrowser caption{
+font-weight:bold;
+padding:1px 0px;
+color:#3d580b;
+font-size:18px;
+}
+
+
+#tbrowser .xhx{
+border-bottom:0px solid #aaa;
+}
+
+
+#tbrowser tr{
+height:6px;
+}
+
+#tbrowser tr>td{/*1*/
+font-size:1em;
+text-align:left;
+/*width:13%;*/
+}
+#tbrowser tr>td+td{/*2*/
+text-align:left;
+/*width:8%;*/
+font-size:1em;
+}
+#tbrowser tr>td+td+td{/*3*/
+font-size:1em;
+/*width:5%;*/
+}
+#tbrowser tr>td+td+td+td{/*4*/
+font-size:1em;
+text-align:left;
+/*width:6%;*/
+}
+#tbrowser tr>td+td+td+td+td{/*5*/
+font-size:1em;
+text-align:left;
+/*width:5%;*/
+}
+#tbrowser tr>td+td+td+td+td+td{/*6*/
+/*width:13%;*/
+font-size:1em;
+}
+#tbrowser tr>td+td+td+td+td+td+td{/*7*/
+/*width:59%;*/
+font-size:1em;
+}
+
+
+#tbrowser tfoot td{
+border-width:0px;
+text-align:left;
+line-height:18px;
+font-size:16px;
+color:#777;
+}
+
+#tbrowser th a:link {
+	text-decoration: none;
+	color:white;
+}
+#tbrowser th a:hover {
+	text-decoration: none;
+	color:white;
+}
+#tbrowser th a:active {
+	text-decoration: none;
+	color:white;
+}
+#tbrowser th a:visited {
+	text-decoration: none;
+	color:white;
+}
+#tbrowser caption{
+font-size:1.2em;
+text-align:left;
+}
+#tbrowser thead td{
+font-size:0.8em;
+text-align:left;
+}
+li{
+width:33%;
+float:left;
+white-space:nowrap;
+overflow:hidden;
+list-style:none;
+}
+h4{
+clear:both;
+margin:0;
+padding:0;
+}
+</style>
+</head>
+
+<body> 
+<div id="container">
+<h3><a href="http://novel.tingroom.com/shuangyu/2013/list.html">苏菲的世界 Sophies World</a></h3>
+<table id='tbrowser'><col width='4%' /><col width='20%' /><col width='30%' /><col width='46%' /><tr><td>sn</td>	<td>chapterName</td>	<td>chapterName</td>	<td>remark</td></tr>
+<tr><td><a href=0.html>0</a></td>	<td><a href=0.html> Prelude</a></td>	<td><a href=0.html> 序文</a></td>	<td></td></tr>
+<tr><td><a href=1.html>1</a></td>	<td><a href=1.html> THE GARDEN OF EDEN</a></td>	<td><a href=1.html> 伊甸园</a></td>	
+<td>你是谁？<br />
+  世界从何而来？</td>
+</tr>
+<tr><td><a href=2.html>2</a></td>	<td><a href=2.html> The Top Hat</a></td>	<td><a href=2.html> 魔术师的礼帽</a></td>	
+<td>好奇心：不要过分习惯这个世界；</td>
+</tr>
+<tr><td><a href=3.html>3</a></td>	<td><a href=3.html> The Myths</a></td>	<td><a href=3.html> 神话<br />
+善与恶的脆弱平衡</a></td>	
+  <td>北欧神话：神不是万能的，世界也不是永恒的；<br />
+    创世神话：冰与火之中诞生了巨人与诸神之祖；<br />
+    末世神话：诸神的黄昏来临，新世界开始建立；</td>
+</tr>
+<tr><td><a href=4.html>4</a></td>	<td><a href=4.html> The Natural Philosophers</a></td>	<td><a href=4.html> 自然派哲学家<br />
+没有一件事物来自虚无</a></td>	
+  <td>泰利斯：第一个提出“什么是世界的本原”<br />
+    安纳克西曼德：无定是世界的本原<br />
+    安那西梅尼斯：气是世界的本原<br />
+    巴门尼德：没有任何事物来自虚无<br />
+    赫拉克里特斯：所有事物都是流动的<br />
+    恩培窦可里斯：大自然的本原是土、气、火、水四个根<br />
+    安纳萨哥拉斯：大自然由无数肉眼看不到的微粒组成</td>
+</tr>
+<tr><td><a href=5.html>5</a></td>	<td><a href=5.html> Democritus</a></td>	<td><a href=5.html> 德谟克里特斯</a></td>	<td>大自然是由不可分割的原子构成</td>
+</tr>
+<tr><td><a href=6.html>6</a></td>	<td><a href=6.html> Fate</a></td>	<td><a href=6.html> 命运<br />
+宿命论：命运真的可以预测吗？</a></td>	
+  <td>戴尔菲的神论：预测命运的神谕<br />
+    历史观的变革：命运不再左右历史<br />
+    疾病和健康观念的变革：疾病不是神降的灾祸</td>
+</tr>
+<tr><td><a href=7.html>7</a></td>	<td><a href=7.html> Socrates</a></td>	<td><a href=7.html> 苏格拉底<br />
+把哲学从天上拉到人间</a></td>	
+  <td>智者派：人是万物的尺度<br />
+    苏格拉底：最聪明的是明白自己无知的人</td>
+</tr>
+<tr><td><a href=8.html>8</a></td>	<td><a href=8.html> Athens</a></td>	<td><a href=8.html> 雅典</a></td>	<td>废墟中升起了几栋高楼</td>
+</tr>
+<tr><td><a href=9.html>9</a></td>	<td><a href=9.html> Plato</a></td>	<td><a href=9.html> 柏拉图</a></td>	
+<td>渴望回归灵魂的世界</td>
+</tr>
+<tr><td><a href=10.html>10</a></td>	<td><a href=10.html> The Major's Cabin</a></td>	<td><a href=10.html> 少校的小木屋</a></td>	
+<td>苏菲去了少校的小木屋</td>
+</tr>
+<tr><td><a href=11.html>11</a></td>	<td><a href=11.html> Aristotle</a></td>	<td><a href=11.html> 亚理斯多德</a></td>	
+<td>知识起源于感官</td>
+</tr>
+<tr><td><a href=12.html>12</a></td>	<td><a href=12.html> Hellenism</a></td>	<td><a href=12.html> 希腊文化</a></td>	
+<td>宗教、哲学、科学：找寻人类最佳的生死之道<br />
+  丈儒学派：有太多东西是我们根本不需要的<br />
+  斯多葛学派：遵守神明的律法<br />
+  伊壁鸠鲁学派：快乐不是享乐、而是幸福<br />
+  新柏拉图学派：灵魂与上帝合二为一的神秘经验</td>
+</tr>
+<tr><td><a href=13.html>13</a></td>	<td><a href=13.html> The Postcards</a></td>	<td><a href=13.html> 明信片</a></td>	
+<td>苏菲与乔安一起去了少校的小木屋，发现了许多给席德的明信片</td>
+</tr>
+<tr><td><a href=14.html>14</a></td>	<td><a href=14.html> Two Cultures</a></td>	<td><a href=14.html> 两种文化</a></td>	
+<td>印欧文化与闪族文化：迁徙中的文明扩张<br />
+  耶稣：你们的罪已经被赦免了<br />
+  保罗：上帝已经向人类显现自己</td>
+</tr>
+<tr><td><a href=15.html>15</a></td>	<td><a href=15.html> The Middle Ages</a></td>	
+<td><a href=15.html> 中世纪 <br />
+  基督教发展历程<br />
+哲学和宗教是相通的；</a></td>	
+<td>圣奥古斯丁：理念存在于上帝心中；<br />
+  圣多玛斯：通过信仰与启示、理性和感官接近上帝；</td>
+</tr>
+<tr><td><a href=16.html>16</a></td>	<td><a href=16.html> The Renaissance</a></td>	<td><a href=16.html> 文艺复兴<br />
+人道主义的复兴</a></td>	
+  <td>人文主义：人是多么了不起啊<br />
+    自然科学的发展：新世界观的发现<br />
+    伽利略：没有外力，它会一直维持原来的状态<br />
+    牛顿：引力存在于宇宙各处<br />
+    宗教改革：外在权威到内心信仰的回归</td>
+</tr>
+<tr><td><a href=17.html>17</a></td>	<td><a href=17.html> The Baroque</a></td>	<td><a href=17.html> 巴洛克时期</a></td>	
+<td>矛盾对比中呈现张力</td>
+</tr>
+<tr><td><a href=18.html>18</a></td>	<td><a href=18.html> Descartes</a></td>	<td><a href=18.html> 笛卡尔</a></td>	
+<td>“我思故我在”：人是会思考的动物、上帝是存在的、外在世界是真实的<br />
+  二元论：思想与物质是两个不同的世界</td>
+</tr>
+<tr><td><a href=19.html>19</a></td>	<td><a href=19.html> Spinoza</a></td>	<td><a href=19.html> 史宾诺莎</a></td>	
+<td>一元论：大自然就是上帝，思想和扩延只是大自然的两种属性<br />
+  上帝不是一个傀儡戏师傅，完全自由的只有上帝<br />
+  上帝是透过自然法则来主宰世界，上帝是每一件事的“内存因”</td>
+</tr>
+<tr><td><a href=20.html>20</a></td>	<td><a href=20.html> LOCKE</a></td>	<td><a href=20.html> 洛克</a></td>	
+<td>我们的概念从感官而来</td>
+</tr>
+<tr><td><a href=21.html>21</a></td>	<td><a href=21.html> Hume</a></td>	<td><a href=21.html> 休姆</a></td>	
+<td>我们的心灵创造的只是虚假的观念</td>
+</tr>
+<tr><td><a href=22.html>22</a></td>	<td><a href=22.html> Berkeley</a></td>	<td><a href=22.html> 柏克莱</a></td>	
+<td>我们的所有观念来自于灵</td>
+</tr>
+<tr><td><a href=23.html>23</a></td>	<td><a href=23.html> Bjerkely</a></td>	<td><a href=23.html> 柏客来</a></td>	
+<td>席德在柏客来山庄过生日，读《苏菲的世界》</td>
+</tr>
+<tr><td><a href=24.html>24</a></td>	<td><a href=24.html> The Enlightenent</a></td>	<td><a href=24.html> 启蒙</a></td>	
+<td>用理性之光驱散黑暗</td>
+</tr>
+<tr><td><a href=25.html>25</a></td>	<td><a href=25.html> Kant</a></td>	<td><a href=25.html> 康德</a></td>	<td>头上闪烁的星空与心中的道德规范</td>
+</tr>
+<tr><td><a href=26.html>26</a></td>	<td><a href=26.html> Romanticism</a></td>	<td><a href=26.html> 浪漫主义</a><br />
+  神秘之路通向内心</td>	<td>  感情、想像、经验与渴望<br />
+    谢林：物质乃是沉睡中的智性</td>
+</tr>
+<tr><td><a href=27.html>27</a></td>	<td><a href=27.html> Hegel</a></td>	<td><a href=27.html> 黑格尔</a></td>	
+<td>站得住脚的便是有道理的<br />
+  否定之否定的辩证法</td>
+</tr>
+<tr><td><a href=28.html>28</a></td>	<td><a href=28.html> Kierkegaard</a></td>	<td><a href=28.html> 祁克果</a></td>	
+<td>欧洲正迈向破产的边缘<br />
+  人生三阶段：感性阶段：美感、理性阶段：道德、宗教<br />
+  我信，因为荒谬</td>
+</tr>
+<tr><td><a href=29.html>29</a></td>	<td><a href=29.html> Marx</a></td>	<td><a href=29.html> 马克思</a></td>	
+<td>资产阶级的丧钟敲响</td>
+</tr>
+<tr><td><a href=30.html>30</a></td>	<td><a href=30.html> Darwin</a></td>	<td><a href=30.html> 达尔文</a></td>	
+<td>满载基因航行过生命的一艘小船</td>
+</tr>
+<tr><td><a href=31.html>31</a></td>	<td><a href=31.html> Freud</a></td>	<td><a href=31.html> 佛洛伊德<br />
+内心出现的令人讨厌的冲动</a></td>	
+<td>传统心理学除了行为主义外，大都以意识为研究对象。弗洛伊德的精神分析心理学是真正以潜意识为研究对象的。<br /></td>
+</tr>
+<tr><td><a href=32.html>32</a></td>	<td><a href=32.html> Our Own Time</a></td>	<td><a href=32.html> 我们这个时代</a></td>	
+<td>尼采：上帝已死<br />
+基督教：人是上帝的创造物、人的价值和一切都寄托于上帝→人的心灵受到约束、人的本能受到压抑→要使人获得自由，必须杀死上帝<br />
+
+  萨特：人的存在比其他任何事情都重要</td>
+</tr>
+<tr><td><a href=33.html>33</a></td>	<td><a href=33.html> The Garden Party</a></td>	<td><a href=33.html> 花园宴会</a></td>	<td>苏菲与席德</td></tr>
+<tr><td><a href=34.html>34</a></td>	<td><a href=34.html> Counterpoint</a></td>	<td><a href=34.html> 对位法</a></td>	<td>两个平等世界</td></tr>
+<tr><td><a href=35.html>35</a></td>	<td><a href=35.html> The Big Bang</a></td>	<td><a href=35.html> 那轰然一响</a></td>望远镜如同时间机器，我们只能看到宇宙的过去<td></td></tr>
+</table>			
+
+
+
+
+
+</div>
+<!--
+<table id="tbrowser">
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />	
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+-->
+
+<!--
+height="*\w*"
+width="*\w*"
+</p>
+<p>
+-->
+<div style="width:80%; margin:auto;";>
+<p>理性主义、经验主义、唯物主义（马克思）、唯心主义、浪漫主义、个人主义者、存在主义（祁克果）、理想主义、资本主义、社会主义、共产主义、自然主义、虚无主义、荒谬主义（超写实主义）、神秘主义、人文主义</p>
+
+
+<h4>俄狄浦斯的命运悲剧</h4>
+<p>俄狄浦斯的故事表现人的意志与命运的悲剧，偶然和必然的复杂关系，命运的“无常”与“无奈”；阐述了西方神话中命运主宰一切的说法。</p>
+<h4>洞穴神话</h4>
+<p>黑暗洞穴与外在世界的关系就像是自然界与理念世界的关系。借着这个洞穴神话，柏拉图想要说明哲学家是如何从影子般的影像出发，追寻自然界所有现象背后的真实概念。</p>
+<h4>人与理想国</h4>
+<p>身体、灵魂、美德、国家</p>
+<p>头部、理性、智慧、统治者</p>
+<p>胸部、意志、勇气、战士</p>
+<p>腹部、欲望、自制、工匠</p>
+<p>人，尤其是儿童，必须首先学习如何克制自己的欲望，然后再培养自己的勇气，最后用理性来达到智慧。</p>
+<h4>亚里士多德的四因说与下雨的四因说解读</h4>
+<p>众所周知，下雨是因为在太阳光的照射下，地面、水面蒸发及植物挥发，水蒸气升腾到空气中，水汽在高空遇到冷空气后便凝聚成小水滴，然后受到重力吸引，降落在地上。</p>
+<p>质料因：受阳光照射，水变成水蒸气；</p>
+<p>动力因：水蒸气遇冷凝结；</p>
+<p>形式因：水的天性就要下落到地上；</p>
+<p>目的因：下雨是为了动植物更好地生存；</p>
+<p>亚里士多德说：“若有一事物发生连续运动，并且有一个终结的话，那么这个终结就是目的……须知并不是所有终结都是目的，只有最善的终结才是目的。”他从善的角度为自然界中所有事情的发生赋予一个任务或“目的”。</p>
+<h4>亚里士多德的伦理学：快乐的三种形式</h4>
+<p>过着享乐的生活；</p>
+<p>做一个自由和负责的公民；</p>
+<p>做一个思想家与哲学家；</p>
+<h4>印欧文化与闪族文化</h4>
+<p>希腊人和罗马人属于印欧文化，而犹太人属于闪族文化，这两种文化都孕育和影响了欧洲的文明</p>
+<p>闪族人，也称闪米特人，是起源于阿拉伯半岛的游牧民族。相传诺亚的儿子闪即为其祖先。今天生活在中东北非的大部居民（包括阿拉伯人、犹太人），就是古代闪米特人的后裔。</p>
+<p>西方三大宗教：犹太教、基督教、伊斯兰教都源自闪族，犹太人、阿拉伯人都主为亚伯拉罕（诺亚的儿子闪的后代）是他们的祖先，伊斯兰都教的圣经《古兰经》和基督教的《旧约圣经》都是用认族语系的语言写的。</p>
+<table id="tbrowser">
+  <col width="165" />
+  <col width="341" span="2" />
+  <tr height="19">
+    <td height="19" align="left" width="165">两种文化</td>
+    <td align="left" width="341">印欧文化</td>
+    <td align="left" width="341">闪族文化</td>
+  </tr>
+  <tr height="38">
+    <td height="38" align="left" width="165">神论</td>
+    <td align="left" width="341">泛神论：相信宇宙间有多位天神</td>
+    <td align="left" width="341">一神论：相信宇宙间只有一个上帝，三大宗教都是一神论</td>
+  </tr>
+  <tr height="38">
+    <td height="38" align="left" width="165">最重要感官</td>
+    <td align="left" width="341">希望洞察世界的历史，认为视觉是最重要的感官</td>
+    <td align="left" width="341">听觉是最重要的感官，“听哪！以色列”，“耶和华说”……</td>
+  </tr>
+  <tr height="38">
+    <td height="38" align="left" width="165">更低与雕塑</td>
+    <td align="left" width="341">经常制作描绘诸神以及神话事件的图画和雕刻</td>
+    <td align="left" width="341">不制作任何神像（除却基督教受希腊罗马文化影响制作画像）</td>
+  </tr>
+  <tr height="38">
+    <td height="38" align="left" width="165">历史观</td>
+    <td align="left" width="341">认为历史是循环的，即没有开始，也没有结束，只是不同的文明兴亡消长而已；</td>
+    <td align="left" width="341">历史中呈直线式发展，有始有终，有“最后审判日”，注重历史记录</td>
+  </tr>
+  <tr height="19">
+    <td height="19" align="left" width="165">悟道方式</td>
+    <td align="left" width="341">自省或打坐冥想</td>
+    <td align="left" width="341">偏重祈祷、布道和研究圣经</td>
+  </tr>
+  <tr height="38">
+    <td height="38" align="left" width="165">生命的目的</td>
+    <td align="left" width="341">相信灵魂转生、生命轮回，终极目的就是挣脱轮回</td>
+    <td align="left" width="341">强调上帝与造物之间的距离，生命目的不在于脱离轮回，而在于从罪恶与谴责中得救</td>
+  </tr>
+</table>
+<h4>文艺复兴时期的人文主义</h4>
+<p>漫长的中世纪里，生命中的一切都是从神的观点来解释，谁都不可违背。在都会的管制下，中世纪的文学艺术和科学技术死气沉沉。</p>
+<p>到了中世纪末期，随着新商品交易的蓬勃发展，新兴资产阶级开始形成。他们认为社会对个人的要求已经改变，开始逐渐脱离封建贵族与教会的势力，开始质疑神学、挣脱宗教的束缚。</p>
+<p>人文主义提倡修改个性解放、反对宗教桎梏和禁欲义义；肯定人性和人的价值，要求享受人世的欢乐，提倡人的个性解放和自由平等，要求把人从宗教束缚中解放出来。</p>
+<h4>实证法</h4>
+<p>用我们的感官、新身经验来调查研究大自然，而不是以古人的著作或凭空想像之物作为知识的基础，以观察、经验和实验为基础的方法。</p>
+<h4>理性主义</h4>
+<p>欧陆理性主义是建立在承认人的理性可以作为知识来源的理论基础上的一种哲学方法。这与自然科学的发展关系密切。</p>
+<p>牛顿的万有引力定律证明了宇宙间各处都适用同样的法则，我们称之为“机械论的世界观“。机械论是近代哲学的普遍特征，不管是唯物论还是唯心论，不管是经验论，还是唯理论，都爱到自然科学的影响而有机械论的倾向。</p>
+<p>牛顿以及哲学家们都把世界想像成一个大机器，上帝是自然这架机器的设计师和第一推动者。</p>
+<h4>经验主义</h4>
+<p>英国经验主义认为感官是是知识（思想和观念）的源泉。</p>
+<p>经验主义者否认先验的原则，不承认有普遍的必然的更改原则。在认识过程中，经验主义者只承认心灵的被动性，否认主动性。</p>
+<p>伯克莱（一位基督教主教）是近代经验主义的重要代表之一，开创了主观唯心主义。认为存在就是被感知，认为我们所有的观念来自于灵。万物因它而存在，它也是万物的成因，它就是“灵”，也就是上帝。</p>
+<h4>启蒙运动的回归自然</h4>
+<p>人的理性乃是自然的赐予，而不是宗教或“文明”的产物。卢梭提出“人类应该回归自然”的口号。</p>
+<h4>宗教的真空与信仰</h4>
+<p>世界从何而来（一直都存在、上帝创造、从无到有）？上帝是否存在（存在、不存在）？灵魂是否不朽（是、不是）？</p>
+<p>康德认为这些问题虽然都只有一个正确答案，但无论理性或经验都无法证实，为了维护基督教信仰的基础，他用信仰来填补这个宗教的真空。为了维护道德，我们必须假定这些无法证实的假设是正确的说法：上帝是存在的、世界是上帝创造的、灵魂是不朽的。</p>
+<h4>浪漫主义</h4>
+<p>法国大革命所倡导的“自由、平等、博爱”的思想推动了个性解放和情感抒发的要求，反动启蒙运动的过分强调理性，提倡感情、想像、经验、渴望。</p>
+<h4>黑格尔的辩证法</h4>
+<p>每一种新思潮都是在前人原有思潮的基础上加工而来的，一旦出现一个新思想（正），立刻就会有另一个与之相对立的思想出现（反），然后二者各执一词，莫衷一是，处于一种紧张状态，直到最后有人提出了一种融合了二者思想长处的思想（合），这种紧张的状态才消除。</p>
+<p>例如巴门尼德认为世上根本没有真正的变化，而赫拉克里特斯却说所有事物都是流动的，最后恩培窦克里斯认为他们两人各有一点是对的，也各有一点是错的。</p>
+<p>黑格尔把这种现象称为辩证的过程。这三个阶段他称为“正”“反”“合”，但是融合了“正”“反”观点的“合”也会有另一个“反”与之相抵触，就这样所有的现象以此类推。</p>
+<p>黑格尔并认为历史本身就展现了这种辩证模式，而不是人为的某种架构。不仅是历史，这种辩证法同样适用于生活。 </p>
+<p>我们在生活中习惯性地从别人的道理中找出缺陷反驳，这就是“否定的思考”，但究竟谁对谁错，则由历史来决定，最后留存下来的才是正确的。</p>
+<p>这就是黑格尔的客观唯心主义。对后来的存在主义和马克思的历史唯物主义都产生了深远的影响。</p>
+<h4>祁克果的人生三阶段</h4>
+<p>感性阶段：美感、理性阶段：道德、宗教</p>
+<p>感性阶段就是从维持生命到享乐方面的存在，为了现在而活。追求美的、令人满足和令人愉悦的东西，完全活在感官世界，成为欲望和情绪的奴隶。这样的人很容易焦虑和害怕，祁克果肯定这种“焦虑和害怕”，一旦他做出某种发自内心的决定，就会从感性阶段飞跃到伦理阶段。</p>
+<p>伦理阶段就是一种比较严肃的、尽责的人生，在意事情的是否对错，对生命认真，始终做出符合道德的抉择，并以理性、哲学的方法，解决自己的问题。当再经历伴随选择而来的痛苦和恐惧时，就上升到宗教的阶段。</p>
+<p>宗教阶段就是选择信仰，信奉基督，人变成了“信仰的骑士”，背离人类和社会，开始踏上地内心信仰的朝圣之路，也是得到救赎的唯一途径。</p>
+<h4>人类观念史上的两大伟大变革：唯物论和进化论</h4>
+<p>马克思将实践概念引入哲学，为全世界无产阶段革命指出了正确的方向；同样的达尔文的进化论以全新的生物进化思想推翻了“神创论”和“物种不变”的理论。</p>
+<h4>弗洛伊德人格结构的冰山模型：</h4>
+<p>底层到顶层：本和→潜意识→自我、意识、前意识→超我；</p>
+<p>本我：婴儿是一个完全的“本我”，原始的自己，他的头脑属于思绪的原始程序，会直接表达自己的需求；</p>
+<p>自我：看到橱窗里漂亮的衣服，知道自己支付不起，就会压抑自己想要的欲望，然后离开。这就是“自我”；</p>
+<p>超我：支付不起这件衣服，但是想偷偷拿走它，一有这个想法，头脑中马上就会意识到这是不对的，是犯罪行为；</p>
+<h4>帮助精神病患的“自由联想法”</h4>
+<p>让病人以一种很放松的姿态躺着，说出自己脑海里想到的任何事情。其用意就是要突破病人在伤痛记忆上加诸的管制，找出让病人焦虑的因素。</p>
+<h4>梦的解析法</h4>
+<p>梦就是我们潜意识里想要压抑的欲望。一个年轻人很想想要气球，就算他想要也不需要靠做梦的形式。因此他真正想要的其它是他的表妹，而气球则表示她的胸部。</p>
+</div>
+</div>
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+</body>
+</html>
+<script language="javascript"> 
+bg_evensssss("tbrowser","#fff","#F5F5F5","#FFFFCC","#FFDDFF");/*#FFFF84*/
+</script>
+
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换：
+\s*<br />\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+\s*</p>\s*
+\s*<p>\s*
+------------------
+</p>
+
+<p>
+4 把第和章两个字去掉
+第(\S*)章
+------------------
+$1
+
+5 正则表达式参考：
+https://www.toutiao.com/i6370960744082571778/
+
+6
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+=CONCATENATE("<div class='layout'><p>",A1,"</p>","<p>",B1,"</p>","</div>")
+-->
+
+
+

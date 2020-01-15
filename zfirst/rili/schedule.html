@@ -1,0 +1,940 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="dataiso/calendar1.js"></script>
+	<title>schedule</title>
+	<!--<script language="JavaScript" type="text/javascript" src="overall/tablerow.js"></script>-->
+	<style type="text/css">
+	<!--
+*{
+	margin:0;
+	padding:0;
+}
+a:link {
+	text-decoration: none;
+	cursor:url(rose.ani);
+	font-size:0.75em;
+}
+a:visited {
+	text-decoration: none;
+	color:##005681;
+	font-size:0.75em;
+}
+a {
+    padding: 2px 8px;
+    border: 1px solid;
+    border-color: #ffe #aaab9c #ccc #fff;
+    text-decoration: none;
+    background: #f0e7d7;
+    color: #800000;
+    
+}
+a:hover {
+    background: transparent;
+    border-color: #aaab9c #fff #fff #ccc;
+}
+
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-family:"MV Boli","宋体";
+	font-size:1em;
+}
+
+div li{
+	font-size:16px;
+	list-style:none;
+	line-height:20px;
+	float:left;
+}
+
+table tr td{
+	font-size:.75em;
+}
+
+#frame {
+	width:76.80%;
+	margin:auto;
+	/*height:562px;*/
+	border:0px solid #000000;/*用于衡量窗口大小*/
+}
+
+.topup{/*top have 3 layer,topup,top,topdown*/
+	width:76.80%;
+	height:18px;
+	color:#000099;
+	float:left;
+	font-size:1em;
+	clear:both;
+}
+
+#topup1{
+	width:39.42%;
+	float:left;
+	border:0px solid #000000;
+	height:18px;
+}
+#topup2{
+	width:40.00%;
+	float:left;
+	text-align:center;
+	overflow:hidden;
+	margin-bottom:2px;
+	border:0px solid #000000;
+	height:18px;
+	font-size:0.75em;
+}
+#topup3{
+	width:20.58%;
+	float:left;
+	text-align:right;
+	border:0px solid #000000;
+	height:18px;
+	padding-top:3px;
+}/*top have 3 layer,topup,top,topdown*/
+
+#mainx {
+	width:100%;
+	float:left;
+	position:relative;
+	display:inline;
+}/*height:368px;*//* 520-18-66-18-30*/
+.img1{
+    filter:alpha(opacity=15);       /* IE */
+    -moz-opacity:0.15;               /* Moz + FF */
+    opacity: 0.15;                   /* 支持CSS3的浏览器（FF 1.5也支持）*/
+    position:absolute;
+    left:255px;
+    bottom:0px;
+	z-index:1;
+}
+
+.main {
+	width:100%;
+	/*height:184px;*/
+	position:relative;
+	clear:both;
+}
+
+#tab,#tab2,#tab3,#tab4 {
+	position:relative; /* 定义选项卡的为相对定位，使其子级元素有定位参考对象 */
+	width:100%;/* 定义选项卡的整体宽度 */
+	/*height:368px;*//*yulaishi184*/
+	clear:both;
+	height:205px;
+} 
+
+#tab div,#tab2 div,#tab3 div,#tab4 div {
+	position:absolute;
+	top:28px;
+	left:0px;
+	width:100%;
+	/*height:340px;*//* 204-28(H3)-6(bottom) yulaishi156*/
+	display:none;
+}
+
+
+
+#tab h3,#tab2 h3,#tab3 h3,#tab4 h3 {/*total h:26+1*2=28   */
+	float:left;
+	width:2.81%;
+	height:26px;
+	margin:1px 1px; /* 利用负边距让标题更靠近一点 */
+	font-size:.75em;
+	font-weight:normal;
+	text-align:center;
+	color:#00007F;
+	background:#EEEEEE url(tab_bg.gif) no-repeat;
+	cursor:pointer;
+	cursor:url(rose.ani);
+	display:block;
+	overflow:hidden;
+	font-family: "MV Boli";
+	vertical-align:middle;
+	padding-top:4px;
+	filter:Alpha(opacity:100)
+} /* 将所有的标签标题浮动，并设置其宽度和高度等属性，再添加背景图修饰标题 */
+#tab4 h3 a:visited{
+	font-size:.75em;
+	color:#00007F;
+}
+
+
+#tab .up,#tab2 .up,#tab3 .up,#tab4 .up {
+	background:#fff url(tab_up_bg.gif) no-repeat;
+} /* 当某个标题被激活时改变背景图片，突出显示 */
+
+#tab ul,#tab2 ul,#tab3 ul,#tab4 ul,#ones ul{
+	margin:4px 0 0;
+	list-style:none;
+}
+
+#tab li,#tab2 li,#tab3 li,#tab4 li,#ones li {
+	display:inline; /* 解决IE6中双倍间距的BUG */
+	float:left;
+	width:9.90%; /* 解决IE浏览器中相对值宽度计算的BUG */
+	height:18px;
+	line-height:18px;
+	border-bottom:1px dashed #DEDEDE;
+	overflow:hidden;
+}
+
+#tab li a,#tab2 li a,#tab3 li a,#tab4 li a,#ones li a {
+	font-size:1em;
+	text-decoration:none;
+	text-indent:8px;
+	color:#333333;
+}
+
+#tab li a:hover,#tab2 li a:hover,#tab3 li a:hover,#tab4 li a:hover,#ones li a:hover {
+	color:#0000FF;
+	margin-left:0px;/*文字会形成移动*/
+}
+#tab li a:visited,#tab2 li a:visited,#tab3 li a:visited,#tab4 li a:visited,#ones li a:visited {
+	color:#0000FF;
+	margin-left:0px;/*文字会形成移动*/
+}
+
+
+#browser {
+	width: 100%;
+	margin:auto;
+	border-collapse:collapse;
+	font-family: "MV Boli" arial;
+	text-align:center;
+	line-height:28px;
+	border:1px solid #aaa;
+	z-index: 12;
+	table-layout:fixed;
+}
+
+#browser th,#browser td{
+	border:1px dashed  #e6e6e6;
+	font-size:1.25em;
+	color:#000000;
+	text-align:left;
+	padding-left:3px;
+}
+
+#browser thead th{
+	/*border-top:3px solid  #FFCCFF ;
+	border-bottom:2px solid #840084;*/
+	/*background-color:#8fc629;*/
+	color:#008040;	
+	padding:0px 0px;
+	padding-left:3px;
+	/*background-image:url(../top.jpg);*/
+	/*background-image:url(草原19.jpg);
+	background-image: url(草原19.jpg);
+	
+	background-position:top;
+	background-position:center;*/
+	/*background-color:#FFDDFF;*/
+}
+
+#browser thead .rowbackg{
+	background-color:#FFDDFF;
+	background-image:url(../images/everest.jpg);
+	background-position:0px 300px;
+
+}
+#browser th{
+border:0;
+	/*background-color:#f2f4b9;*/
+}
+#browser th.title{
+	background-color:#e3e685;
+}
+#browser tfoot td{
+	border-width:0px;
+	text-align:right;
+	font-size:16px;
+	color:#777;
+}
+#browser caption{
+	font-weight:bold;
+	padding:1px 0px;
+	color:#3d580b;
+	font-size:18px;
+}
+
+#browser tr>th+td+td+td+td+td{
+font-size:12px;
+}
+#browser .font16{
+	font-size:1em;
+}
+#browser .celll{
+	/*border-right:2px #B000B0 solid;*/
+	font-size:1em;
+}
+#browser .cellr{/*actually left*/
+	/*border-left:3px #FFCCFF solid;*/
+	font-size:1em;
+}
+
+#browser .br{
+	border-right:none;
+}
+
+#browser tr{
+	height:6px;
+}
+
+
+.time{
+	font-family :"Comic Sans Ms";
+	font-size :0.75em;
+	font-weight : bold;
+	color: #00008D;
+}
+
+.col1 {
+	background-color:#FFE3FE;
+	background-image: url(img/LEAVES.gif);
+	background-position:0px 350px;
+}
+
+#browser .blankrow{
+	background-color:#FFFFFF;
+	background-color:none;
+	border:0px #FFFFFF solid;
+	border-left:1px #aaa solid;
+	border-right:1px #aaa solid;
+}
+
+#clock {
+	height: 9.41%;
+	width: 11%;
+	position: absolute;
+	left:0px;
+	top:70px;
+	/*left:4.31%;
+	bottom:16.50%;*/
+	z-index: 1;
+	font-size:1em;
+}
+#tab .block,#tab2 .block,#tab3 .block,#tab4 .block{
+	display:block;
+	width:88%;
+	
+	padding-bottom:6px;
+	padding-left:11.5%;
+	font-family:"MV Boli";
+	font-size:1.125em;
+	border: 1px #C7C8C4 solid;
+	border-top: 0px #C7C8C4 solid;
+	height:168px;
+	background-image: url(img/LEAVES.gif);
+	background-position: 1px;
+} /* 当选项卡某个内容区域被激活时，显示内容，并设置该容器底部的内补丁为10px */
+#mainx p{
+	font-size:1.125em;
+	line-height:1.4em;
+	color:#000000;
+}
+.fred {
+	color: #FF0000;
+	text-decoration: underline;
+	margin-left:-9%;
+}
+.fblue {
+	color: #008040;	
+}
+.bg11 {
+	width: 500px;
+	margin:0;
+	text-align:center;
+	background-image: url(../images/oneten.jpg);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	filter:Alpha(opacity:15);
+	z-index: 1;
+	overflow: hidden;
+	position: absolute;
+	height: 163px;
+	left: 620px;
+	top: 200px;
+}
+.noright{
+	border-right-color:#FFFFFF;
+	border-right:0px #ccc solid;
+}
+#browser .smallf{
+font-size:.95em;
+}
+.fontr1{
+color:red;
+font-family:"宋体";
+font-size:1.2em;
+}
+	-->
+	</style>
+	<!--显示\隐藏层的代码；-->
+	<script type="text/javascript">
+	<!--
+	function MM_showHideLayers() { //v6.0
+	  var i,p,v,obj,args=MM_showHideLayers.arguments;
+	  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+		if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v=='hide')?'hidden':v; }
+		obj.visibility=v; }
+	}
+	
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+	//-->
+	</script>	<!--显示\隐藏层的代码；-->
+	<script Language="JavaScript">
+	<!--
+	function tvset(){
+	var today2=new Date();
+	var isnDay = new
+				Array("Sun.","Mon.","Tue.","Wed.","Thu.","Fri.","Sat.","Sun.");
+	var h=document.getElementById("tab").getElementsByTagName("h3");
+	var d=document.getElementById("tab").getElementsByTagName("div");
+	for(var i=0;i<32;i++){
+	if(today2.getDate()==i){
+	h[i].className+=" up";
+	d[i].className+=" block";
+	}
+	else {
+	h[i].className=" ";
+	d[i].className=" ";
+	}}}
+		//-->
+		</script>	<!--按日期期显示details-->
+	<!--clock func-->
+	<script Language="JavaScript">
+	<!--
+	/*clock func*/
+	function init(){<!--初始化-->
+	tim2.style.left=tim1.style.posLeft;<!--将第二个时间得左侧与第一个时间的左侧对齐-->
+	tim2.style.top=tim1.style.posTop+tim1.offsetHeight-6;<!--第二个时间在第一个时间的下方-->
+	settimes();<!--调用settimes()函数-->
+	}
+	function settimes(){
+	var stime= new Date();<!--获取当前日期-->
+	hours= stime.getHours();<!--获取当前时间-小时-->
+	mins= stime.getMinutes();<!--获取当前时间-分钟-->
+	secs= stime.getSeconds();<!--获取当前时间-秒-->
+	if (hours<10)<!--如果小时仅有一位，在前面补零-->
+	hours="0"+hours;
+	if(mins<10)<!--如果分钟仅有一位，在前面补零-->
+	mins="0"+mins;
+	if (secs<10)<!--如果秒仅有一位，在前面补零-->
+	secs="0"+secs;
+	
+	var today2=new Date();
+	var event1="ReturnBook"
+	var cdtime="1/13/2012";
+	var festive=new Date(cdtime);
+			festive1=parseInt((festive-today2)/spd);
+			festive2=parseInt((festive-today2)/spd*24)-parseInt(festive1*24);
+			festive3=parseInt((festive-today2)/spd*24*60)-parseInt(festive1*24*60)-parseInt(festive2*60);
+			festive4=60-secs
+		festivewri.innerHTML=event1+"</br>"+cdtime+"</br>"+"count down:"+"</br>"+festive1+"天"+festive2+"时"+"</br>"+festive3+"分"+festive4+"</br>"+"</br>"+"由今往昔"+"</br>"+"一日三省"+"</br>"+"前瞻五年"+"</br>"+"未来的你"+"</br>"+"回溯如今"+"</br>"+"审视反省"+"</br>"+"思维行动"+"</br>"+"修正调整"+"</br>"+""+"</br>"+"真善美爱"+"</br>"+"Truth"+"</br>"+"Kindness"+"</br>"+"Beauty"+"</br>"+"Love"+"</br>"+""+"</br>"+"知行勤思"+"</br>"+"Knowledgement"+"</br>"+"Action"+"</br>"+"Diligent"+"</br>"+"Reflection";<!--设置festivewri的格式-->
+	tim1.innerHTML=hours+":"+mins+":"+secs;<!--设置tim1和tim2的格式-->
+	tim2.innerHTML=hours+":"+mins+":"+secs
+	setTimeout1('settimes()',1000);<!--每1秒更新一次时间-->
+	}
+	
+	function MM_displayStatusMsg(msgStr) { //v1.0
+	  status=msgStr;
+	  document.MM_returnValue = true;
+	}
+	//-->
+	</script><!--clock func-->
+</head>
+<body 
+onload="tvset();MM_displayStatusMsg('Dancing like nobody\'s Watching!Sing nobody\'s listening!那么拘束干嘛，做人要放开怀抱!');init();return document.MM_returnValue">
+
+<div id="frame">
+<div class="topdup">
+	<div id="topup1"><a href="index.html" target="_blank">悠然笑看天高云淡风轻</a>&nbsp;Tomorrow is another day!</div>
+	<div id="topup2">
+
+		<!--calendar-->
+		<script language="JavaScript1.2" type="text/javascript">/*农历的另一年份时，需更改6处（第6处是节气更改，作为变量中的字符的"2011"不更改）*/
+				
+		if (document.all){<!--时间显示-->
+				document.write(Year+"-"+"<font color=#008040>"+"<strong>"+"<span style='FONT-SIZE: 12px'>"+enym+"&nbsp"+isnDay[today.getDay()]+"</font>"+"</strong>"+"</span>"+"&nbsp;")
+				}
+				document.write("壬辰龙年"+"<strong>"+"<span style='FONT-SIZE: 12px'>"+"<font color=#0000FF>"+cnym+"</span>"+"</strong>"+"</font>"+"&nbsp;")/*农历月日*/
+				document.write("已逝:"+cndayed+"天"+"<sup>"+"+"+"</sup>"+"&nbsp;")
+				document.write("可期:"+"<font face='Arial' size='2px' color=#FF8040>"+"<strong>"+haveday+"</strong>"+"</font>"+"天"+"<sup>"+"+"+"</sup>"+"&nbsp;"+"&nbsp;")
+
+var isnDay2 = new
+			Array("星斯天","星斯一","星斯二","星斯三","星斯四","星斯五","星斯六","星斯七","星斯天");
+function CALcn(){
+mymonth=today.getMonth()+1;
+document.write("<table border='1' cellspacing='3' width='100%' bordercolor='#009B00' bgcolor='#FFFFFF' height='100%' cellpadding='2'");
+document.write("<tr><td align='center'><b><font color=#008040>"+Year+"年"+mymonth+"月"+"</font><br><font face='Arial' size='6' color=#FF8040>"+isndate[Daten1-1]+"</font><br><font color=#008040><span style='FONT-SIZE: 10.5pt'>");
+document.write(isnDay2[today.getDay()]+"</span><br>"+"<br></b><font color=#9B4E00>");
+document.write("壬辰龙年"+"</font><br><font color=red>"+cnym+"</td></tr></table>");
+}
+	</script>
+	<!--calendar-->
+	
+	</div>
+	<div id="topup3"><a href="whoarewho/youran.html" target="_blank" >WhoAreWho</a>&nbsp;<a href="schedule.xlsx" title="ver.Excel">Schedule</a></div>
+</div><!--topup -->
+<div id="mainx"> 
+
+<div id="mainx">
+	<div id="clock">
+		<script language="javascript">CALcn();</script>
+	</div>
+</div><!--clock table-->
+
+<div id="tab">
+<h3 onclick="goto(0);" title="上月未完成和本月计划汇总">prev</h3>
+<h3 onclick="goto(1);">01</h3>
+<h3 onclick="goto(2);">02</h3>
+<h3 onclick="goto(3);">03</h3>
+<h3 onclick="goto(4);">04</h3>
+<h3 onclick="goto(5);">05</h3>
+<h3 onclick="goto(6);">06</h3>
+<h3 onclick="goto(7);">07</h3>
+<h3 onclick="goto(8);">08</h3>
+<h3 onclick="goto(9);">09</h3>
+<h3 onclick="goto(10);">10</h3>
+<h3 onclick="goto(11);">11</h3>
+<h3 onclick="goto(12);">12</h3>
+<h3 onclick="goto(13);">13</h3>
+<h3 onclick="goto(14);">14</h3>
+<h3 onclick="goto(15);">15</h3>
+<h3 onclick="goto(16);">16</h3>
+<h3 onclick="goto(17);">17</h3>
+<h3 onclick="goto(18);">18</h3>
+<h3 onclick="goto(19);">19</h3>
+<h3 onclick="goto(20);">20</h3>
+<h3 onclick="goto(21);">21</h3>
+<h3 onclick="goto(22);">22</h3>
+<h3 onclick="goto(23);">23</h3>
+<h3 onclick="goto(24);">24</h3>
+<h3 onclick="goto(25);">25</h3>
+<h3 onclick="goto(26);">26</h3>
+<h3 onclick="goto(27);">27</h3>
+<h3 onclick="goto(28);">28</h3>
+<h3 onclick="goto(29);">29</h3>
+<h3 onclick="goto(30);">30</h3>
+<h3 onclick="goto(31);">31</h3>
+<h3 onclick="goto(32);" title="下月计划" style="width:3.2%">next</h3>
+
+<div>
+	<p><span class="fred">Previous Month<sub>prev</sub></span><span class="fblue">&nbsp;&nbsp;前事不忘，后事之师.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--prev-->
+<div>
+	<p><span class="fred">Toady is 1<sub>st</sub></span><span class="fblue">&nbsp;&nbsp;What you are going to do,do quickly.</span></p>
+	<p>1.</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--1-->
+<div>
+	<p><span class="fred">Toady is 2<sub>nd</sub></span><span class="fblue">&nbsp;&nbsp;Be nice to people on your way up because you'll meet them on your way down.</span></p>
+	<p>1.</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--2-->
+<div>
+	<p><span class="fred">Toady is 3<sub>rd</sub></span><span class="fblue">&nbsp;&nbsp;Something to face,to persevere,to change.</span>
+</p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--3-->
+<div>
+	<p><span class="fred">Toady is 4<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Time flies.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--4-->
+<div>
+	<p><span class="fred">Toady is 5<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Jack of all trades, master of none.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--5-->
+<div>
+	<p><span class="fred">Toady is 6<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Look before you leap.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--6-->
+<div>
+	<p><span class="fred">Toady is 7<sub>th</sub></span><span  class="fblue">&nbsp;&nbsp;Knowledge is power.</span></p>
+	<p>1. comm credit repay 10th</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--7-->
+<div>
+	<p><span class="fred">Toady is 8<sub>th</sub></span><span  class="fblue">&nbsp;&nbsp;Actions speak louder than words.</span></p>
+	<p>1. comm credit repay 10th</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--8-->
+<div>
+	<p><span class="fred">Toady is 9<sub>th</sub></span><span  class="fblue">&nbsp;&nbsp;Easy come, easy go.</span></p>
+	<p>1. comm credit repay 10th</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--9-->
+<div>
+	<p><span class="fred">Toady is 10<sub>th</sub></span><span  class="fblue">&nbsp;&nbsp;Blood is thicker than water.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--10-->
+<div>
+	<p><span class="fred">Toady is 11<sub>th</sub></span><span  class="fblue">&nbsp;&nbsp;All's fair in love and war.</span></p>
+	<p>1.  </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--11-->
+<div>
+	<p><span class="fred">Toady is 12<sub>th</sub></span><span  class="fblue">&nbsp;&nbsp;Time and tide wait for no man.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--12-->
+<div>
+	<p><span class="fred">Toady is 13<sub>th</sub></span>&nbsp;&nbsp;<span class="fblue">Sloth,like rust,consumes faster than labor wears.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--13-->
+<div>
+	<p><span class="fred">Toady is 14<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Better late than never.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--14-->
+<div>
+	<p><span class="fred">Toady is 15<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Early to bed and early to rise,makes a man healthy,wealthy and wise.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--15-->
+
+<div>
+	<p><span class="fred">Toady is 16<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;One today is worth two tomorrow.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--16-->
+<div>
+	<p><span class="fred">Toady is 17<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;It is no use doing what you like;you have got to like what you do.</span></p>
+	<p>1.guangfu 22th credit repay;</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--17-->
+<div>
+	<p><span class="fred">Toady is 18<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;When work is a pleasure,Life is joy!When work is duty,Life is slavery.</span></p>
+	<p>1.guangfu 22th credit repay;</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--18-->
+<div>
+	<p><span class="fred">Toady is 19<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Nothing is impossible for a willing heart.</span></p>
+	<p>1.guangfu 22th credit repay;</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--19-->
+<div>
+	<p><span class="fred">Toady is 20<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;If a thing is worth doing,it is worth doing well.</span></p>
+	<p>1. guangfu 22th credit repay;</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--20-->
+<div>
+	<p><span class="fred">Toady is 21<sub>st</sub></span><span class="fblue">&nbsp;&nbsp;Nothing great ever was achieved without enthusiasm.</span></p>
+	<p>1. guangfu 22th credit repay;</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--21-->
+<div>
+	<p><span class="fred">Toady is 22<sub>nd</sub></span><span class="fblue">&nbsp;&nbsp;The sooner, the better.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--22-->
+<div>
+	<p><span class="fred">Toady is 23<sub>rd</sub></span><span class="fblue">&nbsp;&nbsp;TV has its merits and demerits.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--23-->
+<div>
+	<p><span class="fred">Toady is 24<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;All happy families resemble one another,each unhappy family is unhappy in its own way.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--24-->
+<div>
+	<p><span class="fred">Toady is 25<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;April showers bring May flowers.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--25-->
+<div>
+	<p><span class="fred">Toady is 26<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;An army of stags led by a lion would be more formidable than one of lions led by a stag.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--26-->
+<div>
+	<p><span class="fred">Toady is 27<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Ask not what your country can do for you;ask what you can do for your country.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--27-->
+<div>
+	<p><span class="fred">Toady is 28<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Better the last smile than the first laughter.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--28-->
+<div>
+	<p><span class="fred">Toady is 29<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Beware of the man of one book.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--29-->
+<div>
+	<p><span class="fred">Toady is 30<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;As chaste as ice,as pure as snow.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--30-->
+<div>
+	<p><span class="fred">Toady is 31<sub>st</sub></span><span class="fblue">&nbsp;&nbsp;Clothes make the man.</span></p>
+	<p>1.</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--31-->
+<div>
+	<p><span class="fred">Next Month<sub>next</sub></span><span class="fblue">&nbsp;&nbsp;凡事预则立，不预则废！</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--next-->
+</div><!--tab1 -->
+
+</div><!--#mainx -->
+<div id="mainx">
+<img src="images/oneten.jpg" class="img1" />
+<table id="browser">
+	<colgroup>
+		<col width="30px" />
+		<col class="col1"  width="200px" />
+		<col width="130px" />
+		</colgroup>
+		
+		<colgroup  class="col1">
+		<col width="250px" />
+		<col width="60px" />
+		<col width="100px" />
+		<col width="40px" />
+		<col width="88px" />
+	</colgroup>
+	<thead>
+		<tr class="rowbackg">
+			<th align="center" class="cellr" >sn</td>
+			<th class="font16" >Business Description</td>
+			<th class="font16" >Date<br />started</td>
+			<th class="font16" >Date required finished</td>
+			<th class="font16" >Count<br />down</td>
+			<th class="font16" >Finished recorded</td>
+			<th class="font16" >OK?</td>
+		<th class="celll" >Remark</td>		</tr>
+	</thead>
+		<!--blank row-->
+		
+		<tr>
+			<th>1</th>
+			<td>comm credit: </td>
+			<td></td>
+			<td>10th.every month </td>
+			<td></td>
+			<td>　</td>
+			<td>　</td>
+			<td>　</td>
+		</tr>
+		<tr>
+          <th>2</th>
+		  <td>Guangfa Credit:</td>
+		  <td></td>
+		  <td>20nd every month </td>
+		  <td></td>
+		  <td>　</td>
+		  <td>　</td>
+		  <td>　</td>
+  </tr>
+		<tr>
+			<th>3</td>
+			<td>Room's rent:</td>
+			<td></td>
+			<td>30th.every month. </td>
+			<td></td>
+			<td>　</td>
+			<td>　</td>
+			<td>　</td>
+		</tr>
+		<tr>
+          <th></th>
+		  <td>Library:</td>
+		  <td></td>
+		  <td></td>
+		  <td></td>
+		  <td></td>
+		  <td>　</td>
+		  <td>　</td>
+  </tr>
+		<tr align="center">
+          <th >1</th>
+          <td>Disc</td>
+          <td>renewed</td>
+          <td>1.9</td>
+          <td></td>
+          <td>period:15 days</td>
+          <td ></td>
+          <td ></td>
+	  </tr>
+		<tr>
+          <th>2</th>
+		  <td align="center" >Computer Book </td>
+		  <td align="center" >renewed</td>
+		  <td align="center" >1.20html,2.10command</td>
+		  <td align="center" ></td>
+		  <td align="center" ></td>
+		  <td>　</td>
+		  <td>　</td>
+		</tr>
+		<tr>
+          <th>3</th>
+		  <td>Overall book:</td>
+		  <td>renewed</td>
+		  <td>2.8</td>
+		  <td></td>
+		  <td>Update:12.17</td>
+		  <td>　</td>
+		  <td>　</td>
+		</tr>
+
+		<tr>
+			<td COLspan="8" class="noright smallf"><span class="fontr1">Ⅰ</span>一个人最困难的事：认识自己who are who?<span class="fontr1"> Ⅱ</span>
+一个人最最困难的事：认识自己的缺点who's defects；<span class="fontr1"> Ⅲ</span>
+一个人最最最困难的事：面对它，每天想想它，坚持去改变它，并享受这个过程face his defects,reflect them everyday,persevere to change them,and enjoy the process.</td>
+		</tr>
+		
+		<tr>
+			<td COLspan="8" class="noright"><marquee behavior="scroll"  scrollamount=1>Time flies,quietly glides,I have lost a second,a minute,an hour,a day! Till a month,a year,and even a lifetime.</marquee></td>
+		</tr>
+</table>
+</div>
+
+<script language="JavaScript" type="text/javascript">
+	function goto(ao){
+		var h=document.getElementById("tab").getElementsByTagName("h3");
+		var d=document.getElementById("tab").getElementsByTagName("div");
+		for(var i=0;i<34;i++){
+			if(ao==i){
+			h[i].className+=" up";
+			d[i].className+=" block";
+			}
+		else {
+			h[i].className=" ";
+			d[i].className=" ";
+	}}}
+</script>
+
+</div> <!--#frame -->
+
+<!--clock div-->
+<div Id="tim1" Style="position:absolute; width:50px; height:20px; top:-4px; left:915px"class="time">
+</div>
+<div Id="tim2" Style="position:absolute; filter:flipv() alpha(opacity=20); font-style:italic" class="time">
+</div><!--clock div-->
+
+</body>
+</html>
+<!--<script language="JavaScript" type="text/javascript">
+bg_even("browser","images/LEAVES.gif","#F5F5F5","#FFFFCC","#FFFF84");
+</script>-->

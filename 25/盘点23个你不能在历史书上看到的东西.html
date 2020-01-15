@@ -1,0 +1,341 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>盘点23个你不能在历史书上看到的东西</h4>
+
+<p>每天谈点历史2018-09-2020:05:44</p>
+
+<p>一、900年历史的牛津大学，培养了7个国家的11位国王、6位英国国王、47位诺贝尔奖获得者、53位总统和首相、12位圣人、86位大主教以及18位红衣主教，影响着整个世界。有意思的是牛津的官方宣传资料中几乎看不到这些，这所英国最古老的大学甚至没有举办过像样的校庆对学术对真理的追求让她畏惧名利。</p>
+
+<p>二、在美国，一次重大事故就能改变历史：1911年3月25日的三角内衣公司火灾。146名男女工人死亡，大多数是16到23岁的姑娘，最小的仅14岁。三角工厂事件不仅促使了美国对血汗工厂立法，后来更被写进美国中学历史课本，成为美国现代主流价值观的一部分：生命的价值重于财富。</p>
+
+<p>三、1966年，红卫兵掘了他的墓，曝尸荒野，被孩子们踢着玩。他是中国重工业奠基人，他创办了中国第一个高等师范学堂、第一个幼儿园。他将武汉打造成中国重工业基地，创建了中国首家系统完备的军工厂，让“汉阳造”闻名天下。他位列晚清四大名臣一生清廉，丧葬费由亲朋门生筹措，他是张之洞。</p>
+
+<p>四、【段祺瑞】三一八惨案中，总理府卫队擅自开枪，死伤多人。鲁迅的学生刘和珍、程德群等数十人中弹死亡。虽然不是段祺瑞下令开的枪，但作为一国总理的他自知罪责。他很快成立调查组，调查死难者的名字，给予优抚。在悼念死难同胞大会上，当众长跪不起，并立誓终身食素以赎罪，这个誓言一直坚持到他病终。</p>
+
+<p>五、周佛海身在汪营心投蒋家，为军统干了不少活。光复后被审，军统出庭证明情况，老蒋也屡次暗示，南京法院照判其死刑，周妻抗告，最高法院驳回。蒋无奈，只得顶着舆论压力，亲签特赦令，将其由死刑改无期。民国法院、法官还是钢钢的。后来，周病重，想保外就医，不允，狱中气绝。</p>
+
+<p>六、一位银行家的妻子，在布拉格一间咖啡馆里爱上了一位作家，他写一页，她看一页。他也爱她，她隐瞒了婚姻状况。作家后来得知恋人是有夫之妇，两人从此没见。作家孤寂一生，弥留之际，念叨着那女人的名字。往前一步，是丑闻;往后一步，是对爱的尊重。作家叫卡夫卡，那部作品是《变形记》。</p>
+
+<p>七、他求职，“我们不缺人，一个月后再来”他一个月后来了;“有事，过几天再说”他过几天来了;反复多次。“你脏兮兮的我们不要”他借钱买了衣服;“你不懂电器知识。”两个月后他学了足够的电器知识又来了。“我干了几十年，第一次遇到像你这样有耐心和韧性的。”他成功了，他是松下幸之助。(人生没有失败，只怕坚持和认真四个字)</p>
+
+<p>八、“不要俘虏。”——李宗仁(台儿庄战役时，李宗仁下的命令)</p>
+
+<p>九、沈从文，来自农村，爱打扮，狂追他的女学生张兆和。张拒绝，沈从文向胡适哭诉。适逢张兆和也来找胡适投诉禽兽老师。胡适劝道：他顽固的爱你。张回答：我顽固的不爱他。随后沈从文以自杀相胁，张兆和遂屈服，嫁于沈从文。不久，沈从文出轨，又顽固的爱上了女诗人高青青…</p>
+
+<p>十、英国撒切尔夫人与内政大臣吃饭，女服务生上汤，不小心将一碗热汤扣内政大臣的脑袋上。撒切尔夫人立即起身，拥抱吓傻了的女服务生，说：别介意，谁都会犯错的……李敖认为：女服务生比内政大臣更需要安慰，百姓比官员更需要关怀。</p>
+
+<p>十一、他举行山西起义，响应辛亥革命;他在统治山西长达38年期间，醉心于搞经济建设，保境安民，终使山西物阜民丰，山河完整;面对日本帝国主义的侵略，他坚定地提出“宁在山西牺牲，不到他乡流亡”的口号，领导晋绥军，坚决抗日，并赢得了“模范战区”的称号，他是谁？山西人——阎锡山！</p>
+
+<p>十二、孟小冬，当年人称东皇，老年时的照片依然气场十足。1949年，上海解放前夕，杜月笙全家决定离开大陆的时候，算机票要买多少张，孟小冬说我不走，我用什么身份跟你去？丫头？杜月笙当即宣布尽快与孟小冬成婚。那一晚，杜月笙下了他那几乎离不开的病榻，由人搀扶着成了亲。</p>
+
+<p>十三、善良的苏格兰农夫从粪池救出一个小男孩，男孩的绅士父亲酬谢，农夫谢绝。绅士说：让我们签个协议，我带走你的孩子，给他最好的教育，农夫允诺。农夫的孩子后来发明了青霉素，获得诺贝尔奖。数年后，绅士的儿子得了肺炎，青霉素治好了他。这两个孩子分别是弗莱明和丘吉尔。(帮人就是在帮自己呀)</p>
+
+<p>十四、1915年，孙中山与宋庆龄在日本相爱。其时孙中山已与卢氏成亲，孙中山反对纳妾，于是征求卢夫人意见，是否同意离婚，并申明离婚的理由。卢夫人在回信中写了一个“可”字，同意离婚，并对友人说：“我常识唔够，更唔识英文，我又缠脚，行动也不便，我怎可以帮到先生呢？”——每次看到这段，我都深为感动。</p>
+
+<p>十五、【审判】多年前的南非：有一次庭审曼德拉之前，公诉人Bosch突然撂摊子不干了，他跑过去跟曼德拉握手，说：我鄙视我所做的事情，我不想把你给送到监狱里去。曼德在结束27年的牢狱生涯后，对虐待他长达27年之久的三个人平静的说：在走出囚室，经过通往自由的监狱大门那一刻，我已经清楚，如果自己不能把悲伤和怨恨留在身后，那么我其实仍在狱中。”仇家格里高禁不住泪流满面，那一刻他终于明白，告别仇恨的最佳方式是宽恕。---《曼德拉自传》</p>
+
+<p>十六、王士珍，曾出任民国总理，以低调闻名。为什么要低调呢？据他自己说：他年轻时也挺狂，睥睨天下，目无余子，从军时遇到李鸿章，发现李鸿章智慧才干，不知高出他多少，可是却处处碰壁，天天挨骂。这时王士珍才知天下事之难，难就难在你干得越多，挨骂也越多，从此收起狂妄之心，低调淡定过了一生。、</p>
+
+<p>十七、战后的日本小学校，伙食由政府提供，这种制度叫给食.无论校长，老师还是学生吃的都是一模一样的饭菜.但校长也搞特殊化——校长总是第一个吃。那么校长为何要有如此特权呢——实际上这是制度，校长必须要在所有的学生吃饭之前，第一个品尝试吃以免食物质量靠不住，到时候校长第一个送医院。</p>
+
+<p>十八、蔡元培的书法和他的思想一样兼容并包、雍容大度，旁人看来却是背离常格。某次钱玄同问:“蔡先生，前清考翰林，都要字写得很好的才能考中，先生的字写得这样蹩脚，怎样能够考得翰林？”蔡答:“我也不知道，大概那时正风行黄山谷字体的缘故吧！”回答既见出他的涵养，也见出他的幽默，满座闻之，皆忍俊不禁。</p>
+
+<p>十九、【中国近代最博学之人】辜鸿铭：学贯中西，博古通今的中国第一人。先后就读于英国爱丁堡大学，德国柏林大学、莱比锡大学、法国巴黎大学等名校;获文、哲、理、工、神等13种博士学位;精通英、德、法、意、拉丁、马来和希腊、日、俄等9国语言文字，第一个将中国的“四书”用英文和德文翻译到西方。</p>
+
+<p>二十、1917年的北大，有一群教授。梁漱溟，25岁;胡适，27岁;刘半农，27岁;刘文典，27岁;林损，27岁;周作人，33岁;陈独秀，39岁;朱希祖，39岁……校长是蔡元培，50岁。最年轻的是画法研究会导师徐悲鸿，23岁。这个年龄，搁现在许多人还是“啃老一族”，而前辈们已经成为大师了。</p>
+
+<p>二十一、有人问余光中：李敖天天找你茬，你却从不回应，这是为什么呢？余沉吟片刻答：”天天骂我，说明他的生活不能没有我;而我不搭理，证明我的生活可以没有他。”</p>
+
+<p>二十二、蒋友柏说拆中正纪念堂：我不晓得我的后代将如何看那尊铜像，但是至少我知道那个铜像是错的;要树立铜像要盖纪念堂，也要等他死后100年(至少也要50年)再盖，假如50年后、100年后的人民会想要替你铸铜像盖纪念堂，那就表示你真的是伟大。</p>
+
+<p>二十三、这不是作秀，伦敦市长鲍里斯·约翰逊每天都骑自行车上班。当我们惊呼韩国首都首尔只有四辆公家车的时候，我们不知道的是，芬兰全国只有四辆公车。</p>
+
+
+
+<p style='float:right;'>本页共25段，3053个字符，8844 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

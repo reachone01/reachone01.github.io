@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>22导数：探寻永恒的刹那</h4>
+
+<p>到了17世纪，有许多科学问题需要解决，归结起来，大约有四种主要类型的问题：第一类是研究运动的时候直接出现的运动学问题，主要是求瞬时速度的问题。第二类是求曲线的切线的问题，光学是17世纪的一门较重要的科学研究，比如透镜设计要考虑曲线的法线，也就是求切线的问题。第三类是求最值问题，生活和生产中遇到大量求最大值和最小值的问题。第四类问题是求曲线弧长、曲线围成的面积、曲面围成的体积、物体的重心等问题。这些问题也就成了促使微积分产生的时代背景。</p>
+
+<img src="21.bmp">
+
+<p class="picsay">最著名的瞬时速度是飞机超音速的音爆现象。飞机速度接近音速的瞬间，俗称为音障 （Sound Barrier）。在突破音障时，由于机身对空气的压缩无法迅速传播，逐渐在飞机的迎风面积累而形成激波面。在激波面上，声学能量高度集中，会让人感受到短暂而极其强烈的爆炸声，还会伴随音爆云。</p>
+
+<p>这些问题都与一个特殊的困难有关：变量的瞬时变化率。我们知道，速度就是距离与时间之比的变化率，即速度是位置的变化率。在处理变量，也就是连续变化的量时，必须将变化（change）和变化率（rate of change）两者区分开。变量的变化率，强调的是它们正在变化的这一事实。在变量的变化率中，我们还必须将下面两个概念区分开：平均变化率和瞬时变化率。你可能会想到芝诺悖论的飞矢不动说，在一个瞬间，没有这样的速度，因为在一瞬间没有消耗时间，因此不可能有运动。真实情况是，比如每个驾驶汽车的人，在每个瞬间都有一个真实的速度，这是确定无疑的。一般情况下，使用平均速度这一概念就可以了，但当物体以变速运动时，首先就产生了处理瞬间速度的问题。平均速度人们很容易理解，即距离除以时间。但是，人们也清楚地知道，用求平均速度的方法，得不到瞬时速度，因为在一瞬间，物体运动的距离是零，所花的时间也是零，而零除以零是没有意义的。所以，必须找到一种非同寻常的方法，才能成功定义和计算出瞬间速度。当时的科学家们缺乏对瞬时速度的精确清楚的认识，除此之外，也缺乏计算瞬时速度的方法。</p>
+
+<p>人们早已意识到，客观世界的一切事物，小至粒子，大至宇宙，始终都在运动和变化着，因此在数学中引入了变量的概念后，就有可能把运动现象用数学来加以描述了。人们发现，瞬间速度是，当时间间隔趋于零时，平均速度所趋近的那个数值。这样，人们注意到了，瞬时速度不是由距离除以时间的商来定义的，而是引入了平均速度趋近一个数值的思想。人们通过把定义和计算瞬时速度的方法推而广之，可以利用计算在某一时刻的距离与时间变化率相同的数学过程，去计算一个变量对另一个变量的变化率。例如，距离对时间的瞬时变化率是速度，速度对时间的瞬时变化率是加速度。牛顿第二运动定律是物理学中最基本的研究基础，就是一个关于变化率的问题。其内容是：作用于一个物体上的力，等于物体的质量乘以物体运动的加速度。当力已知时，这条定律就成了关于加速度，即关于速度对时间变化率的命题。与瞬时变化率有关的表达式，通常写成方程的形式，它们被称为微分方程。正是通过求解一个著名的微分方程，牛顿很轻易地推导出了开普勒定律。</p>
+
+<img src="22.bmp">
+
+<p class="picsay">导数的几何意义：割线PQ的斜率为平均变化率，当自变量的Δx趋于零时的平均变化率即为P点的瞬时速度，即过该点切线PT的斜率。割线PQ的斜率tgβ=Δy/Δx；切线PT的斜率。</p>
+<p class="picsay"><img src="23.bmp"></p>
+<p>当时，为了处理瞬时速度概念，数学家们已经将空间和时间理想化，正是通过这种理想化，数学不仅仅产生了一个瞬时速度的概念，而且给出了公式，一个变量对另一个变量的瞬时变化率称为导数。导数的概念可以由这样一个物理概念提出：某段无穷小时间内的速度。导数的本质即瞬时变化率，而瞬时变化率是增量的极限。导数的概念在其发展历史上，是夹在速度这个科学上的现象和运动这个哲学上的纯理性概念之间发展的。导数的几何意义体现在曲线上的割线运动，而割线运动时也有一个平均变化率，当对这个平均变化率取极限时，割线就变成了切线，这时割线的平均变化率就是割线与切线重合时的瞬时“速度”，也就是切线的斜率。所以，导数的几何意义就是曲线在某一点的切线的斜率。</p>
+
+<p>刚接触微积分的人会发现，自己的想象力和直觉被局限于瞬间、点和在某个时刻的速度这些抽象概念之中了。19世纪初，导数概念成为基本原理，随着对数和连续性的严格定义，到19世纪后半叶，一个坚实的基础就此完成。为了对连续性的模糊、本能的感觉做出解释，数学家们付出了2500年的努力，最后终于凭借精确的概念达到顶峰，而这些概念的逻辑性定义却表现了超越知觉经验世界的推断。直觉，或者对表面缺乏足够表达的少许经验修定的直接认识，由于深思熟虑研究的结果，终于让位于严格定义的抽象精神概念，科学和数学已经发现后者是有助于思想简洁的宝贵工具。</p>
+
+<p>微积分可以定义为这样一门学科，它处理的是一个变量对另一个相关变量的瞬时变化率概念，这个概念具有各种各样的应用。它可以使我们定义、计算成千上万种具有重要意义、有用的一个变量相对于另一个与其数值有关的变量的变化率。</p>
+
+<p>17世纪下半叶，在前人工作的基础上，英国的牛顿和德国的莱布尼茨分别在自己的国度里独自研究和完成了微积分的创立工作。虽然这只是初步的工作，但他们的最大功绩是把两个貌似毫不相关的问题联系在一起，一个是切线问题（微分学的中心问题），一个是求积问题（积分学的中心问题）。</p>
+
+<p>从距离（作为时间的函数）求瞬时速度的问题以及它的逆问题，不久就被看出是计算一个变量对另一个变量的变化率的问题以及它的逆问题的特例。假定给出了一个变量对另一个变量的变化率，那么反过来，求出关于这两个变量公式的逆过程会发生什么呢？这就是牛顿和莱布尼茨的惊天大发现：微积分基本原理。</p>
+
+
+
+<p style='float:right;'>本页共13段，2320个字符，6799 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

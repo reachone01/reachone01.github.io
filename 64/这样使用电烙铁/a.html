@@ -1,0 +1,469 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+  <p align="left"><strong>这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！ </strong></p>
+
+<p>原创&nbsp;电气自动化应用&nbsp;2019-01-25 20:22:33</p>
+
+<p><strong>[</strong><strong>导读]</strong></p>
+
+<p>1.选用合适的焊锡，应选用焊接电子元件用的低熔点焊锡丝。 </p>
+
+<p>2.助焊剂，用25%的松香溶解在75%的酒精（重量比）中作为助焊剂。 </p>
+
+<p>3.电烙铁使用前要上锡，具体方法是：将电烙铁烧热，待刚刚能熔化焊锡时，涂上助焊剂，再用焊锡均匀地涂在烙铁头上，使烙铁头均匀的吃上一层锡。 </p>
+
+<p>4.焊接方法，把焊盘和元件的引脚用细砂纸打磨干净，涂上助焊剂。用烙铁头沾取适量焊锡，接触焊点，待焊点上的焊锡全部熔化并浸没元件引线头后，电烙铁头沿着元器件的引脚轻轻往上一提离开焊点。</p>
+
+<p>电子制作是一项让制作者既动手又动脑的非常有趣的科技实践活动。电子制作并不神秘，入门也不难。但它既然是一门科学，也就不是马马虎虎、不费气力可以学会的。初学电子制作不仅要学习一些基本的知识，更重要的还要掌握一些最基本的操作技能，这样才能动手进行制作，才能取得预期的效果。</p>
+
+<p>大家都知道，在电子制作中，元器件必须依靠焊接，才能有可靠的电气连接，并得到支撑和固定。焊接是电子爱好者对焊锡工艺的称呼，焊接的过程就是用电烙铁使焊料（焊锡）熔化，并借助焊剂（如松香）的作用，将电子元器件的端点与导线或印制电路板等牢固地结合在一起。对焊点的要求是连接可靠、导电大家知道，在电子制作中，各个良好、光洁美观。</p>
+
+<p><img width="640" height="426" src="a_clip_image001.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><strong>电烙铁焊接的技巧与方法：电烙铁分为哪几种类型：</strong></p>
+
+<p><strong>外热式电烙铁</strong></p>
+
+<p>烙铁头在发热芯里面，又叫普通电烙铁。焊接普通的产品，对温度没什么要求用外热式电烙铁。由于发热电阻丝在烙铁头的外面，有大部分的热散发到外部空间，所以加热效率低，加热速度较缓慢。优点是发热快，不易受潮漏电、手柄温升低，手感轻巧。适合焊接体积较大，不易加热焊接的大型期间。</p>
+
+<p><strong>内热式电烙铁</strong></p>
+
+<p>内热式电烙铁所用的烙铁头形状是空心筒状，发热元件被烙铁头套着，这样它的热量就不容易散发到空气中去，所以热利用效率较高，预热时间较短，而功率一般也不用做太大即可满足要求，一般内热功率在50 W以下，常见20～30 W左右的内热式电烙铁。有单支手柄的，也有焊台的。</p>
+
+<p><img width="640" height="417" src="a_clip_image002.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><strong>电烙铁焊接的技巧与方法：电烙铁焊接的要求：</strong></p>
+
+<p>要求焊点光滑圆润，不能有“虚焊”，焊锡的量要适中，不能过多或过少。使用电烙铁时，对不同大小的焊件（比如是电子元器件或者是一些比电子元器件大的东西）要使用不同功率的电烙铁；在对元器件进行焊接时，根据情况可先对其进行焊接处打磨，除去表面的氧化层或保护膜，再先上一次锡，以防止正式焊接时由于不容易上锡而造成虚焊。对元器件焊接时，如果  表面有污物或渣类物体，可沾些松香等进行“去污”，保证上锡可靠。焊接电子元器件时，烙铁接触元器件的时间应该越短越好，只要保证能焊牢就行，看到焊锡在元器件处即焊点处均匀融化开（即不是一个“珠状物”，而是均匀淌开），就应该立即移走烙铁，使其冷却；一个电子元器件的焊点，最好能保证在3--5秒内焊接完毕。 总之，具体操作是要靠不断的练习才能使焊接技术不断提高的。</p>
+
+<p><img width="640" height="410" src="a_clip_image003.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><strong>电烙铁焊接的技巧与方法：如何正确使用电烙铁：</strong></p>
+
+<p>焊接技术是一项无线电爱好者必须掌握的基本技术，需要多多练习才能熟练掌握。</p>
+
+<p>1.选用合适的焊锡，应选用焊接电子元件用的低熔点焊锡丝。</p>
+
+<p>2.助焊剂，用25%的松香溶解在75%的酒精（重量比）中作为助焊剂。</p>
+
+<p>3.电烙铁使用前要上锡，具体方法是：将电烙铁烧热，待刚刚能熔化焊锡时，涂上助焊剂，再用焊锡均匀地涂在烙铁头上，使烙铁头均匀的吃上一层锡。</p>
+
+<p>4.焊接方法，把焊盘和元件的引脚用细砂纸打磨干净，涂上助焊剂。用烙铁头沾取适量焊锡，接触焊点，待焊点上的焊锡全部熔化并浸没元件引线头后，电烙铁头沿着元器件的引脚轻轻往上一提离开焊点。</p>
+
+<p>5.焊接时间不宜过长，否则容易烫坏元件，必要时可用镊子夹住管脚帮助散热。</p>
+
+<p>6.焊点应呈正弦波峰形状，表面应光亮圆滑，无锡刺，锡量适中。</p>
+
+<p>7.焊接完成后，要用酒精把线路板上残余的助焊剂清洗干净，以防炭化后的助焊剂影响电路正常工作。</p>
+
+<p>8.集成电路应最后焊接，电烙铁要可靠接地，或断电后利用余热焊接。或者使用集成电路专用插座，焊好插座后再把集成电路插上去。</p>
+
+<p>9.电烙铁应放在烙铁架上。</p>
+
+<p><strong>电烙铁焊接的技巧与方法：针对不同的电子元器件焊接要注意什么？</strong></p>
+
+<p>针脚式元器件的焊接：用电烙铁和焊锡丝在适当的位置点化形成水滴状的焊滴，在焊放阵脚元件时，要先将元件管脚选择合适的长度，这点可以根据元件自身的封装。点锡的过程是先将电烙铁放在焊盘上，然后将焊锡丝靠近焊盘，觉得锡量合适了先将焊锡丝移开，是焊锡成水滴状后将电烙铁移开，注意：不宜在焊盘上放置太多的焊锡。最后再将长的管脚线剪掉即可。</p>
+
+<p>贴片式元器件用电烙铁焊接：先在焊盘上涂少量的焊锡，（如果是扁平的元器件可以多放些焊锡这样可以避免最后再补锡，但要是比较厚的元件象电容、发光二极管等可以考虑先放少量的焊锡感觉能将元件焊住即可，最后在进行补锡，以防元件焊的不够牢固）然后用电烙铁和镊子先固定元件的一端，确定元件没有偏，然后再点化另一端焊盘使元件固定，要想使元件与电路板紧贴，可以先用电烙铁点化第一端的焊锡，瞬间点化另一端的焊锡并用镊子往下压（这种方法适合型号大点的贴片电阻）。</p>
+
+<p>焊接集成芯片式贴片元件时，先在芯片各个管脚焊盘上点少量的焊锡，然后将芯片放上，确定好位置先将芯片的对角两端固定，如果固定的有偏置可以拿掉再重新固定，没有问题可以将其他的管脚先于本来焊盘上的焊锡相连接，最后根据需要再给各个管脚加少量的焊锡以使更加固定没有悬空。最后用镊子检查一下是否有没有焊上的管脚。</p>
+
+<p><img width="512" height="341" src="a_clip_image004.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><strong>电烙铁焊接的技巧与方法：图解电烙铁焊接原理：</strong></p>
+
+<p><img width="498" height="411" src="a_clip_image005.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p>是很有用的技能。</p>
+
+<p><img width="495" height="409" src="a_clip_image006.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p>这是一个电烙铁。</p>
+
+<p>它的尖端有足够的热量去熔化</p>
+
+<p>金属的焊接材料。</p>
+
+<p>它的温度大概有200度C！</p>
+
+<p><img width="499" height="411" src="a_clip_image007.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="495" height="412" src="a_clip_image008.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="492" height="412" src="a_clip_image009.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="498" height="411" src="a_clip_image010.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="496" height="412" src="a_clip_image011.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="496" height="408" src="a_clip_image012.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="500" height="414" src="a_clip_image013.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="498" height="415" src="a_clip_image014.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="496" height="409" src="a_clip_image015.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="496" height="405" src="a_clip_image016.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="499" height="408" src="a_clip_image017.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="496" height="408" src="a_clip_image018.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="497" height="412" src="a_clip_image019.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="497" height="410" src="a_clip_image020.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="497" height="409" src="a_clip_image021.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /></p>
+
+<p><img width="497" height="410" src="a_clip_image022.jpg" alt="这样使用电烙铁，你也可以成为电子高手！电子制作必看常识！" /> </p>
+  <div>
+    <p align="left">不太认同你的一些观点。</p>
+
+<p>1.现在提倡使用无铅焊锡，尽量不要使用低熔点的有铅焊锡。</p>
+
+<p>2.助焊剂多种多样，酒精松香是比较好的，但是如果不是老旧的元件，没有必要用酒精，因为溶液粘性大，不好处理。就算用酒精，我也会把酒精松香放室外晾干，内部只存在少量酒精（焊接的时候可以明显闻到气味），就足以利用酒精的还原性了。</p>
+
+<p>3.烙铁通电后就应该立刻往松香上碰（而不是能化锡再去），尽早融化松香保护烙铁头。开始使用的时候在高温海绵上擦掉松香。</p>
+
+<p>4.焊接完成后应该用洗板水洗或者异丙醇擦掉助焊剂，用酒精会留下白色痕迹。</p>
+
+<p>5.图片里面说锡60%，铅40%是错的。通常有铅焊锡的锡铅含量分别是63%、37%。 </p>
+  </div>
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换
+\s*</p>
+
+<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+
+
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+\s*</p>\s*
+\s*<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+
+4 把第和章两个字去掉
+第(\S*)章
+------------------
+$1
+_____________________________________________________________________________________
+
+7 正则表达式参考：
+https://www.toutiao.com/i6370960744082571778/
+_____________________________________________________________________________________
+
+8
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+9 将标注序号更改为上标，红色，需一个个替换，英文html中有[1]
+(\[\d\])
+------------------
+<sup>$1</sup>
+_____________________________________________________________________________________
+10 替换章不是以1-9。?！…”“结尾的段落
+([^1-90。?！…”：？“章])</p>
+<p>
+------------------
+$1
+-->
+
+

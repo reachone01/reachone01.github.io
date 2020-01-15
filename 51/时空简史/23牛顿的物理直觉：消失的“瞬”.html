@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>23牛顿的物理直觉：消失的“瞬”</h4>
+
+<p>第一个有效解决一般变化率问题的是牛顿。牛顿在研究经典力学规律和万有引力定律时，遇到了一些无法解决的数学问题。这些数学问题用欧几里得几何学和16世纪的代数学是无法解决的，因此牛顿着手研究新的求曲率、面积、曲线的长度、重心、最大最小值等问题的方法——流数法。</p>
+
+<img src="24.bmp">
+
+<p class="picsay">给x一个无限小的增量o，称为x的瞬（moment），面积Z相应也有一个无限小的增量oy。1669年，牛顿通过研究任意一条曲线下的面积发现，原来面积的变化率正是曲线本身，即通过求曲线下面积的变化率的逆过程，可以得到曲线下的面积。</p>
+
+<p>在17世纪中期，计算曲线下的面积是一个热门的话题。英语中“积分”的含义就是求面积。1669年，牛顿通过研究任意一条曲线下的面积发现，原来面积的变化率正是曲线本身，即通过求曲线下面积的变化率的逆过程，可以得到曲线下的面积。在《运用无穷多项方程的分析学》这本小册子里，牛顿不仅给出了求一个变量对于另一个变量的瞬时变化率的普遍方法，而且证明了面积可以由求变化率的逆过程得到。面积是用无穷小面积的和来表示的，牛顿证明了这样的和能由求变化率的逆过程得到（更精确地说，和的极限能够由反微分得到）。这个事实就是我们现在所讲的微积分基本定理。他认为变量是连续运动产生的，他把变量叫作流，变量的变化率叫作流数。牛顿更清楚地陈述了微积分的基本问题：已知两个流之间的关系，求它们流数之间的关系，以及它的逆问题。这里“牛顿使用的是无穷小方法，把变量的无限小增量叫作‘瞬’，瞬是无穷小量，是不可分量，或是微元，牛顿通过舍弃‘瞬’求得变化率”。</p>
+
+<p>牛顿的微积分原理的实质可用运动的例子来说明。运动正是微积分第一个得以应用的问题，静止被认为是无穷的逼近。牛顿当时有了一个新的思想，一个变化的思想，即变量的数学。而且，他已经领悟到了数列的极限的思想。牛顿的思想是这样提出来的：假定有一条曲线，曲线与坐标轴及直线x=x围成的面积为Z（图2.3），Z是x的函数，Z=axm。其中m是整数或分数。给x一个无限小的增量o，称为x的瞬（moment），相应的面积Z也有一个无限小的增量oy，于是Z+oy=a（x+o）m。将右端用牛顿二项式展开（二项式展开也是牛顿发明的），略去含o的各项，得到y=amxm-1。这就是说，面积Z在任意点x的变化率即曲线在x处的y值。反过来，如果曲线是y=amxm-1，那么，由它与坐标轴和x=x围成的面积就是Z=axm。显然，这一方法正着用就是求导数，反着用就是求积分。</p>
+
+<img src="25.bmp">
+
+<p class="picsay">过去被看成无限小面积之和的面积能够通过一点的变化率由微分（求导数）的逆过程得到，这一事实就是我们现在所说的微积分基本定理。曲线方程y=f（x）；曲线下面积F（x）=∫f（x）dx；面积F（x）的变化率（导数=切线的斜率，即曲线函数本身）F（x）=f（x）；所以，微积分基本定理：。</p>
+<img src="26.bmp">
+
+
+<p>牛顿提出的这种思想有两个新的内容，第一个是通过考虑在x点处的面积的瞬时增量得出面积的表达式，而不采取过去的那种用无限小面积之和来求面积的表达式的方法，也就是说，牛顿把确定变化率作为基本的步骤，换言之，以导数作为基本概念来定义积分。第二点，他证明了过去被看成无限小面积之和的面积能够通过一点的变化率由微分（求导数）的逆过程得到，这一事实就是我们现在所说的微积分基本定理。</p>
+
+<p>实际上，在牛顿之前，伽利略已经看到在速度-时间的图形下的面积就是距离。因为距离的变化率必定是速度，所以如果把面积看作“和”，它的变化率必定是面积函数的导数。但是，包括牛顿的教师、数学家巴罗和法国大数学家费马在内的一些顶级数学家，没能看到这个特例中所包含的放之四海而皆准的普遍意义。</p>
+
+<p>牛顿在流数中所提出的中心问题是：已知连续运动的路径，求给定时刻的速度（微分法）；已知运动的速度求给定时间内经过的路程（积分法）。牛顿的微积分用了一个由瞬时组成的时间的概念，这些瞬时就好像实数系里的数那样“汇集在一起”。牛顿对微积分的探讨，用了可以说是无穷小的方法，瞬是无限小的量，不可分的量，或者是微元。但是，牛顿的这种方法中有一个重要的逻辑问题：瞬是什么！他说瞬是一个无限小量，不可分的量，但什么叫“无限小”是没有定义的。而且，他在前面所述的计算中用瞬o去除一个等式的两边，这显然就是说它不为零；可接着，他又略去了含o的所有的项，这又把瞬看作零。在同一个运算中瞬既是零又不是零，显然在逻辑上是说不通的。牛顿本人也觉察到这一点，他说他提供的方法“与其说是精确的证明，不如说是简短的说明”。后来，他又多次改进自己的方法，不过始终未能解决这个逻辑问题，这为第二次数学危机埋下了伏笔。</p>
+
+<p>牛顿在他的《流数法和无穷级数》这本书里指出，变量是由点、线、面的连续运动产生的，否定了以前自己认为的变量是无穷小元素的静止集合。在深入研究的过程中，牛顿还提出一系列新的思想观念和方法，例如“连续”的观念。牛顿认为变量是由点、线和面的连续运动产生的，而不是他早期所说的无穷小元素的静止的集合。他把连续变量叫作“流”（fluent），把流量的变化率叫作“流数”（fluxion），也就是现在的导数。这样，微积分的基本问题就是：已知两个流之间的关系，求它们的流数之间的关系，以及其逆问题。牛顿用o表示“无穷小的时间间隔”，认为变量是随时间变化的。</p>
+
+<p>牛顿在他的第三篇微积分论文《求曲边形的面积》中，已经引出了导数的概念，而且把考察对象由两个变量构成的方程转向关于一个变量的函数。在书中，牛顿没有把无穷小量引入微积分。他在序言中明确指出：“数学的量并不是由非常小的部分组成的，而是用连续的运动来描述的。直线不是一部分一部分地连接，而是由点的连续运动画出的，因而是这样生成的；面是由线的运动，体是由面的运动，角是由边的旋转，时间段落是由连续的流动生成的。”在这种“动点成线，动线成面，动面成体”的思想指导下，牛顿放弃了无穷小的概念，代之以最初比和最后比的概念。牛顿提出“连续”运动的思想和使一个量小到“比任何一个指定的量都小”的思想是极其深刻的。</p>
+
+<p>牛顿对运动的认识在圆中的体现就是，古代求圆面积的穷竭法，可看作一串数列（面积）的运动变化，而这种数列（面积）运动变化的最终结果一定是我们所求的圆面积，或称数列的极限。这是牛顿发现微积分的一个重要思想突破。他通过向穷竭法中注入运动的思想，概括了无穷的逼近最终将会得到最精确的面积，把无穷的概念发展到了极限。牛顿在他的名著《自然哲学之数学原理》一书中，明确表述了他的极限思想。他说：“量消失时的最后的比，不真的是最后量的比，而是无止境减少的量的比必定向之收敛的极限，比值可以小于任何给定的差向该极限趋近，绝不会超过，实际上也不会到达，直到这些量无限减少。……我论及最小的、将消失的，或最后的量，读者不要以为是在指确定大小的量，而是指做无止境减小的量。”</p>
+
+<p>牛顿不仅把圆面积的数列思想发展出来，同时还把这一思想放在坐标体系当中。16世纪笛卡尔发明了坐标系，利用坐标可以把代数和几何结合起来，发展出解析几何，代数的几何化以及几何的代数化，一元二次方程或者一个方程两个未知数。把代数方程几何化后，就可以在坐标中呈现出直觉的曲线族（直线族）。那时在求曲线的过程中，发现一个很重要的问题，也是人们当时求圆面积外切多边形的时候找切线，结果发现所求对应的切线，正是一个直角三角形两直角边的比值。一个比值的极限，就变成了切线。在初等数学当中，牛顿发现了微分的思想。零分之零是不定形。从抽象的角度来讲，这种不定形是看不见的，但在具体问题当中，这种微分是存在的。所以后来就有人把其理论化，变成了19世纪的柯西极限准则。该准则专门研究存在极限的数列本身有什么特点。但在我们学习极限的过程中，给人造成一种错觉，好像是研究极限要先了解柯西准则，而实际上在数学历史长河中，人们是先认识了极限才总结出了准则。</p>
+
+<p>牛顿是在其力学研究中得到这些数学成果的，它们明显带有力学的痕迹。他在对天体力学研究中还开创了微分方程的研究。牛顿应用其流数法解决了诸如二体引力、瞬时速度、曲线的切线、函数的极大值和极小值、曲线的长度和曲线围成的面积等。所以，牛顿综合、概括了当时的研究成果。1687年，牛顿发表了它的划时代的科学名著《自然哲学之数学原理》并在书中进一步总结了微积分、万有引力定律和牛顿运动三大定律，这三大定律确确实实纠正了毕达哥拉斯以来很多错误的概念。他所提出的绝对时间和绝对空间，以及运动变化的思想，是对凝固不变的二维空间思考方法的一个重大挑战，使人类对时空观的认识从平面进入立体空间这样一个崭新的抽象思维领域。</p>
+
+<p>牛顿的创造和发现代表了人类智力成果的最高成就。牛顿在西方思想史上具有举足轻重的地位，爱因斯坦曾充满敬意地说：“牛顿……你所发现的道路在你的那个时代是一位具有最高思维能力和创造能力的人所发现的唯一道路，你所创造的概念即使在今天仍然指导着我们的物理学思想。”</p>
+
+
+
+<p style='float:right;'>本页共17段，3637个字符，10609 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

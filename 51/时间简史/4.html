@@ -1,0 +1,476 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>第四章　不确定性原理 </title>
+
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.body.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000">红色</option><option value="#006600">绿色</option><option value="#0000ff">蓝色</option><option value="#660000">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+
+
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+
+
+padding-bottom:5px;
+}
+
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="container">
+<h3></h3>
+<div class="layout">
+<p>CHAPTER 4 THE UNCERTAINTY PRINCIPLE </p>
+
+<p>第四章　不确定性原理</p>
+</div>
+<div class="layout">
+<p>The success of scientific theories, particularly Newton’s theory of gravity, led the French scientist the Marquis de Laplace at the beginning of the nineteenth century to argue that the universe was completely deterministic. Laplace suggested that there should be a set of scientific laws that would allow us to predict everything that would happen in the universe, if only we knew the complete state of the universe at one time. For example, if we knew the positions and speeds of the sun and the planets at one time, then we could use Newton’s laws to calculate the state of the Solar System at any other time. Determinism seems fairly obvious in this case, but Laplace went further to assume that there were similar laws governing everything else, including human behavior.</p>
+
+<p>科学理论，特别是牛顿引力论的成功，使得法国科学家拉普拉斯侯爵在19世纪初论断，宇宙是完全被决定的。他认为存在一组科学定律，只要我们完全知道宇宙在某一时刻的状态，我们便能依此预言宇宙中将会发生的任一事件。例如，假定我们知道某一个时刻的太阳和行星的位置和速度，则可用牛顿定律计算出在任何其他时刻的太阳系的状态。这种情形下的宿命论是显而易见的，但拉普拉斯进一步假定存在着某些定律，它们类似地制约其他每一件东西，包括人类的行为。</p>
+</div>
+
+<div class="layout">
+<p>>The doctrine of scientific determinism was strongly resisted by many people, who felt that it infringed God’s freedom to intervene in the world, but it remained the standard assumption of science until the early years of this century. One of the first indications that this belief would have to be abandoned came when calculations by the British scientists Lord Rayleigh and Sir James Jeans suggested that a hot object, or body, such as a star, must radiate energy at an infinite rate. According to the laws we believed at the time, a hot body ought to give off electromagnetic waves (such as radio waves, visible light, or X rays) equally at all frequencies. For example, a hot body should radiate the same amount of energy in waves with frequencies between one and two million million waves a second as in waves with frequencies between two and three million million waves a second. Now since the number of waves a second is unlimited, this would mean that the total energy radiated would be infinite.</p>
+<p>很多人强烈地抵制这种科学宿命论的教义，他们感到这侵犯了上帝干涉世界的自由。但直到本世纪初，这种观念仍被认为是科学的标准假定。这种信念必须被抛弃的一个最初的征兆，是由英国科学家瑞利勋爵和詹姆斯·金斯爵士所做的计算，他们指出一个热的物体——例如恒星——必须以无限大的速率辐射出能量。按照当时我们所相信的定律，一个热体必须在所有的频段同等地发出电磁波（诸如无线电波、可见光或X射线）。例如，一个热体在1万亿赫兹到2万亿赫兹频率之间发出和在2万亿赫兹到3万亿赫兹频率之间同样能量的波。而既然波的频谱是无限的，这意味着辐射出的总能量必须是无限的。</p>
+</div>
+
+<div class="layout">
+<p>>In order to avoid this obviously ridiculous result, the German scientist Max Planck suggested in 1900 that light, X rays, and other waves could not be emitted at an arbitrary rate, but only in certain packets that he called quanta. Moreover, each quantum had a certain amount of energy that was greater the higher the frequency of the waves, so at a high enough frequency the emission of a single quantum would require more energy than was available. Thus the radiation at high frequencies would be reduced, and so the rate at which the body lost energy would be finite.</p>
+
+<p>为了避免这显然荒谬的结果，德国科学家马克斯·普郎克在1900年提出，光波、X射线和其他波不能以任意的速率辐射，而必须以某种称为量子的形式发射。并且，每个量子具有确定的能量，波的频率越高，其能量越大。这样，在足够高的频率下，辐射单独量子所需要的能量比所能得到的还要多。因此，在高频下辐射被减少了，物体丧失能量的速率变成有限的了。</p>
+</div>
+
+<div class="layout">
+<p>>The quantum hypothesis explained the observed rate of emission of radiation from hot bodies very well, but its implications for determinism were not realized until 1926, when another German scientist, Werner Heisenberg, formulated his famous uncertainty principle. In order to predict the future position and velocity of a particle, one has to be able to measure its present position and velocity accurately. The obvious way to do this is to shine light on the particle. Some of the waves of light will be scattered by the particle and this will indicate its position. However, one will not be able to determine the position of the particle more accurately than the distance between the wave crests of light, so one needs to use light of a short wavelength in order to measure the position of the particle precisely. Now, by Planck’s quantum hypothesis, one cannot use an arbitrarily small amount of light; one has to use at least one quantum. This quantum will disturb the particle and change its velocity in a way that cannot be predicted. moreover, the more accurately one measures the position, the shorter the wavelength of the light that one needs and hence the higher the energy of a single quantum. So the velocity of the particle will be disturbed by a larger amount. In other words, the more accurately you try to measure the position of the particle, the less accurately you can measure its speed, and vice versa. Heisenberg showed that the uncertainty in the position of the particle times the uncertainty in its velocity times the mass of the particle can never be smaller than a certain quantity, which is known as Planck’s constant. Moreover, this limit does not depend on the way in which one tries to measure the position or velocity of the particle, or on the type of particle: Heisenberg’s uncertainty principle is a fundamental, inescapable property of the world.</p>
+<p>量子假设可以非常好地解释所观测到的热体的发射率，但直到1926年另一个德国科学家威纳·海森堡提出著名的不确定性原理之后，它对宿命论的含义才被意识到。为了预言一个粒子未来的位置和速度，人们必须能准确地测量它现在的位置和速度。显而易见的办法是将光照到这粒子上，一部分光波被此粒子散射开来，由此指明它的位置。然而，人们不可能将粒子的位置确定到比光的两个波峰之间距离更小的程度，所以必须用短波长的光来测量粒子的位置。现在，由普郎克的量子假设，人们不能用任意少的光的数量，至少要用一个光量子。这量子会扰动这粒子，并以一种不能预见的方式改变粒子的速度。而且，位置测量得越准确，所需的波长就越短，单独量子的能量就越大，这样粒子的速度就被扰动得越厉害。换言之，你对粒子的位置测量得越准确，你对速度的测量就越不准确，反之亦然。海森堡指出，粒子位置的不确定性乘上粒子质量再乘以速度的不确定性不能小于一个确定量——普郎克常数。并且，这个极限既不依赖于测量粒子位置和速度的方法，也不依赖于粒子的种类。海森堡不确定性原理是世界的一个基本的不可回避的性质。</p>
+</div>
+
+<div class="layout">
+<p>>The uncertainty principle had profound implications for the way in which we view the world. Even after more than seventy years they have not been fully appreciated by many philosophers, and are still the subject of much controversy. The uncertainty principle signaled an end to Laplace’s dream of a theory of science, a model of the universe that would be completely deterministic: one certainly cannot predict future events exactly if one cannot even measure the present state of the universe precisely! We could still imagine that there is a set of laws that determine events completely for some supernatural being, who could observe the present state of the universe without disturbing it. However, such models of the universe are not of much interest to us ordinary mortals. It seems better to employ the principle of economy known as Occam’s razor and cut out all the features of the theory that cannot be observed. This approach led Heisenberg, Erwin Schrodinger, and Paul Dirac in the 1920s to reformulate mechanics into a new theory called quantum mechanics, based on the uncertainty principle. In this theory particles no longer had separate, well-defined positions and velocities that could not be observed, Instead, they had a quantum state, which was a combination of position and velocity.</p>
+
+<p>不确定性原理对我们世界观有非常深远的影响。甚至到了50多年之后，它还不为许多哲学家所鉴赏，仍然是许多争议的主题。不确定性原理使拉普拉斯科学理论，即一个完全宿命论的宇宙模型的梦想寿终正寝：如果人们甚至不能准确地测量宇宙的现在的态，就肯定不能准确地预言将来的事件了！我们仍然可以想像，对于一些超自然的生物，存在一组完全地决定事件的定律，这些生物能够不干扰宇宙地观测它现在的状态。然而，对于我们这些芸芸众生而言，这样的宇宙模型并没有太多的兴趣。看来，最好是采用称为奥铿剃刀的经济学原理，将理论中不能被观测到的所有特征都割除掉。20世纪20年代。在不确定性原理的基础上，海森堡、厄文·薛定谔和保尔·狄拉克运用这种手段将力学重新表达成称为量子力学的新理论。在此理论中，粒子不再有分别被很好定义的、能被同时观测的位置和速度，而代之以位置和速度的结合物的量子态。</p>
+</div>
+
+<div class="layout">
+<p>>In general, quantum mechanics does not predict a single definite result for an observation. Instead, it predicts a number of different possible outcomes and tells us how likely each of these is. That is to say, if one made the same measurement on a large number of similar systems, each of which started off in the same way, one would find that the result of the measurement would be A in a certain number of cases, B in a different number, and so on. One could predict the approximate number of times that the result would be A or B, but one could not predict the specific result of an individual measurement. Quantum mechanics therefore introduces an unavoidable element of unpredictability or randomness into science. Einstein objected to this very strongly, despite the important role he had played in the development of these ideas. Einstein was awarded the Nobel Prize for his contribution to quantum theory. Nevertheless, Einstein never accepted that the universe was governed by chance; his feelings were summed up in his famous statement “God does not play dice.” Most other scientists, however, were willing to accept quantum mechanics because it agreed perfectly with experiment. Indeed, it has been an outstandingly successful theory and underlies nearly all of modern science and technology. It governs the behavior of transistors and integrated circuits, which are the essential components of electronic devices such as televisions and computers, and is also the basis of modern chemistry and biology. The only areas of physical science into which quantum mechanics has not yet been properly incorporated are gravity and the large-scale structure of the universe.</p>
+<p>一般而言，量子力学并不对一次观测预言一个单独的确定结果。代之，它预言一组不同的可能发生的结果，并告诉我们每个结果出现的概率。也就是说，如果我们对大量的类似的系统作同样的测量，每一个系统以同样的方式起始，我们将会找到测量的结果为A出现一定的次数，为B出现另一不同的次数等等。人们可以预言结果为A或B的出现的次数的近似值，但不能对个别测量的特定结果作出预言。因而量子力学为科学引进了不可避免的非预见性或偶然性。尽管爱因斯坦在发展这些观念时起了很大作用，但他非常强烈地反对这些。他之所以得到诺贝尔奖就是因为对量子理论的贡献。即使这样，他也从不接受宇宙受机遇控制的观点；他的感觉可表达成他著名的断言：“上帝不玩弄骰子。”然而，大多数其他科学家愿意接受量子力学，因为它和实验符合得很完美。它的的确确成为一个极其成功的理论，并成为几乎所有现代科学技术的基础。它制约着晶体管和集成电路的行为，而这些正是电子设备诸如电视、计算机的基本元件。它并且是现代化学和生物学的基础。物理科学未让量子力学进入的唯一领域是引力和宇宙的大尺度结构。</p>
+</div>
+
+<div class="layout">
+<p>Although light is made up of waves, Planck’s quantum hypothesis tells us that in some ways it behaves as if it were composed of particles: it can be emitted or absorbed only in packets, or quanta. Equally, Heisenberg’s uncertainty principle implies that particles behave in some respects like waves: they do not have a definite position but are “smeared out” with a certain probability distribution. The theory of quantum mechanics is based on an entirely new type of mathematics that no longer describes the real world in terms of particles and waves; it is only the observations of the world that may be described in those terms. There is thus a duality between waves and particles in quantum mechanics: for some purposes it is helpful to think of particles as waves and for other purposes it is better to think of waves as particles. An important consequence of this is that one can observe what is called interference between two sets of waves or particles. That is to say, the crests of one set of waves may coincide with the troughs of the other set. The two sets of waves then cancel each other out rather than adding up to a stronger wave as one might expect Figure 4:1.</p>
+
+<p>虽然光是由波组成的，普郎克的量子假设告诉我们，在某些方面，它的行为似乎显现出它是由粒子组成的——它只能以量子的形式被发射或吸收。同样地，海森堡的不确定性原理意味着，粒子在某些方面的行为像波一样：它们没有确定的位置，而是被“抹平”成一定的几率分布。量子力学的理论是基于一个全新的数学基础之上，不再按照粒子和波动来描述实际的世界；而只不过利用这些术语，来描述对世界的观测而已。所以，在量子力学中存在着波动和粒子的二重性：为了某些目的将波动想像成为粒子是有助的，反之亦然。这导致一个很重要的后果，人们可以观察到两组波或粒子的所谓的干涉，也就是一束波的波峰可以和另一束波的波谷相重合。这两束波互相抵消，而不是像人们预料的那样，迭加在一起形成更强的波（图 4.1）。</p>
+<img src="401.png" style="display:block" />
+</div>
+
+<div class="layout">
+<p>A familiar example of interference in the case of light is the colors that are often seen in soap bubbles. These are caused by reflection of light from the two sides of the thin film of water forming the bubble. White light consists of light waves of all different wavelengths, or colors, For certain wavelengths the crests of the waves reflected from one side of the soap film coincide with the troughs reflected from the other side. The colors corresponding to these wavelengths are absent from the reflected light, which therefore appears to be colored. Interference can also occur for particles, because of the duality introduced by quantum mechanics. A famous example is the so-called two-slit experiment Figure 4:2.</p>
+<p>一个熟知的光的干涉的例子是，肥皂泡上经常能看到颜色。这是因为从形成泡沫的很薄的水膜的两边反射回来的光互相干涉而引起的。白光含有所有不同波长或颜色的光波，从水膜一边反射回来的具有一定波长的波的波峰和从另一边反射的波谷相重合时，对应于此波长的颜色就不在反射光中出现，所以反射光就显得五彩缤纷。由于量子力学引进的二重性，粒子也会产生干涉。一个著名的例子即是所谓的双缝实验（图4.2）。</p>
+
+<img src="402.png" />
+</div>
+
+<div class="layout">
+<p>Consider a partition with two narrow parallel slits in it. On one side of the partition one places a source of fight of a particular color (that is, of a particular wavelength). Most of the light will hit the partition, but a small amount will go through the slits. Now suppose one places a screen on the far side of the partition from the light. Any point on the screen will receive waves from the two slits. However, in general, the distance the light has to travel from the source to the screen via the two slits will be different. This will mean that the waves from the slits will not be in phase with each other when they arrive at the screen: in some places the waves will cancel each other out, and in others they will reinforce each other. The result is a characteristic pattern of light and dark fringes.</p>
+<p>一个带有两个平行狭缝的隔板，在它的一边放上一个特定颜色（即特定波长）的光源。大部分光都射在隔板上，但是一小部分光通过这两条缝。现在假定将一个屏幕放到隔板的另一边。屏幕上的任何一点都能接收到两个缝来的波。然而，一般来说，光从光源通过这两个狭缝传到屏幕上的距离是不同的。这表明，从狭缝来的光到达屏幕之时不再是同位相的：有些地方波动互相抵消，其他地方它们互相加强，结果形成有亮暗条纹的特征花样。</p>
+</div>
+
+<div class="layout">
+<p>>The remarkable thing is that one gets exactly the same kind of fringes if one replaces the source of light by a source of particles such as electrons with a definite speed (this means that the corresponding waves have a definite length). It seems the more peculiar because if one only has one slit, one does not get any fringes, just a uniform distribution of electrons across the screen. One might therefore think that opening another slit would just increase the number of electrons hitting each point of the screen, but, because of interference, it actually decreases it in some places. If electrons are sent through the slits one at a time, one would expect each to pass through one slit or the other, and so behave just as if the slit it passed through were the only one there – giving a uniform distribution on the screen. In reality, however, even when the electrons are sent one at a time, the fringes still appear. Each electron, therefore, must be passing through both slits at the same time!</p>
+
+<p>非常令人惊异的是，如果将光源换成粒子源，譬如具有一定速度（这表明其对应的波有同样的波长）的电子束，人们得到完全同样类型的条纹。这显得更为古怪，因为如果只有一条裂缝，则得不到任何条纹，只不过是电子通过这屏幕的均匀分布。人们因此可能会想到，另开一条缝只不过是打到屏幕上每一点的电子数目增加而已。但是，实际上由于干涉，在某些地方反而减少了。如果在一个时刻只有一个电子被发出通过狭缝，人们会以为，每个电子只穿过其中的一条缝，这样它的行为正如同另一个狭缝不存在时一样——屏幕会给出一个均匀的分布。然而，实际上即使电子是一个一个地发出，条纹仍然出现，所以每个电子必须在同一时刻通过两个小缝！</p>
+</div>
+
+<div class="layout">
+<p>>The phenomenon of interference between particles has been crucial to our understanding of the structure of atoms, the basic units of chemistry and biology and the building blocks out of which we, and everything around us, are made. At the beginning of this century it was thought that atoms were rather like the planets orbiting the sun, with electrons (particles of negative electricity) orbiting around a central nucleus, which carried positive electricity. The attraction between the positive and negative electricity was supposed to keep the electrons in their orbits in the same way that the gravitational attraction between the sun and the planets keeps the planets in their orbits. The trouble with this was that the laws of mechanics and electricity, before quantum mechanics, predicted that the electrons would lose energy and so spiral inward until they collided with the nucleus. This would mean that the atom, and indeed all matter, should rapidly collapse to a state of very high density. A partial solution to this problem was found by the Danish scientist Niels Bohr in 1913. He suggested that maybe the electrons were not able to orbit at just any distance from the central nucleus but only at certain specified distances. If one also supposed that only one or two electrons could orbit at any one of these distances, this would solve the problem of the collapse of the atom, because the electrons could not spiral in any farther than to fill up the orbits with e least distances and energies.</p>
+<p>粒子间的干涉现象，对于我们理解作为化学和生物以及由之构成我们和我们周围的所有东西的基本单元的原子的结构是关键的。在本世纪初，人们认为原子和行星绕着太阳公转相当类似，在这儿电子（带负电荷的粒子）绕着带正电荷的中心的核转动。正电荷和负电荷之间的吸引力被认为是用以维持电子的轨道，正如同行星和太阳之间的万有引力用以维持行星的轨道一样。麻烦在于，在量子力学之前，力学和电学的定律预言，电子会失去能量并以螺旋线的轨道落向并最终撞击到核上去。这表明原子（实际上所有的物质）都会很快地坍缩成一种非常紧密的状态。丹麦科学家尼尔斯·玻尔在1913年，为此问题找到了部分的解答。他认为，也许电子不能允许在离中心核任意远的地方，而只允许在一些指定的距离处公转。如果我们再假定，只有一个或两个电子能在这些距离上的任一轨道上公转，那就解决了原子坍缩的问题。因为电子除了充满最小距离和最小能量的轨道外，不能进一步作螺旋运动向核靠近。</p>
+</div>
+
+<div class="layout">
+<p>>This model explained quite well the structure of the simplest atom, hydrogen, which has only one electron orbiting around the nucleus. But it was not clear how one ought to extend it to more complicated atoms. Moreover, the idea of a limited set of allowed orbits seemed very arbitrary. The new theory of quantum mechanics resolved this difficulty. It revealed that an electron orbiting around the nucleus could be thought of as a wave, with a wavelength that depended on its velocity. For certain orbits, the length of the orbit would correspond to a whole number (as opposed to a fractional number) of wavelengths of the electron. For these orbits the wave crest would be in the same position each time round, so the waves would add up: these orbits would correspond to Bohr’s allowed orbits. However, for orbits whose lengths were not a whole number of wavelengths, each wave crest would eventually be canceled out by a trough as the electrons went round; these orbits would not be allowed.</p>
+
+<p>对于最简单的原子——氢原子，这个模型给出了相当好的解释，这儿只有一个电子绕着氢原子核运动。但人们不清楚如何将其推广到更复杂的原子去。并且，对于可允许轨道的有限集合的思想显得非常任意。量子力学的新理论解决了这一困难。原来一个绕核运动的电荷可看成一种波，其波长依赖于其速度。对于一定的轨道，轨道的长度对应于整数（而不是分数）倍电子的波长。对于这些轨道，每绕一圈波峰总在同一位置，所以波就互相迭加；这些轨道对应于玻尔的可允许的轨道。然而，对于那些长度不为波长整数倍的轨道，当电子绕着运动时，每个波峰将最终被波谷所抵消；这些轨道是不能允许的。</p>
+</div>
+
+<div class="layout">
+<p>>A nice way of visualizing the wave/particle duality is the so-called sum over histories introduced by the American scientist Richard Feynman. In this approach the particle is not supposed to have a single history or path in space-time, as it would in a classical, nonquantum theory. Instead it is supposed to go from A to B by every possible path. With each path there are associated a couple of numbers: one represents the size of a wave and the other represents the position in the cycle (i.e., whether it is at a crest or a trough). The probability of going from A to B is found by adding up the waves for all the paths. In general, if one compares a set of neighboring paths, the phases or positions in the cycle will differ greatly. This means that the waves associated with these paths will almost exactly cancel each other out. However, for some sets of neighboring paths the phase will not vary much between paths. The waves for these paths will not cancel out Such paths correspond to Bohr’s allowed orbits.</p>
+
+<p>美国科学家里查德·费因曼引入的所谓对历史求和（即路径积分）的方法是一个波粒二像性的很好的摹写。在这方法中，粒子不像在经典亦即非量子理论中那样，在时空中只有一个历史或一个轨道，而是认为从A到B粒子可走任何可能的轨道。对应于每个轨道有一对数：一个数表示波的幅度；另一个表示在周期循环中的位置（即相位）。从A走到B的几率是将所有轨道的波加起来。一般说来，如果比较一族邻近的轨道，相位或周期循环中的位置会差别很大。这表明相应于这些轨道的波几乎都互相抵消了。然而，对于某些邻近轨道的集合，它们之间的相位没有很大变化，这些轨道的波不会抵消。这种轨道即对应于玻尔的允许轨道。</p>
+</div>
+
+<div class="layout">
+<p>>With these ideas, in concrete mathematical form, it was relatively straightforward to calculate the allowed orbits in more complicated atoms and even in molecules, which are made up of a number of atoms held together by electrons in orbits that go round more than one nucleus. Since the structure of molecules and their reactions with each other underlie all of chemistry and biology, quantum mechanics allows us in principle to predict nearly everything we see around us, within the limits set by the uncertainty principle. (In practice, however, the calculations required for systems containing more than a few electrons are so complicated that we cannot do them.)</p>
+<p>用这些思想以具体的数学形式，可以相对直截了当地计算更复杂的原子甚至分子的允许轨道。分子是由一些原子因轨道上的电子绕着不止一个原子核运动而束缚在一起形成的。由于分子的结构，以及它们之间的反应构成了化学和生物的基础，除了受测不准原理限制之外，量子力学在原则上允许我们去预言围绕我们的几乎一切东西。（然而，实际上对一个包含稍微多几个电子的系统所需的计算是如此之复杂，以至使我们做不到。）</p>
+</div>
+
+<div class="layout">
+<p>Einstein’s general theory of relativity seems to govern the large-scale structure of the universe. It is what is called a classical theory; that is, it does not take account of the uncertainty principle of quantum mechanics, as it should for consistency with other theories. The reason that this does not lead to any discrepancy with observation is that all the gravitational fields that we normally experience are very weak. How-ever, the singularity theorems discussed earlier indicate that the gravitational field should get very strong in at least two situations, black holes and the big bang. In such strong fields the effects of quantum mechanics should be important. Thus, in a sense, classical general relativity, by predicting points of infinite density, predicts its own downfall, just as classical (that is, nonquantum) mechanics predicted its downfall by suggesting that atoms should collapse to infinite density. We do not yet have a complete consistent theory that unifies general relativity and quantum mechanics, but we do know a number of the features it should have. The consequences that these would have for black holes and the big bang will be described in later chapters. For the moment, however, we shall turn to the recent attempts to bring together our understanding of the other forces of nature into a single, unified quantum theory.</p>
+<p>
+<p>看来，爱因斯坦广义相对论制约了宇宙的大尺度结构，它仅能称为经典理论，因其中并没有考虑量子力学的不确定性原理，而为了和其他理论一致这是必须考虑的。这个理论并没导致和观测的偏离是因为我们通常经验到的引力场非常弱。然而，前面讨论的奇点定理指出，至少在两种情形下引力场会变得非常强——黑洞和大爆炸。在这样强的场里，量子力学效应应该是非常重要的。因此，在某种意义上，经典广义相对论由于预言无限大密度的点而预示了自身的垮台，正如同经典（也就是非量子）力学由于隐含着原子必须坍缩成无限的密度，而预言自身的垮台一样。我们还没有一个完整、协调的统一广义相对论和量子力学的理论，但我们已知这理论所应有的一系列特征。在以下几章我们将描述黑洞和大爆炸的量子引力论效应。然而，此刻我们先转去介绍人类的许多新近的尝试，他们试图对自然界中其他力的理解合并成一个单独的统一的量子理论。</p>
+
+
+</div>
+<div>
+<div id="ftsize1"><a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em">大</a></div>
+<div id="ftsize2"><a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em">中</a></div>
+<div id="ftsize3"><a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em">小</a></div>
+<div id="fPage"><a id="fPagea" href="javascript:void(null)" target="_self">上<br />一<br />页</a></div>
+<div id="menuPage"><a href="index.html" target="_self">目<br />录</a></div>
+<div id="lPage"><a id="LPagea" href="javascript:void(null)" target="_self">下<br />一<br />页</a></div>
+<div style="display:none" id="goTopBtn"><a target="_self" style="color:#fff;">&and;</a></div>
+<div style="display:none" id="shangy">
+	<a onclick="shangy()" target="_self" style="color:#fff;">&uarr;</a></div>
+<div id="xiay">
+	<a onclick="xiay()" target="_self" style="color:#fff;">&darr;</a></div>
+<div id="goBottom">
+	<a onclick="downn()" target="_self" style="color:#fff;">&or;</a></div>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 68){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+
+</script>
+</div>
+</body>
+</html>
+<script language="javascript"> 
+bg_evensssss("tbrowser","#fff","#F5F5F5","#FFFFCC","#FFDDFF");/*#FFFF84*/
+</script>
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换：
+\s*<br />\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+[\s*</p>\s*]
+[\s*<p>\s*]
+------------------
+</p>
+
+<p>
+
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+-->

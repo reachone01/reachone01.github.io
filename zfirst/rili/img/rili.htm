@@ -1,0 +1,1342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><TITLE>日历查询(1900-2049年)</TITLE>
+<META content="text/html; charset=utf-8" http-equiv=Content-Type>
+<SCRIPT language=JavaScript>
+<!--  // 日期资料 1900-2049 , 1900年1月1日周1农历正月初一
+var lunarInfo=new Array(
+0x04bd8,0x04ae0,0x0a570,0x054d5,0x0d260,0x0d950,0x16554,0x056a0,0x09ad0,0x055d2,
+0x04ae0,0x0a5b6,0x0a4d0,0x0d250,0x1d255,0x0b540,0x0d6a0,0x0ada2,0x095b0,0x14977, // 1910-1919
+0x04970,0x0a4b0,0x0b4b5,0x06a50,0x06d40,0x1ab54,0x02b60,0x09570,0x052f2,0x04970,
+0x06566,0x0d4a0,0x0ea50,0x06e95,0x05ad0,0x02b60,0x186e3,0x092e0,0x1c8d7,0x0c950,
+0x0d4a0,0x1d8a6,0x0b550,0x056a0,0x1a5b4,0x025d0,0x092d0,0x0d2b2,0x0a950,0x0b557,
+0x06ca0,0x0b550,0x15355,0x04da0,0x0a5d0,0x14573,0x052d0,0x0a9a8,0x0e950,0x06aa0, // 1950-1959
+0x0aea6,0x0ab50,0x04b60,0x0aae4,0x0a570,0x05260,0x0f263,0x0d950,0x05b57,0x056a0,
+0x096d0,0x04dd5,0x04ad0,0x0a4d0,0x0d4d4,0x0d250,0x0d558,0x0b540,0x0b5a0,0x195a6,
+0x095b0,0x049b0,0x0a974,0x0a4b0,0x0b27a,0x06a50,0x06d40,0x0af46,0x0ab60,0x09570, // 1982
+0x04af5,0x04970,0x064b0,0x074a3,0x0ea50,0x06b58,0x055c0,0x0ab60,0x096d5,0x092e0,
+0x0c960,0x0d954,0x0d4a0,0x0da50,0x07552,0x056a0,0x0abb7,0x025d0,0x092d0,0x0cab5, // 2000-2019
+0x0a950,0x0b4a0,0x0baa4,0x0ad50,0x055d9,0x04ba0,0x0a5b0,0x15176,0x052b0,0x0a930,
+0x07954,0x06aa0,0x0ad50,0x05b52,0x04b60,0x0a6e6,0x0a4e0,0x0d260,0x0ea65,0x0d530,
+0x05aa0,0x076a3,0x096d0,0x04bd7,0x04ad0,0x0a4d0,0x1d0b6,0x0d250,0x0d520,0x0dd45,
+0x0b5a0,0x056d0,0x055b2,0x049b0,0x0a577,0x0a4b0,0x0aa50,0x1b255,0x06d20,0x0ada0);
+// 以上为16进制，用位组合来表示信息（从右到左，从低位到高位），
+// 1-4表示是否有闰月，及闰几月；
+// 5-16表示12个月中每一个月是大月(30)还是小月(29)；
+// 17-20表示闰月是大月还是小月，
+// 1982年 0x0a974 0000 1010 1001 0111 0100  闰4月29天
+// 2017年 0x15176 0001 0101 0001 0111 0110  闰6月30
+// 表示1982年的4月为闰月，即有第二个4月，且是闰小月。
+// 从1月到13月的天数依次为：30、29、30、29、 29(闰月)、30、29、29、30、 29、30、30、30。
+
+var solarMonth=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+var Gan       =new Array("甲","乙","丙","丁","戊","己","庚","辛","壬","癸");
+var Zhi       =new Array("子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥");
+var Animals   =new Array("鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪");
+var solarTerm =new Array("小寒","大寒",
+						 "立春","雨水","惊蛰","春分","清明","谷雨",
+						 "立夏","小满","芒种","夏至","小暑","大暑",
+						 "立秋","处暑","白露","秋分","寒露","霜降",
+						 "立冬","小雪","大雪","冬至")
+
+var sTermInfo =new Array(0,21208, // 1900年的各个节气到小寒的分钟数
+						  42467,63836,85337,107014,128867,150921,
+						  173149,195551,218072,240693,263343,285989,
+						  308563,331033,353350,375494,397447,419210,
+						  440795,462224,483532,504758)
+var nStr1 		= new Array('日','一','二','三','四','五','六','七','八','九','十')
+var nStr2 		= new Array('初','十','廿','卅','　')
+var monthName 	= new Array("1 月","2 月","3 月","4 月","5 月","6 月",
+							 "7 月","8 月","9 月","10 月","11 月","12 月");
+//公历节日 *表示放假日 festival
+var sFtv = new Array( 
+"0101 *元旦",
+"0202 湿地日",
+"0214 情人节",
+"0303 爱耳日",
+"0305 周恩来诞辰 青年志愿者服务日",
+"0308 妇女节",
+"0312 植树节",
+"0314 警察日",
+"0315 消费者权益日",
+"0317 航海日",
+"0321 森林日",
+"0322 世界水日",
+"0323 气象日",
+"0401 愚人节",
+"0407 卫生日",
+"0422 地球日",
+"0426 知识产权日",
+"0501 劳动节",
+"0504 青年节",
+"0508 红十字日",
+"0512 护士节",
+"0515 家庭日",
+"0517 电信日",
+"0531 无烟日",
+"0601 儿童节",
+"0605 环境日",
+"0606 爱眼日",
+"0611 人口日",
+"0623 奥林匹克日",
+"0625 土地日",
+"0626 禁毒日",
+"0701 建党节 香港回归日",
+"0704 美国国庆日",
+"0707 抗日纪念日",
+"0801 建军节",
+"0808 中国爸爸节",
+"0908 扫盲日",
+"0910 教师节",
+"0918 九·一八纪念日",
+"0920 爱牙日",
+"0921 和平日",
+"0927 旅游日",
+"0928 孔子诞辰",
+"1001 *国庆节",
+"1009 邮政日",
+"1010 辛亥革命",
+"1016 粮食日",
+"1017 消除贫困日",
+"1018 逛网建站日",
+"1024 联合国日",
+"1031 万圣节",
+"1108 记者节",
+"1112 孙中山诞辰",
+"1201 艾滋病日",
+"1210 人权日",
+"1213 南京大屠杀纪念日",
+"1220 澳门回归日",
+"1224 平安夜",
+"1225 圣诞节",
+"1226 毛泽东诞辰")
+
+//农历节日 *表示放假日
+var lFtv = new Array(
+"0101 *春节",
+"0115 元宵节",
+"0408 佛诞",
+"0505 端午节",
+"0707 七夕节",
+"0715 盂兰盆节",
+"0815 中秋节",
+"0909 重阳节",
+"0100 *除夕")
+
+//某月的第几个星期几
+var wFtv = new Array(
+"0430 儿童日",
+"0520 母亲节",
+"0530 助残日",
+"0630 父亲节 ",
+"1144 感恩节")
+
+//====================================== 传回农历 y年的总天数
+function lYearDays(y) {
+   var i, sum = 348  							// 29*12
+   for(i=0x8000; i>0x8; i>>=1)  				// 1000 0000 0000 0000
+   		sum += (lunarInfo[y-1900] & i)? 1: 0	// 大月加1（以29*12为基准）
+   return(sum+leapDays(y))						// 闰年加该年闰月天数
+}
+
+//====================================== 传回农历 y年闰月的天数
+function leapDays(y) {
+   if(leapMonth(y))  
+   		return((lunarInfo[y-1900] & 0x10000)? 30: 29) // 1 0000 0000 0000 0000
+   else return(0) 					 // 2017年 0x15176 0001 0101 0001 0111 0110  闰6月30
+}
+
+//====================================== 传回农历 y年闰哪个月 1-12 , 没闰传回 0
+function leapMonth(y) {
+   return(lunarInfo[y-1900] & 0xf)  // 1111
+}
+
+//====================================== 传回农历 y年m月的总天数
+function monthDays(y,m) {
+   return( (lunarInfo[y-1900] & (0x10000>>m))? 30: 29 ) // 1 0000 0000 0000 0000
+}
+
+//====================================== 算出农历, 传入Date对象, 传回农历日期对象
+// 该Date对象属性有 .year .month .day（农历年、月、日） .isLeap 
+// .yearCyl .monCyl .dayCyl(农历干支，以下干支月、干支日都有问题)
+function Lunar(objDate) { // 函数构造器，构造一个对象，this表示对象本身
+
+   var i, leap=0, temp=0
+   var baseDate = new Date(1900,0,31)		// 在JS中，0-11表示1-12月，1900.1.31号是正月初一
+   var offset=(objDate - baseDate)/86400000 // 86400000：一天的毫秒数，offset是两个日期相距天数
+											// 在函数构造器中，构造一个对象，this表示对象自身。
+   //this.dayCyl = offset + 40  			// 甲辰是41
+   this.monCyl = 14							// 干支纪月，China year lunar，正月建寅
+
+   for(i=1900; i<2050 && offset>0; i++) { 	// offset>0控制到参数objDate的日期
+      temp = lYearDays(i)
+      offset -= temp		// offset通过递减算法农历日，递减所有年的天数、参数年的所有月天数
+      this.monCyl += 12
+   }
+
+   if(offset<0) {
+      offset += temp;
+      i--;
+      this.monCyl -= 12
+   }
+
+   this.year = i
+   this.yearCyl = i-1864
+
+   leap = leapMonth(i) 					// 闰哪个月
+   this.isLeap = false
+
+   for(i=1; i<13 && offset>0; i++) {	// 处理闰月，更新
+      if(leap>0 && i==(leap+1) && this.isLeap==false)
+         { 
+		 	--i; 
+			this.isLeap = true; 
+			temp = leapDays(this.year); }
+      else
+         { temp = monthDays(this.year, i); }
+
+      if(this.isLeap==true && i==(leap+1))  // 解除闰月
+	  	  this.isLeap = false
+
+      offset -= temp					// offset减少参数日期的月份天数，以算法农历日
+      if(this.isLeap == false) 
+	  		this.monCyl ++
+   }
+
+   if(offset==0 && leap>0 && i==leap+1) // 恢复闰月
+      if(this.isLeap)
+         { this.isLeap = false; }
+      else
+         { 
+		 	this.isLeap = true; 
+		 	--i; 
+			--this.monCyl;}
+
+   if(offset<0){ 
+   		offset += temp; 
+		--i; 
+		--this.monCyl; }
+
+   this.month = i
+   this.day = offset + 1
+   this.dayCyl = 0  // problem
+   //alert(this.dayCyl)
+}
+
+//==============================传回公历 y年某m+1月的天数
+function solarDays(y,m) {
+   if(m==1)
+      return(((y%4 == 0) && (y%100 != 0) || (y%400 == 0))? 29: 28)
+   else
+      return(solarMonth[m])
+}
+
+//============================== 传入 offset 传回干支, 0=甲子
+function cyclical(num) {
+   return(Gan[num%10]+Zhi[num%12])
+}
+
+//============================== 月历属性
+function calElement(sYear,sMonth,sDay,week,lYear,lMonth,lDay,isLeap,cYear,cMonth,cDay) {
+      this.isToday    = false;
+      // 公历
+      this.sYear      = sYear;
+      this.sMonth     = sMonth;
+      this.sDay       = sDay;
+      this.week       = week;
+      // 农历
+      this.lYear      = lYear;
+      this.lMonth     = lMonth;
+      this.lDay       = lDay;
+      this.isLeap     = isLeap;
+      // 干支
+      this.cYear      = cYear;
+      this.cMonth     = cMonth;
+      this.cDay       = cDay;
+
+      this.color      = '';
+
+      this.lunarFestival = ''; // 农历节日
+      this.solarFestival = ''; // 公历节日
+      this.solarTerms    = ''; // 节气
+
+}
+
+//===== 某年的第n个节气为几日(从0小寒起算)
+function sTerm(y,n) {
+   var offDate = new Date( ( 31556925974.7*(y-1900)  //  31556925974.7一年的豪秒数
+   						+ sTermInfo[n]*60000  )       // 1分钟60000毫秒,sTermInfo记录的是分钟数
+						+ Date.UTC(1900,0,6,2,5) ) // 指定的时间距GMT1970年1月1日午夜的毫秒数。
+												  // 1900年1月6号为小寒，小于此时间，则返回负数
+   return(offDate.getUTCDate()) 			//根据世界时从 Date 对象返回月中的一天 (1 ~ 31)。
+}
+
+//============================== 传回月历对象 (y年,m+1月)
+function calendar(y,m) {
+   var sDObj, lDObj, lY, lM, lD=1, lL, lX=0, tmp1, tmp2
+   var lDPOS = new Array(3)
+   var n = 0
+   var firstLM = 0
+
+   sDObj = new Date(y,m,1)            	// 当月一日日期
+
+   this.length    = solarDays(y,m)    	// 公历当月天数
+   this.firstWeek = sDObj.getDay()    	// 公历当月1日星期几
+
+   for(var i=0;i<this.length;i++) { // 参数是y,m，这里处理d
+      if(lD>lX) { 					  	// lX ，农历当月最後一天
+         sDObj = new Date(y,m,i+1)		// 当月日期
+         lDObj = new Lunar(sDObj)		// 农历
+         lY    = lDObj.year           	// 农历年
+         lM    = lDObj.month          	// 农历月
+         lD    = lDObj.day            	// 农历日
+         lL    = lDObj.isLeap         	// 农历是否闰月
+         lX    = lL ? leapDays(lY): monthDays(lY,lM) // 农历当月最後一天
+
+         if(n==0) 
+		 	firstLM = lM
+         lDPOS[n++] = i-lD+1 // 某月公历日与农历日之差
+		 //alert(firstLM)
+      }
+
+      //sYear,sMonth,sDay,week,
+      //lYear,lMonth,lDay,isLeap,
+      //cYear,cMonth,cDay
+	  // this[i]是一个对象数组，公历月对应的数据
+      this[i] = new calElement(y, m+1, i+1, nStr1[Math.floor((i+this.firstWeek)%7)],
+                               lY, lM, lD++, lL,
+                               cyclical(lDObj.yearCyl),
+							   cyclical(lDObj.monCyl), 
+							   cyclical(lDObj.dayCyl++))
+
+
+      if((i+this.firstWeek)%7==0)   this[i].color = 'red'  //周日颜色
+      if((i+this.firstWeek)%14==13) this[i].color = 'red'  //周休二日颜色
+   }
+
+   // 节气
+   tmp1 = sTerm(y,m*2  )-1 // 第m*2个节是几号
+   tmp2 = sTerm(y,m*2+1)-1
+   this[tmp1].solarTerms = solarTerm[m*2]
+   this[tmp2].solarTerms = solarTerm[m*2+1]
+   if(m==3) this[tmp1].color = 'red' 			// 清明颜色
+
+   // 公历节日
+   for(i in sFtv)
+      if(sFtv[i].match(/^(\d{2})(\d{2})([\s\*])(.+)$/))		// "0601 儿童节",
+         if(Number(RegExp.$1)==(m+1)) {
+            this[Number(RegExp.$2)-1].solarFestival += RegExp.$4 + ' '
+            if(RegExp.$3=='*') 
+				this[Number(RegExp.$2)-1].color = 'red'
+         }
+
+   // 月周节日
+   for(i in wFtv)
+      if(wFtv[i].match(/^(\d{2})(\d)(\d)([\s\*])(.+)$/)) // "0520 母亲节",某月的第几个星期几
+         if(Number(RegExp.$1)==(m+1)) {
+            tmp1=Number(RegExp.$2) //第几个星期
+            tmp2=Number(RegExp.$3) // 星期几
+            this[((this.firstWeek>tmp2)? 7 :0 ) + 7*(tmp1-1) + tmp2 
+					- this.firstWeek].solarFestival += RegExp.$5 + ' '
+         }
+
+   // 农历节日  //当闰年时，以下有问题，还有如2019.7等，某些月显示不出来
+/*   for(i in lFtv)
+      if(lFtv[i].match(/^(\d{2})(.{2})([\s\*])(.+)$/)) {	// "0505 端午节",
+         tmp1=Number(RegExp.$1)-firstLM 				// 农历月份
+         if(tmp1==-12) tmp1=1 							// 农历平年11，闰年12
+         if(tmp1 >=0 && tmp1<n) {
+            tmp2 = lDPOS[tmp1] + Number(RegExp.$2) -1 	// 某月公历日与农历日相差日期+农历日
+            if( tmp2 >= 0 && tmp2<this.length) {
+               this[tmp2].lunarFestival += RegExp.$4 + ' '
+               if(RegExp.$3=='*') this[tmp2].color = 'red'
+            }
+         }
+      }*/
+
+   // 今日
+   if(y==tY && m==tM) this[tD-1].isToday = true;
+
+}
+
+//====================== 中文日期
+function cDay(d){
+   var str;
+   switch (d) {
+      case 10:
+         str = '初十'; break;
+      case 20:
+         str = '二十'; break;
+         break;
+      case 30:
+         str = '三十'; break;
+         break;
+      default :
+	  {
+		 str = nStr2[Math.floor(d/10)];	 
+         str += nStr1[Math.floor(d%10)];
+		}
+   }
+   return(str);
+}
+//----------------------------------drawCld-------calendar-------------------
+var Today = new Date();
+var tY = Today.getFullYear();
+var tM = Today.getMonth();
+var tD = Today.getDate();
+
+var cld;					// 日期对象
+function drawCld(SY,SM) { 	// 参数是选择列表的年、月
+   var i,sD,s,size;
+   cld = new calendar(SY,SM);
+
+   if(SY>1949) yDisplay = '&nbsp;建国' + (((SY-1949)==1)?'元':SY-1949)
+
+   GZ.innerHTML = '<font COLOR="#ffffff" STYLE="font-size:11pt;">'+yDisplay +'周年&nbsp;' +'</font>' + cyclical(cld[1].lYear-1900+36)//cld[1].lYear原来是SY
+   					+Animals[(cld[1].lYear-4)%12]+'年'; //GZ为一标签ID
+
+ //  YMBG.innerHTML = "&nbsp;" + SY + "<br>" + monthName[SM];
+   for(i=0;i<42;i++) { 		// 6*7
+      sObj=eval('SD'+ i);  	// eval()函数计算 JavaScript 字符串，并把它作为脚本代码来执行
+      lObj=eval('LD'+ i);	// html标签（动态ID）
+      sObj.className = '';
+      sD = i - cld.firstWeek;
+      if(sD>-1 && sD<cld.length) { // 日期内
+         sObj.innerHTML = sD+1;    // 循环输入公历日期
+         if(cld[sD].isToday) sObj.className = 'todyaColor'; //今日颜色
+         sObj.style.color = cld[sD].color; //国定假日颜色
+         if(cld[sD].lDay==1) 		// 农历初一显示农历月
+            lObj.innerHTML = '<b>'+(cld[sD].isLeap?'闰':'') + cld[sD].lMonth + '月' 
+							+ (monthDays(cld[sD].lYear,cld[sD].lMonth)==29?'小':'大')+'</b>';
+         else 						// 显示农历日
+            lObj.innerHTML = cDay(cld[sD].lDay);
+
+         s = cld[sD].lunarFestival;
+         if(s.length>0) { 			// 农历节日
+            if(s.length>6) s = s.substr(0, 4)+'…';
+            s = s.fontcolor('red');
+         }
+         else { 					// 公历节日
+            s=cld[sD].solarFestival;
+            if(s.length>0) {
+               size = (s.charCodeAt(0)>0 && s.charCodeAt(0)<128)?8:4;
+               if(s.length>size+2) s = s.substr(0, size)+'…';
+               s = s.fontcolor('blue');
+            }
+            else { 					// 廿四节气
+               s=cld[sD].solarTerms;
+               if(s.length>0) s = s.fontcolor('limegreen');
+            }
+         }
+         if(s.length>0) lObj.innerHTML = s;
+
+      }
+      else { 						// 非日期
+         sObj.innerHTML = '';
+         lObj.innerHTML = '';
+      }
+   }
+   
+}
+
+function changeCld() {
+   var y,m;
+   y = CLD.SY.selectedIndex+1900;
+   m = CLD.SM.selectedIndex;
+   drawCld(y,m);
+
+}
+
+function pushBtm(K) { // 参数为按钮调用函数参数
+   switch (K){
+      case 'YU' : // 上一年
+	  {
+         if(CLD.SY.selectedIndex>0) CLD.SY.selectedIndex--; 
+		 	//drawCld(CLD.SY.selectedIndex,CLD.SM.selectedIndex);
+         break;
+	  }
+      case 'YD' : // 下一年
+         if(CLD.SY.selectedIndex<149) 
+		 	//CLD.SY.selectedIndex++;
+		 	document.getElementById("SY").selectedIndex++;
+         break;
+      case 'MU' : //上一月
+         if(CLD.SM.selectedIndex>0) {
+            CLD.SM.selectedIndex--;
+         }
+         else {
+            CLD.SM.selectedIndex=11;
+            if(CLD.SY.selectedIndex>0) CLD.SY.selectedIndex--;
+         }
+         break;
+      case 'MD' : //下一月
+         if(CLD.SM.selectedIndex<11) {
+            CLD.SM.selectedIndex++;
+         }
+         else {
+            CLD.SM.selectedIndex=0;
+            if(CLD.SY.selectedIndex<149) CLD.SY.selectedIndex++;
+         }
+         break;
+      default : // 本　月
+	  {
+         CLD.SY.selectedIndex=tY-1900;
+         CLD.SM.selectedIndex=tM;
+		}
+   }
+   changeCld();
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+var width 	= "130";
+var offsetx = 2;
+var offsety = 16;
+
+var x = 0;
+var y = 0;
+var snow = 0;
+var sw = 0;
+var cnt = 0;
+
+var dStyle;
+document.onmousemove = mEvn; //mEvn()取得鼠标位置
+
+// 显示详细日期资料 右键
+function mOvr(v) {
+   var s,festival;
+   var sObj = eval('SD'+ v);
+   var d    = sObj.innerHTML-1;
+      //sYear,sMonth,sDay,week,
+      //lYear,lMonth,lDay,isLeap,
+      //cYear,cMonth,cDay
+   if(sObj.innerHTML!='') {
+      sObj.style.cursor = 's-resize';
+      if(cld[d].solarTerms == '' && cld[d].solarFestival == '' && cld[d].lunarFestival == '')
+         festival = '';
+      else
+         festival = '<table width=100% BORDER=0 CELLPADDING=2 CELLSPACING=0 BGCOLOR="#CCFFCC"><tr><td>'+
+         '<font COLOR="#000000" STYLE="font-size:9pt;">'+cld[d].solarTerms + ' ' + cld[d].solarFestival + ' ' + cld[d].lunarFestival+'</font></td>'+
+         '</tr></table>';
+	// 构造一个显示在某一个对象的innerHTML内的字符串 右键
+      s= '<table width="130" BORDER=0 CELLPADDING="2" CELLSPACING=0 BGCOLOR="#FF9900"><tr><td>' +
+         '<table width=100% BORDER=0 CELLPADDING=0 CELLSPACING=0><tr><td ALIGN="right"><font COLOR="#ffffff" STYLE="font-size:9pt;">'+
+         cld[d].sYear+' 年 '+cld[d].sMonth+' 月 '+cld[d].sDay+' 日<br>星期'+cld[d].week+'<br>'+
+         '<font color="#0000CC">农历'+(cld[d].isLeap?'闰 ':' ')+cld[d].lMonth+' 月 '+ Math.floor(cld[d].lDay) + ' 日</font><br>'+
+         '<font color="yellow">'+cld[d].cYear+'年 '+cld[d].cMonth+'月 '+cld[d].cDay + '日</font>'+
+         '</font></td></tr></table>'+ festival +'</td></tr></table>';
+
+       document.all["detail"].innerHTML = s;
+
+		if (snow == 0) {
+			 dStyle.left = x+offsetx-(width/2);
+			 dStyle.top = y+offsety;
+			 dStyle.visibility = "visible";
+			 snow = 1;
+		}
+	}
+}
+// 显示详细日期资料 右键
+function oneday(v) {
+   var s,festival;
+   var sObj = eval('SD'+ v);
+   var d    = sObj.innerHTML-1;
+
+//纪月
+	jy = jiyue(cld[d].sYear,cld[d].sMonth,cld[d].sDay)
+//纪日
+  	jr = jiri(cld[d].sYear,cld[d].sMonth,cld[d].sDay)
+
+
+   if(sObj.innerHTML!='') {
+      sObj.style.cursor = 's-resize';
+      if(cld[d].solarTerms == '' && cld[d].solarFestival == '' && cld[d].lunarFestival == '')
+         festival = '';
+      else
+         festival = '<table width=100% BORDER=0 CELLPADDING=2 CELLSPACING=0 BGCOLOR="#CCFFCC"><tr><td>'+
+         '<font COLOR="#000000" STYLE="font-size:9pt;">'+cld[d].solarTerms + ' ' + cld[d].solarFestival + ' ' + cld[d].lunarFestival+'</font></td>'+
+         '</tr></table>';
+	// 构造一个显示在某一个对象的innerHTML内的字符串 右键
+      s= '<table width="130" BORDER=0 CELLPADDING="2" CELLSPACING=0 BGCOLOR="#FF9900"><tr><td>' +
+         '<table width=100% BORDER=0 CELLPADDING=0 CELLSPACING=0><tr><td ALIGN="right"><font COLOR="#ffffff" STYLE="font-size:9pt;">'+
+         cld[d].sYear+' 年 '+cld[d].sMonth+' 月 '+cld[d].sDay+' 日<br>星期'+cld[d].week+'<br>'+
+         '<font color="#0000CC">农历'+(cld[d].isLeap?'闰 ':' ')+cld[d].lMonth+' 月 '+ Math.floor(cld[d].lDay) + ' 日</font><br>'+
+         '<font color="yellow">'+cld[d].cYear+'年 '+jy+'月 '+ jr + '日</font>'+
+         '</font></td></tr></table>'+ festival +'</td></tr></table>';
+
+       document.all["detail2"].innerHTML = s;
+
+/*		if (snow == 0) {
+			 dStyle.left = x+offsetx-(width/2);
+			 dStyle.top = y+offsety;
+			 dStyle.visibility = "visible";
+			 snow = 1;
+		}*/
+	}
+}
+
+function jiyue(y,m,d)
+{
+	var tmp = sTerm(y,(m-1)*2) // 第m*2个节是几号
+
+	var g = (y%5-2)*2-1+m-1
+	if(g<0) g+=10
+	if(g>10) g-=10
+	var z=(m+2)%12
+	//document.write(g+' '+z + ' ')
+	//alert(g)
+	//alert(z)
+	if(d<tmp){
+		i = g-3
+		j = z-3
+	}else{
+		i = g-2
+		j = z-2
+	}
+	if(i<0) i+=10
+	if(j<0) j+=12 
+	return (Gan[i]+Zhi[j])
+}
+function jiri(y,m,d)
+{ 
+	if(isSLeap(y))
+	{
+		if(m<=2){
+			m+=12
+			y--
+		}
+		else m-=2
+	}
+	var s = y%100
+	var u = s%4
+	var x = 0
+	var jr = 0
+	if(Math.floor(y/100)==19) x = 9
+	if(Math.floor(y/100)==20) x = -6
+	jr = Math.floor(s/4)*6 + 5*(Math.floor(s/4)*3+u)
+	
+	jr += 30*(Math.pow(-1,m)+1)/2 + Math.floor((3*m-7)/5)+d+x
+	jr =jr%60
+
+	i=Math.floor(jr%10)-1
+	if(i<0) i=10-1
+
+	j=Math.floor(jr%12)-1
+	if(j<0) j=12-1
+	//document.write(jr+' ' +i + ' ' + j + ' ')
+	return Gan[i]+Zhi[j]
+}
+function isSLeap(y){
+	return (((y%4==0) && (y%100!=0)) || (y%400==0))
+}
+function mOut() { // 清除详细日期资料 右键
+	if ( cnt >= 1 ) { sw = 0 }
+	if ( sw  == 0 ) { snow = 0;	dStyle.visibility = "hidden";}
+	else cnt++;
+}
+
+function mEvn() { // 取得位置
+   x=event.x;
+   y=event.y;
+	if (document.body.scrollLeft)
+	   {x=event.x+document.body.scrollLeft; y=event.y+document.body.scrollTop;}
+	if (snow){
+      dStyle.left = x+offsetx-(width/2)
+      dStyle.top = y+offsety
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+function tick() {
+   var today
+   today = new Date()
+   Clock.innerHTML = today.toLocaleString().replace(/(年|月)/g, "/").replace(/日/, "");
+   Clock.innerHTML = TimeAdd(today.toGMTString(), CLD.TZ.value)
+   window.setTimeout("tick()", 1000);
+}
+
+function setCookie(name, value) {
+	var today   = new Date()
+	var expires = new Date()
+	expires.setTime(today.getTime() + 1000*60*60*24*365)
+	document.cookie = name + "=" + escape(value)	+ "; expires=" + expires.toGMTString()
+}
+
+function getCookie(Name) {
+   var search = Name + "="
+   if(document.cookie.length > 0) {
+      offset = document.cookie.indexOf(search)
+      if(offset != -1) {
+         offset += search.length
+         end = document.cookie.indexOf(";", offset)
+         if(end == -1) end = document.cookie.length
+         return unescape(document.cookie.substring(offset, end))
+      }
+      else return ""
+   }
+}
+
+/////////////////////////////////////////////////////////
+
+function initial() {
+	dStyle = detail.style;
+	CLD.SY.selectedIndex=tY-1900;
+	CLD.SM.selectedIndex=tM;
+	CLD2.SY2.selectedIndex=tY-1900;
+	CLD2.SM2.selectedIndex=tM;  
+	drawCld(tY,tM);
+	var Today = new Date(tY,tM,1)
+	oneday(tD+Today.getDay()-1)
+
+}
+
+//-->
+</SCRIPT>
+
+<STYLE>
+
+#CLD a:link {/*tool bar and ones*/
+	text-decoration: none;
+	cursor:url(zfirst/css/rose.ani);
+	color:#fff;
+}
+
+#CLD a:visited {/*tool bar and ones*/
+	text-decoration: none;
+	color:#fff;
+	font-size:12px;
+}
+#CLD a:hover {
+	// text-decoration: underline;
+	background-color: #0000aa;
+
+	color:#eee;
+}
+.todyaColor {
+	BACKGROUND-COLOR: #ffff99
+}
+
+#tab{
+width:45%;
+}
+
+#tab td{
+border:red 0px solid;
+}
+
+#tab1 {
+border-collapse:collapse;
+table-layout:fixed;
+width:100%;
+height:120px;
+}
+
+#tab1 td{
+border:#CCCCCC 1px solid;
+height:50px;
+}
+
+#tab2 {
+border-collapse:collapse;
+table-layout:fixed;
+width:100%;
+//height:120px;
+}
+
+#tab2 td{
+border:#CCCCCC 1px solid;
+height:16px;
+text-align:center;
+}
+#tab3 {
+border-collapse:collapse;
+table-layout:fixed;
+width:65%;
+margin:auto;
+//height:120px;
+}
+
+#tab3 td{
+border:#CCCCCC 1px solid;
+height:16px;
+text-align:left;
+border-left:20px;
+}
+div p{
+padding:0;
+margin:0;
+}
+
+.divtxt{
+width:100%;
+}
+
+.divtxt .right, .divtxt .left{
+width:48%;
+float:left;
+}
+
+#divleft{
+position:absolute;
+left:3%;
+top:20px;
+white-space:normal;
+word-break:break-all;
+word-warp:warp;
+}
+
+
+
+#div1{
+width:66%;
+margin:auto;
+clear:both;
+}
+#div1>p
+{
+text-indent:2em;
+}
+#CLD,#gong
+{
+float:left;
+height:22px;
+line-height:42px;
+vertical-align:bottom;
+}
+#firsttd{
+height:22px;
+overflow:hidden;
+line-height:42px;
+vertical-align:bottom;
+}
+#divright{
+position:absolute;
+right:7%;
+top:48%;
+
+}
+#detail2{
+right:22%;
+top:13px;
+}
+</STYLE>
+
+<META name=GENERATOR content="MSHTML 8.00.7600.16385">
+</head>
+<body onload = "initial(); myFunc()">
+<div style="POSITION: absolute" id = "detail"></DIV>
+<div style="POSITION: absolute" id = "detail2"></DIV><CENTER>
+<table id="tab">
+  <tr>
+    <td align=middle>
+      <DIV style="Z-INDEX: -1; POSITION: absolute; TOP: 30px"><font 
+      style="font-FAMILY: 'Arial Black'; COLOR: #f0f0f0; font-SIZE: 1pt" 
+      id=YMBG>&nbsp;0000<br>&nbsp;JUN</font> </DIV>
+      <table id="tab1">
+
+        <tr>
+          <td id="firsttd" style="background-color:#000080; height:22px;" colSpan=7>
+		  <!--<font id="gong" style="font-SIZE: 10pt" color=#ffffff>公元&nbsp;</font>-->
+		  
+<!--Form的标签在IE中可以分散，chrome在有bub，通过减少代码才发现这一错误-->
+	<FORM name="CLD" id="CLD">
+
+     <!--不能有 href=""属性，否则无法更改年月-->
+	<font style="font-SIZE: 14pt" color=#ffffff><a onClick="pushBtm('YU')">&nbsp;&lt;&nbsp;</a></font> 
+	<SELECT style="font-SIZE: 11pt" onchange=changeCld() name="SY" id="SY"> 
+		<SCRIPT language=JavaScript>      // 写日期和年份选项
+			for(i=1900;i<2050;i++) 
+				document.write('<option>'+i+"年")
+		</SCRIPT>
+	</SELECT>
+	<font style="font-SIZE: 14pt" color=#ffffff><a onClick="pushBtm('YD')">&nbsp;&gt;&nbsp;</a>
+	<a onClick="pushBtm('MU')">&nbsp;&lt;&nbsp;</a></font> 
+	<SELECT style="font-SIZE: 11pt" onchange=changeCld() name="SM" id="SM"> 
+		<SCRIPT language=JavaScript>
+			for(i=1;i<13;i++) 
+				document.write('<option>'+i + "月")
+		</SCRIPT>
+		<!--<option value='1'>1</option>-->
+
+	</SELECT>
+	<font style="font-SIZE: 14pt" color=#ffffff><a onClick="pushBtm('MD')">&nbsp;&gt;&nbsp;</a></font> 
+	 <font style="font-SIZE: 10pt" color=#ffffff><a onClick="pushBtm('')">Today</a>
+	</font> 
+
+  </FORM>
+ <font id=GZ color=#ffffff size=3 face=宋体></font><br></td>
+ </tr>
+<tr style="background-color:#e0e0e0; height:12px;">
+  <td style="height:18px;">
+	<DIV align=center>星期日</DIV></td>
+  <td style="height:18px;">
+	<DIV align=center>星期一</DIV></td>
+  <td style="height:18px;">
+	<DIV align=center>星期二</DIV></td>
+  <td style="height:18px;">
+	<DIV align=center>星期三</DIV></td>
+  <td style="height:18px;">
+	<DIV align=center>星期四</DIV></td>
+  <td style="height:18px;">
+	<DIV align=center>星期五</DIV></td>
+  <td style="height:18px;">
+	<DIV align=center>星期六</DIV></td>
+</tr>
+
+<SCRIPT language=JavaScript><!--   // 画表格
+	var gNum
+	for(i=0;i<6;i++) {
+	   document.write('<tr align=center>')
+	   for(j=0;j<7;j++) {
+		  gNum = i*7+j
+		  document.write('<td id="GD' + gNum + 
+		  '" onMouseOver222="mOvr(' + gNum +')" onClick="oneday(' + gNum +')" onMouseOut="mOut()" ><font id="SD' 
+		  + gNum +'" size=5 face="Arial Black"')
+		  if(j == 0) document.write(' color=red')
+		  if(j == 6)
+			 if(i%2==1) document.write(' color=red')
+				else document.write(' color=green')
+		  document.write(' TITLE=""> </font><br><font id="LD' + gNum + '" size=2 			               style="font-size:9pt"> </font></td>')
+	   }
+	   document.write('</tr>')
+	}
+	
+	//--></SCRIPT>
+        </TBODY></table></td>
+		
+    <td vAlign=top width=60 align=middle><br><br><br><br><br>
+
+
+	  </td></tr></TBODY></table>
+
+</CENTER>
+
+ <div class="divtxt">
+ <div class="left">
+<blockquote>
+  <p>10天干=(y%10)-3)，如果小于0，再加10（y是年份）；</p>
+  <p>12地支=(y%12)-3)，如果小于0，再加12；</p>
+</blockquote>
+<blockquote>
+  <p>例：求公元2018年的干支？</p>
+  <p>年干=8-3&nbsp;=5&nbsp;&nbsp;=戊（2018/10的余数是8）；</p>
+  <p>年支=2-3+12=11=戌（2018/12的余数是2）；</p>
+  <table id="tab2">
+    <tbody>
+      <tr>
+		<td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+		<td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
+      </tr>
+      <tr>
+		<td>甲</td><td>乙</td><td>丙</td><td>丁</td><td>戊</td>
+		<td>己</td><td>庚</td><td>辛</td><td>壬</td><td>癸</td><td></td><td></td>
+      </tr>
+      <tr>
+		<td>子</td><td>丑</td><td>寅</td><td>卯</td><td>辰</td>
+		<td>巳</td><td>午</td><td>未</td><td>申</td><td>酉</td><td>戌</td><td>亥</td>
+      </tr>
+	  <tr>
+		<td>鼠</td><td>牛</td><td>虎</td><td>兔</td><td>龙</td>
+		<td>蛇</td><td>马</td><td>羊</td><td>猴</td><td>鸡</td><td>狗</td><td>猪</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <p>故公元2018年的干支为戊戌，戌狗，是狗年，生肖是狗。</p>
+
+</blockquote>
+</div>
+<div dir="right">
+<blockquote>
+
+<FORM name="CLD2" id="CLD2">
+	<SELECT style="font-SIZE: 11pt" name="SY2" id="SY2"> 
+		<SCRIPT language=JavaScript>      // 写日期和年份选项
+			for(i=1900;i<2050;i++) 
+				document.write('<option>'+i)
+		</SCRIPT>
+	</SELECT> 年 
+	<SELECT style="font-SIZE: 11pt" name="SM2" id="SM2"> 
+		<SCRIPT language=JavaScript>
+			for(i=1;i<13;i++) 
+				document.write('<option>'+i)
+		</SCRIPT>
+
+	</SELECT>月&nbsp;&nbsp;&nbsp;
+	<button type="button" onClick="myFunc()">查询</button>
+	<br> 
+	节：  <input type="text" name="jie" size="6" />
+	日期：<input type="text" name="jieD" size="6" />
+	<br> 	
+	气：  <input type="text" name="qi" size="6" />
+	日期：<input type="text" name="qiD" size="6" />
+	
+</FORM>
+<script type="text/javascript">
+var solarTerm2 =new Array("小寒","大寒",
+						 "立春","雨水","惊蛰","春分","清明","谷雨",
+						 "立夏","小满","芒种","夏至","小暑","大暑",
+						 "立秋","处暑","白露","秋分","寒露","霜降",
+						 "立冬","小雪","大雪","冬至")
+
+var sTermInfo2 =new Array(0,21208, 						//1900年的各个节气到小寒的分钟数
+						  42467,63836,85337,107014,128867,150921,
+						  173149,195551,218072,240693,263343,285989,
+						  308563,331033,353350,375494,397447,419210,
+						  440795,462224,483532,504758)
+
+function sTerm2(y,n) {								//===== 某年的第n个节气为几日(从0小寒起算)
+   var offDate = new Date( ( 31556925974.7*(y-1900)  //  31556925974.7是一年的豪秒数
+   						+ sTermInfo2[n]*60000  )     //  1分钟60000毫秒,sTermInfo记录的是分钟数
+						+ Date.UTC(1900,0,6,2,5) ) 	// 指定的时间距GMT1970年1月1日午夜的毫秒数。
+												 // 1900年1月6号为小寒，小于此时间，则返回负数
+   return(offDate.getUTCDate()) 			//根据世界时从 Date 对象返回月中的一天 (1 ~ 31)。
+}
+
+
+function myFunc(){
+    y  = document.CLD2.SY2.selectedIndex+1900;
+    m  = document.CLD2.SM2.selectedIndex;
+	d1 = sTerm2(y,m*2  )
+	d2 = sTerm2(y,m*2+1)
+	document.CLD2.jie.value = solarTerm2[m*2]
+	document.CLD2.jieD.value = d1
+	document.CLD2.qi.value = solarTerm2[m*2+1]
+	document.CLD2.qiD.value = d2
+}
+</script>
+<p>春雨惊春清谷天，（立春、雨水、惊蛰、春分、清明、谷雨）</p>
+<p>夏满芒夏暑相连。（立夏、小满、芒种、夏至、小暑、大暑）</p>
+<p>秋处露秋寒霜降，（立秋、处暑、白露、秋分、寒露、霜降）</p>
+<p>冬雪雪冬小大寒。（立冬、小雪、大雪、冬至、小寒、大寒）</p>
+<p>每月两节不变更，最多相差一两天。（）</p>
+<p>上半年来六廿一，下半年是八廿三。（）</p>
+<p>1900、1970的节气完全一样</p>
+</blockquote>
+</div>
+</div>
+
+<div id="divright">
+  <p><a href="http://123.sogou.com/tools/wnl.html">sogouCalendar</a> <a href="http://www.guang.net/rili.htm">guang</a> <a href="rili2.htm">old</a></p>
+  <P>1 农历节日（农历月、日→公历月、日）；</P>
+  <p>2 干支月、日；</p>
+</div>
+<div id="divleft">
+
+  
+</div>
+<div id="div1">
+<p>清代刘献《广阳杂记》引李长卿《松霞馆赘言》：“</p>
+<p>子何以属鼠也？曰：天开于子，不耗则其气不开。鼠，耗虫也。于是夜尚未央，正鼠得令之候，故子属鼠。</p>
+<p>地辟于丑，而牛则开地之物也，故丑属牛。</p>
+<p>人生于寅，有生则有杀。杀人者，虎也，又寅者，畏也。可畏莫若虎，故寅属虎。</p>
+<p>卯者，日出之候。日本离体，而中含太阴玉兔之精，故卯属兔。</p>
+<p>辰者，三月之卦，正群龙行雨之时，故辰属龙。</p>
+<p>巳者，四月之卦，于时草茂，而蛇得其所。又，巳时蛇不上道，故属蛇。</p>
+<p>午者，阳极而一阴甫生。马者，至健而不离地，阴类也，故午属马。</p>
+<p>羊啮未时之草而茁，故未属羊。</p>
+<p>申时，日落而猿啼，且伸臂也，譬之气数，将乱则狂作横行，故申属猴。</p>
+<p>月出之时，月本坎体，中含金鸡之精，故本属鸡。</p>
+<p>戌时，戌”就是没有牙齿的意思。狗没有了尖牙利齿，就没法磨碎食物，就意味着饿死故戌属狗。</p>
+<p>亥时，猪则饮食之外无一所知，故亥属猪。”</p>
+</div>
+
+<table id="tab3">
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="60%" />
+  <tbody>
+    <tr>
+      <td>时辰</td>
+      <td><br></td>
+      <td>所指时间</td>
+      <td><br></td>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>子时</td>
+      <td>夜半</td>
+      <td>23-1</td>
+      <td>鼠</td>
+      <td>正是老鼠趁夜深人静频繁活动之时；</td>
+    </tr>
+    <tr>
+      <td>丑时</td>
+      <td>鸡鸣</td>
+      <td>1-3</td>
+      <td>牛</td>
+      <td>牛习惯夜间吃草，农家常在深夜起来挑灯喂牛；</td>
+    </tr>
+    <tr>
+      <td>寅时</td>
+      <td>昧旦</td>
+      <td>3-5</td>
+      <td>虎</td>
+      <td>此时昼伏夜行的老虎最凶猛，古人常会在此时听到虎啸声；</td>
+    </tr>
+    <tr>
+      <td>卯时</td>
+      <td>日出</td>
+      <td>5-7</td>
+      <td>兔</td>
+      <td>天刚亮，兔子出窝，喜欢吃带有晨露的青草；</td>
+    </tr>
+    <tr>
+      <td>辰时</td>
+      <td>食时</td>
+      <td>7-9</td>
+      <td>龙</td>
+      <td>此时一般容易起雾，传说龙喜腾云驾雾，只有大雾蒙蒙之中，人们才会产生龙的幻象；</td>
+    </tr>
+    <tr>
+      <td>巳时</td>
+      <td>隅时</td>
+      <td>9-11</td>
+      <td>蛇</td>
+      <td>大雾散去，艳阳当空。体温不恒定的蛇从洞穴中爬出来晒太阳，蛇此时最活跃；</td>
+    </tr>
+    <tr>
+      <td>午时</td>
+      <td>日中</td>
+      <td>11-13</td>
+      <td>马</td>
+      <td>阳气到项，阴气始再生，而马行千里，属于“阴”类动物；红鬃烈马是良驹，但它的性子就像午时的太阳一样火烈。</td>
+    </tr>
+    <tr>
+      <td>未时</td>
+      <td>日昳</td>
+      <td>13-15</td>
+      <td>羊</td>
+      <td>传说羊在未时吃过的草，草根再生力强；此时上山吃草的羊长得最肥壮。</td>
+    </tr>
+    <tr>
+      <td>申时</td>
+      <td>晡时</td>
+      <td>15-17</td>
+      <td>猴</td>
+      <td>太阳偏西了，猴子此时最活跃，喜在此时啼叫；</td>
+    </tr>
+    <tr>
+      <td>酉时</td>
+      <td>日入</td>
+      <td>17-19</td>
+      <td>鸡</td>
+      <td>这段时间鸡开始归巢。</td>
+    </tr>
+    <tr>
+      <td>戌时</td>
+      <td>黄昏</td>
+      <td>19-21</td>
+      <td>狗</td>
+      <td>这段时间狗开始守门口或为主人一起巡夜。</td>
+    </tr>
+    <tr>
+      <td>亥时</td>
+      <td>人定</td>
+      <td>21-23</td>
+      <td>猪</td>
+      <td><p>深夜可以听到猪拱槽的声音，主人要想猪长得肥壮，还得起身为它添食。</p></td>
+    </tr>
+  </tbody>
+</table>
+<table id="tab3">
+    <tbody>
+      <tr>
+        <td rowspan="2" width="20%">春季<br>
+          Spring</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%C1%A2%B4%BA" title="立春"><strong>立春</strong></a> Spring begins<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          2月3－5日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%D3%EA%CB%AE" title="雨水"><strong>雨水</strong></a> The rains<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          2月18－20日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%BE%AA%D5%DD" title="惊蛰"><strong>惊蛰</strong></a> Insects awaken<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          3月5－7日</td>
+      </tr>
+      <tr>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%B4%BA%B7%D6" title="春分"><strong>春分</strong></a> Vernal Equinox<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          3月20－22日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%C7%E5%C3%F7" title="清明"><strong>清明</strong></a> Clear and bright<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          4月4－6日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%B9%C8%D3%EA" title="谷雨"><strong>谷雨</strong></a> Grain rain<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          4月19－21日</td>
+      </tr>
+      <tr>
+        <td rowspan="2">夏季<br>
+          Summer</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%C1%A2%CF%C4" title="立夏"><strong>立夏</strong></a> Summer begins<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          5月5－7日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%D0%A1%C2%FA" title="小满"><strong>小满</strong></a> Grain buds<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          5月20－22日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%C3%A2%D6%D6" title="芒种"><strong>芒种</strong></a> Grain in ear<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          6月5－7日</td>
+      </tr>
+      <tr>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%CF%C4%D6%C1" title="夏至"><strong>夏至</strong></a> Summer solstice<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          6月21－22日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%D0%A1%CA%EE" title="小暑"><strong>小暑</strong></a> Slight heat<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          7月6－8日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%B4%F3%CA%EE" title="大暑"><strong>大暑</strong></a> Great heat<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          7月22－24日</td>
+      </tr>
+      <tr>
+        <td rowspan="2">秋季<br>
+          Autumn</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%C1%A2%C7%EF" title="立秋"><strong>立秋</strong></a> Autumn begins<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          8月7－9日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%B4%A6%CA%EE" title="处暑"><strong>处暑</strong></a> Stopping the heat<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          8月22－24日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%B0%D7%C2%B6" title="白露"><strong>白露</strong></a> White dews<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          9月7－9日</td>
+      </tr>
+      <tr>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%C7%EF%B7%D6" title="秋分"><strong>秋分</strong></a> Autumn equinox<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          9月22－24日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%BA%AE%C2%B6" title="寒露"><strong>寒露</strong></a> Cold dews<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          10月8－9日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%CB%AA%BD%B5" title="霜降"><strong>霜降</strong></a> Hoar-frost falls<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          10月23－24日</td>
+      </tr>
+      <tr>
+        <td rowspan="2">冬季<br>
+          Winter</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%C1%A2%B6%AC" title="立冬"><strong>立冬</strong></a> Winter begins<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          11月7－8日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%D0%A1%D1%A9" title="小雪"><strong>小雪</strong></a> Light snow<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          11月22－23日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%B4%F3%D1%A9" title="大雪"><strong>大雪</strong></a> Heavy snow<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          12月6－8日</td>
+      </tr>
+      <tr>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%B6%AC%D6%C1" title="冬至"><strong>冬至</strong></a> Winter solstice<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          12月21－23日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%D0%A1%BA%AE" title="小寒"><strong>小寒</strong></a> Slight cold<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          1月5－7日</td>
+        <td><a href="http://jieqi.xixik.com/?jieqi=%B4%F3%BA%AE" title="大寒"><strong>大寒</strong></a> Great cold<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          1月20－21日</td>
+      </tr>
+    </tbody>
+</table>
+<div id="div1">
+<h4>干支纪月</h4>
+<p>4.1 纪月的天干</p>
+<p>例如：公历1991年（干支历辛未年）正月的天干：1991÷5=398余1，正月的天干序号数为=(1-2)×2-1= -3 ，因是负数则加10,得7。即干支历辛未年正月天干为庚，正月干支为庚寅，二月为辛卯，三月为壬辰，余类推。此外，也可以公式计算干支历月份：首先推算该年干支历寅月的天干，其余月份可按天干号类推，该年寅月的天干号为：取公历年份除以5的余数减2后乘以2再减1.当该数是负数时加10。</p>
+<p>4.1 纪月的地支</p>
+<p>正月建寅，二月建卯，三月建辰这个是夏历（注意，这里的“正月”“二月”“三月”等不是指农历的正月之类，是指作为一年的岁首）。而商历是正月建丑，二月建寅，三月建卯。周历是正月建子，二月建丑，三月建寅。秦历是正月建亥，二月建子，三月建丑。至汉代恢复用夏历，就是正月建寅为岁首（武则天改过用周正，建子）一直沿用至今。</p>
+<p>干支纪月以每月交<strong>节</strong>日作为分界点，并不是阴历中的初一为分界点。以<strong>立春</strong>为寅月开始。</p>
+
+	<p>
+	<script>
+	sDObj = new Date()		// 当月日期
+	lDObj = new Lunar(sDObj)		// 农历
+	lY    = lDObj.year           	// 农历年
+	lM    = lDObj.month          	// 农历月
+	lD    = lDObj.day            	// 农历日
+	tmp = sTerm(sDObj.getFullYear(),sDObj.getMonth()*2) // 第m*2个节是几号
+	var y
+	var gan = (lY%5-2)*2-1+lM-1
+	if(gan<0) gan+=10
+	if(gan>10) gan-=10
+	var zhi=(lM+2)%12
+	if(sDObj.getDate()<tmp)
+		document.write(Gan[gan-1-1]+Zhi[zhi-1-1])
+	else
+		document.write(Gan[gan-1]+Zhi[zhi-1])
+	</script>
+	</p>	
+	<h4>干支纪日</h4>
+	<p>高氏日柱公式</p>
+	<img src="js/rz.png">
+<p>r：日柱的母数，r 除以60的余数即是日柱的干支序列数；</p>
+<p>s：公元年数后两位数， [s/4]取整数部分；</p>
+<p>u：s 除以4的余数；</p>
+<p>m：月数，“[ ]”内取整数部分；</p>
+<p>d：日期数；</p>
+<p>x：世纪常数</p>
+    <table log-set-param="table_view" width="-172">
+      <tbody>
+        <tr>
+          <td width="65" align="center" valign="top"><div label-module="para">世纪数N</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">17</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">18</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">19</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">20</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">21</div></td>
+        </tr>
+        <tr>
+          <td width="65" align="center" valign="top"><div label-module="para">年限</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">1600-1699</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">1700-1799</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">1800-1899</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">1900-1999</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">2000-2099</div></td>
+        </tr>
+        <tr>
+          <td width="65" align="center" valign="top"><div label-module="para">世纪常数x</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">－3</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">41</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">25</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">9</div></td>
+          <td width="65" align="center" valign="top"><div label-module="para">－6</div></td>
+        </tr>
+      </tbody>
+    </table>
+   <p>例1：计算2008年的2月29日的当日日柱，在计算中应将这天视为2007年的14月29日。则有s=7；u=3；m=14；d=29；x=54，将各项数据代入高氏日柱公式可得：
+r=1×6+5×(1×3+3)+30×1+7+29+54=156
+故156除以60余数为36，即当日日柱为己亥。
+</p>
+<p>例2:计算1949年10月1日即建国当日的日柱，则有s=49；u=1；m=10；d=1；x=9，将各项数据代入高氏日柱公式可得：
+r=12×6+5×(12×3+1)+30×1+4+1+9=301
+故301除以60的余数为1，即当日的日柱为甲子。</p>
+<p>
+<script>
+function jiri2(y,m,d)
+{ 
+	if(isSLeap(y))
+	{
+		if(m<=2){
+			m+=12
+			y--
+		}
+		else m-=2
+	}
+	var s = y%100
+	var u = s%4
+	var x = 0
+	var jr = 0
+	if(Math.floor(y/100)==19) x = 9
+	if(Math.floor(y/100)==20) x = -6
+	jr = Math.floor(s/4)*6 + 5*(Math.floor(s/4)*3+u)
+	
+	jr += 30*(Math.pow(-1,m)+1)/2 + Math.floor((3*m-7)/5)+d+x
+	jr =jr%60
+
+	i=Math.floor(jr%10)-1
+	if(i<0) i=10-1
+
+	j=Math.floor(jr%12)-1
+	if(j<0) j=12-1
+	document.write(jr+' ' +i + ' ' + j + ' ')
+	return Gan[i]+Zhi[j]
+}
+//document.write(isSLeap(2008)+"<br>")
+document.write(jiyue(1949,10,1)+" ")
+document.write(jiri2(1949,10,1)+" ")
+document.write(jiri2(2008,2,29)+" ")
+
+document.write(jiri2(2020,1,4)+"<br>")
+document.write(jiri2(2020,6,1)+" " + "网络查询乙亥日"+"<br>")
+</script>
+</p>
+    </div>
+	
+	
+	
+	<br>
+<br>
+<br>
+
+</BODY>
+</HTML>

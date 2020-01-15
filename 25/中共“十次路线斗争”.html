@@ -1,0 +1,431 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>中共“十次路线斗争”</h4>
+
+<p></p>
+
+<p>在念小学时，“十次路线斗争”的个大名词，便充诉着所有宣传媒体。只是当时年小，也不懂什么为“路线斗争”，只知道凡是“路线斗争”涉及的对象，都是大官，而且都是反对毛主席的，很是可笑。长大后才知道所谓“十次路线斗争”，即为党内最高层十次权力斗争的结论。而前四次所谓的“路线斗争”，与毛泽东没有多少关系。</p>
+
+<p>第一次路线斗争：陈独秀“右倾机会主义”。陈独秀是中共主要创始人，第第一届到第五届连任中共中央总书记职务。1927年7月第一次国共合作失败，全部罪责都归咎于他一身。1927年7月正式撤职停止工作。1929年由王明宣布他为“叛徒”、“反革命”。陈独秀为中国共产党内著名的理论家，他认为，在民主革命和无产阶级专政之间应该有一个资产阶级专政的过渡阶段，这导致了他承认国民党对国民革命的领导地位；同时，在他担任中共中央总书记期间，中共党仅是由苏联党控制的国产国际下面的一个支部而已，陈独秀仅是服从莫斯科的指令。可能斯大林也未想到蒋介石会在北伐尚未完成之际即对北伐盟友共产党下手吧？！从一定角度上来说，陈独秀成了莫斯科的替罪羊和牺牲品。</p>
+
+<p>第二次路线斗争：李立三“左倾盲动主义”。1927年7月张国焘代理主持中央工作。8月，瞿秋白被莫斯科指定为临时中央政治局常委，主持中央工作。1928年5月瞿秋白去苏联。1929年中央政治局常委兼宣传部部长李立三实际主持中央工作。1930年，李立三组织全国中心城市武装起义和集中全国主力红军攻打大城市，计划失败后受到批判。9月，撤职。李立三为我党早期杰出的工运领袖之一，在大革命失败后，出于对国民党的仇恨，按共产国际的指示，发动全国总爆动，是可以理解的。文革中李立三受到迫害，并于1967年含冤去世。1980年3月中共中央为其平反昭雪。</p>
+
+<p>第三次路线斗争：瞿秋白“左倾盲动主义”。1927年8月瞿秋白主持中共中央工作后，遵照“8.7会议”精神和莫斯科的指示，于11月至12月先后发动了武汉暴动、长沙暴动和广州暴动，均以失败告终。1928年5月赴苏联驻共产国际。1930年7月回国，任政治局常委兼宣传部部长，并按共产国际指示，主持召开六届三中全会，纠正“立三路线”。但1931年1月六届四中全会时，因27年的暴动失败之领导责任，被王明等人秋后算帐，划为“左倾盲动主义”，与李立三双双撤职出局，成为王明争夺中央领导权的牺牲品。1935年被国民党捕获，遇害。</p>
+
+<p>第四次路线斗争：罗章 龙“右倾分裂主义”。罗章龙为中共杰出工运领袖，时任中共中央工委书记、全国总工会委员长。1931年1月六届四中全会，王明在共产国际东方部部长米夫的支持下，以反对“立三路线”为口号，采取不正当手段争夺中央领导权。其破坏党内民主的作法引起了罗章龙等人的强烈不满。而王明对“反对四中会会”的何孟雄、陈郁等人采取“残酷斗争、无情打击”的手段，使得罗章龙和王克全等策划了党内第一次“分裂”：中华全国总工会在上海召开党团会议，反对四中会全精神，要求共产国际撤换有关代表，成立第二中央---临时中央干事会，并对时任中央军事部部长周恩来的劝说不屑一顾。于是，罗章龙被打成“右倾分裂主义分子”，撤消职务开除党籍。罗章龙离开政界后一直担任大学教授。1995年去世。</p>
+
+<p>第五次路线斗争：张国焘“右倾分裂主义”。张国焘为中共创始人之一，也是鄂豫皖根据地、川陕根据地和红4方面军的最高领导人。他拥兵8万，虎驻川陕，对从中央苏区撤退出来的仅余2万余人的红1方面军，提出“要总结问题，要解决组织问题，改组中央”的要求，中央被迫任命他为中革军委副主席兼红军总政委，但他并不卖帐，公然反对中央北上方针，对由“遵义会议”上复出的红1方面军主要创始人毛泽东实际主持中共中央和中央军委很不满，并于1935年10月自行成立第二中央。因共产国际也反对另立中央，张国焘才被迫撤消伪中央，率部北上。旋中央令红4方面军主力组成西路军，西进河西走廊，与骁勇善战的“马家军”作战，而中央（毛泽东主持）对西路军是朝令夕改，战略目标混乱，导致西路军全军覆灭，2万多人只剩几百人或投新疆或沿途乞讨回到延安。而西路军失败的责任，自然定性为张国焘“分裂主义”造成的，甚至莫须有地称西路军为张国焘“妄图割据新疆的”实施部队。尽管张国焘被封了个陕甘宁边区政府副主席的闲职，但不会有好日子过了。从1937年3月开始，中央开始对张国焘进行长时间的批判和清算。1938年春，张国焘借赴黄帝陵之机逃往国统区，脱离共产党，投入国民党。五十年代定居加拿大。七十年代贫困凄凉地病逝于多伦多。</p>
+
+<p>第六次路线斗争：王明“左倾机会主义”。1931年1月中共六届四中会会在共产国际洋夫的操纵下，不是中央委员的王明（陈效禹）靠不正当的手段，一步登天，当选中央政治局常委，并实际主持中央工作（总书记向忠发只是共产国际放在高位的摆设，后被捕叛变）。不久，王明去苏联，任命博古（秦邦宪）为临时中央负责人，通过博古摇控中共中央。同时，派任弼时、王稼祥、顾作霖3人组成中央代表团，进驻中央苏区，以夺取苏区党政军领导权。1931年11月赣南会议上改组苏区中央局，免除毛泽东代书记职务，由周恩来任书记。（1932年10月又由周恩来取代毛泽东任红1方面军总政委）。毛泽东只担任了个中华苏维埃共和国临时中央政府主席的闲职。1933年经共产国际批准，中共中央机关由上海迁往中央苏区，加强了王明对中央苏区和红1方面军的控制，并由共产国际代表李德取得了对红军的指挥权。一批“毛派”如邓小平等被撤职。1934年10月由于“左倾冒险”，军事失败，红1方面军被迫放弃根据地长征（西退）。由于军事上的失败，党内对王明“左倾冒险主义”进行了斗争，并于1935年1月于遵义召开的中央政治局扩大会议上，确定了毛泽东在全党、全军的领导地位。后在延安时，王明又回在共产国际的支持下回到延安，鼓吹“统一战线高于一切”，希望恢复在党内的影响。但此时党、政、军最高领导权已牢牢控制在毛泽东的手上了，王明已没有市场了，他后来客居并老死苏联。</p>
+
+<p>第七次路线斗争：高岗、饶漱石“反党集团”。高岗，陕北根据地创始人之一，建国后任国家副主席兼计委主任、中央政治局委员兼东北局第一书记、东北人民政府主席、东北军区司令员兼政委，属国家领导人之一，名符其实的“东北王”。饶漱石，抗日战争中期继刘少奇后任新四军政委；建国后任华东军政委员会主席、华东军区政委、中共中央华东局第一书记；1953年调任中共中央组织部部长。高岗进京后，主要是犯了“串联倒刘”的错误，并对周恩来也不很卖帐。他很明确地要板倒刘少奇，而饶漱石配合了高岗的倒刘夺权行动。1954年2月，中央对高、饶进行清算，由刘少奇、周恩来主持会议，毛泽东则避往杭州听汇报。会议第3天，高岗自杀未遂。周恩来说高岗的极端个人主义错误已发展到阴谋分裂党的活动，已堕落为资产阶级个人野心家，其罪恶已勾销了他对革命斗争所做过的局部贡献，他过去参加革命的动机也是不纯的；生活腐化。邓小平、陈云、朱德等均参与了批判。8月17日，高岗再次自杀，死于北京。毛泽东闻讯后说：“遗憾，终于留不住他。他这个人，斗争性太强，性格过于刚烈。”1955年3月中共中央做出决议，将高、饶定性为反党联盟，开除党籍。并称高为“反党集团首脑”、“死不改悔的叛徒”。</p>
+
+<p>第八次路线斗争：彭德怀“反党集团”。彭德怀，红1方面军创始人之一，时任政治局委员，国务院副总理兼国防部部长，以元帅衔主持中央军委工作。1959年7月，中央政治局扩大会议在庐山召开（庐山会议），讨论大跃进后经济工作。本来毛泽东自己对前段大跃进做一下自我批评就没事了，但彭德怀却率先向毛泽东提交意见书，并称：“人人有责，人人有份，包括毛泽东同志在内。我也有一份，至少当时没有反对。”毛泽东的权威受到了挑战，这是毛泽东不能接受的，他必须坚持“三面红旗”的正确性。自然，彭德怀便成了“敌人”，张闻天为彭德怀辩解，站到毛泽东的对立面了。加之，彭德怀、周小舟、李锐三人到过黄克诚住处被特工头子罗瑞卿遇到，罗即向老毛密报：彭德怀有非法组织活动。自然地，彭德怀“反党集团”就“成立”了。随即，毛泽东率常委们找彭谈话，脾气火爆的彭大将军竟与老毛顶牛骂娘，搞得老毛下不了台，老彭的结局就定了。7月27日，刘少奇传达毛泽东指示：“批判彭、黄、张、周反党集团”。从8月初开始，庐山会议变成了八届八中全会，会议中心即是批判彭、黄、张、周“反党集团”、“军事俱乐部”。贺龙因第一个站出来揭发，升为政治局常委；林彪“抱病上山”“勤王”，得以接任国防部长、军委副主席，主持军委工作；罗瑞卿因忠于老毛，接任总参谋长。。。。。。1978年中共中央为此案平反。</p>
+
+<p>第九次路线斗争：刘少奇“反党集团”。刘少奇，在七大首提“毛泽东思想”，后便成为党中央2号人物；为建国五大常委之一，排名第2。1959年4月起担任国家主席，主持中央一线工作。1961年后，对国家经济工作的领导和对大跃进、反右运动遗留问题的纠正，引起毛泽东的不满。1966年5月文革开始后，因消极对待文革，导致毛泽东强烈不满。8月，毛泽东突然发表《炮打司令部》，宣布还存在一个“资产阶级司令部”，并正式向其宣战。10月，林彪、陈伯达公开称：刘少奇、邓小平是“资产阶级反动路线的总代表”。1968年10月，中央八届十二中全会通过《关于叛徒、内奸、工贼刘少奇罪行的审查报告》，决定将刘少奇永远开除出党，撤消党内外一切职务。1969年11月12日，刘少奇于开封含冤去世。1978年中共中央为其平反昭雪。</p>
+
+<p>第十次路线斗争：林彪“反党集团”。林彪，从井冈山开始一直追随毛泽东，战功显赫，为毛泽东的第一爱将。1958年5月任政治局常委、中央副主席，党内第6号人物。1969年任中共中央副主席、政治局常委、中央军委副主席、国防部部长，为当时中共党内第2号人物，并在九大党章中明确其为毛泽东接班人地位。但九大后，毛泽东开始压制林彪在军队的势力。1969年军委办事组下达“第1号令”时竟画蛇添足地在前面加上“林副主席第1号令”，这便犯了毛泽东的大忌。其实，林彪连调动一个连的部队都要向老毛请示。1970年庐山会议，因林彪建议毛泽东兼任国家主席（刘少奇撤职后未设），引起毛泽东的猜疑。但毛泽东只是拿陈伯达开刀。1971年3月中央召开批判陈伯达会议，林彪借身体原因未参加，不配合的态度再次引老毛的强烈不满。而最为严重的是陪老毛在天安门参加“5.1”节庆典时，竟然赌气不和毛打招呼，几分钟后就扬长而去，这导致了双方矛盾开始激发。而又不能及时与毛沟通、解释，双方距离越拉越远了。随着老毛南巡会见一些大军区、省市领导干部时直指林彪的批评讲话传到林彪耳中，使林彪坐卧不安。林彪深知所经历的党内斗争的残酷和老毛的铁面无情，在得知老毛回京时，心神俱乱，为求保命，只有仓惶出逃了。1971年9月13日，林彪与其妻子、儿子及机上人员“因飞机失事，坠毁于蒙古温都尔汗”（官方消息）。官方称，林彪指使其子林立果组织“小舰队”谋杀毛泽东，未遂事败，仓惶出逃。但从毛泽东对国家政权的控制力、对民众思想的控制力和林彪本人的性格来分析，“谋杀”一说有些疑点。真相如何，有待以后解密。</p>
+
+<p>“路线斗争”这一特级政治罪名，在1980年终于被中共中央所废弃，值得庆贺！</p>
+
+<p>毛主席谈党内十次路线斗争</p>
+
+<p>2013-09-2317:57:12来源：乌有网刊作者：毛泽东</p>
+
+<p>点击：4154评论：0（查看）</p>
+
+<p>1</p>
+
+<p>在外地巡视期间同沿途各地负责人谈话纪要(一九七一年八月——九月)</p>
+
+<p>毛主席说，希望你们要搞马克思主义，不要搞修正主义；要团结，不要分裂；要光明正大，不要搞阴谋诡计。</p>
+
+<p>思想上政治上的路线正确与否是决定一切的。党的路线正确就有一切，没有人可以有人，没有枪可以有枪，没有政权可以有政权。路线不正确，有了也可以丢掉。路线是个纲，纲举目张。</p>
+
+<p>我们这个党已经有五十年的历史了，大的路线斗争有十次。这十次路线斗争中，有人要分裂我们这个党，都没有分裂成。这个问题，值得研究，这么个大国，这样多人不分裂，只好讲人心党心，党员之心不赞成分裂。从历史上看，我们这个党是有希望的。</p>
+
+<p>开头是陈独秀搞右倾机会主义。一九二七年“八七”会议以后，他同刘仁静、彭述之那些人，组织了“列宁主义者左翼反对派”，八十一个人发表声明，分裂我们党，没有搞成，他们跑到托洛茨基那一派去了。</p>
+
+<p>接着是瞿秋白犯路线错误。他们在湖南弄到一个小册子，里面有我说的“枪杆子里面出政权”这样的话，他们就大为恼火，说枪杆子里面怎么能出政权呢？于是把我的政治局候补委员撤了。后来瞿秋白被国民党捉住了，写了《多余的话》，自首叛变了。一九二八年党的第六次代表大会以后，李立三神气起来了。从一九三○年六月到九月，他搞了三个多月的立三路线。他主张打大城市，一省数省首先胜利。他搞的那一套我不赞成。到六届三中全会，李立三就倒台了。</p>
+
+<p>一九三○年到一九三一年，罗章龙，右派，另立中央，搞分裂，也没有成功。</p>
+
+<p>王明路线的寿命最长。他在莫斯科就搞宗派，组织了“二十八个半布尔什维克”。他们借第三国际的力量，在全党夺权四年之久。王明在上海召开六届四中全会，发表了《为中共更加布尔什维克化而斗争》的小册子，批评李立三“左”得还不够，非把根据地搞光就不舒服，结果基本上搞光了。从一九三一年到一九三四年，这四年我在中央毫无发言权。一九三五年一月遵义会议，纠正了王明的路线错误，王明倒台了。</p>
+
+<p>在长征的路上，一、四方面军汇合以后，张国焘搞分裂，另立中央，没有成功。长征前红军三十万，到陕北剩下二万五千人。中央苏区八万，到陕北只剩下八千人。张国焘搞分裂，不愿意到陕北去。那时不到陕北，没有出路嘛，这是政治路线问题。那时我们的路线是正确的。如果不到陕北，那怎么能到华北地区、华东地区、华中地区、东北地区呢？怎么能在抗日战争时期搞那么多根据地呢？到了陕北，张国焘逃跑了。</p>
+
+<p>全国胜利以后，高岗饶漱石结成反党联盟，想夺权，没有成功。</p>
+
+<p>一九五九年庐山会议，彭德怀里通外国，想夺权。黄克诚、张闻天、周小舟也跳出来反党。他们搞军事俱乐部，又不讲军事，讲什么“人民公社办早了”，“得不偿失”，等等。彭德怀还写了一封信，公开下战书，想夺权，没有搞成。</p>
+
+<p>刘少奇那一伙人，也是分裂党的，他们也没有得逞。</p>
+
+<p>再就是一九七○年庐山会议的斗争。</p>
+
+<p>一九七○年庐山会议，他们搞突然袭击，搞地下活动，为什么不敢公开呢？可见心里有鬼。他们先搞隐瞒，后搞突然袭击，五个常委瞒着三个，也瞒着政治局的大多数同志，除了那几位大将以外。那些大将，包括黄永胜、吴法宪、叶群、李作鹏、邱会作，还有李雪峰、郑维山。</p>
+
+<p>他们一点气都不透，来了个突然袭击。他们发难，不是一天半，而是八月二十三、二十四到二十五中午，共两天半。他们这样搞，总有个目的嘛！彭德怀搞军事俱乐部，还下一道战书，他们连彭德怀还不如，可见这些人风格之低。</p>
+
+<p>我看他们的突然袭击，地下活动，是有计划、有组织、有纲领的。纲领就是设国家主席，就是“天才”，就是反对“九大”路线，推翻九届二中全会的三项议程。有人急于想当国家主席，要分裂党，急于夺权。天才问题是个理论问题，他们搞唯心论的先验论。说反天才，就是反对我。我不是天才。我读了六年孔夫子的书，又读了七年资本主义的书，到一九一八年才读马列主义，怎么是天才？那几个副词，是我圈过几次的嘛。“九大”党章已经定了，为什么不翻开看看？《我的一点意见》是找了一些人谈话，作了一点调查研究才写的，是专批天才论的。我并不是不要说天才，天才就是比较聪明一点，天才不是靠一个人靠几个人，天才是靠一个党，党是无产阶级先锋队。天才是靠群众路线，集体智慧。</p>
+
+<p>林彪同志那个讲话，没有同我商量，也没有给我看。</p>
+
+<p>他们有话，事先不拿出来，大概总认为有什么把握了，好像会成功了。可是一说不行，就又慌了手脚。起先那么大的勇气，大有炸平庐山，停止地球转动之势。可是，过了几天之后，又赶快收回记录。既然有理，为什么收回呢？</p>
+
+<p>说明他们空虚恐慌。</p>
+
+<p>一九五九年庐山会议跟彭德怀的斗争，是两个司令部的斗争。跟刘少奇的斗争，也是两个司令部的斗争。这次庐山会议，又是两个司令部的斗争。</p>
+
+<p>庐山这一次的斗争，同前九次不同。前九次都作了结论，这次保护林副主席，没有作个人结论，他当然要负一些责任。对这些人怎么办？还是教育的方针，就是“惩前毖后，治病救人”。对林还是要保。不管谁犯了错误，不讲团结，不讲路线，总是不太好吧。回北京以后，还要再找他们谈谈。他们不找我，我去找他们。有的可能救过来，有的可能救不过来，要看实践。前途有两个，一个是可能改，一个是可能不改。犯了大的原则的错误，犯了路线、方向错误，为首的，改也难。历史上，陈独秀改了没有？瞿秋白、李立三、罗章龙、王明、张国焘、高岗、饶漱石、彭德怀、刘少奇改了没有？没有改。</p>
+
+<p>我同林彪同志谈过，他有些话说得不妥嘛。比如他说，全世界几百年，中国几千年才出现一个天才，不符合事实嘛！马克思、恩格斯是同时代的人，到列宁、斯大林一百年都不到，怎么能说几百年才出一个呢？中国有陈胜、吴广，有洪秀全、孙中山，怎么能说几千年才出一个呢？什么“顶峰”啦，“一句顶一万句”啦，你说过头了嘛。一句就是一句，怎么能顶一万句。不设国家主席，我不当国家主席，我讲了六次，一次就算讲了一句吧，就是六万句，他们都不听嘛，半句也不顶，等于零。陈伯达的话对他们才是一句顶一万句。什么“大树特树”，名曰树我，不知树谁人，说穿了是树他自己。还有什么人民解放军是我缔造和领导的，林亲自指挥的，缔造的就不能指挥呀！缔造的，也不是我一个人嘛。</p>
+
+<p>对路线问题，原则问题，我是抓住不放的。重大原则问题，我是不让步的。庐山会议以后，我采取了三项办法，一个是甩石头，一个是掺沙子，一个是挖墙角。批了陈伯达搞的那个骗了不少人的材料，批发了三十八军的报告和济南军区反骄破满的报告，还有军委开了那么长的座谈会，根本不批陈，我在一个文件上加了批语。我的办法，就是拿到这些石头，加上批语，让大家讨论，这是甩石头。土太板结了就不透气，掺一点沙子就透气了。军委办事组掺的人还不够，还要增加一些人，这是掺沙子。改组北京军区，这叫挖墙角。</p>
+
+<p>你们对庐山会议怎么看法？比如华北组六号简报，究竟是革命的，半革命的，还是反革命的？我个人认为是一个反革命的简报。九十九人的会谈，你们都到了，总理也作了总结讲话，发了五个大将的检讨，还发了李雪峰、郑维山两个大将的检讨，都认为问题解决了。其实，庐山这件事，还没有完，还没有解决。他们要捂住，连总参二部部长一级的干部都不让知道，这怎么行呢？</p>
+
+<p>我说的这些，是当作个人意见提出来，同你们吹吹风的。现在不要作结论，结论要由中央来作。</p>
+
+<p>毛主席说，要谨慎。第一军队要谨慎，第二地方也要谨慎。不能骄傲，一骄傲就犯错误。军队要统一，军队要整顿。我就不相信我们军队会造反，我就不相信你黄永胜能够指挥解放军造反！军下面还有师、团，还有司、政、后机关，你调动军队来搞坏事，听你的？</p>
+
+<p>你们要过问军事，不能只当文官，还要当武官。抓军队工作，无非就是路线学习，纠正不正之风，不要搞山头主义、宗派主义，要讲团结。军队历来讲雷厉风行的作风，我赞成。但是，解决思想问题不能雷厉风行，一定要摆事实，讲道理。</p>
+
+<p>广州军区写的那个三支两军的文件，我批了同意，在中央批语上，我添了“认真研究”四个字，就是要引起大家的重视。地方党委已经成立了，应当由地方党委实行一元化领导。如果地方党委已经决定了的事，还拿到部队党委去讨论，这不是搞颠倒了吗？</p>
+
+<p>过去我们部队里在军事训练中有制式教练的科目。从单兵教练，到营教练，大约搞五六个月的时间。现在是只搞文不搞武，我们军队成了文化军队了。</p>
+
+<p>一好带三好，你那一好也许带得对，也许带得不对。还有那些积极分子代表大会，到底效果如何，值得研究。有些是开得好的，也有好多是开得不好的，主要是路线问题。</p>
+
+<p>路线不对，那积极分子代表会就开不好。</p>
+
+<p>工业学大庆，农业学大寨，全国学人民解放军，这不完全，还要加上解放军学全国人民。</p>
+
+<p>毛主席说，要学列宁纪念欧仁·鲍狄埃逝世二十五周年那篇文章，学唱《国际歌》、《三大纪律八项注意》。</p>
+
+<p>不仅要唱，还要讲解，还要按照去做。国际歌词和列宁的文章，全部是马克思主义的立场和观点。那里边讲的是，奴隶们起来为真理而斗争，从来就没有什么救世主，也不靠神仙皇帝，全靠自己救自己，是谁创造了人类世界，是我们劳动群众。在庐山会议时，我写了一个七百字的文件，就提出是英雄创造历史，还是奴隶们创造历史这个问题。国际歌就是要团结起来到明天，共产主义一定要实现。学马克思主义就讲团结，没有讲分裂嘛！我们唱了五十年国际歌了，我们党有人搞了十次分裂。我看还可能搞十次、二十次、三十次，你们信不信？你们不信，反正我信。到了共产主义就没有斗争了？我就不信。到了共产主义也还是有斗争的，只是新与旧，正确与错误的斗争就是了。几万年以后，错误的也不行，也是站不住的。</p>
+
+<p>三大纪律八项注意，“条条要记清”，“全国人民拥护又欢迎”。现在就是有几条记不清了，特别是三大纪律的第一条，八项注意的第一条和第五条，这几条记不清了。如果都能记清，都能这样做，那多好呀。三大纪律的第一条，就是一切行动听指挥，步调一致，才能得胜利。步调不一致，就不能胜利。再就是八项注意的第一条和第五条，对人民，对战士，对下级要和气，不要耍骄傲，军阀作风坚决克服掉。这是重点。没有重点就没有政策。我希望用三大纪律八项注意教育战士，教育干部，教育群众，教育党员和人民。</p>
+
+<p>毛主席说，庐山会议上讲了要读马、列的书。我希望你们今后多读点书。高级干部连什么是唯物论，什么是唯心论都不懂，怎么行呢？读马、列的书，不好懂，怎么办？</p>
+
+<p>可以请先生帮。你们都是书记，你们还要当学生。我现在天天当学生，每天看两本参考资料，所以懂得点国际知识。</p>
+
+<p>我一向不赞成自己的老婆当自己工作单位的办公室主任。林彪那里，是叶群当办公室主任，他们四个人向林彪请示问题都要经过她。做工作要靠自己动手，亲自看，亲自批。不要靠秘书，不要把秘书搞那么大的权。我的秘书只搞收收发发，文件拿来自己选，自己看，要办的自己写，免得误事。</p>
+
+<p>毛主席说，文化大革命把刘少奇，彭、罗、陆、杨揪出来了，这是很大的收获。损失是有一些。有些好干部还站不出来。我们的干部，大多数是好的，不好的总是极少数。清除的不过百分之一，加上挂起来的不到百分之三。</p>
+
+<p>不好的要给以适当的批评，好的要表场，但不能捧，二十几岁的人捧为“超天才”，这没有什么好处。这次庐山会议，有些同志是受骗的，受蒙蔽的。问题不在你们，问题在北京。有错误不要紧，我们党有这么个规矩，错了就检讨，允许改正错误。</p>
+
+<p>要抓思想上政治上的路线教育。方针还是惩前毖后，治病救人，团结起来，争取更大的胜利。</p>
+
+<p>根据中共中央文件刊印。(有毛泽东修改件)</p>
+
+<p>载《建国以来毛泽东文稿》第13册</p>
+
+<p>---------------------------</p>
+
+<p>附：</p>
+
+<p>关于两条路线斗争的基本问题(1967.03.00)</p>
+
+<p>我们党内两条路线斗争，基本问题是在无产阶级夺取政权之以后，即新民主主义革命胜利以后，中国究竟走资本主义道路，还是走社会主义道路的问题。资产阶级要走资本主义道路，这是很明显的。在我们共产党内部，我们要走社会主义道路;但有一部分人却认为中国是个很穷困的国家，中国资本主义发展水平很低，不能发展社会主义，必须在一段时间内走资产阶级道路，然后再走社会主义道路。走什么道路问题，解放初期有这个问题，现在仍然有这个问题。苏联搞了五十多年，仍是这个问题。</p>
+
+<p>接见阿尔巴尼亚军事代表团时的谈话(1967.05.01)</p>
+
+<p>我在一九六二年七千人大会上曾讲过：马列主义与修正主义的斗争，胜利还没有分晓，很可能修正主义胜利，我们失败。我们用可能失败提醒人家，有利于促进大家对修正主义的警惕性，有利于防修反修。实际上共产党内的两个阶级、两条路线的斗争始终是存在着的，任何人否认都否认不了的。我们是唯物主义者，我们当然不应该去否认它。自这次大会以后，两条路线、两个阶级在我们党内的斗争表现是形“左”实右与反形“左”实右;反对阶级斗争存在与强调阶级斗争存在;折衷主义与突出无产阶级政治等等。在这以前适当的文件中也有了论述。</p>
+
+<p>姚文元对《红旗》杂志编辑组召集人传达毛主席指示(1975.06.23)</p>
+
+<p>关于两条路线斗争问题。主席说，我们现在还是两种可能，一个社会主义，一个资本主义。王明、张国焘、高岗、彭德怀、刘少奇、林彪，他们是要搞资本主义。我们党五十年，有十次路线错误。其中四次跟苏联没有关系，陈独秀、瞿秋白、张国焘、罗章龙。六次跟苏联有关系。反对我们，分裂党，都失败了，党没有分裂，把他们排斥出去了。以后五十年，或者一百年，还有两条路线斗争，一万年还有两条路线斗争，到共产主义还有两条路线斗争，不然，就不是马克思主义者。马克思主义讲对立统一(用英语讲对立统一这个词)，只说一个，就是形而上学，两个，就是对立的统一，对立的斗争。我相信马克思说的，列宁说的。</p>
+
+<p>以上载《毛泽东思想万岁》(汉版)第6册</p>
+
+
+
+<p style='float:right;'>本页共70段，10137个字符，29627 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

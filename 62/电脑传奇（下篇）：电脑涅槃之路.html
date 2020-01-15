@@ -1,0 +1,450 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>电脑传奇3：电脑涅槃之路</h3>
+
+<p>黄铁军
+</p>
+
+<p>电脑涅槃之电脑之路、解析大脑、仿真大脑、超越大脑
+</p>
+
+<p><h4>电脑之路</h4>
+</p>
+
+<p>人脑是强人工智能最好的和唯一的参照物。正如欧盟“人类大脑计划(Human Brain Project)”建议报告中指出的：“除人脑以外，没有任何一个自然或人工系统能够具有对新环境与新挑战的自适应能力、对新信息与新技能的自动获取能力、在复杂环境下进行有效决策并稳定工作直至几十年的能力。没有任何系统能够在多处损伤的情况下保持像人脑一样好的鲁棒性，在处理同样复杂的任务时，没有任何人工系统能够媲美人脑的低能耗性。”
+</p>
+
+<p>人脑是宇宙中已知的最复杂的对象。冯·诺伊曼1946年11月写给维纳的信中曾提到，“为了理解自动机的功能及背后的一般原理，我们选择了太阳底下最复杂的对象”，并因此否决了麦卡洛克和皮茨的 “逻辑大脑”模型。皮茨显然没有放弃这个对他来说唯一真正重要的问题，他在1955年（也就是人工智能概念出现前一年）曾指出：“（一派人）企图模拟神经系统，而纽厄尔则企图模拟心智……但殊途同归。”
+</p>
+
+<p>制造真正的“电脑”，是走“结构”路线？还是“功能”路线？
+</p>
+
+<p>任何客观对象都可以分为“结构”和“功能”两个层次：基元按照特定结构组成对象，拥有特定结构的对象表现出特定功能。简言之，结构是功能的基础，功能是结构的表现。大脑的“结构”是指各种神经元（神经细胞）通过神经突触连接而成的复杂神经网络，“功能”是指大脑神经网络表现出的动力学行为，即思维和意识现象。所谓大脑奥秘这个终极性难题，实际上是指“大脑（结构）何以产生智能（功能）？”或简称为“理解智能”难题。
+</p>
+
+<p>问题在于：“制造智能”（制造出具有类脑智能的机器）是否必须先“理解智能”？
+</p>
+
+<p>肯定回答似乎是显然的，因为“科学是技术的基础和前提”。但事实上，人类历史上重大技术突破往往都在其科学原理揭示之前。以飞机为例，莱特兄弟1903年发明飞机。冯·卡门1908年在巴黎亲眼目睹了飞行表演后才相信，并下决心搞清楚飞机为什么会飞。直到1946年，他才和钱学森系统地提出空气动力学。这样的例子不胜枚举：从中国的四大发明，到日常生活中的乐器，甚至浆糊，都是先成功实践，后揭示出科学原理（即使像“浆糊为什么能够粘连”这种看似简单的问题，要回答也并不容易）。制造真正的“电脑”，同样应从结构入手，通过解析大脑（主要是皮层神经网络结构以及作为结构基元的神经元和突触的功能）和仿真大脑，制造出能够产生类似功能的机器，之后尝试理解机器智能，并最终理解生物大脑的智能。简言之，“先结构，后功能”，因为“功能源于结构”。
+</p>
+
+<p>为了和经典计算机区分，真正的“电脑”可称为“类脑计算机”或“神经计算机”，是仿照生物神经网络，采用神经形态器件构造的，以多尺度非线性时空信息处理为中心的智能机器。具体来说，是从结构层次仿真入手，采用微纳光电器件模拟生物神经元和神经突触的信息处理功能，仿照大脑皮层神经网络和生物感知器官构造出仿生神经网络，在仿真精度达到一定程度后，加以外界刺激训练，使之产生与生物大脑类似的信息处理功能和系统行为。背后的基本理念是绕过“理解智能”这个更为困难的科学难题，先通过结构仿真等工程技术手段制造出类脑计算机，再通过训练间接达到智能模拟的目的。这条技术路线可总结为：结构层次模仿脑，器件层次逼近脑，智能层次超越脑。
+</p>
+
+<p><h4>解析大脑</h4>
+</p>
+
+<p>解析大脑的结构在现代计算机出现之前就开始了。神经科学的百年历史，就是一首解析大脑的壮歌。1906年，诺贝尔生理学或医学奖授予“研究神经系统结构”的卡米洛·高尔基(Camilo Golgi, 1843-1926)和圣地亚哥·拉蒙-卡哈尔(Santiago Ramon y Cajal，1852-1934)。他们提出神经元染色法，并绘制了大量精美的生物神经网络图谱，沿用至今。
+</p>
+
+<p>神经元（即神经细胞）是生物神经网络的基本单元。对于它的功能，1943年，麦卡洛克和皮茨想象成“全或无”的逻辑开关。但是，生物神经元真是这样吗？这个问题在1939年就有人思考，而且不止思考，还“撸起袖子说干就干”。但神经元那么小，撸袖子有什么用！刚刚博士后出站回到剑桥大学的阿兰·霍奇金(Alan Hodgkin, 1914-1998)和他的博士后安德鲁·赫胥黎(Andrew Huxley, 1917-2012)脑子急转弯：找个大神经元！他们选中了大西洋枪乌贼的巨神经元：轴突和耳机线差不多，插入0.1毫米的电极绰绰有余！他们自制工具，很快就测到这个神经元的静息电位和动作电位，实验结果发表在Nature上。恰在此时，二战爆发，两人弃笔从戎。直到1946年，也就是冯·诺伊曼在给维纳的信中想到“借助‘显微镜’……在细胞层次上更深入地认识神经机制”的那一年，霍奇金和赫胥黎重新拿起膜片钳，又花了6年时间，精细测量神经元传递电信号（神经脉冲，更准确地称为“动作电位”）的动态过程，并给出了精确描述这一动力学过程的微分方程，称为霍奇金-赫胥黎方程（Hodgkin-Huxley方程，简称HH方程）。HH模型对不同类型的神经元具有通用性，1963年，两人因此获得诺贝尔奖。
+</p>
+
+<p>接下来是解析神经突触，这一历史重任转到中国人肩上。中国现代神经科学奠基人冯德培(1907-1995)和张香桐(1907-2007)对神经可塑性研究做出了杰出贡献。在霍奇金-赫胥黎方程发表的1952年，张香桐就发现树突具有电兴奋性，树突上的突触可能对神经元的兴奋精细调节起重要作用。1992年，国际神经网络学会授予张香桐终身成就奖，评价他“……为树突电流在神经整合中起重要作用这一概念提供了直接证据……这一卓越成就，为我们将来发展使用微分方程和连续时间变数的神经网络，而不再使用数字脉冲逻辑的电子计算机奠定了基础”。1998年，托斯迪克斯(Tsodyks)和亨利·马克拉姆(Henry Markram, 1962- )等构建了神经突触计算模型。同年，毕国强和蒲慕明提出了神经突触脉冲时间依赖的可塑性机制 (Spike-Timing Dependent Plasticity, STDP) ：反复出现的突触前脉冲有助于紧随其后产生的突触后动作电位并将导致长期增强，相反的时间关系将导致长期抑制。2000年，宋森等给出了STDP的数学模型。2016年，蒲慕明院士因为发现“……神经细胞如何依据对现实世界的体验，建立新连接或者改变原有连接强度”，获得美国神经学学会格鲁伯神经科学奖。
+</p>
+
+<p>神经突触虽然微小，但对越来越精密的探测仪器来说，并无突破不了的障碍。人类全身神经突触数量达到百万亿，神经元数量达到千亿。虽然庞大繁杂，但仍然是一个复杂度有限的物理结构。2008年，美国工程院把“大脑反向工程”列为本世纪14个重大工程问题之一。2013年以来，欧洲“人类大脑计划”以及美、日、韩和我国的“脑计划”相继登场，都把大脑结构图谱绘制作为重要内容。2014年，华中科技大学“单细胞分辨的全脑显微光学切片断层成像技术与仪器”获得国家技术发明奖二等奖，并被欧洲“人类大脑计划”用作鼠脑仿真的基础数据。2016年3月，美国情报高级研究计划署(IARPA)启动大脑皮层网络机器智能(MICrONS)计划，对1立方毫米的大脑皮层进行反向工程，并运用这些发现改善机器学习和人工智能算法。2016年4月，全球脑计划研讨会(Global Brain Workshop 2016)提出，需要应对3大+6挑战，第一个挑战就是绘制大脑结构图谱：“在10年内，我们希望能够完成包括但不限于以下动物大脑的解析：果蝇、斑马鱼、鼠、狨猴，并将开发出大型脑图谱绘制分析工具。”仿佛是为了证明这个预测，2016年9月8日，日本东海大学宣布绘制出包括十多万个神经元的果蝇大脑神经网络三维模型。
+</p>
+
+<p>我国已经将“多模态跨尺度生物医学成像”列为“十三五”国家重大科技基础设施，由北京大学和中国科学院生物物理所等联合建设。这一平台融合光、声、电、磁、核素、电子等成像范式，提供从埃米到米、从微秒到小时跨越10个空间与时间尺度的解析能力，将分步骤实现多种模式动物大脑的高精度动态解析。更多大脑解读：www.yangfenzi.com/tag/danao
+</p>
+
+<p><h4>仿真大脑</h4>
+</p>
+
+<p>仿真大脑的努力可以追溯到20世纪80年代。1972年，美国生物学家杰拉尔德·艾德曼(Gerald Maurice Edelman, 1929-2014)因发现免疫系统抗体的化学结构而获得诺贝尔生理学或医学奖。1978年左右，他转向意识研究。他的基本思想可概括为“神经群体选择理论(neuronal group selection)”，即神经系统产生感知、行为、学习、记忆以及意识的机理与生物适应自然环境的自然选择机制类似，因此被称为“神经达尔文主义”(Neural Darwinism) 。为了验证这一学说，从1981年开始，他提出了统称为“综合神经建模(synthetic neural modeling)”的理论，即逼近真实解剖和生理数据的神经系统大规模仿真，并研制了一系列名为“Darwin（达尔文）”的“仿脑机”(Brain-Based-Devices, BBD) 。仿脑机仿真的是不同脑区（如海马或小脑），通过从多种仿真神经回路中进行选择而实现学习。起初是软件，1992年开始采用硬件。以2005~2007年研制的达尔文10号和11号为例，仿真约50个脑区、10万个神经元和140万个突触连接，通过模拟啮齿类动物走迷宫的过程，理解大脑空间记忆的形成过程。基于仿脑机的足球机器人在2004年至2006年参加RoboCup机器人足球公开赛，曾5局全胜卡内基梅隆大学的经典人工智能系统。
+</p>
+
+<p>现代微电子学和大规模集成电路先驱、加州理工学院教授卡弗·米德(Carver Andress Mead, 1934- )也是在20世纪80年代兴趣转向生物神经系统的。与艾德曼关注神经元群体和神经环路不同，米德的关注点在神经元的硬件实现，开创了“神经形态工程(neuromorphic engineering)”这个方向，提出采用亚阈值模拟电路来仿真脉冲神经网络，并提出了“神经形态处理器(neuromorphic processors)”的概念。1989年5月，米德在ISCAS(International Symposium on Circuits and Systems)会议期间组织了“模拟集成神经系统(Analog Integrated Neural Systems)”研讨会，主要参会人员至今仍然活跃在这一领域。米德在1989年招收的博士生博阿汉(Kwabena Boahen)于2005年加入斯坦福大学，成立了“硅脑(Brains in Silicon)”实验室。2009年，研制出了神经形态电路板Neurogrid。每块板有16颗芯片，每颗芯片内集成了65536个神经元，每个神经元用340个亚阈值工作状态的晶体管模拟。这样一块Neurogrid板就支持100万个神经元和60亿个突触联结，能耗只有5瓦，在神经系统模拟方面可媲美能耗1兆瓦的超级计算机。
+</p>
+
+<p>使用超级计算机可以更为精确地仿真生物神经网络。2005年，瑞士洛桑联邦理工学院(EPFL)亨利·马克拉姆领导的“蓝色大脑计划”获得瑞士政府资助，平台就是IBM的蓝色基因超级计算机。2007年，IBM Almaden研究中心认知计算研究组在超级计算机上开发了称为“皮层模拟器(Cortical Simulator)”的大脑模拟软件，牵头的“神经形态自适应可塑性可扩展电子系统(Systems of Neuromorphic Adaptive Plastic Scalable Electronics, SyNAPSE)”得到DARPA资助。2009年，在蓝色基因超级计算机上实现了8.61T个神经突触的猫脑模拟，在哺乳动物大脑皮层上经常能观测到的阿尔法振荡（10Hz左右）和伽马振荡（40Hz左右的信息整合）现象，也在这个“软件大脑”上出现了。在接受视觉模式刺激时，这个“软件大脑”还出现了在哺乳动物视皮层上才能观察到的特定群体响应潜伏现象。同样在2009年，马克拉姆团队在蓝色基因超级计算机上构造出刚出生两周的大鼠的新皮质柱精细模型，包括1万个神经元和数千万个突触连接，同样出现了伽马振荡现象。2009年12月，马克拉姆在接受采访时表示：“从技术层面上讲，利用计算机和数据采集技术，有可能在10年内建立起人脑模型。”尽管对这一看法存在诸多争议，但这个前景实在诱人。由马克拉姆领衔的欧洲“人类大脑计划”于2013年1月获得欧盟批准，提出将信息技术和生命科学结合，整合从单分子探测到大脑整体结构解析，实现全脑仿真模拟。
+</p>
+
+<p>为了实现全脑仿真的目标，“人类大脑计划”支持了两台大型神经形态计算系统的研制：英国曼彻斯特大学的SpiNNaker系统和德国海德堡大学的BrainScaleS。2016年3月，两台阶段样机正式上线运行。SpiNNaker是一种受大脑结构和功能启发的大规模并行计算体系结构，正式启动于2005年的EPSRC项目，负责人是ARM处理器发明人史蒂夫·佛伯(Steve Furber)。SpiNNaker系统采用定制ARM处理器作为基本单元，分为五代。最初的102机使用了约100个ARM核，计划2020年完成的106机则集成了约106个ARM核，可实时精细仿真10亿个生物神经元。SpiNNaker用数据包交换来模拟神经元之间的异步稀疏脉冲交换，因此可以在物理连接大大少于大脑的情况下，实现相同性能的信息交换。BrainScaleS由德国海德堡大学卡尔海因茨·迈耶(Karlheinz Meier)教授负责，前身是2005到2010年的FACTES项目，强调生物神经系统和神经形态计算之间的比较研究，微观层面研究神经元的信号处理特性及模拟电路实现，介观层面研究突触可塑性及数字电路实现。该项目在8英寸晶园上实现了20万个神经元和5000万个突触，晶圆内总线速度达每秒1T脉冲，晶圆间分布式通信速度为每秒10G脉冲。在人类大脑计划支持下，2016年完成了20块晶圆、400万个神经元和10亿个突触的神经形态计算系统，速度比生物系统快1万倍。2022年（也就是人类大脑计划结束前）的目标系统现在尚未敲定，预计构造一个500块或5000块晶圆组成的大型系统。即使是500块的方案，也能同时仿真5亿个神经元，比人脑速度高上万倍，因此将具备实时仿真人类大脑的能力。
+</p>
+
+<p>IBM主导的SyNAPSE项目，在超级计算机上进行大脑皮层仿真的基础上，为了突破规模瓶颈，也开发了神经形态芯片TrueNorth。2014年，Science将其列入年度十大进展。TrueNorth采用成熟的CMOS集成电路工艺，神经元采用简单的LIF模型，每片集成4096个核，每核内有256个输入神经元和256个输出神经元，突触状态、神经元状态和参数、脉冲目的地址、轴突延迟等均用静态随机存储器记录。每片总计100万个神经元和2.56亿个突触连接，耗费54亿个晶体管，单个芯片平均放电频率为20Hz，单神经元放电功耗26pJ，芯片功耗低至65mW，相当于同等晶体管数量的传统CPU功耗的1/5000左右。基于这款芯片，IBM建立了Corelet编程模型、算法库和相应的软件开发环境，结合Compass模拟器，用户可以快速尝试不同的模型和参数，从中找出优化的方案。采用TrueNorth，美国劳伦斯·利弗莫尔国家实验室和IBM公司近期公布了一款智能超级计算机。
+</p>
+
+<p>如果说Neurogrid、BrainScaleS、SpiNNaker和TrueNorth等神经形态计算系统代表了神经计算机的今天，那么全新的神经形态器件将决定神经计算机的明天。要在一个有限的物理空间中以较低功耗实现大脑规模的神经计算机，必须研制尺度和功耗都与生物相当甚至更小的神经形态器件。在生物突触仿真方面，忆阻器和相变存储器从2008年开始就持续引起广泛关注。2016年8月，IBM苏黎世研究院宣布，用相变材料研制出世界第一个人工神经元。9月，美国马萨诸塞大学阿默斯特分校采用扩散型忆阻器，成功研制逼近神经突触的器件。10月，普林斯顿大学宣布研制成功光神经元。中国在神经形态器件方面已经有10多年的研究历史，北京大学、清华大学、南京大学、中科院上海微系统所、华中科技大学和国防科技大学等单位的成果表明，中国很有可能对这一领域产生巨大影响。尽管这些器件应用于神经计算系统还有很长的路要走，但它们将从根本上塑造神经计算机的未来，就像晶体管和集成电路对经典计算机的贡献一样。
+</p>
+
+<p><h4>超越大脑</h4>
+</p>
+
+<p>仿真生物神经系统的神经形态计算系统在2016年已经正式浮出水面，这类新的计算系统可简称为“神经计算机”。这种新的计算机是否还是图灵机？一个更深刻的理论问题是，智能是否是“可计算”的？如果答案是“否”，那么新的神经计算机是否能实现人脑的所有智能？如果答案是“是”，那么为什么不继续以经典计算机为平台实现更强的智能乃至强人工智能？
+</p>
+
+<p>现代计算机是迄今为止人类最伟大的发明之一，并被作为实现人工智能的平台，但它本质上是一个开关电路系统，擅长计算和逻辑，并非为制造智能这个目的而设计。神经计算机的重要意义在于给出了实现智能的一种更为合理的体系结构和实现途径，即使将来理论证明神经计算机仍然是图灵机，也不能抹杀制造神经计算机的必要性。用传统计算机实现类似功能的代价（硬件规模和功耗）过于巨大而得不偿失。
+</p>
+
+<p>借鉴生物大脑和神经系统的精细结构模型，研制能够对多尺度非线性信息进行高效处理的“电脑”，需要遵循以下原则：
+</p>
+
+<p>1.先结构，后功能：应该从对生物神经系统的结构仿真出发，而不是从生物智能的功能模拟出发，即科学基础主要是神经科学，而不是认知科学；
+</p>
+
+<p>2.器件层次逼近脑：必须研制功能和尺度都逼近乃至超越生物神经元和生物突触的神经形态器件，以制造大规模神经网络硬件系统；
+</p>
+
+<p>3.结构层次模仿脑：需要借鉴生物神经网络的结构设计新的体系结构，在实现类似生物智能后，再进行简化、优化和扩大规模；
+</p>
+
+<p>4.功能层次超越脑：使用互联网大数据、物联网传感器和虚拟环境等多种刺激，训练硬件神经网络，“培育”智能；
+</p>
+
+<p>5.先理解机器智能，再理解生物智能：对机器智能产生的动力学过程进行建模和分析，理解机器智能，再将这种理解外推到生物系统，补充生物实验，理解生物智能乃至人类意识。
+</p>
+
+<p>沿着上述原则研制的“电脑”，并不需要等待脑科学认知原理的突破，就有可能制造出类似生物一样的强人工智能，甚至涌现出自我意识，这将是揭开大脑终极奥秘的重要一步。
+</p>
+
+<p>我们所在的宇宙是一个物质能量世界，同时也是一个形态世界，物质有限，能量守恒，而形态变化万千，世界的形态属性正是信息的来源。我们的大脑是一个足够复杂的结构，所以才能映射和表达外部世界存在的复杂结构；我们的大脑还是一个动态复杂的系统，所以才能感知和处理复杂的动态世界；我们的大脑这个动态系统对形式的加工过程中所进行的变换和抽象，则是知识的源头。当然，我们的大脑还是一个复杂度有限的结构，复制这样的结构只是制造更复杂结构的起点。1896年，天才发明家尼古拉·特斯拉(Никола Тесла, 1856-1953)说过：“我认为任何一种对人类心灵的冲击都比不过一个发明家亲眼见证人造大脑变为现实。”这是因为，一旦“电脑”变为现实，超越就同时发生了：
+</p>
+
+<p>1.速度：神经形态器件可以快多个数量级；
+</p>
+
+<p>2.规模：没有颅骨的限制；
+</p>
+
+<p>3.寿命：电子系统即使有损耗，也可以复制迁移到新系统而永生；
+</p>
+
+<p>4.精度：生物大脑的很多缺陷和“短板”可以避免和弥补；
+</p>
+
+<p>5.协作：电脑之间“精诚合作”、“万众一心”；
+</p>
+
+<p>6.进化：电脑自己设计自己；
+</p>
+
+<p>7.……
+</p>
+
+<p>这正是：
+</p>
+
+<p>幽幽颅中物，灼灼银河星；
+</p>
+
+<p>更有千千结，长程连短程；
+</p>
+
+<p>染色百年技，光电透皮层；
+</p>
+
+<p>列国脑计划，十年欲图穷；
+</p>
+
+<p>突触新器件，人工造神经；
+</p>
+
+<p>大脑为蓝本，电脑近黎明；
+</p>
+
+<p>结构加训练，意识自然成；
+</p>
+
+<p>心浩连广宇，唯有慨然行。
+</p>
+
+<p>作者：黄铁军，CCF杰出会员。北京大学教授，北京大学计算机科学技术系主任、数字媒体研究所所长。主要研究方向为视觉信息处理和类脑计算。来源：《中国计算机学会通讯》2017年第2期《专栏》
+</p>
+
+
+
+<p style='float:right;'>本页共52段，8267个字符，21731 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

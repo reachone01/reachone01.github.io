@@ -1,0 +1,460 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><TITLE>日历查询(1900-2049年)</TITLE>
+<META content="text/html; charset=utf-8" http-equiv=Content-Type>
+<link ID="CSS" href="jscss/css.css" rel="stylesheet" type="text/css" />
+<script charset="utf-8" language="JavaScript" type="text/javascript" src="jscss/js.js"></script>
+
+</head>
+
+<!--顺序有关系，如果某一函数有问题，后续会有问题-->
+<body onload = "initial();"> 
+
+<center> <!--IE不支持table margin居中-->
+<table id="dateTableMain">
+  <tr>
+    <td align=middle>
+      <div style="Z-INDEX: -1; POSITION: absolute; TOP: 30px"><font 
+      style="font-FAMILY: 'Arial Black'; COLOR: #f0f0f0; font-SIZE: 1pt" 
+      id=YMBG>&nbsp;0000<br>&nbsp;JUN</font> </div>
+      <table id="dateTable">
+
+        <tr>
+          <td id="firsttd" colSpan=7>
+		  <!--<font id="gong" style="font-SIZE: 10pt" color=#ffffff>公元&nbsp;</font>-->
+		  
+<!--Form的标签在IE中可以分散，chrome在有bub，通过减少代码才发现这一错误-->
+	<FORM name="CLD" id="CLD">
+
+     <!--不能有 href=""属性，否则无法更改年月-->
+	<font style="font-SIZE: 14pt" color=#ffffff><a onClick="pushBtm('YU')">&nbsp;&lt;&nbsp;</a></font> 
+	<SELECT style="font-SIZE: 11pt" onchange=changeCld() name="SY" id="SY"> 
+		<SCRIPT language=JavaScript>      // 写日期和年份选项
+			for(i=1900;i<2050;i++) 
+				document.write('<option>'+i+"年")
+		</SCRIPT>
+	</SELECT>
+	<font style="font-SIZE: 14pt" color=#ffffff><a onClick="pushBtm('YD')">&nbsp;&gt;&nbsp;</a>
+	<a onClick="pushBtm('MU')">&nbsp;&lt;&nbsp;</a></font> 
+	<SELECT style="font-SIZE: 11pt" onchange=changeCld() name="SM" id="SM"> 
+		<SCRIPT language=JavaScript>
+			for(i=1;i<13;i++) 
+				document.write('<option>'+i + "月")
+		</SCRIPT>
+		<!--<option value='1'>1</option>-->
+
+	</SELECT>
+	<font style="font-SIZE: 14pt" color=#ffffff><a onClick="pushBtm('MD')">&nbsp;&gt;&nbsp;</a></font> 
+	 <font style="font-SIZE: 10pt" color=#ffffff><a onClick="toToday()">Today</a>
+	</font> 
+
+  </FORM>
+ <font id=GZ color=#ffffff size=3 face=宋体></font><br></td>
+ </tr>
+<tr style="background-color:#e0e0e0; height:12px;">
+  <td style="height:18px;">
+	<div align=center>星期日</div></td>
+  <td style="height:18px;">
+	<div align=center>星期一</div></td>
+  <td style="height:18px;">
+	<div align=center>星期二</div></td>
+  <td style="height:18px;">
+	<div align=center>星期三</div></td>
+  <td style="height:18px;">
+	<div align=center>星期四</div></td>
+  <td style="height:18px;">
+	<div align=center>星期五</div></td>
+  <td style="height:18px;">
+	<div align=center>星期六</div></td>
+</tr>
+
+<SCRIPT language=JavaScript><!--   // 画表格
+	var gNum
+	for(i=0;i<6;i++) {
+	   document.write('<tr align=center>')
+	   for(j=0;j<7;j++) {
+		  gNum = i*7+j
+		  document.write('<td id="GD' + gNum + 
+		  '" onMouseOver222="mOvr(' + gNum +')" onClick="oneday(' + gNum +')"  ><font id="SD' 
+		  + gNum +'" size=5 face="Arial Black"')
+		  if(j == 0) document.write(' color=red')
+		  if(j == 6)
+			 if(i%2==1) document.write(' color=red')
+				else document.write(' color=green')
+		  document.write(' TITLE=""> </font><br><font id="LD' + gNum + '" size=2 			               style="font-size:9pt"> </font></td>')
+	   }
+	   document.write('</tr>')
+	}
+	
+	//--></SCRIPT>
+        </TBODY></table></td>
+		
+    <td vAlign=top width=60 align=middle><br><br><br><br><br>
+
+
+	  </td></tr></TBODY></table>
+
+</center>
+
+<div id="main"> <!--外面加一个标签，解决IE不能居中的问题-->
+<div id="tab">
+<h3 onClick="goto(0);" title="上月未完成和本月计划汇总">prev</h3>
+<h3 onClick="goto(1);">01</h3>
+<h3 onClick="goto(2);">02</h3>
+<h3 onClick="goto(3);">03</h3>
+<h3 onClick="goto(4);">04</h3>
+<h3 onClick="goto(5);">05</h3>
+<h3 onClick="goto(6);">06</h3>
+<h3 onClick="goto(7);">07</h3>
+<h3 onClick="goto(8);">08</h3>
+<h3 onClick="goto(9);">09</h3>
+<h3 onClick="goto(10);">10</h3>
+<h3 onClick="goto(11);">11</h3>
+<h3 onClick="goto(12);">12</h3>
+<h3 onClick="goto(13);">13</h3>
+<h3 onClick="goto(14);">14</h3>
+<h3 onClick="goto(15);">15</h3>
+<h3 onClick="goto(16);">16</h3>
+<h3 onClick="goto(17);">17</h3>
+<h3 onClick="goto(18);">18</h3>
+<h3 onClick="goto(19);">19</h3>
+<h3 onClick="goto(20);">20</h3>
+<h3 onClick="goto(21);">21</h3>
+<h3 onClick="goto(22);">22</h3>
+<h3 onClick="goto(23);">23</h3>
+<h3 onClick="goto(24);">24</h3>
+<h3 onClick="goto(25);">25</h3>
+<h3 onClick="goto(26);">26</h3>
+<h3 onClick="goto(27);">27</h3>
+<h3 onClick="goto(28);">28</h3>
+<h3 onClick="goto(29);">29</h3>
+<h3 onClick="goto(30);">30</h3>
+<h3 onClick="goto(31);">31</h3>
+<h3 onClick="goto(32);" title="下月计划" style="width:3.2%">next</h3>
+
+<div>
+	<p><span class="fred">Previous Month<sub>prev</sub></span><span class="fblue">&nbsp;&nbsp;前事不忘，后事之师.</span></p>
+	<p>1 农历节日（农历月、日→公历月、日）:2019.7，2003.1、2，2022.1、2、3(1月1号是11.29)</P>
+	<p>2 干支月、日；</p>
+
+	<p>3 <a href="https://www.toutiao.com/i6512564376438833678/">数学之美｜数字1-31说几何图形之美</a></p>
+	<p>4 <a href="https://www.toutiao.com/i6512589057803944456/">数学之美｜数字1-31说数形之美</a></p>
+</div><!--prev-->
+<div>
+	<p><span class="fred">Toady is 1<sub>st</sub></span><span class="fblue">&nbsp;&nbsp;What you are going to do,do quickly.</span></p>
+	<p>1.</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--1-->
+<div>
+	<p><span class="fred">Toady is 2<sub>nd</sub></span><span class="fblue">&nbsp;&nbsp;Be nice to people on your way up because you'll meet them on your way down.</span></p>
+	<p>1.</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--2-->
+<div>
+	<p><span class="fred">Toady is 3<sub>rd</sub></span><span class="fblue">&nbsp;&nbsp;Something to face,to persevere,to change.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--3-->
+<div>
+	<p><span class="fred">Toady is 4<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Time flies.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--4-->
+<div>
+	<p><span class="fred">Toady is 5<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Jack of all trades, master of none.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--5-->
+<div>
+	<p><span class="fred">Toady is 6<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Look before you leap.</span></p>
+	<p>1. merchant credit repay 8th</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--6-->
+<div>
+	<p><span class="fred">Toady is 7<sub>th</sub></span><span  class="fblue">&nbsp;&nbsp;Knowledge is power.</span></p>
+	<p>1. merchant credit repay 8th</p>
+	<p>2. comm credit repay 10th</p>
+	<p>3. 移动拼板一般将图案划分成若干份，常见的是9格和15格。空出的一格，使得方块的上下左右移动。玩法很简单，将图案打乱，然后依照小图，移动方块，将图片重现组合，恢复原样。<a href="https://baike.baidu.com/item/%E6%95%B0%E5%AD%97%E6%8B%BC%E6%9D%BF">数字拼板</a>也是同样原理。</p>
+</div><!--7-->
+<div>
+	<p><span class="fred">Toady is 8<sub>th</sub></span><span  class="fblue">&nbsp;&nbsp;Actions speak louder than words.</span></p>
+	<p>1. merchant credit repay 8th</p>
+	<p>2. comm credit repay 10th</p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--8-->
+<div>
+	<p><span class="fred">Toady is 9<sub>th</sub></span><span  class="fblue">&nbsp;&nbsp;Easy come, easy go.</span></p>
+	<p>1. comm credit repay 10th</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--9-->
+<div>
+	<p><span class="fred">Toady is 10<sub>th</sub></span><span  class="fblue">&nbsp;&nbsp;Blood is thicker than water.</span></p>
+	<p>1. comm credit repay 10th</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--10-->
+<div>
+	<p><span class="fred">Toady is 11<sub>th</sub></span><span  class="fblue">&nbsp;&nbsp;All's fair in love and war.</span></p>
+	<p>1.  </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--11-->
+<div>
+	<p><span class="fred">Toady is 12<sub>th</sub></span><span  class="fblue">&nbsp;&nbsp;Time and tide wait for no man.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--12-->
+<div>
+	<p><span class="fred">Toady is 13<sub>th</sub></span>&nbsp;&nbsp;<span class="fblue">Sloth,like rust,consumes faster than labor wears.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--13-->
+<div>
+	<p><span class="fred">Toady is 14<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Better late than never.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--14-->
+<div>
+	<p><span class="fred">Toady is 15<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Early to bed and early to rise,makes a man healthy,wealthy and wise.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--15-->
+
+<div>
+	<p><span class="fred">Toady is 16<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;One today is worth two tomorrow.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--16-->
+<div>
+	<p><span class="fred">Toady is 17<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;It is no use doing what you like;you have got to like what you do.</span></p>
+	<p>1.guangfu 22th credit repay;</p>
+	<p>2.<a href="img/17.gif" target="_blank">17边形尺规作图</a></p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--17-->
+<div>
+	<p><span class="fred">Toady is 18<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;When work is a pleasure,Life is joy!When work is duty,Life is slavery.</span></p>
+	<p>1.guangfu 22th credit repay;</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--18-->
+<div>
+	<p><span class="fred">Toady is 19<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Nothing is impossible for a willing heart.</span></p>
+	<p>1.guangfu 22th credit repay;</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--19-->
+<div>
+	<p><span class="fred">Toady is 20<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;If a thing is worth doing,it is worth doing well.</span></p>
+	<p>1. guangfu 22th credit repay;</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--20-->
+<div>
+	<p><span class="fred">Toady is 21<sub>st</sub></span><span class="fblue">&nbsp;&nbsp;Nothing great ever was achieved without enthusiasm.</span></p>
+	<p>1 guangfu 22th credit repay;</p>
+	<p>2 A "simple" squared square is one where no subset of the squares forms a rectangle or square, otherwise it is "compound".</p>
+<p><a href="img/21.jpg" target="_blank">pic</a></p>
+</div><!--21-->
+<div>
+	<p><span class="fred">Toady is 22<sub>nd</sub></span><span class="fblue">&nbsp;&nbsp;The sooner, the better.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--22-->
+<div>
+	<p><span class="fred">Toady is 23<sub>rd</sub></span><span class="fblue">&nbsp;&nbsp;TV has its merits and demerits.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--23-->
+<div>
+	<p><span class="fred">Toady is 24<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;All happy families resemble one another,each unhappy family is unhappy in its own way.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--24-->
+<div>
+	<p><span class="fred">Toady is 25<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;April showers bring May flowers.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--25-->
+<div>
+	<p><span class="fred">Toady is 26<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;An army of stags led by a lion would be more formidable than one of lions led by a stag.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--26-->
+<div>
+	<p><span class="fred">Toady is 27<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Ask not what your country can do for you;ask what you can do for your country.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--27-->
+<div>
+	<p><span class="fred">Toady is 28<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Better the last smile than the first laughter.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--28-->
+<div>
+	<p><span class="fred">Toady is 29<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;Beware of the man of one book.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--29-->
+<div>
+	<p><span class="fred">Toady is 30<sub>th</sub></span><span class="fblue">&nbsp;&nbsp;As chaste as ice,as pure as snow.</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--30-->
+<div>
+	<p><span class="fred">Toady is 31<sub>st</sub></span><span class="fblue">&nbsp;&nbsp;Clothes make the man.</span></p>
+	<p>1.</p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--31-->
+<div>
+	<p><span class="fred">Next Month<sub>next</sub></span><span class="fblue">&nbsp;&nbsp;凡事预则立，不预则废！</span></p>
+	<p>1. </p>
+	<p>2. </p>
+	<p>3. </p>
+	<p>4. </p>
+	<p>5. </p>
+</div><!--next-->
+</div>
+
+<!--tab1 -->
+<div id="tab" style="height:30px;">
+	<p><a href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=zhongguosou&wd=%E4%B8%87%E5%B9%B4%E5%8E%86&oq=%25E4%25B8%2587%25E5%25B9%25B4%25E5%258E%2586&rsv_pq=ca8573fa00005738&rsv_t=81beq8rkJOUrfpG2L2OwqBxWlkJnRQCkBOhPY5bw%2FXY%2F7vWvsjfJOyeF6Frh2gWRiWY&rqlang=cn&rsv_enter=0" target="_blank">baidu</a>
+  <a href="http://123.sogou.com/tools/wnl.html" target="_blank">sogouCalendar</a> 
+  <a href="http://www.guang.net/rili.htm" target="_blank">guang</a> 
+  <a href="rili2.htm" target="_blank">old</a> 
+  <a href="data.html" target="_blank">data</a>
+  <a href="schedule.html" target="_blank">schedule</a>  </p>
+</div>
+</div>
+<br>
+
+
+<div style="POSITION: absolute" id = "detail"></div><!--随鼠标移动的表格-->
+<div style="POSITION: absolute" id = "detail2"></div><!--oneday-->
+<div style="POSITION: absolute" id = "detail3"></div><!--日期图片-->
+<div style="POSITION: absolute" id = "flower"></div><!---->
+<!--//图片时钟 IE支持light滤镜，用js控制display属性-->
+
+<DIV id="clockDiv" style="display:none; HEIGHT: 222px; LEFT: 135px; POSITION: absolute; TOP: 12px; WIDTH: 233px; Z-INDEX: 1;">
+
+	<DIV class=date id=timeDiv style="text-align:center; HEIGHT: 16px; LEFT: -20px; POSITION: absolute; TOP: -8px; WIDTH: 100%; Z-INDEX: 3;float:left; color:red;"></DIV>
+	
+	<DIV class=light id=sconDiv style="HEIGHT: 70px; LEFT: 27px; POSITION: absolute; TOP: 22px; WIDTH: 70px; Z-INDEX: 1"><IMG height=144 src="img/clockm.gif" width=144></DIV>
+	
+	<IMG height=200 src="img/clock2.gif" width=200>
+	
+	<DIV id=clLayer style="HEIGHT: 25px; LEFT: 88px; POSITION: absolute; TOP: 80px; WIDTH: 25px; Z-INDEX: 2"><IMG height=26 src="img/clockd.gif" width=26></DIV>
+	
+	<DIV class=date id=dateDiv style="text-align:center; HEIGHT: 16px; LEFT: -15px; POSITION: absolute; TOP: 178px; WIDTH: 100%; Z-INDEX: 3;float:left;"></DIV>
+	
+</DIV>
+
+<!--倒计时-->
+<div id="timer" style="position:absolute; width:80px; height:40px;right:26%; top:344px; z-index:1; font-size:9pt;color:red"></div>
+
+<script>
+	var clockdiv = document.getElementById("clockdiv")
+	var timer    = document.getElementById("timer")
+	//alert(browserType())
+	if(browserType()=="chro")
+	{
+		timer.style.top = "343px";
+		clockdiv.style.display = "none"; //此语句后的代码无法执行，放在前面可以
+		alert(timer.style.top)
+		
+	}
+	if(browserType()=="msie")
+	{
+		clockdiv.style.display = "block";
+		timer.style.top = 333;
+		window.onload=InitClock(); //此语句后的代码无法执行，放在前面可以
+		alert(timer.style.top)
+		
+	}
+	//jscss()
+	
+</script>
+</BODY>
+</HTML>
+
+<!--//js语句的顺序会影响执行
+// doctype会影响到CSS,jss-->

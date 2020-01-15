@@ -1,0 +1,409 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:100%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>﻿三次庐山会议</h4>
+
+<p>作为中央全会或中央工作会议的庐山会议有三次。第一次打倒了彭德怀及其“军事俱乐部”；第三次打倒了陈伯达，并重重敲打了林彪及其同伙；第二次会议在相关党史著作中则似有似无，似密非密，几乎不为人知……</p>
+
+<p>【毛泽东三上庐山】</p>
+
+<p>建国后，毛泽东曾三上庐山，主持中央会议。</p>
+
+<p>第一次，1959年7月2日至8月1日和8月2日至16日，先开中央政治局扩大会议，接着开八届八中全会，讨论“大跃进”、人民公社等问题。</p>
+
+<p>第二次，1961年8月23日至9月16日，开中央工作会议，讨论工业、粮食、财贸、教育等问题，执行调整经济八字方针。</p>
+
+<p>第三次，1970年8月23日至9月6日，开九届二中全会，讨论修改宪法、国民经济计划、加强战备等问题。</p>
+
+<p>第一次会，打倒了彭德怀和他的“军事俱乐部”；第三次会，打倒了陈伯达，兼带重重敲打了林彪夫妇及其同伙。这两次会最有名，尤以第一次会可以独擅“庐山会议”之名，第三次会还只能放在“林彪事件”中述说（见1981年颁布的《关于建国以来党的若干历史问题的决议》第17节、21节 ；《毛泽东传1949—1976》中央文献出版社2003年版，第23章、38章 ）。但毛泽东说过“三次庐山会议”的话（《我的一点意见》），因此人们习惯统称为“庐山会议”。</p>
+
+<p>但是，夹在上述一、三两次会议中间的第二次庐山会议，同样是由毛泽东主持召开，却处于一个神秘的地位，没有公开报道，也没有发布公告，似有似无，似密非密，几乎不为人知。即使进入改革开放的30年间，关于一、三两次庐山会议的报道或研究，基本已无禁区；但对于这个第二次会议，其出席人员名单，在一些党史著作中仍闪烁其词，特别是会议主持人毛泽东的名字更是讳莫如深，不见一提。例如——</p>
+
+<p>《中国共产党的七十年》（中共党史出版社1991年版），在提“工业七十条”和“高教六十条”时，都只说一句“经庐山中央工作会议讨论和通过”，无出席人员名单，更无毛泽东名字。（见该书第387页）</p>
+
+<p>《若干重大决策与事件的回顾》（薄一波著，中共中央党校出版社1993年版），第33章 为《〈工业七十条〉的诞生》，提到“8月23日，中央工作会议在庐山开幕”，邓小平在大会讲话，但仍无出席名单，更避开毛泽东名字，也不提刘少奇、周恩来，似是故意回避。（见该书第959页）</p>
+
+<p>《刘少奇年谱》（中央文献出版社1996年版）与《周恩来年谱》（中央文献出版社1997年版），都只在相关年月日下记载刘、周各自的上山与会，不提毛泽东是否出席。（见《刘少奇年谱》第538页，《周恩来年谱》第429页）</p>
+
+<p>最有意思的是《毛泽东传1949—1976》（第1577页），引用《我的一点意见》全文时，在“仅举三次庐山会议为例”后，因为其中谈到第二次庐山会议，而把整段文字用删节号作了代替。可见至少到此书出版为止，毛泽东曾主持召开这次会议的历史，尚在史家回避之列。</p>
+
+<p>其实这段文字，早在1990年由长春时代文艺出版社出版的叶永烈的《陈伯达其人》一书中，引用《我的一点意见》全文时，无意中已全段发表过了。现特引录如下：</p>
+
+<p>仅举三次庐山会议为例。第一次他跑到彭德怀那里去了。第二次，讨论工业七十条，据他自己说，上山几天就下山了，也不知道他为什么原因下山，下山之后跑到什么地方去了。</p>
+
+<p>叶永烈在《出没风波里》（北京十月文艺出版社2007年出版）一书中说，《陈伯达其人》曾经北京有关部门审阅，同意出版。据叶永烈说，胡绳和金冲及都看过这本书。胡绳以为书中所写的陈伯达，就是他所认识的陈伯达；金冲及说“这本书写得扎实，透露了大量档案中所没有的信息”。但这些还不足以完全解开第二次庐山会议未得全部公开的谜团。</p>
+
+<p>最近在一家官方网站青岛新闻网上，看到一篇题为《1961年庐山会议为何不公开报道》的新闻评论，无作者署名，发表时间是2005年11月9日，却对这个问题作出了如下的回答：</p>
+
+<p>中共中央曾于1961年8月23日至9月16日在庐山举行工作会议。会议讨论了工业、粮食和教育等重大问题。可是，这样重要的会议，很长时间却没有公开发布信息。这是什么原因呢？</p>
+
+<p>1961年8月下旬，当时担任西藏自治区党委书记兼军区司令员的张国华，因路途遥远，没有按期赴会报到。会议秘书处挂长途电话催他尽快赶来开会，这一电话内容被泄密。就在会议举行翌日，台湾当局广播电台播送了中共在庐山召开高级军事首脑会议，商议解放台湾的消息。当时蒋介石得知这一情报，坐立不安，派了几批特务赴大陆刺探虚实，其实，会议没有半点涉及解放台湾的内容。由此，党中央和毛泽东主席决定把会议泄密的坏事变成好事，将计就计，即对会议绝对保密，不作任何新闻披露。深谙孙子兵法的毛泽东，当时采用的大概是“虚张声势”一计吧。</p>
+
+<p>既然这条信息已在官方网上传播，也就表示已不在保密范围之内，虽然尚有待正式文件佐证，但已可公开备此一说了。</p>
+
+<p>按前文所述，从毛泽东身边不告而别的行为，陈伯达是有“前科”的。1949年12月至1950年2月，陈伯达随毛泽东访问苏联。有一天，毛泽东要起草文件，却找不到陈伯达了。据《陈伯达其人》记载：</p>
+
+<p>“陈伯达哪里去了？”毛泽东问机要秘书叶子龙。</p>
+
+<p>他搬走了！”叶子龙答道。</p>
+
+<p>“他搬到哪里去了？”毛泽东又问。</p>
+
+<p>“搬到大使馆去了。”叶子龙答。</p>
+
+<p>“他为什么搬走？他到大使馆去干什么？他是我的秘书，他的工作在这边呀！他搬走，为什么不跟我说一声？”毛泽东显得非常不高兴。他要叶子龙通知大使馆，陈伯达必须立即搬回来！</p>
+
+<p>陈伯达只得灰溜溜地搬回来。陈伯达向毛泽东解释说：他的儿子陈晓达在苏联学习，十六岁了，多年不见，想在大使馆跟儿子一起住几天……</p>
+
+<p>“你为什么不得到我的同意就搬走？你的工作岗位究竟在哪里？”毛泽东严厉地批评了陈伯达。</p>
+
+<p>望着毛泽东愠怒的脸，陈伯达知道事态已相当严重，赶紧向毛泽东赔不是，作了检讨。</p>
+
+<p>毛泽东在陈伯达作了检查后，仍把他留在身边工作。不过，这件事在毛泽东心中，从此留下不愉快的阴影。</p>
+
+<p>这段描写十分生动，有纪实文学笔调，但可相信不是虚构。师哲是毛泽东访苏的翻译，他的口述回忆录《我的一生》中有专节详细记载陈伯达随同访苏活动，却没有不告而搬一事，只提到“毛泽东确实说过陈伯达‘老鼠搬家’，但我不清楚指的什么”，想即指此事，但他不得其详。叶永烈这里所写，应是得之于当时在场的毛的机要秘书叶子龙的口述回忆，并向陈伯达本人求证。正如作者最后所说，毛泽东虽然对陈伯达有所不满，还是要用其所长，留在身边。1961年第二次庐山会议，陈伯达忘乎所以，旧病复发，又一次不告而行；但毛仍容忍在心，继续留用，甚至1966年还大用特用，委以中央文革小组组长，进入中央常委，排名第四位。直到1970年的第三次庐山会议上，“把他拿下来”（毛泽东语，见《吴法宪回忆录》，北星出版社2006年版），坠为阶下囚。这让人怀疑，是不是“将欲取之，必先予之”。</p>
+
+<p>从陈伯达与毛的关系和陈的起落，可看到毛泽东的用人之道或驭人之道。所以，《我的一点意见》这篇文章关于第二次庐山会议陈伯达逃会获谴的一段文字，应该得到重视，说明陈伯达以及同他一样的人，平日一举一动，都在毛的洞察之中。陈伯达的悲剧在于，即使晚年服刑放归幽居的日子里，他还不知错在哪里，他对儿子陈晓农说：“我想不通毛泽东为什么要打倒我？我又没有得罪他。在他那里工作，我还是很小心的。在庐山说他是天才，那也是说好话嘛，紧说好话也不行？”毛泽东曾告诫江青：“人贵有自知之明。”（《毛泽东传1949—1976》）陈伯达缺少的正是这点“自知之明”。</p>
+
+<p>【两次会议一个版本】</p>
+
+<p>1959年的庐山会议和1970年的庐山会议，两次会议相距11年之久，却惊人地相似，几乎像是一个模子里制造出来的。走的程序，用的手法，讲的词汇，达到的目的，无不似曾相识，稍有异同，但大同而小异。巧合多了，就不像巧合了。</p>
+
+<p>马克思有一段常被引用的话：“黑格尔在某个地方说过，一切伟大的世界历史事变和人物，可以说都出现两次。他忘记补充一点：第一次是作为悲剧出现，第二次是作为笑剧出现。”对于第二次出现的事变和人物，马克思又称之为“再版”和“同样的漫画”。证之以两次相似的庐山会议，不妨称后一次是前一次的“再版”，实际是一个版本。</p>
+
+<p>现就两次会议，作一简单比照，以年份代表会议顺序。</p>
+
+<p>一、相似的开场气氛</p>
+
+<p>1959年会。《若干重大决策与事件的回顾》（第849页）载：“周总理也曾谈到过大家初上庐山的心情：‘那时候，是本着一年的党的总路线的执行情况，跃进了一年，大家都很忙，找到庐山来把经验总结总结。主席说了，也带点休息的意思。这一年的大跃进成绩伟大，有些问题，逐步解决，已经解决了不少，剩下的还在解决中，在认识上前途是光明的。是这样的心情，这样的意思上山的。’”</p>
+
+<p>《毛泽东传1949—1976》（第966～967页）载：“连日来，会议的气氛是比较轻松的，被称作‘神仙会’。（七月）五日是星期天，休会一天，天气晴朗，是上庐山以来天气最好的一天，与会者纷纷出游。”</p>
+
+<p>李锐的《庐山会议实录》载：“为什么叫做神仙会？庐山天下名山，富历史古迹，多神仙故事，权且都来当当‘神仙’吧。”“主席约谈了一次，小舟、周惠同在（开同乡会也），心情甚舒畅，相机进言，颇为融洽”。</p>
+
+<p>1970年会。《毛泽东传1949—1976》（第1570～1571页）载：“到庐山的头几天，毛泽东心情很轻松，一直在自己的住地看书、休息。”“吴德回忆说：‘初到庐山，气氛并不紧张，我没有料到会有一场巨大的风波。’”</p>
+
+<p>《吴法宪回忆录》（第789～790页）载：“叶群对我们说：‘这次来庐山开的是神仙会，没有什么事情。你们都忙了大半年，就在这里避避暑，放松一下。”</p>
+
+<p>徐景贤的《十年一梦》（第200页）载：“周恩来告诉来访者，这次全会的议程很简单。主要是讨论通过宪法修改草案，还要讨论一下国民经济计划等。会期不长，有三五天就可以了。”</p>
+
+<p>二、相似的中途变局</p>
+
+<p>1959年会。《毛泽东传1949—1976》（第983页、第988～989页）载：“七月二十三日上午，毛泽东召集大会并讲话。”“毛泽东这篇出人意料的讲话，引起很大震动。黄克诚后来回忆说：‘主席的讲话对我们是当头一棒，大家都十分震惊。……我对主席的讲话，思想不通，心情沉重；彭德怀负担更重，我们两人都吃不下晚饭；虽然住在同一栋房子里，但却避免交谈。我不明白主席为什么忽然来一个大转弯，把纠‘左’的会议，变成了反‘右’；反复思索，不得其解。’”</p>
+
+<p>《彭德怀自述》（第276页）载：“七月二十三日上午，主席在大会上讲话，从高度原则上批判了那封信，说它是一个右倾机会主义的纲领；是有计划的、有组织的、有目的的。并且指出我犯了军阀主义、大国主义和几次路线上的错误。听了主席的讲话，当时很难用言语形容出我沉重的心情。回到住所以后，反复思索主席的讲话，再衡量自己主观愿望与动机，怎么也是想不通。当时抵触情绪很大。”</p>
+
+<p>1970年会。《毛泽东传1949—1976》（第1577～1579页）载：“八月三十日，他（指毛泽东——作者按）在陈伯达整理的那份论述‘天才’的语录上，写下一大段批示……在这个批语的抄清件上，他又加上一个标题：《我的一点意见》……在这篇仅有七百字的短文中，毛泽东尖锐地揭露了陈伯达等在庐山会议上的所作所为……他把批评集中地指向陈伯达一人，而对林彪仍不去触动，而采取保护的态度。”</p>
+
+<p>《吴法宪回忆录》（第801~802页）载：“叶群对我说，林彪同志到毛主席那里开会去了……时间不长，林彪回来了。他一坐下就对我说：‘毛主席的态度变了，不高兴了’……”</p>
+
+<p>《十年一梦》（第222页）载：“毛泽东的《我的一点意见》一下达，全会的风向立即转变，前几天还是陈伯达一伙大叫‘揪人’，不几天马上又变成了众人狠批陈伯达。林彪给吴法宪下达指示说：‘错误要往陈伯达身上推，强调上当受骗！’叶群则给吴法宪打电话予以安抚。”</p>
+
+<p>三、相似的没完没了的“检讨”</p>
+
+<p>1959年会。《若干重大决策与事件的回顾》（第865页）载：“彭德怀、黄克诚、张闻天、周小舟同志，在毛主席的崇高威望和尖锐批评面前，在小组会和大会的严厉批判、斗争面前，再加上一些战友好心规劝彭德怀同志‘抛开信的本身，从全局利益作检讨’，于是他们便采取‘要什么给什么的态度’，一次又一次地检讨。”</p>
+
+<p>《黄克诚自述》（第259～260页）载：“身处此境，真是百口莫辩，跳进黄河洗不清，心里那种痛苦，实在没法形容。可是还得开会，还得检讨，一次又一次，总是被认为不老实。”“主席这时已确认我们是有组织、有目的、有计划地进行反党活动。常委也同意这个判断。于是在作决议前，主要任务就是要我们认罪”。</p>
+
+<p>《庐山会议实录》（第334页）载：“这个连续开了40多天的庐山会议，已经到了‘大获全胜’可以闭幕的时刻了，尽管还认为彭德怀并没有彻底低头认罪，也不必再在庐山逼他‘更深刻的检讨’了。反正庐山会议之后，紧接着还要开军委扩大会议，总的来说，彭、黄、张、周都已经认了错，服了输，八届八中全会可以圆满闭幕了。”</p>
+
+<p>1970年会。《毛泽东传1949—1976》（第1579～1580页）载：“九月一日，毛泽东在由各组召集人参加的中央政治局扩大会议上指出：凡是在这次庐山会议上发言犯了错误的人，可以作自我批评、检查。会上，他点了陈伯达的名，要他作检查，还要林彪召集吴法宪、叶群、李作鹏、邱会作等人开会，听取他们的检查。”</p>
+
+<p>《吴法宪回忆录》（第809～810页）载：“我的检查写好以后，由周恩来送到康生那里以后，康生借机报复，批了一大通……这样我只好写第二次检讨……结果这个检讨又一次被康生批回来。我又写了第三次检讨，康生还说不行，周恩来说：‘人家已经三次了。’康生只好说：‘那好，就算了吧。’”</p>
+
+<p>以上比照1959年和1970年前后两次庐山会议的相似之处，仅举三例，已可见其大概。若各以四字点评，可分别为：诱敌深入，突然袭击，穷寇必追。其他还有相似的批判斗争方式、相似的新账老账一起算、相似的定性判词（“有组织、有纲领、有计划、有目的”）、相似的组织处理，以及相似的大会总结与通过的决议、公告等等，可比照与可写之处还有很多。就这两次会议的各自影响来说，似乎各不相同，但若就其影响的大而广而言，也有相似的地方。1959年这次会，直接导致了继续“大跃进”后的大匮乏、大饥荒，不得不在3年后的1962年，再开一次“白天出气，晚上看戏”的“七千人大会”来挽救生产和经济的颓势。而1970年的会，则引发了毛泽东1971年8月的南巡，边调查，边“吹风”，8月30日在由长沙去南昌前夕，找刘兴元、丁盛、韦国清、华国锋、卜占亚及汪东兴谈话，说“庐山这件事，还没有完，还没有解决”（汪东兴《毛泽东与林彪反革命集团的斗争》，当代中国出版社1997年版），预示尚有下文。果然不及半月，发生“九一三”事件，掀起了新一轮的接班人之争。</p>
+
+<p>如果再往深处思考一下，《关于建国以来党的若干历史问题的决议》第18节 指出，“文革”前10年，“毛泽东同志在关于社会主义社会阶级斗争的理论和实践上的错误发展得越来越严重，他的个人专断作风逐步损害党的民主集中制，个人崇拜现象逐步发展”。第21节 又指出，“文革”的发生，“毛泽东同志的‘左’倾错误的个人领导实际上取代了党中央的集体领导，对毛泽东同志的个人崇拜被鼓吹到狂热的程度”。这两次庐山会议，正好一前一后，以相似的方式，为这座“一言堂”的建立，起了相似的进一步加强加固的关键作用。这确是值得深长思之的。</p>
+
+<p>2009年8月18日，上海</p>
+
+<p>（作者系文史学者）</p>
+
+
+
+本页共59段，6271个字符，17995 Byte(字节)﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

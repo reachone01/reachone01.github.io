@@ -1,0 +1,503 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>《三国演义》与史实的99个差距</h4>
+
+<p></p>
+
+<p>《三国演义》是根据《三国志》写的。章学诚在《丙辰杂记》提到演义时说“七分实三分虚”，演义里许多精彩的情节是千古传说，受地方野史传奇、逸史传闻影响极深。</p>
+
+<p>事实就是这样，演绎的野史好看了，人物刻画丰满了，让人记忆深刻了，但不够真实了。</p>
+
+<p>【1、曹操杀吕伯奢一家】：真有此事，原因是吕伯奢的儿子欲抢夺财物和报官领赏才死的，罗贯中为了刻画曹操的“奸雄”本色，才编出“宁教我负天下人，休教天下人负我”的话。</p>
+
+<p>【2、换巾脱险】：是孙坚叫祖茂戴头巾逃走引开敌军，三国志也没说祖茂被华雄杀死。</p>
+
+<p>【3、温酒斩华雄】：华雄并非关羽所杀，是被孙坚的部队杀的。</p>
+
+<p>【4、三英战吕布】：是罗贯中要夸大吕布的勇，没有此事，且虎牢关和汜水关是同一地方不同时期称呼。</p>
+
+<p>【5、吕布杀董卓】：他们是为了一位宫女，“貂蝉”是后人编撰的，没有王允设计连环计、美人计一说。</p>
+
+<p>【6、曹嵩之死】：是陶谦派人去杀的。</p>
+
+<p>【7、吕布击退六将】：没有此事，也是罗贯中要夸大吕布的勇。</p>
+
+<p>【8、血战宛城】：是张绣、贾诩利用曹操和邹氏的谣言起兵的。</p>
+
+<p>【9、借头息怒】：是虚构的，依旧是罗贯中为了刻画曹操的狠毒。</p>
+
+<p>【10、梦中杀人保护自己】：是虚构的，同样是为了刻画曹操。</p>
+
+<p>【11、辕门射戟】：真有此事，不过距离没那么远。</p>
+
+<p>【12、关羽降曹】：是关羽作战失败被俘虏，且遇到张辽就自动投降了，更没有三个条件。</p>
+
+<p>【13、关羽斩颜良】：真有此事，但是是张辽军先削弱颜良军，后来关羽杀出来斩了他。</p>
+
+<p>【14、关羽斩文丑】：是徐晃杀的。</p>
+
+<p>【15、过五关斩六将】：是虚构的。</p>
+
+<p>【16、博望坡之战】：是刘备打的，此战发生在西元202年，早了孔明出山五年，且没有直接用火攻，是刘备放火烧了百姓的房子让夏侯敦得不到战利品，再设伏兵击退的。</p>
+
+<p>【17、赵云长板坡七进七出百万军中救阿斗】：应为长坂，赵云只是护送刘备家小撤退，没有七进七出此事。</p>
+
+<p>【18、长阪桥张飞吓退曹军】：也是刘备的命令，后来刘备自己跑了，张飞没有故布疑阵，也没有用气势吓死夏侯杰，是曹操觉得张飞很勇敢才不再进兵的，张飞的字是益德而非翼德。</p>
+
+<p>【19、苦肉计】：黄盖是有诈降，但没被打。</p>
+
+<p>【20、草船借箭】：这是孙权的策略，时间在赤壁之战后，罗贯中为了刻画孔明而故意编的。</p>
+
+<p>【21、周瑜使反间计】：编的，想想也知道曹操没这么笨。还是在刻画他的多疑。</p>
+
+<p>【22、借东风】：是罗贯中为了在孔明脸上贴金故意编的，冬至会刮东南风的事周瑜知道，曹操也知道，只是曹操没想到周瑜会在那时攻击。</p>
+
+<p>【23、火烧赤壁】：火烧赤壁的是周瑜，不是孔明。</p>
+
+<p>【24、华容道关羽放走曹操】：又是罗贯中为了往孔明脸上贴金，孔明根本没想到曹操会走华容道，是刘备想到的，他率军去追曹操时，曹操已经跑了，不过由此可知孔明的军事才能恐怕还不如刘备。</p>
+
+<p>【25、华佗之死】：是因为他帮曹冲医病很慢，曹操认为他是故意要害死曹冲将他处死，他死在西元208年，当然不可能帮关羽刮骨疗伤（西元219年）。</p>
+
+<p>【26、三气周瑜】：又是罗贯中为了美化孔明，周瑜是死在自己本身的疾病，跟孔明没关系。更没有说过什么既生瑜何生亮之类的话。</p>
+
+<p>【27、攻打西川】：是庞统和法正，不是孔明的功劳。</p>
+
+<p>【28、马腾之死】：正与史实相反，马超起兵造反在先，令到马腾被处死。</p>
+
+<p>【29、汉水之战】：是罗贯中为了在孔明脸上贴金故意编的。</p>
+
+<p>【30、水淹七军】：那是天灾，不是关羽的策略。</p>
+
+<p>【31、杨修之死】：他死的时候是45岁，是罗贯中为了让读者恨曹操而说他34岁。</p>
+
+<p>【32、甘宁之死】：他是病死的，不是被沙摩可杀死。</p>
+
+<p>【33、黄忠之死】：他也是病死的，不是死于战争。</p>
+
+<p>【34、陆逊的策略】：不是一开始就坚守不出，而是被蜀军击败后才坚守不出。</p>
+
+<p>【35、骂死王朗】：虚构。</p>
+
+<p>【36、司马懿算播谣言害孔明北伐失败】：是罗贯中为了替孔明打败仗找藉口。</p>
+
+<p>【37、马谡失街亭】：司马懿那时还没和孔明对垒，破街亭的人是张郃。</p>
+
+<p>【38、死诸葛吓跑活仲达】：确有此事，并非诸葛亮遗计，《汉晋春秋》的记载是：诸葛亮死后，蜀军秘不发丧悄然撤退，司马懿有所发觉，驱军追赶。两军相近时，蜀汉将军姜维和长史杨仪命蜀军反旗鸣鼓做势佯攻，司马懿不敢逼近，只好退兵，蜀军入谷然后发丧。当时在蜀中就传开了“死诸葛走生仲达”的笑话。</p>
+
+<p>【39、徐庶】：他本名叫单福，化名徐庶；演义说他本名徐庶，化名单福，他妈被抓后他自动请辞，没有假信。</p>
+
+<p>【40、火烧葫芦谷】：罗贯中为了在孔明脸上贴金而编。</p>
+
+<p>【41、延寿祭坛】：想也晓得是假的，罗贯中为了丑化魏延而安排他害孔明的祭坛失败。</p>
+
+<p>【42、空城计】：虚构的，那时主帅根本不是司马懿。</p>
+
+<p>【43、桃园结义】：正史并无写到刘备、关羽、张飞三人有结拜，只提到情若兄弟。</p>
+
+<p>【44、著名兵器】：名兵器如双股剑、青龙偃月刀、丈八蛇矛、方天画戟、倚天剑等为虚构，用以描述人物性格。</p>
+
+<p>【45、张飞鞭督邮】：为刘备所为，因督邮拒见刘备，刘备大怒下鞭打督邮。</p>
+
+<p>【46、曹操献七星刀】：虚构故事，演义中曹操借献刀刺杀董卓未遂，实是曹操认为董卓终必败，连夜潜逃回乡里。</p>
+
+<p>【47、陈宫捉放曹操】：陈宫在191年开始跟随曹操，不是陈宫捉放曹操，应是另有其人。</p>
+
+<p>【48、十八路诸侯讨董卓】：事实上只有十一路地方军参与董卓讨伐战，包括后将军袁术、冀州牧韩馥、豫州刺史孔伷、兖州刺史刘岱、河内太守王匡、渤海太守袁绍、陈留太守张邈、东郡太守桥瑁、山阳太守袁遗、济北相鲍信和广陵太守张超，而孙坚和曹操因官职问题而不在名列之中。陶谦当时有参加，贡献粮草金钱等，但未出兵。公孙瓒亦有参与连署，但当时正在对付乌桓而未出兵；孔融当时正忙于对付黄巾贼；马腾与韩遂当时虽尚未接受招安，但亦不支持董卓（朝廷）；青州刺史焦和虽曾起兵，因为青州黄巾复起，所以没有参与会盟，不久病死；荆州刺史王睿本来也有起兵，因为和孙坚有私怨，被其逼死。另外还有陈王刘宠与陈国相骆俊、河南尹朱隽反对董卓而起兵。</p>
+
+<p>【49、孙坚之死】：由于只带几名随从追击敌军，中了黄祖伏兵，中流矢死于岘山。</p>
+
+<p>【50、刘皇叔刘备】：三国演义为了显示刘备的地位，把他塑造为继承汉室正统的君主，而为刘备编造了一份完整的十八代家谱，排一排刘备就变成了皇叔，而这个称号正是刘备用来对抗曹操的挟天子以令诸侯的法宝。史实上，刘胜的儿子刘贞，因为没有按朝廷的规定献纳酎金，而失去侯爵资格，后来又经历战乱及政治纷争，早已家世式微，族谱不明，只知刘备是汉室之胄，辈份不得而知。</p>
+
+<p>【51、赤兔马】：赤兔马在吕布战败后，不知去向。并没有成为关羽的坐骑。</p>
+
+<p>【52、孙策之死】：遭刺客暗算不治，而刺客是前吴郡太守许贡的家奴与门客，并非被于吉吓死。</p>
+
+<p>【53、遗计定辽东】：虚构剧情，郭嘉暴毙而亡，年三十八，没留下任何计策，此计是曹操自己的计谋。</p>
+
+<p>【54、糜夫人跳井】：正史记载，甘夫人和糜夫人在当阳皆安然无恙。</p>
+
+<p>【55、刘琮遇害】：献出荆州后，被曹操任命为青州刺史，封列侯，并未被杀，后曹操为了表彰他的功绩，更迁为谏议大夫。</p>
+
+<p>【56、舌战群儒】：只记载诸葛亮面见孙权，东吴主战派、主和派相争日盛。</p>
+
+<p>【57、南郡之争】：没有发生，是周瑜死后孙权将南郡借给刘备。</p>
+
+<p>【58、关羽战黄忠】：刘备征荆南，四郡守望风而降，黄忠便随长沙太守韩玄同降。</p>
+
+<p>【59、孙刘联婚】：孙夫人与刘备的婚事，只是政治性联姻之一，并没有男欢女爱的色彩，也没有后来的孙夫人投江。</p>
+
+<p>【60、赔了夫人又折兵】：孙权无采用周瑜之美人计。</p>
+
+<p>【61、周瑜心胸狭窄】：史书记载了周瑜恢廓理智、大度友善的作风。而与诸葛甚至未曾见面，何来嫉妒之说呢？再者，周瑜的大度在三国时期是出了名的。</p>
+
+<p>【62、吊周瑜】：吊周瑜是庞统，不是诸葛亮。从赤壁之战结束到周瑜病逝的两年间，诸葛亮正在零陵一带。</p>
+
+<p>【63、割须弃袍】：战况确实很激烈，但是是马超吃的败仗，而官史并无载曹操割须弃袍才逃跑。</p>
+
+<p>【64、许褚裸衣战马超】：没有记载，马超甚至被许褚瞪得不敢动。</p>
+
+<p>【65、张松献图】：应为刘备询问张松蜀中的兵马粮钱等情况，于是张松绘制了地图给刘备。</p>
+
+<p>【66、落凤坡】：该为庞统进攻雒城时中箭死去。</p>
+
+<p>【67、马超战张飞】：是马超私自写信给刘备请求投降，并无小说中张飞和马超大战两百余回合不分胜负，后被诸葛亮招降一事。</p>
+
+<p>【68、征汉中】：征汉中时的总指挥是刘备，法正参谋。</p>
+
+<p>【69、计夺天荡山】：纯粹虚构。</p>
+
+<p>【70、五虎大将】：刘备并没有封“五虎大将”，五虎将是因为三国志中把关羽、张飞、赵云、马超、黄忠的传记放在同一章。后世称之蜀之五虎。</p>
+
+<p>【青少版】四大名著全套正版无障碍阅读西游记红楼梦三国演义水浒传古典儿童文学小说初中学生小学生青少年版成人书籍</p>
+
+<p>￥32</p>
+
+<p>购买</p>
+
+<p>【71、周仓、胡班】：虚构人物，历史上没有记载。胡班可能指蜀将吴班。</p>
+
+<p>【72、关羽单刀会】：鲁肃、关羽的一场官式会宴，鲁肃令东吴诸将手持单刀，往赴关羽所设的宴会。</p>
+
+<p>【73、刮骨疗伤】：此时华佗于赤壁之战已经死了，是一般的军医操刀。</p>
+
+<p>【74、关羽麦城拒降】：历史上并未记载明确拒降，而《江表传》有关羽以伪降谋突围之机的记戴。</p>
+
+<p>【75、擒关羽】：并非潘璋，而是他的部将马忠。</p>
+
+<p>【76、玉泉显圣、追命吕蒙】：玉泉显圣改编自唐代玉泉寺建寺故事，且吕蒙是病死。</p>
+
+<p>【77、关平】：关羽长子，不是义子，随羽临军，三国志里只出现两次名字。</p>
+
+<p>【78、关兴】：弱冠（近二十岁）就因才高任侍中、中监军，于夷陵之战后数年死去。</p>
+
+<p>【79、张苞】：虽称早夭，但有留下子嗣张遵。</p>
+
+<p>【80、潘璋之死】：潘璋在夷陵之战中为孙权立了战功，砍杀冯习等人，死于234年</p>
+
+<p>【81、白帝托孤】：刘备临终是托孤与诸葛亮和李严二人，但仍有对诸葛亮说：“君才十倍曹丕，必能安国，终定大事。若嗣子可辅，辅之；如其不才，君可自取。”主要情况雷同。</p>
+
+<p>【82、八阵图】：八阵图是诸葛亮所作的兵法图阵，所谓八阵是为天覆阵、地载阵、风扬阵、云垂阵、龙飞阵、虎翼阵、鸟翔阵及蛇蟠阵，每个阵形都由三十二队士兵所组成。晋朝干宝的《晋记》以及北魏郦道元的《水经注》亦有记载。但不是神怪石阵、迷宫。</p>
+
+<p>【83、七擒孟获】：《三国志》上没有记载七擒孟获。但《汉晋春秋》及《华阳国志》中有说过“七擒七纵”，但具体过程没有记载，而鄂焕、祝融、孟优、木鹿大王等都是小说所创作。</p>
+
+<p>【84、六出祁山】：诸葛亮伐魏五次，而只有第一次和第四次出祁山，且被曹真所阻。</p>
+
+<p>【85、《后出师表》】：多认为是后人伪托，并非诸葛亮所作。</p>
+
+<p>【86、司马懿与诸葛亮】：诸葛亮头三次北伐时，魏军并非司马懿统领而是曹真。</p>
+
+<p>【87、气死曹真】：曹真病死于洛阳。</p>
+
+<p>【88、诸葛亮骂死王朗】：王朗病死于228年，并未随军出战。</p>
+
+<p>【89、诸葛亮用兵】：诸葛亮用兵善于治军，不善奇谋，政绩才是最耀眼的。</p>
+
+<p>【90、火烧上方谷】：诸葛亮大破魏军于卤城，司马懿仅以身还保营。《三国志》未提用何种战法大破魏军。陕西乡野传说与演义无大异；上方谷，一说葫芦谷，疑为卤城的浑称</p>
+
+<p>【91、七星灯续命】：虚构剧情。</p>
+
+<p>【92、魏延反叛，被马岱诛杀】：魏延与杨仪不和，相争失败、兵败被杀。</p>
+
+<p>【93、地理大搬家】：把太白山移到祁山的旁边，把陈仓移到街亭的南方，甚至把祁山移到褒斜道北面的斜谷旁，或是移到五丈原附近。</p>
+
+<p>【94、诸葛亮】：诸葛亮治国治军的才能，济世爱民、谦虚谨慎的品格为后世各种杰出的历史人物树立了榜样。历代君臣、知识分子、人民群众都从不同的角度称赞他，歌颂他，热爱他。可以说，诸葛亮在历史上的巨大影响已超过了他在三国历史上的政治军事实践。《三国演义》虽然突出了诸葛亮一生性格、品德、功业等的积极方面，但又把它无限夸大，把他描写成智慧的化身、忠贞的代表，并将其神化成了半人半神的超人形象。鲁迅评论说：“状诸葛亮之智而近于妖。”因此，《三国演义》中的诸葛亮不是真实的历史人物，而是历史小说人物。</p>
+
+<p>【95、刘备】：陈寿对刘备的评价是：“弘毅宽厚，知人待士，盖有高祖之风，英雄之器焉。及其举国托孤于诸葛亮，而心神无二，诚君臣之至公，古今之盛轨也。机权干略，不逮魏武，是以基宇亦狭。”但他“折而不挠，终不为下”。在《三国演义》中，作者把刘备描写成“仁”的代表，汉室皇权正统的继承者，因而对刘备的仁爱、宽厚和知人善任的性格特征着力描画，极尽夸张，但在突出其“仁爱”时却又落入了“无能”一面，给人以“无能”和“虚伪”的感觉。电视剧中的刘备常常以泪洗面，哭与泪虽然表现了刘备的“仁”，但又给人以刘备的天下是哭出来的印象，扭曲了刘备是“枭雄”、“人杰”的真实形象。</p>
+
+<p>【96、关羽】：历史上的关羽为“万人之敌”一虎将，傲上而不悔下，恩怨分明，以信义著称，但“刚而自矜”，勇猛有余，智略不足。马超投降刘备后，封为平西将军。时关羽督荆州，修书与诸葛亮，“问超人才可谁比类”，诸葛亮答信时，称马超虽为一世之杰，但不如关羽的“绝伦逸群”，关羽“省书大悦，以示宾客”。这是典型的有勇少谋的武将性格。但在《三国演义》中，因为他是刘备阵营中的人，又有讲信义的特点，所以，就被塑造成“义”的化身。他跟随刘备，不避艰险。下邳被俘，投降曹操，但心系刘备，只是有感于曹操待他甚厚，因而在离曹归刘前为曹操杀了袁绍的大将颜良，解白马之围。但是《三国演义》中写关羽下邳投降时相约三事、曹操以三日一小宴、五日一大宴的厚礼待他等却是子虚乌有。总之，在《三国演义》中，作者是不惜笔墨，把关羽刻画成“义重如山之人”，因而其形象也被严重的扭曲了。</p>
+
+<p>【97、曹操】：历史上的曹操性格非常复杂，陈寿认为曹操在三国历史上“明略最优”，“揽申、商之法术，该韩、白之奇策，官方授材，各因其器，矫情任算，不念旧恶”。曹操御军三十余年，但手不释卷，登高必赋，长于诗文、草书、围棋。生活节俭，不好华服。与人议论，谈笑风生。“勋劳宜赏，不吝千金；无功望施，分毫不与”。他是中国历史上第一流的政治家、军事家、文学家。但是，在《三国演义》中，曹操性格品德中这些好的方面被忽略了，而对他残忍、奸诈的一面又夸大了。因此，罗贯中笔下的曹操是奸诈、残忍、任性、多疑的反面人物典型。</p>
+
+<p>【98、周瑜】：历史上的周瑜“性度恢廓”，谦让服人，有“雅量高致”。刘备称他“文武筹略，万人之英”。孙权则赞他有“王佐之资”。但在《三国演义》中，周瑜成了诸葛亮的垫底人物。写周瑜，是为了抬高诸葛亮。因此，《三国演义》中的周瑜气量狭小，智谋也总是逊诸葛亮一筹，根本不像苏轼所歌颂的周瑜“雄姿英发”，是“千古风流人物”。</p>
+
+<p>【99、鲁肃】：如果说在《三国演义》中，曹操、刘备、诸葛亮、关羽等人的性格、形象虽被扭曲，但多少还有些根据的话，那么，鲁肃这个人在《三国演义》中除了名字外几乎就全是杜撰了。历史上的鲁肃“虽在军阵，手不释卷”，“思度宏远”，“有过人之明”。他初见孙权，就提出了建国方针：鼎足江东，北拒曹操，待机剿除黄祖，进发刘表，竟长江而有之，然后建号称帝以图天下。这与诸葛亮的《隆中对》有相似之处。曹操大军南征荆州时，孙权部属都主降，唯独鲁肃主张抗曹，劝孙权召回周瑜，共商战守大计。赤壁战后，他又力主扶刘抗曹。在东吴历史上，鲁肃实为诸葛亮式人物，孙权对他也极为欣赏。吴国的建立和发展基本上是按照鲁肃提出的政略、战略方针进行的。但在《三国演义》中，鲁肃成了诸葛亮与周瑜两人智斗的牺牲品，被愚弄、受欺侮的典型。</p>
+
+
+
+<p style='float:right;'>本页共106段，6234个字符，18167 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

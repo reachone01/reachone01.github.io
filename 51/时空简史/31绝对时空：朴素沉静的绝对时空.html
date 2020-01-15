@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>31绝对时空：朴素沉静的绝对时空</h4>
+
+<p>美国数学史家克莱因说：“当科学越来越依赖于数学来得到它的物理结论时，数学也开始越来越依赖于科学的成果来证明它自己方法的正确。”17世纪的科学成果使数学得到了一次辉煌的绽放。从17世纪开始，经历两千多年的数学时空观开始转向物理的时空观。希腊的宇宙哲学观认为，地球是一个静止不动的球体，悬浮在宇宙的中央，而其他的星星就如同宝石一样镶嵌苍穹之中，围绕地球做着完美的圆周运动。公元2世纪时出现的托勒密地心体系就是这些学说的代表。这个体系在欧洲天文学中统治了14个世纪之久，直到哥白尼的日心体系出现后，才把被纠正的太阳和地球的位置重新颠倒过来。</p>
+
+<p>新范式的胜利：把圆压扁</p>
+
+<p>哥白尼提出新假说，地球是绕轴自转，同时又绕太阳公转的一颗行星，而固定的恒星处于静止之中。哥白尼体系把星空纳入一个比较简单和谐的数学秩序之中。哥白尼发现了对天体运动更为简洁的数学描述，所有那些为假设地球静止所要求的本轮都被取消了。日心说带来的超常的数学简化为哥白尼带来无限的满足感。不过，哥白尼也还未能摆脱圆周运动的旧观念。近代天文学告诉我们太阳不是宇宙的中心，在我们能观察到的范围内，银河系像一只巨大的漩涡状圆盘，其中有大约2000亿颗恒星。太阳系处在银河系一条主旋臂的一个小分叉上，一个无足轻重的位置上。地心说已被毫无质疑地接受了1500年，哥白尼的日心说是史无前例的创新。在16世纪的天文学家中，哥白尼是独一无二的巨人。</p>
+
+<img src="31.bmp">
+<br><br>
+<p class="picsay">地心说模型（朱海松摄于广东科学馆）道上运行，地球以外太阳系内还有火</p>
+
+<p>《天体运行论》中的插图：哥白尼的宇宙观，太阳在中心，从里向外水星、金星、地球和月球等各自在圆轨星、木星、土星，其他星星在最外面一层。</p>
+
+<img src="32.bmp">
+<br><br>
+<p class="picsay">地心说已被毫无质疑地接受了1500年，哥白尼的日心说是史无前例的创新。在16世纪的天文学家中，哥白尼是独一无二的巨人。（图为哥白尼像）</p>
+
+<p>16世纪，当时欧洲最卓越的天文观察家第谷做了大量肉眼观察的天文数据实验，记录大量的行星运动轨道的数据，他测量了无数恒星的位置和行星的运动。实际上，第谷最大的天文学成就就是发现了开普勒。约翰·开普勒（1571—1630），德国近代著名的天文学家、数学家、物理学家和哲学家。他以数学的和谐性探索宇宙，在天文学方面做出了巨大的贡献。开普勒是继哥白尼之后第一个站出来捍卫太阳中心说，并在天文学方面有突破性成就的人物，被后世的科学史家称为“天上的立法者”。</p>
+
+<p>早期的开普勒深受柏拉图和毕达哥拉斯神秘主义宇宙结构论的影响，以数学的和谐性去探索宇宙。开普勒在天文学研究方面的天赋，是被第谷独具慧眼地发现的。</p>
+
+<p>第谷在临终前将自己多年积累的天文观测资料全部交给了开普勒，再三叮嘱开普勒要继续他的工作，但其基础要以第谷理论体系为准，而非将哥白尼理论体系作为基础。开普勒接过了第谷尚未完成的研究工作。开普勒认为通过对第谷的记录做仔细的数学分析，可以确定哪个行星运动学说是正确的：哥白尼日心说、古老的托勒密地心说，还有第谷本人提出的第三种学说。但是，经过多年苦心的数学计算，开普勒发现在哥白尼日心说的思维范式框架下，可以解释第谷的观察。后来，开普勒在伽利略的影响下，通过对行星运动进行深入的研究，抛弃了柏拉图和毕达哥拉斯的学说，选择了相信哥白尼日心说，逐步走上真理和科学的轨道。</p>
+
+<p>有一个时期，描述行星运行轨道甚至用了八十多个圆。这样的一个圆套着一个圆，结果还是没有真正说明金星绕着太阳的轨道是什么样的。可是，开普勒根据老师第谷提供的观测数据仔细研究金星以后，他认为自古希腊以来的想法，认为行星轨道是完美的圆是不对的。他把这个圆适当地压缩一下，就变成了现在的椭圆。</p>
+
+<p>1609年，开普勒出版了《新天文学》一书，提出了著名的开普勒第一和第二定律。而开普勒第三定律则是在1619年出版的《宇宙谐和论》中提出的。开普勒第一定律：所有行星绕太阳运转的轨道是椭圆的，其大小不一，太阳位于这些椭圆的一个焦点上。开普勒第二定律这样断定：向量半径（行星与太阳的连线）在相等的时间里扫过的面积相等。由此得出了以下的结论：行星绕太阳运动是不等速的，离太阳近时速度快，离太阳远时速度慢。这一定律进一步推翻了唯心主义的宇宙和谐理论，指出了自然界真正的客观属性。开普勒第三定律：行星公转周期的平方与行星和太阳的平均距离的立方成正比。这一定律将太阳系变成了一个统一的物理体系。</p>
+
+<p>开普勒三大定律中的第一项就是说行星绕着太阳的轨道不是圆的，而是椭圆的。开普勒彻底抛弃了完美的圆，把圆压扁，成了椭圆，从此，椭圆成为行星运行的轨道。在当时的16世纪末17世纪初，这是一个非常了不起的发现。古希腊人相信自然法则服从于完美、和谐与对称。公元前4世纪，亚里士多德曾阐述过三个物理宇宙论原理：第一个是地球的中心静止性原理；第二个是宇宙的两界性原理，即地球与月球之间的区域与宇宙其他部分不同；第三个是天体运动的圆周性和均匀性原理。自那时起，希腊人就认为这个世界上唯一永恒的运动就是天上的圆周运动。他们不希望天体沿除圆形轨道之外的任何其他轨道运动：它必须是一个圆，圆被认为是宇宙最美的曲线。圆周被赋予了巨大的形而上学和审美的价值。圆的思维范式根深蒂固。当开普勒宣布行星绕太阳运转的轨道是椭圆时，在当时学术界产生了巨大的反响。之后，牛顿把椭圆扩展为抛物线和双曲线。开普勒的三大定律实际上是一个实验定理，是一个长期观察数据积累的实验定理，就像著名科学家杨振宁教授所说的，叫唯象理论，没有经过证明。</p>
+
+<img src="33.bmp">
+<br><br>
+<p class="picsay">开普勒三大定律中的第一项就是说行星绕着太阳的轨道不是圆的，而是椭圆的。</p>
+
+<p>哥白尼学说认为天体绕太阳运转的轨道是圆形的，且是匀速运动的。开普勒第一和第二定律恰好纠正了哥白尼上述观点的错误，对哥白尼的日心说做出了巨大的贡献，使日心说更接近真理，彻底否定了统治千百年的托勒密地心说。开普勒的行星运动定律是牛顿之前人类所取得的最高天文学成就。</p>
+
+<p>1687年，开普勒的三条定律被牛顿简化为一条引力定律。牛顿通过将地月之间的开普勒引力推广到整个太阳系而得到万有引力定律，他从万有引力的平方反比定律出发，证明了行星的轨道是椭圆的。牛顿为行星运动现象做出动力学的解释。按照牛顿的理论，行星若只受太阳引力的作用，则它的运动就遵循开普勒定律，只是开普勒第三定律还应做微小的修正。实际上，行星不仅受到太阳引力的作用，而且还受到其他行星引力的影响，即所谓的三体问题（太阳、地球、月亮之间的相互引力），所以行星的运动情况相当复杂。直到今天，人们还不能得到行星运动方程的严格解释。</p>
+
+
+
+<p style='float:right;'>本页共19段，2676个字符，7887 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,465 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>一千字概括的中华文明史</h4>
+
+<p></p>
+
+<p>我国上下五千年灿烂的文明，历经多个朝代，沧海桑田。</p>
+
+<p>一、总纲</p>
+
+<p>三皇五帝夏商周，春秋战国秦暴收。</p>
+
+<p>汉末三分归入晋，朝称南北阻江流。</p>
+
+<p>隋开天下遭唐灭，五代十国战乱稠。</p>
+
+<p>宋统中州元虏代，明清过后帝王休。</p>
+
+<p>二、三皇五帝</p>
+
+<p>伏羲渔畜八卦传，燧人取火去腥膻。</p>
+
+<p>神农辨药播五谷，黄帝分州制井田。</p>
+
+<p>颛顼平定九黎乱，帝喾仁威天下安。</p>
+
+<p>尧置鼓木喜闻过，舜称至孝复称贤。</p>
+
+<p>三、夏朝</p>
+
+<p>大禹水平九鼎成，万民归启赖贤明。</p>
+
+<p>太康承父家天下，寒浞行奸覆夏庭。</p>
+
+<p>颠沛少康兴祖祚，昏庸孔甲匿龙精。</p>
+
+<p>桀从妹喜荒淫事，四百四十殿宇倾。</p>
+
+<p>四、商朝</p>
+
+<p>汤除桀暴定八方，亳邑为都始立商。</p>
+
+<p>太甲去昏赖伊尹，盘庚改殷效成汤。</p>
+
+<p>武丁梦说得良弼，帝纣伐苏为女郎。</p>
+
+<p>暴虐奢糜纵妲己，亲离众叛自燔亡。</p>
+
+<p>五、西周</p>
+
+<p>姬发灭纣都镐京，封赐诸侯四海平。</p>
+
+<p>刑废成康周公力，穆王八骏天下行。</p>
+
+<p>厉防民口终奔彘，真惠共和周复兴。</p>
+
+<p>褒姒幽王烽火戏，犬戎马踏骊山倾。</p>
+
+<p>六、春秋战国</p>
+
+<p>平王迁洛启东周，王命不行霸主遒。</p>
+
+<p>齐桓晋文兼秦穆，宋襄楚庄演春秋。</p>
+
+<p>燕韩赵魏秦齐楚，赫赫七强战不休。</p>
+
+<p>秦本附庸渐强大，灭周并六统金瓯。</p>
+
+<p>七、秦朝</p>
+
+<p>六国皆灭统华疆，嬴政自骄号始皇。</p>
+
+<p>独揽大权分郡守，统一文字兼度量。</p>
+
+<p>筑城凿墓劳民力，焚书坑儒断史纲。</p>
+
+<p>陈胜揭竿初举义，汉刘楚项破咸阳。</p>
+
+<p>八、汉朝</p>
+
+<p>除秦灭楚汉刘邦，帝后无由戮楚梁。</p>
+
+<p>吕雉临朝累诸吕，文景治世灭七王。</p>
+
+<p>武皇拓土民遭敛，王莽更新命被戕。</p>
+
+<p>光武中兴迁洛邑，传及献帝东汉亡。</p>
+
+<p>九、三国两晋</p>
+
+<p>东吴西蜀属孙刘，北魏曹丕把汉谋。</p>
+
+<p>司马迁曹成一统，八王乱政五胡蹂。</p>
+
+<p>两都率陷建康继，江左偏安丧北州。</p>
+
+<p>淝水破秦得暂保，宋刘逼禅东晋休。</p>
+
+<p>十、南北朝、隋朝</p>
+
+<p>朝分南北划长江，宋齐梁陈据建康。</p>
+
+<p>北魏东西分两魏，北齐废主东魏亡。</p>
+
+<p>周承西魏收齐土，隋篡北周并陈疆。</p>
+
+<p>筑苑凿河天下乱，三十九载覆朝堂。</p>
+
+<p>十一、唐朝</p>
+
+<p>高祖昏庸屡信谗，变生玄武手足残。</p>
+
+<p>太宗纳谏贞观治，武后改周李氏残。</p>
+
+<p>神勇玄宗清女祸，繁荣盛世号开元。</p>
+
+<p>乱由安史都迭陷，惧祸昭宣让逆藩。</p>
+
+<p>十二、五代十国</p>
+
+<p>五代梁唐晋汉周，北方更替五十秋。</p>
+
+<p>十国割据南天下，南唐篡吴闽楚收。</p>
+
+<p>前蜀早亡接后蜀，依辽北汉晋阳愁。</p>
+
+<p>南平南汉兼吴越，后蜀南唐作宋囚。</p>
+
+<p>十三、宋朝</p>
+
+<p>陈桥兵变代柴周，偃武修文是弱由。</p>
+
+<p>辽夏与金邻作寇，靖康之变帝成囚。</p>
+
+<p>康王即位开南宋，秦桧杀飞令铁羞。</p>
+
+<p>联蒙灭金实谬策，四十五载丧残瓯。</p>
+
+<p>十四、元朝</p>
+
+<p>蒙古称皇铁木真，成吉思汗震西垠。</p>
+
+<p>太宗纵马驰欧地，世祖更元掳宋君。</p>
+
+<p>僧比王侯乱刑政，儒同娼丐辱斯文。</p>
+
+<p>烽烟四起群雄反，大漠难藏顺帝身。</p>
+
+<p>十五、明朝</p>
+
+<p>太祖金陵创大明，功臣屠戮少余丁。</p>
+
+<p>燕王靖难夺侄位，睿帝巡边陷虏营。</p>
+
+<p>严魏蠹国戚灭寇，崇祯悬树李侵京。</p>
+
+<p>吴贼卖祖山河变，江北江南属大清。</p>
+
+<p>十六、清朝</p>
+
+<p>太祖兴清顺入关，扬州嘉定骨成山。</p>
+
+<p>康乾盛世雍承启，嘉道弱朝咸续延。</p>
+
+<p>鸦战外加权丧尽，天国内耗力消残。</p>
+
+<p>垂帘慈禧维旧政，炮震武昌宣统迁。</p>
+
+<p>合卷清书不忍翻，每提旧事意难安。</p>
+
+<p>双眸浸泪犹喷火，只手拍栏复握拳。</p>
+
+<p>数亿人民遭劫难，几只禽兽舞疯癫。</p>
+
+<p>巨龙何事慵疲甚，一觉长眠又百年。</p>
+
+
+
+<p style='float:right;'>本页共87段，1292个字符，3790 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

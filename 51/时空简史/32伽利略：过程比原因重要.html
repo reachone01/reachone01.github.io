@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>32伽利略：过程比原因重要</h4>
+
+<p>在长达2000年的科学史上，一些伟大的科学家、哲学家都会思考像“苹果为什么往下掉”这样的问题。他们专注于“为什么”下落的问题。这种思考方法一直持续到17世纪，直到伽利略的出现。现代科学的惊人的实践和理论成果主要是通过量化的、描述的知识获得的，而不是通过对于现象的原因做形而上学的、神学的甚至机械的解释。</p>
+
+<p>亚里士多德思考过物体运动的普遍原因。在他看来，运动分为“自然运动”和“人为运动”两类。天体运行是自然运动，圆周运动是完美的形式。地上物体运动是直线的，它们总是趋向于自己在宇宙中的自然位置。他也认为地球是宇宙的中心，那么重的物体的自然位置必然是趋向地球中心的，也就是下落。而气体和火焰这些轻的物体的自然位置是天空，所以它们向上飘。显然，重的物体下落得快，轻的物体下落得慢，这是亚里士多德的结论。这一理论看起来很美，重物下落是因为要趋向于自己在宇宙中的自然位置——地球中心。重的物体比轻的物体下落得快，也符合人们的直观常识。</p>
+
+<p>直到伽利略（1564—1642）时代，当时，人们对人为运动和自然运动的区别开始有点不满了。一块石头用手投出去是人为运动，从高处落下来就是自然运动，两者难道完全不可比吗？伽利略用数学和逻辑来考虑重物下落问题，但他并没有考虑“为什么”下落，而是考虑“怎样”下落。他想到了一个科学史上著名的思想实验。</p>
+
+<p>伽利略考察了亚里士多德的两个有关落体的基本论断：根据自然运动假设，越重的物体下落得越快；根据人为运动速度与阻力成反比的假设，当轻的物体（下落得慢）和重的物体（下落得快）在一起时，那么落得慢的将阻碍落得快的物体。伽利略设想，如果就石头而言，人为运动与自然运动本身问题上没有差别，那么可以想象，当把一个重的物体和轻的物体用绳子连在一起时，据第一个论断，它们的总重量增加了应该落得更快；据第二个论断，轻的阻碍重的下落，下落速度应在轻重两物单独落下之间。这是一个悖论！就这样，伽利略没有在亚里士多德理论中加任何新的条件，只把他的几个论断联系起来，赋予一种构造性来考察它们，就发现了亚里士多德理论的问题。</p>
+
+<p>伽利略不满足于指出亚里士多德的破绽，他还用实验来考察，著名的比萨斜塔实验体现了伽利略的实验精神。第一个登上月球的美国宇航员阿姆斯特朗在没有空气的月球表面让一片羽毛和一个锤子同时坠落，从而在全世界面前证明了比萨斜塔实验的正确性。伽利略第一个把望远镜应用于科学研究，从而把哥白尼的革命置于坚固的实验观察基础之上。伽利略极大地突破了亚里士多德的体系，这是近代科学的开端。</p>
+
+<p>伽利略既是一流的科学家，又是一位天文学巨匠。伽利略认识到，穷究事物的目的并不能使人类控制自然现象。他不问石头为什么下落，而寻求它怎样下落的精确描述。他把注意力集中于几个关键的量：时间、距离、速度、加速度、动量、质量、惯性。在一个注重性质和实质的时代，他的选择表明了对本质的深刻理解。</p>
+
+<p>伽利略对“怎样”运动的数学研究把时间和空间的概念推到一个显著地位，并且称之为“力学定律”。亚里士多德和经院哲学家们分析地面上的运动即“局部”运动的方式。他们的分析旨在回答“为什么”运动而不是“怎样”运动的问题。就运动本身而论，亚里士多德们几乎不置一词，至多只是在自然运动和猛烈运动，在直线运动和圆周运动等之间做出一些简单的区分。“为什么”运动的问题是研究的对象，这种研究是按照定性的和实体的术语来进行的。可是，对伽利略来说，“怎样”运动才是分析的目标，这种分析是用严格的数学方法来进行的。在伽利略的形而上学中，空间（或距离）和时间成为根本范畴。真实世界是处于可以在数学上化简的运动之中的物体的世界，这意味着真实世界是在空间和时间中运动的物体的世界。这样一来，自然界存在的严格的必然性来自于它那根本的数学特征——自然是数学的领域。</p>
+
+<p>伽利略最广为人知的力学定律之一是提出了自由落体定律。这个定律说的是：如果不考虑空气阻力的话，那么任何物体的下落速度都是一样的，并且都有一个固定的加速度，即g=9.8米/秒2。</p>
+
+<p>伽利略认为，亚里士多德的方法本质上是经验的。伽利略推翻了亚里士多德把运动当作过程的经院概念，而主张运动的守恒，也就是说只要不遇到外界的阻力，那么一个物体一旦运动起来，就将永远运动下去，速度也不会减慢或者变为静止。伽利略称之为“惯性定律”。这个思想深刻地启发了牛顿。伽利略强调静止和匀速直线运动这两个词的物理意义是相同的，并用“惯性系”来描述静止或匀速直线运动的状态。随后，伽利略提出了著名的相对性原理：在任何惯性中，力学规律保持不变。进一步，伽利略用他自己发明的变换式，用数学的方法证明了伽利略相对性原理。爱因斯坦后来就是在伽利略相对性原理的基础上，在狭义相对论中把力学规律扩展到所有物理规律都在惯性系中平等，提出了狭义相对论的相对性原理，之后又在广义相对论中，干脆把惯性系给抛弃了，开创了全新的时空革命。</p>
+
+<p>对于中世纪的主流思想来说，与物理世界相比，人在宇宙中占据着一个更重要和更确定的地位。可是，对于近代主流思想来说，自然却比人拥有一个更独立、更确定、更持久的地位。对于中世纪来说，人在任何意义上都是宇宙的中心。整个自然世界被认为在目的论上服从于人及其永恒的命运。这个信念已经不可抗拒地导致了在中世纪的综合中统一起来的两个伟大运动：古希腊哲学和犹太（基督教）神学。那个时期盛行的世界观打下了这一深刻而持久的信念的烙印：人，由于具有希望和理想，是宇宙中至关重要的乃至起支配作用的事实。</p>
+
+<p>中世纪著名的但丁《神曲》以庄严雄伟的形式呈现了这个流行的信念：宇宙本质上是富有人性的。</p>
+
+<p>哥白尼的日心说引起了宗教人士的反感。贬低人类在宇宙中的重要性的日心说遭到了严厉的谴责。首先跳出来的是16世纪欧洲宗教改革倡导者，基督教新教路德宗创始人马丁·路德。他听到哥白尼的理论后，称哥白尼为“自命不凡的星相家”，“想颠覆整个天文科学的白痴”。“圣书上不是说过约书亚命令太阳而不是命令地球静止不动吗？”马丁·路德发表这个评论时，《天体运行论》还没有发表。基督教新教的重要派别加尔文教派创始人约翰·加尔文咆哮：“谁敢将哥白尼的权威置于圣灵的权威之上？”宗教裁判所将新理论谴责为“完全违背圣书的虚假的毕达哥拉斯教义”；天主教会在一个官方声明中，称哥白尼学说为异端邪说。哥白尼反驳，圣经可以教导我们如何走向天国，而不能教我们天空如何运动。</p>
+
+<p>17世纪初，两件事把“日心说”推到风口浪尖上，第一件是1608年望远镜的发明，第二件是伽利略利用一台望远镜发现了围绕木星旋转的4颗小卫星。这一人人都可通过望远镜看到的现象说明，在宇宙中存在着不围绕地球旋转的天体的直接证据。伽利略的发现不仅敲响了“地心说”的丧钟，更坚定了他对日心说的信念。伽利略作为坚定的日心说捍卫者，对世界上的两种东西进行了明确的区分：一种东西是绝对的、客观的、不变的和数学的，是第一性质；另一种东西是相对的、主观的、起伏不定和感觉得到的，是第二性质。前者是神和人的知识的王国；后者是意见和假象的王国。第一性质，如数、图形、量、位置和运动等能够在数学上得到完全的表示，宇宙的实在性是几何的；自然的唯一根本性是使某一数学知识成为可能的特征。第二性质是主观的，是第一性质次要的、附属的结果。第二性质被认为是在自然中本身就真实存在的第一性质在感观这里引起的效应。</p>
+
+<p>第一性、第二性说使人处于次要的地位。直到伽利略时代为止，人们还总是理所当然地认为，人和自然是一个更大的整体的不可分离的部分，在这个更大的整体中，人的地位更为根本。人被看作根本上是与绝对的、基本的东西联系在一起的，这在柏拉图和亚里士多德的哲学中尤其明显。伽利略的第一性质和第二性质学说，把人从伟大的自然界中流放出来，并把人处理为自然演化的产物，这是一个根本的进步；它在现代思想中的影响具有无法估量的重要性。</p>
+
+<p>伽利略相信，上帝首先是通过自然，然后才是通过启示。上帝在他的创世工作中是一位几何学家，因为他用数学体制创造了世界。上帝的知识是完备的，而人类的知识是部分的；上帝的知识是直接的，而人类的知识是推论的。上帝知道无限多的命题，人类只知道少量的命题，但人类能如此透彻地理解，也就是在纯数学的证明中，人类的知性在客观上等同于神性。</p>
+
+<p>伽利略代表了科学革命之初科学家的自觉。作为科学家，研究自然也是一种研究上帝的方式，是独立于《圣经》的，更加直接的方式。伽利略在给朋友的一封信中宣称，上帝写了两本书，一本是《圣经》，一本是自然之书。这封信是自然哲学向神学宣告平等的宣言书。教庭终于在1616年正式介入，要求修改天体运行论。伽利略表现平静，没有辩解，一直到他的朋友巴巴瑞尼当上了教皇。伽利略写了《关于托勒密和哥白尼两大世界宇宙体系的对话》和《关于两种科学的对话》，他想证明哥白尼学说是正确的。他在书中批评的最多的是亚里士多德。他的著作为他带来了大麻烦。他被宗教法庭判为异端，被强迫放弃他的观点，写下了“悔过书”。</p>
+
+<p>1992年10月31日，梵蒂冈教皇在伽利略蒙冤360年后终于为其平反。已故前教皇约翰·保尔二世就1633年梵蒂冈教廷对伽利略的审判发表道歉声明，为伽利略因支持哥白尼“日心说”而遭到罗马教廷的长期迫害而进行道歉。伽利略是现代科学的开端，他为不断发展的思想潮流中的另外两个伟大思想家笛卡尔和牛顿开辟了道路。</p>
+
+
+
+<p style='float:right;'>本页共18段，3797个字符，11268 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
