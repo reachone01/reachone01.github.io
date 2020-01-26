@@ -441,6 +441,7 @@ function cDay(d){
 		for(i=1;i<=12;i++)
 			haveday += monthDays(SY,i)
 		haveday -= cndayed
+		haveday += leapDays(SY)
 		str = str + '已逝:' + cndayed + '天' + '<sup>'+'+'+'</sup>'+'&nbsp;'
 		str = str + "可期:"+"<font face='Arial' size='2px' color=#FF8040>"+"<strong>"+haveday+"</strong>"+"</font>"+"天"+"<sup>"+"+"+"</sup>"+"&nbsp;"+"&nbsp;"	
 			
