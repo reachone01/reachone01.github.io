@@ -917,7 +917,7 @@ function jscss()
 
 <!--倒计时-->
 var time_now_server,time_now_client,time_end,time_server_client,timerID;
-time_end=new Date("Jan 25, 2020 00:00:00");
+time_end=new Date("Feb 12, 2021 00:00:00");
 time_end=time_end.getTime();
 
 time_now_server=new Date();
