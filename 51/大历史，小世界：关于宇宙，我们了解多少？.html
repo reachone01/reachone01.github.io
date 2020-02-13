@@ -1,0 +1,348 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>大历史，小世界：关于宇宙，我们了解多少？</h3>
+
+<p>你可曾想过，如何从头开始讲宇宙的故事？科学家都知道宇宙始于138.2亿年（前后有几百万年的出入）前的宇宙大爆炸。宇宙的故事涵盖了138.2亿年，的确是个大工程。</p>
+<h4>一、什么是“大历史”？</h4>
+<p>讲述从宇宙大爆炸到现在的故事，这被称为“大历史”。（其他说法还有“宇宙历程”“进化史诗”或“宇宙进化”等。）讲述这样一个故事，就像爬到山巅，俯瞰山下的整个景色，或者跳进宇宙空间，观望整个地球。虽然无法看到大部分细节，但整个图景尽收眼底，而这在山谷中是看不到的。</p>
+<p>从宇宙大爆炸到此时此刻，从古至今，大历史无所不包。大历史的讲述者被称为“大历史学家”。他们的知识和信息来自多个学术领域：从天文学、物理学（原子、恒星和星系）到化学（原子组合成元素）；讲到行星的形成，需要地质学的知识（岩石及其形成）；说到生命的起源，需要生物学的知识（生物体）；人类出现后，又得掌握人文学科的知识——考古学、人类学、历史学、哲学、社会学以及政治学。你会发现，大历史从最大的尺度上讲述历史，几乎涵盖了人类知识的大部分学科。为了运用这些知识搞明白过去发生的故事，大历史将科学和人文融为一体。</p>
+<p>到了20世纪70年代后期和80年代，世界各地的很多大学教授都开始讲述整体历史。之所以能做到这一点，是因为那时他们已经积累了以实验和观察为基础的经验知识，并能加以应用。而测量物体年代的技术也得到了显著提高。到1953年，科学家已经确定地球的年龄为45亿年，同时也估算出宇宙的年龄，约为100亿至200亿年。到20世纪70年代，大多数科学家都接受了“板块构造论”——地壳的板块在地球内部半熔融的物质上漂浮移动。这一发现是了解地球历史的关键。</p>
+<p>这些发现让整个故事的讲述成为可能。1989年，澳大利亚悉尼麦考瑞大学的历史系教授大卫?克里斯蒂安，邀请学校内其他院系的专家每人开讲一部分，开始向学生呈现大历史的样貌。克里斯蒂安创造了“大历史”这个概念，还写了一篇有关大历史课程的文章，发表在《世界历史期刊》（Journal of World History）上。大历史的概念开始在全世界传播，一些教授也开始开设相似的课程。</p>
+<h4>二、何为经验知识？</h4>
+<p>大历史是以经验知识为基础的，而知识是通过形成概念或解释，然后对其加以证实才获得的。科学家通过实验和观察获得经验知识，历史学家通过验证既定事实获得经验知识。英语中的“经验”（empirical）一词源于希腊语，意思就是“经验、体验”。经验知识是通过“科学方法”不断发展的。而且经验知识是现代世界知识的主要形式，全世界的科学家都采用这种方法。它以严格、系统地使用精心验证过的证据为基础，始于17世纪初。</p>
+<p>当时显微镜和望远镜的发明，拓宽了科学家的观察视野，而跨洋航运也使得全球贸易和探险成为可能。一开始，科学家可能通过想象猜测。或者他们观察到了什么，然后提出一种想法来解释所观察到的现象。这种想法是通过想象、直觉和逻辑产生的，科学家将其称为“假说”。接下来，他们设计实验或者查找信息，来验证这种想法是否能够解释实验结果。如果不能，便予以否定；如果可以，就继续检验，或者查找新的信息来进一步验证是否与想法相符，直到最后“假说”成为具有很多证据支撑的“理论”。科学理论是指解释和阐释大量事实（数据）的观念。</p>
+<p>对于某些主要的思想观念，在积累了足够多的证据的基础上，普通人往往称之为“事实”，而科学家仍然称之为“理论”，比如“自然选择”的进化论就是一例。科学家极其严谨，他们知道，有时新的证据能够推翻主流观念。这是科学方法的一部分。</p>
+<p>科学家也是人，即便非常小心，也会出错，会产生偏见。这就是为何要使用科学方法的原因，通过长时间不断试验，才能够得出不带偏见的结论，大部分人才能接受和赞同。世界各地的科学家共同合作，分享许多不同视角的数据，对于自然和宇宙的运行机制，在人类思想的有限范围内，达成一个合理的共识。</p>
+<p>举一个科学如何发挥作用的例子。这个例子是关于大陆漂移的，即“大陆运动”的想法最终如何成为完善的板块构造理论。1915年，德国气象学家阿尔弗雷德?魏格纳（Alfred Wegener）提出了“大陆漂移”的假说。1925年，在一次地质学会议上，那些人拿他的想法逗乐，他则静静地听着，抽着烟斗。魏格纳提出的证据是，南美洲的轮廓与非洲西部的轮廓刚好吻合，而分处大西洋两岸的两块大陆上，发现了相似的动植物的化石。但魏格纳无法解释，究竟是何种力量如此巨大，能够移动整片大陆。由于他解释不了运动的机制，而且他只是个气象学家，并不是地质学家，所以多数地质学家都不接受他的假说。1930年，魏格纳在格陵兰岛监测气象时，死于意外。</p>
+<p>直到第二次世界大战期间，关于大陆漂移的进一步证据才出现。美国海军司令官亨利?赫斯（Henry Hess）——他同时也是一位经验丰富的地质学家——使用一种叫作“声呐”的新工具，收集海底的轮廓信息。（声呐将声波传入水中，检测物体并测量物体之间的距离。）他发现海底并不平坦，这一点令他颇感意外。20世纪50年代，进一步的研究确定，海底火山在大西洋中部和太平洋中部形成了高脊。1962年，赫斯出版了一本书，描写海洋盆地的由来以及地壳如何在火山山脊的两侧移动——在火山山脊处，新的物质从地球中心喷发出来。</p>
+<p>20世纪60年代，研究者进一步发现了新的证据：距离山脊越近，洋底越年轻，而越往山脊两侧延伸，年代越久远。这一证据证明了海洋底部地壳移动的假说。接下来，科学家就可以把所有的知识整合到一起了：不只是大陆在移动，海洋地壳的所有板块也在移动，带动附近的大陆地壳移动。</p>
+<p>这些板块都是地壳的组成部分，地壳分裂成几块。致使板块移动的力量，是洋脊涌出来的新物质造成的。在半熔融的地幔上方，新物质不断将旧的物质往两边推开。到了20世纪70年代，板块构造理论成为地质学领域的核心观念，或者说“范式”。</p>
+<p>受到这些故事的鼓舞，一些科学家认为，科学最终能够发现几乎所有事物的奥秘。对他们来说，要想达到这一目标，只需不断增加观察，提高实验工具的精确性，以及扩大观察的范围。科学令人兴奋，因为科学看似总是处于发现新事物的前沿。</p>
+<p>你觉得科学家能够最终发现所有应知的事物吗？当前的知识爆炸将引领我们走向何方？当然，没有人知道这些问题的确切答案，但是有一些科学家和哲学家提醒我们，人类所能获知的东西可能是有限度的。</p>
+<p>毕竟，人类的感知能力是有限的。鹰的视敏度优于人类2到3.6倍——具体视鹰的种类不同而有所不同。人类听不到的低频声音，大象能够听到。每个物种在进化的过程中，都发展了有利于其祖先生存下来的感知功能。</p>
+<p>我们人类所能看到的世界，只是沧海一粟而已。举个例子，太阳中心的核反应产生中微子，这是一种比电子小得多的基本粒子。每秒钟有几十亿的中微子穿过我们的身体，但我们却无法看到。人类能够看到光，但光只是电磁辐射的一小部分，有很多波长的电磁辐射是我们看不到的——伽马射线、X射线、紫外线、无线电波等，这些在波谱中的波段都是肉眼无法捕捉到的。因为在数千年的时间里，看到它们与否并不影响人类生存。螨虫寄生在我们的睫毛上，细菌在我们的皮肤上爬来爬去……对于这些，看不到是个好事。</p>
+<p>很明显，对于科学家来说，无论何时，虽然有非常精密的仪器，但大部分自然世界仍处于未检测或是无法接触的状态。关于人类积累的知识，有一个引人深思的比喻：人类知识貌似无边无际，但也只是未知的茫茫大海上漂浮的一座小岛而已。知识小岛面积越来越大，小岛的海岸线也就越来越复杂，但依然是漂浮在神秘的、未知的大海之上。［此比喻出自达特茅斯大学的巴西裔美国物理学家马塞洛·戈里瑟（Marcelo Gleiser）。］</p>
+<p>似乎人类永远无法知道和理解关于现实的一切。对现实的理解随着人类自身状况的改变而不断改变，而发现新知识的兴奋是人类探索的驱动力。人类似乎具有一种与生俱来的生存本能，去发现自然界的模式规律，去理解我们的历史和周遭环境。关于人类在宇宙中的位置，我们已经获得令人惊喜的意识。这就是本书所要讲的——关于人类在宇宙中所处的位置，人类都有哪些了解。读完这些，读者朋友就能在这幅最为巨大的时空地图上，找到自己的位置了。</p>
+<h4>三、大历史的架构</h4>
+<p>每个故事都需要情节、主题、声音或是某个人讲述故事的方式。大历史是以证据为基础的真实故事，不是虚构的，但仍然需要这些特征将故事融合在一起。</p>
+<p>说得简单点，故事的主题是万事万物，包括宇宙，都处于永恒的变化之中。目前来看，似乎宇宙中的某些地方正涌现出越来越多的结构，也越来越复杂。这与物理定律——热力学第二定律相违背。热力学第二定律表明，整体上来看，宇宙会越来越无序。</p>
+<p>复杂性越来越高，意味着某时某刻有全新的事物出现，而新事物是无法通过之前存在的个体部分预见的。它更复杂，是因为它是通过能量流结合在一起的特定的结构，它的组成部分增加了。由于组成部分增多，需要更多能量维系，因此也会更脆弱些。</p>
+<p>科学家把这种现象称为“出现”（emergence），但尚未完全理解它。20世纪80年代后期，这一概念萌芽时还只是一种假说，现在已有若干证据支撑它。</p>
+<p>假说是这样的：科学家认为，当部分结构以特定方式排列，条件恰到好处时，增加的能量在结构之间流动，新事物就会产生。科学家使用两个词语来描述“恰到好处”的条件：“最优条件”（Optimal conditions）和“金发女孩条件”（Goldilocks conditions），后者出自英国童话《金发女孩与三只熊》。金发女孩条件是指既不太烫也不太凉，既不太大也不太小，刚刚好的条件。</p>
+<p>对于如何给这些转型时期，也就是新事物出现的时期命名，讲述这个宇宙故事的人尚未达成一致意见；对于究竟有多少个这样的时期，科学家们也未达成一致意见。他们也将其称为“过渡期”（transition）或者“转换期”（transformation）。有些故事的讲述者，比如天体物理学家埃里克?蔡森称其为“时代”（epoch）。还有一些人，比如荷兰生物化学家和社会学家弗莱德?斯皮尔，将其称为“朝代”（regime）。有些人则什么名字也不叫——只是在故事的讲述中，提到有这么一回事儿罢了。</p>
+<p>假如深入学习大历史，就会学会对比这些不同的版本。在本书中，我将引用“临界点”（threshold）这个概念来指代即将有新事物出现的过渡期。大卫?克里斯蒂安在他的著作《时间地图》中首次使用了这一词语。这个词只是用来在绵延不绝的时间长河中定位大事件的术语，转变有时会跨越几千年的时间。</p>
+<p>当然，“临界点”这个词是一种比喻，远远超出了字面含义。在时间的长河中，并不存在真正的“临界点”。这个词无非是要传达出跨越一个“临界点”或“门槛”时的兴奋劲和新鲜劲——从此迈入新生活的大门，就像新婚夫妇迈入婚姻的殿堂，从此开始相互依偎的生活一样。这个比喻并不是要遏制新生事物的出现，如果你生活在中国，或许能够理解这个概念。中国传统文化中，“门槛”通常要高出地面约15～20厘米（6～8英寸），这样，妖魔鬼怪就进不了大门，而人则需要迈过门槛，才能进入屋内。</p>
+<p>而本书中，大历史的讲述将被分为8个临界点，每个临界点都有新事物的产生。或许还可以分得更详尽些。这8个临界点似乎代表了复杂性的重大飞跃，又不至于太烦琐而难以识记。这8个章节当中，留给人类的有3个。我在本书中使用的这8个临界点分别是：</p>
+<p>1.大爆炸的出现：宇宙起源</p>
+<p>2.恒星和星系的出现</p>
+<p>3.质量更大的化学元素的出现</p>
+<p>4.太阳系的出现</p>
+<p>5.生命的出现</p>
+<p>6.智人的出现</p>
+<p>7.农业（有机能量）的出现</p>
+<p>8.工业化（化石燃料能源）的出现</p>
+<p>大历史涉及了人类最感兴趣的许多问题：世界从何而来？世界由什么组成？是什么将其连接在一起？我又是从何而来？我在此处做什么？人类是怎样一种生物？我们应该如何对待彼此和这个世界？此刻正在发生的主要问题是什么？一切又会去向何方？讨论这些与人类息息相关的问题，对于正在学习大历史的人来说，恰是有趣和有意义之处。</p>
+<h4>四、快速预览“大历史”</h4>
+<p>1 <strong>大爆炸的出现，宇宙起源</strong>：宇宙始于138.2亿年前的大爆炸。我们从最古老的恒星那里获知此信息，而且能测量宇宙以多快的速度膨胀，然后再倒推得出时间。最初，宇宙的温度极高，高到所有的粒子都无法结合在一起。大爆炸之后，大约过了38万年，简单的原子（氢、氦）开始形成。宇宙逐渐冷却、膨胀，直至今日。</p>
+<p>2 <strong>恒星和星系的出现</strong>：氢是最简单的原子，由一个质子和一个电子组成。宇宙诞生后约7亿年到20亿年，氢气云产生了，恒星和星系开始形成。</p>
+<p>3 <strong>质量更大的化学元素的出现</strong>：随着恒星的燃烧和爆炸，开始出现更为复杂的原子。高温使得更多的粒子聚合，产生复杂的元素，诸如碳和氧，随后形成了新的行星。而且，至少在一颗行星上，这些元素最终结合在一起，形成了生命。</p>
+<p>4 <strong>太阳系的出现</strong>：太阳是一颗中等体积的恒星。它大约于45.6亿年前在银河系中形成。气体云在引力作用下向内坍缩，并开始燃烧。剩下的物质则结合在一起，约1亿年后，形成了太阳系中的8大行星。地球是一颗岩态星球，与太阳的距离处于8大行星中的第3位，距离适中，刚好一半为固体，一半为熔融状态。</p>
+<p>5 <strong>生命的出现</strong>：地球形成大约10亿年后，生命，也就是单细胞的细菌，开始出现。进行光合作用的细菌将氧气排放到大气中，最终形成了保护生命免受紫外线伤害的臭氧层。据估计，最古老的细胞化石有34.9亿年之久。细菌进化了10亿年之久，之后在10亿年到20亿年之前出现了多细胞生物体。</p>
+<p>6 <strong>智人的出现</strong>：多细胞生物体大约始于20亿年之前，随后在约6亿年之前，大量动植物爆发般地涌现出来。人类与黑猩猩和倭黑猩猩有着共同的祖先，这一祖先经过约600万年的进化之后，也就是约20万年之前，现代人类（智人）出现了。在人类出现之后的历史长河中，95%的时间里，人类一直靠打猎和采集为生，人口数量相对稳定，与地球和地球的各个系统和谐相处。</p>
+<p>7 <strong>农业（有机能量）的出现</strong>：大约1万年之前，出现了温和、稳定的气候。人类开始种植作物、驯化动物，寻找方法贮存多余的食物。这使人类能够在人口密集的城镇里群居，发展专门的职业、建立国家、形成等级制度、造字书写、建造宏伟的建筑——而这些都是文明的特征。</p>
+<p>8 <strong>工业化（化石燃料能源）的出现</strong>：人类现代的生活，是以工业化和消耗化石燃料为基础的，只有仅仅250年的时间。在这个短暂的时期内，地球上的人口从约7.5亿上升到74亿。现在的人类，正在改变我们赖以生存的地球和地球的各个系统。</p>
+<p>对于将近138.2亿年的历史，你又如何理出头绪呢？绘制时间线的方法有很多，这里推荐一个快捷方法：找2卷完整的1000节斯科特牌卫生纸，外加3/4卷，想办法把卫生纸在房间里平铺开来。或者，要是不想搞得一团糟，只是简单地想象一下如何平铺也行。每一节卫生纸代表500万年，一卷有1000节，也就是代表50亿年，大约是太阳系的年龄。最后一卷的最后一节代表整个人类历史，这要加上人类与黑猩猩共同的祖先进化成为人类的时间。［这个方法是北卡罗来纳州的科学教育家露西·拉菲特（Lucy Laffitte）提出的。］</p>
+<p>在整个宇宙中，人类只占据最小的部分，而现代社会在整个人类历史中，也只占据一小部分。在整个宇宙背景中看起来就是这个样子。</p>
+
+
+<p style='float:right;'>本页共52段，6721个字符，18305 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
