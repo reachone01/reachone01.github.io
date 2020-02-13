@@ -1,0 +1,371 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>三湘湖南</h3>
+
+<p>
+</p>
+
+<p>我们都知道湖南因位于洞庭湖以南而得名，我们也知道湖南也被称为三湘或三湘四水，四水指的是湖南省内最大的四条河流：湘江、资水、沅江、澧水。四水和三大山脉---武陵山脉、雪峰山脉、衡山山脉在湖南省形成三山分四水的格局。
+</p>
+
+<p>如果按水系划分，湘江流域、资水流域、沅江流域、澧水流域这四大流域再加上洞庭湖流域，基本上可以覆盖整个湖南省的范围。但是三湘指哪三湘这个问题却是个难题，有很多种说法，不要说外省的人，即使是湖南本省的人，相信很多人也搞不清到底以哪个为准。我们就坊间流传的几种说法做个简单的分析，希望能抽丝剥茧，找到我们想要的答案。
+</p>
+
+<p>说三湘，首先绕不开“湘”字，不管是湖南简称湘，还是早在秦朝时在今长沙设湘县，其实都和湖南省最大的河流湘江是脱不开关系的。中华民族几千年历史文明具有很强的延续性，在地名的命名上，很多以山川河流为标的进行命名，如山东、山西，河南、河北，湖南、湖北等等都有非常明显的标的物。虽然万事并非绝对，但这在我们对各种说法进行分析时，可以作为参考。
+</p>
+
+<p>第一种说法：漓湘、潇湘、蒸湘
+</p>
+
+<p>这种说法是紧紧围绕湘江展开的，将湘江被分为三段，每段都有不同的名字。《水经注》记载，“湘水出零陵始安县（注：今广西兴安县）阳海山（注：今阳朔山）”，在阳朔山的湘漓分派石碑处湘漓合流，称为漓湘；在湖南永州零陵区与潇水合流之后的一段称为潇湘；在衡阳同蒸水合流之后称为蒸湘。
+</p>
+
+<p>另外，“潇湘”一词在《山海经·中山径》中描述湘水时出现过，书中说“帝之二女居之，是常游于江渊。澧沅之风，交潇湘之渊”。一般认为《山海经》成书于战国中后期到汉朝初中期，也就是说至少在那时候已经有潇湘之说。到了唐代，潇湘已经被赋予地域的内涵，而不单单指湘水了，甚至“三湘”已经在众多诗人的作品中出现，如李白的《江夏使君叔席上赠史郎中》：“昔放三湘去，今还万死馀。”；王维的《汉江临泛》：“楚塞三湘接，荆门九派通。”；贾至的《巴陵夜别王八员外》：“柳絮飞时别洛阳，梅花发后在三湘。”等等，可以看出在唐代“三湘”已经用作地名的代称了。
+</p>
+
+<p>因此，支持这种说法的人认为，漓湘、潇湘、蒸湘合称“三湘”，更有历史内涵和文学美感，通俗点说就是更有文艺范。
+</p>
+
+<p>但是有人提出异议，认为漓水与湘水是不同水系，漓水南流入珠江，属于珠江水系；湘江向北流入湖南，属于长江水系。两江之所以能连接起来，是因为秦朝远征岭南时人工修建的灵渠才实现合流。漓水在广西境内，并未流入湖南境内，而且这种说法只有湘江流域，并不能涵盖到湖南西北地区，用“漓湘、潇湘、蒸湘”代指湖南似乎不合适。
+</p>
+
+<p>其实，如果从古代历史上湖南地区的行政区划来看，长沙郡、长沙国、零陵郡、荆湖南路、等带着湖南标签的地方，不但包括湘江流域，而且还包括桂林以北地区。汉朝时零陵郡的郡治在广西全州，换句话说，如果不是历代行政区划的改变，桂林北的这些地区如今可能也是湖南省的。再说“三湘”说法也不是现在才有的，用现在的行政区划范围去套它，是不恰当的。
+</p>
+
+<p>另外，古代湖南地区并未得到有效开发，很多官员被贬到湖南时都很郁闷，只好写些诗词发发牢骚。看看湖南的地形，相比西边的连绵不绝的大山，东边的湘江流域情况则要好太多。古代人口压力不大，农业生产能力低，这些地势相对平坦的区域才是古代湖南的核心所在（即使是现在，湖南最发达的城市也主要集中在湘江流域）。用漓湘、潇湘、蒸湘合称“三湘”来代指湖南，即使只代表湘江流域，放在当时的时代背景下，也是没有问题的。当然，如果硬要按现在的覆盖范围来看，湘江流域显然是不能涵盖整个湖南的。
+</p>
+
+<p>第二种说法：潇湘、蒸湘、沅湘
+</p>
+
+<p>这种说法认为，漓湘不能代表现在的湖南，所以在第一种说法的基础上，去掉漓湘，换上沅湘。之所以换上沅湘，是认为沅江是湖南最长的河流，影响力足够，而且沅江流经湘西地区，然后再拐头向东，能涵盖湖南更多的地区。
+</p>
+
+<p>那么，可能就会有疑问了，湘水是湘水，沅江是沅江，从地图上看好像它们之间除了最后都汇入洞庭湖外，也没什么交集。沅湘的说法是怎么来的，莫非是生搬硬造？其实不是，还真有沅湘一说，在古代一些作品里就出现过。战国时期楚国左徒大人、三闾大夫屈原被流放汨罗，创作的作品《怀沙》中有这样的句子：“浩浩沅湘，分流汨兮。修路幽蔽，道远忽兮。”；《离骚》中也有：“济沅湘以南征兮，就重华而陈词。”
+</p>
+
+<p>沅江发源于贵州，在怀化洪江市托口镇和渠水汇流，自黔城镇以下称为沅江。东晋南朝时，长江水冲入长江以南的地区，形成方圆五百里洞庭湖，但是在战国时期洞庭湖是没有那么大的。沅江流至长沙和湘江交汇后称为沅江，然后注入长江。
+</p>
+
+<p>因此，用潇湘、蒸湘、沅湘合称“三湘”，即可以最大限度地涵盖湖南的地区，也能保持其历史属性和文化范儿。
+</p>
+
+<p>第三种说法：湘东、湘西、湘南
+</p>
+
+<p>在1979 年版的《辞海》中这么解释三湘：“三湘：近代一般用作湘东、湘西、湘南三地区的总称，泛指湖南全省。”
+</p>
+
+<p>从《辞海》的解释来看，完全是从近代的角度进行解释的，目的只有一个，就是涵盖整个湖南省。而且看起来这里的湘并不是指湘江，而是以湘（湖南）来定的方位，进行东、西、南的划分，达到涵盖整个湖南的最终目的。
+</p>
+
+<p>这就回到了先有鸡还是先有蛋的问题上了，是先有三湘，然后用来代指湖南，还是先有湖南再分成三湘？这种解释只能说放在特定的时代背景下是合理的，但是对想追根溯源的人来说，显然不会满足于这种解释。
+</p>
+
+<p>而且还会有人提出异议，既然用方位来解释，东南西北中五个，为什么没有湘北、湘中？实际上，在湖南历史上有湘西、湘南、湘中之说，却没有“湘北”、“湘东”的说法。但“湘中”不是以方位来划分的，而是指相对发达的洞庭湖平原以及附近的丘陵地区，因为这些地区（如长沙、岳阳、益阳等）古代是湖南的政治、经济、文化中心，所以称为湘中。
+</p>
+
+<p>第四种说法：湘阴、湘潭、湘乡
+</p>
+
+<p>这种说法认为，湘阴为上湘，湘潭为中湘，湘乡为下湘，合称为“三湘”。这种说法姑且先不论历史，在地图上找找这几个地名，湘阴隶属于岳阳市，湘乡隶属于湘潭市，相信不用说什么你就会明白，这种说法是没什么意思的了。
+</p>
+
+<p>除了这四种说法外，还有其他比较离奇的说法，如湘江、湘菜、湘军之类，虽然湘军在历史上也出过彩，湘菜辣得够味很好吃，但是硬拉上三个带“湘”字的放一起说是“三湘”，只能说是来搞笑的。
+</p>
+
+<p>其实，三湘到底是什么并不是那么重要，但是通过对上面几种说法的分析，相信你对“三湘”这个问题会有更深入的了解，至于认同哪种说法，取决于你看问题的角度。</p>
+
+
+
+<p style='float:right;'>本页共26段，2614个字符，7800 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
