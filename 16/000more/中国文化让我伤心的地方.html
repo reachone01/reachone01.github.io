@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>中国文化让我伤心的地方</h4>
+
+<p></p>
+
+<p>许倬云，1930年生，江苏无锡人。1948年随家人到台湾，1953年毕业于台湾大学史学系，1962年获美国芝加哥大学博士学位。1970年任美国匹兹堡大学史学系及社会系合聘教授，其间多次受聘为香港中文大学、美国夏威夷大学、杜克大学、香港科技大学等校讲座教授著有《中国古代社会史论》、《汉代农业》、《西周史》、《求古编》、《寻路集》、《万古江河》等。作者曾任台北“中央研究院”历史语言研究所研究员，台湾大学历史系主任。</p>
+
+<p>中国文化到了今天已经是只剩皮毛，不见血肉，当然也没有灵魂，这是叫我伤心的地方。</p>
+
+<p>01</p>
+
+<p>从五四以来，中国文化存在于书皮上，也存在于穷乡僻壤的旮旯儿里。文化有多重要呢？它影响着百姓的生活习惯和行为模式。在文化界，阳春白雪和下里巴人受追捧程度相差甚远。昆曲永远无法成为流行歌曲，最炫民族风们却响彻神州大地；有思想深度的书卖几万册就很了不起了，但小时代们卖一两百万册都稀松平常。换言之，今天要说中国的文化庸俗，大家都不觉得冤枉。</p>
+
+<p>今天的文化市场看似热火朝天，但其实只是个“虚胖子”。文化利用大量的资源，在表面上形成一个花团锦簇的世界。最典型的例子就是张艺谋的作风——奥运开幕式。没错，的确是一场让人热血沸腾的视觉盛宴，但仔细想来，除了美轮美奂的感官享受，其文化内涵却乏善可陈。他只是抓书上常提的中国四大贡献，这些贡献是历史上的贡献，而非今天的贡献。</p>
+
+<p>凡此方方面面，是今天才发生的吗？其实不然。</p>
+
+<p>乾隆时代就是如此，当时的中国文化是没有内涵的，只是表面繁华。没有自己特色的中国文化到了今天已经是只剩皮毛，不见血肉，当然也没有灵魂，这着实让人痛心。国人如今的心灵和精神状态的空虚是已存在的现象，而心存空虚这一现象不会自然解决。</p>
+
+<p>02</p>
+
+<p>今天口口声声说“国学热”，在世界各地办孔子学院，但真正货真价实的内容又有多少，大家心知肚明。我们用尽了自己的资源和活力之后千疮百孔，从精英流离到草根，从深沉厚重变成流于表面。音乐如此，文学如此，其他艺术形式，无一不是如此。</p>
+
+<p>一方面我们看到民主是好事，教育普及是好事，人权普遍被尊重是好事。但另外一个方面，全面平等之后，本期待出现卓越的成果，最终却都流于平凡，个中缘由值得我们反思。平民草根难出贝多芬，文化的领域应该要有一部分精英，但原动力已经衰退，这是危机之一。</p>
+
+<p>危机之二，价值系统在崩溃。从三百年前发展到今天，我们应该不再标榜“现代”，现代是有实践性的，所以我们叫近代化。</p>
+
+<p>三百年前开始发展资本主义、民权思想、人权意识、科学精神。这些都有共同的源泉，都是丢开天主教的外壳，捡回了人跟上帝的直接关系，人又开始有了信念。神造人不是白造的，他赋予你智力和权力。倡导人人生而平等，反对压迫，反对禁锢，崇尚自由。</p>
+
+<p>另外一方面，神的律在科学家的脑子中转化成自然的律。自然是先天存在的，其实和神的律是同一个事情。一定假定有先天存在的这个律，我们才有科学的上下求索。</p>
+
+<p>这个假设使得资本主义早期的人物，为了荣耀，为了彰显使命感，拼命干活，而且以“信用”这两个字来作为资本主义的基础。没有信用，银行没法借贷，没法投资，没法委托，一切都无法运行。</p>
+
+<p>这次经济风暴的病根正是因为内心没有价值观念约束行为。所以掌权的那些CEO，不讲信用，不讲道德，以市场遮盖，大量地偷窃股东的财产，辜负股民的委托，以致股票买卖实际上变成虚假的赌博。股权已经分散到这种地步，流转如此迅速，股票本身变成赌局。</p>
+
+<p>掌握股权的无数小民，完全处于弱势地位司行使。没有人知道他的股权在哪里，股民根本无法行使股权来或者监督经理人，经理人因此无所畏惧，工作法规约束不了他。</p>
+
+<p>03</p>
+
+<p>在1932年罗斯福实行新政的时候，有管束的法律，一整套法律保护劳工、约束雇主。但是从二战后到今天，美国政权和财富结合，他们废掉了一条条的法律，再也没有防止不合法、不公平的法律。公众无法约束他，股权无法约束他，良心更无法约束他。</p>
+
+<p>面对今天瞬息万变的时代，国家体制要改变，社会结构要改变，变成什么样子？我不知道。最要紧的是，将来几十亿人共同拥有这一个地球，怎么相容，怎么再造一个互让、共存的人类社会？小到农村，大到全球，小到人员之间的争执，大到国与国之间的战争，用什么价值标准来判断？这个是最严重的课题，今天我们处在转折点上，蜕变已经开始。</p>
+
+<p>一种蜕变是把旧的壳丢掉，换上一个更大更新的壳。躯壳丢掉，蛇还是蛇，这种蜕变不可行。我们现在所面临的不是小问题，我们需要的是寻求大的突破。所谓突破应该是毛毛虫变蝴蝶，但蝴蝶是怎么出现，蝴蝶应当具有什么东西，多数人并不在意。学术界绝大多数人忙着写小论文，忙着搞升职，忙着搞项目，而文化界忙着去点缀打扮，所有这些行为无疑都是各种形式的“交白卷”。</p>
+
+<p>大家应当寻找共同生活的一套价值观念：什么是对，什么是错；什么是好，什么是坏；什么是丑，什么是美。这些概念的混淆不清是最叫人担心的事情。</p>
+
+<p>当前还存在的另一个令人担忧的问题就是大家都只顾拼命赚钱，精神生活上相当空虚。不知道为什么而活，也不知道大家应该共同遵守的标准和尺度在哪里。于是许多秩序就不能够建立起来，这个是个普遍现象。</p>
+
+<p>04</p>
+
+<p>中国在这个时候，应当从传统里挖出一些东西填补这个缺陷，但是今天讲儒学的人，只抓其皮毛，不抓其精神。以辞藻华丽来文饰内容浅薄，以口号响亮来文饰内涵空洞。从改革开放到今天，中国没有在这一部分精神的境界、文化的境界上下力气，尤其近几十年来的余悸未定，还在胆战心惊的状态之下，没人敢动。所以，不能单纯地说中国已经站起来了。</p>
+
+<p>中国的经济已经有动力，中国政府相当努力地在经济问题上做种种调整，而且也显示出来有相当的成绩。今天我们不算小康，但至少吃饱了饭，对抗饥饿已经不成问题。</p>
+
+<p>而说到教育，教育不是桎梏人的思想，更不是以教条圈住人的头脑，而是要放手让大家自由思想。今天学术界非常显著地崇洋媚外，也非常显著地抱残守缺，这两者是相配而行的。抱残守缺又不能见全貌，所以崇洋媚外，取外面东西来填补，没有自发的精神。有聪明才智但是不敢放，不敢用自己的聪明才智来解决自己的精神困扰和饥渴，这是值得担忧的事情。</p>
+
+<p>所以，一定要放松人的思想，一定要放松资源鼓动民间的财富。也释放若干的资源，鼓励在学术界、文化界做寻找价值、重建价值的工作。让这部分社会精英做好社会文化价值导向的工作。这一点也很重要。</p>
+
+<p>如果只靠民间自己随便做，那就不会是很精确的，甚至有时候是扭曲。比如说儒道佛的信仰，现在我们理解已经有相当多的地下信仰。地下信仰，他们的内容其实常常是很肤浅的，离那些精深的宗教信仰有相当大的距离。这些信仰解决不了人的基本问题，可能反而是搅乱了一些正常发展。</p>
+
+<p>希望新的价值能够以人为本，因为人是真实的。你可以否认别的，不能否认自己。</p>
+
+<p>儒释道三教及其融合的三教合一文化，构成了中国传统文化的基本格局，在中国思想文化史上具有重要的地位。三教合一文化对中国社会、哲学、思想、文化和艺术等各个方面的发展都具有重要影响。而儒释道三家，实际上都是以“人”，一撇一捺的人字，作为根本的。因为儒家的基本精神，基本的假定就是以人为本。从这个上面，儒家要发展仁、忠，然后从这个意义上，慢慢和佛家的慈悲混合起来。慢慢又和道家的宽大和自然混合起来。</p>
+
+<p>中国对天和自然环境的观点，一向是强调天人之间的互相协调。道家一向秉承这种精神，所以道家和儒家向来的传统不是取利于天和滥用环境，而是天人互相协调的运作。</p>
+
+<p>你尊重自己，尊重别人投射给你的他，尊重别人投射给你看见的自己。层层投射，可投射到无穷。以这作为一个美好、善良、正直、公平社会的定义的话，谁也不愿意不公平出在自己身上。推己及人，也许由此我们可以重建新的价值观念。</p>
+
+
+
+<p style='float:right;'>本页共34段，3123个字符，9266 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

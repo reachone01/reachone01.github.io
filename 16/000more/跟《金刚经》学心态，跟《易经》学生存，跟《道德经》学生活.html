@@ -1,0 +1,602 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>跟《金刚经》学心态，跟《易经》学生存，跟《道德经》学生活</h3>
+
+<p>
+</p>
+
+<p><h4 >跟《金刚经》学心态</h4 >
+</p>
+
+<p>《金刚经》一开始，就提出了一个人生的大问题：“云何降伏其心？”也就是滚滚红尘中的芸芸众生，如何才能降服心中乱七八糟的想法？如何才能使得自己身心清静？对这个问题的解答，就是金刚经的主旨。
+</p>
+
+<p>在生活中，当我们遇到烦恼时，往往只是责怪环境，而很少有人懂得去反省自己的内心，其实心才是一切烦恼的根源。佛法说“一切唯心造”，我们拥有什么样的心态，就会出现什么样的世界。心态的健康与否，直接关系到人生的苦乐。拥有健康的心境，是快乐幸福的根本。
+</p>
+
+<p><h4 >不强求</h4 >
+</p>
+
+<p>《金刚经》中说：
+</p>
+
+<p>凡所有相，皆是虚妄，若见诸相非相，即见如来。
+</p>
+
+<p>一切有为法，如梦幻泡影，如露亦如电，应作如是观。
+</p>
+
+<p>我们为什么不能拥有良好的心境呢？就是因为我们还有烦恼，所以才不能获得自在。我们之所以感到痛苦烦恼，是因为我们心中有太多的欲望。一旦欲望得不到满足，便会感到烦恼，自卑，痛苦。既使欲望暂时实现了，又生怕会失去或者又有了更大的欲望。因此，我们的身心永远在苦海中沉浮，永无出头之日。
+</p>
+
+<p>我们之所以有欲望，是为了膨胀自我，是认为世间有很多东西是真实存在和可以得到的。而真相却是：世界上的一切，都是变化无常，如镜花水月般虚无缥缈，瞬息即逝。因此，对于世界上的一切都应该看淡，对遭遇的一切都应该坦然面对，不应该执着。
+</p>
+
+<p>人总是过多地考虑自己，从自己的欲求出发，想得到文凭、学历，想得到亲情、友情、爱情，想得到财富、金钱、美人，想得到名誉、地位，想得到家庭、事业，想得到健康、长寿……其实静下心来仔细想想，世间的一切有什么是永远的呢？
+</p>
+
+<p><h4 >肯奉献</h4 >
+</p>
+
+<p>《金刚经》中说：
+</p>
+
+<p>不住色布施，不住声香味触法布施。
+</p>
+
+<p>应无所住行于布施。
+</p>
+
+<p>布施就是奉献。有人说我自己还不够用，或者我自己都一无所有，没有什么好奉献的。其实一句温暖的问候，一片诚挚的爱心，一个美丽的微笑，任何自己觉得可以利益他人的东西都可以用来奉献。勿以善小而不为，当奉献成为习惯，你会从别人的快乐中得到更大的快乐。
+</p>
+
+<p>世界上懂得奉献的人，是最富有的人。人们往往贪图别人给予自己的，这其实是最贫穷的想法。一个人自呱呱落地，到小学、中学、大学，无时无刻不在接受别人的给予，究竟又有几个人想到自己给予了别人多少呢？日常生活中我们给予别人一句善意的劝告，一点力所能及的帮助，都是可以给人以启迪和帮助的，有时甚至是让人终生难忘的。
+</p>
+
+<p>奉献贵在真心和无私，而不是为了沽名吊誉，或谋取钱财。正如《聊斋志异》开宗明义第一篇《考城隍》上所说：有心为善，虽善不赏。
+</p>
+
+<p><h4 >能放下</h4 >
+</p>
+
+<p>《金刚经》中说：
+</p>
+
+<p>过去心不可得，现在心不可得，未来心不可得。
+</p>
+
+<p>应无所住而生其心。
+</p>
+
+<p>“无住”精神，可以缓解现代人的压力感，使人保持澄明心性。当今时代是一个物欲涌动、拜金主义、享乐主义盛行的时代，有些人不再谈论人生、理想、国家、社会，而是更多地谈论电影、股票、服饰、美食、足球、明星等等。呈现在人们面前的是一个五光十色目不暇接的世界。
+</p>
+
+<p>享受现代物质文明是现代人应有的权利，但人切不可成为物质的奴隶，陷溺于拜金主义的狂潮，从而导致精神家园的失落。人除了物质生活，还要有充实的精神生活，精神上去充实才是真正的富贵，精神上的满足才是真正的幸福。
+</p>
+
+<p>现代心理学理论告诉我们，人都具有“庸人自扰”的本性：对于悠关自身之事作过多的无谓思考，是困扰自身的主要原因。更要命的是，人的这种“能力”不需要有事实依据，但凭想象就可以了。假使心起了烦恼，那么即使在社会上很有地位、财富，生活也是空虚的。
+</p>
+
+<p>如果心中颠倒梦想，高楼大厦无异于监狱，美味佳肴就是毒药。古人说：心安茅屋稳，性定菜根香。只要心安定了，就算吃的是粗茶淡饭，住的是茅草小屋，心中也很安定、自在。
+</p>
+
+<p><h3 >跟《易经》学生存</h3 >
+</p>
+
+<p>所谓生存之道，概括为四个字就是：趋吉避凶。要想趋吉避凶，需要抵达《易经》中做人的最高境界——无咎。孔子晚年感慨学《易》可以无大过，《周易·系辞下》中也说：惧以终始，其要无咎，此谓易之道也。
+</p>
+
+<p>无咎是没有凶险，没有大的过错，或是就算有过错也没有关系。这是《易经》的精髓，最根本的生存之道。
+</p>
+
+<p><h4 >反省补过，是无咎之基</h4 >
+</p>
+
+<p>《周易》云：无咎者，善补过者也。
+</p>
+
+<p>人活着，只要眼睛没有闭起来，你就永远有过错，只是大小而已。无咎的状态不是不犯错误，而恰恰是犯了错误以后，能够及时反省和改正。《左传》上说，人谁无过？过而能改，善莫大焉。孔子称赞爱徒颜回：“不迁怒，不贰过。”不贰过，就是不重复犯错误，善于改正自己的错误。
+</p>
+
+<p>《周易》上同样说，“震无咎者存乎悔”。要达到无咎的状态，必然要善于反思悔过，如曾子的“一日三省吾身”。反思悔过是改过的前提，一个人不在内心真正的反思、悔过，根本不可能真正意识到自己的错误，也就不知道如何去改正。
+</p>
+
+<p>所以要真正达到无咎，就要随时反省自己，随时随地检查、反思、改正自己的错误和毛病。
+</p>
+
+<p><h4 >谨慎小心，是无咎之法</h4 >
+</p>
+
+<p>《周易》云：君子终日乾乾，夕惕若，厉无咎。
+</p>
+
+<p>君子每时每刻小心谨慎，勤勉不懈，永远保持警惕，这样虽然存在着危险，但是并不会有灾祸。
+</p>
+
+<p>亊情发展并不是简单的，并不一直都一帆风顺的。只有经常保持勤勉和警惕，才能即使有危险，但不会造成灾难。
+</p>
+
+<p>《周易》对谨慎强调很多，可见其重要性。古人云，行谨则能坚其志，言谨则能崇其德。牢记一个“谨”字，所犯的错误会越来越少。
+</p>
+
+<p><h4 >坚忍纯正，是无咎之凭</h4 >
+</p>
+
+<p>《周易》云：无平不陂，无往不复，艰贞无咎。
+</p>
+
+<p>没有平地是不会变成山坡的，没有去了而不回来的，在艰难困苦中坚守纯正，必然会有好的结果。
+</p>
+
+<p>世界上时时刻刻发生变化，循环往复，困境和逆境是不断转变的，没有人一辈子走运，也没有人一辈子倒霉。人生艰难和困苦虽然不能避免，但只要我们保持一颗坚忍和贞正的心，就终能等到变成平坦的大道。
+</p>
+
+<p><h4 >返璞归真，是无咎之境</h4 >
+</p>
+
+<p>《周易》云：白贲，无咎。
+</p>
+
+<p>贲是斑纹华彩、色彩纷繁之象，七彩光合成白色，绚烂归于平淡，白贲就是在世不染，阅历深厚，返璞归真。
+</p>
+
+<p>我们在这世界上生活越久，认识的人就越多，得到的东西就越多，随之而来的烦恼和痛苦也就越多，幸福和快乐反而越来越少。世人不断追寻，不断得到，却发现身体越来越差、心情越来越躁，生活越来越累。要想摆脱这种烦恼和不幸，只有返璞归真，追求“白贲”的人生大境界。
+</p>
+
+<p>白贲的境界，就是笑而不语、光而不耀、威而不猛的境界。白贲的境界里，有清凉自在的心，有安定从容之心，有一颗摆脱烦恼束缚的自由之心。不再山珍海味的滥吃，身体变得清洁起来。不再做遥不可及的梦，睡眠变得安恬起来。不再穿五花八门的鞋，步子迈得悠闲平稳起来。衣着不再盲跟潮流，穿戴开始舒适宽松起来。不再多说闲言碎语，心情轻松畅快多了。
+</p>
+
+<p>这种人生境界就如同陶渊明在《饮酒》诗中描绘的那样：
+</p>
+
+<p>结庐在人境，而无车马喧。
+</p>
+
+<p>问君何能尔？心远地自偏。
+</p>
+
+<p>采菊东篱下，悠然见南山。
+</p>
+
+<p>山气日夕佳，飞鸟相与还。
+</p>
+
+<p>此中有真意，欲辨已忘言。
+</p>
+
+<p><h4 >跟《道德经》学生活</h4 >
+</p>
+
+<p>这是一个竞争的时代，生活节奏不断加快，世人都为追求成功而忙碌。在这种高速的生活状态之下，身心的压力也在不断加大，时常会感觉迷失了方向，找不到自己原来的人生定位。包罗万象的老子《道德经》，则可以为我们提供最好的智慧启迪，在生活态度上为我们提供最好的指引。
+</p>
+
+<p><h4 >无用，才能有趣</h4 >
+</p>
+
+<p>“有之以为利，无之以为用。”《道德经》里到处是比喻。比如瓷杯，大家只看到有的部分，其实能用的不是有，而是围出来的空。房子有门、有顶，能用的还是围出来的空。没有中间的空，大家住哪儿？
+</p>
+
+<p>什么是无用的事？发呆，喝茶，看四季变化，都被认为是无用的事，都不做。那有用的事如何提升呢？大家有创意的时间吗？一有空就掏出手机，时间立刻被填补，手机拿走了人们的无聊，也拿走了伴随着无聊的伟大创意。我的很多想法都是在喝茶发呆时想出来的，相反忙碌的时候没有想出来。
+</p>
+
+<p>我们中国人爱求大，求有用的事情，有用的人越来越多，有趣的人越来越少。阅读，就是一种和老人、和过去聊天的方式。
+</p>
+
+<p><h4 >低调，才是高明</h4 >
+</p>
+
+<p>“江海之所以能为百谷王者，以其善下之，故能为百谷王。”为什么江海最为辽阔，因为它比谁都低，海平面为零，水往低处流，原则是比别人低，以其善下之。喜欢比别人低，这是主动的，这是一种境界。
+</p>
+
+<p>那些真正高的人，都喜欢低。比如季羡林，他在校园里为学生看行李，这是真事。当代书法家启功，接受采访时，谦虚得不得了，琉璃厂有假冒他的作品，他说去看过，真有比自己写得好的。他们“善下之”，从来没有耀武扬威，从来都是客客气气。
+</p>
+
+<p><h4 >坦然，面对逆境</h4 >
+</p>
+
+<p>“飘风不终朝，骤雨不终日。”不管多大的风都不可能一直刮下去，不管多猛的雨也终有停止的时候。
+</p>
+
+<p>这句话还给了我们另一个角度的启示：当你遭遇人生中的不顺利、不如意，甚至惨重的打击时，你要相信时间能够稀释这一切，对吗？飘风不终朝，骤雨不终日，挫败和低谷也终将过去。
+</p>
+
+<p>人有两个最大的敌人：一是突如其来的赞赏和表扬，一是时常会有的打击和不顺。这两道关都要过，过不去就很难前行。表扬来得太早，毁人也毁得够狠，很多人就是如此倒下的，根基不稳，空中楼阁，他Hold不住。
+</p>
+
+<p><h4 >成功三大定律：荷花定律、金蝉定律、竹子定律</h4 >
+</p>
+
+<p>关于成功，有很多定律，比较有名的就是荷花定律、竹子定律和金蝉定律。无论是荷花定律、竹子定律，还是金蝉定律，他们都有共同的意义：
+</p>
+
+<p>成功，需要厚积薄发，
+</p>
+
+<p>要忍受煎熬，要耐得住寂寞，
+</p>
+
+<p>坚持，坚持，再坚持，
+</p>
+
+<p>直到最后成功的那一刻。
+</p>
+
+<p><h4 >壹荷花定律</h4 >
+</p>
+
+<p>一个池塘里的荷花，每一天都会以前一天的2 倍数量在开放。如果到第30 天，荷花就开满了整个池塘。请问：在第几天池塘中的荷花开了一半？第15 天？错！是第29 天。这就是荷花定律。
+</p>
+
+<p>第一天开放的只是一小部分，第二天，它们会以前一天的两倍速度开放。到第29 天时荷花仅仅开满了一半，直到最后一天才会开满另一半。也就是说：最后一天的速度最快，等于前29 天的总和。这就是著名的荷花定律。
+</p>
+
+<p>这其中藏着深刻的道理就是：成功需要厚积薄发，需要积累沉淀。这个定律最早是听过马云的一个公开演讲，而透过这个定律去联想人生，你会发生，很多人的一生就像池塘里的荷花，一开始用力地开，玩命地开.。.。.。。
+</p>
+
+<p>但渐渐的，人们开始感到枯燥甚至是厌烦，你可能在第9 天、第19 天甚至第29 天的时候放弃了坚持。
+</p>
+
+<p>这时，这个时候的放弃，往往离成功只有一步之遥。很多时候，甚至可以说大多时候，人能获得成功，关键在于毅力。
+</p>
+
+<p>据说人这一生大概能遇到7 次左右的机会，都是可以改变人生的机会，而这样的机会往往都是在前期日复一日的投入和坚持才能遇到这样的机会。所以说，如果有梦想就要先动起来，然后坚定不移的去执行下去。
+</p>
+
+<p><h4 >贰竹子定律</h4 >
+</p>
+
+<p>竹子用了4 年的时间，仅仅长了3 cm。从第五年开始，以每天30 cm的速度疯狂地生长，仅仅用了六周的时间，就长到了15 米。其实，在前面的四年，竹子将根在土壤里延伸了数百平米。
+</p>
+
+<p>做人做事亦是如此。不要担心你此时此刻的付出得不到回报，因为这些付出都是为了扎根。人生需要储备，有多少人，没能熬过那三厘米？
+</p>
+
+<p>什么叫价值？同是两根竹子，一支做成了笛子，一支做成了晾衣杠。晾衣杠不服气的问笛子：我们都是同一片山上的竹子，凭什么我天天日晒雨淋，不值一文。而你却价值千金呢？笛子回答说：因为你只挨了一刀，而我却经历了千刀万剐，精雕细做，晾衣杠此时沉默了。
+</p>
+
+<p>人生亦是如此，经得起打磨，耐得起寂寞，扛得起责任，肩负起使命，人生才会有价值。看见别人辉煌的时候，不要嫉妒，因为别人付出的比你多。
+</p>
+
+<p>国学大师钱穆说：“古往今来有大成就者，诀窍无他，都是能人肯下笨劲。”胡适也说：“这个世界聪明人太多，肯下笨功夫的人太少，所以成功者只是少数人。”
+</p>
+
+<p>说起钱钟书的满腹经纶，人们往往归功于他的天分高，记忆力强。其实，钱钟书学问博大精深，更多来自后天手不释卷的苦功。
+</p>
+
+<p>钱钟书大学同窗许振德这样描述：在校时，以一周读中文经典，一周阅欧美名著，交互行之，四年如一日。每赴图书馆借书还书，必怀抱五六巨册，且奔且驰。且阅毕一册，必作札记.。.。.。
+</p>
+
+<p>代表他学术成就的《管锥编》，引述4000 多位名家的上万种著作中的数万条书证，汪洋恣肆，博大精深。
+</p>
+
+<p>有些人可能不知道，他进入清华后，目标是“横扫清华图书馆”。他的治学心得是：“越是聪明人，越要懂得下笨功夫。”
+</p>
+
+<p>“心在一艺，其艺必工，一心在一职，其职必举”。成长不是一蹴而就的，哪有什么人生开挂，只不过是厚积薄发。这就叫竹子定律！
+</p>
+
+<p><h4 >叁金蝉定律</h4 >
+</p>
+
+<p>蝉，要先在地下暗无天日的生活三年（有一种美国的蝉，要在地下生活17 年），忍受各种寂寞和孤独，依靠树根的汁一点点长大，然后在夏天的一个晚上，悄悄爬到树枝上，一夜之间蜕变成知了。然后期待太阳升起的那一刻，它就可以飞向天空、冲向自由。这就叫金蝉定律。
+</p>
+
+<p>很多人的一生就像池塘里的荷花，一开始用力盛开，但是总感觉自己绽放的不够，所以渐渐感到厌倦，在第10 天、第20 天、甚至第29 天的时候选择了放弃。
+</p>
+
+<p>很多人的奋斗也像生长的竹子，一开始卯足了劲，但是由于前面的大部分阶段都在打基，所以成效并不那么明显，在第1 年、第3 年，甚至第4 年的时候选择了放弃。就更不用提蝉的淡定和坚守了。
+</p>
+
+<p>越接近成功越困难，越需要坚持。无论是创业还是人生，我们缺少的不是能力、技巧、模式，需要的是坚持和毅力，只有坚持量变，才能最后完成质变，才能突破成功的临界点，取得最后的成功。
+</p>
+
+<p>马云曾说：“今天很残酷，明天更残酷，后天很美好，但是大多数人死在明天晚上，看不到后天的太阳”。大部分人都是在离成功一步之遥却放弃了。
+</p>
+
+<p>中国有句老话“行百里半九十”，就是说走一百里路，走九十里才算走了一半，因为很多人坚持到九十里就放弃了。
+</p>
+
+<p>这些定律告诉我们这样一个道理：
+</p>
+
+<p>拼到最后，
+</p>
+
+<p>拼的不是运气和聪明，
+</p>
+
+<p>而是毅力。</p>
+
+
+
+<p style='float:right;'>本页共103段，5732个字符，16571 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

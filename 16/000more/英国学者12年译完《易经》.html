@@ -1,0 +1,465 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>英国学者12年译完《易经》</h3>
+
+<p>
+</p>
+
+<p>《易经》从一开始就被西方读者认为是一部帮助人们思考的“智慧之书”，而不是一部算命的书。我想这大概是《易经》在中西方的最大不同。
+</p>
+
+<p>译者｜英国学者12年译完《易经》
+</p>
+
+<p>在2015年举办的国际笔会福克纳文学奖评选中，一本928页的中国经典译著获得提名。它是由英国著名汉学家闵福德（John Minford）耗时12年翻译的《易经》。这本书由纽约企鹅出版集团下的维京出版社于2014年底出版。在书里，有对《易经》及历代文人评注的详细叙述。
+</p>
+
+<p>作为中国传统文化经典，《易经》被誉为六经之首。17世纪出使中国的法国传教士白晋，曾称赞它是中国一切科学和哲学的源头，高于当时欧洲的科学和哲学。18世纪初，《易经》在欧洲传播开来。心理学家荣格评价，它包含着中国文化的精神与心灵，有几千年来中国伟大智者的共同倾注，历久弥新。
+</p>
+
+<p>就《易经》的翻译出版、西方世界对《易经》的接受度等问题，定居澳大利亚的闵福德接受了腾讯文化的电话专访。以下为腾讯文化与闵福德的对话：
+</p>
+
+<p>“我的《易经》翻译更‘中国化’”
+</p>
+
+<p>译者｜英国学者12年译完《易经》
+</p>
+
+<p>闵福德
+</p>
+
+<p>腾讯文化：此前西方较著名的《易经》译本,分别来自19世纪末英国传教士理雅各和德国传教士卫礼贤。你对这两个版本怎样评价？
+</p>
+
+<p>闵福德：理雅各汉语特别好，除了《易经》还翻译了《论语》《大学》《中庸》《孟子》等书。但他根本不尊重《易经》，认为这本书是垃圾。他并不相信书里的内容。
+</p>
+
+<p>卫礼贤就非常不同。他对《易经》非常感兴趣，在1924年完成了德译本《易经》（后被译成英文）。很长一段时间里，这本书在西方非常热销，影响也很大。卫礼贤和荣格的关系密切，后者为其《易经》作了序。但这也是这本书的缺陷——受荣格的影响太多。
+</p>
+
+<p>腾讯文化：你怎么评价英国学者约翰·布洛菲尔德和美国芝加哥大学教授夏含夷的《易经》译本？
+</p>
+
+<p>闵福德：布洛菲尔德的译本不错。夏含夷更擅长甲骨文，研究的主要是早期文字中有关《易经》的记载。他的译本不实用，偏学术。
+</p>
+
+<p>腾讯文化：你翻译的《易经》和这些译本的区别在哪里？
+</p>
+
+<p>闵福德：我的翻译更“中国化”。有人翻译《易经》会提及《圣经》或德国诗人歌德；基督徒理雅各从基督教的角度解析《易经》。我更多地引用中国文人的点评，尽量不涉及西方人对《易经》的点评和解析。
+</p>
+
+<p>腾讯文化：《易经》在欧洲的影响如何？
+</p>
+
+<p>闵福德：20世纪60、70年代，欧洲读《易经》的人很多，这在当时是一种“反文化”现象。我也是这代人中的一员。当时我的很多朋友都读《易经》。《易经》从一开始就被西方读者认为是一部帮助人们思考的“智慧之书”，而不是一部算命的书。我想这大概是《易经》在中西方的最大不同。
+</p>
+
+<p>“你就是这本书，你会成为这本书”
+</p>
+
+<p>腾讯文化：你如何安排这部译作的结构？
+</p>
+
+<p>闵福德：我把书分成两部分，第一部分是“智慧之书”，用传统方式解读《易经》和其点评；第二部分是“卜卦”（Oracle），回归《易经》最初的用途——青铜器时代的占卜手册。那时《易经》的哲学性没那么多，人们主要用它来获得对一些即时问题的建议，比如“我应该和邻国开战么”“我应该把女儿嫁给宋国国王吗”。但它也并非是用来算命的。
+</p>
+
+<p>腾讯文化：你将《易经》解释为“The Book of Change”，而不是 “The Book of Changes”，为什么？
+</p>
+
+<p>闵福德：因为我认为这本书是关于变化的基本流程的，所以用单数，而不用复数。
+</p>
+
+<p>腾讯文化：在你看来，《易经》有什么用？
+</p>
+
+<p>闵福德：我在书的序言中引用了英国汉学家葛瑞汉对《易经》的评价：“它帮助你进入你自己的内心，仿佛是一条能够帮助你开悟的‘捷径’。”我非常赞同他的观点。
+</p>
+
+<p>这本书的关键词是“修养”，清代道士刘一明在《周易阐真》中也多次提到这个词。他强调，学习《易经》的过程是提高自我修养的过程。我是不可知论者，不信奉某种特定的宗教，但我相信人们有必要自知、自省。《易经》是一本关于自我认知的书，能够引导人们如何思考，如何认识自我。它很简单，但又很难。
+</p>
+
+<p>有人点评，《易经》不是一本书，而是一个Spirit。我也这样认为，因为《易经》原本也不像是一本书：它没有开始，没有结尾，没有作者。它更像是一个“精神的工程”，是一种可以和你对话的声音，但它最终是你自己的精神。
+</p>
+
+<p>我在书的前言中这样写：“这本书和你之间不存在任何区别，你就是这本书，你会成为这本书。”
+</p>
+
+<p>腾讯文化：你在前言中还称，阅读《易经》是一个互动和对话的过程。如何理解这句话？
+</p>
+
+<p>闵福德：开始读《易经》时，你便和这本书产生了互动。这本书的本质并非在于书，而是在于你阅读的方式。你要非常虔诚地坐下来，抛弃一切伪装和虚假的想法，真实面对自己－－这是这个过程中最重要的。之后，你才可以开始读《易经》。
+</p>
+
+<p>不能像对待一本普通的书那样对待《易经》。你得去参与，得做大量的工作。这个过程是互动的，就像是一个游戏，你和这本书做游戏。最后，《易经》帮助你看到你自己。
+</p>
+
+<p>腾讯文化：听起来很玄妙。
+</p>
+
+<p>闵福德：《易经》是一本客观存在的书，不是一种宗教，不是一个有魔力的特殊伎俩。它不强迫你去相信某种教义，它谈论的是世界背后的规律，但用的是非常简单的结构，比如八卦、六十四卦等。它鼓励你往后站一步，看全局，而不是只关注生命中一些细小的环节。
+</p>
+
+<p>我常收到读者的邮件。他们告诉我：“你翻译的《易经》帮我解决了难题。”这时候我就会很高兴。我的老师柳存仁教授（注：澳洲华裔汉学家，以道学研究闻名）经常说：“《易经》《道德经》等书的目的，都是引导人们更善良、更慈爱。”
+</p>
+
+<p>翻译时还用了拉丁文
+</p>
+
+<p>腾讯文化：你用12年翻译《易经》，这是怎样的一个过程？
+</p>
+
+<p>闵福德：我从2002年开始翻译。当时我住在法国，有一个葡萄园。通常我早上在葡萄园干活，中午回来，下午翻译。2004年我去了香港，到图书馆、书店变得很方便，于是我开始收集不同版本的《易经》和历代中国文人对《易经》的点评。2006年我搬到澳大利亚，因为工作很忙，翻译进展缓慢。2008年之后我的时间多了，开始全力翻译。从2012年开始，经常有朋友找我探讨《易经》，我会在探讨的同时检验我的翻译，做些修改。这个过程又持续了好几年。
+</p>
+
+<p>我完成翻译的时间比出版社要求的晚了7年。出版商对我非常好，直到2013年底才要我一定交稿，不然，估计我的余生都会在翻译《易经》。
+</p>
+
+<p>腾讯文化：很多中国人都觉得《易经》晦涩难懂。你在翻译的过程中，是否会做一些“简化”，让读者容易理解？
+</p>
+
+<p>闵福德：我试图将《易经》翻译得有意思，会做些解释，但不会将《易经》翻译得很简单，因为这会曲解它的本意。我会根据我自己的理解翻译。我的翻译非常主观，但很实在，和人们的日常生活有关联，不神秘，不抽象。
+</p>
+
+<p>腾讯文化：在你翻译的《易经》中，除了英文，还用了拉丁文。
+</p>
+
+<p>闵福德：拉丁文是西方文明的根，直到18世纪都在欧洲通用。18世纪初期，一些耶稣会士把《易经》译成拉丁文。我在译文中使用拉丁文有两个原因：一、拉丁文给人一种很古老的感觉，看到拉丁文马上会联想到过去，想到一些不可知的东西。
+</p>
+
+<p>二、现在大部分读者不懂拉丁文，所以我故意用它。得知我要翻译《易经》后，我的导师霍克斯(注：英国著名汉学家、牛津大学教授大卫·霍克斯，他和闵福德合译的《红楼梦》英文版在西方世界享有盛誉)曾对我说：“约翰，别忘记，没有谁真正明白《易经》的含义。”每个人都会“构建”自己的《易经》，我用拉丁文也是在提醒大家，我们也不知道这本书真正的意思。好像是你步入一所旧式教堂，听到神父在念叨一段拉丁文，没几个人能明白它。我希望给读者类似的感觉。你没有必要理解它们——旁边都有英文释义。我尽量少用拉丁文，但是我的妻子认为还是有点多。
+</p>
+
+<p>腾讯文化：你的妻子是你的第一读者？
+</p>
+
+<p>闵福德：她是我最好的读者、最亲密的朋友、最棒的编辑，总是给我很多的建议。她读了两三遍我翻译的《易经》。不幸的是，她今年年初去世了。
+</p>
+
+<p>腾讯文化：希望你从《易经》中获得一些安慰。
+</p>
+
+<p>闵福德：妻子去世后，我收到很多中国朋友的信息，请我“节哀顺变”。我研究了12年《易经》，完全懂得“顺变”的含义－－你不得不适应这种变化，没有其他选择。
+</p>
+
+<p>从迷信、质疑到接受
+</p>
+
+<p>腾讯文化：荣格发现，《易经》和西方的占星术都具有“相反相成”（Coincidentia Oppositorum）的特征，他因此认为《易经》同西方古代的学问是共通的。你怎么看待《易经》和西方占星术的异同？
+</p>
+
+<p>闵福德：共性是，人们都试图通过它们去寻求一种意义。但是它们又非常不同：六十四卦并非天上的星星，而是人造的图案。
+</p>
+
+<p>腾讯文化：近年来，西方占星学在中国流行，你怎么看这种现象？
+</p>
+
+<p>闵福德：一种可能是，中国目前处于一个非常物质的社会阶段，消费主义越来越蔓延，一些人自然而然地抵制物质主义和消费主义，想去寻找更多的意义。另一种可能是，星座运势来自西方，看上去非常时尚。
+</p>
+
+<p>腾讯文化：你说《易经》改变了你的生活，为什么？
+</p>
+
+<p>闵福德：我第一次接触《易经》，读的是卫礼贤的译本。那时我是个年轻的“嬉皮士”，很迷信也很虔诚，把它当成占卜的书，毫不质疑。我的一些朋友很蠢，甚至向《易经》请教早饭该吃什么。
+</p>
+
+<p>当决定翻译《易经》时，我就开始质疑这本书——当你决定做一件事情时，你要搞明白做这件事情的价值。它有价值么？真能够和我对话？能起作用么？我边翻译边检验。随着翻译的进展，我越来越向《易经》妥协，越来越接受它，这个过程花了好几年。我发现《易经》在和我对话，我成了《易经》和读者之间的“通道”和媒介。每当有人向我请教《易经》，我都会精疲力尽，像是我把我的嗓音借给了“Spirit”。
+</p>
+
+<p>我越来越相信《易经》能起作用，尽管我也无法解释原因。这样的变化成了我生活的一部分，我重新思考自己，思考自己的生活。
+</p>
+
+
+
+<p style='float:right;'>本页共57段，3937个字符，11426 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

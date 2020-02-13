@@ -1,0 +1,962 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>佛苦口婆心地说那么多经典，最后的精义，都不离金刚经（附音频）</h4>
+
+<p>《金刚经》王菲.aac
+</p>
+
+<p>音频尚未发布，暂时无法播放
+</p>
+
+<p>发菩提心（正觉心，普遍的智慧与觉悟，不生不灭无分别，成佛的心），应如是住，如是降伏其心（妄心）？
+</p>
+
+<p>无为福胜，万法皆空。不执著，无法相。诸相非相，即见如来。空是绝对，一切名相都是相对。法是宇宙万有，法相是宇宙万物万象的表现形式，空才是佛法真谛。以金刚一样无坚不摧的大智慧，破除一切执著、分别、烦恼、妄想，明心见性，离相（我相、人相、众生相、寿者相）、无所住而生清净心，从生死的此岸，达到涅磐的彼岸（心迷则此岸，心悟则彼岸）。
+</p>
+
+<p>开经偈
+</p>
+
+<p>「无上甚深微妙法」
+</p>
+
+<p>「百千万劫难遭遇」
+</p>
+
+<p>「我今见闻得受持」
+</p>
+
+<p>「愿解如来真实义」
+</p>
+
+<p>《金刚般若波罗蜜经》
+</p>
+
+<p>姚秦三藏法师鸠摩罗什译
+</p>
+
+<p>法会因由分第一
+</p>
+
+<p>如是我闻，一时，佛在舍卫国祗树给孤独园，与大比丘众千二百五十人俱。尔时，世尊食时，著衣持钵，入舍卫大城乞食。于其城中，次第乞已，还至本处。饭食讫，收衣钵，洗足已，敷座而坐。
+</p>
+
+<p>善现启请分第二
+</p>
+
+<p>时，长老须菩提在大众中即从座起，偏袒右肩，右膝着地，合掌恭敬而白佛言：“希有！世尊！如来善护念诸菩萨，善付嘱诸菩萨。世尊！善男子、善女人，发阿耨多罗三藐三菩提心，云何应住，云何降伏其心？”
+</p>
+
+<p>佛言：“善哉，善哉。须菩提！如汝所说，如来善护念诸菩萨，善付嘱诸菩萨。汝今谛听！当为汝说：善男子、善女人，发阿耨多罗三藐三菩提心，应如是住，如是降伏其心。”
+</p>
+
+<p>“唯然，世尊！愿乐欲闻。”
+</p>
+
+<p>大乘正宗分第三
+</p>
+
+<p>佛告须菩提：“诸菩萨摩诃萨应如是降伏其心！所有一切众生之类：若卵生、若胎生、若湿生、若化生；若有色、若无色；若有想、若无想、若非有想非无想，我皆令入无余涅盘而灭度之。如是灭度无量无数无边众生，实无众生得灭度者。何以故？须菩提！若菩萨有我相、人相、众生相、寿者相，即非菩萨。”
+</p>
+
+<p>妙行无住分第四
+</p>
+
+<p>“复次，须菩提！菩萨于法，应无所住，行于布施，所谓不住色布施，不住声香味触法布施。须菩提！菩萨应如是布施，不住于相。何以故？若菩萨不住相布施，其福德不可思量。须菩提！于意云何？东方虚空可思量不？”
+</p>
+
+<p>“不也，世尊！”
+</p>
+
+<p>“须菩提！南西北方四维上下虚空可思量不？”
+</p>
+
+<p>“不也，世尊！”
+</p>
+
+<p>“须菩提！菩萨无住相布施，福德亦复如是不可思量。须菩提！菩萨但应如所教住。”
+</p>
+
+<p>如理实见分第五
+</p>
+
+<p>“须菩提！于意云何？可以身相见如来不？”
+</p>
+
+<p>“不也，世尊！不可以身相得见如来。何以故？如来所说身相，即非身相。”
+</p>
+
+<p>佛告须菩提：“凡所有相，皆是虚妄。若见诸相非相，即见如来。”
+</p>
+
+<p>正信希有分第六
+</p>
+
+<p>须菩提白佛言：“世尊！颇有众生，得闻如是言说章句，生实信不？”
+</p>
+
+<p>佛告须菩提：“莫作是说。如来灭后，后五百岁，有持戒修福者，于此章句能生信心，以此为实，当知是人不于一佛二佛三四五佛而种善根，已于无量千万佛所种诸善根，闻是章句，乃至一念生净信者，须菩提！如来悉知悉见，是诸众生得如是无量福德。何以故？是诸众生无复我相、人相、众生相、寿者相；无法相，亦无非法相。何以故？是诸众生若心取相，即为著我人众生寿者。若取法相，即著我人众生寿者。何以故？若取非法相，即著我人众生寿者，是故不应取法，不应取非法。以是义故，如来常说：‘汝等比丘，知我说法，如筏喻者；法尚应舍，何况非法。’”
+</p>
+
+<p>无得无说分第七
+</p>
+
+<p>“须菩提！于意云何？如来得阿耨多罗三藐三菩提耶？如来有所说法耶？”
+</p>
+
+<p>须菩提言：“如我解佛所说义，无有定法名阿耨多罗三藐三菩提，亦无有定法，如来可说。何以故？如来所说法，皆不可取、不可说、非法、非非法。所以者何？一切圣贤，皆以无为法而有差别。”
+</p>
+
+<p>依法出生分第八
+</p>
+
+<p>“须菩提！于意云何？若人满三千大千世界七宝以用布施，是人所得福德，宁为多不？”
+</p>
+
+<p>须菩提言：“甚多，世尊！何以故？是福德即非福德性，是故如来说福德多。”
+</p>
+
+<p>“若复有人，于此经中受持，乃至四句偈等，为他人说，其福胜彼。何以故？须菩提！一切诸佛，及诸佛阿耨多罗三藐三菩提法，皆从此经出。须菩提！所谓佛法者，即非佛法。”
+</p>
+
+<p>一相无相分第九
+</p>
+
+<p>“须菩提！于意云何？须陀洹能作是念：‘我得须陀洹果’不？”
+</p>
+
+<p>须菩提言：“不也，世尊！何以故？须陀洹名为入流，而无所入，不入色声香味触法，是名须陀洹。”
+</p>
+
+<p>“须菩提！于意云何？斯陀含能作是念：‘我得斯陀含果’不？”
+</p>
+
+<p>须菩提言：不也，世尊！何以故？斯陀含名一往来，而实无往来，是名斯陀含。”
+</p>
+
+<p>“须菩提！于意云何？阿那含能作是念：‘我得阿那含果’不？”
+</p>
+
+<p>须菩提言：“不也，世尊！何以故？阿那含名为不来，而实无不来，是故名阿那含。”
+</p>
+
+<p>“须菩提！于意云何？阿罗汉能作是念，‘我得阿罗汉道’不？”
+</p>
+
+<p>须菩提言：“不也，世尊！何以故？实无有法名阿罗汉。世尊！若阿罗汉作是念：‘我得阿罗汉道’，即为著我人众生寿者。世尊！佛说我得无诤三昧，人中最为第一，是第一离欲阿罗汉。
+</p>
+
+<p>世尊，我不作是念：‘我是离欲阿罗汉’。世尊！我若作是念：‘我得阿罗汉道’，世尊则不说须菩提是乐阿兰那行者！以须菩提实无所行，而名须菩提是乐阿兰那行。
+</p>
+
+<p>庄严净土分第十
+</p>
+
+<p>佛告须菩提：“于意云何？如来昔在然灯佛所，于法有所得不？”
+</p>
+
+<p>“不也，世尊！如来在然灯佛所，于法实无所得。”
+</p>
+
+<p>“须菩提！于意云何？菩萨庄严佛土不？”
+</p>
+
+<p>“不也，世尊！何以故？庄严佛土者，即非庄严，是名庄严。”
+</p>
+
+<p>“是故须菩提！诸菩萨摩诃萨应如是生清净心，不应住色生心，不应住声香味触法生心，应无所住而生其心。须菩提！譬如有人，身如须弥山王，于意云何？是身为大不？”
+</p>
+
+<p>须菩提言：“甚大，世尊！何以故？佛说非身，是名大身。”
+</p>
+
+<p>无为福胜分第十一
+</p>
+
+<p>“须菩提！如恒河中所有沙数，如是沙等恒河，于意云何？是诸恒河沙宁为多不？”
+</p>
+
+<p>须菩提言：“甚多，世尊！但诸恒河尚多无数，何况其沙。”
+</p>
+
+<p>“须菩提！我今实言告汝：若有善男子、善女人，以七宝满尔所恒河沙数三千大千世界，以用布施，得福多不？”
+</p>
+
+<p>须菩提言：“甚多，世尊！”
+</p>
+
+<p>佛告须菩提：“若善男子、善女人，于此经中，乃至受持四句偈等，为他人说，而此福德胜前福德。”
+</p>
+
+<p>尊重正教分第十二
+</p>
+
+<p>“复次，须菩提！随说是经，乃至四句偈等，当知此处，一切世间、天人、阿修罗，皆应供养，如佛塔庙，何况有人尽能受持读诵。须菩提！当知是人成就最上第一希有之法，若是经典所在之处，即为有佛，若尊重弟子。”
+</p>
+
+<p>如法受持分第十三
+</p>
+
+<p>尔时，须菩提白佛言：“世尊！当何名此经，我等云何奉持？”
+</p>
+
+<p>佛告须菩提：“是经名为《金刚般若波罗蜜》，以是名字，汝当奉持。所以者何？须菩提！佛说般若波罗蜜，即非般若波罗蜜。须菩提！于意云何？如来有所说法不？”
+</p>
+
+<p>须菩提白佛言：“世尊！如来无所说。”
+</p>
+
+<p>“须菩提！于意云何？三千大千世界所有微尘是为多不？”
+</p>
+
+<p>须菩提言：“甚多，世尊！”
+</p>
+
+<p>“须菩提！诸微尘，如来说非微尘，是名微尘。如来说：世界，非世界，是名世界。须菩提！于意云何？可以三十二相见如来不？”
+</p>
+
+<p>“不也，世尊！不可以三十二相得见如来，何以故？如来说：三十二相，即是非相，是名三十二相。”
+</p>
+
+<p>“须菩提！若有善男子、善女人，以恒河沙等身命布施；若复有人，于此经中，乃至受持四句偈等，为他人说，其福甚多。”
+</p>
+
+<p>离相寂灭分第十四
+</p>
+
+<p>尔时，须菩提闻说是经，深解义趣，涕泪悲泣，而白佛言：“希有，世尊！佛说如是甚深经典，我从昔来所得慧眼，未曾得闻如是之经。世尊！若复有人得闻是经，信心清净，即生实相，当知是人，成就第一希有功德。世尊！是实相者，即是非相，是故如来说名实相。世尊！我今得闻如是经典，信解受持不足为难，若当来世，后五百岁，其有众生，得闻是经，信解受持，是人即为第一希有。
+</p>
+
+<p>何以故？此人无我相、人相、众生相、寿者相。所以者何？我相即是非相、人相、众生相、寿者相，即是非相。何以故？离一切诸相，则名诸佛。”
+</p>
+
+<p>佛告须菩提：“如是！如是！若复有人得闻是经，不惊、不怖、不畏，当知是人甚为希有。何以故？须菩提！如来说第一波罗蜜，非第一波罗蜜，是名第一波罗蜜。须菩提！忍辱波罗蜜，如来说非忍辱波罗蜜，是名忍辱波罗蜜。何以故？须菩提！如我昔为歌利王割截身体，我于尔时，无我相、无人相、无众生相、无寿者相。何以故？
+</p>
+
+<p>我于往昔节节支解时，若有我相、人相、众生相、寿者相，应生瞋恨。须菩提！又念过去于五百世作忍辱仙人，于尔所世，无我相、无人相、无众生相、无寿者相。是故须菩提！菩萨应离一切相，发阿耨多罗三藐三菩提心，不应住色生心，不应住声香味触法生心，应生无所住心。若心有住，即为非住。是故佛说：‘菩萨心不应住色布施。’须菩提！菩萨为利益一切众生，应如是布施。如来说：一切诸相，即是非相。又说：一切众生，即非众生。须菩提！如来是真语者、实语者、如语者、不诳语者、不异语者。须菩提！如来所得法，此法无实无虚。须菩提，若菩萨心住于法而行布施，如人入暗，即无所见。若菩萨心不住法而行布施，如人有目，日光明照，见种种色。须菩提！当来之世，若有善男子、善女人，能于此经受持读诵，则为如来以佛智慧，悉知是人，悉见是人，皆得成就无量无边功德。”
+</p>
+
+<p>持经功德分第十五
+</p>
+
+<p>“须菩提！若有善男子、善女人，初日分以恒河沙等身布施，中日分复以恒河沙等身布施，后日分亦以恒河沙等身布施，如是无量百千万亿劫以身布施；若复有人，闻此经典，信心不逆，其福胜彼，何况书写、受持、读诵、为人解说。须菩提！以要言之，是经有不可思议、不可称量、无边功德。如来为发大乘者说，为发最上乘者说。若有人能受持读诵，广为人说，如来悉知是人，悉见是人，皆得成就不可量、不可称、无有边、不可思议功德。如是人等，即为荷担如来阿耨多罗三藐三菩提。
+</p>
+
+<p>何以故？须菩提！若乐小法者，著我见、人见、众生见、寿者见，则于此经，不能听受读诵、为人解说。须菩提！在在处处，若有此经，一切世间、天、人、阿修罗，所应供养；当知此处则为是塔，皆应恭敬，作礼围绕，以诸华香而散其处。”
+</p>
+
+<p>能净业障分第十六
+</p>
+
+<p>“复次，须菩提！善男子、善女人，受持读诵此经，若为人轻贱，是人先世罪业，应堕恶道，以今世人轻贱故，先世罪业则为消灭，当得阿耨多罗三藐三菩提。”
+</p>
+
+<p>“须菩提！我念过去无量阿僧祗劫，于然灯佛前，得值八百四千万亿那由他诸佛，悉皆供养承事，无空过者，若复有人，于后末世，能受持读诵此经，所得功德，于我所供养诸佛功德，百分不及一，千万亿分、乃至算数譬喻所不能及。须菩提！若善男子、善女人，于后末世，有受持读诵此经，所得功德，我若具说者，或有人闻，心则狂乱，狐疑不信。须菩提！当知是经义不可思议，果报亦不可思议。”
+</p>
+
+<p>究竟无我分第十七
+</p>
+
+<p>尔时，须菩提白佛言：“世尊！善男子、善女人，发阿耨多罗三藐三菩提心，云何应住？云何降伏其心？”
+</p>
+
+<p>佛告须菩提：“善男子、善女人，发阿耨多罗三藐三菩提心者，当生如是心，我应灭度一切众生。灭度一切众生已，而无有一众生实灭度者。何以故？须菩提！若菩萨有我相、人相、众生相、寿者相，则非菩萨。所以者何？须菩提！实无有法发阿耨多罗三藐三菩提者。”
+</p>
+
+<p>“须菩提！于意云何？如来于然灯佛所，有法得阿耨多罗三藐三菩提不？”
+</p>
+
+<p>“不也，世尊！如我解佛所说义，佛于然灯佛所，无有法得阿耨多罗三藐三菩提。”
+</p>
+
+<p>佛言：“如是！如是！须菩提！实无有法如来得阿耨多罗三藐三菩提。须菩提！若有法得阿耨多罗三藐三菩提，然灯佛则不与我授记：汝于来世，当得作佛，号释迦牟尼。以实无有法得阿耨多罗三藐三菩提，是故然灯佛与我授记，作是言：‘汝于来世，当得作佛，号释迦牟尼。’
+</p>
+
+<p>何以故？如来者，即诸法如义。若有人言：‘如来得阿耨多罗三藐三菩提’。须菩提！实无有法，佛得阿耨多罗三藐三菩提。须菩提！如来所得阿耨多罗三藐三菩提，于是中无实无虚。是故如来说：一切法皆是佛法。须菩提！所言一切法者，即非一切法，是故名一切法。须菩提！譬如人身长大。”
+</p>
+
+<p>须菩提言：“世尊！如来说：人身长大，则为非大身，是名大身。”
+</p>
+
+<p>“须菩提！菩萨亦如是。若作是言：‘我当灭度无量众生’，则不名菩萨。
+</p>
+
+<p>何以故？须菩提！实无有法名为菩萨。是故佛说：一切法无我、无人、无众生、无寿者。须菩提！若菩萨作是言，‘我当庄严佛土’，是不名菩萨。
+</p>
+
+<p>何以故？如来说：庄严佛土者，即非庄严，是名庄严。须菩提！若菩萨通达无我法者，如来说名真是菩萨。
+</p>
+
+<p>一体同观分第十八
+</p>
+
+<p>“须菩提！于意云何？如来有肉眼不？”
+</p>
+
+<p>“如是，世尊！如来有肉眼。”
+</p>
+
+<p>“须菩提！于意云何？如来有天眼不？”
+</p>
+
+<p>“如是，世尊！如来有天眼。”
+</p>
+
+<p>“须菩提！于意云何？如来有慧眼不？”
+</p>
+
+<p>“如是，世尊！如来有慧眼。”
+</p>
+
+<p>“须菩提！于意云何？如来有法眼不？”
+</p>
+
+<p>“如是，世尊！如来有法眼。”
+</p>
+
+<p>“须菩提！于意云何？如来有佛眼不？”
+</p>
+
+<p>“如是，世尊！如来有佛眼。”
+</p>
+
+<p>“须菩提！于意云何？恒河中所有沙，佛说是沙不？”
+</p>
+
+<p>“如是，世尊！如来说是沙。”
+</p>
+
+<p>“须菩提！于意云何？如一恒河中所有沙，有如是沙等恒河，是诸恒河所有沙数，佛世界如是，宁为多不？”
+</p>
+
+<p>“甚多，世尊！”
+</p>
+
+<p>佛告须菩提：“尔所国土中，所有众生，若干种心，如来悉知。何以故？如来说：诸心皆为非心，是名为心。所以者何？须菩提！过去心不可得，现在心不可得，未来心不可得。”
+</p>
+
+<p>法界通分分第十九
+</p>
+
+<p>“须菩提！于意云何？若有人满三千大千世界七宝以用布施，是人以是因缘，得福多不？”
+</p>
+
+<p>“如是，世尊！此人以是因缘，得福甚多。”
+</p>
+
+<p>“须菩提！若福德有实，如来不说得福德多；以福德无故，如来说得福德多。”
+</p>
+
+<p>离色离相分第二十
+</p>
+
+<p>“须菩提！于意云何？佛可以具足色身见不？”
+</p>
+
+<p>“不也，世尊！如来不应以具足色身见。何以故？如来说：具足色身，即非具足色身，是名具足色身。”
+</p>
+
+<p>“须菩提！于意云何？如来可以具足诸相见不？”
+</p>
+
+<p>“不也，世尊！如来不应以具足诸相见。何以故？如来说：诸相具足，即非具足，是名诸相具足。”
+</p>
+
+<p>非说所说分第二十一
+</p>
+
+<p>“须菩提！汝勿谓如来作是念：‘我当有所说法。’莫作是念，何以故？若人言：如来有所说法，即为谤佛，不能解我所说故。须菩提！说法者，无法可说，是名说法。”
+</p>
+
+<p>尔时，慧命须菩提白佛言：“世尊！颇有众生，于未来世，闻说是法，生信心不？”
+</p>
+
+<p>佛言：“须菩提！彼非众生，非不众生。何以故？须菩提！众生众生者，如来说非众生，是名众生。”
+</p>
+
+<p>无法可得分第二十二
+</p>
+
+<p>须菩提白佛言：“世尊！佛得阿耨多罗三藐三菩提，为无所得耶？”
+</p>
+
+<p>佛言：“如是，如是。须菩提！我于阿耨多罗三藐三菩提乃至无有少法可得，是名阿耨多罗三藐三菩提。”
+</p>
+
+<p>净心行善分第二十三
+</p>
+
+<p>复次，须菩提！是法平等，无有高下，是名阿耨多罗三藐三菩提；以无我、无人、无众生、无寿者，修一切善法，即得阿耨多罗三藐三菩提。须菩提！所言善法者，如来说即非善法，是名善法。
+</p>
+
+<p>福智无比分第二十四
+</p>
+
+<p>“须菩提！若三千大千世界中所有诸须弥山王，如是等七宝聚，有人持用布施；若人以此《般若波罗蜜经》，乃至四句偈等，受持读诵、为他人说，于前福德百分不及一，百千万亿分，乃至算数譬喻所不能及。”
+</p>
+
+<p>化无所化分第二十五
+</p>
+
+<p>“须菩提！于意云何？汝等勿谓如来作是念：‘我当度众生。’须菩提！莫作是念。何以故？实无有众生如来度者。若有众生如来度者，如来即有我、人、众生、寿者。须菩提！如来说：‘有我者，即非有我，而凡夫之人以为有我。’须菩提！凡夫者，如来说，则非凡夫，是名凡夫。”
+</p>
+
+<p>法身非相分第二十六
+</p>
+
+<p>“须菩提！于意云何？可以三十二相观如来不？”
+</p>
+
+<p>须菩提言：“如是！如是！以三十二相观如来。”
+</p>
+
+<p>佛言：“须菩提！若以三十二相观如来者，转轮圣王则是如来。”
+</p>
+
+<p>须菩提白佛言：“世尊！如我解佛所说义，不应以三十二相观如来。”
+</p>
+
+<p>尔时，世尊而说偈言：“若以色见我，以音声求我，是人行邪道，不能见如来”
+</p>
+
+<p>无断无灭分第二十七
+</p>
+
+<p>“须菩提！汝若作是念：‘如来不以具足相故，得阿耨多罗三藐三菩提。’须菩提！莫作是念，‘如来不以具足相故，得阿耨多罗三藐三菩提。’须菩提！汝若作是念，发阿耨多罗三藐三菩提心者，说诸法断灭。莫作是念！何以故？发阿耨多罗三藐三菩提心者，于法不说断灭相。”
+</p>
+
+<p>不受不贪分第二十八
+</p>
+
+<p>“须菩提！若菩萨以满恒河沙等世界七宝持用布施；若复有人知一切法无我，得成于忍，此菩萨胜前菩萨所得功德。须菩提！以诸菩萨不受福德故。”
+</p>
+
+<p>须菩提白佛言：“世尊！云何菩萨不受福德？”
+</p>
+
+<p>“须菩提！菩萨所作福德，不应贪著，是故说不受福德。”
+</p>
+
+<p>威仪寂净分第二十九
+</p>
+
+<p>“须菩提！若有人言：如来若来若去、若坐若卧，是人不解我所说义。何以故？如来者，无所从来，亦无所去，故名如来。”
+</p>
+
+<p>一合理相分第三十
+</p>
+
+<p>“须菩提！若善男子、善女人，以三千大千世界碎为微尘，于意云何？是微尘众，宁为多不？”
+</p>
+
+<p>“甚多，世尊！何以故？若是微尘众实有者，佛则不说是微尘众，所以者何？佛说：微尘众，则非微尘众，是名微尘众。世尊！如来所说三千大千世界，则非世界，是名世界。何以故？若世界实有者，则是一合相。如来说：‘一合相，即非一合相，是名一合相。’须菩提！一合相者，则是不可说，但凡夫之人，贪著其事。”
+</p>
+
+<p>知见不生分第三十一
+</p>
+
+<p>“须菩提！若人言：佛说我见、人见、众生见、寿者见。须菩提！于意云何？是人解我所说义不？”
+</p>
+
+<p>“不也，世尊！是人不解如来所说义。何以故？世尊说：我见、人见、众生见、寿者见，即非我见、人见、众生见、寿者见，是名我见、人见、众生见、寿者见。”
+</p>
+
+<p>“须菩提！发阿耨多罗三藐三菩提心者，于一切法，应如是知，如是见，如是信解，不生法相。须菩提！所言法相者，如来说即非法相，是名法相。”
+</p>
+
+<p>应化非真分第三十二
+</p>
+
+<p>“须菩提！若有人以满无量阿僧祗世界七宝持用布施，若有善男子、善女人发菩萨心者，持于此经，乃至四句偈等，受持读诵，为人演说，其福胜彼。云何为人演说，不取于相，如如不动。何以故？”
+</p>
+
+<p>“一切有为法，如梦幻泡影，如露亦如电，应作如是观”
+</p>
+
+<p>佛说是经已，长老须菩提及诸比丘、比丘尼、优婆塞、优婆夷，一切世间、天、人、阿修罗，闻佛所说，皆大欢喜，信受奉行。
+</p>
+
+<p>附注：
+</p>
+
+<p>不同版本《金刚经》于公元前994年间(约当中国周穆王时期)，成书于古印度。是如来世尊释迦牟尼在世时与长老须菩提等众弟子的对话纪录，由弟子阿难所记载。目前中国保存有《金刚经》六种原译(均存于《大藏经》中)如下：
+</p>
+
+<p>1 姚秦三藏法师鸠摩罗什译本
+</p>
+
+<p>2 元魏菩提流支译本
+</p>
+
+<p>3 陈真谛三藏译本
+</p>
+
+<p>4 隋笈多译本
+</p>
+
+<p>5 唐玄奘译本
+</p>
+
+<p>6 唐义净译本
+</p>
+
+<p>本文以乾隆大藏经的《金刚般若波罗蜜经》(鸠摩罗什译)为蓝本。
+</p>
+
+<p>南无阿弥陀佛	nāmóēmítuófó	向如来佛（释迦牟尼）致敬；或向一切有觉悟的人致敬；
+</p>
+
+<p>“法会因由分第一”至“第三十二”是梁朝周明太子讲习 《金刚经》时，作的科判而划分出来的。“分”相当于现在的“章”、“节”等。
+</p>
+
+<p>金刚般若波罗蜜经。金刚指最为坚硬之物，喻指勇猛地突破各种关卡，让自己能够顺利地修行证道；般若为梵语妙智慧一词的音译，意为“通达世间法和出世间法，圆融无碍，恰到好处，绝对完全的大智慧”。“波罗bōrě蜜”，意指超越生死而度达解脱的彼岸。经者，径也，学佛成佛之路。经题的意义，指以金刚一样无坚不摧的大智慧，破除一切烦恼执著，脱离欲界、色界、无色界三界而完成智慧(到达苦海彼岸)。《金刚经》传入中国后，自东晋到唐朝共有六个译本，以鸠jiū摩mó罗luó什所译《金刚般若波罗蜜经》最为流行(5176字或5180字)。唐玄奘译本，《能断金刚般若波罗蜜经》共8208字，为鸠摩罗什译本的一个重要补充。其他译本则流传不广。《金刚经》通篇讨论的是空的智慧。一般认为前半部说众生空，后半部说法空。经文开始，由号称佛陀十大弟子中“解空第一”的须菩提发问：当众生立定志向要达到无上圆满的佛陀觉智时，应该将发心的目标定在哪里?如果在实践过程中心不能安住，应该如何降伏?即如何使心灵平和地安住在终极关怀，如何在走向终极目标的过程中，对各种错误认识和患得患失心理进行克服?《金刚经》就是围绕佛陀对此问题的解答而展开的。
+</p>
+
+<p>「如是我闻」就是阿难尊者说：「我听过以下的内容。这是我听过的、听到的。」
+</p>
+
+<p>长老须菩提：须菩提是梵fàn语音译，意译为善现、善吉、空生等，他是佛的十大弟子之一，婆罗门种姓，能深入理解佛法的空义，被称为“解空第一”。
+</p>
+
+<p>菩提心：菩提旧译为道，新译为觉，就是觉悟的意思。菩提心就是萌生了向佛觉悟的心思、念头。
+</p>
+
+<p>比丘，是梵文BHIKSU的音译，通常‘比’念作‘必’Bih。
+</p>
+
+<p>“佛”与“世尊”都指说法人释迦摩尼。他当时已得果位，是如来，即佛。能以如来来称释迦摩尼，一般情况下所说的如来佛祖指的就是释迦摩尼。
+</p>
+
+<p>阿耨多罗三藐三菩提，是梵文ANUTTARA-SAMYAK-SAMBODHI的音译。通常‘阿’字念‘E’，‘耨’字音Now。意为无上正等正觉，即最高的智慧觉悟。阿耨nòu多罗是“无上”之意（阿为无，耨多罗为上），三藐是“上而正”之意，三菩提是“普遍的智慧和觉悟”。
+</p>
+
+<p>涅槃(niè pán)：梵语，也译作泥洹、泥畔等，意为灭度、寂灭、不生、安乐、清净、解脱、圆寂等，总之是指达到了佛的无念想、无烦恼境界。
+</p>
+
+<p>愿乐欲闻，乐，音要Yaw。
+</p>
+
+<p>凡问句之‘不’都和‘否’同，音亦念‘否’。
+</p>
+
+<p>‘不也，世尊!’此‘不’字音‘弗’。
+</p>
+
+<p>如来无形相，不可以眼见，所以是显现的现。此‘见’字应读‘现’。
+</p>
+
+<p>偈jì，梵文gāthā音译，偈陀之简称;偈，音记Chih。
+</p>
+
+<p>须陀洹，为梵文Srotāpanna的音译。洹，音huán。又译为预流、入流，佛教术语，是佛教中最初的修行位阶，为沙门四果中的初果。
+</p>
+
+<p>斯陀含，梵文SAāRD-āGāMIN的音译。斯陀含是佛教的位阶、果位名称，意为一还果，是第二阶成果成效，因此也称为二果。在此之前则为须陀洹（初果、预流果），此之後则为阿那含（三果、不还果），佛教修行具有科学态度，修行之后必须经由测试、验证才能得知是否正确而无偏误，此称为“证果”，无论是渐修（逐渐提升修行成效）或顿悟（修行上有大幅斩获）都必须进行验证，正确後才算取得果位，否则必须持续修行，并再次进行验证。
+</p>
+
+<p>阿那含，梵文anāgāmin的音译。那，音诺Nouh。
+</p>
+
+<p>阿僧祇劫，梵文ASAMKHYA的音译。只音奇。
+</p>
+
+<p>那由他，梵文NAYUTA的音译。那，音诺Nouh;他，音Ta。
+</p>
+
+<p>然灯佛：即燃灯佛，又名定光佛，释迦牟尼之前的佛，他印证释迦牟尼将成为佛，是释迦牟尼的老师。佛教中说燃灯佛是过去佛，释迦牟尼是现在佛，弥勒佛是未来佛。
+</p>
+
+<p>世界：梵语叫路迦，“世”是时间，“界”是空间。
+</p>
+
+<p>大乘：梵语音译摩mó诃hē衍yǎn，用乘载比喻觉悟的境界，自觉且觉他者谓大乘，限于自觉者谓小乘。
+</p>
+
+<p>小法：指外道法，即非佛法。
+</p>
+
+<p>华香：华是花的通假字，华香即花和香。
+</p>
+
+<p>阿僧祗zhī：梵文音译，印度数目名称，是数量无穷多的意思。
+</p>
+
+<p>肉眼：五眼之一。五眼是肉眼、天眼、慧眼、法眼、佛眼。
+</p>
+
+<p>观：佛教术语，通过观察虚妄的表相世界，而达到佛教空谛的智慧。
+</p>
+
+<p>一合相：世界是微尘的集合体，所以称世界为一合相。
+</p>
+
+<p>贪著：执著于表面现象。
+</p>
+
+<p>法：梵语音译达摩mó，意思是通于一切，小的大的，有形的无形的，真实的虚妄的，表现为具体事物的，表现为抽象道理的，等等，通通叫法。
+</p>
+
+<p>法相：即万法各自表现的特殊现象。
+</p>
+
+<p>如如不动：佛教术语，指达到了觉悟的境界。
+</p>
+
+<p>有为法：有所作为就有因缘结果，佛教认为这样就永远牵连不绝，无法觉悟，所以有为法就是指红尘世界的一切思想感情言语行为。
+</p>
+
+<p>优yōu婆pó塞sāi、优yōu婆pó夷yí：梵fàn语yǔ，指在家修行的居士，男的叫优婆塞，女的叫优婆夷。
+</p>
+
+<p>金刚经句型：
+</p>
+
+<p>佛法即非佛法，是名佛法。
+</p>
+
+<p>X即非X，是名X。
+</p>
+
+<p>白即是黑，是名白。是名白是什么东西呀?既不是白、也不是黑、也不是灰，它是无色无相的。
+</p>
+
+<p>禅宗跟《金刚经》
+</p>
+
+<p>《六祖坛经》里有一段故事：六祖慧能向五祖学禅的时候，有一天半夜，五祖在自己的房间里面，用袈裟围起来，不让人家看到，秘密的教他《金刚经》。
+</p>
+
+<p>当时整部经还没讲完，大概只讲到四分之一吧，那里提到「应无所住而生其心」，讲到这里，六祖就大彻大悟了。他就体会到「何期自性本自具足」，他已经真正懂得所谓的自性了。他所以能够懂，都是从「应无所住而生其心」这里体会到的。
+</p>
+
+<p>也可以说，《金刚经》对六祖来讲是最重要的经典，他是依《金刚经》才印证了他自己的体验。所以六祖以后的禅宗都是以《金刚经》为最重要的经典。在六祖以前，并不是以《金刚经》为主的，而是以《楞伽经》为主。
+</p>
+
+<p>《易经》里的《金刚经》
+</p>
+
+<p>《易经》八卦里的「一」，是「阳爻」;「--」中间断开的，是「阴爻」。阴爻和阳爻是相对的、相反的，它们就是《金刚经》的X和非X。像阴阳、日月、雷风和山川也都是两两成对。太极图，一条曲线将圆圈分为两半，一半白一半黑，白的是阳，黑的是阴，白中又有一个黑点，黑中又有一个白点，表示阳中有阴，阴中有阳;而且太极图不是平面的，是个圆球，这就是「是名」状态，就是《金刚经》。《易经》最原始的创立人是伏羲氏，它的基础就是两仪生四象、创立八卦……以后才演变成《易经》。
+</p>
+
+<p>《道德经》里的《金刚经》
+</p>
+
+<p>「天下皆知美之为美，斯恶已。」这个其实就是《金刚经》，但是它是用另外一个方式呈现的《金刚经》。如果用《金刚经》的句型来呈现的话，应该说「天下皆知美即非美，是名美」、「天下皆知美之为丑，是名美」。但是他不这样说，他说：「天下都知道这个是美，都认为这个才是美，那就不美了。」他用反面的表现；但是这样子的反面表现，也是《金刚经》。《金刚经》里面，我们并没有这样子的句型，但是这个意义是有的；所以老子《道德经》就含有《金刚经》的另一种句型。这个句型就是：「你认为这个是美，大家都认为这个是美，大家都朝向这个方向去努力，让它愈来愈美。那个愈来愈美啊，就不美了，就变丑了。」
+</p>
+
+<p>日常生活里面，到处充满的《金刚经》
+</p>
+
+<p>「吃亏是福」，这句话就是《金刚经》。这句话是再平常不过了，大家常常听到；自己可能也常用。尤其在吃了亏以后，要安慰一下自己：「啊！吃亏就是占便宜。」这是最常说的。事实上，吃亏是会占便宜的，这是真的。「塞翁失马，焉知非福」的故事大家都知道，它就证明了吃亏就是占便宜！我想这个情况应该是大家都体会过的，但是你们可能不会知道，这个就是《金刚经》。
+</p>
+
+<p>企业管理有一位大师Michael Hammer，他本来是学物理的，后来成了企管大师；他写的《企业改造》一系列书，里面就讲到：「最好的管理，就是管即不管。」什么叫做「管即不管」？就是你能让你的员工和干部，他们自我管理，那就是管即不管。管即不管的是名状态，就是自我管理。这个「自我管理」有没有人做到？有人做到呀！部属及员工都能够自我管理，那就不用管了；但是有办法让员工和干部能够自我管理，这才是本事，才是最高明的！这个「管即不管」是什么？是《金刚经》！
+</p>
+
+<p>释义参考：
+</p>
+
+<p>http://www.xuefo.net/nr/article30/302379.html
+</p>
+
+<p>http://www.xuefo.net/nr/article31/312607.html
+</p>
+
+<p>视频：http://www.365yg.com/i6632595044127736324/#mid=5876131257
+</p>
+
+<p>图片描述(最多50字)
+</p>
+
+<p>－End－
+</p>
+
+
+
+<p style='float:right;'>本页共224段，10915个字符，31743 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
