@@ -309,7 +309,7 @@ function settimes() {
 
     var today2 = new Date();
     var event1 = "New Day"
-    var cdtime = "10/19/2019";
+    var cdtime = "1/1/2021";
     var festive = new Date(cdtime);
     festive1 = parseInt((festive - today2) / spd);
     festive2 = parseInt((festive - today2) / spd * 24) - parseInt(festive1 * 24);
@@ -330,36 +330,14 @@ function MM_displayStatusMsg(msgStr) { //v1.0
 <!--tab control-->
 //综合搜索
 function search(){
-if(formmain.urldecode.checked) //chrome复制的url包含中文时，会转为编码，下面js可以转回
-{
-    var str = decodeURI(formmain.searchkey.value);
-	//var str = decodeURI(document.location.href);
-    var str2 = str.substring(8);
-    //str.slice(8);
-    //str.replace("file:///","");
-    formmain.searchkey.value = str;//str2
-	var Url2=document.getElementById("urldecode");
-    Url2.select(); // 选择对象
-    document.execCommand("Copy"); // 执行浏览器复制命令
-	target.value=formmain.searchkey.value;
-	target.select();
-	js=myimg.createTextRange();
-	js.execCommand("Copy");
-}
+if(formmain.rdgoogle.checked)
+window.open("http://www.google.com.hk/search?hl=zh-CN&q=" + encodeURI(formmain.searchkey.value));
 
 if(formmain.rdbaidu.checked)
 window.open("http://www.baidu.com/baidu?tn=zhongguosou&ct=&lm=&z=&rn=&word="+formmain.searchkey.value+"&_si.x=4&_si.y=2");
-if(formmain.rd360sou.checked)
-window.open("http://www.so.com/s?ie=utf-8&src=360sou_home&q=" + encodeURI(formmain.searchkey.value) + "&_re=0"); 
 
-//if(formmain.rdgoogle.checked)
-//window.open("http://www.google.com.hk/search?hl=zh-CN&q=" + encodeURI(formmain.searchkey.value));
-
-if(formmain.rdbaidupic.checked)
-window.open("http://image.baidu.com/search/index?tn=baiduimage&ps=1&ct=201326592&lm=-1&cl=2&nc=1&ie=utf-8&word=" + encodeURI(formmain.searchkey.value));
-
-if(formmain.rd_bing.checked)
-  window.open("http://www.bing.com/search?q="+encodeURI(formmain.searchkey.value));
+if(formmain.rdyahoozhongguo.checked)
+window.open("http://search.cn.yahoo.com/s?pid=402877_1010&v=web&p=" + formmain.searchkey.value);
 
 if(formmain.rdsogou.checked)
 window.open("http://www.sogou.com/web?query="+formmain.searchkey.value+"&sogouhome=");
@@ -367,39 +345,33 @@ window.open("http://www.sogou.com/web?query="+formmain.searchkey.value+"&sogouho
 if(formmain.rdsoso.checked)
 window.open("http://www.soso.com/q?pid=s.idx&w=" + formmain.searchkey.value);
 
-if(formmain.rd_cibo.checked)
-window.open("http://www.cibo.cn/search.php?dictkeyword=" + encodeURI(formmain.searchkey.value)); 
-
+if(formmain.rdyoudao.checked)
+window.open("http://www.youdao.com/search?keyfrom=web.index.suggest&q="+formmain.searchkey.value+"&btnIndex="+ formmain.searchkey.value);
 
 if(formmain.rdbingzonghe.checked)
-window.open("https://cn.bing.com/dict/search?q=" + decodeURI(encodeURI(formmain.searchkey.value)));
-if(formmain.rdcidu.checked)
-window.open("http://www.dictall.com/dictall/result.jsp?cd=UTF-8&keyword="+encodeURI(formmain.searchkey.value)); 
+window.open("http://cn.bing.com/search?FORM=BWFD&q=" + encodeURI(formmain.searchkey.value));
 
-if(formmain.rd_wiki.checked)
-  window.open("https://en.wikipedia.org/wiki/" + encodeURI(formmain.searchkey.value));
+if(formmain.rdgoogleen.checked)
+window.open("http://www.google.com.hk/search?hl=en&newwindow=1&safe=strict&tbo=d&site=webhp&source=hp&q="+encodeURI(formmain.searchkey.value)); 
 
-if(formmain.rddcping.checked)
-window.open("http://cn.bing.com/dict/search?q=" + formmain.searchkey.value);
+if (formmain.rd_yahoo.checked)
+  window.open("http://search.yahoo.com/search?prssweb=Search&ei=UTF-8&fr=FP-tab-web-t&fl=0&x=wrt&p=" + encodeURI(formmain.searchkey.value));
 
-if(formmain.rdbdmap.checked)
-window.open("https://map.baidu.com/search/"+ formmain.searchkey.value);
-																																								//https://map.baidu.com/search/唐阁村/@12605919.934999999,2647180.885,16z?querytype=s&da_src=shareurl&wd=唐阁村&c=257&src=0&pn=0&sug=0&l=13&b=(12587965,2639228;12631645,2662364)&from=webmap&biz_forward=%7B"scaler":1,"styles":"pl"%7D&device_ratio=1
+if(formmain.rd_bing.checked)
+  window.open("http://www.bing.com/search?q="+encodeURI(formmain.searchkey.value));
+  
+if(formmain.rd360sou.checked)
+window.open("http://www.so.com/s?ie=utf-8&src=360sou_home&q=" + encodeURI(formmain.searchkey.value) + "&_re=0"); 
+
+if(formmain.rd_gzlib.checked)
+window.open("http://opac.gzlib.gov.cn/interlib/websearch/WebLogin?cmdACT=rdLOGIN_new&furl=..%2Fwebsearch%2FWebReader%3FcmdACT%3DReaderService%26xsl%3D..%2Fwebsearch%2FRdService.xsl&xslPage=RdLoginError_new.xsl&loginid=0100000308194&passwd=63695694"); 
+
+if(formmain.bdbaike.checked)
+window.open("http://www.baidu.com/baidu?word=" + encodeURI(formmain.searchkey.value) + "&tn=bds&cl=3&ct=2097152&si=baike.baidu.com&s=on"); 
+}
 //https://map.baidu.com/search/长沙市
 ///@12573169,3258221.75,12z?querytype=s&da_src=shareurl&wd=长沙市&c=257&src=0&pn=0&sug=0&l=16&b=(12603189.934999999,2645734.885;12608649.934999999,2648626.885)&from=webmap&biz_forward=%7B"scaler":1,"styles":"pl"%7D&device_ratio=1																																		
 
-//if(formmain.bdbaike.checked)
-//window.open("http://www.baidu.com/baidu?word=" + encodeURI(formmain.searchkey.value) + "&tn=bds&cl=3&ct=2097152&si=baike.baidu.com&s=on"); 
-//}
-
-
-
-if(formmain.rd_gzlib.checked)
-window.open("http://www.gzlib.gov.cn/member/loanRenew.jspx"); 
-
-if(formmain.bdbaike.checked)
-window.open("https://baike.baidu.com/item/" + encodeURI(formmain.searchkey.value)); 
-}
 
 
 

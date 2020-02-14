@@ -1,12 +1,12 @@
 
-<!-- Á½¸öCSSÑùÊ½Ó¦ÓÃ-->
+<!-- ä¸¤ä¸ªCSSæ ·å¼åº”ç”¨-->
 		function changecss(nh) {
 		CSS.href="";
 		CSS.href=nh;
 		}
-<!--Á½¸öCSSÑùÊ½Ó¦ÓÃ-->
+<!--ä¸¤ä¸ªCSSæ ·å¼åº”ç”¨-->
 
-<!--Á½ÀàÁ´½ÓµÄ´°¿Ú´ò¿ª·½Ê½javascript:void(null)-->	
+<!--ä¸¤ç±»é“¾æ¥çš„çª—å£æ‰“å¼€æ–¹å¼javascript:void(null)-->	
 function mytarget(){
 var links = document.links;
 for(var i =0; i < links.length;i++)
@@ -132,7 +132,7 @@ function MM_controlSound(x, _sndObj, sndFile) { //v3.0
 <!-- floating image Dreamweaver Extension-->
 
 	
-<!--ÏÔÊ¾\Òş²Ø²ãµÄ´úÂë£»-->
+<!--æ˜¾ç¤º\éšè—å±‚çš„ä»£ç ï¼›-->
 function MM_showHideLayers() { //v6.0
   var i,p,v,obj,args=MM_showHideLayers.arguments;
   for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
@@ -146,10 +146,10 @@ function MM_findObj(n, d) { //v4.01
   for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
   if(!x && d.getElementById) x=d.getElementById(n); return x;
 }	
-<!--ÏÔÊ¾\Òş²Ø²ãµÄ´úÂë£»-->
+<!--æ˜¾ç¤º\éšè—å±‚çš„ä»£ç ï¼›-->
 
 
-<!--°´ĞÇÆÚÏÔÊ¾TV table-->
+<!--æŒ‰æ˜ŸæœŸæ˜¾ç¤ºTV table-->
 	function tvset(){
 	var today2=new Date();
 	var isnDay = new
@@ -193,25 +193,25 @@ function MM_findObj(n, d) { //v4.01
 	h[1].className+=" ";d[1].className+=" ";
 	h[3].className+=" ";d[3].className+=" ";break;
 	}}
-<!--°´ĞÇÆÚÏÔÊ¾TV table-->
+<!--æŒ‰æ˜ŸæœŸæ˜¾ç¤ºTV table-->
 
 
 <!--clock func-->
-	function init(){<!--³õÊ¼»¯-->
-	/*tim2.style.left=tim1.style.posLeft;*/<!--½«µÚ¶ş¸öÊ±¼äµÃ×ó²àÓëµÚÒ»¸öÊ±¼äµÄ×ó²à¶ÔÆë-->
-	/*tim2.style.top=tim1.style.posTop+tim1.offsetHeight-6;*/<!--µÚ¶ş¸öÊ±¼äÔÚµÚÒ»¸öÊ±¼äµÄÏÂ·½-->
-	settimes();<!--µ÷ÓÃsettimes()º¯Êı-->
+	function init(){<!--åˆå§‹åŒ–-->
+	/*tim2.style.left=tim1.style.posLeft;*/<!--å°†ç¬¬äºŒä¸ªæ—¶é—´å¾—å·¦ä¾§ä¸ç¬¬ä¸€ä¸ªæ—¶é—´çš„å·¦ä¾§å¯¹é½-->
+	/*tim2.style.top=tim1.style.posTop+tim1.offsetHeight-6;*/<!--ç¬¬äºŒä¸ªæ—¶é—´åœ¨ç¬¬ä¸€ä¸ªæ—¶é—´çš„ä¸‹æ–¹-->
+	settimes();<!--è°ƒç”¨settimes()å‡½æ•°-->
 	}
 	function settimes(){
-	var stime= new Date();<!--»ñÈ¡µ±Ç°ÈÕÆÚ-->
-	hours= stime.getHours();<!--»ñÈ¡µ±Ç°Ê±¼ä-Ğ¡Ê±-->
-	mins= stime.getMinutes();<!--»ñÈ¡µ±Ç°Ê±¼ä-·ÖÖÓ-->
-	secs= stime.getSeconds();<!--»ñÈ¡µ±Ç°Ê±¼ä-Ãë-->
-	if (hours<10)<!--Èç¹ûĞ¡Ê±½öÓĞÒ»Î»£¬ÔÚÇ°Ãæ²¹Áã-->
+	var stime= new Date();<!--è·å–å½“å‰æ—¥æœŸ-->
+	hours= stime.getHours();<!--è·å–å½“å‰æ—¶é—´-å°æ—¶-->
+	mins= stime.getMinutes();<!--è·å–å½“å‰æ—¶é—´-åˆ†é’Ÿ-->
+	secs= stime.getSeconds();<!--è·å–å½“å‰æ—¶é—´-ç§’-->
+	if (hours<10)<!--å¦‚æœå°æ—¶ä»…æœ‰ä¸€ä½ï¼Œåœ¨å‰é¢è¡¥é›¶-->
 	hours="0"+hours;
-	if(mins<10)<!--Èç¹û·ÖÖÓ½öÓĞÒ»Î»£¬ÔÚÇ°Ãæ²¹Áã-->
+	if(mins<10)<!--å¦‚æœåˆ†é’Ÿä»…æœ‰ä¸€ä½ï¼Œåœ¨å‰é¢è¡¥é›¶-->
 	mins="0"+mins;
-	if (secs<10)<!--Èç¹ûÃë½öÓĞÒ»Î»£¬ÔÚÇ°Ãæ²¹Áã-->
+	if (secs<10)<!--å¦‚æœç§’ä»…æœ‰ä¸€ä½ï¼Œåœ¨å‰é¢è¡¥é›¶-->
 	secs="0"+secs;
 	
 	var today2=new Date();
@@ -224,10 +224,10 @@ function MM_findObj(n, d) { //v4.01
 			festive2=parseInt((festive-today2)/spd*24)-parseInt(festive1*24);
 			festive3=parseInt((festive-today2)/spd*24*60)-parseInt(festive1*24*60)-parseInt(festive2*60);
 			festive4=60-secs
-		festivewri.innerHTML=event1+"</br>"+cdtime+"</br>"+"count down:"+"</br>"+festive1+"Ìì"+festive2+"Ê±"+"</br>"+festive3+"·Ö"+festive4+"</br>"+"</br>"+"Ñ§»á´ÓÈİ"+"</br>"+"¼õÉÙÓûÇó"+"</br>"+"&nbsp;"+"</br>"+"ÓÉ½ñÍùÎô"+"</br>"+"Ò»ÈÕÈıÊ¡"+"</br>"+"Ç°Õ°ÎåÄê"+"</br>"+"Î´À´µÄÄã"+"</br>"+"»ØËİÈç½ñ"+"</br>"+"ÉóÊÓ·´Ê¡"+"</br>"+"Ë¼Î¬ĞĞ¶¯"+"</br>"+"ĞŞÕıµ÷Õû"+"</br>"+""+"</br>"+"ÕæÉÆÃÀ°®"+"</br>"+"Truth"+"</br>"+"Kindness"+"</br>"+"Beauty"+"</br>"+"Love"+"</br>"+""+"</br>"+"ÖªĞĞÇÚË¼"+"</br>"+"Knowledgement"+"</br>"+"Action"+"</br>"+"Diligent"+"</br>"+"Reflection";<!--ÉèÖÃfestivewriµÄ¸ñÊ½-->
-	tim1.innerHTML=hours+":"+mins+":"+secs;<!--ÉèÖÃtim1ºÍtim2µÄ¸ñÊ½-->
+		festivewri.innerHTML=event1+"</br>"+cdtime+"</br>"+"count down:"+"</br>"+festive1+"å¤©"+festive2+"æ—¶"+"</br>"+festive3+"åˆ†"+festive4+"</br>"+"</br>"+"å­¦ä¼šä»å®¹"+"</br>"+"å‡å°‘æ¬²æ±‚"+"</br>"+"&nbsp;"+"</br>"+"ç”±ä»Šå¾€æ˜”"+"</br>"+"ä¸€æ—¥ä¸‰çœ"+"</br>"+"å‰ç»äº”å¹´"+"</br>"+"æœªæ¥çš„ä½ "+"</br>"+"å›æº¯å¦‚ä»Š"+"</br>"+"å®¡è§†åçœ"+"</br>"+"æ€ç»´è¡ŒåŠ¨"+"</br>"+"ä¿®æ­£è°ƒæ•´"+"</br>"+""+"</br>"+"çœŸå–„ç¾çˆ±"+"</br>"+"Truth"+"</br>"+"Kindness"+"</br>"+"Beauty"+"</br>"+"Love"+"</br>"+""+"</br>"+"çŸ¥è¡Œå‹¤æ€"+"</br>"+"Knowledgement"+"</br>"+"Action"+"</br>"+"Diligent"+"</br>"+"Reflection";<!--è®¾ç½®festivewriçš„æ ¼å¼-->
+	tim1.innerHTML=hours+":"+mins+":"+secs;<!--è®¾ç½®tim1å’Œtim2çš„æ ¼å¼-->
 	/*tim2.innerHTML=hours+":"+mins+":"+secs*/
-	setTimeout1('settimes()',1000);<!--Ã¿1Ãë¸üĞÂÒ»´ÎÊ±¼ä-->
+	setTimeout1('settimes()',1000);<!--æ¯1ç§’æ›´æ–°ä¸€æ¬¡æ—¶é—´-->
 	}
 	
 	function MM_displayStatusMsg(msgStr) { //v1.0
@@ -360,7 +360,7 @@ function MM_findObj(n, d) { //v4.01
 				}
 			}
 <!--tab control-->
-//×ÛºÏËÑË÷
+//ç»¼åˆæœç´¢
 function search(){
 if(formmain.rdgoogle.checked)
 window.open("http://www.google.com.hk/search?hl=zh-CN&q=" + encodeURI(formmain.searchkey.value));
@@ -406,7 +406,7 @@ window.open("http://www.baidu.com/baidu?word=" + encodeURI(formmain.searchkey.va
 http://210.72.4.33/interlib/websearch/WebLogin?cmdACT=rdLOGIN_new&furl=..%2Fwebsearch%2FWebReader%3FcmdACT%3DReaderService%26xsl%3D..%2Fwebsearch%2FRdService.xsl&xslPage=RdLoginError_new.xsl&loginid=0100000034867&passwd=63695694
 */
 
-//googleËÑË÷ËÑË÷ÌØ¶¨ÍøÕ¾;
+//googleæœç´¢æœç´¢ç‰¹å®šç½‘ç«™;
 
 function customSearch() {
     window.open("http://www.google.com.hk/search?q=" + formCustom.q.value + "&sitesearch=" + formCustom.sitesearch.value + "&domains=" + formCustom.sitesearch.value + "&sa=%E6%90%9C%C2%A0%E7%B4%A2&prog=aff&client=pub-4055365977023692&hl=zh-CN&source=sdo_sb&sdo_rt=ChBNfvf1AA5v2QqkgIvyIjvnEg5fX1JMX0RFRkFVTFRfXxoI-PektCokDFUoAVidyNe9ldivpRg"); 
@@ -415,38 +415,38 @@ function customSearch() {
 
 var menuids=["menu1"]
 
-// ¶¨ÒåÖ÷º¯Êı
+// å®šä¹‰ä¸»å‡½æ•°
 function buildsubmenus_horizontal(){
 for (var i=0; i<menuids.length; i++){
-  //  »ñÈ¡Ö¸¶¨µÄDIVÈİÆ÷ÖĞµÄÁĞ±íÔªËØUL
+  //  è·å–æŒ‡å®šçš„DIVå®¹å™¨ä¸­çš„åˆ—è¡¨å…ƒç´ UL
   var ultags=document.getElementById(menuids[i]).getElementsByTagName("ul")
     for (var t=0; t<ultags.length; t++){
-		if (ultags[t].parentNode.parentNode.id==menuids[i]){ // ¼ÙÈçÊÇ¶¥¼¶×Ó²Ëµ¥ÁĞ±í
-			ultags[t].style.top=ultags[t].parentNode.offsetHeight + 0 +"px" //ÔòÉèÖÃËüµÄÎ»ÖÃ
-			// ¶¨ÒåÀàÃû£¬Ì×ÓÃCSSÑùÊ½
+		if (ultags[t].parentNode.parentNode.id==menuids[i]){ // å‡å¦‚æ˜¯é¡¶çº§å­èœå•åˆ—è¡¨
+			ultags[t].style.top=ultags[t].parentNode.offsetHeight + 0 +"px" //åˆ™è®¾ç½®å®ƒçš„ä½ç½®
+			// å®šä¹‰ç±»åï¼Œå¥—ç”¨CSSæ ·å¼
 			ultags[t].parentNode.getElementsByTagName("a")[0].className="mainfoldericon"
 		}
-		else{ //¼ÙÈçÊÇ×Ó²Ëµ¥ÁĞ±í(ul)
-		  ultags[t].style.left=ultags[t-1].getElementsByTagName("a")[0].offsetWidth +"px" //ÔòÉèÖÃËüµÄÎ»ÖÃ
-		  // ¶¨ÒåÀàÃû£¬Ì×ÓÃCSSÑùÊ½
+		else{ //å‡å¦‚æ˜¯å­èœå•åˆ—è¡¨(ul)
+		  ultags[t].style.left=ultags[t-1].getElementsByTagName("a")[0].offsetWidth +"px" //åˆ™è®¾ç½®å®ƒçš„ä½ç½®
+		  // å®šä¹‰ç±»åï¼Œå¥—ç”¨CSSæ ·å¼
     		  ultags[t].parentNode.getElementsByTagName("a")[0].className="subfoldericon"
 		}
-    //  ¶¨ÒåÊó±êÊÂ¼şº¯Êı
+    //  å®šä¹‰é¼ æ ‡äº‹ä»¶å‡½æ•°
     ultags[t].parentNode.onmouseover=function(){
-    // Êó±êÒÆÉÏÈ¥Ê±ÏÔÊ¾Æä×ÓÁĞ±í
+    // é¼ æ ‡ç§»ä¸Šå»æ—¶æ˜¾ç¤ºå…¶å­åˆ—è¡¨
     this.getElementsByTagName("ul")[0].style.visibility="visible"
     }
-    //  Êó±êÒÆ¿ªÊ±½«ÆäÒş²Ø
+    //  é¼ æ ‡ç§»å¼€æ—¶å°†å…¶éšè—
     ultags[t].parentNode.onmouseout=function(){
    this.getElementsByTagName("ul")[0].style.visibility="hidden"
     }
     }
   }
 }
-//  Ìí¼ÓÒ³ÃæÊÂ¼ş
+//  æ·»åŠ é¡µé¢äº‹ä»¶
 if (window.addEventListener)
 window.addEventListener("load", buildsubmenus_horizontal, false)
-//  attachEvent ·½·¨¼àÊÓÒ³ÃæÖĞµÄÊÂ¼ş
+//  attachEvent æ–¹æ³•ç›‘è§†é¡µé¢ä¸­çš„äº‹ä»¶
 else if (window.attachEvent)
 window.attachEvent("onload", buildsubmenus_horizontal)
 
@@ -461,7 +461,7 @@ window.attachEvent("onload", buildsubmenus_horizontal)
                 try {
                         netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
                 } catch (e) {
-                        alert("ÄúµÄfirefox°²È«ÏŞÖÆÏŞÖÆÄú½øĞĞ¼ôÌù°å²Ù×÷£¬ÇëÔÚĞÂ´°¿ÚµÄµØÖ·À¸ÀïÊäÈë'about:config'È»ºóÕÒµ½'signed.applets.codebase_principal_support'ÉèÖÃÎªtrue'");
+                        alert("æ‚¨çš„firefoxå®‰å…¨é™åˆ¶é™åˆ¶æ‚¨è¿›è¡Œå‰ªè´´æ¿æ“ä½œï¼Œè¯·åœ¨æ–°çª—å£çš„åœ°å€æ é‡Œè¾“å…¥'about:config'ç„¶åæ‰¾åˆ°'signed.applets.codebase_principal_support'è®¾ç½®ä¸ºtrue'");
                         return false;
                 }
                 var clip = Components.classes["@mozilla.org/widget/clipboard;1"].createInstance(Components.interfaces.nsIClipboard);
