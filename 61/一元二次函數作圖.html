@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<base target="_blank"
+<meta charset=utf-8 />
+ <style>
+ .{
+ margin:0;
+ padding:0;}
+ #myCanvas{
+ border:0px solid #eee;}
+ p{
+ line-height:29px;l
+ margin-bottom:0px;
+ margin-top:5px;}
+.left{width:25%; float:left; margin-right:5%:}
+.right{width:64%; float:left;}
+#myCanvas{width:880px; heigh:660px;}
+ </style>     
+    <head>  
+        <title>一元二次函数作圖</title>  
+        <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->  
+        <script type="text/javascript">  
+            var MAX_WIDTH = 880;  //640
+            var MAX_HEIGHT = 660;  //480
+              
+            function init() {  
+                var g = getCanvasContext();  
+                g.translate(MAX_WIDTH/2, MAX_HEIGHT/2);                  
+                initGraph();         		   
+		    }  
+              
+            function initGraph() {  
+                var g = getCanvasContext(); 
+				//var hi1 = -MAX_HEIGH/2;
+                g.strokeStyle = '#aaa';  
+                if (g) {  
+                    g.clearRect(-MAX_WIDTH/2, -330, MAX_WIDTH, MAX_HEIGHT);  //如果想對比多個圖像，可以撤銷這條語句；
+                    //g.strokeRect(-MAX_WIDTH/2, -330, MAX_WIDTH, MAX_HEIGHT);  
+                    g.beginPath();  
+					//x軸
+                    g.moveTo(-MAX_WIDTH/2, 0);  
+                    g.lineTo(MAX_WIDTH/2, 0); 
+					
+                    g.moveTo(MAX_WIDTH/2, 0);  
+                    g.lineTo(MAX_WIDTH/2-10, 10); 
+					
+					g.moveTo(MAX_WIDTH/2, 0);  
+                    g.lineTo(MAX_WIDTH/2-10, -10); 
+					//y軸
+                    g.moveTo(0, -MAX_HEIGHT/2);  
+                    g.lineTo(0, MAX_HEIGHT/2); 
+					
+                    g.moveTo(0, -MAX_HEIGHT/2);  
+                    g.lineTo(-10, -MAX_HEIGHT/2+10); 	
+									
+                    g.moveTo(0, -MAX_HEIGHT/2);  
+                    g.lineTo(+10, -MAX_HEIGHT/2+10); 						
+                    g.stroke();  
+					
+					g.font="16px 宋體";
+					g.fillstyle="black";
+					g.textAlign="left";
+					g.textBaseline="middle";
+					g.fillText("X",MAX_WIDTH/2-20,10);
+					g.fillText("Y",5,-MAX_HEIGHT/2+20);
+	
+                }  
+            }  
+              
+            function draw() {  
+                initGraph();  
+                  
+                var maxX = Number(document.getElementById('maxX').value);  
+                var maxY = Number(document.getElementById('maxY').value);  
+                var halfStep = Number(document.getElementById('halfStep').value);  
+                  
+                var g = getCanvasContext();  
+                if (g) {  
+                    var x, y;  
+                    var sx, sy;  //定義曲線開始的坐標點；
+                    var currStep;  
+                      
+                    sx = -MAX_WIDTH/2  
+                    sy = -MAX_HEIGHT/2 * calculateY(-maxX) / maxY; 
+
+                    g.beginPath();  
+                    g.moveTo(sx, sy);  
+                      
+                    for (currStep=-halfStep + 1; currStep<=halfStep; currStep++) {  
+                        x = maxX * currStep / halfStep;  //x,y根據取值區間平均取halfStep*2個點，如x在區間（－10，10）是取20*2個點；
+                        y = calculateY(x);  
+				  
+                        sx = MAX_WIDTH/2 * x / maxX;  //將上述取樣的x,y值根據像素轉變為像素坐標值；
+						//sy = calculateY(sx); 
+                        sy = -MAX_HEIGHT/2 * y / maxY;
+			
+                        g.lineTo(sx, sy); 
+						
+                    }  
+                    g.strokeStyle = 'red';   
+                    g.stroke();  
+                } 
+			    //画函数导数
+				
+				 if (g) {  
+                    var x, y;  
+                    var sx, sy;  //定義曲線開始的坐標點；
+                    var currStep;  
+                      
+                    sx = -MAX_WIDTH/2  
+                    sy = -MAX_HEIGHT/2 * calculateYL(-maxX) / maxY; 
+
+                    g.beginPath();  
+                    g.moveTo(sx, sy);  
+
+                    for (currStep=-halfStep + 1; currStep<=halfStep; currStep++) {  
+                        x = maxX * currStep / halfStep;  //x,y根據取值區間平均取halfStep*2個點，如x在區間（－10，10）是取20*2個點；
+                        y = calculateYL(x);  
+
+                        sx = MAX_WIDTH/2 * x / maxX;  //將上述取樣的x,y值根據像素轉變為像素坐標值；
+						//sy = calculateYL(sx); 
+                        sy = -MAX_HEIGHT/2 * y / maxY;
+   
+                        g.lineTo(sx, sy);
+						
+                    }  
+                    
+                    g.strokeStyle = 'green';  
+                    g.stroke();  
+                } 
+		//畫X軸刻度		
+                if (g) {  
+                    var x, y;  
+                    var sx, sy;  //定義曲線開始的坐標點；
+                    var currStep;  
+
+                     g.beginPath();   
+                    for (currStep=-halfStep + 1; currStep<=halfStep-1; currStep++) {  
+                        x = maxX * currStep / halfStep;  //x,y根據取值區間平均取halfStep*2個點，如x在區間（－10，10）是取20*2個點；
+                        y = calculateY(x);  
+                        sx = MAX_WIDTH/2 * x / maxX;  //將上述取樣的x,y值根據像素轉變為像素坐標值；
+						//sy = calculateY(sx); 
+                        sy = -MAX_HEIGHT/2 * y / maxY;  
+						g.moveTo(sx, 0);
+                        g.lineTo(sx, -10);  
+						g.font="12px 宋體";
+						g.fillStyle="#ccc";
+						g.textAlign="center";
+						g.textBaseline="middle";
+						g.fillText(x,sx,-15);
+							
+						}  
+						g.strokeStyle = '#ccc';  
+						g.stroke();  
+					
+                } 
+				
+		//畫Y軸刻度						
+                if (g) {  
+                    var x, y;  
+                    var sx, sy;  //定義曲線開始的坐標點；
+                    var currStep; 
+					g.beginPath();                  
+                    for (currStep=-halfStep + 1; currStep<=halfStep-25; currStep++) {  
+                        x = maxX * currStep / halfStep;  //x,y根據取值區間平均取halfStep*2個點，如x在區間（－10，10）是取20*2個點；
+                        y = calculateY(x);  
+                        sx = MAX_WIDTH/2 * x / maxX;  //將上述取樣的x,y值根據像素轉變為像素坐標值；
+						//sy = calculateY(sx); 
+                        sy = -MAX_HEIGHT/2 * y / maxY;  
+						g.moveTo(0, sy);
+                        g.lineTo(10, sy);  
+					g.font="12px 宋體";
+					g.fillStyle="#ccc";
+					g.textAlign="left";
+					g.textBaseline="middle";
+					g.fillText(y,15,sy);
+						
+                    }  
+                    g.strokeStyle="#ccc";
+                    g.stroke();  
+					g.save();
+                }
+				
+				var a = Number(document.getElementById('a').value);  
+				var b = Number(document.getElementById('b').value);  
+				var c = Number(document.getElementById('c').value);  
+				var k1 = Math.pow(b,2)-4*a*c;
+				var k2 = Math.sqrt(k1);
+				var x1 = (-b + k2)/(2*a);
+				var x2 = (-b - k2)/(2*a);                 
+				document.form1.x1v.value = x1;
+				document.form1.x2v.value = x2;
+				document.form1.formula.value = a + "X*X" + "+("+ b +"X)" +"+("+ c+")=0";
+				document.form1.formula2.value = a + "X*X" + "+("+ b +"X)" +"+("+ c+")";
+				document.form1.dao.value = 2 * a + "x+" + b;
+				document.form1.daoX.value = -b/(2*a);     
+				var daoX1 = -b / (2*a);
+				document.form1.daoY.value = a*daoX1*daoX1+b*daoX1+c;
+            } 
+			
+			
+//画切线		 
+            function drawqi() {  
+               // initGraph();  
+           // window.location.reload();
+                var maxX = Number(document.getElementById('maxX').value);  
+                var maxY = Number(document.getElementById('maxY').value);  
+                var halfStep = Number(document.getElementById('halfStep').value);  
+				var x0 = Number(document.getElementById('x0').value);
+                  
+                var g = getCanvasContext();  
+                if (g) {  
+                    var x, y;  
+                    var sx, sy;  //定義曲線開始的坐標點；
+                    var currStep;  
+                      
+                    sx = -MAX_WIDTH/2  
+                    sy = -MAX_HEIGHT/2 * calculateYQ(-maxX) / maxY; 
+
+                    g.beginPath();  
+                    g.moveTo(sx, sy);  
+                      
+                    for (currStep=-halfStep + 1; currStep<=halfStep; currStep++) {  
+                        x = maxX * currStep / halfStep;  //x,y根據取值區間平均取halfStep*2個點，如x在區間（－10，10）是取20*2個點；
+                        y = calculateYQ(x);  
+				  
+                        sx = MAX_WIDTH/2 * x / maxX;  //將上述取樣的x,y值根據像素轉變為像素坐標值；
+						//sy = calculateYQ(sx); 
+                        sy = -MAX_HEIGHT/2 * y / maxY;
+			           g.lineTo(sx, sy); 
+                    g.strokeStyle = 'blue';  
+                    g.stroke(); 					   
+                      }                     
+  
+//画切线的垂线：
+                    sx = MAX_WIDTH/2 * x0  / maxX ; 
+                    sy = -MAX_HEIGHT/2 * calculateYQ(x0) / maxY; 
+
+                    g.beginPath();  
+                    g.moveTo(sx, 0);
+					g.lineTo(sx, sy);  
+                    g.strokeStyle = 'blue';  
+                    g.stroke();  
+                } 
+			
+
+            }        
+			
+			        
+            function calculateY(x) {  
+                var a = Number(document.getElementById('a').value);  
+                var b = Number(document.getElementById('b').value);  
+                var c = Number(document.getElementById('c').value);  
+                  
+                var y = a * x * x + b * x + c;  
+                return y;  
+            }  
+            function calculateYL(x) {  
+                var a = Number(document.getElementById('a').value);  
+                var b = Number(document.getElementById('b').value);  
+                var c = Number(document.getElementById('c').value);  
+                  
+                var y = 2 * a * x + b;  
+                return y;  
+            } 
+            function calculateYQ(x) {  
+                var a = Number(document.getElementById('a').value);  
+                var b = Number(document.getElementById('b').value);  
+                var c = Number(document.getElementById('c').value); 
+				var x0 = Number(document.getElementById('x0').value);  
+                  
+                var y = (2 * a * x0 + b ) * ( x - x0 ) +  a * x0 * x0 + b * x0 + c;
+			   
+                return y;  
+            } 
+  					
+            function getCanvasContext() {  
+                var c = document.getElementById('myCanvas');  
+                if(c && c.getContext) {  
+                    var g = c.getContext('2d');  
+                    return g;  
+                } else {  
+                    return null;  
+                }  
+            }  
+        </script>  
+    </head>  
+      
+    <body onLoad="init(); draw();">  
+	<div class="left">
+
+
+        <table>  
+            <tr>  
+                <td colspan="2">  
+				<form name="form1">
+                    y=<input type="text" id="a" size="2" value="4"/> x<sup>2</sup>+<input type="text" size="2" id="b" value="16"/>x+<input type="text" size="2" id="c" value="-9"/>  
+                </td>  
+            </tr>  
+            <tr>  
+                <td>最大横坐标：</td>  
+                <td><input type="text" size="4" id="maxX" value="10"/></td>  
+            </tr>  
+            <tr>  
+                <td>最大纵坐标：</td>  
+                <td><input type="text" size="4"  id="maxY" value="200"/></td>  
+            </tr>  
+            <tr>  
+                <td>採樣點/2：</td>  
+                <td><input type="text" size="4"  id="halfStep" value="20"/></td>  
+            </tr> 
+            <tr>  
+                <td colspan="2"><button name="btnDraw" type="button" onClick="draw()">画函数图形及其导数图形</button>&nbsp;&nbsp;</td>  
+            </tr>  
+			            <tr>  
+            <tr>  
+                <td colspan="2">画x在某点曲线的切线，x<sub>0</sub>值：<input type="text" size="4"  id="x0" value="4"/><button name="Drawqi" type="button" onClick="drawqi()">画切线</button>切线方程:y-f(x<sub>0</sub>)=f<sup>'</sup>(x<sub>0</sub>)(x-(x<sub>0</sub>))</td>  
+
+            </tr> 						
+                <td colspan="2">&nbsp;</td>  
+            </tr>  
+            <tr>  
+                <td colspan="2">方程<input type="text" size="22"  name="formula" value=""/>，x的兩個解：</td>  
+ 
+            </tr> 
+			            <tr>  
+                <td>x<sub>1</sub>=<input type="text" size="14"  name="x1v" value=""/></td>  
+                <td>x<sub>2</sub>=<input type="text" size="14"  name="x2v" value=""/></td> 
+<tr>  
+                <td colspan="2">函數<input type="text" size="22"  name="formula2" value=""/>的導數函數：</td>  
+ 
+            </tr> 
+                <td colspan="2"><input type="text" size="14"  name="dao" value=""/>(2ax+b)</td>  
+ 
+            </tr>  
+            <tr>  
+                <td colspan="2">函數最值：</td>  
+	
+				</tr>
+				<tr><td colspan="2">
+                當x取<input type="text" size="8"  name="daoX" value=""/>時(-b/2a)，
+				</td></tr>
+				<tr><td colspan="2">
+				
+				函數和最值：<input type="text" size="8"  name="daoY" value="20"/></td>  
+            </tr>
+				</form>
+            </tr>  
+
+        </table>  
+
+<p><a href="一元一次函數作圖.html">一元一次函數作圖</a></p>
+	<p>quadratic equation of one unknown</p>
+	<p><a href="http://baike.baidu.com/view/397767.htm">一元二次方程</a>标准形式：<br>
+ax<sup>2</sup>+bx+c=0（a≠0）；</p>
+	<p>求根公式：x=[-b±√(b<sup>2</sup>-4ac)]/2a</p><p>函数y=x<sup>2</sup>-4x+7,可用同比例的刻度显示；</p>
+	</div>
+	<div class="right">
+        <canvas id="myCanvas" width="890" height="670">  
+            该浏览器不支持Canvas.  
+        </canvas>  
+       </div>
+   
+    </body>  
+      
+    </html>  

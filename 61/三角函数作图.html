@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<base target="_blank"
+<meta charset=utf-8 />
+ <style>
+ .{
+ margin:0;
+ padding:0;}
+ #myCanvas{
+ border:0px solid #eee;}
+ p{
+ line-height:18px;
+ margin-bottom:0px;
+ margin-top:5px;}
+.left{width:45%; float:left; margin-right:5%:}
+.right{width:54%; float:left;}
+.table2{
+border-collapse:collapse;}
+.table2 td{
+border:1px solid #aaa;}
+.tab3{
+width:100%;
+table-layout:fixed;}
+.tab3 td{
+}
+ </style>     
+    <head>  
+        <title>單位圓與三角函數作圖</title>  
+        <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->  
+        <script type="text/javascript">  
+            var MAX_WIDTH = 660;  //640
+            var MAX_HEIGHT = 660;  //480
+              
+            function init() {  
+                var g = getCanvasContext();  
+                g.translate(MAX_WIDTH/4, MAX_HEIGHT/2*1.5);                  
+                initGraph();         		   
+		    }  
+              
+            function initGraph() {  
+                var g = getCanvasContext(); 
+				//var hi1 = -MAX_HEIGH/2;
+                g.strokeStyle = 'black';  
+                if (g) {  
+                    g.clearRect(-MAX_WIDTH, -MAX_HEIGHT, MAX_WIDTH*2, MAX_HEIGHT*2);  //如果想對比多個圖像，可以撤銷這條語句；
+                    //g.strokeRect(-MAX_WIDTH/2, -330, MAX_WIDTH, MAX_HEIGHT);  
+                    g.beginPath();  
+					//x軸
+                    g.moveTo(-MAX_WIDTH/1.4, 0);  
+                    g.lineTo(MAX_WIDTH/1.4, 0); 
+					
+                    g.moveTo(MAX_WIDTH/1.4, 0);  
+                    g.lineTo(MAX_WIDTH/1.4-10, 10); 
+					
+					g.moveTo(MAX_WIDTH/1.4, 0);  
+                    g.lineTo(MAX_WIDTH/1.4-10, -10); 
+					//y軸
+                    g.moveTo(0, -MAX_HEIGHT/1.4);  
+                    g.lineTo(0, MAX_HEIGHT/1.4); 
+					
+                    g.moveTo(0, -MAX_HEIGHT/1.4);  
+                    g.lineTo(-10, -MAX_HEIGHT/1.4+10); 	
+									
+                    g.moveTo(0, -MAX_HEIGHT/1.4);  
+                    g.lineTo(+10, -MAX_HEIGHT/1.4+10); 	
+					g.strokeStyle="#888";		
+                    g.stroke();  
+					
+					g.font="16px 宋體";
+					g.fillStyle="#666";
+					g.textAlign="left";
+					g.textBaseline="middle";
+					g.fillText("X",MAX_WIDTH/1.4-20,10);
+					g.fillText("Y",5,-MAX_HEIGHT/1.4+20);
+					g.textAlign="right";
+					g.fillText("所有基本三角函数在几何上都可依据单位圆来定义",MAX_WIDTH/1.4-20,MAX_HEIGHT/4.5);
+					
+					var xv=MAX_WIDTH/8;
+					g.textAlign="left";
+					g.fillText("1 Unit circle length:2πR=6.28;",xv,-MAX_HEIGHT/1.5);
+					g.fillText("2 each point of unit circle:(cosa,sina);",xv,-MAX_HEIGHT/1.6);
+					g.fillText("3 点(cosa,sina)可以定义为R在x轴和y轴上的投影或射影;",xv,-MAX_HEIGHT/1.7);
+					g.fillText("4 如果一个角的弧度是a,则弧长=ra;",xv,-MAX_HEIGHT/1.8);
+					g.fillText("5 日昝:竖直杆子投影的长度S=杆子高h*cota;",xv,-MAX_HEIGHT/1.9);
+					g.fillText("6 三角函数:固定的角，在直角三角形中，有固定的比值；",xv,-MAX_HEIGHT/2.0);
+					
+					//g.fillText("0",5,10);
+                }  
+            }  
+              
+            function draw() {  
+                initGraph();  
+                  
+                var maxX = Number(document.getElementById('maxX').value);  
+                var maxY = Number(document.getElementById('maxY').value);  
+                var halfStep = Number(document.getElementById('halfStep').value);  
+                  
+                var g = getCanvasContext();  
+                if (g) {  
+                    var x, y;  
+                    var sx, sy;  //定義曲線開始的坐標點；
+                    var currStep;  
+                      
+                    sx = -MAX_WIDTH/2  
+                    sy = -MAX_HEIGHT/2 * calculateY(-maxX) / maxY;  
+                    g.beginPath();  
+                    g.moveTo(sx, sy);  
+                      
+                    for (currStep=-halfStep + 1; currStep<=halfStep; currStep++) {  
+                        x = maxX * currStep / halfStep;  //x,y根據取值區間平均取halfStep*2個點，如x在區間(－10，10)是取20*2個點；
+                        y = calculateY(x);  
+                        sx = MAX_WIDTH/2 * x / maxX;  //將上述取樣的x,y值根據像素轉變為像素坐標值；
+						//sy = calculateY(sx); 
+                        sy = -MAX_HEIGHT/2 * y / maxY;  
+                        //g.lineTo(sx, sy);  
+						
+                    }  
+			var angle = Number(document.getElementById('angle').value); 
+			angle=angle*2*Math.PI/360;
+			var sina=Math.sin(angle);
+			var cosa=Math.cos(angle);
+			var tana=Math.tan(angle);	
+			sina=sina*MAX_WIDTH/2/2; 
+			cosa=cosa*MAX_WIDTH/2/2; 
+			tana=tana*MAX_WIDTH/2/2; 
+			var cota=1/Math.tan(angle)*MAX_WIDTH/2/2;
+			var seca=1/Math.cos(angle)*MAX_WIDTH/2/2;
+			var csca=1/Math.sin(angle)*MAX_WIDTH/2/2;
+			var angleR=1*MAX_WIDTH/2/2;
+			
+			
+		    var sina2=Math.sin(angle);
+			var cosa2=Math.cos(angle);
+			var tana2=Math.tan(angle);
+			var cota2=1/tana2;
+			var seca2=1/cosa2;
+			var csca2=1/sina2;
+			var sinangle=sina2/angle;
+
+document.form1.angf.value=angle;
+document.form1.ang1.value=sina2;
+document.form1.ang2.value=cosa2;
+document.form1.ang3.value=tana2;
+document.form1.ang4.value=cota2;
+document.form1.ang5.value=seca2;
+document.form1.ang6.value=csca2;
+
+document.form1.angb.value=sinangle;//半径/sin
+
+		
+					//alert(sina);
+
+
+
+					g.beginPath();  
+					
+					g.arc(0,0,sx/2,0,2*Math.PI,true);
+					g.strokeStyle = 'black'; 
+					g.stroke();
+					
+					g.beginPath(); 
+					g.arc(0,0,0.1*sx/2,0,-angle,true); 					
+					g.strokeStyle = 'black'; 
+					g.stroke(); 
+					
+					g.beginPath();  
+					g.moveTo(cota,-angleR);
+					g.lineTo(0,0);   //r延长
+					g.strokeStyle = '#ddd'; 					
+					g.stroke();
+					
+					g.beginPath();  
+					g.moveTo(angleR,-tana);
+					g.lineTo(0,0);   //r延长2
+					g.strokeStyle = '#ddd'; 					
+					g.stroke();
+					
+
+					g.beginPath();  
+
+					g.moveTo(cosa,-sina);
+					g.lineTo(0,0);   //r
+					g.strokeStyle = 'green'; 					
+					g.stroke();
+					g.fillStyle = 'green'; 
+					g.fillText("c(r)",cosa/2,-sina/2);
+					
+					
+					g.beginPath();
+					g.moveTo(cosa,-sina);
+					g.lineTo(cosa,0);   //a	
+					g.strokeStyle = 'pink'; 					
+					g.stroke();
+					g.fillStyle = 'pink';
+					g.fillText("a",cosa,-sina/2);				
+					
+					g.beginPath();
+					g.moveTo(cosa,-sina);
+					g.lineTo(seca,0);  //a右斜tana
+					g.strokeStyle = 'black'; 
+					g.stroke();
+					
+					g.beginPath();
+					g.moveTo(angleR,0);
+					g.lineTo(angleR,-tana);  //a右斜tana2
+					g.strokeStyle = 'black'; 
+					g.stroke();
+					
+					g.fillStyle = 'black'
+					g.fillText("tan",angleR+(seca-angleR)/2,-sina/2); 
+					
+					
+					g.beginPath();
+					g.moveTo(cosa,-sina);
+					g.lineTo(0,-csca);  //a上斜cot
+					g.strokeStyle = 'red'; 					
+					g.stroke();
+					
+					g.beginPath();
+					g.moveTo(0,-angleR);
+					g.lineTo(cota,-angleR);  //a上斜cot2
+					g.strokeStyle = 'red'; 					
+					g.stroke();
+					g.fillStyle = 'red';
+					g.textAlign = "left";
+					g.fillText("cot",cosa/2,-1*(sina+(csca-sina)/2));
+					
+					
+					
+					g.beginPath();
+					g.moveTo(cosa,-sina);
+					g.lineTo(0,-sina);  //b 上面的一条 
+					g.moveTo(0,0);
+					g.lineTo(cosa,0);  //b 下面的一条 
+					g.strokeStyle = 'blue'; 					
+					g.stroke();
+					g.fillStyle = 'blue';
+					g.fillText("b",cosa/2,-0);	
+					
+					g.beginPath();
+					g.moveTo(-angleR/2,0);
+					g.lineTo(-angleR/2,-csca);  //csc
+					g.strokeStyle = 'green'; 					
+					g.stroke();
+					g.fillStyle = 'green';
+					g.fillText("csc",-angleR/2,-csca/2);
+					
+					
+					
+					g.beginPath();
+					g.moveTo(0,angleR/2);
+					g.lineTo(seca,angleR/2);  //sec
+					g.strokeStyle = 'green'; 					
+					g.stroke();
+					g.fillStyle = 'green';
+					g.fillText("sec",seca/2,angleR/2);
+					
+	
+
+                } 
+		//畫X軸刻度		
+                if (g) {  
+                    var x, y;  
+                    var sx, sy;  //定義曲線開始的坐標點；
+                    var currStep;  
+
+                      
+                    for (currStep=-halfStep + 1; currStep<=halfStep; currStep++) {  
+                        x = maxX * currStep / halfStep;  //x,y根據取值區間平均取halfStep*2個點，如x在區間(－10，10)是取20*2個點；
+                        y = calculateY(x);  
+                        sx = MAX_WIDTH/2 * x / maxX;  //將上述取樣的x,y值根據像素轉變為像素坐標值；
+						//sy = calculateY(sx); 
+                        sy = -MAX_HEIGHT/2 * y / maxY;
+						g.beginPath();						  
+						g.moveTo(sx, 0);
+                        g.lineTo(sx, -10);  
+					g.font="12px 宋體";
+					g.fillStyle="#ddd";
+					g.textAlign="center";
+					g.textBaseline="middle";
+					g.fillText(x,sx,-15);
+						
+                    }  
+                    g.strokeStyle = '#ddd';  
+                    g.stroke();  
+                } 
+				
+		//畫Y軸刻度						
+                if (g) {  
+                    var x, y;  
+                    var sx, sy;  //定義曲線開始的坐標點；
+                    var currStep;                 
+                    for (currStep=-halfStep + 1; currStep<=halfStep; currStep++) {  
+                        x = maxX * currStep / halfStep;  //x,y根據取值區間平均取halfStep*2個點，如x在區間(－10，10)是取20*2個點；
+                        y = calculateY(x);  
+                        sx = MAX_WIDTH/2 * x / maxX;  //將上述取樣的x,y值根據像素轉變為像素坐標值；
+						//sy = calculateY(sx); 
+                        sy = -MAX_HEIGHT/2 * y / maxY; 
+						g.beginPath(); 
+						g.moveTo(0, sy);
+                        g.lineTo(10, sy);  
+					g.font="12px 宋體";
+					g.fillStyle="#ddd";
+					g.textAlign="left";
+					g.textBaseline="middle";
+					g.fillText(y,15,sy);
+						
+                    }  
+                    g.strokeStyle = '#ddd';  
+                    g.stroke();  
+                }
+				
+
+            }  
+              
+            function calculateY(x) {  
+   
+                  
+                var y = x ;  
+                return y;  
+            }  
+              
+            function getCanvasContext() {  
+                var c = document.getElementById('myCanvas');  
+                if(c && c.getContext) {  
+                    var g = c.getContext('2d');  
+                    return g;  
+                } else {  
+                    return null;  
+                }  
+            }  
+        </script>  
+    </head>  
+      
+    <body onLoad="init(); draw();">  
+	<div class="left">
+
+<form name="form1">
+<input type="hidden"  type="text" size="4" id="maxX" value="2"/><input type="hidden"  type="text" size="4"  id="maxY" value="2" /><input type="hidden" type="text" size="4"  id="halfStep" value="2"  />
+        <table>  
+
+
+ <tr><td><a href="http://baike.baidu.com/view/91555.htm">三角函數</a></td><td></td></tr>
+     <tr>  
+                <td>
+	輸入角度值：<input id="angle" type="text"  onMouseOver="select()"  value="57.29578" size="22" maxlength="16" />
+</td>	
+
+                <td>
+				<button name="btnDraw" type="button" onClick="draw()"> Draw </button></td>  
+          </tr> 
+ </table>
+ <table class="tab3"> 
+   <col width="38%">
+    <col width="30%">
+	  <col width="32%">
+ 
+            <tr>  
+                <td>arc弧度值=<input type="text" size="14"  name="angf" value=""/></td>	
+                <td>sin（2kπ+α）=sinα</td>
+        
+                 <td rowspan="6" style="font-size:14px; vertical-align:top;"><strong>奇变偶不变，符号看象限</strong>:在Kπ/2中如果K为偶数时函数名不变，若为奇数时函数名互为<a target="_blank" href="http://baike.baidu.com/view/1536692.htm">余函数</a>。<a target="_blank" href="http://baike.baidu.com/view/2114114.htm">正负号</a>看原函数中α所在<a target="_blank" href="http://baike.baidu.com/view/579171.htm">象限</a>:<br>
+                 <strong>一全正二正弦，三正切四余弦</strong>，或简写为"ASTC"，即"all","sin","tan","cos"依次为正。</td>
+            </tr>  
+            </tr>  
+            <tr>  
+                <td>sin正弦值=<input type="text" size="14"  name="ang1" value=""/></td>	
+                <td>cos（π+α）=－cosα</td>
+            
+
+            <tr>  
+                <td>cos余弦值=<input type="text" size="14"  name="ang2" value=""/></td>	
+                <td>tan（－α）=－tanα</td>
+            </tr>  
+            <tr>  
+                <td>tan正切值=<input type="text" size="14"  name="ang3" value=""/></td>	
+                <td>tan（π/2+α）=－cotα</td>
+            </tr>  
+            <tr>  
+                <td>cot余切值=<input type="text" size="14"  name="ang4" value=""/></td>	
+                <td>cot（π/2－α）=tanα</td>
+            </tr>  
+            <tr>  
+                <td>sec正割值=<input type="text" size="14"  name="ang5" value=""/></td>	
+                <td>sec(α-π)=-secα</td>
+            </tr>  
+            <tr>  
+                <td>csc余割值=<input type="text" size="14"  name="ang6" value=""/></td>	
+                <td>csc(2π-α)=-cscα</td>
+				<td>tanA+tanB+tanC=tanAtanBtanC</td>
+            </tr>  </table>
+			
+			<table>
+            <tr>  
+                <td colspan="2">角度(弧度)的正弦与角度(弧度)之比：<input type="text" size="14"  name="angb" value=""/>
+				</td></tr></table></form>
+
+	    <p>当平面上的三点A、B、C的连线，AB、AC、BC，构成一个<a target="_blank" href="http://baike.baidu.com/view/8935.htm">直角三角形</a>，其中∠ACB为<a target="_blank" href="http://baike.baidu.com/view/353238.htm">直角</a>。对∠BAC而言，<a target="_blank" href="http://baike.baidu.com/view/3454270.htm">对边</a>(opposite)a=BC、<a target="_blank" href="http://baike.baidu.com/view/2508575.htm">斜边</a>(hypotenuse)c=AB、邻边(adjacent)b=AC，则存在以下关系：</p>
+	    <table class="table2">
+	      <tbody>
+	        <tr>
+	          <td>基本函数</td>
+	          <td>英文</td>
+	          <td>缩写</td>
+	          <td>表达式</td>
+	          <td>语言描述</td>
+	          <td>正比</td>
+	          <td>&nbsp;</td>
+	        </tr>
+	        <tr>
+	          <td><a href="http://baike.baidu.com/view/536305.htm">正弦函数</a></td>
+	          <td>Sine</td>
+	          <td>sin</td>
+	          <td>a/c</td>
+	          <td>∠A的对边比斜边</td>
+              <td>↗</td>
+	          <td>&nbsp;</td>
+	        </tr>
+	        <tr>
+	          <td><a href="http://baike.baidu.com/view/536314.htm">余弦函数</a></td>
+	          <td>cosine</td>
+	          <td>cos</td>
+	          <td>b/c</td>
+	          <td>∠A的邻边比斜边</td>
+              <td>↘</td>
+	          <td>a=c·cosB+b·cosC</td>
+	        </tr>
+	        <tr>
+	          <td><a href="http://baike.baidu.com/view/629220.htm">正切函数</a></td>
+	          <td>Tangent</td>
+	          <td>tan</td>
+	          <td>a/b</td>
+	          <td>∠A的对边比邻边</td>
+              <td>↗</td>
+	          <td>&nbsp;</td>
+	        </tr>
+	        <tr>
+	          <td><a href="http://baike.baidu.com/view/629484.htm">余切函数</a></td>
+	          <td>Cotangent</td>
+	          <td>cot</td>
+	          <td>b/a</td>
+	          <td>∠A的邻边比对边</td>
+              <td>↘</td>
+	          <td>&nbsp;</td>
+	        </tr>
+	        <tr>
+	          <td><a href="http://baike.baidu.com/view/629136.htm">正割函数</a></td>
+	          <td>Secant</td>
+	          <td>sec</td>
+	          <td>c/b</td>
+	          <td>∠A的斜边比邻边</td>
+              <td>↗</td>
+	          <td>&nbsp;</td>
+	        </tr>
+	        <tr>
+	          <td><a href="http://baike.baidu.com/view/1369804.htm">余割函数</a></td>
+	          <td>Cosecant</td>
+	          <td>csc</td>
+	          <td>c/a</td>
+	          <td>∠A的斜边比对边</td>
+              <td>↘</td>
+	          <td>&nbsp;</td>
+	        </tr>
+          </tbody>
+      </table>
+	    <br>
+
+        <table class="table2">
+          <tbody>
+            <tr>
+              <th>角度</th>
+              <th><strong>0°</strong></th>
+              <th>15<strong>°</strong></th>
+              <th><strong>30°</strong></th>
+              <th><strong>45°</strong></th>
+              <th><strong>60°</strong></th>
+              <th><strong>90°</strong></th>
+              <th><strong>120°</strong></th>
+            </tr>
+            <tr>
+
+              <td><div><strong>弧度</strong></div></td>
+              <td>0</td>
+              <td>π/12</td>
+              <td>π/6</td>
+              <td>π/4</td>
+              <td>π/3</td>
+              <td>π/2</td>
+              <td>2π/3</td>
+            </tr>
+            <tr>
+              <td><div><strong>sin值</strong></div></td>
+              <td>0</td>
+              <td>(√6-√2)/4</td>
+              <td>1/2</td>
+              <td>√2/2</td>
+              <td>√3/2</td>
+              <td>1</td>
+              <td>√3/2</td>
+            </tr>
+            <tr>
+              <td><div><strong>cos值</strong></div></td>
+              <td>1</td>
+              <td>(√6+√2)/4</td>
+              <td>√3/2</td>
+              <td>√2/2</td>
+              <td>1/2</td>
+              <td>0</td>
+              <td>-1/2</td>
+            </tr>
+            <tr>
+              <td><div><strong>tan值</strong></div></td>
+              <td>0</td>
+              <td>2-√3</td>
+              <td>√3/3</td>
+              <td>1</td>
+              <td>√3</td>
+              <td>∞</td>
+              <td>-√3</td>
+            </tr>
+            <tr>
+              <td><div><strong>cot值</strong></div></td>
+              <td>∞</td>
+              <td>2+√3</td>
+              <td>√3</td>
+              <td>1</td>
+              <td>√3/3</td>
+              <td>0</td>
+              <td>-√3/3</td>
+            </tr>
+          </tbody>
+        </table>
+		<table class="table2"><tr>
+      <td>cos(α+β)=cosα·cosβ-sinα·sinβ</td><td>sinA/a = sinB/ b=sinC/c</td></tr>
+	  <td>sinα+sinβ=2sin[(α+β)/2]cos[(α-β)/2]</td><td>a2 = b2 + c2- 2bc·cosA</td></tr>
+	  </table>
+	</div>
+	<div class="right">
+        <canvas id="myCanvas" width="660" height="660" style="border:0px red solid; vertical-align:top; ">  
+            该浏览器不支持Canvas.  
+        </canvas>  
+       </div>
+   
+    </body>  
+      
+    </html>  

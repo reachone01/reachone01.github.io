@@ -1,0 +1,903 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.4em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.2em;
+}
+p{
+	margin-top:16px;
+	margin-bottom:12px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+<h4>《永遇乐·<a href="#" title="京口：古城名，即今江苏镇江。因临京岘山、长江口而得名。北固亭：晋蔡谟筑楼北固山上，称北固亭，原址位于今江苏镇江，北临长江，又称北顾亭。">京口</a>北固亭怀古》 辛<a href="https://baike.baidu.com/item/辛弃疾/134859?fr=aladdin">弃疾（</a>宋）</h4>
+
+<p>千古江山，英雄无觅<a href="#" title="孙仲谋：孙权，字仲谋。孙权（182－252年），东吴大帝，三国时期吴国的开国皇帝，曾建都京口。">、孙仲谋</a>处。</p>
+
+<p>舞<a href="" title="xiè">榭</a>歌台，风流总被、雨打风吹去。</p>
+
+<p>斜阳草树，寻常巷陌，人道<a href="#" title="南朝宋武帝刘裕小名。">寄奴</a>曾住。</p>
+
+<p>想当年，金戈铁马，气吞万里如虎。</p>
+
+<p><a href="#" title="元嘉，刘义隆年号。刘裕子宋文帝刘义隆好大喜功，仓促北伐，反而让北魏太武帝拓跋焘抓住机会，以骑兵集团南下，兵抵长江北岸而返，遭到对手的重创。草草，轻率。">元嘉</a>草草，<a href="#" title="狼居胥山，在内蒙古自治区西北部。汉武帝元狩四年（前119年）霍去病远征匈奴，歼敌七万余，于是“封狼居胥山，禅于姑衍”。积土为坛于山上，祭天曰封，祭地曰禅，古时用这个方法庆祝胜利。">封狼居胥</a>，赢得仓皇北顾。</p>
+
+<p><a href="#" title="作者于宋高宗绍兴三十二年（1162年），从北方抗金南归，至宋宁宗开禧元年（1205年），任镇江知府登北固亭写这首词时，前后共四十三年。">四十三年</a>，望中犹记、烽火扬州路。</p>
+
+<p>可堪回首，<a href="#" title="佛（bì）狸祠：拓跋焘小名佛狸。元嘉二十七年（450年），他曾反击刘宋，两个月的时间里，兵锋南下，五路远征军分道并进，从黄河北岸一路穿插到长江北岸。在长江北岸瓜步山建立行宫，即后来的佛狸祠。">佛狸祠</a>下，一片神鸦社鼓。</p>
+
+<p>凭谁问：廉颇老矣，尚能饭否？</p>
+
+
+<h4>《沁园春·雪》 毛泽东</h4>
+
+<p>北国风光，千里冰封，万里雪飘。</p>
+
+<p>望长城内外，惟余莽莽；</p>
+
+<p>大河上下，顿失滔滔。</p>
+
+<p>山舞银蛇，原驰蜡象，欲与天公试比高。 </p>
+
+<p>须晴日，看红装素裹，分外妖<a href="#" title=" ráo">娆</a>。</p>
+
+<p>江山如此多娇，引无数英雄竞折腰。</p>
+
+<p>惜秦皇汉武，略输文采；</p>
+
+<p>唐宗宋祖，稍逊风骚。</p>
+
+<p>一代天骄，成吉思汗，只识弯弓射大雕。</p>
+
+<p>俱往矣，数风流人物，还看今朝。</p>
+
+
+<h4>《满江红·写怀》 岳飞（宋）</h4>
+
+<p>怒发冲冠，凭阑处、潇潇雨歇。</p>
+
+<p>抬望眼，仰天长啸，壮怀激烈。</p>
+
+<p>三十功名尘与土，八千里路云和月。</p>
+
+<p>莫<a href="#" title="轻易，随便">等闲</a>、白了少年头，空悲切。</p>
+
+<p>靖康耻，犹未雪。</p>
+
+<p>臣子恨，何时灭。</p>
+
+<p>驾长车，踏破贺兰山缺。</p>
+
+<p>壮志饥餐<a href="#" title="对女真贵族入侵者的蔑称。">胡虏</a>肉，笑谈渴饮<a href="#" title="古代北方民族之一，这里指金入侵者。">匈奴</a>血。</p>
+
+<p>待从头、收拾旧山河，朝天阙。</p>
+
+<h4>《登高》 杜甫（唐）</h4>
+
+<p>风急天高猿啸哀，渚清沙白鸟飞回。</p>
+
+<p>无边落木萧萧下，不尽长江滚滚来。</p>
+
+<p>万里悲秋常作客，百年多病独登台。</p>
+
+<p>艰难苦恨繁霜鬓，潦倒新停浊酒杯。</p>
+
+
+<h4>《念奴娇·赤壁怀古》 苏轼（宋）</h4>
+
+<p>大江东去，浪淘尽，千古风流人物。</p>
+
+<p>故垒西边，人道是，三国周郎赤壁。</p>
+
+<p>乱石穿空，惊涛拍岸，卷起千堆雪。</p>
+
+<p>江山如画，一时多少豪杰。</p>
+
+<p>遥想公瑾当年，小乔初嫁了，雄姿英发。</p>
+
+<p>羽扇纶巾，谈笑间，樯橹灰飞烟灭。</p>
+
+<p>故国神游，多情应笑我，早生华发。</p>
+
+<p>人生如梦，一尊还酹江月。</p>
+
+
+
+<h4>《龟虽寿》 曹操（魏）</h4>
+
+<p>神龟虽寿，犹有竟时。</p>
+
+<p>螣蛇乘雾，终为土灰。</p>
+
+<p>老骥伏枥，志在千里；</p>
+
+<p>烈士暮年，壮心不已。</p>
+
+<p>盈缩之期，不但在天；</p>
+
+<p>养怡之福，可得永年。</p>
+
+<p>幸甚至哉！歌以咏志。</p>
+
+<h4>《行路难·其一》 李白（唐）</h4>
+
+<p>金樽清酒斗十千，玉盘珍馐直万钱。</p>
+
+<p>停杯投箸不能食，拔剑四顾心茫然。</p>
+
+<p>欲渡黄河冰塞川，将登太行雪暗天。</p>
+
+<p>闲来垂钓坐溪上，忽复乘舟梦日边。</p>
+
+<p>行路难，行路难，多歧路，今安在。</p>
+
+<p>长风破浪会有时，直挂云帆济沧海。</p>
+<h4>《过零丁洋》 文天祥（宋）</h4>
+
+<p>辛苦遭逢起一经，干戈寥落四周星。</p>
+
+<p>山河破碎风飘絮，身世浮沉雨打萍。</p>
+
+<p><a href="javascript:void" title="惶恐滩：在江西省万安县，急流非常险恶，是赣江十八滩中的一个。">惶恐</a>滩头说惶恐，<a href="javascript:void" title="零丁洋：在广东省珠海口的江面上。">零丁洋</a>里叹零丁。</p>
+
+<p>人生自古谁无死，留取丹心照汗青。</p>
+
+<h4>《水调歌头》 苏轼（宋）</h4>
+
+<p class="ref">丙辰中秋，欢饮达旦，大醉，作此篇，兼怀子由。</p>
+
+<p>明月几时有，把酒问青天。</p>
+
+<p>不知天上宫阙，今夕是何年。</p>
+
+<p>我欲乘风归去，又恐琼楼玉宇，高处不胜寒。</p>
+
+<p>起舞弄清影，何似在人间。</p>
+
+<p>转朱阁，低绮户，照无眠。</p>
+
+<p>不应有恨，何事长向别时圆。</p>
+
+<p>人有悲欢离合，月有阴晴圆缺，此事古难全。</p>
+
+<p>但愿人长久，千里共婵娟。</p>
+
+
+
+<h4>《将进酒》 李白（唐）</h4>
+
+<p>君不见黄河之水天上来，奔流到海不复回。</p>
+
+<p>君不见高堂明镜悲白发，朝如青丝暮成雪。</p>
+
+<p>人生得意须尽欢，莫使金樽空对月。</p>
+
+<p>天生我材必有用，千金散尽还复来。</p>
+
+<p>烹羊宰牛且为乐，会须一饮三百杯。</p>
+
+<p><a href="javascript:void" title="岑夫子 丹邱生，是跟李白一起喝酒的两个人物，岑夫子：指岑勋。丹邱生：指著名道士元丹丘">岑夫子，丹丘生</a>，将进酒，君莫停。</p>
+
+<p>与君歌一曲，请君为我侧耳听：</p>
+
+<p>钟鼓馔玉何足贵，但愿长醉不复醒。</p>
+
+<p>古来圣贤皆寂寞，惟有饮者留其名。</p>
+
+<p>陈王昔时宴平乐，斗酒十千恣欢谑。</p>
+
+<p>主人何为言少钱，径须沽取对君酌。</p>
+
+<p>五花马，千金裘，呼儿将出换美酒，与尔同销万古愁。</p>
+
+
+<h4>《短歌行》其一 曹操（魏）</h4>
+
+<p>对酒当歌，人生几何？</p>
+
+<p>譬如朝露，去日苦多。</p>
+
+<p>慨当以慷，忧思难忘。</p>
+
+<p>何以解忧？唯有杜康。</p>
+
+<p>青青子衿，悠悠我心。</p>
+
+<p>但为君故，沉吟至今。</p>
+
+<p>呦呦鹿鸣，食野之苹。</p>
+
+<p>我有嘉宾，鼓瑟吹笙。</p>
+
+<p>明明如月，何时可掇？</p>
+
+<p>忧从中来，不可断绝。</p>
+
+<p>越陌度阡，枉用相存。</p>
+
+<p>契阔谈宴，心念旧恩。</p>
+
+<p>月明星稀，乌鹊南飞。</p>
+
+<p>绕树三匝，何枝可依？</p>
+
+<p>山不厌高，海不厌深。</p>
+
+<p><a href="javascript:void" title="周公礼贤下士，求才心切，进食时多次吐出食物停下来不吃，急于迎客。后遂以“周公吐哺”等指在位者礼贤下士之典实。周公姓姬名旦，是周文王第四子，武王的弟弟，我国古代著名的政治家，曾两次辅佐周武王东伐纣王，并制作礼乐，天下大治。因其采邑在周，爵为上公，故称周公。武王崩，又佐成王摄政。周公摄政七年后，成王已经长大成人，于是周公归政于成王，自己回到大臣的位子。">周公吐哺</a>，天下归心。</p>
+
+<h4>《八声甘州》 柳永（宋）</h4>
+
+<p>对潇潇暮雨洒江天，一番洗清秋。</p>
+
+<p>渐霜风凄紧，关河冷落，残照当楼。</p>
+
+<p>是处红衰翠减，苒苒物华休。</p>
+
+<p>惟有长江水，无语东流。</p>
+
+<p>不忍登高临远，望故乡渺邈，归思难收。</p>
+
+<p>叹年来踪迹，何事苦淹留？</p>
+
+<p>想佳人，妆楼<a href="javascript:void" title="yóng  
+1.头大，引申为大的样子。
+2.仰慕。">颙</a>望，误几回、天际识归舟？</p>
+
+<p>争知我，倚栏杆处，正恁凝愁。</p>
+
+<h4>《无题》 李商隐（唐）</h4>
+
+<p>相见时难别亦难，东风无力百花残。</p>
+
+<p>春蚕到死丝方尽，蜡炬成灰泪始干。</p>
+
+<p>晓镜但愁云鬓改，夜吟应觉月光寒。</p>
+
+<p><a href="javascript:void" title="蓬山：蓬莱山，传说中海上仙山，指仙境。
+诗词中常以仙侣比喻情侣，青鸟是一位女性仙人西王母的使者，蓬山是神话、传说中的一座仙山，所以这里即以蓬山用为对方居处的象征。">蓬山</a>此去无多路，青鸟殷勤为探看。</p>
+
+
+
+
+<h4>《沁园春·长沙》 毛泽东</h4>
+
+<p>独立寒秋，湘江北去，橘子洲头。</p>
+
+<p>看万山红遍，层林尽染；</p>
+
+<p>漫江碧透，百舸争流。</p>
+
+<p>鹰击长空，鱼翔浅底，万类霜天竞自由。</p>
+
+<p>怅寥廓，问苍茫大地，谁主沉浮？</p>
+
+<p>携来百侣曾游，忆往昔峥嵘岁月稠。</p>
+
+<p>恰同学少年，风华正茂；</p>
+
+<p>书生意气，挥斥方遒。</p>
+
+<p>指点江山，激扬文字，粪土当年万户侯。</p>
+
+<p>曾记否，到中流击水，浪遏飞舟？</p>
+
+
+<h4>《春江花月夜》 张若虚（唐）</h4>
+
+<p>春江潮水连海平，海上明月共潮生。</p>
+
+<p>滟滟随波千万里，何处春江无月明！</p>
+
+<p>江流宛转绕芳甸，月照花林皆似霰。</p>
+
+<p>空里流霜不觉飞，汀上白沙看不见。</p>
+
+<p>江天一色无纤尘，皎皎空中孤月轮。</p>
+
+<p>江畔何人初见月？江月何年初照人？</p>
+
+<p>人生代代无穷已，江月年年只相似。</p>
+
+<p>不知江月待何人，但见长江送流水。</p>
+
+<p>白云一片去悠悠，青枫浦上不胜愁。</p>
+
+<p>谁家今夜扁舟子？何处相思明月楼？</p>
+
+<p>可怜楼上月徘徊，应照离人妆镜台。</p>
+
+<p>玉户帘中卷不去，捣衣砧上拂还来。</p>
+
+<p>此时相望不相闻，愿逐月华流照君。</p>
+
+<p>鸿雁长飞光不度，鱼龙潜跃水成文。</p>
+
+<p>昨夜<a href="javascript:void" title="幽静的水潭。">闲潭</a>梦落花，可怜春半不还家。</p>
+
+<p>江水流春去欲尽，江潭落月复西斜。</p>
+
+<p>斜月沉沉藏海雾，碣石潇湘无限路。</p>
+
+<p>不知乘月几人归，落月摇情满江树。</p>
+<h4>《临江仙·滚滚长江东逝水》 杨慎（明）</h4>
+
+<p>滚滚长江东逝水，浪花淘尽英雄。</p>
+
+<p>是非成败转头空。</p>
+
+<p>青山依旧在，几度夕阳红。</p>
+
+<p>白发渔樵江渚上，惯看秋月春风。</p>
+
+<p>一壶浊酒喜相逢。</p>
+
+<p>古今多少事，都付笑谈中。</p>
+
+<h4>《上邪》 佚名（汉） </h4>
+
+<p>上邪！</p>
+
+<p>我欲与君相知， 长命无绝衰。</p>
+
+<p>山无陵， 江水为竭，</p>
+
+<p>冬雷震震， 夏雨雪 ，</p>
+
+<p>天地合， 乃敢与君绝！</p>
+
+<h4>《虞美人》 李煜（南唐）</h4>
+
+<p>春花秋月何时了，往事知多少。</p>
+
+<p>小楼昨夜又东风，故国不堪回首月明中！</p>
+
+<p>雕栏玉砌依然在，只是朱颜改。</p>
+
+<p>问君都有几多愁？恰似一江春水向东流。</p>
+<h4>《黄鹤楼》 崔颢（唐）</h4>
+
+<p>昔人已乘黄鹤去，此地空余黄鹤楼。</p>
+
+<p>黄鹤一去不复返，白云千载空悠悠。</p>
+
+<p>晴川历历汉阳树，芳草萋萋鹦鹉洲。</p>
+
+<p>日暮乡关何处是，烟波江上使人愁。</p>
+
+<h4>《定风波》 苏轼（宋）</h4>
+
+<p class="ref">三月七日，沙湖道中遇雨，雨具先去，同行皆狼狈，
+<p class="ref">余独不觉，已而遂晴，故作此词。</p>
+
+<p>莫听穿林打叶声，何妨吟啸且徐行。</p>
+
+<p>竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。</p>
+
+<p>料峭春风吹酒醒，微冷，山头斜照却相迎。</p>
+
+<p>回首向来萧瑟处，归去，也无风雨也无晴。</p>
+<h4>《满庭芳·夏日<a href="javascript:void" title="周邦彦于公元1093年（哲宗元祐八年）任溧水（今江苏溧水县）令，时年三十七岁。无想山在溧水县南十八里，山上无想寺（一名禅寂院）中有韩熙载读书堂">溧水无想山</a>作》 周邦彦（宋）</h4>
+
+<p>风老莺雏，雨肥梅子，午阴佳树清圆。</p>
+
+<p>地卑山近，衣润费炉烟。</p>
+
+<p>人静乌鸢自乐，小桥外、新绿<a href="javascript:void" title="流水声">溅溅</a>。</p>
+
+<p>凭阑久，黄芦苦竹，疑泛九江船。</p>
+
+<p>年年，如社燕，漂流瀚海，来寄修椽。</p>
+
+<p>且莫思身外，长近尊前。</p>
+
+<p>憔悴江南倦客，不堪听、急管繁弦。</p>
+
+<p>歌筵畔，先安<a href="javascript:void" title="diàn  
+竹席">簟</a>枕，容我醉时眠。</p>
+
+<h4>《游子吟》·孟郊 （唐）</h4>
+
+<p>慈母手中线，游子身上衣。</p>
+
+<p>临行密密缝，意恐迟迟归。</p>
+
+<p>谁言寸草心，报得三春晖。</p>
+
+<h4>《凉州词》 王翰 （唐）</h4>
+
+<p>葡萄美酒夜光杯，欲饮琵琶马上催。</p>
+
+<p>醉卧沙场君莫笑，古来征战几人回？</p>
+<h4>《悯农》 李绅（唐）</h4>
+
+<p>（一）</p>
+
+<p>春种一粒粟，秋收万颗子。</p>
+
+<p>四海无闲田，农夫犹饿死。</p>
+
+<p>（二）</p>
+
+<p>锄禾日当午，汗滴禾下土。</p>
+
+<p>谁知盘中餐，粒粒皆辛苦。</p>
+
+
+<h4>《雨霖铃》柳永（宋）</h4>
+
+<p>寒蝉凄切，对长亭晚，骤雨初歇。</p>
+
+<p>都门帐饮无绪，留恋处、兰舟催发。</p>
+
+<p>执手相看泪眼，竟无语凝噎。</p>
+
+<p>念去去、千里烟波，暮霭沉沉楚天阔。</p>
+
+<p>多情自古伤离别，更那堪、冷落清秋节。</p>
+
+<p>今宵酒醒何处，杨柳岸、晓风残月。</p>
+
+<p>此去经年，应是良辰好景虚设。</p>
+
+<p>便纵有、千种风情，更与何人说？</p>
+
+<h4>《声声慢》 李清照（宋）</h4>
+
+<p>寻寻觅觅，冷冷清清，凄凄惨惨戚戚。</p>
+
+<p>乍暖还寒时候，最难将息。</p>
+
+<p>三杯两盏淡酒，怎敌他、晚来风急？</p>
+
+<p>雁过也，正伤心，却是旧时相识。</p>
+
+<p>满地黄花堆积，憔悴损，如今有谁堪摘？</p>
+
+<p>守著窗儿，独自怎生得黑？</p>
+
+<p>梧桐更兼细雨，到黄昏、点点滴滴。</p>
+
+<p>这次第，怎一个、愁字了得。</p>
+<h4>《狱中题壁》 谭嗣同（清）</h4>
+
+<p>望门投止思<a href="javascript:void" title="望门投止：望门投宿。张俭：东汉末年高平人，因弹劾宦官侯览，被反诬“结党”，被迫逃亡，在逃亡中凡接纳其投宿的人家，均不畏牵连，乐于接待。">张俭</a>，忍死须臾待<a href="javascript:void" title="忍死：装死。须臾：不长的时间。杜根：东汉末年定陵人，汉安帝时邓太后摄政、宦官专权，其上书要求太后还政，太后大怒，命人以袋装之而摔死，行刑者慕杜根为人，不用力，欲待其出宫而释之。太后疑，派人查之，见杜根眼中生蛆，乃信其死。杜根终得以脱。">杜根</a>；</p>
+
+<p>我自横刀向天笑，去留肝胆两昆仑。</p>
+<h4>《好了歌》 曹雪芹（清）</h4>
+
+<p>世人都晓神仙好，惟有功名忘不了！</p>
+
+<p>古今将相在何方？荒冢一堆草没了。</p>
+
+<p>世人都晓神仙好，只有金银忘不了！</p>
+
+<p>终朝只恨聚无多，及到多时眼闭了。</p>
+
+<p>世人都晓神仙好，只有娇妻忘不了！</p>
+
+<p>君生日日说恩情，君死又随人去了。</p>
+
+<p>世人都晓神仙好，只有儿孙忘不了！</p>
+
+<p>痴心父母古来多，孝顺儿孙谁见了？</p>
+
+<p>陋室空堂，当年笏满床。</p>
+
+<p>衰草枯杨，曾为歌舞场。</p>
+
+<p>蛛丝儿结满雕梁，绿纱今又糊在蓬窗上。</p>
+
+<p>说甚么脂正浓、粉正香，如何两鬓又成霜？</p>
+
+<p>昨日黄土陇头送白骨，今宵红灯帐底卧鸳鸯。</p>
+
+<p>金满箱，银满箱，展眼乞丐人皆谤。</p>
+
+<p>正叹他人命不长，那知自己归来丧！</p>
+
+<p>训有方，保不定日后作强梁。</p>
+
+<p>择膏粱，谁承望流落在烟花巷！</p>
+
+<p>因嫌纱帽小，致使锁枷杠，</p>
+
+<p>昨怜破袄寒，今嫌紫蟒长。</p>
+
+<p>乱烘烘你方唱罢我登场，反认他乡是故乡。</p>
+
+<p>甚荒唐，到头来都是为他人作嫁衣裳。</p>
+
+<h4>《长歌行》 汉乐府</h4>
+
+<p>青青园中葵，朝露待<a href="javascript:void" href="晞：天亮，引申为阳光照耀。a">日晞</a>。</p>
+
+<p>阳春布德泽，万物生光辉。</p>
+
+<p>常恐秋节至，<a href="#" title="焜黄：形容草木凋落枯黄的样子。 华（huā）：同“花”。">焜黄华</a>叶衰。</p>
+
+<p>百川东到海，何时复西归？</p>
+
+<p>少壮不努力，老大徒伤悲。</p>
+<h4>《天净沙·秋思》 马致远（元）</h4>
+
+<p>枯藤老树昏鸦，</p>
+
+<p>小桥流水人家，</p>
+
+<p>古道西风瘦马。</p>
+
+<p>夕阳西下，</p>
+
+<p>断肠人在天涯。</p>
+
+<h4>《闻官军收河南河北》 杜甫（唐）</h4>
+
+<p>剑外忽传收<a href="#" title="蓟北在唐代泛指幽州、蓟州一带，当时是安史叛军的主要根据地，是今天河北的北部地区。">蓟北</a>，初闻涕泪满衣裳。</p>
+
+<p>却看妻子愁何在，漫卷诗书喜欲狂。</p>
+
+<p>白日放歌须纵酒，青春作伴好还乡。</p>
+
+<p>即从巴峡穿巫峡，便下襄阳向洛阳。</p>
+
+<h4>目录</h4>
+<ol>
+<li>《永遇乐·京口北固亭怀古》 辛弃疾（宋）</li>
+<li>《沁园春·雪》 毛泽东</li>
+<li>《满江红·写怀》 岳飞（宋）</li>
+<li>《登高》 杜甫（唐）</li>
+<li>《念奴娇·赤壁怀古》 苏轼（宋）</li>
+<li>《龟虽寿》 曹操（魏）</li>
+<li>《行路难·其一》 李白（唐）</li>
+<li>《过零丁洋》 文天祥（宋）</li>
+<li>《水调歌头》 苏轼（宋）</li>
+
+<li>《将进酒》 李白（唐）</li>
+<li>《短歌行》其一 曹操（魏）</li>
+<li>《八声甘州》 柳永（宋）</li>
+<li>《无题》 李商隐（唐）</li>
+<li>《沁园春·长沙》 毛泽东</li>
+<li>《春江花月夜》 张若虚（唐）</li>
+<li>《上邪》 佚名（汉）</li>
+<li>《虞美人》 李煜（南唐）</li>
+<li>《黄鹤楼》 崔颢（唐）</li>
+<li>《定风波》 苏轼（宋）</li>
+<li>《满庭芳·夏日溧水无想山作》 周邦彦（宋）</li>
+<li>《游子吟》·孟郊</li>
+<li>《凉州词》 王翰 （唐）</li>
+<li>《悯农》 李绅（唐）</li>
+<li>《雨霖铃》柳永（宋）</li>
+<li>《声声慢》 李清照（宋）</li>
+<li>《狱中题壁》 谭嗣同（清）</li>
+<li>《好了歌》 曹雪芹（清）</li>
+<li>《长歌行》 汉乐府</li>
+<li>《天净沙·秋思》 马致远（元）</li>
+<li>《闻官军收河南河北》 杜甫（唐）</li></ol>
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换
+\s*<br />\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+
+
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+\s*</p>\s*
+\s*<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+
+4 把第和章两个字去掉
+第(\S*)章
+------------------
+$1
+_____________________________________________________________________________________
+
+7 正则表达式参考：
+https://www.toutiao.com/i6370960744082571778/
+_____________________________________________________________________________________
+
+8
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+9 将标注序号更改为上标，红色，需一个个替换，英文html中有[1]
+(\[\d\])
+------------------
+<sup>$1</sup>
+_____________________________________________________________________________________
+10 替换章不是以1-9。?！…”“结尾的段落
+([^1-90。?！…”：？“章])</p>
+<p>
+------------------
+$1
+-->
+
+

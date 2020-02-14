@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset=utf-8 />
+ <style>
+ .{
+ margin:0;
+ padding:0;}
+ #myCanvas{
+ border:1px solid #eee;}
+ p{
+ line-height:18px;
+ margin-bottom:0px;
+ margin-top:5px;}
+.left{width:35%; float:left; margin-right:5%:}
+.right{width:64%; float:left;}
+
+ </style>     
+    <head>  
+        <title>坐标轴</title>  
+        <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->  
+        <script type="text/javascript">  
+var sw = 660;  //640
+var sh = 660;  //480 
+	var sw = Number(document.getElementById('sw').value);  
+	var sh = Number(document.getElementById('sh').value); 
+function getCanvasContext() {  
+	var c = document.getElementById('myCanvas');  
+	if(c && c.getContext) {  
+		var g = c.getContext('2d');  
+		return g;  
+	} else {  
+		return null;  
+	}  
+} 
+  
+function init() {  
+	var g = getCanvasContext();  
+	g.translate(sw/2, sh/2);                  
+	initGraph();         		   
+}  
+  
+function initGraph() { 
+	var sw = Number(document.getElementById('sw').value);  
+	var sh = Number(document.getElementById('sh').value);   
+	var g = getCanvasContext(); 
+	//var hi1 = -MAX_HEIGH/2;
+	g.strokeStyle = 'black';  
+	if (g) {  
+		g.clearRect(-sw/2, -sh/2, sw, sh);  //如果想對比多個圖像，可以撤銷這條語句；
+		//g.strokeRect(-sw/2, -330, sw, sh);  
+		g.beginPath();  
+		//x軸
+		g.moveTo(-sw/2, 0);  
+		g.lineTo(sw/2, 0); 
+		
+		g.moveTo(sw/2, 0);  
+		g.lineTo(sw/2-10, 10); 
+		
+		g.moveTo(sw/2, 0);  
+		g.lineTo(sw/2-10, -10); 
+		//y軸
+		g.moveTo(0, -sh/2);  
+		g.lineTo(0, sh/2); 
+		
+		g.moveTo(0, -sh/2);  
+		g.lineTo(-10, -sh/2+10); 	
+						
+		g.moveTo(0, -sh/2);  
+		g.lineTo(+10, -sh/2+10); 
+		g.strokeStyle="#aaa";								
+		g.stroke();  
+		
+		g.font="16px 宋體";
+		g.fillStyle="#aaa";
+		g.textAlign="left";
+		g.textBaseline="middle";
+		g.fillText("X",sw/2-20,10);
+		g.fillText("Y",5,-sh/2+20);
+		//g.fillText("0",5,10);
+	}  
+}  
+  
+function draw() {  
+
+	initGraph();  
+		
+	 var sw = Number(document.getElementById('sw').value);  
+	var sh = Number(document.getElementById('sh').value);                  
+	var maxX = Number(document.getElementById('maxX').value);  
+	var maxY = Number(document.getElementById('maxY').value);  
+	var halfStep = Number(document.getElementById('halfStep').value); 
+	var xpx = sw/maxX/2;
+	var xpy = sh/maxY/2; 
+	  
+	var g = getCanvasContext();  
+			g.beginPath();
+			
+
+
+//畫X軸刻度		
+	if (g) {  
+		var x, y;  
+		var sx, sy;  //定義曲線開始的坐標點；
+		var currStep;  
+
+		  
+		for (currStep=-halfStep + 1; currStep<=halfStep-1; currStep++) {  
+			x = maxX * currStep / halfStep;  //x,y根據取值區間平均取halfStep*2個點，如x在區間（－10，10）是取20*2個點；
+			y = calculateY(x);  
+			sx = sw/2 * x / maxX;  //將上述取樣的x,y值根據像素轉變為像素坐標值；
+			//sy = calculateY(sx); 
+			sy = -sh/2 * y / maxY;  
+			if(sy!=0){
+			g.beginPath();
+			g.moveTo(sx, 0);
+			g.lineTo(sx, -10);
+			g.strokeStyle = '#bbb';  
+		g.stroke(); 
+		g.font="12px 宋體";
+		g.fillStyle="#bbb";
+		g.textAlign="center";
+		g.textBaseline="middle";
+		g.fillText(Math.round(x),sx,-15);
+		}	
+		}  
+
+	} 
+	
+//畫Y軸刻度						
+	if (g) {  
+		var x, y;  
+		var sx, sy;  //定義曲線開始的坐標點；
+		var currStep;                 
+		for (currStep=-halfStep + 1; currStep<=halfStep-1; currStep++) {  
+			x = maxX * currStep / halfStep;  //x,y根據取值區間平均取halfStep*2個點，如x在區間（－10，10）是取20*2個點；
+			y = calculateY(x);  
+			sx = sw/2 * x / maxX;  //將上述取樣的x,y值根據像素轉變為像素坐標值；
+			//sy = calculateY(sx); 
+			sy = -sh/2 * y / maxY; 
+			if(sy!=0){
+			g.beginPath(); 
+			g.moveTo(0, sy);
+			g.lineTo(10, sy); 
+			g.strokeStyle = '#bbb';  
+			g.stroke();  
+			g.font="12px 宋體";
+			g.fillStyle="#bbb";
+			g.textAlign="left";
+			g.textBaseline="middle";
+			g.fillText(Math.round(y),15,sy);
+			}
+		}  
+
+	}
+	
+
+}  
+  
+function calculateY(x) {  
+
+	  
+	var y = 1 * x + 0;  
+	return y;  
+}  
+              
+ 
+        </script>  
+    </head>  
+      
+    <body onLoad="init(); draw();">  
+	<div class="left">
+
+<form name="form1">
+        <table>  
+            <tr>  
+                <td>使用的画布宽sw：</td>  
+                <td><input type="text" size="4" id="sw" value="660"/></td> 
+				<td></td> 
+            </tr>  
+            <tr>  
+                <td>使用的画布高sh：</td>  
+                <td><input type="text" size="4"  id="sh" value="660"/></td>
+				<td></td>
+            </tr>  
+            <tr>  
+                <td>X轴最大值Mx:</td>  
+                <td><input type="text" size="4" id="maxX" value="100"/></td>  
+				<td>x轴取值:-Mx到Mx;</td>
+            </tr>  
+            <tr>  
+                <td>Y轴最大值My：</td>  
+                <td><input type="text" size="4"  id="maxY" value="100"/></td>  
+				<td>y轴取值:-My到My;</td>
+            </tr>  
+            <tr>  
+                <td>採樣點/2：</td>  
+                <td><input type="text" size="4"  id="halfStep" value="10"/></td>  
+				<td>x轴刻度数:採樣點</td>
+            </tr> 
+            <tr>  
+                <td colspan="3">(每单位x使用的像素:sw/2Mx)</td>  
+            </tr			
+            ><tr>  
+                <td></td>  
+                <td><button name="btnDraw" type="button" onClick="draw()">Draw</button></td>  
+				<td></td>
+            </tr>  
+        </table>  
+</form>
+
+	</div>
+	<div class="right">
+        <canvas id="myCanvas" width="660" height="660">  
+            该浏览器不支持Canvas.  
+        </canvas>  
+       </div>
+   
+    </body>  
+      
+    </html>  
