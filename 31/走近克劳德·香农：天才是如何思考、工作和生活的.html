@@ -1,0 +1,362 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>走近克劳德·香农：天才是如何思考、工作和生活的</h3>
+
+<p>在科学史上，有个足以和牛顿、爱因斯坦相提并论的天才人物。他叫克劳德·艾尔伍德·香农。</p>
+<p>香农被誉为信息论的创始人，还被认为是数字计算机理论和数字电路设计理论的创始人。</p>
+<p>1937年，21岁的香农在MIT发表了被誉为有史以来最具水平之一的硕士论文，文中论述了如何使用二进制开关进行逻辑运算，为未来的电子计算机奠定了基础。</p>
+<p>1948年，32 岁，香农发表了划时代的论文——《通信的数学原理》。在此论文中，他提出了比特单位，证明了信息是可以被量化的，并阐述了如何在保证准确率的前提下用数字编码对信息进行压缩和传输，奠定了现代信息论的基础。</p>
+<p>这篇半个多世纪前的文章于2001年再次发表，今天还能在谷歌学术里找到，引用次数高达81685次。下载地址：A mathematical theory of communication</p>
+<p>除了学术研究，香农还爱好杂耍、发明、骑独轮脚踏车和下棋等。</p>
+<p>香农的办公桌上放着一个他称之为“终极机器”的盒子，这是香农众多好玩的发明之一，是根据人工智能研究的先驱、数学家马文·闵斯基提出的想法而做出来的。</p>
+<p>这个盒子外表平淡无奇，只是在一侧有一个开关，弹一下开关，盒盖就会打开，一个机械手会伸出来；将开关复原，机械手就缩回盒子。</p>
+<p>只会关掉自身的“终极机器”</p>
+<p>除此之外，他还学过开飞机和爵士单簧管，并登上过 Vogue 杂志。如此精彩的斜杠人生，他是怎么做到的呢？Jimmi Soni与Rob Goodman在2017年出版了香农的传记。为了这本书，他们准备了5年，并对香农的家人和朋友进行了大量的独家访谈。</p>
+<p>在充分研究了克劳德·香农这位独特的天才后，Soni和Goodman总结出了12条从工作到生活中可借鉴的经验，希望能帮助大家在生活和工作中获得启发。</p>
+<p>1. 减少分心</p>
+<p>比起香农所处的 20 世纪中期，我们现在的生活更加丰富多彩 —— 比如社交媒体和智能手机 —— 不断地分散着我们的注意力，从而降低了效率。但不管在什么时代，如何避免分心都是生活中永恒不变的主题。香农向我们证明，想要减少分心的影响，光靠短时间的注意力集中是不够的，还需要对个人生活与工作习惯长期的塑造。</p>
+<p>首先，香农不会让自己花太多时间查看邮件的收件箱，他会把那些不想回复的邮件统一放到一个名叫「 Letters I’ve Procrastinated On For Too Long. 」的垃圾箱中。</p>
+<p>据了解，虽然香农的办公室经常大门紧闭，但他的同事们并不认为他难以相处，因为他们知道香农非常注重自己的隐私和安静思考的时间。香农的一位同事说：“你可以敲开他的门，他也会回应你的话，但除此以外，他只会跟自己说话。”</p>
+<p>另一方面，如果有同事带着新的想法或问题来拜访香农的话，香农通常会与对方进行几个小时的高效对话，并作出正确的决定。</p>
+<p>2. 重点先行，细节在后</p>
+<p>在数学工作中，香农可以直接抓住问题的核心并把细节放在后面考虑。他曾解释道：“我觉得自己更喜欢具象化而不是符号化。我会试图先感受问题本身，然后再谈方程式。”这就好像是先看到了答案，再来解释为什么这个是正确的。香农的学生 Bob Gallager 回忆道：“他有一种神奇的洞察力，仿佛能看穿事物本身。他会说‘ Something like this should be true ’，而且往往事后证明他是对的。如果你没有超凡的直觉，你不可能凭空开辟出一片全新的领域。”不过这偶尔也会给香农带来麻烦 —— 学术界的数学家们有时会指责他工作不够严谨。但他们的批评通常是错误的。数学家 Solomon Golomb 说：“事实上香农对于真相的直觉几乎从未失败过。”即使细节还需要完善，但结论几乎总是正确的。</p>
+<p>当然，大多数人都不是天才，而且也都没有像香农那样的神直觉。我们经常会因为注重细节而忽视直觉，错过创意迸发的瞬间。但即便直觉不足以引导我们开发出像信息论这样的新课题，也能帮助我们决定一件事情到底该不该做。不要指望好的想法会很有逻辑性，这完全是误解了创意在实际工作中的作用。作家 Rita Mae Brown 指出：“直觉是源于急躁的一种逻辑暂停。”</p>
+<p>3. 虚心听从导师的建议</p>
+<p>虽然导师很重要，但很多文章都喜欢把导师描写上帝：找到一个聪明的成功导师为你的职业生涯做支持，然后就万事大吉了。但事实并没有那么简单，我们还需要用心去聆听导师的建议，即使这些建议会听起来让你不舒服。</p>
+<p>对香农来说，最重要的导师应该是他在麻省理工学院的研究生学院顾问范内瓦·布什（ Vannevar Bush ）—— 在二战中主导美国军事科学研究计划，并成为了第一位总统科学顾问。他看出了香农的天赋，并很好的完成了一名导师的责任。</p>
+<p>例如，在香农的硕士论文大获成功后，布什就开始敦促他开始准备理论遗传学方面的博士论文。理论遗传学是香农从未涉及过的领域，与他所从事多年的工程和数学领域都相去甚远。但布什希望以此证明他弟子的战胜挑战的能力，而香农也承认这让他认识到了自己的可塑性。</p>
+<p>用心接受指导实际上是一种谦虚的表现：你对导师有充分的信任，你知道他能看到你看不到的东西。毕竟，当你最开始找到他的时候，必定有你所确信的理由。</p>
+<p>4. 善始未必善终</p>
+<p>范内瓦·布什对香农的影响还体现在另一个方面：比起专才，他更欣赏通才。正如他向 MIT 的教授所表达的那样：“在如今这个越来越讲求专业化的时代，我们应该提醒自己，像达芬奇或本杰明·富兰克林那样深度与广度兼修的可能性如今仍然存在。作为教师，我们应该善于发现和引导那些才华出众、但却只把自己限制在一亩三分地之中的年轻人。假如一个既聪明又富有创造力的人才坚持生活在一个修道院的小房间里，这是一个不幸的事情。”我们知道：布什的建议如今看来似乎有点不合时宜。工作上的各方面的压力都在要求着我们去竭尽全力地成为领域内的专家，培养一个与众不同的一技之长然后苦心专研。在这种观念下，那种广泛涉猎的行为简直如同儿戏，而且那样的人注定要被那些擅长专注的对手所打败。</p>
+<p>但如果让香农听到这些，他肯定会生气的。香农深深认同布什通才的观念，这也与香农天生好奇的性格不谋而合。在香农最著名的硕士论文里，糅合了“布尔逻辑”和“计算机”两方面的内容，让原本两个井水不犯河水的学科得到了融合。他本来可以把自己的才华全部用在某个特定的领域，不断专研深挖，终此一生。但幸运的是，他没有这样做。</p>
+<p>广泛涉猎也意味着想停就停的自由。即使像香农这样的天才，也不能保证所有工作都有好的结果。即使是 Time Ferriss（现代生产力运动的先知）也会鼓吹知晓什么时候该停下来的重要性：“懂得在没有结果的事情上及时收手，是成为赢家的必备条件。”同理，这也是为什么许多有才华的画家会在他们的工作室里存放着大量未完成的作品。</p>
+<p>5. 混乱未必是坏事</p>
+<p>当 Ed Thorp 在 1961 年与香农共同构建可携带的计算机时，他曾经拜访过香农的工作间，那是一个用来捣鼓各种东西的大型家庭作坊。他是这么描述的：“这是一个发明者的天堂，有数以百计的机械和电子设备，像电机、晶体管、开关、滑轮、齿轮、冷凝器、变压器等等。”香农随心所欲地在各个项目之间窜来窜去，丝毫不介意自己的手变脏，也不介意那些零件和半成品散落各地。</p>
+<p>香农在学术研究上也是这样。他的阁楼里塞满了纸条、写了一半的文章以及写着“好问题”的报告纸。</p>
+<p>我们一方面对香农那些未能发表的工作表示遗憾，另一方面，我们也认识到正是这样的混乱给他的创作提供了条件。香农并不把时间和精力花费在整理论文和工作室上，而是将其投入到研究国际象棋、机器人或者投资策略中了。</p>
+<p>6. 时间是创意的土壤</p>
+<p>香农的广泛兴趣使他需要足够的时间才能把想法变成现实。但不幸的是，他通常不会公布他的发现成果。他总是跟随着好奇心而动，虽然有时看起来很低效，但是若干年后他可能会回头来继续研究他最好的想法。</p>
+<p>1939 年香农研究生毕业的时候，他开始有了研究关于“信息传输系统的基本属性，包括电话、无线电、电视、电报等等”的想法。从有想法到发表论文，适逢第二次世界大战，他参与了对高射炮理论和密码学的研究，以致于他只能在业余时间研究信息论。</p>
+<p>研究工作并不是线性的，想法总是随时到来：“我记得有一天晚上半夜醒来，我突然有了一个想法，然后我就整晚都在研究这个想法。”香农的一个同事说，当他的信息论论文发表时，“就像一颗炸弹”。这是坚持了十年研究的成果，而香农的耐心使得他的理论非常成熟。</p>
+<p>这也许是我们最难理解的一条，生活在追求“及时满足感”的时代，在工作中多等 10 分钟都已经变得稀奇，更不用说等 10 年了。但是对于从事创新、创业以及创造性工作的人们而言，也许这就是最好的一课了。精英都把时间当做朋友。</p>
+<p>记住：香农并不是 10 年时间全副精力都扑在研究信息论上。事实上，他只在业余时间研究信息论。但是也正是他的坚持和耐心，使得他能完成了这份重要的工作。</p>
+<p>7. 朋友贵精不贵多</p>
+<p>香农的朋友不多。贝尔实验室的同事说，香农并不是“不友善”，只是他不喜欢社交。香农的另外一位同事 Brockway McMillan 说道：“香农一贯对数学问题的争论没有耐心，他解决问题的方式与大多数人的做法不同。”正如 McMillan 所说的那样，香农超出常人的智商往往会使得他有一种冷漠的气质。“他从来没有争辩过他的想法。如果人们不相信，他就会忽略掉那些人。”傲慢和自信之间只是一线之隔，但香农一般处于右边，因为他有智慧来支撑他的自信。但同样重要的是，他花了很多时间来积累这些资源，因为他从来没有被卷入过类似于办公室斗争的事件中。在香农心中，解决问题的乐趣比所有东西都重要。因此，他在选择朋友时，会选择那些志同道合的人。</p>
+<p>阿兰·图灵（ Alan Turing ）是他为数不多的朋友之一。图灵在二战期间曾代表英国政府来美国实地调查密码学研究，他们有过一场深入的交流。香农对待友谊侧重于内容，而不仅仅是关系。当然，香农和他的朋友们也有一些玩乐的时候，但相对于大多数人而言，他们也花更多的时间讨论严肃和令人头疼的事情。</p>
+<p>这并不意味着你要放弃现在所有的朋友，这意味着我们要问自己，你的朋友是谁，你们一起做什么事情。多想想你们一起的时间的价值是什么，如果你觉得应该变一变，就改变它。</p>
+<p>8. 应该如何看待金钱</p>
+<p>传说中香农的办公室里到处都是支票（版税以及股票投资的收益），但是他好像并不在意这些钱。香农的一位同事说确实看到过他的办公桌上有一张大额度未兑现的支票，而且朋友们在回忆的时候总是提到他似乎对金钱漠不关心。赚钱从来都不是香农最关心的问题，但是他的确赚到了不少钱。斯多葛学派哲学家 Seneca 有一条伟大的名言：“能够视陶器为银器的人是伟大的，而视银器为陶器的人也同样伟大。没有一个强大的内心就不能忍受财富的考验，对金钱的追求会妨害我们对真正重要事情的追求。金钱既不是万恶之源，也不能解决我们所有问题：问题在于它是否挡在了对真正重要事情追求的道上。”香农是一个很好的例子。他很富有，也没有被追求财富所左右。</p>
+<p>我们需要提醒自己，虽然财富随着工作而来，但它并不是我们所要追求的目的。硅谷企业家保罗·格雷厄姆（ Paul Graham ）这样说道：“我告诉创始人先把重点放在做出好东西上，而不是担心如何赚钱。为此，我受到过很多批评。但是这正是谷歌和苹果的成功之道。”</p>
+<p>9. 复杂很简单，简单很复杂</p>
+<p>香农喜欢极度的简洁。1952 年，在与贝尔实验室工程师的一次谈话中，香农介绍了一个非常有效的问题解决策略。第一条就是：我们应该通过简化来解决问题。香农说：“几乎遇到的每一个问题都会被各种无关的数据混淆，如果能简化问题，就能更容易看到问题的本质。”简化是一门艺术：需要一点点剥去问题表面的东西。Bob Gallager 博士是香农的研究生，后来也成了信息理论研究的领导人物，他亲眼见识过香农是怎么对问题进行简化的。有一天他对香农说了几点他的新想法，然而对香农来说，那些都太过“花哨”：</p>
+<p>他看起来有些疑惑，说：'你真的需要这个假设吗？'，我说：‘好吧，我想这个假设可以去掉’。过了一会儿，他又说：'你也需要这个假设吗？'，一直这样重复了大概五六次。在某一时刻我感到很不高兴，因为我看到了研究问题变得微不足道。但在所有这些碎片都被剥离时，我们看到了如何解决它。然后我们逐渐将所有这些假设放回去，然后我们看到了问题的解决方案。</p>
+<p>我们从小就被教育说越能掌握复杂的概念越证明我们的智商高。问题越复杂，越需要聪明的人才能解决。但是，香农让我们也看到了相反的一面 —— 越追求简单，越需要更高的智商。</p>
+<p>正如作者 Ben Casnocha 所写的：“简化复杂的问题并不意味着忽略问题的复杂性。”不要将简单与简单思考混淆，要将其简化并提炼事物的本质是很难的事情。</p>
+<p>10. 水到渠成</p>
+<p>在香农 30 几岁时，他是美国科学界中最耀眼的明星之一，被媒体和荣誉所环绕着。他的”信息论”迅速走红，而他也经常被吹捧为当代最优秀的科学家之一。</p>
+<p>香农的信息论成为了当时的时髦词，从地质学到政治学再到音乐学，各个学科都恨不得用它来解释一切。然而，在香农风头最盛时，他却呼吁大家减少对他的吹捧：“（信息论）被过誉了。各个领域的同行科学家们被外界对它的赞赏和科学分析的新途径所吸引，开始用它来解决问题……信息论变得有点像万金油的感觉。”同时，香农建议工程师和数学家要把注意力放回研究本身：“信息论如果是一个商品，现在已经卖出去了 —— 我们现在应该继续把注意力投入到尽可能高水平的研究和开发工作上去。”这并不是因为香农想独揽成果。相反，他很欢迎那些对信息论有效应用的成果，他担心的只是开发出来的理论被赋予过多超出它们内在价值的意义。这份声明在科学界引起了一些回响。这对那些涉世未深的年轻人意味深远。但香农对来说，最重要的是回归真实 —— 这是他对真诚、严肃的科学研究的承诺，而这终将给他带来声誉。</p>
+<p>就像伟大的哲学家 Regina George 在电影《 Mean Girls 》中说到的一样：“我们挖空心思去追求的事情一般都不会发生，水到自然渠成。”</p>
+<p>11. 功名诚可贵，自由价更高</p>
+<p>在反思职业生涯走过的路时，香农坦诚地说：“我认为自己的目标从来都不是为了获奖，我的动力更多是源自于好奇心，而不是对财富的渴望。我就是想弄明白事物的组成原理、运行的规则或者是否有什么理论能决定事物的是与非。”香农并非在夸大其词。他总是在被授奖之后推不愿去领取。那些邀请他去演讲的信件都会被他放到垃圾箱里了。除此之外，他的这种冷漠态度还以另外一种方式展示出来：他曾被授予过很多荣誉学位，于是他把那些博士服坎肩挂在一个类似旋转式领带架的设备上。虽然不知道那些颁奖机构会不会不爽，但这表现出了香农对“被赞美”的轻描淡写的态度。当然，淡泊名利的行为也有一定好处。数学家一般不愿意在一些不够高大上的问题上投入时间 —— 他们称之为“幼稚问题”。但香农却愿意做那些真正“幼稚”的事情。对香农来说，他得以投身于那些“著名”科学家们不屑于涉足的领域：玩具机器人、国际象棋、杂耍、独轮单车。他还造出了会玩杂耍球的机器，以及吹奏时喷火的小号。说起来容易，做起来难。我们都不会忽视自己的社会地位，特别是对那些具有雄心壮志的精英来说，要做到淡泊名利是多么的困难。但香农的例子告诉我们，在这种淡泊名利的背后隐藏着同样有价值的东西：乐趣与自由。</p>
+<p>跟“成就”比起来，“乐趣”可能显得过于随意。但“自由”则不同。即使可能有损他的社会地位，香农也毫不在意。他让自己自由地去探索任何感兴趣的学科，某种程度上，这种自由正是源自他从不关心其他人怎么看待自己。当我们走在追名逐利的路上时，常常会忽略为此付出的自由的代价。放下这些所谓的荣耀，轻松地去生活和学习。</p>
+<p>12. 别坐等灵感</p>
+<p>有多少人想寻找像香农那样的突破，但是却坐等灵感来袭？可能吗？著名画家 Chuck Close 曾说：“灵感是给业余爱好者的，要相信成果会在工作本身中萌芽。通过用心工作，碰到其他的可能性、打开意料之外的其他的门，如果只是坐着等一个伟大的艺术创意出现，那它永远不会出现。”香农也有相同的看法，只不过他寻找的是一个伟大的“科学想法” —— 最重要的是，想法来自于做，而不是等待。香农告诉贝尔实验室的工程师们：一个伟大的科学头脑的标志并不是秒思如泉涌，而是一种动机。某种想要找到答案的渴望，想要找出事物运行的本质的渴望。这一根本驱动力是必不可少的，如果你没有这些，即使你可能拥有世界上所有的技能与智慧，但是你没有问题，你就不可能找到答案。香农对天才的描述也令人耳目一新：天才只是一个把愤懑发泄在有用的地方的人。而那种有用的刺激一直不会来，直到会在工作中，你偶然发现一些令你烦恼的事情，看起来怪怪的，让你纠结。</p>
+<p>不要逃避那些时刻。不惜一切代价坚持下去。</p>
+<p>原文链接：</p>
+<p>https://medium.com/the-mission/10-000-hours-with-claude-shannon-12-lessons-on-life-and-learning-from-a-genius-e8b9297bee8f</p>
+<p>《信息简史》詹姆斯?格雷克著；高博译</p>
+<p>百万级销量科普畅销书作家詹姆斯?格雷克七年磨一剑，带来一段人类与信息遭遇的波澜壮阔的历史，告诉我们如何在信息时代的信息爆炸中生存。</p>
+<p>格雷克不仅在书中细致还原了历史细节，通俗解释了各种理论，还生动刻画了几位不为大众所知的人物：可编程计算机先驱、超越时代的查尔斯?巴贝奇，第一位程序员、诗人拜伦之女爱达?拜伦，计算机科学之父、天妒英才的阿兰?图灵，以及全书的主人公、信息论之父克劳德?香农。</p>
+
+
+<p style='float:right;'>本页共66段，7657个字符，20719 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
