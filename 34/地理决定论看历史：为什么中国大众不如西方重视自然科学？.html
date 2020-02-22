@@ -1,0 +1,414 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>地理决定论看历史：为什么中国大众不如西方重视自然科学？</h3>
+
+<p>
+</p>
+
+<p>前不久引力波被NASA（美国航天局）正式捕捉到，在中国则有一段“民间科学家谈论引力波”的视频被翻出来，网上甚至因此掀起了骂战。关于是否支持民间科学家，社会上存在两种截然不同的态度：一种观念认为民间科学家理论基础不扎实，大多缺乏可信的数据及推导，基本上就是忽悠人；另一种观念则认为民间科学家值得尊重，因为他们有热情、有想法，并且能在一个领域中研究十几年甚至几十年，有一些研究成果也是很正常的。而最近则有官员表示：民间科学家精神难得，但是也非常可怜。这恰恰反映了所谓“民间科学家”在中国社会中尴尬的现状。
+</p>
+
+<p>民间科学家现象反映出来的现状之一，就是在中国研究自然科学是少数人的事情。大多数国人的科学素养仍处在较低水平，自然科学得不到大众重视。也许有人会说：在今天官本位、金本位横行，炒一下房地产就可以赚一个科学家一辈子的薪水，没人愿意费尽心力却清贫一生。这确实有一定的道理，但是从历史的视角去观察，我们会发现，古代中国和现代中国在自然科学发展研究方面有着某些相似——只有少数人达到高度成就，大众的科技参与度极低。如何从历史中分析原因，汲取经验教训，对我们中国以后的科技发展大有裨益。
+</p>
+
+<p>清朝光绪年间印制的《算经十书》善本
+</p>
+
+<p>比如南北朝时期的祖冲之（429-500）可以把圆周率精确到到小数点后第七位，领先世界1000多年，然而可悲的是祖冲之写过《缀术》五卷（被收入著名的《算经十书》中），《隋书》评论“学官莫能究其深奥，故废而不理”，时人认为《缀术》理论过于深奥，计算太过精密，难以理解，所以祖冲之的学术成就没有后人可以继承。
+</p>
+
+<p>再如唐玄宗年间的一行和尚（僧一行，俗名张遂，683-727），是世界上首次测量本初子午线长度的人，其改良的浑天仪可反应日月星辰的运行轨道，从这个角度我们甚至可以认为中国人首次证明地球是圆的。其修订的《大衍历》把一年分为24个节气，对指导中国农业生产产生了深远的影响，还被当时的遣唐使带到日本使用。但是一行和尚由于劳累英年早逝，其生前所著也散失殆尽，无从稽考。
+</p>
+
+<p>这样的例子还有东汉发明地动仪的张衡、北宋大科学家沈括、元朝著名科学家郭守敬、明末清初著有《天工开物》的宋应星等等，他们无不创造了当时的科技奇迹。试想，如果古代也有诺贝尔奖，估计相当一部分获得者应该都是中国人了。
+</p>
+
+<p>祖冲之的成就在当时没有人能够继承
+</p>
+
+<p>然而可惜，中国古代这些伟大科学家的成就基本上在其本人死后就不再得到继承和发扬，普通民众甚至对科技的神奇披上神话的外衣，好像这些人能通神鬼，可呼风雨。典型的例子就是唐朝天文学家、数学家李淳风，普通民众最津津乐道的是他传颂千年的《推背图》，这些晦涩模糊的词句里面似乎可以看透未来。他在天文、数学、历法方面的成就更只是被当成神话而已，人们状其多智而近妖，好似三国时期的诸葛亮（诸葛亮的木牛流马、诸葛连弩等科技发明在当时人心中只是妖法一般的存在）。
+</p>
+
+<p>纵观整个中国古代科技史，我们不难发现笔者开始提出的观点基本无误：自然科学在中国历史中，一直是少数人的领域，人民大众很少实际重视和参与。这里所说的重视，不是当今网民大骂戏子收入过高要求给科学家加工资，而是作为普通人关心科技发展、学习科学基础知识、参与自然科学活动。在中国历史中，全民重视并积极参与的恐怕只有做官发财了。
+</p>
+
+<p>油画《雅典学派》
+</p>
+
+<p>把目光投降远在西方的欧洲，则情况大不一样，欧洲文明的起源古希腊文明从一开始就非常重视哲学与自然科学，我们熟知的毕达哥拉斯（约公元前580～约前500）、亚里士多德（公元前384-前322）、欧几里得（公元前325-前265）、阿基米德（公元前287-前212）就是活跃在那个时期的伟大科学家（数学家），关于他们的事迹一般人也都耳熟能详，这里就不一一赘述。而随着欧洲历史的发展，人们对于自然科学的热情与重视几乎从未断绝，即便经历黑暗肮脏的欧洲中世纪，即便有很多人为了自然科学真理献出生命，自然科学之火都从未熄灭，一直与神学、文学、艺术等一起流淌在欧洲人的血液里。到了文艺复兴时期更是爆发式发展，一下子让整个欧洲的科技水平赶超东方的中国。
+</p>
+
+<p>那么，为什么会说中国大众不如西方重视自然科学是由地理因素决定的呢？笔者不直接用地理因素回答这个问题，而是用文字、政治、生活三个因素分别回答：
+</p>
+
+<p>甲骨文、古埃及文字和楔形文字
+</p>
+
+<p>文字因素：经过现代科学教育的我们基本上都能理解，对于数学、物理学等自然科学的学习理解，字母对汉字有着先天性的优势。试想我们把所有数学、物理公式都转化成汉字表达，恐怕每个人都会看的头大。从而也不难理解，为什么祖冲之用汉字撰写的科学著作难以得以流传，因为太不直观。汉字是感性的表意象形文字，而科学则是必须依靠严谨的逻辑公式，在表意象形和清晰逻辑之间切换，确实太费脑力（所以说现代中国人普遍学数学困难是有历史和文化原因的）。而用字母和符号表达的科学公式，则相对简单易懂很多。
+</p>
+
+<p>那么文字因素则与地理因素有着密不可分的关系，象形文字的产生和发展有赖于一个长期稳定的社会，如果这个社会人口流动性差则更好了，因为象形文字学习起来较为困难，要学习成百上千个文字必须耗费比较久的时间。而字母文字的产生和发展对社会稳定性的要求则没有那么高，即使有较大的人口流动，学习几十个简单易写的字母还是非常容易的。
+</p>
+
+<p>而中国自确立农耕为主体后，整个社会就趋于稳定且容易做到自给自足，所以智者们有时间造出上千个象形文字来一一对应生活中遇到的事物，同样也有时间把这些繁复的文字教授给下一代。以农耕为主体则完全由中国的地理环境决定，温暖的气候、广袤的平原和肥沃的土壤让华夏儿女可以定居在一个地方依靠种植农作物就能活下来。
+</p>
+
+<p>欧洲文字演化示意图
+</p>
+
+<p>但是欧洲没有中国古代那么好的地理环境，欧洲气候较寒冷，土壤肥厚的地方并不多，很难依靠一片土地就能自给自足的古欧洲人，必须经常迁徙或者从事贸易获取生活必需品才能活下来。而这就造成了欧洲社会人口流动性较大。如此，古代欧洲人创造的文字无法像中国那样繁多复杂，能代表简单音节的字母就成了他们最好的选择。值得对比和注意的是，古埃及（北非）、古巴比伦文明（西亚）都是使用象形文字的，但是由于土地有限、战乱等原因人口流动性较大，都没有存活下来，只有相对简单的字母得以生存并在欧洲流传开来，所以我们现在看欧洲各国使用的字母基本大同小异。
+</p>
+
+<p>小结一下，文字是影响科技发展的重要因素，而地理环境则决定了文字的产生及发展。
+</p>
+
+<p>秦弩示意图
+</p>
+
+<p>生活因素：科技、哲学和艺术都是源自生活并高于生活，并且最终服务于生活。古代文明中的大部分科技发明都是在日常生活中创造发现的。但是中欧在科技发展方面有一个很大的区别就是：中国更偏于具体实用，欧洲更偏于抽象逻辑。
+</p>
+
+<p>以差不多同时期的春秋战国和古希腊举例，春秋战国时期科技主要体现在当时的战争工具上，如攻守城器械（墨家为典型）、青铜兵器（后期有铁质兵器）及弓弩箭等等，非军事用途的科技发展则以水利、天文、生活用具等攸关生活的方面为主。在哲学方面如儒家、法家、兵家、墨家、纵横家等也多以富兵强国为最终目的（道家是例外，但是发展的更接近玄学）。而古希腊则在几何学、代数学、物理学等方面有着卓越的发展，与日常生活可以有较大的脱离，哲学也多为研究人类和自然本质的类型，与当时的政治军事生活有一定的脱离。
+</p>
+
+<p>从地理环境的角度看，春秋战国时期的中原地区，地形广袤平坦，产生的农耕文明由于较高的单位生产面积可以养活更多的人口——据推算当时东周分封的各诸侯国总人口约为2500万~3000万之间。而欧洲由于自然环境的影响只能更多发展畜牧捕捞业，单位面积产能较低，以雅典城邦为例，鼎盛时期公民人口约为10万，非公民人口约为40万，合计不过50万。当时整个欧洲的总人口不过百万级别。造成的区别是中国人口相对稠密，欧洲则地广人稀。稠密的人口要想生存的后果：一是不断改进生产工具提高生产力，二是消灭别国人口占领别人的土地和资源。地广人稀的欧洲则可以一定程度上脱离这种情况，人们有更多时间思考人与自然的本质，从而可以更好地发展自然科学与哲学艺术。
+</p>
+
+<p>欧洲和中国山脉河流示意图
+</p>
+
+<p>政治因素：通过历史我们不难看出，中国古代的大科学家在科技领域做出的成就主要是为了服务统治阶级，而欧洲古代的大科学家们做出的成就跟统治阶级的关系就不大。古代中国中央集权的政治情况让普通人上升的道路基本上只剩下做官一条路，而古欧洲权力分散的整治情况则更有利于普通人在自然科学、哲学、宗教、艺术和文化等多领域发展。同样是“智者”的概念，在古代中国和古代欧洲的差别就十分明显。
+</p>
+
+<p>还是以相同时期的春秋战国与古希腊名人举例：春秋战国时期的鬼谷子以培养人才为名，是中国人千年崇拜的智者。孙膑、庞涓、苏秦、张仪、商鞅等都是他的门生，这些徒弟各有特色，但有一个共同特点——学以致用于服务统治者。而古希腊的苏格拉底徒子徒孙里也是名人辈出，他和他的徒弟柏拉图、徒孙亚里士多德并称为“希腊三贤”，除此之外还有毕达哥拉斯、欧几里得、阿基米德等大科学家，他们不需或不屑为统治阶级折腰，阿基米德死在罗马士兵的剑下的时候还在画几何图形，似乎耿直得有些愚昧，但并不妨碍欧洲人把自然科学领域的伟人当成智者继续崇拜。
+</p>
+
+<p>中国欧洲两地的政治形态为何如此不同？这和地理环境有着密切的关系。在中国，东面有渤海、黄海、东海，南面是南海和东南亚热带雨林，西面是各种高耸的山脉和大片的沙漠，北面则是寒冷的戈壁和草原，只有中间这一块，地形平坦、土地肥沃、风调雨顺、不太冷也不太热。这一大片好地方无论分裂成多少国家，最后总会被统一，就是因为中华民族发源于这一块宝地之中，人口扩张迅速，周边的东夷、南蛮、西戎、北胡都被迫迁徙到自然环境较为恶劣的地方去，或者直接被炎黄子孙融合。占有绝对优势的单一民族及文化造成的结果就是无论哪朝哪代，都以统一中国为基本任务。而欧洲地理环境相对较差，欧洲较多的半岛、岛屿及多山的地形导致各国之间有着巨大的天然屏障，是冷兵器时代很难逾越克服的统一困难。从欧洲地形图上我们可以看到比利牛斯山脉隔开了法国和西班牙，阿尔卑斯山脉隔开了意大利和法国、德国，英吉利海峡则让英国独善其身……加上古代欧洲种植业不发达造成的人口总数较少，使得各国都缺乏统一欧洲大陆的野心。中国统一的民族和国家非常容易形成
+</p>
+
+<p>中央集权的政治制度，而欧洲因自然条件造成了相对均衡的民族分布，权力就较为分散。
+</p>
+
+<p>通过以上从文字、生活。政治三方面的分析我们不难看出，中国不重视自然科学的传统，根源和地理环境有着密不可分的关系。地理环境深刻影响了一个地方的文字类型、生活方式和政治状态，而文字、生活和政治则深入影响着一个民族对自然科学的态度。
+</p>
+
+<p>很多人或许对此观点不以为然，认为地理决定论只是巧合而已，或许他们会举出个别例子反驳这个论点。笔者也承认地理决定论只是分析问题多种方法中的其中一种，但是笔者在前文（参见拙作《冷历史系列：浅谈地理决定论之从中国和欧洲对比说起》）中就提到的：地理决定论衡量的时间尺度越长，这种理论就越准确。而且笔者也坚持地理决定论是非常根本的分析方法，是决定论中的决定论。
+</p>
+
+<p>回到本文开头提到的民间科学家的问题，很多国人认为“民间科学家”与“正牌科学家”之间的最重要的区别是数学基础的差别。笔者认为这是一种谬误，以牛顿发现并证明万有引力为例，假如牛顿没有数学基础，只是发现了万有引力的存在，而没有证明并计算出万有引力公式，在现在的中国则多半会被当成“民间科学家”对待。而这种发现式的科技创新也是自然科学领域不可分割的重要部分。我们举几个例子：
+</p>
+
+<p>提出生物进化论的达尔文缺乏数学基础，主要依据对各地的地理和生物的观察总结规律得出来生物进化论；
+</p>
+
+<p>现代遗传学之父孟德尔的工作是神父，同样没有多高深数学基础的他在“不务正业”的时候通过种豌豆发现了孟德尔第一、第二遗传定律，成为遗传学领域的奠基人。在他的论文中，用到的数学理论非常基础，初中生完全可以驾驭。
+</p>
+
+<p>爱德华·威尔逊（Edward Osborne Wilson）
+</p>
+
+<p>其实，“只有少数几门科研领域对数学能力有严格要求，比如粒子物理，天文物理和信息理论。在其他科学领域中，提炼出新概念的能力才是最为重要的——一个合格的科研工作者应该具有丰富的想象力和敏锐的直觉。”“对于许多有志于成为科学家的年轻人来说，数学是一大难题。不懂高等数学怎么去钻研科学呢？告诉大家一个职业秘密。当今世界上许多最有成就的科学家在数学上堪称半文盲。”——哈佛大学荣誉退休教授E·O·威尔逊（他本人数学就不好）
+</p>
+
+<p>所以笔者对民间科学家是持坚定支持态度的，即便他们数学不好，即便他们学历不高，但是他们依然可以发现科技领域的新概念。更何况很多“正牌科学家”一门心思研究怎么做官去了，不见得比民间科学家在具体领域更优秀。只是笔者希望以“民间科学家”为名招摇撞骗的人能少些。
+</p>
+
+<p>大家对哪些历史或当今的各类现象感兴趣可以留言，笔者会尽量用地理决定论的角度给各位留言者解释。
+</p>
+
+<p>——作者仓梁
+</p>
+
+
+
+<p style='float:right;'>本页共40段，5273个字符，15598 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

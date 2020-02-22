@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>近三百多年物理学思维观念的演变</h3>
+
+<p>转自王正行读《物理学的进化》</p>
+<h4>1 物理学的开端</h4>
+<p>谈物理学的进化，当然要从物理学的开头说起。物理学从什么时候算起？爱因斯坦和英费尔德说从伽利略算起。这已经是一个常识。可是，早在两千多年前，亚理斯多德就写过一部《物理学》了，没准“物理学”这个名称就是他首先使用的呢。为什么不从亚理斯多德算起，为什么希腊人不争这个优先权？连我们都有人说早在《墨经》里就有光学了嘛！爱因斯坦和英费尔德已经为我们想到这个问题了，所以他们一开篇就说：<strong>伽利略的发现以及他所运用的科学的推理方法是人类思想史上最伟大的成就之一，而且标志着物理学的真正开端。</strong>这就是说，物理学诞生的标志，是伽利略的发现和导致这个发现的推理方法。</p>
+<p>人类在这个世界上生活，必须有一些感觉器官来探测周围的环境，探测的结果会在头脑中形成直觉。比如亚理斯多德看到静止的物体不推它不会自己运动，墨子注意到了光的针孔成像，这都属于我们的直觉。但直觉往往靠不住，必须经过理性的思考才能形成正确的认识，形成理论。物理学不是感观现象的记录和罗列，也不是一套规则或定律的汇编，而是一个严谨的思维和观念的逻辑体系。<strong>这个思维和观念的逻辑体系，是从伽利略才开始诞生的。</strong>爱因斯坦和英费尔德详细叙述了导致伽利略发现物体惯性的思考、假设和推理，以及最后被牛顿总结和归纳成力学体系，这里就不重复。爱因斯坦一生中多次反复强调，<strong>没有理论依据的经验是不可信的</strong>，原因就在于此。经验只是一种直觉，<strong>重要的是基于直觉和经验的理性思维和观念</strong>。所以爱因斯坦和英费尔德说，他们写这本《物理学的进化》，主要是叙述思维和观念在探索客观世界的知识中所起的作用。</p>
+<p>他们按照物理学演化的历史时序，叙述了机械观的兴起、机械观的衰落、场和相对论、以及量子这样四个部分。机械观是指从伽利略和牛顿开始形成的观念，它<strong>把世界看作是物质及其在相互作用力的推动下在时空中的运动与变化</strong>。这里“机械”一词的英文Mechanical，亦译为“力学的”，所以机械观实际上就是<strong>把世界当作物质在作力学运动</strong>的观念。<strong>世界是物质的和力学的</strong>，这种观点也许就是机械唯物论的本意。</p>
+<p>其实在Mechanical或Mechanics这个词中，并没有丝毫“力”的影子，不知当初的翻译怎么就跟“力”的观念扯上了。由于牛顿力学的巨大成功，这种机械唯物论的观念成为物理学观察世界的支配观念，以至于拉普拉斯说，只要知道了世界的初始条件，他就可以计算出整个世界以后的运动发展和变化。因为按照牛顿力学的程序，按部就班规规矩矩就可以把一切都搞定。所以在我们的语境里，“机械”已经成了毫无变通没有一点灵活性的死板的代名词，“机械唯物论”也成为固守成规刻板僵化的贬义词。其实，没有规矩不成方圆，不守规矩岂不乱了套！不过，今天的物理学家可不会再说拉普拉斯这样的豪言了。 相对论的开局者</p>
+<p>在整个物理学的进化过程中，光总是扮演着一个特殊的另类角色。曾经如日中天的机械观，也就是物质粒子做力学运动的观念，或者哲学化的说法机械唯物论，硬是被光给搅得衰落下来。可以说，光是机械观的搅局者，是机械唯物论的克星。爱因斯坦和英费尔德在第二章 中有详细的讲解，核心和关键的是，<strong>光是一种电磁波，是布满整个空间的波动，这就冲破了物质粒子在空间中沿着一条轨道运动的机械观</strong><strong>。这个世界不只是在运动着的物质粒子，还有在波动震荡着的电磁场。这就是法拉第和麦克斯韦的场域观。场域观与机械观博弈的结果，是机械观的衰落。</strong></p>
+<p>问题是，<strong>机械观与场域观这两者并不能互相完全协调，焦点就在于光。</strong><strong>机械观有伽利略的相对性，电磁场有光速不变性，要想把这两条都保持，就必须修改我们的时空观：同时具有相对性</strong>。在车上看是同时的两件事，在地上看一先一后并不同时，这最后导致时间与空间是互相关联的一个整体，而不互相独立！这就是爱因斯坦和英费尔德在第三章 中前面详细讲解的狭义相对论。所以，光既是机械观的搅局者，也是相对论的开局者。接下来的问题是，爱因斯坦推广以后的伽利略相对性，是以惯性参考系为基础的，而这个基础并不牢靠，我们不能独立地判断一个参考系是不是惯性参考系。所以爱因斯坦决定放弃惯性参考系的特殊地位，考虑在任意参考系都适用的理论，这就是第三章 后面讲的广义相对论。<strong>为了考虑非惯性参考系中粒子的运动，爱因斯坦利用了引力质量与惯性质量相等这一假设，从而把引力与惯性力都归结为时空的弯曲。这又进一步修改了我们的时空观：时空的性质与物质的分布和运动有关，不是独立于物质运动的一种虚构的“空腔”。</strong></p>
+<p>广义相对论的可观测效应比狭义相对论要精细得多。爱因斯坦和英费尔德在书中提到了光线经过太阳时的弯曲，水星近日点的进动，以及引力场中的时钟变慢。在爱因斯坦1916年提出广义相对论时，除了水星近日点的进动以外，其余的效应都还有待观测和发现。之后这些精细的效应均被逐一发现和证实，就连1949年才发现的小行星Icarus,也测出了它的近日点进动。而时钟变慢，则是当今在人造卫星定位系统中需要考虑的问题。</p>
+<p>除了上述三大效应以外，还有几个著名的广义相对论效应。而有没有引力波，亦即引力辐射，却有过争论。就在写《物理学的进化》的那一年，爱因斯坦、英费尔德和霍夫曼还合作发表了一篇论文《引力观察和运动问题》，被称为EIH文章。在这篇文章里，他们分析引力辐射对“两个有质量的引力体的相对运动”的影响，但计算太繁，没有得到有确定意义的结果。1943年胡宁到普林斯顿跟泡利做博士后，泡利让他研究这个问题。胡宁到档案库找出EIH的一大摞算草，用了改进的模型和算法，推出了双星系统能量衰减因子，可以和观测比较。而在多年后，泰勒和赫尔斯通过对双星的长期观测，终于得到了引力辐射的第一个证据。泡利眼光犀利话语刻薄从不轻易许人，被玻尔誉为物理学之良心。他二十一岁还是大学生时的成名作《相对论》至今仍然还是经典，而他在1956年为此书的单行本重印时所加的补注中，就专门提到胡宁的上述论文“研究了由于发射引力波而引起的微小的阻尼力”。</p>
+<h4>2 德布罗意的联想</h4>
+<p>第四章 量子，是物理观念更大的改变，破局的还是光。上世纪一开始，<strong>普朗克就根据黑体辐射谱的分布提出了量子假设，假设辐射的能量是一份一份量子化的。这有点从法拉第、麦克斯韦的场域观向伽利略、牛顿的物质粒子观倒退的味道，因此普朗克一直想放弃这个量子化的假设，退回到电磁场的场域观。</strong>是爱因斯坦，他在1905年，还是在瑞士联邦专利局做专利审查员的时候，业余地研究这个辐射的量子化，把普朗克的假设向前推进了一大步，进一步假设这一份一份量子化的能量还具有动量，是伽利略、牛顿那类既有能量又有动量的粒子。爱因斯坦称之为光量子，并且建议用光电效应来验证。爱因斯坦提出的这光量子，后来被称为光子。这还真有点要回到伽利略、牛顿的机械观的样子。但是历史并没有走回头路，下一步是法国青年德布罗意迈出的。</p>
+<p>德布罗意是贵族子弟，他姓前的这个“德”，法文原文为de，类似于德国人姓前的“冯”（原文von），是贵胄的标记。青年朗道被苏联派往西欧游学时，一次在柏林大学听演讲，冒失地问“刚才那演讲的是谁”，演讲者从座位站起来点头说“在下冯劳埃”，就是贵族劳埃的意思。当然有的冒充贵胄，也在姓前加个von，这就随他了。德意志历史上原来是许多小国，所以贵族也多，这大概就是德意志人姓前带von的人多的原因，以至于他们本人以及我们翻译时都往往把它略而不提。就像钱学森的业师冯卡门，常常只称他卡门一样。但是下面要说到的冯诺伊曼，他可就不愿意人家把这个von省略了只叫他诺伊曼。德布罗意原来想学历史和文学，是受了他哥哥的影响，才改攻物理，看来他与许多贵胄一样，还是位文艺范。文艺范的思维，善于比喻。这比喻，虽然为数学与逻辑所不屑，但在物理中却常常出彩。</p>
+<p>在思维中，比喻源于联想。使德布罗意产生联想的，是电子与光子。既然爱因斯坦的光电效应表明作为电磁波的光还具有粒子性，那么作为粒子的电子也就应该具有波动性。这个从光子联想到电子的比喻，被称为德布罗意假设。德布罗意假设成为建立波动力学的突破口，不仅使得德布罗意还使得薛定谔都因此大为出彩在物理学中留下大名。这个假设是说，<strong>电子和光子一样，既有粒子性也有波动性，后来被称之为波粒二象性</strong><strong>。所以，不是从场域观退回到机械观，而是揉合场域观与机械观这两者的波粒观。这波粒观是一种物理学的二元论。</strong>二元论总是不受欢迎的，因为它不符合人们对于基本和简洁的追求。爱因斯坦和英费尔德在这本《物理学的进化》中说了，<strong>如果不相信我们世界的内在和谐性，就不会有任何科学。</strong>而波粒二象性这种二元论本身，就是没有内在和谐的矛盾体。玻尔试图在这波粒二象性的基础上建立一种新的哲学上的认识论，这不是真正的解决问题，而是在和稀泥。能够解决问题的，是玻恩对量子力学中薛定谔波函数的统计诠释。这就要说到量子力学至今争论不休的核心问题了。</p>
+<h4>3 从决定论的因果关系到统计性的因果关系</h4>
+<p>薛定谔是从维也纳大学出来的，当时在苏黎世，参加德拜主持的一个讨论会。德布罗意当时刚刚完成他的博士论文，皇皇二百多页。我国著名理论物理学家王竹溪后来看过这篇法文的论文，说真正有价值的就是那么几页。当时朗之万把这篇论文寄给爱因斯坦，爱因斯坦立即在自己的一篇论文中作了引用。薛定谔看了爱因斯坦的这篇论文，知道了德布罗意的工作。于是德拜让他做一次演讲，介绍德布罗意这个关于电子具有波动性的工作。薛定谔讲完后德拜评论说，一个波动理论，就应该有个波动方程。等到他们下一次再聚会时，薛定谔说，我找到了一个波动方程。这就是著名的薛定谔方程，它在量子力学中的地位，相当于经典力学中的牛顿第二定律。</p>
+<p>因为是与光子类比，所以德布罗意头脑中想象<strong>电子的波，与光波类似，是一种物质性的场域波</strong>。薛定谔所做的事，是仿照从光的微粒到波动的类似程序，用试探的方法从粒子的运动方程猜出了电子的波动方程。所以在薛定谔的头脑中想象的电子的波，也是一种物质性的场域波。他认为电子波动的幅度表示物质分布的强弱。但是这个图像与实际明显不符，因为波会很快弥漫到整个空间，电子也就不成其为一个粒子，而是一团烂泥一样的东西了。解开这个困局的，是哥廷根的玻恩。</p>
+<p>玻恩是哥廷根学派希尔伯特的学生，在与他的助手海森伯和约当创立量子力学后到美国讲学，当时刚从美国回来。他的同事弗兰克做电子与原子碰撞散射的实验，整天与粒子打交道。所以在他们头脑中没有波，完全是一幅粒子的图像。于是玻恩就用薛定谔的波动方程来算这种散射过程。他发现，如果把薛定谔的波诠释为粒子散射的概率幅，就能很好地解释实验的结果。这就是玻恩对薛定谔波函数的统计诠释，概率具有统计性。而<strong>由于这种概率的统计性，粒子的位置与速度不能共同测准，即具有测不准性，从而没有确定的轨道，这就不是伽利略牛顿机械观的粒子了。</p>
+<p></strong></p>
+<p>量子力学是整个物理学这座大厦最底层的基础，在这个基础中引入统计性，在物理学的思维和观念上可是一件石破惊天的大变局。一定的结果总是由某种确定的原因所决定的，这种决定论的因果关系一直是物理学家乃至所有科学家的信仰和追求的目标。而<strong>玻恩的这个统计诠释说，一定的原因会导致各种可能的结果，只是不同结果的概率不同，在原因与结果之间并没有确定的联系！这不妨称之为统计性的因果关系。</strong>从决定论的因果关系到统计性的因果关系，无疑是观念与信仰的一大倒退。玻恩当然意识到这种倒退的严重性，但是他说没有办法，事实如此，只能接受。可是，许多大物理学家都不接受，特别是爱因斯坦。将近三十年后玻恩为这统计诠释而获诺奖，爱因斯坦向他祝贺，并说这迟到的奖早就应该给你的，玻恩回答说，这是因为人们太难接受这统计性的因果关系了。确实，爱因斯坦和英费尔德在他们的书中说，现代物理学目前所提出的解是暂时的还是最终的解，后世一定会做出判断。<strong>争论的焦点，在于这统计包含了人的因素，因为统计是要由人来做的。这样一来，物理学甚至整个科学就不完全客观，而有了主观的因素。把这主观性进一步发挥，就进入心灵和信仰的范畴。</strong>有一位美国名校的教授写出了专著《灵魂的物理学》，这就扯远了。还是回归正题，来说爱因斯坦和英费尔德这本书所讨论的物理学思维与观念的发展。</p>
+<p>既然薛定谔方程的波不是物质性的，亦即所谓波粒两象性中的波不具有物质性，只是用来计算粒子的统计概率的数学的波，这波与粒子就不再对立冲突，而都统一于粒子了<strong>。作为物质，只有粒子而没有波！只是这粒子没有确定的轨道，不是经典的伽利略牛顿的粒子，而是具有测不准的量子力学的粒子。概括起来说，就是三百多年来，物理学思维与观念的演变和进化，经历了从粒子到波场，又从波场到粒子的过程，只是后来的粒子具有量子性，具有测不准，不再是伽利略牛顿机械观的粒子；后来的波场也具有量子性，不是物质分布的场而是概率幅的场，不再是法拉第、麦克斯韦和后来爱因斯坦相对论性场域观的物质场。</strong>爱因斯坦和英费尔德的这本书，说的就是物理学思维与观念这三百多年来的进化与变迁。</p>
+<h4>4 小结</h4>
+<p>爱因斯坦和英费尔德在一开头就指出，<strong>三百多年来，物理学从经典机械观到场域观再到量子概率观的演变与进化，基础在于思维方式的转变，即从亚里士多德经验思维到伽利略推理思维的转变。也就是说，从经验上升到理论。</strong>所以爱因斯坦一再强调，没有理论的经验不可信。德布罗意提出电子具有波动性，薛定谔猜出波动方程，玻恩想到波是概率幅，海森伯认识到测不准，等等，这一切尽管与实验相符，但都还需要理论的论证。特别是玻恩的统计诠释，和由此带来的统计性因果观，太难接受和需要论证了。这就要说到希尔伯特和冯诺伊曼。为了让我们接受量子力学的概率性，冯诺伊曼逻辑地论证了这是希尔伯特空间最恰当的物理。但这又是一段理性思维的故事，爱因斯坦和英费尔德在书中没有接着往下说，我们就不进一步展开，还是在此打住吧。</p>
+<p>总结一下，读爱因斯坦和英费尔德的这部《物理学的进化》，有两点值得强调。</p>
+<p>首先，物理学或者一般地说科学，是客观外部世界在我们头脑中的反映，是人类头脑的创造，<strong>不要以为科学就是完全客观的，它会随着我们认识的改变而改变。</strong>以为科学的就是客观的，这完全是一种习惯性的误解。</p>
+<p>另外，<strong>我们头脑中的思维观念具有惯性，习以为常，总想保持不变，以为固有的思维观念是永远正确的。从牛顿的三维空间绝对时间到相对论统一的四维闵可夫斯基空间，从平直的闵可夫斯基空间到广义相对论弯曲的黎曼空间，再到量子力学的无限维希尔伯特空间，每一次演变都要经历观念的转换和克服巨大的惯性。爱因斯坦的名字当时在欧洲妇幼皆知，就是因为相对论冲击和改变了传统的时空观。</p>
+<p></strong></p>
+<p>物理学思维观念三百多年的演变给我们提了个醒，要求我们的思维随着观测世界的变化而有完全的宽松和灵活，不能头脑僵化顽固不变。</p>
+<p>这不是Proceeding或Progress，而是Evolution</p>
+<p>你如果测量了某种晶体的结构，或者研究了它的磁性，可以写成论文拿到有关的专门会议上发表，会议的组织者会编辑出版文集，这称为Proceeding，通常译为“进展”。而某一专门领域，比如说核物理，会请有关的专家来总结概括一段时间以来的发展，隔一段时间就写出专门的述评，这称为Progress，如The Progress in Nuclear Physics。有的发展重要而影响深远，包含了思维观念的改变，比如狭义相对论、广义相对论和量子力学，这就称之为Revolution，即变革或革命。杨振宁先生说，这是二十世纪物理学的三大革命。而在历史发展的整个进程中，物理学的历次变革所包含的基本观念和思维方式在形态上的发展和演变，就是物理学的Evolution，即演化或进化。从时间和影响来说，Proceeding限于最近一两年，Progress涉及近来几年十几年，重大的可以几十年，而Evolution则涉及整个物理学历史的三百多年。爱因斯坦和英费尔德合写的这本《物理学的进化》，原文The Evolution of Physics，所谈的就是整个物理学三百多年来的进化和演变。</p>
+<p>看一本Proceeding，关注的主要是这个领域近期有哪些新的发现和创造，获取新的知识。读一部专门的Progress，关注的主要是这个领域在一段时间以来的总体形势和前沿与热点，做到心中有数。而这物理学的演化，Evolution，对我们来说重要的就不是新鲜的知识或发展的态势，而是提升观点拓宽眼界把握历史脉络的经验与教训。所以，在读这本《物理学的进化》时，要注意和记住这不是Proceeding或Progress，而是Evolution，阅读的方法和视角要把握好。当然，内行看门道，外行看热闹，各取所需，只要认真的读都会有收获。而对于爱因斯坦和英费尔德设定的读者，即虽然完全缺乏物理学和数学的实际知识，但是却具有很强的理解能力，并对物理学和哲学的观念很感兴趣，则是一定会有巨大的收获的。</p>
+
+
+<p style='float:right;'>本页共32段，7470个字符，20478 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
