@@ -1,0 +1,612 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+  <p align="left"><strong>杜克大学</strong><strong>13</strong><strong>幅逻辑图，传递了这些影响你一生的思维方式</strong><strong> </strong></p>
+
+
+
+
+
+<p><img border="0" width="474" height="339" src="01.jpg" alt="http://e0.ifengimg.com/08/2019/0128/34573A127DA4AA8D6E1B0CC8022D990C00688925_size31_w474_h339.jpeg" /></p>
+
+<p>杜克大学作为全球排名第七的大学，在全球教育界中有着巨大的影响力，其中有13张逻辑图，非常简洁清晰地传递了一些可以影响你一生的思维方式，今天结合自己的生活阅历，分享与解读这13幅经典的逻辑图。</p>
+
+<p><strong>1</strong><strong>、留意生活中的细节</strong></p>
+
+<p><img border="0" width="645" height="376" src="02.jpg" alt="http://e0.ifengimg.com/01/2019/0128/99217F7D9C5D898093DC41EB8F94677E3BA3ACC9_size34_w645_h376.jpeg" /></p>
+<p>“Pay close attention. This is your life.”　</p>
+
+
+<p>请留意生活中的细节，这是你的生活。</p>
+<p>生活中我们往往因为缺乏对自我的认知而错过了我们很多原本属于自己的生活，生活总是在不经意间见错过了那些最美好的东西。</p>
+
+<p>什么是生活呢？</p>
+
+<p>在这个年龄我对生活的理解由两部分构成：一方面生活是我们经历的集合，这个经历包括了我们记忆的以及被遗忘（错过）的。你需要知道的是，每个人的经历是自己多个选择的集合，而每个选择则是由自我意识及自我认知而决定的。</p>
+
+<p>另外一方面，生活的本质是一个自我认知的过程，回顾往生：</p>
+
+<p>或许是自己不懂事；</p>
+
+<p>或许是随意地得过且过；</p>
+
+<p>或许是自己不懂得珍惜；</p>
+
+<p>或许是自己不知道自己真正的内心期许是什么？</p>
+
+<p>也或许是错过了不该错过的人；</p>
+
+<p>也或许是错过了不该错过的事；</p>
+
+<p>其实这些错过，也有机会成为我们生活的一部分，只是一不小心，你选择了它的反面，绘制了另外一条生活轨迹，当然你今天的每个选择，也决定了你明天的生活轨迹，就是我们生活中的一个重要模式。</p>
+
+<p>所有的经历，不管是好的，还是坏的，最终都会擦肩而过，时间会让你忘记所经历的一切，甚至你都不曾记得你初恋的样子，甚至你不能描绘出你父母双亲的面孔，真正留在你脑海中的记忆，就是你真正的生活。</p>
+
+
+
+<p><strong>2</strong><strong>、向你认为最好的目标大胆进发</strong></p>
+
+<p><img border="0" width="642" height="365" src="03.jpg" alt="http://e0.ifengimg.com/01/2019/0128/D0CDE16330B514210C225DE68AE2295910686995_size22_w642_h365.jpeg" /></p>
+<p>“People always obsess over big decisions (e.g., which job/ position to accept), but really, tomorrow will always be a blur. Plan with calmness, and then take the leap in the direction you think is best, knowing that there will rarely be a ‘right’ or ‘wrong’ but just a choice that leads to the next steps of life.”</p>
+
+
+<p>人们总是过于在意那些重要的决定 (比如接受什么样的工作或者职位) 但是实际上明天总是模糊的。潜心规划，向你认为最好的目标大胆进发，要知道，很少有所谓完全“正确”或是“错误”的决定，因为它们只不过都是一个让你的生命进入下一个阶段的台阶。</p>
+
+
+<p>认真地思考，清楚的知道自己的追求及内心深处想要的东西是什么，这是航行中的灯塔，没有了这个灯塔，前行的路上就会有更多“错误”的选择，今天-明天是一条不可逆转的路，珍惜每个当下及生命中的过客。</p>
+
+
+<p>活在当下是一种人生的选择，而杜克大学却在告诉我们，更要思考明天。</p>
+
+<p>什么是“明天”？在不惑之年，我认真的思考这个问题，我的理解是：</p>
+
+<p><strong>自己真正想要的生活是什么？自己的内心真实的期待是什么？自己的情感期待是什么？谁是自己最重要的人？什么是爱自己？什么是爱别人？</strong></p>
+
+<p>...................</p>
+
+<p>这些问题的答案，就如人生旅程中的灯塔，可以帮助每个人通往自己的明天。</p>
+
+<p>如果没有了这个灯塔，前行的路上就会有更多“错误”的选择，<strong>从今天</strong><strong>---&gt;</strong><strong>到明天</strong>，是一条不可逆转的路，跟随自己的内心，认真选择与珍惜对的人，认真选择与珍惜对的事情，明天一定会更好。</p>
+
+<p><strong>3</strong><strong>、从和别人建立的关系中获得更多的满足</strong></p>
+
+<p><img border="0" width="646" height="356" src="04.jpg" alt="http://e0.ifengimg.com/04/2019/0128/6CC90D2CC24BC6C61D9AAF5C1C174DD35A81E62E_size32_w646_h356.jpeg" /></p>
+<p>“You will get the more satisfaction about the relationships you form than from the things you acquire.”</p>
+
+
+<p>和你得到的实物相比，你可以从和别人建立的关系中获得更多的满足。</p>
+
+
+<p>在我们的现实生活中，我们总是错误地追求“物质”所带来的快感，就如我常说的，钱绝对不是我们人生的追求，它只不过是满足我们需求的工具而已，可是很多人只看了工具，却没有想清楚，努力获得这个工具用来干什么？</p>
+
+
+<p>在现实生活中往往会出现两种情况：一是钱有了，却无所事事；二是钱没了，所有的精力及焦点都陷入到“求生存”的状态，几乎没有心智考虑幸福的事情，然后越来越穷，越来越没有幸福感。</p>
+<p>物欲来得快，去得也快，这是物欲世界的恶性循环，20年前或许自己因为买了第一部手机而开心得不得了，10年后或许你换了一辆跑车都买不回当时的开心。物质带来的满足感总是有时间限制的，因为物质基本上可以用钱获得，因为有钱，物质的获得越来越容易，因此带来的快乐与满足感也越来越少——也许这就是明星吸毒、出轨的一个重要原因。</p>
+
+
+
+<p><strong>4</strong><strong>、尊重人比尊重头衔重要，每个人的生命都有自己的价值</strong></p>
+
+<p><img border="0" width="643" height="370" src="05.jpg" alt="http://e0.ifengimg.com/05/2019/0128/55626148A3B8A7F629A2418C636F542050B3C95C_size29_w643_h370.jpeg" /></p>
+
+<p>“Respect people over job titles. Everyone’s life has meaning.”</p>
+
+
+<p>尊重人比尊重头衔重要，每个人的生命都有自己的价值。</p>
+
+
+<p>在这里的“头衔”是指他人的评价，也就是所谓的面子，我们往往太在意他人的评价而忽略了自己最真实的需求，有一句话说的很好“外面只有自己，没有别人”；这句话反过来说也挺有意义：“里面只有别人，没有自己”，真正的忽略了别人的评价。其实，我们在生活的道场中要认真的反思与修行。</p>
+
+<p>人的价值及生命的价值有很多，但是头衔在价值中的占比应该是非常少的。“头衔”一方面是你的荣誉，过度地看中头衔的本质是极其依赖他人的评价，也就是所谓的面子，有挺多中国人的安全感是建立在面子上的。</p>
+
+<p>在这里想起了复旦大学陈果教授的一句话，借此分享给大家：“不管你有多优秀与糟糕，不管你活成什么样子（有怎样的头衔）总有人会喜欢你，也总有人会不喜欢你，美好生活的唯一方式就是做回那个真实的自己，不以物喜，不以己悲。”</p>
+
+<p>从另外一个角度去讲，在我们学习与成长的过程中，也切忌被所谓的头衔所迷惑，不管是明星也好、大咖也罢，其实每个人都有自己难念的经，他们的生活方式不是你的生活方式，他们的学问与头衔也不是你的学问与头衔，你唯一可以成长的就是了解自己，学习他人头衔背后的默默付出，才更有机会走向美好的明天。</p>
+
+<p><strong>5</strong><strong>、让被拒绝变成另一个等待、学习和再次尝试的机会</strong></p>
+
+<p><img border="0" width="644" height="354" src="06.jpg" alt="http://e0.ifengimg.com/08/2019/0128/88E13F3B3D9827A2D8BD1AD7CFF377FBE1C9EC49_size26_w644_h354.jpeg" /></p>
+
+<p>“Learn to reframe rejection. Whether you’re working towards a leadership position or building a company, people will frequently tell you  Instead of seeing it as a shutdown, look at it as an opportunity to figure out why. Are you asking the wrong person? Have you not yet demonstrated you can handle the new responsibility? Over time, ‘no’ becomes just another opportunity to wait, learn and try again.”</p>
+
+
+<p>学会重新认识拒绝。当你努力想要成为领导者或者建立公司的时候，人们会经常告诉你“不行”。但是与其把这个NO视为事情的结束，不如把它看作一个寻找原因的机会：你是不是找了错误的人?你是不是还没有展现出你具有承担这个新责任的能力? 水滴石穿，拒绝会变成另一个等待、学习和再次尝试的机会。</p>
+
+
+<p>学会重新认识拒绝，并在拒绝中寻找机会，这是每个成年人的功课。</p>
+
+<p>被拒绝是生活中的必然，有的人因恐惧被拒绝，而不善于求助他人；有的人因胆怯被拒绝，而错过了那个本来也喜欢自己的人；有的人因为惧怕被拒绝，措施了一单重要的生意，这样的例子数不胜数。</p>
+<p>其实人们最大的问题问题在于遭受拒绝的时候“郁闷”的心情，由于情绪的影响我们不愿意发现自己的问题，而更愿意用找借口的方式去处理，因为这个过程中是逃避了“发现自己问题”痛苦，就像吃了止疼药，虽然现在不疼了，可问题还是会出现，因此多去“求证为什么”是一种非常好的思维模式。</p>
+
+<p>面对拒绝，首先是妥善地处理我们的情绪，然后再坦诚不公地与对方探讨背后的原因是什么？由此，我们便可以为自己创造更多的可能性，即便是再次遭受拒绝，那也没有关系，因为你给对方留下了成熟、良好的印象，也减轻了对方拒绝你面临的心理压力，为未来的合作奠定了很好的基础。</p>
+
+<p>记住了，这是一条很有用的社交法则。</p>
+
+<p><strong>6</strong><strong>、找到一份让自己有自豪感的工作</strong></p>
+
+<p><img border="0" width="649" height="365" src="07.jpg" alt="http://e0.ifengimg.com/07/2019/0128/9C71E4CB1347BBDAEF185C502FA2CA92ACD43B2D_size29_w649_h365.jpeg" /></p>
+
+<p>“Find a place where you can be challenged. Ask yourself: Am I proud of my work?”</p>
+
+
+<p>找到一个挑战自己的事业。问自己:“我是否为我的工作感到自豪”？</p>
+
+
+<p>这是一幅很有意义的图，如果你不去热爱你的工作与生活，不能发现工作与生活中的价值，再大的努力你的人生体验都会停留在峰底。</p>
+
+<p>其实对于这张图我的理解是：主动地接受有意义的挑战。</p>
+
+<p>每个人的价值，与他能填坑的能力成正比。在你的工作与事业中，你总是去挑选一些简单的事情，谁都可以做的事情，你将随时被取代。</p>
+
+<p>当然，你也需要知道，并非所有挑战都是有意义的。</p>
+
+<p>请你特别注意，在不久的未来，取代你的或许不是人类，而是AI机器，所以，拥抱未来的最好方式就是主动的、大胆的、有责任感的去承受来自工作及生活中的各项挑战，这是自我价值实现的唯一路径。</p>
+
+<p><strong>7</strong><strong>、尝试不确定性</strong></p>
+
+<p><img border="0" width="641" height="366" src="08.jpg" alt="http://e0.ifengimg.com/08/2019/0128/1F0E4C9559E6CAA4F2173E9EDFED661288DABDC9_size30_w641_h366.jpeg" /></p>
+
+
+<p>“Don’t be afraid to diverge from your ‘plan.’ Embrace ambiguity. The uncertain and what may appear high risk in relationships, jobs and life is usually very cool and worthwhile.”</p>
+
+
+<p>别害怕偏离你的计划，勇敢的接受不确定性。那些在你感情，工作和生活上表现出不确定性和高风险的东西往往都是很Cool而且很值得你尝试的。</p>
+
+
+
+<p>其实生活中有条定律是这样的：生活中，总会有事情偏离你计划的轨道，你唯一可以选择的是以什么样的态度及方式去应对这些“出轨”。</p>
+
+<p>其实偏离计划的事情，往往可以帮助自己打破“舒适圈”。刻意选择一些自己不愿意做的事情，例如：我不太喜欢社交型的饭局，当我意识到这个问题的时候，去积极参与社交活动则产生了不少收获，也认识了更多的朋友，并且跨界交流也是蛮有意义的。</p>
+
+<p>当然，一些“意外出轨”的事情，或许会给我们带来不好的情绪与结果。如果我们积极地反思这个过程，个人的成长还是蛮大的，所以尝试你没有尝试的是一种进步，有时候也很Cool！</p>
+
+<p><strong>8</strong><strong>、停下来回头看看，更好的了解你是谁，将到哪里去，如何去那里</strong></p>
+
+<p><img border="0" width="641" height="369" src="09.jpg" alt="http://e0.ifengimg.com/04/2019/0128/0082C4AD905FD69C7F3872805C661D43EEFDABB9_size26_w641_h369.jpeg" /></p>
+<p>“As you move forward into the next stage of your life, do not forget to stop and look back to discover the meaning of where you have been. That will help you better understand who you are, where you may be heading, and how you can get there.”</p>
+
+
+<p>当你进入你人生的新阶段，别忘了停下来回头看看，去发现你过去经历的意义。它可以让你更好的了解你是谁，将到哪里去，如何去那里。</p>
+
+
+<p>这真心是一个不错的建议，所有的经历没有反思则这份经历就失去了成长的意义，如果一直按照一个思维方式去思考问题，经历再多结果也是一样，不管是工作还是感情都符合这条规则。</p>
+<p>生活中，你需要有一种习惯：停下来，回顾你所经历的生活，这将让你的经历变得更加有意义。</p>
+
+<p>在回顾的过程中，跳出自我，用第三人称的视角反思经历过的事情，反思自己的行为是否恰当；反思自己是否无意间给他人带来伤害；反思是什么导致自己生活中的冲突，思考在第三人称下的这个自己应该承担怎样的责任，都是自我成长绝佳的机会。</p>
+
+<p>其实，当我们换个角度去看我们人生经历的时候，有蛮多的经历会真正的变成有价值的经验，从而真正指导我们创造丰盈的人生。</p>
+
+<p>中国有句古话：“江山易改，本性难移”，其实挺有道理的，而真正突破自己的，除了人生中突如其来的意外与伤害（但是这个改变的代价太大了），剩下就是我们养成自我反思的习惯，面壁思过，每日三思或许是前人给我们留下的最好的修行方法。</p>
+
+<p>换一个角度去反思我们所经历的人或事，或许你可以这样：</p>
+
+<p>不再去恨一个此生再不会有交集的人；</p>
+
+<p>去接纳过去的被伤害，让伤害相忘于江湖；</p>
+
+<p>去发现自己原来也是如此的善良与勇敢；</p>
+
+<p>去发现当年自己曾如此热烈地爱过；</p>
+
+<p>去发现自己当年是如何激情地拼搏过；</p>
+
+<p>或许我们的这份人生的经历，不管是好还是坏，都变得更加有意义。从这个角度去看，人生的一切经历都是财富，只要你换个角度，这个财富就会真正地出现在你未来的日子中，所以在这里有一条真诚的建议送给大家：放下成见与固执，切换一下心智的视角去对人、对事、对待过去的经历，你的人生一定会有所不同。</p>
+
+<p><strong>9</strong><strong>、受到教育不等于聪明</strong></p>
+
+<p><img border="0" width="644" height="380" src="10.jpg" alt="http://e0.ifengimg.com/01/2019/0128/0AB7A6F5F191C95F51919D65A0EEBF7F2735C57A_size32_w644_h380.jpeg" /></p>
+
+<p>"Never confuse being educated with being smart."</p>
+
+
+<p>别把受到教育这件事和聪明这件事混为一个概念。</p>
+
+
+<p>特别是在中国，别把自己的高等教育当回事，即便你的学历再高，让你说出小学五年级第一篇语文课文的题目时，你恐怕早已经不记得了，真正的思考能力、创新能力及优秀的品格才是职业发展的源动力。</p>
+
+
+
+<p>张小龙曾经说过：“善良比聪明重要”。我想不管是家庭教育还是学校教育，首先教育的是善良而不是分数及学历，这才是我们每个人应该成为的人。</p>
+
+<p><strong>10</strong><strong>、阅读能激发灵感</strong></p>
+
+<p><img border="0" width="648" height="383" src="11.jpg" alt="http://e0.ifengimg.com/03/2019/0128/A8302DBA01A35A9F718D0FAC7364537B051CCD87_size25_w648_h383.jpeg" /></p>
+
+<p>“Read outside of your chosen field, read broadly, read enthusiastically. Creativity is a necessary life skill and some inspirations will come from unexpected sources.”</p>
+
+
+<p>广泛的阅读，热情的阅读。创造力是一个必需的生存技能，而一些灵感就来自于你没有期待的来源。</p>
+
+
+
+<p>这是一幅需要铭记在心的图画，你阅读越多，你的灵感就越多。当然，南哥在这里特别强调的是阅读，而不是听书，虽然这两种方式都可以获得知识，对我自己来讲，阅读带来的灵感是远远大于听书带来的灵感，我总结了四个原因分享给大家：</p>
+
+<p>阅读需要物理环境支持，而这个环境也支持灵感的产生；</p>
+
+<p>阅读可以自主控制进度，随时停下来思考，而听书却有诸多不便，所以有时候你听了很多书，却没有实质的价值就是这个原因；</p>
+
+<p>阅读的时候，随时可以将自己的灵感记录下来；</p>
+
+<p>阅读非常适合反复咀嚼，而听则不太容易；</p>
+
+<p>所以，找到恰当的书籍，在阅读的时候联想解决自己遇到的问题，并结合书籍上的启发，探寻解决问题的方法，是一种非常高效的学习途径，期待你能从实践中感悟这一点。</p>
+
+<p><strong>11</strong><strong>、谦实地对待自己，愿意学习，愿意被指导</strong></p>
+
+<p><img border="0" width="645" height="376" src="12.jpg" alt="http://e0.ifengimg.com/05/2019/0128/304E2091292C29AF27C710D89F0C65B7527FD6D9_size32_w645_h376.jpeg" /></p>
+
+<p>“Be true to yourself. Be willing to learn and to be coachable.”</p>
+
+
+<p>诚实的对待自己，愿意学习，愿意被指导。</p>
+
+
+<p>我们被这个社会教坏了，导致我们有一部分人不能诚实的对待别人，更不能诚实的对待自己的内心世界，所谓的诚实地对待别人是真诚+真实的想法，所谓诚实的对待自己就是认清自己真实的想法与清醒，能够允许自己的喜怒哀乐！</p>
+
+
+
+<p><strong>12</strong><strong>、感恩身边的人和事</strong></p>
+
+<p><img border="0" width="640" height="364" src="13.jpg" alt="http://e0.ifengimg.com/03/2019/0128/BA4DA58C09850AEF87071A040EB15306F0AC851B_size31_w640_h364.jpeg" /></p>
+
+<p>“Give back—serve from a sense of gratitude.”</p>
+
+
+<p>用感恩的心去回报，感恩身边的人和事。</p>
+
+
+
+
+<p>关于感恩的心很多时候被解读为知恩图报，实际上感恩只是一种幸福生活的方式，因为常怀感恩之心的人，内心总是充满了感动；而那些受益者以理所当然的心态，或者是一味的扮演索取者的角色，是永远无法感受到这份感动，他们时常陷入到抱怨的痛苦之中，或许这是对不懂感恩的人最大的惩罚。</p>
+
+<p><strong>13</strong><strong>、坚持，坚持，再坚持</strong></p>
+
+<p><img border="0" width="646" height="380" src="14.jpg" alt="http://e0.ifengimg.com/07/2019/0128/14DDDDEB1132410DC4DA85C3D7DC7AE386E4C149_size28_w646_h380.jpeg" /></p>
+
+<p>“Stick with it，and keep moving”</p>
+
+
+<p>坚持，坚持，再坚持，持续前行。</p>
+
+
+<p>人生最大遗憾在于坚持了不该坚持的，而放弃了不该放弃的，明智的选择，谨慎的行动是一种生活的阅历，比如说，你的坚持与倔强用在了人际关系中，这就叫坚持了不该坚持的，但是在事业与工作上却很放纵自己，不求上进，这就叫放弃了不该放弃的！</p>
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换
+\s*</p>
+
+<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+
+
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+\s*</p>\s*
+\s*<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+
+4 把第和章两个字去掉
+第(\S*)章
+------------------
+$1
+_____________________________________________________________________________________
+
+7 正则表达式参考：
+https://www.toutiao.com/i6370960744082571778/
+_____________________________________________________________________________________
+
+8
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+9 将标注序号更改为上标，红色，需一个个替换，英文html中有[1]
+(\[\d\])
+------------------
+<sup>$1</sup>
+_____________________________________________________________________________________
+10 替换章不是以1-9。?！…”“结尾的段落
+([^1-90。?！…”：？“章])</p>
+<p>
+------------------
+$1
+-->
+
+
