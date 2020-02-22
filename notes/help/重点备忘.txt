@@ -1,0 +1,137 @@
+ASP数据库连接错误（通常是清理了temp文件夹）
+Microsoft Office Access Database Engine 错误 '80004005'
+是由于临时文件不能写入。
+c:\windows\temp配置一个everyone用户为完全控制即可。
+
+
+通过代码调试查看代码运行过程，理解较复杂的一些算法，如快速、希尔排序、递归和回溯算法的分书问题。
+F9			插入断点（需要先编译）
+F10			step over，单步执行【跳过函数】，在单步执行时，在函数内遇到子函数时不会进入子函数内单步执行，而是将子函数整个执行完再停止，也就是把子函数整个作为一步。有一点,经过我们简单的调试,在不存在子函数的情况下是和step into效果一样的（简而言之，越过子函数，但子函数会执行）。(相对于F11，当有输出函数时，可以直接输出而不进入，较方便，一些情况下，如果想一直以F11调试，可以将一些输出函数注释掉（如果输出函数没有输出以外的副作用）)
+F11			单步执行【进入函数】，遇到子函数就进入并且继续单步执行（简而言之，进入子函数）；
+shift+F11 	step out，当单步执行到子函数内时，用step out就可以执行完子函数余下部分，并返回到上一层函数。
+
+Shift+f5	中断调试
+shift+F10 	run to cursor
+
+Alt+F9		编辑断点
+Ctrl+F10	运行到光标处
+Alt+2 		显示watch窗口
+Ctrl+Shift+F10	将调试的断点移动到光标处。
+ctrl+shift+f9	清除所有断点。
+
+void nineNine() // 以下代码用F10调试比F11要方便；
+{
+	for(int i=1;i<10;++i) // ①
+	{
+		for(int j=1;j<=i;++j) // ②
+			printf("%d*%d=%d\t",j,i,i*j); // ③
+		cout<<endl; // ④
+	}
+}
+①处插入断点（F9），运行（F5）（C文件要编译以后才可以插入断点）
+可以调出watch（手工输入变量名）、variable等调试窗口，如果有递归调用或嵌套调用，可以调出栈窗口；
+F11→③，此时如果按shift+F11,则跳出nineNine()；
+F11（进入printf()函数）,打开窗口：find source, Please enter the path for PRINTF.C,取消，进入“Disassembly“窗口，关闭，→消失，出现｜,
+Shift+F11，F11……→④，F11()进入重载运算符<<函数），ostream standard header, 关闭，｜，shift+F11, F11……
+最后，shift+F5(stop debug);
+最后，清除断点，F9或ctrl+shift+f9
+
+工具栏空白处单→选择工具：组建→菜单栏：set active configuration------win32 debug / win32 release,那动位置时会有问题。
+release改名都不行；
+
+
+icon图标，在VC6中的编辑器中更改，删除C:\Users\wwuhnwu01\AppData\Local\GDIPFONTCACHEV1可以更新；
+不能打开resource view，对话框已在另一编辑器中打开，窗口还原，关闭即可；
+
+
+1 手机管家→清理加速，可清理垃圾文件；
+2 手机管家→清理加速→空间管理，可清理：
+2.1 应用数据，长时间未清理后，一次清了20多G；(注意浏览器的视频暂存不要清理)
+2.2 大文件、视频、音乐、图片；
+
+CPU占用率100%,重启explorer就好了
+1 性能，在高级属性哪里
+2 没有打开QQ，为什么也运行QQProtect
+3 病毒怀疑
+
+VC6++不支持long long类型；
+
+如果删掉了dsw文件，怎样手动链接各cpp、.h文件？
+1 新建两个文件夹：source files、header files;
+2 将.h文件加入到header files
+3 将.cpp、.rc文件加入到source files
+4 VC→工程→选项→连接：最下面的文本框：将其中的subsystem:console改为subsystem:windows
+
+CTRL Id	写错GetDlgItem(IDC_NEXT)->EnableWindow(true);，导致BOOL CWnd::EnableWindow(BOOL bEnable)
+
+富文本编辑框一定要初始化；
+两个打开方式不一样，用shellexecute会多打开一个进程和窗口，system应该是以线程的方式打开的（但会闪出一个黑黑的窗口）。	
+如果提示clw也就是class Wizard不见，按提示选择CPP文件即可；
+清理VC编译文件时，尽量保留dsw、dwp、rc文件和文件夹；
+所有资源类的信息，包括大小、位置全部描述在.rc中。
+// Assistang Records IDC_STATICclose 551 555 557
+
+窗口位置：
+在OnInitDialog()
+CRect rect;	// 存储当前窗口
+GetWindowRect(rect);	// 得到当前窗体的位置及大小
+MoveWindow(rect.left+10, 221, rect.Width(), rect.Height(), TRUE);  	// 改变窗口的位置
+MoveWindow(1280-rect.Width(),221, rect.Width(), rect.Height(), TRUE);  	// 改变窗口的位置
+控件的位置控制：
+SetWindowPos()
+MoveWindow()
+在OnSize中执行，主要用于锁定控件的位置与大小，
+这样当控件随着Dialog最大化变化的时候，控件相对于Dialog的位置能够保持自适应。
+
+
+
+#include <string>
+string str;
+老是提示string前没有以;结尾；
+原来是没有加命名空间：using namespace std;
+
+买的衣服：尺码46（170－88） 肩宽46 胸围108 衣长72 袖长60
+自己量的：尺码  （       ） 肩宽48 胸围110 衣长74 袖长60
+
+三皇五帝夏商周
+一秦两汉至三国
+西晋东晋十六国
+南朝北朝隋唐随
+五代十国继两宋
+元明清后是民国
+
+programming.html一开始是utf-8编码，用富文本框插入文本时，显示为乱码。直接用文本文件打开，更改为GB2312后，插入时还是乱码。
+正确的做法是：把编码这一行删掉，用DM打开，修改→页面属性→编码→GB2312，此时会有提示，确认后会在文档中自动插入编码的代码。再用富文本框插入时，会没有问题。
+
+
+请联系房东开通账号（房东电话：13697460083、13533733219）
+bilibili sixthreewu
+gf ppa wyfxwufx
+准确、高效、有序，做好规范化管理、精细化管理、激励管理。持续改善很重要。
+commapp wyabeewufw
+cnblogs sixthreewufe,wwuhnwu 163mail
+https://home.cnblogs.com/u/ryueifu-vba
+C:\Users\wwuhnwu01\AppData\Roaming\Microsoft\Excel\XLSTART
+http://www.broadview.com.cn/ mailbox sixthree four
+findTreaser:wyabdd logon :pre+Wuhnnaughtd
+github 1 sixthree++ 2 sixthree
+wechat logon sixthree Wuhnfx
+虎牙 tel sixthree Wuhnfx
+12306 wufuqun01 sixthree Wuhnfx
+baidu 大智雅汇 sixthree Wuhnfx
+
+typedef struct AdjNode
+{
+	int adjvex;
+	struct AdjNode *next;	//struct不能省略
+} AL_AdjNode;
+
+
+noteDB数据库代码来源：
+《零基础学Visual C++》第四版，申远、古万荣，机械工业出版社
+
+
+时间简史中英文版-CSDN下载
+http://download.csdn.net/download/cagiasophia/528158
+sixthree..four
+
