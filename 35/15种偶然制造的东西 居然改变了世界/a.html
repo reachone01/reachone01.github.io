@@ -1,0 +1,454 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:40em;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+  <p align="left"><strong>15</strong><strong>种偶然制造的东西</strong><strong> </strong><strong>居然改变了世界</strong><strong> </strong></p>
+
+<p>世界有必然，也有偶然。</p>
+
+<p>任何事情都是从无到有的，有些东西是刻意创造出来的，但你可能想不到，有这么多你熟悉的东西，都是偶然的产物。</p>
+
+<p>1 可口可乐</p>
+
+<p><img width="600" height="336" src="a_clip_image001.jpg" alt="https://x0.ifengimg.com/res/2020/0639A0D19B76F084D306FE5C9F5466BFF325BC06_size35_w600_h336.jpeg" /></p>
+
+<p>一位名叫John Pemberton的药剂师发明，他希望能够治愈头痛和焦虑，就从葡萄酒和古柯提取物(可卡因的根本成分)中提炼出一种糖浆。</p>
+
+<p>后来由于他的家乡亚特兰大禁止出售酒精，他就从配方中去掉酒，并加入碳酸水，结果产生了世界最著名的饮料。</p>
+
+<p>2 LSD</p>
+  <p><img width="600" height="602" src="a_clip_image002.jpg" alt="https://x0.ifengimg.com/res/2020/1336A6028F703671F05DBF2EB4397E009BABF930_size73_w600_h602.jpeg" /></p>
+
+<p>瑞士化学家阿尔伯特霍夫曼完全是意外创造了麦角酸二乙酰胺，万万没想到该化合物后来成为了青少年中最流行的迷幻药。 </p>
+  <p align="left">3 冰棍</p>
+
+<p><img width="554" height="370" src="a_clip_image004.jpg" alt="https://x0.ifengimg.com/res/2020/95DBF6E861A7A6D303902A90592F0AA51879C194_size18_w600_h400.jpeg" /></p>
+
+<p>11岁的弗兰克埃普森是发明者，当时他想制作一种水果味的苏打水，将它放在雪地外面冷却。</p>
+
+<p>结果他忘记了这件事，过了一夜才想起来，发现搅拌勺和冻成冰的苏打水变为了一体...一个传奇诞生了。 </p>
+  <p>4 青霉素</p>
+
+<p><img width="554" height="449" src="a_clip_image006.jpg" alt="https://x0.ifengimg.com/res/2020/D673309E7A772E49BA21902D2125E2F787B49B95_size42_w600_h486.jpeg" /></p>
+<p>苏格兰科学家亚历山大弗莱明爵士在寻找一种治愈所有感染的药物，并试验各种细菌，当时他注意到一种快速生长的霉菌在他的一个丢弃的培养皿中阻止了细菌生长，于是将霉菌分离出来单独培养，于是有了青霉素。 </p>
+  <p>5 微波炉</p>
+
+<p><img width="554" height="353" src="a_clip_image008.jpg" alt="https://x0.ifengimg.com/res/2020/A19FBEA00E895D23B33023C2C88B4497A1757FBE_size22_w600_h382.jpeg" /></p>
+<p>美国国防承包商雷神公司聘请珀西斯宾塞开发雷达技术。</p>
+
+<p>当他用微波对真空管进行试验时，他注意到他口袋里的糖果棒正在融化。</p>
+
+<p>随着灵感闪现，他抓起玉米放在靠近真空管的地方，然后它们变成了爆米花，这也是有史以来第一件由微波炉烹制的食物。 </p>
+  <p>6 弹簧圈</p>
+
+<p><img width="554" height="354" src="a_clip_image010.jpg" alt="https://x0.ifengimg.com/res/2020/D40F1754417AD06886587C34EE4B455B179970FE_size26_w600_h383.jpeg" /></p>
+<p>海军工程师理查德琼斯正在设计一个仪表，来测量船上的功率，并扔下一个拉力弹簧，看着它在地板上反弹。这时他觉得还不如制作一个玩具。他是对的。 </p>
+  <p>7 不锈钢</p>
+
+<p><img width="554" height="415" src="a_clip_image012.jpg" alt="https://x0.ifengimg.com/res/2020/708B2A702B0B2E37F8B6B92223B2F8BA058E078D_size33_w600_h450.jpeg" /></p>
+<p>虽然几千年来我们一直在生产金属和冶炼金属，但没有人知道如何防止生锈。</p>
+
+<p>1912年，一位名叫Harry Blearily的冶金学家正在试验制造不会磨损的枪管，几次失败尝试后，他发现垃圾堆里有一个样本不像其他的那样生锈。</p>
+
+<p>因此，不锈钢诞生了。 </p>
+  <p>8 伟哥</p>
+
+<p><img width="554" height="416" src="a_clip_image014.jpg" alt="https://x0.ifengimg.com/res/2020/73E7E8DDB0F4929DAEF39A60D0355D9C48BC20DC_size41_w600_h451.jpeg" /></p>
+<p>这种药物实际上是为治疗高血压而制造，测试中发现它对降低血压没有太大作用，但男性受试者经常勃起。</p>
+
+<p>经过重新测试，蓝色小药丸在1998年被批准并成为治疗勃起功能障碍的药物。 </p>
+  <p>9 糖精</p>
+
+<p><img width="554" height="366" src="a_clip_image016.jpg" alt="https://x0.ifengimg.com/res/2020/CA88067F34E4D3B60E8CD661F2A56F1D85765950_size34_w600_h397.jpeg" /></p>
+<p>1879年，康斯坦丁法尔伯格正在研究煤焦油的新用途。</p>
+
+<p>那天晚上，他发现妻子的饼干比平常甜得多。</p>
+
+<p>当他试图弄清楚为什么时，他发现自己没有洗手，沾着实验室的测试残余物。</p>
+
+<p>由此，糖精产生了。 </p>
+  <p>10 X射线</p>
+
+<p><img width="554" height="415" src="a_clip_image018.jpg" alt="https://x0.ifengimg.com/res/2020/5D82EF2326A91F2FA119E72535BB26EE216B7CC1_size20_w600_h450.jpeg" /></p>
+<p>十九世纪末，一位德国物理学家在研究阴极射线时，把房间全部弄黑，还用黑色硬纸给放电管做了个封套。</p>
+
+<p>可是当他切断电源后，却意外发现一米以外的一个小工作台上有闪光——这是一种新的无形的射线。</p>
+
+<p>他在妻子的手上测试，发现光线会穿过皮肉、木头和其他物质，但不会穿过金属和骨头。</p>
+
+<p>因为不知道如何称呼他的意外发现，就取名为&quot;X&quot;，代表未知数。 </p>
+  <p>11 起搏器</p>
+
+<p><img width="554" height="586" src="a_clip_image020.jpg" alt="https://x0.ifengimg.com/res/2020/2CE770A726CFCCE775245BCFB5F8170A924E38F8_size55_w600_h635.jpeg" /></p>
+<p>John Hopp是一位电气工程师，本世纪中叶他尝试使用射频加热来提高体温，结果发现电脉冲对身体的热量没有太大作用，却能够刺激心脏，并将其重新转换节奏，因此发明了起搏器。 </p>
+  <p>12 冰淇淋甜筒</p>
+
+<p><img width="554" height="415" src="a_clip_image022.jpg" alt="https://x0.ifengimg.com/res/2020/BD8E181B04BC40F8FAE58D9C0AF5CFBA6304BAC6_size43_w600_h450.jpeg" /></p>
+<p>20世纪初，冰淇淋非常受欢迎，并以纸制，玻璃或锡制容器装盛，但是这些都不适合外卖。</p>
+
+<p>在1904年的世界博览会上，一家冰淇淋供应商非常受欢迎，很快用完了纸杯。</p>
+
+<p>旁边展位的热华夫饼干却卖得不好，于是他们就把华夫饼干卷起来当作冰淇淋容器。</p>
+
+<p>这太棒了。 </p>
+  <p>13 魔术贴</p>
+
+<p><img width="554" height="368" src="a_clip_image024.jpg" alt="https://x0.ifengimg.com/res/2020/0E729956CABB3035E2BA49A6E4E3512031A5C79F_size16_w600_h399.jpeg" /></p>
+<p>虽然传闻NASA发明了这个，但并非如此。</p>
+
+<p>它实际上是电气工程师乔治·德梅斯特拉尔发明。当时他正在遛狗，并在狗的外套上发现粘了苍耳。</p>
+
+<p>通过把它放在显微镜下，他发现苍耳上的钩子可以使其固定到其他物体上。</p>
+
+<p>不久之后，他研究出尼龙是重现这种现象的最佳材料，并将其命名为魔术贴。 </p>
+  <p>14 火柴</p>
+
+<p><img width="554" height="370" src="a_clip_image026.jpg" alt="https://x0.ifengimg.com/res/2020/71907D406E3E390E752CB6E101E8F40EAE8EF163_size35_w600_h400.jpeg" /></p>
+<p>早在一千年前在中国就发明了火柴的化身，但不够实用。</p>
+
+<p>本世纪初，英国化学家约翰·沃克在搅拌棒的末端发现了一块干燥的块状物，并混合了化学物质。</p>
+
+<p>他刮掉它，并点燃。后来他开始在一个带有砂纸的铁盒中出售他的&quot;摩擦棒&quot;。 </p>
+  <p>15 薯片</p>
+
+<p><img width="554" height="359" src="a_clip_image028.jpg" alt="https://x0.ifengimg.com/res/2020/6F282E83625D54725C88A28AECB6816E7EAF1791_size31_w600_h389.jpeg" /></p>
+<p>1853年，纽约一名厨师被顾客不断地抱怨炸薯条不够薄不够脆。</p>
+
+<p>最后厨师生气了，就把马铃薯薄薄地切成薄片，然后油炸，直到酥脆为止。</p>
+
+<p>这种食物因为美味，被作为新品添加到菜单中。 </p>
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换
+\s*</p>
+
+<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+
+
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+\s*</p>\s*
+\s*<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+
+4 把第和章两个字去掉
+第(\S*)章
+------------------
+$1
+_____________________________________________________________________________________
+
+7 正则表达式参考：
+https://www.toutiao.com/i6370960744082571778/
+_____________________________________________________________________________________
+
+8
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+9 将标注序号更改为上标，红色，需一个个替换，英文html中有[1]
+(\[\d\])
+------------------
+<sup>$1</sup>
+_____________________________________________________________________________________
+10 替换章不是以1-9。?！…”“结尾的段落
+([^1-90。?！…”：？“章])</p>
+<p>
+------------------
+$1
+-->
+
+
