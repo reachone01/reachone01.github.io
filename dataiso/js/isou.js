@@ -26,7 +26,9 @@ function search(){
 	
 
 //综合搜索
-else */if(formmain.rdbaidu.checked)
+else */
+
+if(formmain.rdbaidu.checked)
 window.open("http://www.baidu.com/baidu?&ct=&lm=&z=&rn=&word="+ encodeURI(formmain.kw.value) +"&_si.x=4&_si.y=2");
 
 else if(formmain.rdgoogle.checked)
@@ -301,7 +303,8 @@ window.open("http://www.baidu.com/baidu?word=" + encodeURI(formmain.kw.value) + 
 
 else if(formmain.rd_wenmi114.checked)
 window.open("http://www.wenmi114.com/search/so.asp?w="+encodeToGb2312(formmain.kw.value));
-
+else if(formmain.rd_18wk.checked)
+window.open("http://www.18wk.com/search.html?q="+formmain.kw.value);
 else if(formmain.rd_liyu.checked)
 window.open("http://www.iliyu.com/source/search-"+encodeURI(formmain.kw.value)+"-1.html");
 
@@ -587,7 +590,8 @@ window.open("http://so.pps.tv/search?q=" + encodeURI(formmain.kw.value));
  
 else if(formmain.rd_56v.checked)
 window.open("http://so.56.com/all/" + encodeURI(formmain.kw.value) + "/");
-
+else if(formmain.rd_bili.checked)
+window.open("https://search.bilibili.com/all?keyword=" + encodeURI(formmain.kw.value) + "&from_source=banner_search");
 else if(formmain.rd_ku6v.checked)
 window.open("http://my.ku6.com/search?q=" + encodeURI(formmain.kw.value));
 
@@ -989,13 +993,22 @@ function googleSearch() {
 window.open("http://www.google.com.hk/search?q=" + formmain.kw.value + "&sitesearch=" + formmain.sitesearch.value + "&domains=" + formmain.sitesearch.value + "&sa=%E6%90%9C%C2%A0%E7%B4%A2&prog=aff&client=pub-4055365977023692&hl=zh-CN&source=sdo_sb&sdo_rt=ChBNfvf1AA5v2QqkgIvyIjvnEg5fX1JMX0RFRkFVTFRfXxoI-PektCokDFUoAVidyNe9ldivpRg");
 }
 
-
+/*
 function baiduSearch() {//在搜索页面中有一个“互联网”的单选按钮；
 window.open("http://www.baidu.com/baidu?word=" + encodeToGb2312(formmain.kw.value) + "&tn=bds&cl=3&ct=2097152&si=" + formmain.sitesearch.value + "&s=on");
 }
-
-
-
+*/
+function baiduSearch() {//在搜索页面中有一个“互联网”的单选按钮；
+var txt = formmain.sitesearch.value;
+txt = txt.trim();
+if(txt.indexOf("https://www.")==0)
+	txt = txt.substr(12);;
+if(txt.indexOf("http://www.")==0)
+	txt = txt.substr(11);
+if(txt.indexOf("www.")==0)
+	txt = txt.substr(4);
+window.open("https://www.baidu.com/s?q1=" + encodeToGb2312(formmain.kw.value) +"&rn=10&lm=0&ct=0&ft=&q5=&q6=" + txt + "&tn=baiduadv");
+}
 
 /*
 不同于site:xigutang.com站内搜索，在搜索页面中有一个“互联网”的单选按钮；
