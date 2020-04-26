@@ -1,0 +1,395 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv=Content-Type content=text/html; charset=utf-8>
+        <!--charset=utf-8-->
+        <title>奉献</title>
+<style>
+<!-- 		
+.container{
+width:66%;
+margin:auto;
+height:600px;
+}
+.left{
+width:58%;
+margin:auto;
+float:left;
+margin-right:2%;
+}
+
+.right{
+width:40%;
+margin:auto;
+float:left;
+}
+
+.div { 
+margin:auto;
+width:100%;
+height:70px; 
+overflow-y:scroll; 
+padding-top:130px;
+text-align:left; 
+
+line-height:25px; 
+font-size:15px;
+padding-bottom:50px; 
+
+overflow:hidden;
+white-space:nowrap; 
+text-overflow:ellipsis;
+} 
+.playerdiv { 
+margin:auto;
+width:100%;
+
+}
+		
+			-->
+        </style>
+
+        <script language="javascript">
+            var scrollt = 0;
+            var tflag = 0; //存放时间和歌词的数组的下标
+            var lytext = new Array(); //放存汉字的歌词
+            var lytime = new Array(); //存放时间
+            var delay = 10;
+            var line = 0;
+            var scrollh = 0;
+//2
+            function getLy() //取得歌词
+            {
+                var ly = "[00:00.00]奉献(live)/[00:03.63]作词：杨立德/[00:05.27]作曲：翁孝良/[00:07.41]演唱：苏芮/[00:09.52]歌词千寻 www.lrcgc.com/[00:33.16]长路奉献给远方/[00:36.97]玫瑰奉献给爱情/[00:40.91]我那什么奉献给你/[00:43.94]我的爱人/[00:47.03].../[00:49.04]白云奉献给草场/[00:52.86]江河奉献给海洋/[00:56.82]我那什么奉献给你/[00:59.83]我的朋友/[01:02.86].../[01:08.46]我那什么奉献给你/[01:12.29]我不停的问/[01:14.45]我不停的找/[01:16.66]不停的想/[01:19.42].../[01:24.51]白鸽奉献给蓝天/[01:28.26]星光奉献给长夜/[01:32.05]我那什么奉献给你/[01:35.09]我的小孩/[01:38.37].../[01:40.21]雨季奉献给大地/[01:43.97]岁月奉献给季节/[01:47.88]我那什么奉献给你/[01:50.88]我的爹娘/[01:54.45].../[02:27.19]我那什么奉献给你/[02:30.95]我不停的问/[02:33.06]我不停的找/[02:35.21]不停的想/[02:37.94].../[02:43.25]白鸽奉献给蓝天/[02:46.92]星光奉献给长夜/[02:50.85]我那什么奉献给你/[02:53.74]我的小孩/[02:57.21].../[02:58.74]雨季奉献给大地/[03:02.72]岁月奉献给季节/[03:06.82]我那什么奉献给你/[03:09.53]我的爹娘/[03:12.62].../[03:14.72]啦............/[03:46.06]啦............/[04:17.36]啦............/[04:48.63]啦............"
+               return ly;}
+//9
+            function show(t) //显示歌词
+            {
+                var div1 = document.getElementById("lyr"); //取得层
+                document.getElementById("lyr").innerHTML = " "; //每次调用清空以前的一次
+                if (t < lytime[lytime.length - 1]) //先舍弃数组的最后一个
+                {
+                    for (var k = 0; k < lytext.length; k++) {
+                        if (lytime[k] <= t && t < lytime[k + 1]) {
+                              scrollh = k * 25; //让当前的滚动条的顶部改变一行的高度
+                              div1.innerHTML += "<font color=red style=font-weight:bold>" + lytext[k] + "</font><br>";
+                        } else if (t < lytime[lytime.length - 1]) //数组的最后一个要舍弃
+                              div1.innerHTML += lytext[k] + "<br>";
+                    }
+                } else //加上数组的最后一个
+                {
+                    for (var j = 0; j < lytext.length - 1; j++) 
+			div1.innerHTML += lytext[j] + "<br>";
+                    div1.innerHTML += "<font color=red style=font-weight:bold>" + lytext[lytext.length - 1] + "</font><br>";
+                }
+            }
+
+
+
+//5
+            function scrollBar() //设置滚动条的滚动
+            {
+                if (document.getElementById("lyr").scrollTop <= scrollh) 
+			document.getElementById("lyr").scrollTop +=25;
+                if (document.getElementById("lyr").scrollTop >= scrollh + 50) 
+			document.getElementById("lyr").scrollTop -=25;
+                window.setTimeout("scrollBar()", delay);
+            }
+
+//1
+            function getReady() //在显示歌词前做好准备工作
+            {
+                var ly = getLy(); //得到歌词 2
+                //alert(ly);
+                var arrly = ly.split("/"); //转化成数组
+                for (var i = 0; i < arrly.length; i++) 
+			sToArray(arrly[i]);	//循环执行左边函数 3
+                sortAr();
+
+
+
+                /*for(var j=0;j<lytext.length;j++)
+		{
+			document.getElementById("lyr").innerHTML+=lytime[j]+lytext[j]+"<br>";
+		}*/
+                scrollBar();  //5
+            }
+
+
+
+//3
+            function sToArray(str) //解析如“[02:02][00:24]没想到是你”的字符串前放入数组
+            {
+                var left = 0; //"["的个数
+                var leftAr = new Array();
+                for (var k = 0; k < str.length; k++) {
+                    if (str.charAt(k) == "[") {
+                        leftAr[left] = k;
+                        left++;
+                    }
+                }
+                if (left != 0) {
+                    for (var i = 0; i < leftAr.length; i++) {
+                        lytext[tflag] = str.substring(str.lastIndexOf("]") + 1); //放歌词,tflag的初始值是0
+                        lytime[tflag] = conSeconds(str.substring(leftAr[i] + 1, leftAr[i] + 6)); //放时间，conSeconds()是自定义函数；4
+                        tflag++;
+                    }
+                }
+                //alert(str.substring(leftAr[0]+1,leftAr[0]+6));
+            }
+
+
+
+
+
+            function sortAr() //按时间重新排序时间和歌词的数组
+            {
+                var temp = null;
+                var temp1 = null;
+                for (var k = 0; k < lytime.length; k++) {
+                    for (var j = 0; j < lytime.length - k; j++) {
+                        if (lytime[j] > lytime[j + 1]) {
+                            temp = lytime[j];
+                            temp1 = lytext[j];
+                            lytime[j] = lytime[j + 1];
+                            lytext[j] = lytext[j + 1];
+                            lytime[j + 1] = temp;
+                            lytext[j + 1] = temp1;
+                        }
+                    }
+                }
+            }
+
+
+//4
+            function conSeconds(t) //把形如：01:25的时间转化成秒；
+            {
+                var m = t.substring(0, t.indexOf(":"));
+                var s = t.substring(t.indexOf(":") + 1);
+                s = parseInt(s.replace(/\b(0+)/gi, ""));
+                if (isNaN(s)) s = 0;
+                var totalt = parseInt(m) * 60 + s;
+                //alert(parseInt(s.replace(/\b(0+)/gi,"")));
+                if (isNaN(totalt)) return 0;
+                return totalt;
+            }
+
+
+//7
+            function getSeconds() //得到当前播放器播放位置的时间
+            {
+                var t = getPosition();
+                t = t.toString(); //数字转换成字符串
+                var s = t.substring(0, t.lastIndexOf(".")); //得到当前的秒
+                //alert(s);
+                return s;
+            }
+
+
+
+
+
+//8
+
+            function getPosition() //返回当前播放的时间位置
+            {
+                var mm = document.getElementById("Player12");
+                //var mmt=;
+                //alert(mmt);
+                return mm.controls.CurrentPosition;
+            }
+
+
+//6
+            function mPlay() //开始播放
+            {
+                var ms = parseInt(getSeconds());
+                if (isNaN(ms)) 
+			show(0);
+                else 
+			show(ms);
+                window.setTimeout("mPlay()", 100)
+            }
+
+
+//6
+            window.setTimeout("mPlay()", 100) 
+	    
+	    function test() //测试使用，
+            {
+                alert(lytime[lytime.length - 1]);
+            }
+        </script>
+    </head>
+    
+<body onLoad="getReady()">
+<div class="container">
+
+	<div class="left">
+	
+<object id="Player12" height="315" width="100%" classid="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6">
+	<param name="url" value="奉献.swf" />
+	<param name="AutoStart" value="0" />
+	<param name="Balance" value="0" />
+	<param name="enabled" value="-1" />
+	<param name="EnableContextMenu" value="-1" />
+	<param name="PlayCount" value="1" />
+	<param name="rate" value="1" />
+	<param name="currentPosition" value="15" />
+	<param name="currentMarker" value="0" />
+	<param name="defaultFrame" value="" />
+	<param name="invokeURLs" value="0" />
+	<param name="baseURL" value="" />
+	<param name="stretchToFit" value="1" />
+	<param name="volume" value="50" />
+	<param name="mute" value="0" />
+	<param name="uiMode" value="full" />
+	<param name="windowlessVideo" value="0" />
+	<param name="fullScreen" value="0" />
+	<param name="enableErrorDialogs" value="-1" />
+	<param name="SAMIStyle" value="value" />
+	<param name="SAMILang" value="value" />
+	<param name="SAMIFilename" value="value" />
+</object>
+<br />
+<p>奉献</p>
+	  
+	</div>
+	
+
+	<div class="right">
+	<div class="playerdiv">
+<object id="Player122" width="100%" height="64" classid="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6"
+codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,5,715"
+align="baseline" border="0" standby="Loading Microsoft Windows Media Player components..."
+type="application/x-oleobject">
+	<param name="url" value="奉献.mp3">
+	<param name="PlayCount" value="3" />
+	<param name="AutoStart" value="0" />
+
+	<embed src="奉献.mp3" align="baseline" border="0" width="250" height="68"
+	type="application/x-mplayer2" pluginspage="http://www.microsoft.com/isapi/redir.dll?prd=windows&sbp=mediaplayer&ar=media&sba=plugin&"
+	name="Player122" showcontrols="1" showpositioncontrols="0" showaudiocontrols="1"
+	showtracker="1" showdisplay="0" showstatusbar="1" autosize="0" showgotobar="0"
+	showcaptioning="0" autostart="1" autorewind="0" animationatstart="0" transparentatstart="0"
+	allowscan="1" enablecontextmenu="1" clicktoplay="0" invokeurls="1" defaultframe="datawindow">
+	</embed>
+</object>
+	</div>
+	
+    <div id="lyr" class="div">
+        歌词加载中……
+     </div>
+	 <p></p>
+
+<br />
+<video controls="controls">
+	<source src="奉献.swf" type="video/ogg">
+	<source src="奉献.swf" type="video/swf">
+</video>
+
+</div>
+<audio controls="controls">
+	<source src="奉献.mp3" type="audio/ogg">
+	<source src="奉献.mp3" type="audio/mp3">
+</audio>
+<p>奉献(live)</p>
+
+<p>作词：杨立德</p>
+
+<p>作曲：翁孝良</p>
+
+<p>演唱：苏芮</p>
+
+<p>歌词千寻 www.lrcgc.com</p>
+
+<p>长路奉献给远方</p>
+
+<p>玫瑰奉献给爱情</p>
+
+<p>我那什么奉献给你</p>
+
+<p>我的爱人</p>
+
+<p>...</p>
+
+<p>白云奉献给草场</p>
+
+<p>江河奉献给海洋</p>
+
+<p>我那什么奉献给你</p>
+
+<p>我的朋友</p>
+
+<p>...</p>
+
+<p>我那什么奉献给你</p>
+
+<p>我不停的问</p>
+
+<p>我不停的找</p>
+
+<p>不停的想</p>
+
+<p>...</p>
+
+<p>白鸽奉献给蓝天</p>
+
+<p>星光奉献给长夜</p>
+
+<p>我那什么奉献给你</p>
+
+<p>我的小孩</p>
+
+<p>...</p>
+
+<p>雨季奉献给大地</p>
+
+<p>岁月奉献给季节</p>
+
+<p>我那什么奉献给你</p>
+
+<p>我的爹娘</p>
+
+<p>...</p>
+
+<p>我那什么奉献给你</p>
+
+<p>我不停的问</p>
+
+<p>我不停的找</p>
+
+<p>不停的想</p>
+
+<p>...</p>
+
+<p>白鸽奉献给蓝天</p>
+
+<p>星光奉献给长夜</p>
+
+<p>我那什么奉献给你</p>
+
+<p>我的小孩</p>
+
+<p>...</p>
+
+<p>雨季奉献给大地</p>
+
+<p>岁月奉献给季节</p>
+
+<p>我那什么奉献给你</p>
+
+<p>我的爹娘</p>
+
+<p>...</p>
+
+<p>啦............</p>
+
+<p>啦............</p>
+
+<p>啦............</p>
+
+<p>啦............
+</div>
+</body>
+</html>
