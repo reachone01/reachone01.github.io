@@ -1,0 +1,581 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:40em;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+pre{
+    margin-left:2em;
+	}
+a:visited, a:link{
+    color:blue;
+}
+a:visited{
+    color:#CC0000;
+}a:hover{
+    color:green;
+	}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+<p>天人合一，或称“天人合德”、“天人相应”，天人合一并非中国文化所独有的观念，在世界很多高级宗教中都有这类观念，并且有详细系统的修行方法。儒、道、释三家均有阐述。其基本思想是人类的生理、伦理、政治等社会现象是自然的直接反映。</p>
+<p>据说最早在春秋战国的孔子已有提出，汉朝董仲舒引申为天人感应之说，程朱理学引申为天理之说。也有认为最早是道家思想家庄子发展为天人合一的哲学思想体系。</p>
+<p>当代的解释是热爱生命，热爱大自然，能够领会所有生命的语言，时时处处感受到生命的存在，与大自然的旋律交融相和，能够取得对方生命的信任并和谐共存，与大自然和谐共存，人与物质、物质与物质极度巧妙完美的结合。</p>
+<p>科学起源于古希腊自然哲学，在文艺复兴时期产生，在近现代得到发展。</p>
+<p>科学是使用经验实证的方法，对现象进行归因的学科。</p>
+<p>人与自然的关系，体现为认识自然、顺应自然、改造自然。</p>
+<p>中国传统文化中天人合一的思想试图从生理、伦理的层面去顺应自然。</p>
+<p>科学思想却是试图通过认识自然去改造自然。</p>
+<h4>《易经》的天人合一</h4>
+<p>在文字产生之前，人总样表达自己的所思所想，自然是使用图画或符号。《易经》就是使用最简单的两个符号、进行排列、组合成卦象，来表征天象、地象、人象。</p>
+<p>《易经》强调三才之道：天才，地才，人才，三者并立起来，将人放在三者中的核心地位。天有天道，天道就是万物之始，孕育万事万物；地有地道，地道就是生养万事万物；人也有人道，人道就是成就万物。具体来说：天道是阴阳，地道是柔刚，人道是仁义。三者紧密联系在一起，缺一不可。</p>
+<p>《易经》中的“天人合一”思想，简单地说就是：人本是万事万物中的一份子，从属于天，所以天，人原本就是合一的，不可分割。如果详细来说，天性就是人性，天道就是人道，天德就是人德，这样，就将天文和人文紧密地联系在一起。比如乾卦，就自然现象而言，初九的爻辞是“潜龙勿用”龙指东方的苍龙七宿，地上的龙蛇，以及人所具备的龙德等。冬至后，天上的苍龙七宿便看不见了，地上龙蛇之类也开始冬眠，而人也因为气候寒冷，潜居在家，因此说是“潜龙勿用”。到次年惊蛰，气候开始变暖，万物萌生，天上的苍龙七宿又冉冉上升，地下冬眠的龙蛇也开始苏醒，这时，人也开始从事耕作，因此乾卦九二爻辞说“见龙在田”，说明，天上人间的事情都是一样的，这就是“天人合一”最简单的内涵，这个道理人所共知。</p>
+
+<p>《易经》中没有哪一卦只讲物象，而不谈及人的生命的，各卦象，无论指什么，都是在论天人关系。我们还从乾卦看，从初爻到六爻的所有爻辞，都对应着人的生命活动所应遵循的规律。比如，九三爻不再讲龙，却讲到了人，“君子终日乾乾，夕惕若，无咎”。龙是纯阳之物，象征刚健奋进的精神，君子也是阳性，也应勤勉奋进。《易经》不过用龙来表征这种精神而已，而人类中展现这种精神的，便是乾乾君子。</p>
+
+
+<p>《易传》是解释《易经》的，它在《系辞》中提出了“形而上者谓之道，形而下者谓之器”的观点，在哲学史上，这是一个重大突破。形而上之道，不仅是天道，也是人道，是“天人合一”之道。《说卦》中说：昔者圣人之作易也，将以顺性命之理，是以立天之道，曰阴与阳，立地之道，曰柔与刚，立人之道，曰仁与义，兼三材而两之，故易六画而成卦。这显示的不仅仅是天人“同构”关系，而且是天人“合一”的关系。就卦象来说，每一卦都有六爻，最上面两爻象征天道，最下面两爻象征地道，中间两爻象征人道。就卦义来说，天地之道是阴阳，刚柔，象征自然规律与法则，人道是仁义，表示社会伦理道德。《乾·文言》上说“同声相应，同气相求”，《系辞上》说“方以类聚，物以群分”也就是说，自然与社会，天道与人事，有一种以类相从的关系。《乾·文言》又说“本乎天者亲上，本乎地者亲下，则各从其美也”。可见，阴阳，刚柔在相互作用中，使天地万物发生了千变万化，并没有神秘力量的干预或推动。人是自然界的产物，同时也是社会的主体，仁义不等于阴阳，刚柔，但是二者之间有内在的相似性。仁表现了阴柔的特性，义表现了阳刚的特性，它们从“类”上说是一致的，从“本”上说则没有离开天地之道。</p>
+<p>“德”是天的本质特征，也是人的本质特征，然而，天地之德是靠人来实现的。天以“生”为德，表现在人类社会就是道德理性。万物的元，亨，利，贞之德，表现出来就是四季有序的运行，万物的滋长消亡，而它能够实现，就在于君子的仁义道德，也就是“性命之德”君子的伟大，就在于他天性中有这种德行，尽而行之，就能顺应性命之理，从而上合天德，实现真正的“天人合一”。</p>
+<p>《易经》中强调三才之道，将天、地、人并立起来，并将人放在中心地位，这就说明人的地位之重要。天有天之道，天之道在于“始万物”；地有地之道，地之道在于“生万物”。人不仅有人之道，而且人之道的作用就在于“成万物”。再具体地说：天道曰阴阳，地道曰柔刚，人道曰仁义。天地人三者虽各有其道，但又是相互对应、相互联系的。这不仅是一种“同与应”的关系，而且是一种内在的生成关系和实现原则。天地之道是生成原则，人之道是实现原则，二者缺一不可。</p>
+<p>在中国传统文化中，《易经》被列为群经之首。中国古代先辈们通过“仰观天文，俯察地理，近取诸身，远取诸物”，通过实践、思考和感悟，而建立的人与自然因地制宜、协调发展的思想信念。这一理念贯穿于中国五千年文明史，造就了中国文化，也造就了中国东西南北中各具特色的城市风貌、建筑景观、为人处世、地域风情。</p>
+<h4>《易经》以外其它方面对天人合一概念的阐述</h4>
+<p>《道德经》："人法地，地法天，天法道，道法自然。"</p>
+<p>《孟子·公孙丑下》：“天时不如地利，地利不如人和。”</p>
+<p>孙子曰：兵者，国之大事，死生之地，存亡之道，不可不察也。故经之以五事，校之以计而索其情：一曰道，二曰天，三曰地，四曰将，五曰法。道者，令民与上同意也，故可以与之死，可以与之生，而不畏危。天者，阴阳、寒暑、时制也。地者，远近、险易、广狭、死生也。将者，智、信、仁、勇、严也。法者，曲制、官道、主用也。凡此五者，将莫不闻，知之者胜，不知者不胜。故校之以计而索其情，曰：主孰有道？将孰有能？天地孰得？法令孰行？兵众孰强？士卒孰练？赏罚孰明？吾以此知胜负矣。</p>
+<p>孔明曰：“谋事在人，成事在天。不可强也！”</p>
+
+
+<h4>科学是什么：科学的目的、精神、方法</h4>
+
+<p>“科学”一词是近代日本学界对英文“Science”的翻译，“Science”来源于拉丁文“Scientia”，意为“知识”、“学问”。在日本幕府末期到明治时期，“科学”是专门的“个别学问”，以“分科的学问”的意义被使用着，在近代侧重关于自然的学问。</p>
+
+
+<p>所以，从字面意义上，我们很难直接回答科学是什么这个问题，科学侧重获取知识的方法、过程，而非知识本身。我们需要从科学的目的、精神、方法、历史、与哲学、神学、宗教的关系去了解科学的内涵与外延。</p>
+
+
+
+
+
+<p>1 科学的目的</p>
+<p>发现自然、社会、思维的规律，不只是追求眼前的实用，而是刨根问底探寻背后的原理。</p>
+
+
+<p>追求主观的认识与客观的实际达到一致。发现事物的因果关系、自然的规律（广义来说，也包括社会、思维规律）。</p>
+
+
+<p>科学不以追求短期的实用为目的，更多的是一种更高层面的对于好奇心的满足，但站在长远的眼光来看，其带来的应用是自然而然的，相对较大的。</p>
+
+
+<p>哲学也是一种较高的精神层面的追求，科学与之不同的是，追求量化、逻辑推理、实证。哲学往往容易形成一家之言，而科学却是累进的、往前看的，后人总是站在前人的基础上，通过发现问题、质疑，推理、实证，进一步增进理论的适用范围。而哲学往往还会往前看，相对于古代的哲学家，现代的哲学只能说各有千秋。</p>
+
+
+<p>科学要探究事实背后的规律，上升的理论的高度，但不是虚无飘渺的理论，是有逻辑推理和实践验证的，是经得起检验的，是有明确适用范围和边界的，不是想当然的，也不是偶然发生的。</p>
+
+
+<p>成为中国主导传统的儒学缺少对世界提供整体解释的理论兴趣。安排世界的秩序是中国思想的主流，至于怎样去解释世界反而不是儒学的精彩所在。</p>
+<p>2 科学精神</p>
+<p>求真务实、改善创新的精神，质疑、理性、实证的精神，大胆假设、小心求证的精神。</p>
+
+
+<p>科学精神要体现一种理性质疑、逻辑推理、实践验证的态度，一种求真务实，不断追求改善创新的精神。</p>
+
+
+<p>中国人会为历史之真、为人之真，会为形形色色的忠孝节义杀身成仁，对于宇宙论的真却不太关心。</p>
+<p>3 科学的方法</p>
+<p>科学要用数据说话，用逻辑推理，用实践检验。</p>
+
+
+<p>包括定量分析、逻辑推理、实践验证的方法。</p>
+
+
+<p>如确保观察严谨的方法、确保假说逻辑严密的方法、大样本随机双盲对照实验的方法。</p>
+
+
+<p>定量分析离不开数学、离不开观察和实验（包括逻辑思维和思想实验）。</p>
+
+
+<p>从具体到一般、从一般到具体的抽象、归纳、演绎方法是逻辑自恰的。</p>
+
+
+<p>人类有史以来就开始探索外部世界，但一直到近代（16、17世纪？）才开始有了实质性的突破。在这之前，人们一直在进行着头脑中较纯粹的思辨，而没有与自然世界进行必要的互动。亚里士多德等人的观点从公元前开始影响了人类两千年。这其中也有自古以来宗教的力量。直到16、17世纪开始，人们终于开始怀疑宗教的权威，开始学会质疑，也开始使用证据进行推理(reasoning)。与此同时，人们意识到，既然宗教权威都可以被质疑，那么人类一直以来关于这个世界的看法，当然也可以得到质疑！与此同时，人们终于开始走出纯粹的头脑中的思辨，开始对自然界进行观察和记录，而且使用数学（数字，几何形状）等进行记录观察的结果（这便是测量的开始）。通过观察和记录，人们便得到了关于这个世界的一些信息，并且人们认为这些信息是“客观的”(objective)，也就是说不同于以前纯粹的头脑中的思辨，不同人有不同观点并且谁也说服不也谁，不同的人进行同一个“客观的”观察所得到的结果是相同的，所以这样的观察和结果是可以依靠的——这便是“客观”的含义，不因观察主体人的改变而改变。为了观察，人们按照经验制造更好用的工具（仪器），从而得到更好更有用的观察结果。而制造更好用的工具，就是“技术”。当然，这里面还少不了金钱、权利、地位、名声等因素的影响和推动。从现在开始，我们可以把观察得到的结果，称为“数据”，因为数学很自然地可以用来描述观察的结果（结合自己之前对数学和现实世界的理解，很好解释），也就是说，多数时候，可以把观察结果数字化、数学化。从这些数据出发，结合逻辑推理（构成人类思维的基本工具），人们可以尝试进行归纳、猜想、假设等思维活动，对外部世界发生的现象做出合理的描述和解释。</p>
+
+
+<p>一个典型的例子，行星的运动轨道，在很长时间内教会都说是完美的圆，人们也都无法反驳。但通过第谷（Tycho）等人观测到的数据，经过计算发现，无论如何也无法将数据与圆吻合，而是与椭圆吻合得最好。通过观测得到的客观数据，加上逻辑推理，形成证据，证明行星轨道不是圆而是椭圆。（当然，这里意思是说“轨道就是椭圆”吗？当然不是。意思是，数据与理论上的椭圆契合度非常高，误差很小，比圆小得多得多得多，差了很多数量级，并且通过数据我们也对理论和实际的误差有了一些经验上的了解。另外，椭圆也只是一个简化且足够准确的模型，当需要更高准确度的场合，可以再次通过数据，发展出更复杂而准确的模型，比如椭圆的基础上加一些修正之类的。）</p>
+
+
+<p>后来，人们不仅开始观察，还开始针对不同的目标，人为地设计不同的场景，在这些人为场景中有目的地进行观测。这便是“实验” (experiment)。</p>
+
+
+<p>我们以行星轨道为例子，再次明确地阐述一下，什么是“科学方法”(scientific method)：</p>
+
+
+<p>I 提出一个问题 （行星的轨道是什么样的？）</p>
+
+
+<p>II (设计实验场景），观察（观测），并了解结果（定性的趋势、定量的数据）</p>
+
+
+<p>III 通过归纳、猜想等，提出理论假说（定量情况下是数学模型），然后用数据进行验证，看契合度和误差是否满意（满足描述要求，满足应用要求等），调整修改模型，直到得出满意的、大多数人接受的方案（模型），形成暂时的理论。（暂时的理论就是，太阳系的行星，围绕太阳按椭圆轨道运动，并且迄今为止观测到的数据提供了大体上的误差信息，大多数场景中，按椭圆轨道得出的进一步信息，其误差可以满足需要。)</p>
+
+
+<p>IV 后续的时间中，出于不同的目的，不同的时间、地点、人物进行相同的观测，得到数据，不断对理论进行检验。只要发现一例数据与理论不吻合的（当然前提是要可靠，具体什么是可靠，貌似也只能具体问题具体分析了），理论就被判失效，将回到step 3重新发展新的理论。这便是科学理论的“可证伪性”——也正是这种可证伪性，使得科学理论能够不断地自我修正，不断地发展，越来越准确、深入和有用。</p>
+
+
+<p>近代原子论是属于实证科学，是通过实验和计算建立起来的。古典希腊时期的原子论完全是思辨的产物。</p>
+<p>在科学研究方法上，近现代西方科学家大多采用观察和实验的方法，以及数理逻辑推导的方法。伽利略被后人称为“现代自然科学之父”，不仅在于其在科学上的发明和发现，而且更重要的在于他在科学研究方法上的贡献。因为从那以后，现代自然科学研究方法及其步骤，基本上都是沿着他所开创的道路前进的。与此同时，中国科学研究仍然主要采用传统的整理典籍和总结经验的方法。</p>
+<p>4 科学的一般特点</p>
+<p>科学有不同于其它人文学科的特点：</p>
+
+
+<p>I 逻辑自恰性；</p>
+
+
+<p>II 简单性；</p>
+
+
+<p>III 适应范围明确有限；</p>
+
+
+<p>IV 实践性，不能与任何适用范围内的任何事实产生矛盾，并且可以做出预测，预测能被检验；</p>
+
+
+<p>V 普适性，没有文化、种族、信仰、时空的界限；</p>
+
+
+<p>5 科学可以讨论的事物（领域）</p>
+<p>科学不是普适的，有其特定的领域：</p>
+
+
+<p>I 需要概念明确；</p>
+
+
+<p>II 标准、客观、可量化；</p>
+
+
+<p>III 可证伪性；</p>
+
+
+<p>IV 有很强的错误可纠正性；</p>
+
+
+
+
+<h4>天人合一有科学思想的成分吗？</h4>
+<p>科学问题，必须先理清楚定义。</p>
+
+
+<p>牛顿的经典之作《自然哲学的数学原理》，奠定了现代力学的基础，这本书的前几十页都是各种定义，关于力，关于运动。</p>
+
+
+<p>现代科学，其基础是必须有清晰的定义，大家对讨论的问题必须有一致的认识，可测量，可验证。</p>
+
+
+<p>“天人合一”，什么是“天”，是指头顶的天空，是指100公里高度以上的太空，是指太阳或太阳系，还是指银河系或者宇宙？亦或是按照道学的观点，“天”指天道，那么天道又是什么？指自然规律吗？自然规律又是指什么？相对论？量子力学，亦或是进化论？还是别的规律？这个规律具体的内容是什么？</p>
+
+
+<p>“合一”又是什么意思？是指有天灾（地震，暴雨，干旱）必由人祸导致的（这是董仲舒的天人合一的初始解释），还是指人必须遵循天道（自然规律）才能身体健康，长寿（这是现在中医养生主张的天人合一的观点）？这些所谓的天道到底是那几条（这又回到上一段的天的定义）。</p>
+
+
+<p>天人合一如何验证？怎样的情况证明就是天人合一？怎样的情况证明天人合一不对？科学观点必须可以证伪，即可以说清楚在怎样的情况下理论就是错的。比如，广义相对论的空间扭曲，违背大家的常识，爱因斯坦用数学精准地算出扭曲的尺度，并指出可在全日食的时候如何验证。有科学家在几年后的全日食中精准地验证了爱因斯坦的预测是完全正确的。这样，大家才相信广义相对论。如果验证失败，不是预测的结果，就会证明广义相对论不成立。同样，天人合一如果是科学思想，必须有人能够用天人合一的理论来预测，并被实验来检验。</p>
+
+
+<p>如果无法在什么是“天”，什么是“合一”等基本概念达成一致，每个主张天人合一的人的解释都不一致，各有各的理解。同时也没法用天人合一提出精准的预测，并在什么情况下来验证天人合一是正确的，什么情况是错误的。这种情况下，天人合一的命题连基本的科学命题的条件都不具备，就更别说是科学思想了。</p>
+
+<p>为什么科学和工业革命没有在近代的中国发生？</p>
+<p>英国人李约瑟（Joseph Needham，1900-1995）提出：“尽管中国古代对人类科技发展做出了很多重要贡献，但为什么科学和工业革命没有在近代的中国发生？”1976年，美国经济学家肯尼思·博尔丁称之为李约瑟难题。</p>
+
+
+<p>这确实是值得深思的一个难道。</p>
+
+
+<p>英国纪录片《科学的故事》认为现代科学的产生需要三个条件：大胆的思想者，数据的收集者，慷慨的赞助者。</p>
+
+
+<p>思想者需要有产生思想者的土壤，集权的政治体制与君君臣臣父父子子的思想禁锢是不易产生大胆的思想者的。汉武帝时期“罢黜百家、独尊儒术”的局面，八股文的科举制度，知识分子修身齐家治国平天下的理想，“学而优则仕”的追求。所以，身处如此环境下的知识分子很难具备科学素养所需要的强烈的好奇心、丰富的想像力、独立的思考和创新。</p>
+
+
+<p>春秋战国、民国时期虽然社会不够稳定，但也正因为如此，没有了统治者对老百姓思想的禁锢，最终带来了百家争鸣的局面。</p>
+<p>思想者智慧的火花也需要思想的碰撞与交流，跟一个区域的地理环境有大关系。在中国，东面有渤海、黄海、东海，南面是南海和东南亚热带雨林，西面是各种高耸的山脉和大片的沙漠，北面则是寒冷的戈壁和草原，只有中间这一块，地形平坦、土地肥沃、风调雨顺、不太冷也不太热。这一大片好地方无论分裂成多少国家，最后总会被统一，就是因为中华民族发源于这一块宝地之中，人口扩张迅速，周边的东夷、南蛮、西戎、北胡都被迫迁徙到自然环境较为恶劣的地方去，或者直接被炎黄子孙融合。占有绝对优势的单一民族及文化造成的结果就是无论哪朝哪代，都以统一中国为基本任务。中国统一的民族和国家非常容易形成中央集权的政治制度。最后的结果，不同文明交流的可能性大大降低了，象形文字能得已传承。（西方拼音文字就是因为交流的需要而产生的。）</p>
+
+
+<p>中国象形文字（或形声文字）加上注音带来的困难，要学习成百上千个文字必须耗费比较久的时间。另外，中国古代的文言文，讲求含蓄和文字上的模糊美，如同艺术讲究留白，对于数学、物理学等自然科学的表达、学习和理解，拼音字母对于汉字有着先天性的优势。</p>
+
+
+<p>科学，从物质层面开始，通过观察、推理，会上升到理论的高度，有从具体到一般，从一般到具体的过程。当然，物质文明与精神文明相互影响。中国人的传统就是重实用轻理论。易经、道德经里所说的道，是精神、道德的层面的东西，只有模糊、牵强附会的解释，最后成了可以随意表述的“玄之又玄”的概念。</p>
+
+
+<p>形而上谓道，但道太过玄科，形而下谓器，也就是技术，是具体有形、实用的，而科学界于两者之间。器之上道之下，是确定性的、合乎逻辑的、可实证可预测的理论规律。</p>
+
+
+<p>科学侧重物质世界的认识与解释，但精神文明所带来的观念的影响是巨大的。儒家思想有其独特之处，看你怎么用？在什么范围用？如果让其无所不在，甚至作为禁锢的工具就有问题了。</p>
+
+
+<p>中国古代就有了农历和二十四节气，可以指导农业生产，以及实用的四大发明，但我们就此止步，没有动力和兴趣的推动去探究其内在原理和规律。甚至在观念上认为连技术都不重要，认为是“奇技淫巧“。</p>
+
+
+<p>西方的一些思想大家或者是贵族，或者有作为贵族的赞助者的支持，有经济和时间上的相对自由。这样才有可能去追求”无用“之科学。如果终日为生活苦，也找不支持，则头脑中肯定不会有探寻自然奥秘的空间。中国大统一以后的官僚封建制度无法提供足够的保障、无法激励创新或者无法激发追求财富的本能等。相反，西方的崛起是因为其体制制度保障了私有财产、提供了可靠的法律保障、保护了创新和知识产权等。</p>
+
+
+<p>数学是科学的语言，科学需要数据作为支撑，需要用数学工具来分析，总结出公式。作为变量数学的微积分也是产生于西方。很难想像，没有一套符号系统的数学会是什么样子，特别是微积分和数学分析。或简单或复杂的方程或定律如何构建？</p>
+
+
+<p>数学因为人类丈量、测量、计量的需要而产生，这只是初始数学，符号化产生了包含函数概念的代数，直到研究变量率关系的微积分的出现。古希腊时期的苏格拉底说“万物皆数”，近代科学的重要的奠基人之一的伽利略说“自然的奥秘是用数学书写的“，大科学家牛顿最重要的著作的名字是《自然哲学的数学原理》。要知道，直到现在，还有一些所谓的成功人士标榜自己数学只考了几分，潜台词就是说，数学有什么用呢？我数学不好，现在也可以嘚瑟。还有一些无知的人说，懂得加减乘除可以在买卖时算个数就行了，微积分有什么用？当然，生活、工作中能用到微积分的机会不一定多，也并不是所有的科学领域都需要高深的数学，但这样的观念堪忧。</p>
+
+
+<p>中国古代是一个典型的农业国家，农业文化偏重对经验的和对实用技术的研究。在解决生活生产的实际问题方面，做出了很大的贡献，而科学理论方面的探讨却被忽视了。如中国古代天文学的研究，历法的推算占了很大比重，观测资料主要是用来编制日、月和五星的回合周期；地理学的研究是为了满足战争、生产和生活之需；农学的研究是为了农业、畜牧业生产的需要；而医学的研究则是为了祛病强体；数学研究如《九章算术》中数学计算虽然很出色，但只是有关数学运算的经验总结，没有从这些实际问题中概括出定理定律来，只能算作经验，不能称作是定理定律，因为没有进行严格的数学证明，认识主体没有通过归纳、演绎、分析、综合、概括和抽象等各种思维过程把经验提炼成科学。中国传统科学的研究并不像古希腊人那样是以定理、公理为基础建立理论，缺乏理性意识，缺乏理论性创新，实用性限制了科学理性的形成。实用理性只关心表象化的自然现象和自身的关系，不关心背后的深层原因，更不关心体系理论的形成。古希腊人热衷于对科学理论的研究探索，正如亚里士多德所说:“他们探索哲理只是为了想脱离愚昧，显然他们为了求知而从事学术，并无任何实用目的”。在他看来，“求知是人的本性”，阿基米德在对支点、重心等研究的基础上分别确定了概念定义，欧几里得在对点、线、射线、角等23个概念定义的基础上，从五条公理和五个假设出发，经过一系列逻辑推理，上升到完美的理论几何体系，并影响到了后来的牛顿。换言之，西方科学通常都以理论体系的形式出现，重视理论的研究，这是近代科学产生的重要因素之一。</p>
+
+
+<p>中国有阴阳五行的文化，有中医中药的文化，之所以这里称其为文化，是因为离有实证、有逻辑推演的理性科学相距甚远。</p>
+
+
+<p>对物质世界认识的科学，在经历了科学萌芽、数次科学革命以后，科学是“向未来探索”的，在前人的成果的基础上改革创新。精神世界的探索不同，往往会“向历史探索”，研究历史上的思想大家的思想成就。如果现在还在研究阴阳五行、应用祖宗的中医中药，就是一种典型的“向历史探索”，阴阳五行只能算是一种朴素的哲学观，而中医中药如果没有创新或加入科学的因子，也会前景堪忧。</p>
+
+
+<p>在爱因斯坦看来，形式逻辑体系和系统实验是西方传统，中国缺乏这两个传统，也就没有形成与西方相似的科学。</p>
+<p>杨振宁认为是以下原因使科学和工业革命没有在近代的中国发生：</p>
+<p>1 中国的传统是入世的，不是出世的。换句话就是比较注重实际的，不注重抽象的理论架构。</p>
+<p>2 科举制度。</p>
+<p>3 观念上认为技术不重要，认为是“奇技淫巧”。</p>
+<p>4 中国传统里面无推演式的思维方法。</p>
+<p>5 有天人合一的观念。</p>
+<p>杨振宁认为，天人合一这种思想“起源于《易经》每一卦都包含天道、地道与人道在内，天的规律跟人世的规律是一回事”。而“近代科学一个特点就是要摆脱掉‘天人合一’这个观念，承认人世间有人世间的规律，有人世间复杂的现象，自然界有自然界的规律，与自然界的复杂现象，这两者是两回事，不能把它合在一起。”（中国最擅长的就是研究人与人的关系，也就形成了现在的人性社会。）</p>
+
+<h4>最后</h4>
+<p>中国传统文化在文化方面有其独特性，但与现代科学却是相悖的。</p>
+<p>如果从人与自然环境的关系来看，天人合一的观念还是有其积极性的。把“天”理解为人所处的资源环境，“人”是这个资源环境中的行为主体；“合一”是说“天人”这一对主体的相生相依、相辅相成。</p>
+<p>现代科学试图通过认识自然来改造自然，而不只是顺序自然。实验科学就是通过人为设置特殊条件来对自然过程进行干预，从而发现自然发生变化的规律。科学不但要“求真”，还要“求力”，试图征服自然。由此，才有了现代科技的蓬勃发展。</p>
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换
+\s*<br />\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+
+
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+\s*</p>\s*
+\s*<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+
+4 把第和章两个字去掉
+第(\S*)章
+------------------
+$1
+_____________________________________________________________________________________
+
+7 正则表达式参考：
+https://www.toutiao.com/i6370960744082571778/
+_____________________________________________________________________________________
+
+8
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+9 将标注序号更改为上标，红色，需一个个替换，英文html中有[1]
+(\[\d\])
+------------------
+<sup>$1</sup>
+_____________________________________________________________________________________
+10 替换章不是以1-9。?！…”“结尾的段落
+([^1-90。?！…”：？“章])</p>
+<p>
+------------------
+$1
+-->
+
+
