@@ -1,0 +1,426 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>英汉两种语言，我们看得见的位异与形异</h3>
+
+<p><h3>一、宏观概述，背景探究</h3></p>
+<p>任何一门语言的萌芽、成形、发展，再到形成相对稳定的形式，都是大浪淘沙、去其糟粕、留其精华的过程。英语与汉语，作为使用人数最多的两门语言，当然也不例外。在这个漫长过程中，语言必然受使用人群的影响，产生独特的烙印。故，不同语言之间除了共性之外，还会有一些个性，即差异。</p>
+<p></p>
+<p>语言是使用语言者内在思维的外在表现形式，而思维的形成与地域文化有关。英语与汉语作为世界上使用人数甚广的两种语言，其有显著的差异，弄清楚这种差异，对于英语的学习是相当有帮助。</p>
+<p></p>
+<p>从地理位置上看，英国四面环海。所以从某种意义上说英国是一个岛国。所谓：靠山吃山，靠水吃水。非发达时期，或者说在英语语言发展期间，英国人的主业是捕渔；我们中国，幅员辽阔，但整体上是农业国家，所以主业是农业种植（站在语言发展角度看）。</p>
+<p></p>
+<p></p>
+<p>an island</p>
+<p></p>
+<p>所以，简单来说：“渔民”说英语，“农民”说汉语。探究这两种语言的之间的差异，其实也就是探究“渔民”和“农民”之间的思维异同。</p>
+<p></p>
+<p>笔者在上课的时候问过学生一个问题：渔民和农民哪个群体的工作相对安全些？</p>
+<p></p>
+<p>学生几乎异口同声回答：农民。</p>
+<p></p>
+<p>我追问：为什么农民更安全？</p>
+<p></p>
+<p>学生答：因为一个在海上工作，一个在陆地上工作。</p>
+<p></p>
+<p>的确如此！</p>
+<p></p>
+<p>在海上，面对多变的、不可准确预料、不可控制的天气，确实危机重重。</p>
+<p></p>
+<p>在陆地上，相对好很多。即使遇到恶劣天气，也有更多的方式来规避。</p>
+<p></p>
+<p>这种客观环境，就导致了两种语言在表达时候的差异。本文将从位异和形异两个方面来讲述英语和汉语的差异。</p>
+<p></p>
+<p><h3>二、英汉差异之位异</h3></p>
+<p>所谓位异，即英语和汉语在句子表达时，相同的成分所在句中的位置不同。主要体现在定语的位置和状语的位置。</p>
+<p></p>
+<p><h4>1、定语位置</h4></p>
+<p></p>
+<p></p>
+<p>英汉两种语言的定语位置</p>
+<p></p>
+<p>在汉语中，定语均在所修饰的名词前；而在英语中，有的定语在名词前，有的定语在名词后。比如：</p>
+<p></p>
+<p>① 一本书；② 一本新书；③ 一本关于历史的新书；④ 一本李老师写的关于历史的新书。</p>
+<p></p>
+<p>分析：从汉语表达来看都是“一本……书”，所有定语都在被修饰的名词“book”前面，而翻译成英文后，就不是都在book之前了。请看：</p>
+<p></p>
+<p>①a book；②a new book；④a new book about history；⑤a new book written by Mr Li about history。</p>
+<p></p>
+<p>通过例子分析，我们可以直观感受到英语和汉语中定语的位置异同了。至于在英语中哪些定语放在名词前（前置定语），哪些定语放在名词后（后置定语），就不在此展开。我们理解位置异同即可。</p>
+<p></p>
+<p><h4>2、状语位置</h4></p>
+<p></p>
+<p>和定语类似，汉语中状语多位于句中；而英语中，状语（尤其是短语或从句）多位于句末。比如：</p>
+<p></p>
+<p>① 我游泳。② 我在河里游泳。③ 我和我爸在河里游泳。④ 我和我爸开心地在河里游泳。</p>
+<p></p>
+<p>分析：这几句话的核心意思都是：我游泳。不同的是添加了状语来修饰“游”这个动作。请看英文翻译：</p>
+<p></p>
+<p>①I swam. ②I swam in the river. ③I swam with my father in the river. ④I swam happily with my father in the river.</p>
+<p></p>
+<p>通过对比汉语和英语的表达，我们就能理解在句子中状语的位置差异了。</p>
+<p></p>
+<p><h3>三、英汉差异之形异</h3></p>
+<p></p>
+<p>所谓形异，通俗来讲就是“长得不一样”。对于形异，笔者进行了以下的总结。</p>
+<p></p>
+<p><h4>1、名词有单复数变化</h4></p>
+<p></p>
+<p>汉语中，一个名词，无论表达的数量是多少，词形是没有变化的。而在英文中，对于可数名词而言，当数量大于1时，要用复数形式。比如：</p>
+<p></p>
+<p>一本书，我们说成：a book；二本书，我们说成：two books。这里“books”就是“book”的复数形式，来表示书的数量大于1。</p>
+<p></p>
+<p><h4>2、动词有5种形式变化</h4></p>
+<p></p>
+<p>在英文中，一个动词有5种形式，即①原形（do）；②三单（does）；③过去式（did）；④现在分词（doing）；⑤过去分词（done）。（备注：其中doing形式，在语法中亦可理解为动名词）。</p>
+<p></p>
+<p>动词既然有5种形式，那么就会在不同的场合使用。我们说：</p>
+<p></p>
+<p>在英文的句子中，不同的人称、时态、语态要用动词的不同形式与之对应。同时，在句子中谓语之外的动词（非谓语动词），要根据其所在句中的功能，选用合适的形式。</p>
+<p></p>
+<p>举例：谓语动词</p>
+<p></p>
+<p>①我回家。I go home.</p>
+<p></p>
+<p>②他回家。He goes home.</p>
+<p></p>
+<p>③他昨天回家。He went home yesterday.</p>
+<p></p>
+<p>④他明天回家。He will go home tomorrow.</p>
+<p></p>
+<p>汉语中，一个“回”用在各种情况之中。而在英文中，这个“回go”，就要根据情况用不同形式了。</p>
+<p></p>
+<p>举例：非谓语动词</p>
+<p></p>
+<p>例句：我想去看望我的老师。</p>
+<p></p>
+<p>分析：本句有三个动词，即“想want”、“去go”、“看望visit”。其中want是谓语动词，其余两个为非谓语动词。故要翻译为：I want to go to visit my teacher.</p>
+<p></p>
+<p><h4>3、形容词有比较级和最高级形式</h4></p>
+<p></p>
+<p>汉语中形容词，通过句意来进行对比。在英文中，进行对比时，要用形容词的形式来具体体现。比如：</p>
+<p></p>
+<p>①我高。I am tall.</p>
+<p></p>
+<p>②我比我哥高。I am taller than my brother.</p>
+<p></p>
+<p>③在我们家，我最高。I am the tallest in my family.</p>
+<p></p>
+<p><h4>4、人称代词有主格和宾格形式</h4></p>
+<p></p>
+<p>人称代词是用来代替人、物或事。以“人”为例，所代替的人，可能是动作的发出者，用主格形式；也可能是动作的承受者，用宾格形式。比如：</p>
+<p></p>
+<p>例句：他打他。</p>
+<p></p>
+<p>分析：两个“他”均代表某位男性。不过，第一个“他”是“打”这个动作的发出者，用主格形式；第二个“他”是“打”这个动作的承受者，用宾格形式。故，翻译为：</p>
+<p></p>
+<p>He beat him.</p>
+<p></p>
+<p><h4>5、物主代词有形物代和名物代形式</h4></p>
+<p></p>
+<p>物主代词用来表示人、事、物的所属关系，即属于某人。表示“某人的……”。比如：“我的”，在英文中就对应“my”（形物代）和“mine”（名物代）两种形式。</p>
+<p></p>
+<p>例句：我的哥哥有一辆汽车。他的汽车比我的（汽车）贵。</p>
+<p></p>
+<p>翻译：My brother has a car. His car is more expensive than mine.</p>
+<p></p>
+<p>对于“形物代”和“名物代”的差异，我们可以简单这样判断：看看“什么”在不在（什么表示名词）</p>
+<p></p>
+<p>形物代：某人的什么</p>
+<p></p>
+<p>名物代：某人的（什么）</p>
+<p></p>
+<p>英汉差异涉及的层面非常多，核心是思维的差异。位异”和“形异”我们可以直观感受。本文从这两方面进行总结和分析。希望能对英语学习者，在英语和汉语差异的探究中，起到一个抛砖引玉的作用。</p>
+
+
+<p style='float:right;'>本页共130段，3659个字符，7981 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
