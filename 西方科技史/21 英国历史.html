@@ -1,0 +1,382 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>英国历史</h3>
+
+<p>1 约公元前 30 世纪，伊比利亚人从欧洲大陆来到大不列颠岛东南部定居。</p>
+<p>2约公元前 700 年以后，居住在欧洲西部的凯尔特人不断移入不列颠群岛，其中有一支称为不列吞人，不列颠这一名称可能来源于此。凯尔特人已经使用铁器，耕犁在技术上不断进步，并已使用货币。生产力发展促使凯尔特社会逐渐分化。</p>
+<p>3	公元前 55 和前 54 年，G.J.凯撒两度率罗马军团入侵不列颠，均被不列颠人击退。</p>
+<p>4	公元 43 年，罗马皇帝克劳狄一世率军入侵不列颠。征服不列颠后变其为罗马帝国的行省。为阻止北方凯尔特人南下，公元 2 世纪 20 年代罗马皇帝 P.A.哈德良在位时期，罗马人在大不列颠岛北部修建了一条横贯东西、全长</p>
+<p>118公里的长城，史称哈德良长城。</p>
+<p>5	3~4 世纪，随着奴隶反抗斗争的加剧，罗马帝国逐渐衰落。4 世纪中叶前后，不列颠反抗罗马统治的斗争也渐趋激化。</p>
+<p>6	407 年，罗马驻军被迫全部撤离不列颠，罗马对不列颠的统治即告结束。</p>
+<p>7	日耳曼人入侵。罗马人撤离后，居住在德国易北河口附近和丹麦南部的盎格鲁撒克逊人以及来自莱茵河下游的朱特人等日耳曼部落，5 世纪中叶起陆续侵入不列颠。入侵过程延续约一个半世纪。入侵者洗劫城镇和乡村，不列颠人被杀戮或沦为奴隶，有的被驱赶到西部、西北部山区，或被入侵者同化，形成后来的英吉利人。         8 到 7 世纪初，入侵者先后建立起 7 个强国:东部和东北部盎格鲁人的麦西亚、诺森伯利亚和东盎格利亚，南部撒克逊人的威塞克斯、埃塞克斯和苏塞克斯，东南部朱特人的肯特。这个时期史称"七国时代"，也成为了后来的英吉利王国的雏形。英吉利这个名字源自"盎格鲁人"(Angles)，其原名"Engla-lond"意为"盎格鲁人之地"，后音译变成了England。而古英语就是盎格鲁人的语言的意思。至今，盎格鲁撒克逊还用来代指英国人或者英国后裔</p>
+<p>9	6 世纪末，基督教传入英国。597 年，罗马教皇格列高利一世(590~604 在位)派修士奥古斯丁到英吉利传教。到</p>
+<p>7世纪下半叶，英吉利全境基本上都皈依了罗马基督教。</p>
+<p>10	从 8 世纪末开始，以丹麦人为主体的斯堪的纳维亚人屡屡入侵英国。为抗击丹麦人，威塞克斯王国国王埃格伯特(约          802~839                    在位)于          827                    年统一七国，建立统一的英吉利王国。11 到 9 世纪末，丹麦人已在大不列颠岛上建立大片居留地。879 年，阿尔弗烈德大王和丹麦人订立条约，将英吉利东北部划归丹麦管辖，称为"丹麦区"。</p>
+<p>12	10 世纪初，阿尔弗烈德大王的后继者逐渐收复丹麦区。</p>
+<p>13	11 世纪初，丹麦人卷土重来，丹麦王克努特大帝成为全英之王(1016~1035 在位)。克努特之子死后，英国王位复归于英人忏悔者爱德华(1042~1066 在位)。</p>
+<p>14	法国诺曼底公爵威廉(丹麦维京人后裔)于 1066 年率军入侵，同年 10 月进入伦敦，加冕为英王威廉一世</p>
+<p>(1066~1087在位)，史称"征服者威廉"，诺曼底王朝(1066~1154)由此建立，国王有:</p>
+<p> </p>
+<p>	威廉一世(1028-1087)(英吉利国王 1066-1087 在位)</p>
+<p>威廉二世(1060-1100)(英吉利国王 1087-1100 )</p>
+<p>亨利一世(1068-1135)(英吉利国王 1100-1135)</p>
+<p>斯蒂芬(1096-1154)(英吉利国王 1135-1154)</p>
+<p>15 金雀花王朝,1154-1485 年，国王有:</p>
+<p>亨利二世(1133-1189)(英吉利国王 1154-1189 在位)</p>
+<p>理查一世(狮心王)(1157-1199)(英格兰国王 1189-1199)</p>
+<p>约翰(失地王)(1167-1216)(英格兰国王 1199-1216)</p>
+<p>亨利三世(1207-1272)(英格兰国王 1216-1272)</p>
+<p>爱德华一世(1239-1307)(英格兰国王 1272-1307)</p>
+<p>爱德华二世(1284-1329)(英格兰国王 1307-1327)</p>
+<p>爱德华三世(1312-1377)(英格兰国王 1327-1377)</p>
+<p>理查二世(1367-1400)(英格兰国王 1377-1399)</p>
+<p>16 兰开斯特王朝(1399-1461 年)</p>
+<p>亨利四世(1367-1412)(英格兰国王 1399-1413 在位)</p>
+<p>亨利五世(1387-1422)(英格兰国王 1413-1422)</p>
+<p>亨利六世(1421-1471)(英格兰国王 1422-1461，1470-1471)</p>
+<p>17 约克王朝(1461-1485 年):</p>
+<p>爱德华四世(1442-1483)(英格兰国王 1461-1483)</p>
+<p>爱德华五世(1470-1483)(英格兰国王 1483)</p>
+<p>理查三世(1452-1485)(英格兰国王 1483-1485)</p>
+<p>历史事件:大宪章，英法百年战争，瓦特泰勒起义，中世纪黑死病，玫瑰战争，征服威尔士，牛津大学剑桥大学建立英法百年战争：1337 年-1453 年，英格兰和法国之间为争夺领土而进行的战争，是世界最长的战争之一，长达 116 年，也是中世纪结束的标准之一</p>
+<p>18 都铎王朝 1485-1603 年，国王:</p>
+<p>亨利七世(1457-1509)(英格兰国王 1485-1509 在位)</p>
+<p>亨利八世(1491–1547)(英格兰国王 1509-1547)</p>
+<p>爱德华六世(1537–1553)(英格兰国王 1547-1553)</p>
+<p>玛丽一世(1516-1558)(英格兰女王 1553-1558)</p>
+<p>伊丽莎白一世(1533-1603)(英格兰女王 1558-1603)</p>
+<p>历史事件:圈地运动，英国宗教改革，伊丽莎白时代，英西海战，黑奴贸易，东印度公司成立人物:莎士比亚，培根</p>
+<p>19 斯图亚特王朝 1688-1714 年，国王:</p>
+<p>玛丽二世(1662-1694)(英格兰女王,苏格兰女王 1689-1694)</p>
+<p>威廉三世(1650-1702)(英格兰国王 1689-1702)</p>
+<p>安妮(1664-1714)(英格兰.苏格兰女王 1702-1707，联合王国女王 1702-1714)</p>
+<p>历史事件:光荣革命，确立新教国教地位，权利法案，嗣位法，英国君主立宪制，英格兰银行，发行英镑，东印度公司买下印度加尔各答，英格兰苏格兰议会合并</p>
+<p>战争:大同盟战争，西班牙王位继承战争领土变化:得到直布罗陀</p>
+<p>20 汉诺威王朝 1714-1901 年，国王:</p>
+<p>乔治一世(1660-1727)(联合王国国王 1714-1727 在位)</p>
+<p>乔治二世(1683-1760)(联合王国国王 1727-1760)</p>
+<p> </p>
+<p>	乔治三世(1738-1820)(联合王国国王 1760-1820)</p>
+<p>乔治四世(1762-1830)(联合王国国王 1820-1830)</p>
+<p>威廉四世(1765-1837)(联合王国国王 1830-1837)</p>
+<p>维多利亚女王(1819-1901)(联合王国女王 1837-1901)</p>
+<p>历史事件:工业革命，南海泡沫，英国首位首相，伦敦成为世界金融中心，日不落帝国，人口剧增，合并爱尔兰，宪章运动战争:四国同盟战争，奥地利王位继承战争，七年战争，美国独立战争，七次反法同盟战争，鸦片战争。人物: 牛顿，达尔文，库克船长，纳尔逊，法拉第，道尔顿，瓦特，富尔顿，史蒂芬逊。领土变化:美国独立，得到澳大利亚，新西兰，印度，加拿大，南非，中国香港，新加坡</p>
+<p>七年战争（Seven Years'War，1756 年－1763 年），又称英法七年战争，1756 年 5 月 17 日英法“七年战争”爆发,这是欧洲两大军事集团英国－普鲁士同盟与法国－奥地利－俄国同盟之间的对立，汉诺威与葡萄牙为英普的盟友，法奥俄的盟友则为西班牙、萨克森与瑞典，为争夺殖民地和霸权而进行的一场大规模战争。战场遍及欧洲大陆、地中海、北美、古巴、印度和菲律宾等地。这场战争造成约九十到一百四十万人死亡，对于十八世纪后期当时国际战略格局的形成和军事学术的发展均产生了深远影响。英国是在七年战争中最大的赢家，法国在《巴黎和约》中被迫将整个加拿大割让给英国，并从整个印度撤出，只保留 5 个市镇，英国成为了海外殖民地霸主，迈向日不落帝国的传奇。但英国将这次的大帝国战争（法国-印第安战争）的战费转嫁在北美殖民州身上，引起了当地居民的不满。七年战争完后 13 年，美国独立战争爆发。《巴黎和约》成为了法国君主制时期的最屈辱的事件之一。法国放弃了印度、加拿大、密西西比河东岸。虽然法国仍然拥有密西西比河西面的纽奥良和瓜德罗普岛，但是这次失败标志着法国失去了新大陆。法国的外交策略黯然失败，声望也显着下落。这次战争亦使路易十五失去了人民的支持。并且在他死后成为了法国的最不得人心的国王之一。间接为法国大革命的爆发埋下伏笔。</p>
+<p>21 萨克森-科堡-哥达王朝 1901-1917，国王:</p>
+<p>爱德华七世(1841-1910)(联合王国国王 1901-1910 在位)</p>
+<p>乔治五世(1865-1936)(联合王国国王 1910-1936 在位)</p>
+<p>(第一次世界大战期间，乔治五世为了安抚民心，舍弃了自己的德国姓氏，将王室改称"温莎"，1910-1917 年作为萨克森-科堡-哥达王朝国王)</p>
+<p>22 温莎王朝 1917-至今，国王:</p>
+<p>乔治五世(1865-1936)(联合王国国王 1910-1936 在位)</p>
+<p>爱德华八世(1894-1972)(联合王国国王 1936)</p>
+<p>乔治六世(1895-1952)(联合王国国王 1936-1952)</p>
+<p>伊丽莎白二世(1926-)(联合王国女王 1952-至今)</p>
+<p>事件:第一次世界大战，第二次世界大战，殖民地纷纷独立</p>
+<p>1535 年威尔士成为英格兰王国的一部分</p>
+<p>1588 年格拉沃利讷海战打败西班牙无敌舰队使英国挫败了国外天主教势力的入侵，基本消除了天主教的威胁，巩固了宗教改革的成果。</p>
+<p>1640 年英国在全球第一个爆发资产阶级革命，成为资产阶级革命的先驱。</p>
+<p>1649 年 5 月 19 日宣布成立共和国。</p>
+<p>1660 年王朝复辟</p>
+<p>1688 年发生"光荣革命"，确立了君主立宪制。</p>
+<p>1707 年英格兰与苏格兰合并，通过七年战争英国奠定日不落帝国的基础，并获取了海上霸主。</p>
+<p>1801 年又与爱尔兰合并。拿破仑战争后英国完成了日不落帝国的霸业。</p>
+<p>18	世纪后半叶至 19 世纪上半叶，成为世界上第一个完成工业革命的国家。</p>
+<p>19	世纪是大英帝国的全盛时期</p>
+<p>1914 年占有的殖民地比本土大 111 倍，是第一殖民大国，自称"日不落帝国"。</p>
+<p>1922 年爱尔兰共和国独立，爱尔兰北部仍留在联合王国内，即是今天的北爱尔兰。</p>
+
+
+<p style='float:right;'>本页共84段，4951个字符，10655 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

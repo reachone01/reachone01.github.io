@@ -1,0 +1,341 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>一欧洲起源和历史</h3>
+
+<p>（一直以来，人类科技的发展和进步主要是由欧洲推动的，因此，要了解人类的科技史，首先得了解欧洲的起源和历史）</p>
+<p>0	古文明：《世界文明史》（美国威廉·麦克高希）称，“古巴比伦（公元前 4000 年到公元前 2250 年之间）、古埃及（公元前 3500  年）、古希腊（公元前 3000  年～1100  年之间）、古印度（公元前 2000  年）、古中国（公元前 1600 年商朝建立）是世界上的五大文明发源地”。 文字的发展：古埃及象形文字→古巴比伦楔形文字→腓尼基字母→希腊字母→拉丁字母（英文德文法文等）和西里尔字母（俄文等斯拉夫文字）	</p>
+<p>1	早在古希腊文明兴起之前 800 年，爱琴海地区就孕育了灿烂的克里特文明和迈锡尼文明。在公元前 1100~公元前 1000年，多利亚人的入侵毁灭了迈锡尼文明，希腊历史进入所谓“黑暗时代”。 《荷马史诗》相传是由古希腊盲诗人荷马创作的两部长篇史诗--《伊利亚特》和《奥德赛》的统称，是他根据民间流传的短歌综合编写而成。荷马史诗两部史诗都分成 24 卷。《荷马史诗》以扬抑格六音步写成，集古希腊口述文学之大成，是古希腊最伟大的作品，也是西方文学中最伟大的作品。西方学者将其作为史料去研究公元前 11 世纪到公元前 9 世纪的社会和迈锡尼文明。《荷马史诗》具有文学艺术上的重要价值，它在历史、地理、考古学和民俗学方面也提供给后世很多值得研究的东西。	</p>
+<p>2	前 776 年第一次奥林匹克运动会的召开标志着着古希腊文明进入了兴盛时期。前 750 年左右，随着人口成长，雅典的希腊人开始向外殖民。在此后的 250 年间新的希腊城邦遍及包括小亚细亚和北非在内的地中海沿岸。在诸城邦中，势力最大的是斯巴达和雅典。 （小亚细亚：亚洲西部半岛。位于土耳其境内。北临黑海，西临爱琴海，南濒地中海，东接亚美尼亚高原。主要由安纳托利亚高原和土耳其西部低矮山地组成。公元前 1200 年，著名的特洛伊战争在土耳其的爱琴海沿岸发生，之后强大的波斯大流士大帝、马其顿亚历山大大帝、古罗马帝国、拜占庭帝国、奥斯曼帝国等先后统治这块神奇的大地）	</p>
+<p>3	在希腊城邦向地中海沿岸扩展的同时，西亚的波斯帝国也在扩张，强大的波斯帝国征服了小亚细亚半岛上的艾奥尼亚希腊诸邦。	</p>
+<p>4	公元前 499 年，小亚细亚半岛上的米利都等希腊城邦发动起义，得到雅典的支持。波斯国王大流士一世在镇压起义后，就准备进攻雅典。公元前 490 年，波斯大军渡海西侵，但在马拉松战役中（现在马拉松长跑的来历）被人数居于劣势的雅典重装步兵击败。希腊人赢得了第一次希波战争的胜利。	</p>
+<p>5	公元前 480 年，波斯国王薛西斯一世率 50 万大军再次进攻希腊。希腊各城邦也结成同盟，共御强敌。希腊联军的陆军以斯巴达人为主力，海军则以雅典舰队为主。希腊陆军在温泉关阻击波斯陆军，虽然兵败，但为希腊海军的集结赢得了时间。波斯人攻入了雅典，将全城焚毁，但希腊海军在萨拉米海战中一举击溃波斯海军，波斯人面临补给被切断的危险，不得不撤退。希腊人乘胜追击，解放了小亚细亚的希腊诸邦。第二次希波战争以希腊的胜利告终。	</p>
+<p>6	公元前 4 世纪起，马其顿逐渐成为希腊北部的重要国家。公元前 359 年，菲利普二世即位。在菲利普的治下，马其顿成为巴尔干地区首屈一指的军事强国。面对马其顿的崛起，希腊建立了以雅典为首的反马其顿同盟。	</p>
+<p>7	公元前 338 年，马其顿在喀罗尼亚大败希腊联军，取得了对整个希腊的控制权。	</p>
+<p>8	公元前 336 年，菲利普遇刺身亡，其子亚历山大即位。亚历山大即位后很快就平定了希腊城邦的起义，巩固了政权。	</p>
+<p>9	前 334 年，亚历山大率大军渡海东征，拉开了他征服世界的序幕。亚历山大最大的敌人是强大的波斯帝国。亚历山大先后在格拉尼卡斯河和伊苏斯击败波斯军队，从波斯人手中夺取了叙利亚和埃及。波斯国王大流士三世试图求和，但被雄心勃勃的亚历山大拒绝。	</p>
+<p>10	前 331 年，亚历山大和大流士三世之间具有决定性意义的高加米拉战役爆发。亚历山大再一次取得了胜利，并乘势攻下巴比伦，波斯帝国灭亡。亚历山大继续东进，直到印度河流域方才折返。	</p>
+<p>11	公元前 323 年，亚历山大病死，他庞大的帝国也随之分裂，古希腊历史结束，希腊化时代开始。	</p>
+<p>12	从公元前 323 年，亚历山大去世到公元前 30 年，罗马征服托勒密王朝统治下的埃及，这期间的历史被称为希腊化时代。自亚历山大死后，他所建立的帝国分崩离析，在公元前 3 世纪上半叶陆续形成了一系列希腊化国家。其中比较重要的有以埃及为中心的托勒密王朝，以叙利亚为中心的塞琉古王国以及以马其顿为中心的马其顿王国。	</p>
+<p>13	公元前 168 年，罗马人占领了马其顿本土	</p>
+<p>14	公元前 146 年，希腊全境都处在罗马统治之下。此后塞琉古王国也渐渐被罗马人并吞，直到公元前 30 年，最后一个希腊化王国托勒密王朝被罗马消灭，古代希腊的历史宣告终结。	</p>
+<p>15	罗马曾经有数百年的共和制历史(前 509 年-前 27 年)，但自从斯巴达克斯起义以后，罗马进入了军人执掌政权的时代。前 27 年，元老院授予屋大维"奥古斯都"称号，建立元首制，罗马共和国事实上被罗马帝国所取代	</p>
+<p>16	罗马帝国(公元前 27 年-公元 395 年；西罗马帝国，公元 395 年-公元 476 年；东罗马帝国，公元 395 年-公元 1204 年，公元 1261 年-公元 1453 年)，正式名称为元老院与罗马人民。	</p>
+<p>17	三世纪危机(235 年-284 年)后帝国在内忧外患中逐渐衰落，后经戴克里先实行四帝共治政策，至君士坦丁大帝重新统一帝国	</p>
+<p>18	西元 284 年，罗马帝国内乱不断，外敌也纷纷入侵，而且军人专横，干预皇帝废立。所以新皇帝戴克里先上任后，自知一人无力对付奴隶起义及外族入侵，于是把罗马帝国西半部（即意大利、西班牙、高卢、不列颠、中欧、北非） 交由其好友马克西米安管治，自己则管治罗马帝国东半部（即巴尔干半岛、东欧、小亚细亚、巴勒斯坦、埃及）。 两人也分别设立副职，并由四人合治国家，史称四帝共治制	</p>
+<p>19	323 年，君士坦丁一世成为了帝国的唯一统治者。自 324 年起，君士坦丁大帝大兴土木，在博斯普鲁斯海峡旁修建新都君士坦丁堡，号称新罗马。330  年，初步建成，其特殊的地理环境和战略地位，是东罗马帝国历经千年不亡的重要原因。337 年，君士坦丁大帝病重，死前接受了洗礼。	</p>
+<p>20	西元 395 年，最后一名罗马帝国统一皇帝狄奥多西一世立下遗言，把帝国照戴克里先的分法分给自己的两个儿子，东部分给长子阿卡狄乌斯，西部分给幼子霍诺里乌斯，分别治理。西罗马帝国定都梅蒂奥拉努（Mediolanum，今米兰）。东罗马帝国（后称拜占庭帝国）则定都君士坦丁堡（今伊斯坦布尔）。自此之后罗马帝国永久分裂。	</p>
+<p>21	西罗马帝国一建立起来便被日耳曼部落的哥特人首领阿拉里克不断入侵，东罗马帝国却对此坐视不理。	</p>
+<p>22	西罗马皇帝为了维持统治，招募日耳曼人作雇佣军，但不久皇帝便成了雇佣军的傀儡，完全丧失实际权力。在匈奴帝国崩溃不久，深受匈奴摧残以及匈奴引发的蛮族西迁影响的西罗马帝国也彻底走向了绝路	</p>
+<p>23	公元 476 年罗马雇佣兵领袖日耳曼人奥多亚克废黜只有 6 岁的西罗马皇帝罗慕洛。就这样，这个曾称霸地中海，历时 12 世纪的奴隶制大帝国，终于在奴隶起义和外族入侵下，覆没了。	</p>
+<p>24	法兰克王国加洛林王朝国王（768 年－814 年）查理大帝，后人称他查理曼，神圣罗马帝国的奠基人。他建立了那囊括西欧大部分地区的庞大帝国，公元 800 年由罗马教皇加冕称帝，号为罗马人皇帝。他在行政、司法、军事制度及经济生产等方面都有杰出的建树，并大力发展文化教育事业，是他引入了欧洲文明。814 年 1 月 28 日逝世。查理死后不久，帝国就出现了分裂。843 年他的三个孙子各自为王，东法兰克王国成了以后的德国，西法兰克王国成了以后的法国，东、西部之间的地区则成了以后的意大利。	</p>
+<p>25	962 年，东法兰克王国国王奥托一世在罗马被教宗约翰十二世加冕为罗马帝国皇帝，随即罗马教廷承认神圣罗马帝国为西罗马帝国的继承者。后来，拜占庭帝国也承认了它的这一地位。直到 1806 年，神圣罗马帝国被拿破仑一世推翻，宣告解体。严格地说，神圣罗马帝国和罗马帝国没有直接且合法的关系。18 世纪法国著名的启蒙运动思想家伏尔泰就曾评论道:"神圣罗马帝国，既不神圣，也非罗马，更非帝国。"	</p>
+<p>26	公元 476 年西罗马帝国在经历了包括匈奴和诸多日耳曼部落的反复侵袭之后终于咽下了最后一口气，拜占庭遂成为唯一的罗马人帝国--实际上他们一直以纯正罗马血统自居。东罗马帝国的主宰文化是希腊文化。希腊语不但是日常用语，而且是教会、文学和商业的共同语言。 对于当时的罗马人来说，今天对"西部的拉丁帝国"和"东部的希腊帝国"的区分，以及今天所强调的东部的帝国并不是"真正"的罗马帝国，并不重要	</p>
+<p>27	532 年，查士丁尼一世动工修建圣索非亚大教堂(其原名 Hagia Sophia 是神圣的真理的意思)。这座教堂将成为拜占庭宗教生活和东正教的中心。宗教上拜占庭帝国与西欧的区别已经不可忽视了	</p>
+<p>28	1054  年，东正教与天主教彻底决裂。事情起因于教皇利奥九世执意任命一名西西里出生的主教执掌东方教会。此举招致整个东部教会不满。普世牧首米哈伊尔·塞鲁拉利乌斯大怒，下令关闭国内所有西方教堂，驱逐其神职人员。	</p>
+<p>29	1180 年篡权者亚历克修斯一世引入封建封侯制度，建立军队，对抗突厥，并向西方求救对抗突厥，第一次十字军东征起源于此。十字军收复了尼西亚，但很快救兵成了仇兵。虽然亚历克修斯的孙子曼纽尔一世是十字军的朋友，但双方都不能忘记他们互相革除了对方的教籍，拜占庭对源源不断经过其领土的罗马天主教十字军的意图很持怀疑。	</p>
+<p>	11 世纪和 12 世纪来自神圣罗马帝国的德意志人和来自西西里岛和意大利的诺曼人不断攻击帝国。亚历克修斯给予贸易专权的意大利城市国家尤其成为反西情绪的对象。他们成为“法兰克人”和“拉丁人”的代表。尤其威尼斯人特别受反感，尽管威尼斯的船只是帝国舰队的骨干。	</p>
+<p>30	1150  年（12  世纪），造纸术传入欧洲。阿拉伯人在西班牙的萨狄瓦，建立了欧洲第一个造纸场。公元 1276  年意大利的第一家造纸场在蒙地法罗建成，生产麻纸。法国于公元 1348   年，在巴黎东南的特鲁瓦附近建立造纸场。 此后又建立几家造纸场，这样法国不仅国内纸张供应充分，而且还向德国出口。德国是 14 世纪才有自己的造纸场。英国因为与欧洲大陆有一海之隔，造纸技术传入比较晚，15 世纪才有了自己的造纸厂。瑞典 1573 年建立了最早的造纸厂，丹麦于 1635 年开始造纸，1690 年建于奥斯陆的造纸厂是挪威最早的纸厂。到了 17 世纪欧洲各主要国家都有了自己的造纸业。751 年（8  世纪）唐与阿拉伯人的恒罗斯之战，阿拉伯人俘获了会造纸术的中国士兵,造纸术由此传入阿拉伯,并进一步流入欧洲	</p>
+<p>31	1202 年（13 世纪），印度数字传入欧洲。意大利斐波那契出版了《算经》，系统介绍和运用了印度（阿拉伯）数字，这本书的出版标志着阿拉伯数字正式在欧洲得到认可。其中印度数字中的 0 的发明非常伟大，与复杂的罗马数字相比，含 0 的阿拉伯数字使得加减乘除运算大量简化。公元 458 年，印度首次出现了“零”的概念。公元 628 年，印度天文学兼数学家布拉马古普塔为“零”创设了一个符号。公元 8 世纪，印度数字传到阿拉伯。	</p>
+<p>32	13 世纪（元朝）火药由商人经印度传入阿拉伯国家和欧洲。希腊人通过翻译阿拉伯人的书籍才知道火药。火药武器是通过战争传到阿拉伯国家。早在八、九世纪时，和医药、炼丹术的知识一起，硝也由中国传到阿拉伯。当时的阿拉伯人称它为“中国雪”，而波斯人称它为“中国盐”。阿拉伯人与欧洲的一些国家进行了长期的战争，战争中阿拉伯人使用了火药兵器，例如阿拉伯人进攻西班牙的八沙城时就使用过火药兵器。在与阿拉伯国家的战争中，欧洲人逐步掌握了制造火药和火药兵器的技术。火药和火药武器传入欧洲，不仅对作战方法本身，而且对统治和奴役的政治关系起了变革的作用。以前一直攻不破的贵族城堡的石墙抵不住市民的大炮，市民的子弹射穿了骑士的盔甲。贵族的统治跟身穿铠甲的贵族骑兵同归于尽了。随着资本主义的发展，新的精锐的火炮在欧洲的工厂中制造出来，装备着威力强大的舰队，扬帆出航，去征服新的殖民地。	</p>
+<p>33	13 世纪，指南针传入阿拉伯和欧洲各国。与中国在海路上贸易来往频繁的阿拉伯人，于十二世纪八十年代在其船上装置了指南针。宋末元初，欧洲人从阿拉伯人那里认识进而在船上安装了指南针，由此，近代欧洲航海家的一系列远航与地理大发现都成为了可能。	</p>
+<p>34	1440  年（15  世纪）左右，印刷术进入欧洲。德国约翰内斯·古腾堡将当时欧洲已有的多项技术整合在一起，发明了铅字的活字印刷，很快在欧洲传播开来，实质上推进了印刷形成工业化。1584 年西班牙历史学家传教士冈萨雷斯· 德·门多萨在所著《中华大帝国史》中提出，古腾堡受到中国印刷技术影响；中国的印刷术，通过两条途径传入德国，一条途径是经俄罗斯传入德国，一条途径是通过阿拉伯商人携带书籍传入德国，古腾堡以这些中国书籍，作为他的印刷的蓝本。意大利人则将活字印刷传入欧洲的功劳，归功于伦巴地出生的意大利印书家帕菲洛卡·斯塔尔迪，他见到马可波罗从中国带回来的活字版书籍，采用活字法印书。意大利人为此特地在他的出生地树立他的雕像作为纪念。	</p>
+<p>35	在第三次十字军东征中，腓特烈一世企图征服拜占庭帝国，但给帝国带来最大摧残的却是第四次十字军东征。这次东征的目的是占领埃及，但威尼斯人获得了领导权。在他们的怂恿下十字军 1204 年攻克君士坦丁堡，他们建立了一个短期的封建王国（拉丁帝国），而拜占庭的力量却彻底被削弱了。拜占庭帝国这时已经三分五裂了：尼西亚帝国、伊庇鲁斯和特拉比松同立。前者由帕里奥洛加斯王朝统治。1261 年他们收复君士坦丁堡，战败了伊庇鲁斯，恢复了帝国。但他们的主要注意力集中在欧洲，而把他们在亚洲的敌人忘了。这时他们幸存的主要原因是因为当时穆斯林内部分裂。当奥斯曼帝国建立后除一些港口城市外拜占庭帝国几乎所有的其他地方都被奥斯曼帝国占领了。 拜占庭向西方求救，西方提出的条件是两个教会必须统一。拜占庭虽然颁布法律统一教会，但拜占庭的居民并不接受罗马天主教。 一些西方的雇佣军来到拜占庭，但西方大多数人宁可拜占庭死亡。他们看着奥斯曼帝国将剩余的地域蚕食。 一开始奥斯曼帝国认为攻击君士坦丁堡代价太大，不值得，君士坦丁堡的城墙非常坚固，除十字军外上千年中没有人能够克服它。 但随着炮的出现，这堵墙不能再保护这座城市了。1453 年 5 月 29 日，经过两年的包围穆罕默德二世攻克君士坦丁堡	</p>
+<p>36	公元 1453 年，奥斯曼帝国苏丹穆罕默德二世率军攻破君士坦丁堡，东罗马帝国(拜占庭帝国)灭亡。西罗马帝国灭亡后，欧洲进入了近一千年的中世纪(公元 476 年-公元 1453 年)。	</p>
+<p>37	1472 年，伊凡三世娶拜占庭帝国末代皇帝君士坦丁十一世侄女为妻。于是莫斯科大公国自视为罗马帝国的继承者，称首都莫斯科为"第三罗马"。1547 年，伊凡四世称"沙皇"。"沙皇"一词也是从"恺撒"演化而来。	</p>
+<p>38	1492 年到 1502 年间, 意大利裔西班牙人哥伦布四次横渡大西洋，到达美洲大陆，他也因此成为了名垂青史的航海家。1493 年 3 月 15 日，哥伦布回到西班牙。此后他又三次重复他的向西航行，又登上了美洲的许多海岸。直到 1506 年逝世，他一直认为他到达的是印度。后来，一个叫做阿美利哥·维斯普西的意大利学者，经过更多的考察，才知道哥伦布到达的这些地方不是印度，而是一个原来不为多数欧洲人知的的大陆。在命名这块大陆上用了证实它是欧洲人所未知的大陆的人名命了名：阿美利加洲（阿美利哥·维斯普西）	</p>
+<p>39	文艺复兴：一场发生在 14 世纪中期（135x）至 16 世纪末（159x）的文化运动，在中世纪晚期发源于佛罗伦萨，后扩展至欧洲各国。“文艺复兴”一词亦可粗略地指代这一历史时期，但由于欧洲各地因其引发的变化并非完全一致，故“文艺复兴”只是对这一时期的通称。核心：人文主义精神，人文主义精神的核心是提倡人性，反对神性，主张人生的目的是追求现实生活中的幸福，倡导个性解放，反对愚昧迷信的神学思想。	</p>
+
+
+<p style='float:right;'>本页共43段，7068个字符，19007 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

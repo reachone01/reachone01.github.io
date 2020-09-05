@@ -1,0 +1,337 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>二数学史概述</h3>
+
+<p>（不了解数学史，就不可能全面了解数学科学，也不可能全面了解整个人类科技史、文明史）世界数学史</p>
+<p>	古文明时期：10 进制（巴比伦 60 进制，玛雅 20 进制），结绳计数、刻痕计数；尼罗河泛滥、天文观测产生几何学；埃及莱茵德和莫斯科纸草书：无位值概念，单位分数 1/n，PI=3.16，讨论线性方程；巴比伦泥板文书：60 进制，位值概念，开方根 1.414，三项二次方程，三次方程（查表），PI=3（3  又 1/8），普林顿 322  泥板文书（公元前 1600年）4 列 15 行表格记录了勾股数组。</p>
+<p>	公元前 6 世纪，毕达格拉斯是古希腊的哲学家和数学家（约前 582-500 年），传说发现了勾股定理，并宰了一百多头牲畜来祭祀缪（miu）斯女神。现在普遍认为在毕达格拉斯之前，已为巴比伦人所知。其实中国西周数学家商高已提出了勾股定理，比毕达格拉斯早 600 多年。毕达哥拉斯学派相信任何量都可以表示成两个整数之比，万物皆依赖于整数。但正方形的对角线和一边比是不可公度的（无理数 1.414…）。有一次他们航行在海上开会，一个学员发现后，学派惊恐不已，把这个学员抛进了大海。根号 2 等无理数的发现引起了第一次数学危机。</p>
+<p>	公元前 5 世纪，安提丰提出圆内接正多边形逼近圆面积来化圆为方（古希腊三大几何问题：化圆为方；倍立方体；三等分角（限尺规作图），成穷竭法的始祖。</p>
+<p>	公元前 4 世纪，亚里士多德《物理学》记载了有关无限性概念的 4 个悖论：两分法运动不存在；阿基里斯追不上乌龟；飞箭静止；运动场空间和时间不能由不可分割单元组成。亚里士多德研究数学推理的出发点的基本原理，区分为公理和公设（一切科学的真理和某门科学第一性原理），创立逻辑学矛盾律（一个命题不能同时是真的又是假的）和排中律（一个命题或者是真的或者是假的，二者必居其一），使数学推理规律规范化和系统化，为欧几里得演绎几何体系奠定了方法论的基础。</p>
+<p>	公元前 4~3 世纪，欧几里得《几何原本》：5 条公里，5 条公设，119 个定义，465 条命题，历史上第一个数学公理体系。</p>
+<p>	公元前 3 世纪，阿基米德穷竭法求面的周长和面积；平衡法求球的体积；体现了近代极限与微积分的思想。平衡法发现；穷竭法证明。</p>
+<p>	公元前 3~2 世纪，阿波罗尼奥斯《圆锥曲线论》，从一个对顶锥得到并命名椭圆（ellipse）、双曲线（hyperbola）和抛物线（parabola），在对它们性质的研究中已经包含了近代微分几何和射影几何的课题。</p>
+<p>	公元 2 世纪，托勒密《天文学大成》总结了古代三角学，并制定了弦表（正弦函数表）</p>
+<p>	公元 3~4 世纪，丢番图《算术》中对不定方程求解，因此不定方程又叫丢番图方程。z^2=x^2+y^2。引出了后来的费马大定理（n 大于 2 时，没有正整数解，1994 年被英国数学家维尔斯最终解决），创用了一套缩写符号并用特殊符号表示未知数代替之前的文字叙述，是代数符号的起源</p>
+<p>	公元 2~3 世纪，巴基斯坦巴克沙利村庄桦树皮上的手稿出现完整的十进制数码，零用点表示，后来（至迟不超过 9 世纪）逐渐演变为圆圈。零是伟大的发明，简化了加减乘除运算。公元 8 世纪印度数字传入阿拉伯，然后传入欧洲，零稍晚传入，至迟在 13 世纪斐波那契《算经》已经有包括零在内的完整印度数字介绍，对欧洲近代科学进步扮演重要角色。</p>
+<p>	公元 8~9 世纪，阿拉伯花拉子米《还原与对消计算概要》在 12 世纪翻译成拉丁文，在欧洲产生巨大影响。阿拉伯语 al-jabr 以为还原和移项，成为当今英语algebra 的来源，因此也叫《代数学》，叙述一、二次方程求解问题。另一本《印度计算法》，系统介绍了印度数码和十进制记数，使印度数码在阿拉伯流行起来，并随后被翻译成拉丁文传播到欧洲，让欧洲误以为是阿拉伯数字。</p>
+<p>	5-11 世纪，天主教成为欧洲绝对势力，欧洲黑暗时期。12 世纪，开始大量翻译阿拉伯文、希腊数学书籍为拉丁文。 </p>
+<p>	13 世纪，意大利斐波那契写成《算经》汇集中国，印度，希腊数学问题汇集，系统介绍了阿拉伯印度数字，修订版记载了“兔子问题”并导致了著名的斐波那契数列。</p>
+<p>	15 世纪，意大利费罗和塔塔利亚挑战解 3 次方程，后者获胜并把方法秘密传给了卡尔丹。卡尔丹违背承诺在《大法》中公开了这些解法，推广到了一般情形并给出了几何证明。其学生费拉里解决了 4  次方程。《大法》对不可约情况感到困惑（其实已经邂逅了复数）。邦贝利在教科书《代数》中引进了虚数，以解决三次方程不可约情况。卡尔丹已经认识到复根是成对出现并且三次方程有三个根，四次方程有四个根。荷兰人吉拉德在 17 世纪的《代数新发现》里进一步推断n 次方程n 个根，即“代数基本定理”，但没有证明。</p>
+<p>	16  世纪，韦达在《分析引论》里第一次有意识的使用系统的代数字母和符号，辅音字母表示已知量，元音字母表示未知量。笛卡尔改进为拉丁字母前几个 a、b、c、d 表示已知量，后几个 x、y、z、w 表示未知量成为今天的习惯。</p>
+<p>	17 世纪初，苏格兰纳皮尔在《奇妙的对数》中阐述了对数方法，减轻了天文学的计算工作量。同时，笛卡尔和费马分别发明了解析几何。</p>
+<p>	17  世纪牛顿和莱布尼茨独立发明微积分。微积分被誉为人类精神的最高胜利。牛顿证明了积分与微分的互逆关系。牛顿莱布尼茨微积分发明之争：发明时间牛顿早于莱布尼茨；发表时间莱布尼茨（1684）早于牛顿（1687，原理）。牛顿在《原理》中为微积分披上的几何外衣使他的流数术僵硬呆板，固守牛顿的几何形式，阻碍了 18 世纪英国数学的发展；莱布尼茨的微积分符号（∫，dx）很精心并沿用至今，牛顿符号中用点.表示流数（微分），撇’表示流量（积分）已被淘汰；牛顿三大力学定律和万有引力定律，莱布尼茨二进制。微积分，对数和解析几何被恩格斯称为 17 世纪数学三大重要成就。</p>
+<p>	18 世纪微积分进一步深入发展：泰勒，麦克劳林等发展研究了牛顿的流数术，欧陆数学家有伯努利兄弟，欧拉，克莱洛，达朗贝尔，拉格朗日，拉普拉斯，勒让德，蒙日。</p>
+<p>	18 世纪，费马提出费马大定理等开始研究数论，哥德巴赫给欧拉写信，提出猜想：每个偶数是两个素数之和；每个奇数是三个素数之和。</p>
+<p>	拉格朗日指出用根式求解解 4 次以上的方程是不可能的，但未给出证明，19 世纪后被挪威年轻人阿贝尔（27 岁肺结核去世）证明，并引入了“域”这一重要的近世代数概念。后来法国数学家伽罗瓦（21 岁死于与政敌的爱情纠葛引起的决斗）给出了能用根式可解的特殊方程的充要条件，并提出了最早的群的定义，导致代数学的新生。但伽罗瓦的论文曾三次向法国科学院递交：第一次被柯西丢失；第二次傅里叶病逝下落不明；第三次泊松认为不可理解打入冷宫。决斗前夜，伽罗瓦整理了数学手稿，并在遗书中坚信“总会有人发现（14 年后），解释清楚这堆东西对他们是有益的”</p>
+<p>	爱尔兰数学家哈密顿在推广复数的时候，发现了四元数：a+bi+cj+dk（丢失了乘法的交换性），麦克斯韦把四元数分为数量和向量部分。向量部分的三个分量解释成三个坐标轴的长度。美国吉布斯和英国亥维赛抛弃四元数的数量部分，提出向量：v=ai+bj+ck</p>
+<p>	线性代数起源于线性方程组求解中的行列式和矩阵，19 世纪开始独立发展，柯西，凯莱和西尔维斯特等发展了行列式，矩阵理论。</p>
+<p>	19 世纪中叶，英国布尔在 1847 和 1854 年出版的《逻辑的数学分析》和《思维规律研究》中阐述了布尔逻辑代数思想。</p>
+<p>	1840  年，俄国罗巴切夫斯基发表非欧几何的德文著作，其基本思想与高斯，波约是一致的，被称为几何学中的哥白尼，遭到群起而攻之。1854 年黎曼（不到 40 岁肺结核去世）在罗氏几何，高斯的内蕴微分几何基础上建立了更广泛的黎曼几何，欧氏几何和罗氏几何和黎曼几何对应了三维空间的曲率为 0，负和正。</p>
+<p>	1872 康托尔发表集合理论，并证明了有理数可数，实数不可数，为超穷集合理论迈出了坚实一步。</p>
+<p>	1900 年 8 月，希尔伯特在国际数学家大会上作了题为《数学问题》的演讲，提出了 23 个数学问题（包括黎曼猜想，哥德巴赫猜想，孪生素数猜想，），来开了 20 世纪数学的序幕。</p>
+<p>	2000 年 5 月 24 日美国克雷数学研究所(Clay Mathematics Institute,CMI)公布数学猜想：千禧年大奖难题(MillenniumPrize Problems), 又称世界七大数学难题。根据克雷数学研究所订定的规则，任何一个猜想的解答，只要发表在数学期刊上，并经过两年的验证期，解决者就会被颁发一百万美元奖金。这些难题是呼应 1900  年德国数学家大卫?希 	尔伯特在巴黎提出的 23 个数学问题。包括了庞加莱猜想（其中三维的情形被俄罗斯数学家格里戈里?佩雷尔曼于2003 年左右证明。2006 年，数学界最终确认佩雷尔曼的证明解决了庞加莱猜想。Clay 数学研究所在 2010 年为此召开特别会议，为此猜想盖棺定论。佩雷尔曼拒领菲尔兹奖和千年问题奖。），霍奇猜想，黎曼猜想等。</p>
+<p>	现代数学奖：菲尔兹奖（1.5 万美元，四年一次，40 岁下），沃尔夫奖（10 万美元，每年一次，40 岁以上），阿贝尔奖（80 万美元，每年一次），千年问题奖（100 万美元），陈省身奖（25 万美元+25 万美元，四年一次）等中国数学史	殷商甲骨文中使用完整的十进制计数，至迟到春秋战国时代（公元前 8~3 世纪）开始严格的十进位值制筹算记数，零以空位表示，位值法是中国古代对人类文明的特殊贡献。</p>
+<p>	至迟不晚于公元前 2 世纪的《周髀算经》里记录了西周开国时期（公元前 10~8 世纪）周公与大夫商高讨论勾股测量的对话，商高提到“勾广三，股修四，径隅五”特例。卷上另一处叙述了周公后人荣方与陈子（公元前 7-6 世纪） 的对话中，则包含了勾股定理的一般形式：以日下为勾，日高为股，勾股各自乘，并而开方除之，得邪至日。公元三世纪赵爽在备注《周髀算经》的时候，进行了证明。</p>
+<p>	至迟不晚于公元前 1 世纪（先秦至西汉中叶）的《九章算术》，是中国古代最重要的数学著作。记录了分数四则运算，比例算法，盈不足术（今有共买物，人出八盈三，人出七不足四。问人数、物数各几何。实际上是已知两点，求直线方程。盈不足术在中世纪阿拉伯数学著作中成为“契丹算法”，13 世纪意大利数学家斐波那契《算经》里也有一章讲“契丹算法”），方程消元法，正负术（负数的认识，印度 7 世纪，欧洲 16 世纪韦达还在回避负数），开方术，几何方面直线类型的面积和体积计算都是正确的，PI=3，球体积公式误差大。</p>
+<p>	公元 3 世纪魏晋刘徽在备注《九章算术》时利用割圆术求出了 PI=3.14，并在“开立圆术”注文中指出了一条求球体积公式的“牟合方盖”正确路径，但最终失败。</p>
+<p>	南北朝（南朝宋齐，公元 5，6   世纪），《南齐书.祖冲之传》中记载祖冲之著《缀术》，《隋书》记载祖冲之计算出PI=3.1415926~3.1415927 之间（这个圆周率值是当时世界上最先进的数学成就，直到 15 世纪阿拉伯数学家阿尔?卡西（al-kāshī）和 16 世纪法国数学家韦达（1540～1603）才得到更精确的结果。祖冲之还确定了两个分数形式的圆周率值，约率π=22/7（≈3.14），密率π=355/113（≈3.1415929），其中密率是在分母小于 1000 条件下圆周率的最佳近似分数。密率为祖冲之首创，直到 16 世纪才被德国数学家奥托（1550～1605）和荷兰工程师安托尼兹（1543～1620）重新得到。在西方数学史上，这个圆周率值常被称为安托尼兹率）。并与儿子祖暅（geng4）一起求出球体公式。祖冲之父子总结了魏晋时期著名数学家刘徽的有关工作，提出“幂势既同则积不容异”，即等高的两立体，若其任意高处的水平截面积相等，则这两立体体积相等，这就是著名的祖暅公理(或刘祖原理)。祖暅应用这个原理，解决了刘徽尚未解决的球体积公式。该原理在西方直到十七世纪才由意大利数学家卡瓦列利发现，比祖暅晚一千一百多年。</p>
+<p>	公元 4 世纪的《孙子算经》提到了“物不知数“（今有物不知其数，三三数之剩二，五五数之剩三，七七数之剩二，问物几何）并给出了答案和解法。孙子问题后来被宋代的秦九韶给出了一般解法”大衍求一术”，被西方成为“中国剩余定理”或孙子定理。</p>
+<p>	公元 11 世纪，南宋杨辉记录了北宋贾宪用基于贾宪三角的增乘开方法开高次方。</p>
+<p>	公元 13 世纪，1247 年南宋秦九韶写成《数书九章》，将增乘开方法推广到了高次方程的一般情形，提出了“正负开方术”，此书包含了 21 个高次方程，次数最高的是 10 次方程；卷一提出的求解一次同余方程组的“大衍求一术”，与 18、19 世纪欧拉和高斯提出的定理一致，因此被称为“中国剩余定理”。</p>
+<p>	元末后，中国数学逐渐衰落微。原因：社会停滞和腐朽，数学发展缺少社会动力和思想刺激；废除数学考试唯八股取士数学家地位低没出路；自由探讨受束缚和禁锢；中国数学本身弱点：筹算本身有很大局限性，无法演进为纯符号代数，超过 4 个变量的方程组无能为力；重算法，缺演绎论证推导难以升华为现代数学；天朝帝国妄大自守，造成外界先进数学思想传播困难。近代 16,17 世纪西方数学蓬勃发展的时候，中国数学就明显落后了。 </p>
+<p>	中国（华人）现代数学家：陈省身（现代微分几何之父，沃尔夫奖获得者，“回到希腊” ），华罗庚（“华氏定理”、“华氏不等式”、“华—王方法”等），陈景润（哥德巴赫猜想），丘成桐（卡拉比猜想证明，菲尔兹奖和沃尔夫奖，数学界之王）等</p>
+
+
+<p style='float:right;'>本页共83段，6211个字符，15878 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

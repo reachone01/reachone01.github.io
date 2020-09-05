@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>德国历史</h3>
+
+<p>1	公元前境内就居住着日耳曼人。公元 2-3 世纪逐渐形成部落。</p>
+<p>2	5 世纪末，延续了几个世纪的法兰克王国建立，其中包括莫洛温王朝和卡洛林王朝的辉煌时期。在查理曼大帝(800 年加冕)的统治下，王国几乎拓展到了今天的法国和德国的绝大部分地区，称为查理曼帝国。查理曼大帝去世后，帝国很快走向分裂。公元 843 年，法兰克王国的疆域按照《凡尔登条约》分成三部分，西边的部分即莱茵河左岸的西法兰克王国就成为后来法国的基础;而东边的部分即莱茵河右岸操德语的东法兰克王国成为后来的日耳曼王国的基础，成为未来的神圣罗马帝国，也是今天德国的雏形;中间的部分成为了后来法德争斗的根源。</p>
+<p>3	德意志开始</p>
+<p>公元 919 年，萨克森公爵亨利一世当选为东法兰克王国的国王，建立了萨克森王朝。萨克森王朝的地域大致位于今荷兰、德国西部、瑞士和奥地利。严格意义上的德意志历史的就此开始。10 世纪形成德意志早期封建国家。当加洛林家族的最后一位国王孩童路易于 911 年去世后，东法兰克贵族没有选择西法兰克王国的加洛林家族作为路易的继任者，而是选举法兰克尼亚公爵康拉德为新一任国王。康拉德临终之时，指定宿敌捕鸟者亨利为继任者。919 年，萨克森公爵亨利在众多东法兰克王国的公爵当中，被推举为东法兰克王国国王，亨利去世后其子奥托继位为东法兰克国王。962 年，东法兰克国王、奥托王朝的奥托一世在罗马由教皇约翰十二世加冕称帝，到 973 年在位，成为罗马的监护人与皇帝和罗马天主教世界的最高统治者。</p>
+<p>4	神圣罗马帝国</p>
+<p>1157 年，这一帝国得到了"神圣帝国"的称号。1254 年，帝国第一次开始使用头衔"神圣罗马帝国"，1512 年的科隆帝</p>
+<p>国会议后颁布敕令，使用"德意志民族的神圣罗马帝国"，此后作为官方名称沿用直至 1806 年。</p>
+<p>三十年战争：1618 年捷克反对哈布斯堡王朝的起义，是三十年战争的导火线。神圣罗马帝国皇帝马蒂亚斯(1612 年</p>
+<p>~1619 年在位)企图在捷克(波希米亚)恢复天主教，指定斐迪南三世为捷克国王。斐迪南三世下令禁止布拉格新教徒的宗教活动，拆毁其教堂，并宣布参加新教集会者为暴民。1618 年 5 月 23 日，武装暴徒冲进王宫，把皇帝的钦差从窗口抛入壕沟，史称"掷出窗外事件"，它成为三十年战争的开端。三十年战争是欧洲几百年来宗教和国际政治各种矛盾的总爆发。是由神圣罗马帝国的内战演变而成的一次大规模的欧洲国家混战，也是历史上第一次全欧洲大战。</p>
+<p>这场战争是欧洲各国争夺利益、树立霸权的矛盾以及宗教纠纷激化的产物。战争以哈布斯堡王朝战败并签订《威斯</p>
+<p> </p>
+<p>	特伐利亚和约》而告结束。中世纪后期神圣罗马帝国日趋没落，内部诸侯林立纷争不断，宗教改革运动之后又发展出天主教和新教的尖锐对立，加之周边国家纷纷崛起，于 1618 年到 1648 年爆发了欧洲主要国家纷纷卷入德意志内战的大规模国际战争，又称"宗教战争"。战争基本上是以德意志新教诸侯和丹麦、瑞典、法国(法国是信天主教的，但是为了称霸欧洲才和新教国家站在了一起)为一方，并得到荷兰、英国、俄国的支持;神圣罗马帝国皇帝、德意志天主教诸侯和西班牙为另一方，并得到教宗和波兰的支持。这场战争推动了欧洲民族国家的形成，是欧洲近代史的开始。这场战争使德意志各邦国大约被消灭了 60%的人口，十分惨烈。</p>
+<p>七年战争：发生生在 1754 年至 1763 年，主要冲突则集中于 1756 年-1763 年，欧洲主要强国均参与了这场战争，影响覆盖欧洲，北美，中美洲，西非海岸，印度，以及菲律宾。战争由欧洲列强间的对抗所驱动。英国与法国和西班牙在贸易与殖民地上相互竞争。普鲁士与英国建立了联盟，法国和奥地利缔结了同盟关系。英普同盟日后陆续有德意志小邦(特别是汉诺威)以及葡萄牙参与，而法奥同盟则包括瑞典，萨克森，以及后来加入的西班牙。俄罗斯帝国起初与奥地利同盟。但在 1762 年沙皇彼得三世即位后改变了立场，并同瑞典一样与普鲁士单独缔结了合约。1763 年，以英国、普鲁士为首的国家战胜，法国、西班牙与英国签订的《巴黎和约》(Treaty of Paris 1763)，以及萨克森，奥地利与普鲁士签订的《胡贝尔图斯堡和约》 (Treaty of Hubertusburg)共同标志着战争的结束。这次战争在欧洲以攻城战，对城镇的纵火，以及造成惨重损失的野战而著称。战争总共造成了约 900,000 至 1,400,000 人死亡。英国给普鲁士海军和经济上的援助，普鲁士单独面对法国，奥地利和俄国陆军的包围，在俄国意外退出战争后，才勉强获胜。而英国成为了最大的赢家，在普鲁士牵制了法国的精力后，获得了加拿大，印度及北美的控制权，打下"日不落帝国"的基础。</p>
+<p>5	普鲁士崛起和德国统一</p>
+<p>1701 年 1 月 18 日，勃兰登堡选帝侯腓特烈三世(Friedrich III，腓特烈?威廉之子)因支持神圣罗马帝国哈布斯堡王朝向法国波旁王朝宣战，在柯尼斯堡被加冕成为普鲁士国王腓特烈一世(Friedrich I)，自此，普鲁士作为一个王国才正式存在。法国大革命后，普鲁士参加反法同盟，但败于法军，被迫在 1795  年同意法国兼并莱茵河以西的普鲁士领土。普鲁士国王腓特烈?威廉三世(1797 年即位)于 1806 年 10 月再度参加反法战争，随即在耶拿败于拿破仑，被迫逃往柯尼斯堡。1807 年普鲁士和法国在涅曼河的提尔西特缔结和约，普鲁士割让 16 万平方公里土地，包括普属波兰的绝大部分领土(第二次、第三次瓜分波兰所得，以及第一次瓜分波兰所得领土的南半部)，以及易北河以西的全部领土，并赔款 1.3 亿法郎。1812 年冬，拿破仑军队自俄国败退，普鲁士遂于次年再度参加反法同盟，于 1813 年 3 月 17 日对法国宣战，10 月 24 日，普、奥、俄三国联军在布吕歇尔和格奈森瑙指挥下在莱比锡大败法军。1815 年普军和英军在滑铁卢再度击败法军。根据维也纳会议的领土调整，普鲁士疆域自默麦尔河延至莱茵河，成为德意志邦联内德语居民占优势的唯一强国，以及欧洲列强之一。神圣罗马帝国在 1806 年灭亡后，德意志邦联在 1815 年成立，其中以普鲁士和奥地利最强大。普鲁士和奥地利都想由自己领导德国统一，后来普鲁士渐渐取得领导权。1834 年普鲁士在德意志地区建立了德意志关税同盟，除奥地利和汉堡外，全部德意志邦国都加入该同盟。1848 年德国各地爆发革命，法兰克福国民议会需要划定未来德国的国界。刚开始有人提出大德意志方案。但后来还是决定采用小德意志方案，建立一个不包括奥地利的德国。普鲁士于 1866 年的"七星期战争"中击败奥地利，次年建立北德意志联邦。1861 年普鲁士腓特烈?威廉四世逝世，威廉一世即位。 1862 年他因军事改革所需预算及税收问题与国会发生冲突，本拟退位，但在前驻法大使俾斯麦的建议下收回成命。俾斯麦表示支持军事改革，并称若任命他担任首相，他将不惜一切强行推行陆军改革和新兵役制度。1862 年 9 月 22 日，威廉一世任命俾斯麦担任首相。俾斯麦出任首相，这标志着德国统一的开始。1864 年，普鲁士联合奥地利，发动对邻国丹麦的战争。丹麦以 4 万士兵对 6 万敌人，最后以丹麦的战败而告终 。收回北方靠近丹麦边境的多个领地。1866 年，普鲁士挑起对奥地利战争。普军在萨多瓦战役中获得决定性胜利，取得荷尔斯泰因，迫使奥地利与匈牙利组成奥匈帝国;并合并数个邦，组成北德意志邦联，完成了统一事业的大部分 。1870 年普法战争爆发，德国南部的巴伐利亚、巴登、符登堡、黑森-达姆斯塔德几个邦脱离法国控制，1871 年德国宣布完成统一，德意志帝国成立，也称"德意志第二帝国"。</p>
+<p>6	第一次世界大战</p>
+<p>1878 年的柏林会议上，俄国因巴尔干半岛问题，与奥匈帝国发生利益冲突。德国最终在 1879 年选择了奥匈帝国作</p>
+<p>为盟友，与奥匈帝国缔结秘密的德奥联盟。此外，俾斯麦转而与因为和法国在殖民地事务上发生冲突，在 1881  年</p>
+<p> </p>
+<p>	争夺北非突尼斯失败而与面临孤立的意大利结盟。因此德意志帝国、奥匈帝国与意大利王国三国缔结"三国同盟"。</p>
+<p>1889 年 3 月，30 岁的威廉二世继位。威廉二世俾斯麦二人发生严重冲突。在互相鄙视的情况下，俾斯麦于 1890 年被迫辞职。1898 年 7 月 30 日去世。后来德皇认为德国殖民地太少，原料产地及商品市场不足，就实行了"世界政策</p>
+<p>"以替代俾斯麦的"大陆政策"，要求重新划分全球的势力范围。于是触犯了老牌殖民大国--英国和法国双方的各自利益。而第一次和第二次摩洛哥危机，沙皇俄国得到利益，这亦使得两大阵营的冲突加剧，战争爆发的可能性越来越大。1914 年 6 月 28 日奥匈帝国国王储弗朗茨?斐迪南大公在萨拉热窝被塞尔维亚爱国者刺死，这个事件成为第一次世界大战的导火线。因他主张通过兼并塞尔维亚王国将奥匈帝国由奥地利、匈牙利组成的二元帝国扩展为由奥地利、匈牙利与南斯拉夫组成的三元帝国，所以 1914 年与其庶妻"霍恩贝格女公爵苏菲"视察时为奥匈帝国波黑省的首府萨拉热窝时，被塞尔维亚民族主义者普林西普刺杀身亡。"萨拉热窝事件"成为第一次世界大战的导火线。1913 年，奥斯卡?博迪奥雷克将军作为奥地利派驻波斯尼亚和黑塞哥维那的总督，为了对付正在发展之中的塞尔维亚民主主义者而采取了暂时延缓省一级议会，对新闻进行审查，并增加了警察的措施。他然后邀请了大公，也是哈普斯堡皇室的继承人、奥地利军队的检查长，在 1914 年 6 月 28 日访问波斯尼亚首都萨拉热窝，并在一天的访问中参观阅兵仪式。其所选择的日子是非常不吉利的一天，因为在 1389  年的那一天，在科索沃战役中，塞尔维亚人在被土耳其人大败后丧失了近五百年的独立地位。德意志帝国、奥匈帝国立即以此作为发动战争的借口，挑起了第一次世界大战，这一事件遂成为第一次世界大战的导火线。萨拉热窝事件发生后，奥匈决定以此为借口挑起战争，吞并塞尔维亚。德国坚决支持奥匈的行动，俄国表示支持塞尔维亚。1914 年 7 月 23 日，奥匈向塞尔维亚发出最后通牒，限 48 小时答复。通牒内容极其苛刻，要求制止一切反奥活动，惩办进行反奥宣传的官民，由奥匈派员共同审判萨拉热窝事件的"凶手"等。7 月 25 日，塞尔维亚复文，除拒绝会审外，全部接受其余条件，但奥匈仍不满。当天奥匈即与塞尔维亚断交。7 月 28 日对塞宣战。7 月 30 日，俄国宣布总动员。8 月 1 日，德国对俄宣战，8 月 3 日，又对法国宣战。8 月 4 日，英国借口德军破坏了比利时中立，对德宣战。8 月 6 日，奥匈向俄国宣战。欧洲主要帝国主义国家都卷入了战争。意大利出于自身利益，战争初期宣布中立，后来又转向协约国方面，对德奥宣战。日本为了夺取德国在亚洲的殖民地，于 8 月 15 日向德国发出通牒，8 月 23 日向德国宣战。土耳其于 11 月参加到同盟国方面作战。第一次世界大战爆发了。1915 年春，英法联军趁德军主力集中在东面战线，发动了香巴尼和阿杜瓦两轮攻势。但因为沿用旧战术，而且欠缺强大火力掩护，结果被德军成功抵挡，己方反而伤亡惨重。该年 4 月德军反击，并首次使用毒气，使双方的损失更为惨重。结果 1915 年的西面战线，英法联军死伤百万人，德军亦死伤 61 万人，但战事仍然胶着。1916 年 2 月，东面战线的压力稍为降低，德军主力再次移师西线，与法军爆发凡尔登会战。结果在激战 7 个多月后，德军仍不能攻取凡尔登。而英法联军为了制衡德军，在该年 7 月初向索姆河一线与德军爆发索姆河战役，战况更为惨烈。英军虽然在这场战争里首次使用坦克，但双方在伤亡共约 120 万人后，战事仍未有重大突破，并持续至该年 11 月，西线再次变为胶着对峙状态，不过协约国开始掌握战争的主动权。1917 年 2 月 3 日因德国使用无限制潜艇战，使美国多只船只被击沉，美国与德国断交。2 月 24 日，美国驻英大使佩奇收到破获的齐默曼电报，电报称如果墨西哥对美国宣战，德国将协助把美国西南部还给墨西哥，于是美国以此为根据，于 4 月 6 日向德国宣战。</p>
+<p>1918 年 8 月至 9 月间，德军再损失 15 万人、大炮 2000 余门及机枪 13000 余挺。不断传来的军事失败的消息使德国国内的矛盾加剧。9 月，兴登堡元帅建议在德国议会提出要"结束战争"。但德军的最高统帅部却仍死心不息，意图用剩余的海军舰只与英国海军进行最后决战。结果德国水兵因不愿送死，在基尔港发生哗变，并迅速蔓延到整个海军及全国。11 月 9 日，德国首都柏林亦发生革命，德皇威廉二世只得宣布退位，并逃至荷兰。11 月 11 日，德军求和，第一次世界大战结束。协约国和同盟国于 1918 年 11 月 11 日宣布停火，经过巴黎和会长达 6 个月的谈判后，</p>
+<p>于 1919 年 6 月 28 日在巴黎的凡尔赛宫签署条约，标志着第一次世界大战正式结束。得到国际联盟的承认后，于 1920</p>
+<p>年 1 月 10 日正式生效。中国因巴黎和会对于中日青岛问题无法解决，进而爆发全国反日的五四运动，没有签署凡尔赛条约，但与德国另签订和约。美国因其国会表决多数反对，也未签凡尔赛条约。《凡尔赛条约》将发动战争的责任悉数推给德国，从而对德国实行条件极为严厉的经济与军事制裁，德国失去 13%的国土和 12%的人口，还被解除武装，德国陆军被控制在 10 万人以下，且不许拥有空军。但德国虽然在一战中最后战败，其元气并未受到过大的伤害，工业体系依然保存完整，本土也并未受到战火的波及。《凡尔赛条约》过多考虑战胜国的利益分配，完全没有考虑战败国自身的利益，加上条约的空前苛刻性和掠夺本质，造成德国货币疯狂贬值，使得德国国民对强加给</p>
+<p> </p>
+<p>	他们的条约有极强的抵触和反感情绪，因而引发德国民众强烈的民族复仇主义情绪。德国人为摆脱《凡尔赛条约》桎梏，各派政治势力、各种政治思想在德国你争我夺，显得尤为激烈。种种因素配合，以及德国在希特勒的纳粹党的领导下，终于爆发了规模空前的第二次世界大战。</p>
+<p>7	魏玛共和国</p>
+<p>1919 年 2 月德意志建立魏玛共和国。1925 年起兴登堡担任德国总统。兴登堡在军事生涯初期是一个出色的军人，但是他最为著名的成就在于一战中和鲁登道夫所形成的完美组合。晚年其黯淡的精神力量、陈旧的思想和狭隘的观察力使其后期的政治生涯受到损害。兴登堡任命希特勒为总理的举动，也成为日后希特勒发动第二次世界大战的因素之一 。1934 年 8 月 2 日在任内逝世于东普鲁士。</p>
+<p>8	二次世界大战</p>
+<p>1933 年希特勒上台实行独裁统治。希特勒 1919 年 9 月加入德国工人党(纳粹党)并担任党主席团委员，1921 年 7 月，成为德国工人党元首，享有指挥一切的权力。1923 年 11 月 8 日，希特勒发动啤酒馆暴动失败，1924 年 4 月 1 日，希特勒被判 5 年有期徒刑在兰兹堡监狱服刑。他在监狱中呆了八个月，八个月中他口授了《我的奋斗》一书，为纳粹统治下的未来德国描绘了一幅令人震惊的蓝图。尽管这次闻名于世的啤酒馆政变失败了，但是纳粹们却从中吸取了重要的教训，1933 年上台成为元首。1938 年 3 月 11 日，占领奥地利，掀起第二次世界大战欧洲战场的序幕，1939 年到 1941 年相继占领了欧洲的 14 个国家，并且把罗马尼亚、匈牙利、保加利亚、南斯拉夫变为自己的仆从国。1941 年 6 月 22 日，进攻苏联，之后陷入苏德战争的不利局面。1945 年 4 月 28 日希特勒和爱娃?布劳恩正式结为夫妇，</p>
+<p>1945 年 4 月 30 日下午 3 点 30 分，在德国总理府地下室自杀。1945 年 5 月 8 日德国战败。战后，根据雅尔塔协定和波茨坦协定，德国分别由美、英、法、苏四国占领，并由四国组成盟国管制委员会接管德国最高权力。柏林市也划分成 4 个占领区。1948 年 6 月，美、英、法三国占领区合并。翌年 5 月 23 日，合并后的西部占领区成立了德意志联邦共和国。同年 10 月 7 日，东部的苏占区成立了德意志民主共和国。德国从此正式分裂为两个主权国家 。1990 年 3 月 18 日，民主德国人民议会实行自由选举，德梅齐埃任总理后，两德统一的步伐大大加快。5 月 18 日，两德在波恩签署关于建立货币、经济和社会联盟的国家条约。8 月 31 日，双方又在柏林签署两德统一条约。9 月 24 日，民主德国国家人民军正式退出华约组织。10 月 3 日民主德国正式加入联邦德国。民主德国的宪法、人民议院、政府</p>
+<p>自动取消，原 14 个专区为适应联邦德国建制改为 5 个州，并入了联邦德国，分裂 40 多年的两个德国重新统一。</p>
+
+
+<p style='float:right;'>本页共34段，7092个字符，18722 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,340 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>法国历史</h3>
+
+<p>1 公元前1000 年，凯尔特人在法国定居。</p>
+<p>2 公元前1 世纪，罗马的高卢人总督恺撒占领了全部高卢，从此受罗马统治达500 年之久。</p>
+<p>3 公元5 世纪日耳曼部落法兰克人征服高卢，建立法兰克王国。</p>
+<p>4 墨洛温王朝</p>
+<p>486 年，法兰克人在克洛维一世的带领下战胜罗马帝国在北部高卢的最后统治者西格里乌斯。这场胜利使用法兰克人的统治扩张到了卢瓦尔河以北地区，并建立了法兰克王国，并且以自己祖父的名字将王国命名为墨洛温王朝。687 年，奥斯特拉西亚的丞相中丕平战胜了整个王国的统治者，为丕平王朝和卡洛林王朝的上升铺平了道路，但当时丕平还不敢篡权。</p>
+<p>5 加洛林王朝</p>
+<p>自公元751 年统治法兰克王国的王朝。在此之前，其王朝成员以"宫相"的身分涉理王国朝政，在公元751 年，加洛林家族取代墨洛温家族，正式坐上法兰克王国的王位。在王朝其后的鼎盛时期，加洛林家族在名义上复辟了罗马帝国，也即是开创了后世所谓的神圣罗马帝国。这使加洛林王朝成为最为后人所记得的法兰克王朝。查理曼的统一帝国，只有其子法王路易一世可以维持。其孙辈于843 年签署《凡尔登条约》，将统一帝国瓜分成三个部分:西法兰克王国，即法兰西，演变为后来的法国;东法兰克王国，即德意志，演变为后来的德国;中法兰克王国，即意大利，演变为后来的意大利。所以很多人将西法兰克国王查理二世(秃头查理)当做法兰西的第一位国王。</p>
+<p>6 卡佩王朝</p>
+<p>西法兰克国王罗贝尔一世的孙子法兰西公爵及巴黎伯爵雨果？卡佩在987 年建立了卡佩王朝。它与其旁支瓦卢瓦王朝，波旁王朝和奥尔良王朝将统治法国超过800 年之久。</p>
+<p>7 瓦卢瓦王朝</p>
+<p>1328 年，法王查理四世身亡，卡佩王朝绝后。瓦卢瓦王朝成员腓力六世继承王位。但是英王爱德华三世，前法王腓力四世的外孙，宣称自己是法国王位唯一合法继承人。此王位争议成为英法百年战争的导火索。1337 年11 月英王爱德华三世率军进攻法国，战争开始。法军在1337 年至1360 年间节节败退，濒临亡国。但在1369 年至1396 年间转入反攻。1415 年英王亨利五世在阿金库尔战役的胜利，令瓦卢瓦王室失去其他贵族家族的支持，最终7 年后巴黎沦陷，1420 年《特鲁瓦条约》签署，导致法国王室对卢瓦尔河以南的管治权大大削弱。</p>
+<p>1428 年，英军更进一步，占领了包括巴黎在内的法国北部，并且围攻通往法国南方的要塞奥尔良。此举再次激起了法国人的爱国热情，纷纷起兵反抗。次年，女英雄圣女贞德率军驰援奥尔良，击退了英军。并在历史名城兰斯拥立查理七世为新任法王。但贞德很快被勃艮第人逮捕，并交与英军。在英军宗教审判所的不公道的审讯下，贞德被判为异端，于1431 年被钉上十字架，活活烧死。</p>
+<p>后来英国内部发生冲突，再加上法王和勃艮第公爵菲利浦的和解，导致法国渐渐反败为胜。最终陆续收复巴黎(1436 年)、诺曼底(1450 年)及波尔多(1453 年10 月)等地，法军获得最后胜利，收复了除加来外的全部领土。在这场战争以后，法王逐步加强中央集权，并分别将勃艮第(1477 年)和布列塔尼(1491 年)收归中央。</p>
+<p>8 波旁王朝</p>
+<p>1589 年8 月1 日，亨利三世遇刺身亡，因无子嗣，王位由纳瓦尔的亨利四世继承。至此，瓦卢瓦王朝结束，波旁王朝开始。亨利四世即位后，主动结束了困扰法国多年的三十年战争，令法国的经济得以复苏。1598 年，亨利四世颁布了南特敕令，施行宗教宽容政策，令很多信奉基督新教的手工业者留在法国，促进了法国经济的繁荣。但亨利四世的宗教宽容政策，随着他的驾崩而被终止施行。其后经过主教大臣黎塞留和马扎然的整顿，到路易十四亲政时期，法国专制王权进入极盛时期。路易十四加强封建中央集权统治，大力削弱地方贵族的权力。促进资本主义工商业的发展。同时，路易十四与哈布斯堡家族的长期战争，使法国东部边疆延伸到斯特拉斯堡。路易十五统治时期(1715 ~1774 )，虽然经济有所发展，但专制王权日趋衰落。1774 年路易十六即位，资产阶级日益感到政治地位与经济实力愈来愈不相称，他们对关卡制度、行会条例和不公平的征税制度极为不满，特别反对贵族和教士的特权。代表资产阶级利益的启蒙运动蓬勃发展起来，他们抨击天主教会和专制王权，传播科学知识，宣扬民主、自由、平等、</p>
+<p>理性。法国封建制度陷于严重的危机。另外，十八世纪法国卷入一连串的战争，1702 年的西班牙王位继承战争、1740 </p>
+<p>	年的奥地利王位继承战争、1754 年的七年战争等，到七年战争结束的时候，法国国力大衰，并丧失了大部分海外殖民地。</p>
+<p>9 法兰西第一共和国(1792 -1804 年)</p>
+<p>面对财政危机，愈来愈多的法国百姓被不称职的国王路易十六，以及持续漠不关心的颓废贵族所激怒。这种不满与蓬勃发展中的启蒙思想所结合，助长了激进的情绪，终于法国大革命在1789 年5 月的三级会议中爆发。革命的头一年，第三等级的革命民众在6 月发表了《网球厅宣誓》，7 月14 日攻占巴士底狱，10 月凡尔赛妇女运动迫使法国王室在10 月返回巴黎。接下来的几年则由不同的立法会议与右翼的君主制拥护者的斗争所主导。1792 年9 月22 日，法兰西第一共和国成立，路易十六在次年被推上断头台。不断出现的外部压力实际上在法国革命中起到了主导角色，1793 年神圣罗马帝国皇帝弗朗茨二世与普鲁士、萨丁、英国、荷兰和西班牙组成第一次反法同盟。但这个联盟在1797 年，因联军被拿破仑所率领的法国意大利方面军打败，被迫议和而土崩瓦解。这场战争取得了一个世纪以来法国未曾取得的胜利，并使法国间接控制意大利半岛和莱茵河以西的领土。</p>
+<p>10 法兰西第一帝国(1804 -1814 年)</p>
+<p>1799 年英国又组成第二次反法同盟，以西哀士为首的右翼势力要求借助军人力量控制局面。11 月9 日(共和八年雾月18 日)拿破仑？波拿巴发动雾月政变，结束了督政府的统治，建立起临时执政府，自任执政。法国大革命高潮结束。1804 年，拿破仑称帝，改共和国为法兰西第一帝国，取消民主自由，加强中央集权，颁布《民法典》，从法律上维护和巩固了资本主义所有制和资产阶级的社会经济秩序，对法国的资本主义发展起了积极作用。法国对外发动了一连串战争(被称为拿破仑战争)，多次打败反法同盟，把法国的影响力扩至整个西欧及波兰。</p>
+<p>1805 年8 月9 日，奥地利帝国、英国、沙俄结成第三次反法同盟，向拿破仑宣战。12 月初，法军在拿破仑的指挥下，与俄奥联军在奥斯特里茨村激战，取得了奥斯特里茨战役的决定性胜利。12 月27 日，拿破仑与奥地利皇帝签订《普莱斯堡和约》，反法同盟瓦解，神圣罗马帝国的历史也正式宣告终结。</p>
+<p>1813 年欧洲结成第六次反法同盟，拿破仑率军40 万与联军作战，不料在莱比锡战役中被击败，各附庸小邦国乘机起来摆脱法国管治，拿破仑陷入困境。1814 年联军向法国进军。3 月30 日，巴黎沦陷;4 月6 日，拿破仑被迫退位，并被放逐到意大利的厄尔巴岛;波旁王朝继而复辟。然而，拿破仑再次从戒备森严的厄尔巴岛上逃了出来，并在1815 年3 月20 日进占巴黎，重新登上皇位，建立了"百日王朝"。不久，欧洲各君主国重新调集重兵，组成第七次反法同盟。1815 年6 月，法军在滑铁卢战役中覆没，拿破仑第二次退位;10 月，他被流放至圣赫勒拿岛。1821 年5 月5 日，拿破仑在岛上病逝。</p>
+<p>11 波旁王朝复辟(1814 年-1830 年)</p>
+<p>拿破仑帝国破灭后，路易十八复位。而他和他的弟弟查理十世一直致力维护保王党在国会的势力。而一些在法国大革命期间的政策，亦因被认为倾向于自由主义而被两人废除。这些举动令波旁王朝渐失民心，最终导致1830 年法国七月革命的爆发。</p>
+<p>12 七月王朝或奥尔良王朝(1830 -1848 年)</p>
+<p>在那一年法王查理十世试图推行镇压法令，触发一场叛乱，史称"七月革命"。革命过后，法国国会让奥尔良公爵路易-菲利浦三世以法王路易十三的后代支系第八代孙的身分继承王位，正式称号为"法兰西人的国王"路易-菲利浦。由于他以波旁-奥尔良为姓氏，因此他的七月王朝，亦被成为波旁-奥尔良王朝。路易？菲利浦采取中间路线，但依然无法解决法国经济持续衰退的问题。1846 年的工农业萧条，令他被迫于1848 年退位。法兰西第二共和国成立。自此以后，没有任何一位波旁王室及其分支成员能再次统治法国，而法国波旁王朝而正式落下帷幕。</p>
+<p>13 法兰西第二共和国(1848 -1852 年)</p>
+<p>"二月革命"是法国推翻七月王朝，建立法兰西第二共和国的资产阶级革命。七月王朝是由银行家、交易所经纪人、铁路大王、大矿主、大森林主、大地主组成的金融贵族执政的政权。</p>
+<p>1848 年拉马丁(Lamartine)成立了临时政府，建立法兰西第二共和国。12 月，路易-拿破仑？波拿巴当选共和国总统。14 法兰西第二帝国(1852 年-1870 年)</p>
+<p>1848 年12 月10 日，路易？拿破仑？波拿巴当选总统。1849 年5 月13 日选举立法议会，以保王派和天主教教士为</p>
+<p>核心的秩序党获多数席位。宪法规定总统不能直接连任，波拿巴要求修改宪法，立法议会多数反对。波拿巴于1851 </p>
+<p>	年12 月2 日发动政变，解散议会，建立专政体制。1852 年12 月2 日宣布成立帝国，波拿巴被封为皇帝，称拿破</p>
+<p>仑三世。为了改变1815 年以来法国的孤立状态，争夺欧洲大陆优势和进行海外殖民侵略，拿破仑三世进行多次对外战争。法国在1853 ~1856 年的克里木战争中联合英国、土耳其与撒丁反对俄国，击败俄国后确立了在欧洲大陆的优势。后又联合意大利反对奥地利，得到萨瓦和尼斯。1860 年签订《法英商约》，实行自由贸易。克里木战争后至</p>
+<p>18 世纪60 年代初是第二帝国发展的顶点。但是，劳动人民深受剥削压迫，工人运动重新高涨，共和派加强斗争。第二帝国支持罗马教皇阻挠意大利统一、武装干涉墨西哥以及在普奥战争中支持奥地利等一系列失策，使法国陷入困境。为了摆脱国内危机和重夺欧陆优势，1870 年7 月19 日法国以西班牙王位继承问题为借口对普鲁士宣战(普法战争)，法军战败，9 月2 日拿破仑三世在色当投降。</p>
+<p>15 法兰西第三共和国(1870 年-1940 年)</p>
+<p>1870 年9 月4 日，法兰西第三共和国成立。资产阶级临时政府对逼近巴黎的普鲁士军队采取了屈膝投降的态度。1871 </p>
+<p>年2 月，同德国(当时普鲁士隶属于德意志的一个邦联国)草签了条约，同意向德国赔款50 亿法郎，并割让阿尔萨斯</p>
+<p>和洛林的一部分给德国。同时，调集军队，准备解除巴黎人民国民自卫军的武装。1871 年3 月18 日凌晨，政府军企图夺取巴黎市内的蒙马特尔高地和梭蒙高地时，被人发现。巴黎人民奋起反击，当晚就占领了城内的战略要地，临时政府总理梯也尔狼狈逃出巴黎，迁往凡尔赛。不久，巴黎公社成立。资产阶级政府不甘心失败，对巴黎公社发动了进攻。5 月21 日至28 日，公社战士同攻入巴黎城内的政府军展开了激烈的巷战。战斗非常惨烈，最终以巴黎公社的失败而告终。巴黎公社是无产阶级建立政权的第一次伟大尝试。1940 年6 月法国贝当政府投降德国，至此第三共和国覆灭。</p>
+<p>16 1944 年6 月宣布成立临时政府，戴高乐担任首脑1946 年通过宪法，成立第四共和国。1958 年9 月通过新宪法，</p>
+<p>第五共和国成立，同年12 月戴高乐当选总统。</p>
+
+
+<p style='float:right;'>本页共42段，4946个字符，12916 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
