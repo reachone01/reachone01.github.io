@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>中国的方言为何如此复杂？</h3>
+
+<p>作者：周振鹤，复旦大学历史地理研究中心教授</p>
+<p>01 </p>
+<p>北方方言和南方方言的源头</p>
+<p>汉语的北方方言是古代生活在中原地区的汉族所用语言经过长期发展，并受周围少数民族语言影响的直接结果。而分布在中国南方的其他汉语方言则发端于历史上黄河中下游地区人民的几次南下移民活动。</p>
+<p>中国历史上的移民，上溯先秦，下及近世，代代不绝。人口迁移的方式大概有两类，一是人民自动的流徙，一是政府有计划的移民。前者多因为战乱、灾荒、饥馑或人口膨胀所引起，后者则是为了某种政治、军事或经济上的目的。</p>
+<p>纵观中国历史上的移民活动，迁徙的大方向主要是由北向南，其次是由东到西，反向而行的例子比较少见，这一重要特点产生了汉语南方各方言的最初源头，并形成了今天汉语方言地理的格局。</p>
+<p>吴方言的源头最为久远。据《史记》记载，三千年前的先周时代，有一支移民在经过一场政治变动后，从陕西渭水流域迁到江南太湖流域。他们建立了吴国，其语言可能成为后来吴方言的最早渊源。</p>
+<p>比吴方言稍晚的是湘方言。湘方言来源于今天已不存在的古楚语。在商朝末年的中原动乱中，楚人南迁至江汉流域，因此楚语被带到了湖北地区。战国时期，楚国南进占有湘资流域，于是古楚语又扩散到湖南。</p>
+<p>秦统一六国后，向南越过五岭占有了两广地区。岭南原是百越民族的居住地，秦始皇为防止他们的反抗，派遣五十万军队驻扎于此。这些士卒所用的语言，成为今日粤方言的先声。</p>
+<p>福建本是闽越族的家园，西汉时这里仅设一个县。东汉末年，军阀混战，大量北来移民从陆路和海路进入福建，八十年中，福建西北山地和东部沿海接连出现十三个新县，原始闽方言应该就萌发于这一时期。</p>
+<p>赣方言和客家方言出现最晚。江西地区古称吴头楚尾，应当是古吴语和楚语的交汇处，因此汉代以前并没有原始的赣语。在西晋永嘉年间（307 -312 年）以后发生的汉族人民大南徙的浪潮中，有部分北来的移民到达江西北部，他们带来的语言可以看成是赣方言和客家方言的前身。</p>
+<p>汉语南方各方言就是在上述渊源的基础上，经过千百年来多次移民活动所带来的新方言不断冲击，发生取代、交融、渗透、混合而向前发展演化的结果。</p>
+<p>02 </p>
+<p>南下大移民与方言的南进</p>
+<p>晋代以前，淮水秦岭一线或许可以看成是南北方言的大致分界线，西晋以后发生的三次南下大移民才使北方方言大规模越过此线进入南方，从而逐渐改变了南方方言的地理布局。汉语方言的基本格局，正是历史上汉人三次大南迁和一些中小规模的移民活动所造成的。</p>
+<p>第一次汉人移民大浪潮发生在西晋永嘉以后至南朝宋泰始年间（307 -466 年）。西晋末年的八王之乱导致了边疆少数民族的入侵，因此而迫使大量中原汉人向南流徙，在永嘉元年至泰始二年的一百五十年间，南迁的流民达九十万人之多。这个数目约占西晋北方人口的八分之一，又占到南朝宋人口的六分之一，换句话说，北方每八人就有一人南迁，而南方人口中每六人就有一人是北方侨民。</p>
+<p>南迁的东晋以建康（今南京）为首都，这里云集了大量北方的衣冠士族，他们地位高贵，因此南方的士族纷纷改变自己的方言，来仿效他们的北方口音。当时有个名叫顾长康的南方士族坚持不学北方话，还遭到旁人追问：“你为什么不说洛阳话？”</p>
+<p>在南京以东的镇江一带，北方侨民竟占到江苏全省侨民的十分之九，甚至比当地土著居民还多。由于迁徙时间集中，侨寓地区集中，而且侨民的居住方式往往是聚族而居，在这种情况下，侨民所带来的北方语言必然要对土著语言发生深刻影响。在江淮之间，当时的北方方言已经取得优势，而在湖北地区，北方方言必然也对楚语发生冲击，产生了西南官话的最初端倪。</p>
+<p>第二次移民大潮的导火索是发生在唐朝天宝十四年（755 年）的安史之乱。历时八年的战祸遍及黄河中下游地区，再度引起中原地区的人民向南流徙。安史之乱引起的移民不仅规模大，而且这次移民走得比上次要远，已经到达洞庭湖、鄱阳湖以南，其前锋甚至到达岭南和福建。因此，北方方言再次对南方方言发生冲击，而且对南方方言地理格局的形成起了关键性作用。</p>
+<p>在湖北，北方方言加速了对湖北方言的同化，奠定了这一地区西南官话的基础。在长沙衡阳一带，湘方言受到北方方言侵蚀，消弱了固有的特征。同时，粤方言也受到了移民方言一定程度的影响。</p>
+<p>在江西北、中部，北部移民带来的语言形成了今日赣语的主要基础，并为日后客家话的形成准备了条件。进入江西的移民语言像楔子一样，把吴语区和湘语区永远分隔开来，并且把闽语限制在福建地区。今天南方方言地理的雏形正是在中唐以后出现的。</p>
+<p>安史之乱后，唐朝出现了藩镇割据的局面。这些藩镇名义归属中央，实际上是独立的小王国。唐朝灭亡后，中原相继出现了五个朝代，称为“五代”，地方上还出现了十几个割据政权，统称“十国”。在这前后二百年里，各地人民长期生活在各自为政的分裂局面中，强化了方言地理的格局。吴越、吴（南唐）、楚、闽、南汉等割据政权对促进吴、赣、湘、闽、粤方言区的形成产生了不小的作用。</p>
+<p>第三次大南迁发生在北宋靖康之难到忽必烈入主中原之间，大约历时一百五十年左右。其中两宋之际（1126 -1142 年）的移民原因及南下路线都和第一、二次大移民相似，今江苏南部和浙江地区接受了最大量的移民，而移民对南方的深入又更进一步，福建、广东、广西都有移民的足迹。由于除江浙一带外，移民分布较均衡，所以北方方言对南方方言的影响不如前两次移民大。</p>
+<p>北宋灭亡后，从旧都汴京（今开封）南来的大批文官武将、僧尼商贾云集南宋都城临安（今杭州），他们带来了属于中原方言的开封话，与杭州的吴语长期对立并存。到了明朝的时候，杭州人郎瑛还很以杭州人“语音好于他处”而自豪，他解释说这是因为杭州话与开封话很类似的缘故。直到今天，杭州市区的方言依然带有明显的北方味，而一出杭州，便全是纯粹吴语的天下了。</p>
+<p>在这次南迁中，江淮地区是北来移民的中继站，湖南常德再次接受北方方言的影响，南京，尤其是镇江，相对集中了数量较大的移民，这些地区此时应已成为北方方言的次方言区。</p>
+<p>客家方言也在这一时期逐渐形成。由于金人和蒙古人的南侵，中唐以后迁到江南的大批移民后裔及唐末迁到闽西、赣南的人民再次迁移到闽、粤、赣交界区，这一带地理环境的闭塞，使移民方言终于与北方方言完全隔开，形成了独特的客家方言，而且使广东梅州一带成为客家方言的核心地区。</p>
+<p>03 </p>
+<p>其他移民与方言的扩散</p>
+<p>从五代开始，直到明清之际，由江西向湖南移民的过程持续了七八百年之久。移民原因是自发的经济要求。江西赣江中下游地区由于中唐以后接受了大量移民，开发程度比湖南高，到唐末五代在河谷地带已经人多地少，于是逐步向西邻的湖南地区转移，以解决生计问题。移民的结果是湘东地区的百姓几乎均是江西籍，受其影响，湘语也发生了质的变化，带上了赣语特征。</p>
+<p>福建向广东的移民大致也从五代开始。福建山多田少，人口饱和的现象更加突出。于是福建移民进入广东东南沿海并逐渐向西扩散，他们大多“泛海而至”，把闽南方言散布在广东东、西两端的沿海地带，并在珠江三角洲留下了一些闽方言岛。</p>
+<p>04 </p>
+<p>方言岛</p>
+<p>在语言学上所说的“方言岛”通常就是指“历史上操相同或相近方言的一部分人迁入操另一种方言的人的地盘，他们所带来的方言在本地方言的包围下，犹如大海上的岛屿”。以“杭州方言岛”为例，杭州属南方吴方言区，可由于历史上南宋小朝廷的建立，大量的北方官话进入，在语言上便明显不同于周边地区。如人称代词“你、我、他”，“你们、我们、他们”与北方方言相似，异于吴语地区上海的“侬、吾、伊”和“拿、阿拉、伊拉”；又如词缀“儿”音的广泛运用，只是发音更生硬、着重些。</p>
+<p>现存的汉语方言岛大都是在明、清两代形成的。承德也是一个典型的方言岛，它距离北京近二百公里，但居民操纯北京话，就是由于康熙时兴建避暑山庄和外八庙，大批供奉、保卫人员移住该地，定居下来，以致压倒原来居民所操方言，使之同化于北京话，形成一方言岛孤岛。</p>
+<p>四川人口在历史上经过几起几落的大变化，今天的四川人大部分是清代以后移民的子孙，少部分是元末明初移民的后裔，元代以前的土著更是凤毛麟角。元末明初，大量湖北人移民四川。明末清初，四川经受了二三十年大规模军事行动的破坏，元气大伤，人口大减，于是清朝积极从湖广地区（湖北、湖南）向四川移民，有“湖广填四川”之说。因此，今天的四川方言实际上是两湖地区的西南官话向西迁移的结果。而元、明、清三代的军屯和移民将云贵地区也纳入了西南官话的体系。</p>
+<p>清代有很重要的两次移民，一次是清康熙朝以后由大陆向台湾的移民，另一次则是清朝后期以至现代由关内向东北的迁徙。</p>
+<p>康熙二十二年（1683 年），台湾入清朝版图，此后海禁遂开，闽南沿海的福佬人和粤东山地的客家人开始向台湾移民，两者的比例在日本占领初期是四比一，这就是今天台湾方言以闽南方言为主、并杂以客家方言的原因。</p>
+<p>东北地区是清朝的“龙兴之地”，康熙以后辟为禁区，严禁移民出关。沙俄侵略黑龙江地区的事实刺激清朝采用移民实边的政策，东北于是逐渐开放。从20 世纪初年开始，大批汉人移民东北，其中河北和山东人占绝大多数。河北北部邻近辽西，所以辽西是河北人向东北腹地移民的大本营。而闯关东的山东人渡海登陆后大多先到了辽东半岛和辽河一带。所以今天的辽东方言与隔海相望的胶东方言相似，辽西方言的一些特点与河北北部相同。</p>
+<p>还有两次移民活动使汉语方言地理更加复杂。第一次是后期客家人的多方向分散移民活动。明末清初以后，在闽、粤、赣交界山地长期生息的客家人由于人口膨胀产生的压力不得不向外迁徙，他们或向东渡海到达台湾，或向西迁移，一路到达湘赣交界诸县，远者更到达四川，又一路到广东西南沿海，远者进入广西，因此在这些地区造成了许多客家方言岛和方言小区。</p>
+<p>第二次则是从东、南两个方向进入陕西汉中盆地的移民活动。汉中盆地本是人口稀少的地区，乾隆以后，移民蜂拥而至，百年之间人口增加了二十来倍。移民原籍以四川、湖北二省为主，因此这里的语言自然与川、楚通行的西南官话相近。</p>
+<p>05 </p>
+<p>行政区划与方言地理</p>
+<p>如果说移民的作用是动态的，那么行政区划对方言地理的作用可以说是静态的。长期稳定的行政区划，必然使同一区划中的语言、风俗等文化因素趋向一体化。</p>
+<p>广西北部的全州、资源、灌阳、兴安四个县市的地域在历史上长期属于以长沙为中心的行政区划里，直至明代以后才归属广西省，所以至今通行湘方言。而湖南的沅、醴流域在长达一千多年的时间里都归属于以湖北地区为主体的政区中，所以与湖北同属官话区，而与湖南湘资流域的湘方言属于不同体系。吴方言区大致可以分为太湖片、台州片、温州片、婺州片、丽衢片，这五片的范围除个别地点外，竟和历史上的二级政区相吻合。</p>
+<p>在唐、宋的州和明、清的府这样的管辖地域适中的二级政区内，方言的趋同性是非常明的。而州（府）之间则因为自然地理、交通等因素，方言存在一定程度的差异性。尤其是山区，州与州之间往往以分水岭为界，无疑因交通的不便而增加语言的差异。</p>
+<p>在一个行政区域之中，权威方言还会随着行政中心的变易而发生转移。行政区划的中心一般都是该政区的政治、经济、文化中心，是当地最大的城市。这个城市还是时尚的中心，在物质文化和精神文化方面都起到引导潮流的作用。因此，一般人的语言心理都是向这个中心靠拢。行政中心所用的方言就成为这个政区的权威方言，一旦行政中心或中心城市变换了，权威方言也就随之改变了。</p>
+<p>上海地区的权威方言可谓是三易其主。上海地区初为华亭县，属松江府管辖。在明代，当地最为人看重的是嘉兴话，因为松江府是元代初年从嘉兴府分离出来的。到了清代，嘉兴话的地位让位给苏州话，因为此时松江府脱离嘉兴已长达四百年之久，而且松江府与苏州府同处一省之中，与嘉兴府则分属两省，再加上苏州比嘉兴在政治、经济上地位更高。近代上海开埠以来，逐渐发展为亚洲屈指可数的国际化大都市之一，现今上海话的权威地位，是到民国之后才逐步确立起来的。</p>
+<p>通过上面的分析我们可以知道，方言是语言逐渐分化的结果。语言分化是从移民开始的，又与行政地理、交通地理、自然地理等因素有关。移民活动是形成方言地理格局的基本因素，而历史行政区划则是方言分区划片的合理基础。</p>
+
+
+<p style='float:right;'>本页共49段，5248个字符，14911 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
