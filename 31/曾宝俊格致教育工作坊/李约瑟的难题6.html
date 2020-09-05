@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>李约瑟的难题6</h4>
+
+<p>各位老师，大家好，这里是格致教育工作坊，欢迎大家的到来。穿越时空，享受思想的盛宴，让我们一起天天学习，好好向上！</p>
+<p>昨天我们谈到钱学森之问答案的症结之所在，也谈完了李约瑟之问的正解，从今天开始我们来详谈李约瑟难题的反解。</p>
+<p>“李约瑟难题”在表述上看起来是一个命题，但是它实际上有一个反命题，这个反命题就是“为什么近代西方的‘科学’比近代中国的‘科学’要先进？”这就需要从东西方科学思维上的差异上来找根源。</p>
+<p>这个差异首先表示在认识风格上，就是东西方哲学的认知风格上存在着巨大的差异。在西方，古希腊第一位自然哲学家泰勒斯，大约诞生于公元前624年；在东方，与泰勒斯几乎同时代的思想家老子诞生于大约公元前571年。这两位伟人，实际上代表着东西方两种不同的哲学和科学传统源流，尽管当时他们都已摆脱了传统的神话自然观的影响，但在建构解读世界、认知自然的哲学体系和理论架构当中，由于认知世界的角度不同、知识的兴趣点不同，以及思想的表达方式的差异，使东西方各自形成了截然不同的认知风格。</p>
+<p>这种认知风格的差异在哲学上首先表现为西方推崇理性主义，而东方追求神秘主义。被西方誉为第一位哲学家和科学家的泰勒斯是古希腊自然哲学的开创者，也是西方第一位用理性的目光审视自然的先哲。他认为：自然界尽管千姿百态、千变万化，但总是由一些最基本的东西产生的，这个东西就是世界的基础或者本源；它既不是精神性的理念，也不是人们想象中的产物，它应该存于自然本身。于是，他提出“万物源于水”这样的命题。虽然在今天来看，这个说法十分幼稚，但是不可否认，这一个命题开创了人类认识自然的理性之路，是关于自然界理性观点的开始。</p>
+<p>追究万物的共同本源是一个哲学命题，也是一个科学命题，既是哲学思维的起点，也是科学思维萌发的源泉。科学的一个基本原则，就是从具体的、复杂的、多变的自然现象中，找出内在的客观规律，再通过这种内在的客观规律来解释、说明或者预见更多的自然现象，而不是用主观意志或主体好恶来解释自然。在古希腊自然哲学产生之前，人们总是用拟人化的方式来解说自然，自然被认为是混乱、神秘、变化莫测和充满奇迹的。从泰勒斯的米利学派开始，古希腊的哲人们对自然采取了全新的态度，即理性、逻辑与批判的态度。他们认为世界是有条理的，是有秩序的，并按照定量的因果关系呈现出来，关键是人类用什么方法来揭示它。</p>
+<p>从理论上来说，自然哲学是科学的前身，是科学产生的土壤。但是，中国古代哲学中没有古希腊那样完整的自然哲学体系，许多自然哲学火花散见于不同的哲学流派之中，缺乏逻辑上的自洽与系统化的理论体系。与古希腊自然哲学相比，中国古代自然科学和以原理、定律、定义表现出来的古希腊理性自然知识相比是薄弱的。尽管如此，以中国老子为代表的道家学说，曾经对自然和自然哲学表现出兴趣，提出万物的本源是先于天地生的非物质的“道”。在老子那里，“道”是万物的本源和开始，所谓“道生一、一生二、二生三、三生万物”这一思想的意义就在于：首先，老子与古希腊的先哲们一样，否定了神话自然观，从多元的自然观发展成为一元的宇宙观，力图说明世界的开始、自然的本源；其次，“道”本身也还是世界的秩序、自然的规律以及演化的动力，“道”通过阴阳对立、相互作用和渐次转化，从而展开为宇宙万物。老子的道家学术显然包含着朴素的辩证法思想，但这个“道”是神秘莫测的，甚至今天人们也还无法从科学的意义上去把握“道”的本质。</p>
+<p>另一方面东西方哲学的差异还在于西方是主客观分离，而东方是天人合一。古希腊自然哲学作为理性主义的开端，其最大的特点在于关注自然，把人作为研究客观世界的主体。科学理性包含两个方面：一是主客二分，即把客观世界作为独立于人之外的事物来研究，并且把客观世界分为本质的世界和现象的世界，目的是认识现象世界后面的本质，来揭示客观世界的内在规律性；二是认识途径和方法，即要从客观世界的直观问题抽象出准确的概念，构造出符合客观规律的理论解释体系，通过逻辑推理演绎命题，通过归纳方法来提炼出客观规律，用数学手段来揭示事物的质与量之间的关系，而不是仅仅对事物做出简单笼统的现象描述和经验总结。</p>
+<p>与西方自然哲学不同的是，中国传统哲学一直关心社会伦理道德胜过关心自然本身，对自然缺乏探究热情，也缺少研究方法，只有一些常识性的认识和思辨性的猜测，这对科学和哲学的发展都产生了不利的影响，使得原本很有生气的中国古代自然哲学思想，最终大都在社会伦理道德的说教中迷失了探索的方向，折断了想象的翅膀。</p>
+<p>东西方的先哲们由于关注的对象不同，导致了结果的不同。中国传统哲学的另一个特点就是“天人合一”。从某种意义上来讲，中国传统哲学把认识自然的主体与认识客体合二为一，消除了科学从哲学之母中孕育而生的可能性。实际上，这是取消科学认识对象也就是取消了科学本身。尽管当代一些东西方学者非常推崇“天人合一”这种思想，认为它是人与自然和谐发展的思想的源流以及可持续发展观念的基础，但从历史的角度来看，中国古代这种主客观不分、简单类比的“天人合一”思想并没有给中国的科学带来进步。华裔诺贝尔物理奖获得者杨振宁更是直言：《周易》阻碍了中国科学的发展。</p>
+<p>由于时间关系，关于“李约瑟难题的反解”今天先谈这么多，明天接着说。让我们一起自我迭代，终身学习，格致教育工作坊每天都在这里等着你！</p>
+<p>讲座时间：2017年11月20日</p>
+<p>文字整理：曾宝俊 季志芹</p>
+
+
+<p style='float:right;'>本页共14段，2295个字符，6657 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

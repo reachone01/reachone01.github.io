@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>西方文明的成功经验1</h3>
+
+<p>今天我们来聊一聊西方文明。文明是社会主义核心价值观的关键词之一，提到文明就有许多与之相配的词，西方文明、东方文明、中华文明、欧洲文明，这个是以地域来分。按照时间来分，又可以分为古代文明、现代文明、农业文明、工业文明。那么我们今天就和大家聊的是西方文明它形成的基石。</p>
+<p>中国现在正在崛起，这个大概是西方社会难以理解和接受的一个事实。但是在公元1500 年之前，西方世界在人文明进程当中一直是很落后的，只是到了近500 年来，西方文明才迅速地崛起。昨天我们讲了科学革命，实际上西方文明是伴随着科学革命一起成长起来的。同时，在与世界各地的文明的每一次的碰撞和冲突当中，西方文明居然都能成为最后的胜利者。即便是今天，西方文明不再是世界的唯一的中心，但它仍然在影响着地球上的其他国家。那么我们首先界定一下什么是文明？文明实际上是人类最大的组织，比帝国的版图，国家的版图还要大，比一个或几个朝代，延续的时间还要长。文明不仅涵盖我们在博物馆或者在考古遗址当中所看到那些绘画、雕塑、古代建筑，更包括创造文明，发展文明，推动文明以及保留文明的那些经济、社会和政治体制。</p>
+<p>在人类诞生的1 万年来消失了的文明有很多，美索不达米亚文明、古埃及文明、克里特文明、古希腊文明、古罗马文明等等的。同时历经劫难还继续存在的文明有西方文明、印度文明、中华文明、日本文明、伊斯兰文明等等的。</p>
+<p>下面呢我们重点来说西方文明。在公元1500 年的时候，小国林立的欧洲，只是占据着全世界土地的10 %左右，总人口只是占了全世界的16 %。但是到了1913 年，来自西欧大陆的11 个国家，已经把帝国的版图扩展到了地球上面的每一个角落，控制了全世界六乘以上的陆地面积和总人口，经济总产值一度达到全球经济总额的74 %，这到底是怎么做到的呢？也就是说这500 年的历史，西方文明究竟拥有了哪些独特的优势呢？分别有这么几个:竞争的优势、科学的优势、财产权的优势、医学的优势和消费经济的优势，以及工作伦理的优势。</p>
+<p>我们下面仔细来谈一谈这六大要素。我们先从第一个因素说起，竞争。竞争，让国家与国家之间以及国家内部间的权力分散了。所以竞争就能给发展创造环境。在1406 年中国处于明朝，它正从改朝换代的战乱当中逐渐恢复，迅速实现了经济和人口的增长。雄伟的紫禁城开始建造了，并于1420 年建成了。与此同时，欧洲正处于黑死病和战乱的痛苦，整个英国的人口不到明初的应天府，也就是当时的南京的总人口的1 /10 。</p>
+<p>1330 年到1479 年，英国贵族的3 /4 ，它的死亡是由暴力所致，包括战争和谋杀，当时的英格兰还是欧洲较为富裕和安全的一个国家了。像法国啊，意大利啊这些国家的人民的日常生活就是更加地艰难危险。在14 世纪欧洲大约有一千个左右彼此互相竞争的小的邦国啊，王国啊，公国啊，它们互相征战，互相打，吞并了200 年之后，仍然有500 个独立的政体存在。</p>
+<p>英格兰几乎永远在与法国人打仗，偶尔停下来，它一停下来就会跟那个威尔士、苏格兰人、爱尔兰人打仗，就是这些仗暂时不打了，他们内部的那个贵族们也会为争夺王位而在英格兰大打内战。不仅是英国是如此，整个欧洲几乎都是如此。1550 年到1665 年有2 /3 的时间里面，十个较大的欧洲公国都处于战争状态。从1500 年到1799 年所有的年份当中，西班牙有81 %的时间在与外国敌人作战，英国是53 %，法国是52 %。持续的战争带来了三个意外的收获。首先，是军事技术的革新，武器火力要加大，城堡要加固，船只的体积要越来越大，也越来越坚固。其次相互竞争的公国为了维持战争开支，就要想方设法增加收入，不但建立了更加合理有效的税收制度，还开创了政府发行公债的制度，埋下了现在证券市场的种子，最重要的是，世代延续的分裂和冲突，使得任何一个欧洲君主都无法强大到可以独自拥有海外探索的权利。所有的欧洲君主都在鼓励海外贸易和殖民活动，激烈的竞争促使了探索时代的到来。</p>
+<p>反观这个时期的中国的明朝，对内其乐融融，田园牧歌式的生活，纺车、水车、火药、罗盘，这些科技和发明，当时都是保持着领先世界的水平。对外还有不少附庸国，什么朝鲜、日本、越南，郑和下西洋更是航海史上的一个壮举啊！一方面欧洲的哥伦布在穿越大西洋的时候，乘坐的这个斯玛利亚号，还不到郑和宝船的1 /5 大。另外一个方面，两人远航的动机和野心有着天壤之别，郑和下西洋，为的是展示中国皇帝的财富和权力，他出访各国，带去的是昂贵的礼品，带回的是各地的土特产和当地的臣服的姿态！这一次彰显实力的远航圆满结束，也就成为了东方帝国海外探索的绝响。然而对于欧洲人而言，无论是绕过非洲，还是跨越大西洋的远航，都不是为君主寻求象征性的供品，都是为寻找真正的土地和财富的。他们的团队也没有郑和那种独步天下的悠然呀！因为毕竟邻国竞争的对手，也正在不断地开拓着新航线和登陆地点。</p>
+<p>你看，从1580 年到1650 年，明朝走向了灭亡清朝开始建立，中华帝国又重复了一次改朝换代的历史轮回，与此同时，欧洲各国却不再以自我消耗的内部战争来解决经济和政治危机了。他们把在本土上面的竞争推向了海外，他们的领土在扩张，人口在增加，实力在增强，他们摩拳擦掌，做好了瓜分世界的准备。所以200 年后欧洲人兵临紫禁城下。可以这么说，正是竞争促使欧洲的各国不断增强自己的实力，开始向外拓展自己的版图。</p>
+<p>接下来我们来看看他们的第二个关键因素就是科学。昨天实际上我们已经讲过了，科学革命大大增强了欧洲人的生产力，科学就意味着生产力，不仅奠定了工业革命的基础，也造就了西方绝对的军事实力。一个关键的战役成为西方崛起的契机。这次关键战役就是1683 年的维也纳之战。对比战役之后的西方文明和伊斯兰文明的发展，我们能够清楚地看到科学对于西方文明崛起的一个重要性。当时在公元七世纪以后，阿拉伯地区的伊斯兰教崛起，基督教的西方文明和中东地区的伊斯兰文明在几百年之间不断地冲突，此消彼长。1453 年，来自中亚的奥斯曼帝国灭亡了东罗马帝国，将首都君士但丁堡改名为伊斯坦布尔，伊斯兰文明开始高歌猛进，一路向西，从亚欧分界线的那个黑海沿岸，到今天的塞尔维亚、保加利亚、匈牙利啊等等这些地方，一步一步地蚕食欧洲，让维也纳也成为西方文明的一个最后防线。到1683 年，奥斯曼帝国兵临维也纳城下，当然这是一场艰苦卓绝的攻守之战，持续了整整两个月，最终是以基督教欧洲一方的守城胜利而告终。当时势均力敌的双方都损失惨重，并没有任何一方意识到这次战争是基督教和伊斯兰教之间近千年冲突史上面的一个转折点，是西方崛起东方衰落的一个关键时刻。在那之后，奥斯曼帝国不仅节节败退，还发生了内乱。可以这么说，维也纳之战加速了奥斯曼帝国的衰落。</p>
+<p>在1683 年之后的几年当中，西方人对于自然和政府的看法也都发生了深刻的变化，关于自然和人类社会的新知识、新学说层出不穷。你看在1687 年牛顿出版了他那本牛书《自然哲学的数学原理》，三天后他的朋友约翰洛克出版了《政府论》，分别代表了这两个领域当中最显著的研究成果。1553 年到1789 年所产生的全部的科技成就，所发现的各种新物质新方法新理论，有80 %都发生在今天苏格兰的格拉斯哥，丹麦的哥本哈根，波兰的克拉科夫，意大利的那不勒斯，法国的马赛，英格兰的普利茅斯，这些城市所形成的六边形的区域之内。而另外的20 %大多出现在这六边形之外不远的一百英里的区域之内，也就是说所有的这些新的科技成就全都出现在中欧和西欧地区。</p>
+<p>1683 年，奥斯曼帝国在欧洲领土上面节节败退，退回了小亚细亚半岛。奥斯曼帝国的衰落表面上看是军事优势的逐渐丧失，但军事优势来自于把科技运用于战争啊，把理性赋予政府啊，欧洲的大学不断地拓宽着学术领域的时候，伊斯兰学府却固执着宗教神学的领域。古登堡发明的印刷书和日益发达的邮政服务在一起，在欧洲建立了一个便于知识快速，密集传播的一个网络，但是印刷书在伊斯兰世界却受到了抵制，他们认为只有手写体才是神圣。1515 年，苏丹甚至颁布法令，对使用印刷数术者处于死刑。60 年以后，奥斯曼苏丹首席天文学家塔基由丁，他游说伊斯坦布尔建成了当时亚欧大陆上最为先进的天文观测台之一，配备了精密的观测仪器，但是由于宗教势力的破坏，仅仅五年，这个天文台就被拆除了。不仅是自然科学，治理国家也被当作是一种科学技术对待。18 世纪欧洲启蒙思想家不断提出人类社会可以或者应该具有的面貌，而这时候最大的成就，就是亚当斯密讨论的公民社会的道德情操论，还有那个分析市场经济的国富论，还有那个卢梭讨论政治体系的合法性的社会契约论，还有那个孔多塞侯爵探讨劳工制度的黑人奴隶制度问题的思考，这些进步的社会思潮直接影响到了统治者的思想和行为。当奥斯曼帝国苏丹庞大的后宫中，众多王子为了争夺王位，政变不断的时候，普鲁斯的菲特列大帝已经主动提出来，君主要履行公务员的职责。他在1752 年为其子孙写就了一篇政治证言里面说统治者要展开有效的工作，为整个国家谋福利，如果我的利益与我的臣民利益不均等，我宁可放弃我个人的利益，如果我的利益与臣民的利益发生冲突，永远都要以国家的福利和优势为重，你看自由的思想可以提高整个国家的实力，新知识不仅可以揭开自然世界的奥秘，还可以决定世俗国家的崛起与衰落。你看，牛顿力学和微分微积分方程催生出弹道学，为现代火炮提供了理论和技术的基础。普鲁士国王菲特列大帝积极地支持和利用，新技术与人才，则促成了这种现代武器的制造和推广。你看到了1750 年，体型轻便，射程远，射击目标精确的机动马炮已经成为欧洲各国军队的标配啊！1807 年当英国的约翰达克沃斯爵士带兵进攻伊斯坦布尔的时候，发现土耳其人还在使用笨重的大炮，朝大致的方向发射石球呢！科学，让西方各国在军事和政治上面提升了自己的力量，在跟伊斯兰文明的对比当中，我们发现这绝对是西方崛起的一个重要的原因。</p>
+<p>接下来我们来谈谈第三个重要的原因，财产权。也就是法治对于私有财产的保护。为什么说财产权是西方文明强盛的一个原因，因为对财产权的保护是法治和代议制政府的一个基础。我们可以对比一下拉丁美洲和美国的历史来认识这个问题。征服并殖民美洲是人类历史上面最大的社会实验项目之一，这是西方文明的两支强行输入另一块土地的过程。也就是说在美洲北部输入的是英国文化，在美洲南部输入的是西班牙和葡萄牙文化，然后我们来看看这两种文化产生的效果哪个更好。到今天已经没有人能够怀疑这样一个事实，拉丁美洲仍然远远落后于以英国文化为基础的美国，原因不在于资源，也不在于地理条件，更不在于帝国的体制，而在于理念的不同。也就是说，人们应该如何管理自己？这个思想，并不是一个所谓的民主！而民主的基础只是法制，更准确地说代议制是公民选举代表，代替他们行使国家权力的制度。这种制度可以保护人人自由不可侵犯，保护每一个人的私有财产的安全。</p>
+<p>下面我们就来看看这个实验是怎么进行的啊？新世界的发现与征服意味着领土面积的大规模增加，南北美洲的殖民者都要分配这些新的土地，他们处理的方案完全不同。1532 年，将近200 个西班牙人在厄瓜多尔北部登陆，他们要替西班牙国王征服古印加帝国。我们在《钢铁枪炮和细菌》那本书里面曾经讲过，他们要攫取传说中的稀有金属和财富。此后西班牙征服者像在欧洲一样，通过赐封领地的形式获取南美的大片土地和土地上的人民，征服者成为新土地上面的贵族，原住民原本服从于印加国亡，现在只是变成了西班牙人的劳动力。由于劳动力相对充裕，也就成了垄断财富。西班牙人从16 世纪开始就一直限制甚至阻止欧洲人往南美移民，因为这里的土地属于国王的，这里的人民是国王，封赐的贵族。1692 年，西班牙人统治下的墨西哥的10 万居民，而此时北美的波士顿只有6000 人。西班牙人在南美创造创建的圣多明戈大学，比那个哈佛大学早了将近一个世纪，不过北美的情形即将改变。在1670 年，卡罗来纳号抵达北美，船上的乘客是一批契约工人，他们告别了英国的贫困生活，来到美洲寻找更好的生活。17 世纪来到北美的英国人有65 %到80 %的人是怀揣的这个雇佣契约的，整个殖民期间来到北美的全部欧洲人当中，有3 /4 的人是以契约仆人的身份前来的，这些从欧洲输出的劳动力没有携带任何财产，连他们的过路费都要以未来的美洲的劳动作为抵押，他们得到了肥沃的美洲土地，也间接地把更多的就业机会和生存空间留给了他们在欧洲的穷亲戚！1670 年，英国移民还带来了由约翰洛克本人于1669 年亲自起草的《基本宪法》。洛克认为只要一个人辛勤劳动，耕耘种植，精心管理土地，并能利用其产出，这土地变成他的财产，他通过劳动宣战了那块土地！这些在欧洲身无分文的贫民百姓，在北美拥有的土地和尊严，他们为了保护人身自由和财产安全，建立了自己代议制机构，拥有的投票权，建立了就是所谓的美国。由于在土地和财产分配方式上面的不一样，南北美洲各自的独立运动也开始走向了不同的命运。1776 年北美独立战争胜利，华盛顿建立了新的合众国，此后发展是大家都有目共睹。1819 年南美独立之父波利瓦尔在波哥大宣布成立大哥伦比亚共和国。1825 年，南美人民彻底把西班牙军队赶出了南美土地，但是大哥伦比亚共和国并未向美利坚合众国那样走上统一和发达之路，在摆脱西班牙殖民者之后，各个国家地区纷纷退出邻邦大哥伦比亚解体。南美留下来的是持续不断的冲突、贫穷和不公平，为什么呢？玻利瓦尔的大哥伦比亚共和国之所以失败，是因为他当时面临的三个难题都没有得到解决！第一在南美洲，治理国家的权利一直集中在少数的西班牙殖民的贵族手中，大量的没有土地和财产的土着混血人种，从未参加过国家的行政管理，没有任何经验和理论。玻利瓦尔面对这一局面的时候，主张对新的国家进行独裁统治。这种落后的政治理念人们无法接受，可是各个政治解体之后，自己的政府又没有民主决策的经验，还是承担不起管理一个国家的责任。第二个方面就是财产本身不公平的分布，比如独立战争后的委内瑞拉，占全国人口1 .1 的1 万人，几乎拥有了全国的土地。而这些新成立的独立国家中，从一开始就没有代议制的传统，有的只是极为不公平的土地分配制度，以及因经济不均衡而造成的新的种族裂痕导致了在南美土地上革命和反革命政变和反政变交替上演，一直到现在。</p>
+<p>好了，关于西方文明的成功经验，前三个先讲到这里，让我们一起认知越狱，自我迭代，格致教育工作坊，每天都在这里等着你。</p>
+<p>讲座时间：2018 年06 月27 日</p>
+
+
+<p style='float:right;'>本页共17段，6011个字符，17186 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

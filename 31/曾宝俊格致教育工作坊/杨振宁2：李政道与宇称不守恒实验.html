@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>杨振宁2：李政道与宇称不守恒实验</h3>
+
+<p>大家好！这里格致教育工作坊，欢迎大家穿越时空来享受一碟知识的小菜，让我们一起天天学习，好好向上。</p>
+<p>上一期我们说到杨振宁在罗切斯特会议上鼓足勇气提出了：会不会宇称本来就是不守恒的呢？说句老实话，对于讲故事来说，我很希望我此时对大家说杨振宁抛出了一个离经叛道的观点举座皆惊。当然，这样的描述充满了戏剧的张力，就好像是物理学当中，那个著名的迈克尔逊—莫雷实验之后，爱因斯坦大声地宣布：以太根本就不存在，光速是不变的一样啊，当然这是我们一种美丽的描述。但是对于τ-θ之迷来说，宇称不守恒这个观点，它并不是什么惊世骇俗的观点。因为很多初次接触到τ-θ之迷的物理学家，他都会这样想啊，如果宇称不守恒的话，这个τ-θ之迷也就不攻自破了。但是，最大的问题就是过去已经有太多的实验符合宇称守恒的信念，因此宇称守恒不仅仅是物理学家们的一种信念，而且是一种执念。因为它确实是有大量的实验基础的。科学家们都认同实验是检验理论的唯一标准，没有实验基础的理论都是空中楼阁，所以在罗切斯特会议上面，杨振宁再次提出是否守恒的时候，既没有举座皆惊也几乎没有人同意。杨振宁自己也是心虚的很，重大的转机是在罗切斯特会议结束之后没多久到来的。</p>
+<p>在纽约的一家餐馆当中，杨振宁和李政道在聊天，忽然之间他们就聊到了，似乎之前所有证明宇称守恒的实验都没有仔细按照不同的相互作用来分类。他们当时也就在想：之前的所有守恒的实验都是强作用之下是在守恒的，会不会宇称仅仅是在弱相互作用时是不守恒的，而在其他相互作用的时候是守恒的呢？</p>
+<p>在这个地方我要稍稍解释一下，什么叫弱相互作用？牛顿他把力定义为物质之间的相互作用。万有引力是人类发现的第一种相互作用，而电磁力是第二种，进入到量子力学以后，人们又发现了叫做弱力和强力。只是在粒子物理学当中，科学家习惯性的使用相互作用而不是力这个词，而强相互作用就是把质子和中子结合在原子核中的一种力，而有一种弱相互作用就叫做β衰变，什么叫β衰变呢？就是1896 年，德国物理学家贝克勒发现了铀原子的放射性现象。他就会发现九十二号元素的铀能够自发的衰变，变成了八十二号元素的铅，紧接着卢瑟福和汤姆逊在一年之后又发现了铀在衰变过程当中会产生三种不同的放射线，准确的说大自然当中是没有线的，所有的线都是由粒子组成的。你可能会问，你怎么知道是三种不同的粒子呢？这个原理其实很简单，就是让放射线通过一个磁场，然后你们就会发现，在磁场当中放射线的偏转方向会不同，根据异性相吸的原理，也就知道了铀在衰变过程当中释放出带有正电的、负电的和不带电的三种粒子，他们就把带正电的粒子叫做α射线，带负电的就叫做β射线、不带电的就叫它γ射线。那么发出的β射线衰变过程就叫做β衰变，这个α、β、γ都是古希腊的字母。</p>
+<p>在随后的两个礼拜当中，杨振宁和李政道就设法找到了大量的有关于β衰变的实验数据，然后就开始动手计算宇称是否守恒，当然这个过程当中涉及到极为枯燥和复杂的数学计算，而且当时也没有什么计算机可以作为辅助，结果他们算出来的结果是高度惊人的一致，就是数据不足，没有结论。换句话来说，他们惊讶地发现过去所有的β衰变的实验数据，都既不能证实也不能证伪宇称守恒。用杨振宁他自己的话来说，长久以来在毫无实验证据的情况之下，人们都在相信弱相互作用当中宇称守恒的。这就是让人十分感觉惊愕了啊。这个突破口一旦找到，后面的事情就如同开闸放水一泻千里了。</p>
+<p>仅仅一个月，他们两个就共同完成了那篇名垂青史的论文。就叫做弱相互作用中宇称守恒问题，他们把这篇论文投给了当时著名的学术期刊《物理评论》。请注意这个《物理评论》就是发表当年爱因斯坦的五篇论文的那本杂志。在10 月，1956 年10 月这个文章就被发表了。当然这是近代物理学史上最重要的论文之一，在这一篇论文当中，杨李二人他们就提出，在强相互作用中和电磁相互作用中，宇称在很高的精度上面是守恒的，但是在弱相互作用中宇称守恒只是一个外推性的假设，甚至可以认为τ-θ之谜恰恰就是弱相互作用中宇称守恒的反例。为了毫不含糊地确定，在弱相互作用中宇称是否守恒，我们必须完成一个实验来确定。在弱相互作用中左和右是否不相同，讲到这里，大家估计头脑中有点烧糊了，我必须告诉大家的是，这种诺奖级别的理论它不是哪一个天才所灵机一动突然想出一个绝妙的点子，抛出一个与主流科学界完全不同的观点，就可是号称我这是诺奖级的理论。</p>
+<p>一个物理学的理论，它必须要经过定量化的数学分析，并且能够提出可以供来检验的预言，而且预言的这个结果也必须是量化的，而不是泛泛而谈。杨振宁和李政道的论文当中就提出了五个明确的物理实验，给出了明确的需要被测量的，后来被称之为叫作赝标量。赝就是赝品的赝，赝标量的数据以及预演了那个可能的结果。他们的工作是极为扎实和细致的，绝对不是那种偶然的灵光乍现。只是杨李的论文发表之后遭到了绝大多数著名科学家的反对。很简单，因为要打破一个信念何其之难。</p>
+<p>美国物理学家费利克斯·布洛赫在看了这篇论文之后，而且是决绝的就说了这么一句话，如果宇称真的是不守恒的，那我就把我这个帽子给吃掉。正如我一再强调的，实验才是检验物理理论的唯一标准，因此对于杨振宁和李政道而言，比科学理论更为重要的就是那个科学实验，但是不幸的是，他们俩都不是搞实验的，而且据杨振宁的老师泰勒讲，杨振宁的实验动手能力，他不是一般的差，是差到了打不及格的水平。所以这时候他们俩迫切需要一位实验物理的大神来帮助他们。起初，他们俩就找到那个著名的实验物理学家叫莱德曼。但是，遭到了莱德曼的拒绝。莱德曼开玩笑的说，我一旦找到一位聪明绝顶的研究生给我当奴隶使用，我就会去做这个实验。你听，说聪明绝顶的研究生给他当奴隶使用他就会去做这个实验。很简单的，这不可能的。当然，这其中还有一个很重要的原因就是这个实验的难度极高，这值不值得花大量的时间和精力去做一个可能没有任何价值，只是证实了一些人们早就相信了的事情实验。</p>
+<p>这时候，杨振宁李政道生命当中的贵人出现，她就是他们的中国同胞，一个足以和居里夫人相媲美的女性物理学家吴健雄。我去过吴健雄的老家江苏太仓，很多科学爱好者只知道居里夫人，不知道吴健雄博士的。当然这个也跟她没有获得诺贝尔奖有多种偶然的原因造成的，但是我可以很负责的告诉你，吴健雄在物理学史上面的地位是极高的，她是当时全世界最优秀的几位实验物理学家之一，有的书上面甚至就不加之一的，就是最优秀的实验物理学家。李政道找到了吴健雄，在听完李政道的说明之后，她毅然就放弃了跟丈夫一起回国探亲的计划。</p>
+<p>吴健雄的丈夫，他姓袁叫袁家骝也是一个物理学家。袁家就是袁世凯的孙子，他已经二十多年没有回国了，本来连船票都已经买好了，所以袁家在中国也是个大家族，所以吴健雄就一头扎进了实验室，这一年物理学界注定要掀起轩然大波。</p>
+<p>吴健雄开始做实验之后就引起了大家的广泛关注了。有一位以毒舌著称的著名的物理学家，他的名字大家应该听过叫泡利，他得知吴健雄在做实验的消息之后，他就对朋友就说了，像吴健雄这么好的实验物理学家应该去找一些更重要的事情去做，不应该在这种显而易见的事情上面浪费时间。因为我们前面就说过了，宇称守恒是一个信念，谁都知道宇称一定是守恒的，泡利甚至在写给另外一个科学家魏斯科普夫的一封信中就这么说，我不相信上帝是个没用的左撇子，我愿意打一个大赌，实验一定会给出一个守恒的结果，而且还有一位科学家我们都知道他的名字叫费曼，费曼他当时也说这是一个疯狂的实验，不要在这个上面浪费时间，他建议用1000 :1 来赌这个实验绝对不会成功。你看看连泡利、费曼都不相信吴健雄会成功。</p>
+<p>我们再来看看吴健雄是怎么做实验的。吴健雄她选择了杨李论文当中建议的一个实验，就是把元素钴-60 的原子核冷却到接近绝对零度，这样的话原子的热振动就基本上消除了，然后再有一个磁场，使得这一束原子核按照同一个方向自旋，旋转。如果宇称是守恒的，电子就会以相同数量向两个方向飞出，如果宇称是不守恒的，那么一个方向飞出的电子，就会比另外一个方向飞出的电子多，这样的话对称性就被破坏掉了。你一看这个实验的话就知道了，这个实验要用到极低温的设备，而当时哥伦比亚大学的实验室条件不够，于是吴健雄就与美国国家标准局合作，利用他们的实验室进行实验。</p>
+<p>在1957 年1 月9 号凌晨两点，吴健雄小组最后一次反复查证实验结果，终于结束了。今晚这个实验结果好多天之前就已经知道了，这次实验只是出于重大成果的极度谨慎的需要。当时实验小组一共有五个人，他们打开了事先准备好的法国葡萄酒庆祝一项伟大的物理成就诞生了——弱相互作用下宇称是不守恒的。六天之后，哥伦比亚大学做了一件史无前例的事理教情，为这一件事情举行了一次新闻发布会，在这个新闻发布会上面，哥伦比亚大学首席的物授，拉比教授在发布会上面就说，在某种意义上面来说一个相当完整的理论结构已从根本上被打碎了，我们不知道这些碎片将来如何能不能再聚在一起。当然，没过多久包括之前拒绝做实验的肠子都悔青了的莱德曼，和其他几个实验室的实验验证的结果也相继出炉了，以更加完美的实验数据验证了吴健雄的这个实验结果。</p>
+<p>整个物理学界一下子轰动了，τ-θ之谜被解开了，这是一个无可比拟的重大的革命性的进展，这个实验被认为是暨迈克尔逊—莫雷实验以后最重要的一个物理实验，因此当年诺贝尔物理学奖也以火箭般的速度立刻就颁给了杨振宁和李政道，这就创下了诺贝尔奖历史上面绝无仅有的，当年出成果当年颁奖传奇。你想就像我们去年引力波发现一样的获奖，也隔了一年了。</p>
+<p>按道理说，吴健雄也应该有资格获得这个大奖对不对？所以很多科学家都公开表示了他们的失望，甚至不满或者说对诺贝尔奖的一种不以为然。比如1988 年的诺贝尔奖的得主，就是物理学家斯坦伯格认为当年诺贝尔奖没有同时颁给吴健雄是诺贝尔委员会最大的失误。由于诺贝尔颁奖的选拔资料保密期是五十年。因此在2006 年之前这些都是一个谜，后来文件解开了，解密了，大家才知道真实原因。因为吴健雄前面我们不是说了嘛，吴健雄实验是借的跟美国国家标准局的一个合作的，因此美国国家标准局另外一位低温实验科学家叫做安伯勒他也有一份功劳，而诺贝尔奖的规则是最多同时颁给三个科学家。这么一来的话，诺贝尔奖评审委员会就犯难了，就是如果只颁给吴健雄而不颁给安伯勒就有失偏颇，最后权衡再三，只好将吴健雄的名字给划去了，所以讲到这里，我们这期节目最开始提出的那个问题，就有了答案，我们现在就可以对外人说，听着，你们做一块磁铁，把线圈绕上去，让电流通过，然后取一些二十七号的元素钴，把温度降到尽可能低的绝对零度，此处我们略去几百个字的专业性描述这个实验的，好了，你们就可以看到电流流出的方向就是我们地球的所谓的左边。上帝他老人家居然是个左撇子，他偏爱左方。</p>
+<p>科学再次向我们展示了他强大的自我纠错能力。那么既然在弱作用下宇称是不守恒的，有没有可能在电磁相互作用下或强相互作用下宇称也不守恒呢？这是科学家、物理学家们自然而然冒出来的想法。当然一切只能以实验做为最终的判断依据，每一个物理实验都有精度的概念，就好像我们平常说自己的身高是一百七十厘米一样，这就表明了在厘米级别的精度上面，但如果把精度在往前推一位到了毫米级别，我们就不是一百七十厘米了，我们是就是1700 毫米了呀。所以当科学家做了某个实验验证了强相互作用下宇称守恒的实验。我们准确的说，是宇称守恒在某个精度下得到了验证，如果精度继续往前推进那么这个实验就必须重做。因此我们可以宣布在弱相互作用下宇称是百分之百的不守恒，但是现在我们却不能宣布在强相互作用下宇称是百分之一百的守恒，而且从逻辑上面永远不能这样宣布，因为对于精度的追求永远没有止境，至少从现在来看还远远没有止境，这就是所谓的所有的科学理论的一个重要的特征，它是有适用范围的，任何一个科学理论，只能说在某个适用范围内是正确的。但是这句话可能反过来理解就会有更加重要和有意义。</p>
+<p>当我们说推翻了一个现有的理论的时候，其实并不是说现有的理论错了，而只是将现有的理论的设定的范围框定在了某个精度之下，就跟我们说牛顿错了一样，说爱因斯坦现在是对的，其实并不是这样，我们只是把牛顿框定在一个范围之内，牛顿在这个范围内是对的，一旦突破了这个范围，牛顿的那个力学是错的，爱因斯坦在这个力学里面就是正确的了。当然了，如果未来有一天科学家告诉我们现有的量子理论是错误的，能量守恒是错误的，那绝对不是导致我们今天在这些理论下发明的那些手机，电脑就不能工作了。我想跟大家说的是对不起在我们当前适用的范围内，这些理论会一直永远的正确下去。你看在相对论推翻了牛顿力学已经快一百年了，我们所有的航天发射，只要需要用到牛顿力学的，我们依然是用牛顿力学的方程去解决。</p>
+<p>科学精神，让我们正确地认识到科学理论是错误的。在几十年以来，像物理学家认为在夸克和胶子构成的等离子体当中可能存在的强相互作用下，宇称的不守恒的区域。为了验证这个想法在过去的几十年当中，美国相对论的重粒子对撞机上，他的斯蒂尔合作组与欧洲核子研究中心大型对撞机的合作组一直在做实验。在去年的十月份的环球科学有一篇文章是这么写的，就是未观测到强相互作用中宇称不守恒。他就向我们介绍了实验的最新进展，结论就是在他们极高的精度下未能观测到宇称不守恒，这条上世纪就建立起来的，物理学家共同的信念，到今天依然是坚挺的，这个文章向我们揭示了这个成果的意义，这将有助于我们的研究规范理论在相对论环境当中的基本的拓扑结构。这话听起来有点绕口。</p>
+<p>新研究虽然向前迈进了一步，但是对于强相互作用中宇称不守恒的这种搜寻仍然在继续，这也就意味着物理学的新发现也许就在眼前。</p>
+<p>好啦，关于上帝是左撇子吗？关于杨振宁、李政道他们的这个实验，我们就介绍到这儿，关于吴健雄女士，我向她表示我崇高的敬意，今天我们就聊到这里让我们一起认知越狱，自我迭代，格致教育工作坊每天都在这里等着你。</p>
+<p>讲座时间：2018 年8 月24 日</p>
+
+
+<p style='float:right;'>本页共22段，5832个字符，17021 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

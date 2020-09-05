@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>金庸笔下的武功与科学知识1</h3>
+
+<p>这里是格致教育工作坊，欢迎大家的穿越时空，来享受一碟知识的小菜，让我们一起天天学习，好好向上！今天我们来聊一个新的话题，叫做金庸笔下的武功与科学知识。</p>
+<p>金庸是一个文学大师，但是他的武功里面却包含着各种各样的科学知识。在前面我们曾经讲过两讲，一讲讲了金庸笔下的速度--运动的速度，还有一讲讲了金庸笔下的力—武功当中的力。今天我人在沧州--中国武术之乡。今天我就来和大家继续来聊一聊金庸笔下的武功。</p>
+<p>我们依然是聊武功与科学知识之间的关系，我们沿着力继续聊下去。前面我们讲了力与力的分类以及力的相互作用。今天我们来讲一些具体的力，比如像摩擦力、浮力、重力之类的。</p>
+<p>我们先来看摩擦力。讲到摩擦力，我先来让大家回忆一下，金庸笔下的摩擦力发生在哪个人身上比较典型。一讲到摩擦力，我就想到了《射雕英雄传》当中瑛姑的泥鳅功。在射雕英雄传第29 回，郭靖与神算子瑛姑交过一次手，当时郭靖掌道劲发，眼看就要把瑛姑撞到墙上了，这个草屋的土墙哪里经得起这么大一个力，要么墙倒屋塌，要么就是他身子破墙而出，但是金庸先生写到说：“说也奇怪，手掌刚与他的肩头相触，只觉得他肩上是涂了一层厚厚的油子，溜滑异常。连掌带劲，都滑到了一边。</p>
+<p>你看，郭靖降龙十巴掌打到瑛姑的肩膀上，本来可以将瑛姑打成重伤，但是瑛姑使出自创的独门绝技--泥鳅功减少了郭靖手掌与自己肩膀的摩擦力。从科学上面去分析，你可以感觉到的，但当郭靖的手掌从瑛姑的肩膀上面滑过的时候，手掌与肩膀之间就会产生一个滑动摩擦力。滑动摩擦力如果很大，郭靖的掌力至少有一大半将作用在瑛姑身上。可是如果滑动摩擦力的很小的话，那么刚猛的掌力就会被卸去大半。</p>
+<p>这就好比就是一个滑雪运动员，从高处跳到一个斜坡上。如果斜坡的坡度很大，表面很光滑，那么大部分的重力就会分解成向下的滑力，化学运动员就是毫发无伤的高速下滑。如果斜坡的坡度较小，并且坡面比较粗糙的话，只有一小部分重力被分解，那么滑雪运动员差不多就将会以自由落体的速度直接摔到坡面上面，那么坡面将对它产生一个极大的反作用力，造成经断骨折这样一个悲惨后果。所以滑动摩擦力它是取决于摩擦的因素与压力的乘积。而这种动摩擦力它的因素就取决于接触面的光滑程度，就说明越光滑，动摩擦的因素就越小，滑动摩擦力也就会越小。</p>
+<p>所以你看郭靖用一掌打下瑛姑的肩膀的时候，郭靖的掌力是固定的，那么他对瑛姑肩膀施加的压力就是一个常数了。这时候，他的手掌与瑛姑肩膀之间的摩擦力，完全就取决于接触面的光滑程度。所以为了化解郭靖的掌力，瑛姑就需要减小手掌与肩膀的滑动摩擦力，而仅为了减小这个摩擦力，这个瑛姑就使出了泥鳅功，将肩膀变得光滑异常。你看通过降低动摩擦因素来减小摩擦力的现象，其实在武侠世界里面都是很普遍的。比如像宝刀宝剑，它都是通过打磨擦拭，让刀锋剑锋更光滑。像杨过的盾剑，它整个就不是用来砍杀削的，对不对？否则他是砍不进别人的身体的。包括所谓的发射暗器的时候，像石子飞黄石这样一些暗器，他肯定是滴流圆的，它要减少摩擦力，对吧？他不可能去选七歪八扭的箭杆和千疮百孔的石子，对不对？如果千疮百孔的石子，它就会增加暗器与空气之间的摩擦力，飞行的时候会发出啸叫之声，而同时这个暗器也没办法飞远。这是一个减小摩擦力的在武功当中的现象。</p>
+<p>当然在金庸武侠小说里面还有那种增大摩擦力的。那么什么时候是增大摩擦力呢？我翻开金庸小说书上面就有一种武功，叫做壁虎游墙功。什么时候呢？就是沿着光溜溜的城墙往上爬。你看要么就带上粗糙异常的手套，来增大手掌与墙壁之间的动摩擦因素；要么就使用内功，紧贴着墙壁，增加身体与墙壁的压力。美国有个电影叫蜘蛛侠，你看这蜘蛛侠之所以能够徒手爬楼，那是因为他的手掌产生了变异，长出了带有倒刺的细小的突起。由于有突起，所以动摩擦因素就变大了，摩擦系数增加了。在《倚天屠龙记》当中，张无忌是能够爬上光滑的铁墙的，这就是说明“九阳神功”增加了他对墙的压力。</p>
+<p>在这里我特别向大家介绍一招武侠小说当中的常用招数，而且是空手入白刃的招数。这个招数的名字叫做童子拜佛，又叫童子拜观音。这一招怎么使呢？就当敌人的宝剑刺过来的时候，双掌一合，牢牢地夹住敌人的宝剑。使这道功夫的时候，除了需要惊人的眼力和非常快捷的反应速度，也需要很强的掌力，以增加摩擦力。否则摩擦力太小，夹不住刀尖，你就会血溅当场。</p>
+<p>你看，在《神雕侠侣》当中小龙女刚刚出山的时候，她就从怀里拿出一双白手套，当然白手套是用极细极韧的白金丝制成的，因此它在与“全真七子”当中的郝大通动手是派过用场。你看动手的时候是这么说，称金球与剑锋相撞。这个郝大通的内力深厚，将金球反击起来，弹向小龙女的面门，当时趁势追击，所以这时候众道士欢呼声，然后剑刃随着绸带递进指向小龙女手腕，对吧？这时候这么一招下去，满以为小龙女就要撒手，放下绸带不可，否则手腕就要中箭了。哪知道小龙女右手即翻已将剑刃抓住，咔嚓一声，将长剑从中折成两节。你看，这一招就有点跟童子拜观音非常相似的。小龙女的手掌是柔润光滑，因此动摩擦系数自然很小，对吧？所以她的掌力上面也不擅长，所以她就不能够使童子拜观音，对不对？所以当她带上这一方白金手套的时候，这样的话刀枪不入了，同时又增加了动摩擦的因素。就好像是打游戏的时候加了一个外挂一样的，因此就迅雷不及掩耳之势抓住了郝大通的宝剑，把它一折两段。</p>
+<p>好了，刚才我们讲了摩擦力，接下来我们再来讲一讲重力。讲到重力的话，突然我就想起了几个往下跳的场景。第一个往下跳的是欧阳锋，从山上往下跳，从雪山顶上跳；还有一个就是张无忌，从天上往下跳。来，我们来看看，在这个过程当中，重力起了什么作用？</p>
+<p>在《射雕英雄传》第37 回，黄蓉设计，将欧阳锋骗上一座雪山，随即就撤掉了上山时搭设的梯子。这座雪山高耸入云，急陡阶滑，再高明的壁虎游墙功也无济于事了，因此欧阳锋就被困在峰顶上下不来了。结果到了第四天，天空中又飘下了鹅毛大雪，黄蓉与郭靖都以为欧阳峰必定会冻饿而死。哪知道欧阳锋突然就从山顶上面跳了下来。他是怎么跳的呢？只见他并非笔直地下坠，甚至在空中飘飘荡荡，就像风筝一样。黄蓉和郭靖惊奇异常，心想他从万丈高峰落下不得摔个粉身碎骨才怪？他下降姿势怎么缓慢呢？这个老毒物难道还会使妖法不成。片刻之间，黄蓉和郭靖又看到了欧阳锋又落下了一点。只见他全身赤裸，头顶上顶着两个大圆球一样的。原来欧阳锋是把裤子怎么样？脱下来，做成了一个降落伞，黄蓉心念一转，连叫可惜，可惜。</p>
+<p>你说千丈高的大雪山距地面总有3000 米，对不对？一丈等于3 米，如果欧阳锋在重力吸引下做自由落体运动的话，落地速度必定非常大。有多大，算一算我们就知道了。根据自由落体的运动公式，物体落地时的最后的末速度等于重力加速度与下落时间的乘积，而下落时间只等于2 倍下落距离除以重力加速度以后再开平方。重力加速度是9 .8 每秒平方，对吧？而下落距离是3000 米，只要这个简单计算就可以算出来的下落时间是二十四点七秒，而进而可以求出来落地的速度是242 米每秒。天哪，这是个什么速度，这个速度基本上就接近于奥运会上面气枪比赛，十米气枪打出来的子弹的速度。诸葛亮不是发明了连弩发射铁箭，对不对？它速度比铁箭还要快。如果欧阳锋照此速度落地的话，就是它将会把坚硬如铁的地面砸出一个大坑，他的身体也会力的四分五裂，对吧？</p>
+<p>不过地球上面任何一个落体的下落，它其实都不是那种纯粹的自由落体，因为地球上面有空气，有空气就有阻力了，所以当物体下落速度越来越快的时候，那么空气的阻力对它也就是越来越大。因此只要下落的距离足够长，最终的阻力总会与重力平衡，将重力自由落体的加速度变成一种匀速运动。换一句话来说，就是物体从高空下落的速度并不会无限增加，它只会增加了一个极限，一旦达到极限，速度就恒定了。所以有的读者或者朋友或者老师，他听说过高空跳伞，对不对？穿着防护服，从五六千米的高空落下来，所以一开始并不需要打开，降落伞下落速度是越来越快，是不是？但是由于空气阻力不断在抵消地球引力，下落速度也加速度也会越来越小，大概20 秒左右的时候加速度就为零了。所以人体在空中是匀速下降的时候，这时候如果不是特别紧张的话，你可以睁开眼睛看看，感受到来自空气的浮力，自下而上拖着你，会让你有一种脚踩祥云，白日飞升的那种翱翔的感觉。这个就叫做空气的浮力。当然空气的浮力也是属于电磁力的一种。</p>
+<p>然后根据流体力学空气阻力计算公式，欧阳锋跳下后受到的空气浮力就等于空气密度、风阻系数、迎风面积、下落速度这四个物理量的乘积再除以二。因此根据高空跳伞的经验数据的话，就是没有打开降落伞的时候，风阻系数为0 .83 ，空气密度是要取1 .1 ，迎风面积取0 .3 ，下落速度取80 米每秒。这时候欧阳锋所受到的浮力就大概是880 牛顿，基本上就可以抵消地球对它的一些吸引力了。然后这时候他可以按照80 米每秒的速度均匀下落，而且不会继续加速。</p>
+<p>当然了80 米每秒也是个惊人的速度，欧阳锋摔到地面上还是会摔着一个肉馅的。那么它怎么样才能逃过这一劫呢？欧阳锋他就很聪明了，他的聪明才智就派上用场。他在雪山顶上脱了个一丝不挂，用上衣和裤子就做了一个简易的降落伞，这样的话它就增加了风阻系数和迎风面积，进而增大了空气的阻力。当然欧阳锋简易降落伞没法跟专业降落伞相比，它的迎风面积最大，它也不可能超过一平方米，对吧？风阻系数不可能超过1 .2 ，因为专业降落伞的风阻系数可以达到2 .5 以上。空气中的浮力大约是自由下落时的5 倍，最终是以16 米每秒的速度砸向地面，其实相当于是一个提速以后的动车迎面相接，当然依然难逃一死。只不过欧阳锋为什么没有被摔死呢？你看，之前他在半空中，腰间一停，它就扑上了城头的一面大旗。此时西北风正急，那面大旗自西向东夸张的笔直。欧阳峰，左手前已经抓住了起脚，就这么稍一借力，大旗从中列为一分为二。欧阳锋一个镜头，双脚勾住旗杆就滑下来了，消失在城墙之后。</p>
+<p>你看，欧阳锋到底是艺高人胆大，他之所以没有死，是在落地之前，借助了大旗的弹力来了一个小小的缓冲，而且因为他身处落谷事件，用绝顶轻功创造了一个低重力环境，减少了重力加速度，再加上简易降落伞带来的福利，也使得他能够以低速着陆了。你看他就是死里逃生。</p>
+<p>好了，关于摩擦力和重力，我们今天就聊到这里，让我们一起自我迭代，认知越狱，格致教育工作坊每天都在这里等你！</p>
+<p>讲座时间：2019 年4 月14 日</p>
+
+
+<p style='float:right;'>本页共20段，4380个字符，12668 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

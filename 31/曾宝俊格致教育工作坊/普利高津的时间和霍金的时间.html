@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>普利高津的时间和霍金的时间</h3>
+
+<p>各位老师大家好，这里是格致教育工作坊。欢迎大家的到来，让我们一起穿越时空，享受思想的盛宴，让我们天天学习，好好向上。</p>
+<p>今天我们来谈一本书，书的作者叫普利高津。今天谈话的主题叫做《普利高津的时间与霍金的时间》。前不久我讲过霍金的《时间简史》，也讲过霍金的《果壳里的宇宙》，今天我们来谈普利高津。在所有在世的外国科学家当中，他们俩的知名度也是最高的。我认为他们的知名度主要来自于他们各自对时间的认识，两人的观点各不一样，独树一帜。</p>
+<p>好多人对普利高津的名字有点陌生，但是在二十世纪八十年代初，有一种理论被引进中国，这种理论大家一听就会比较熟悉，叫做“耗散结构理论”。在很多的怀疑和抵触中，普利高津完成了《耗散结构理论》、《从存在到演化》、《从混沌到有序》、《探索复杂性》这几本著名的著作。这几天我在读他的另外一本小册子，叫做《确定性的终结——时间、浑沌与新自然法则》。在这本书当中，普利高津旁征博引，纵横开阖，把新的科学思想与西方的哲学、历史、文化交织在一起叙述，颇有那种开风气之先的大哲学家的风范！他的科学与东方思想富有亲和性特别容易为我们所接受。</p>
+<p>普利高津在这本书中毫不隐讳地说他要发起一场科学革命，这场科学革命的主题就叫做时间的发泄。谈到时间我们就回头谈谈霍金，霍金作为一个古典的科学家，公众本来并不熟悉。但是他在1987 年为了给自己的女儿筹备学费，写了一本科普著作叫《时间简史》，从大爆炸讲到黑洞。结果由于媒体炒作得当，这一本书一下子成了畅销书，自1988 年出版以来至少发行一千万册。这就让普霍金一下子成为全球知名的人物。霍金的的确确也算是一个富有传奇色彩的人物，他是英国皇家学会最年轻的一个会员。他目前担任着剑桥大学卢卡逊数学教授，这曾经是牛顿的位置。更引人注目的是，他还是一个高位截瘫的残疾人。他除了头脑活动正常之外，他只能斜躺在轮椅上面动动手指头。《时间简史》出版以后。很快出现了很多中译本，而且一开始销售情况极为惨淡。到了二十世纪九十年代，湖南科技出版社购买了版权，并且由霍金的中国学生吴忠超来主持翻译，正式推广的中文版的《时间简史》。因为湖南科技出版社经营得当，《时间简史》逐步热销，并且由湖南科技出版社出版了一系列的《第一推动丛书》，后来又相继出版了好多关于霍金的系列丛书。在这些著作当中，霍金通俗地介绍了他的宇宙模型其实是一个无中生有的模型。而且霍金在他的宇宙观当中提出，时间是有开端的，是有起点的。中国人对霍金的认识仅止于此。我们中国人很多人不认可杨振宁，其实霍金的贡献与杨振宁的贡献相比是差多了。杨振宁的伟大的贡献不仅是在于他获得了诺贝尔奖，更在于他创建了所谓的规范场理论，这是杨振宁对当今世界物理的一个伟大的贡献。上世纪世界有三大物理学家，他们是一九零零年左右的爱因斯坦，六十年代的狄拉克，七十年代的杨振宁。我们中国人由于一部分愤青对杨振宁的偏激的认识，抹杀了他的伟大贡献。而霍金的贡献其实仅在于“科普”二字。</p>
+<p>普利高津和霍金都是对时间有着深刻认识的人，但是他们的时间哲学观却截然不同。从牛顿到爱因斯坦，古典科学都把时间作为坐标，但是都忽视了时间的不可逆性。在牛顿的力学公式中，时间是可以反演的。爱因斯坦也说过，对于物理学家来说，过去、现在和未来的区别，不过是顽固地坚持一种幻觉，因此霍金就秉承了这条路线。不过在他的《时间简史》后面，他特别加上了伽利略、牛顿和爱因斯坦三个人的小传。他这样加上了这三个人的小传，他就给人一种强烈的暗示：自己是伽利略、牛顿、爱因斯坦科学传统的正宗传人，也是这条路线的代表。因此，霍金的时间依然是一个坐标时间，时间的方向性在霍金那里并不重要。霍金在他的时间简史里面，<strong>他把宇宙膨胀作为时间的方向，把宇宙的收缩当作时间的倒流。后来他的学生发现，即使宇宙收缩，时间也不可能倒流。</p>
+<p></strong></p>
+<p>所谓的古代哲学家里面有个词叫时间之矢。霍金能够假定时间倒流，也就是虚时间。那么其实这就是对一个坐标时间的进一步的坐标化。借助虚时间，霍金提出了一个无中生有的宇宙模型。现在我们来看，霍金的时间完全是非时间性的，这一切是由于坐标时间的命运，强调时间的坐标性的时间很快被空间化了，堕落为空间的一个维度。《时间简史》的书名其实就具有一定的讽刺性，说明了霍金的基本理论，说时间有历史，就已经不再把时间当做时间来看待了，因为时间的时间是一种毫无意义的说法。霍金的时间是宇宙的某一种坐标维度，而宇宙整体上是没有时间的，也没有历史，也没有演化。他是一个流体，也是一个整块的宇宙。当然了，为了打碎这整块的宇宙，普利高津就成为一个新的代表，他是新生代科学的目标。在这个新生的科学还没有统一的名称的时候，有很多名称例如系统科学、复杂性科学、非线性科学、生态主义科学、后现代主义科学、时间性科学、真实性科学……都用来作为它的名字。名称的不确定性反而反映了这个学派没有完全成型，正处于激烈的动荡和整合的过程当中。新生代科学的思想深处是向人文精神回归的一种强大趋势。在这本书里面，普利高津把历史性、不可逆性、内在性、多样性、整体性、不确定性、目的性与解释学这些人文性的特征，引入了自然的描述当中，促成了科学与人文的和解、人与自然的和解，这本书是新生代科学发展的一个重要的标志。但是，并不是所有的新生代科学家听到这高亢的旋律一下子就会振奋起来。半个世纪以来，来自所有学科的科学家共同推进的新科学的发现，他们当中的很多人只是以为自己在创造古典科学的一个新的分支，而没有意识到他们的工作是在挖掘古典科学的坟墓。</p>
+<p>我之所以把普利高津列为新生代科学的主要代表，不仅仅因为他的工作十分出色，而且普利高津在这本书当中更自觉、更明确地讲述了自己工作的深远意义。在普利高津的这本书中，时间的方向性一直是他的一个刻骨铭心的主题。他自己坦言，他与他所深爱的法国哲学家帕克森的影响十分有关，在几十年研究当中，凸显时间性这一哲学理念，成为一个涓涓细流，最终汇成了探索复杂性科学的大江大河，正朝着从存在到演化到心理线的大海去奔流。普利高津的时间，它代表的是一种新的自然律，一种新的理性形式。这种新的自然律和理性形式既是对伽利略、牛顿、爱因斯坦的古典科学的一种替代，也是对知识就是力量的这种培根的纲领，数学化的普世价值，工业革命、殖民市场、以及掠夺自然的人类生存方式的一种替代。</p>
+<p>为什么会读这本小说呢，因为最近我的研究方向转向了博物学精神。迄今为止，真正意义上的科学革命只有一次：那就是从哥白尼到伽利略到牛顿所完成的那一次革命。爱因斯坦只不过是从属于那一次古典科学革命的一个范式，只是一个修正和补充而已。</p>
+<p>普利高津所指示的复杂性科学、新生代科学其实就是又一次真正意义上的革命。与前一次一样，革命也许会需要持续一两个世纪。但是新生代究竟是处在革命的前夜，还是处在革命的高潮时期，是身在此山中的当代的人所无法知道的。如果说是十六、十七世纪科学革命的真正意义在于大地的太空化，就是真正确立了地球只是宇宙当中的一颗星球，相当于一艘宇宙飞船。那么新的科技革命所带来的就是地球的大地化。带来的是一种生态革命，带来的是一种博物学革命。新的科学范式，不只是表现在对自然的描述上面，从线性到非线性，从还原论到整体论，从简单性到复杂性，更在于引导人与自然形成一种新型关系。他推进由操纵知识向理解知识转变。他推进从建立科学到理解科学转变。由对自然的控制性向征服和维护自然作为母亲和力量的源泉，那种神秘性的一种转变，他将倡导顺应自然的生活态度。</p>
+<p>我相信普利高津这位当代最伟大的自然哲学家，以及他的新生代的科学同行们，将会被历史认定为是这场科学革命的先驱。尽管他们像一切先驱者那样，总会遭到到传统科学共同体的敌视，也无法真正摆脱他们古典科学的出身，同时人们也很看中他们是不是诺贝尔奖的获得者。</p>
+<p>今天的讲座就到这里，让我们一起自我迭代，好好学习。</p>
+<p>讲座时间：2017 年8 月28 日</p>
+
+
+<p style='float:right;'>本页共14段，3337个字符，9741 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

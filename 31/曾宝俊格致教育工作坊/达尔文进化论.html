@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>达尔文进化论</h3>
+
+<p>过去五百年当中，哪位是人类思想界的王者？我举双手投达尔文的票，当然我心里也清楚，马克思和爱因斯坦是另外两位极有竞争力的候选者。一般情况下，我们聊达尔文的话，都会聊他怎样出海远航？怎样做研究？怎样跟着"小猎犬号"去考察？又是怎样跟华莱士竞争？又是怎样做一个绅士？最终提出“物种起源论”的……我们不这样说，我们今天就比较一下达尔文、马克思、爱因斯坦。</p>
+<p>先来比较达尔文和马克思。</p>
+<p>我认为这二位都是当世不世出的异端，能同时出现、活跃在19 世纪中叶这一个短暂的时段，实在是人类思想史上非常罕见的事情。1848 年鸦片战争开始，在那一年，《共产党宣言》也问世了，那年马克思才30 岁，但就是这篇宣言，劈头第一句话：“一个幽灵在欧洲徘徊”。</p>
+<p>但我想说的是当时不是一个幽灵，而是两个幽灵。在《共产党宣言》问世前十年，也就是1838 年，那年达尔文29 岁，尽管他很年轻，但进化论思想已经在他大脑中形成。他自己知道那是大逆不道的异端，乃至他的思想笔记放在了抽屉中，尘封了20 年。在《共产党宣言》问世十年以后，也就是1858 年，进化论的思想才公布于众公之于世。</p>
+<p>第二年，1859 年《物种起源》问世。又是一个第二年，1860 年马克思读过了这本书，于是在给恩格斯的信中说：“《物种起源》为我们的思想提供了自然史的基础。”</p>
+<p>1867 年，《资本论》第一卷问世，在这本书中，马克思写到划时代的《物种起源》如何如何。</p>
+<p>1873 年，马克思向达尔文赠送《资本论》，并且在书的封面上写着：“您忠诚的倾慕者马克思”。达尔文回了一封短信，口气非常客气，您有兴趣的话可以从网上读到这封信的内容，今天我们在这儿就不说了。</p>
+<p>1883 年，马克思离开这个世界，恩格斯在马克思墓前的悼词中说：“正像达尔文发现有机界的发展规律一样，马克思发现了人类历史的发展规律。”</p>
+<p>从以上我们所说的，您应该可以看出，马克思和恩格斯对达尔文和他的进化论思想极其推崇，也是极其尊重的。我们下面要说的是《共产党宣言》问世后的第二年，就是1849 年，马克思被法国当局从巴黎驱逐，无奈之下来到了伦敦。从此直到他去世，他一直住在伦敦，在伦敦生活了33 年。马克思活了65 岁，33 年是他一生的大半。而马克思的住所离达尔文的住所才30 公里，可是在三分之一的世纪中，这两位思想巨人，这两位旷世异端居住得如此近，竟然一面之缘都没有。</p>
+<p>那是什么原因呢？</p>
+<p>我做这样的猜想，达尔文不懂德文，按照当时的装帧要看一本书，要拿裁纸刀先裁开。</p>
+<p>达尔文的后人整理遗物的时候看到，马克思送给他的《资本论》没用刀裁开，就是说连翻阅都没翻阅过。裁开也没用，因为他不懂德文。我想如果他懂德文，他大概会翻阅一下。他是个博览群书的人，当年他在思想困惑，找不到解答的时候，是受到英国学者马尔萨斯人口学说的影响，这是尽人皆知的一个美谈。或许马克思思想中的哪个观点会打动他，乃至有了二人的见面。</p>
+<p>另一个解释是完全相反，达尔文提出了进化论的思想，受到了舆论的很大压力。大家也知道后来达尔文终生都患着一种莫名其妙的疾病，有时候整天都不能工作，常常一天只能工作两三个小时、三四个小时，至于是什么病，没人说得清楚。当代达尔文的传记者研究认为，很可能是恐惧和内心的焦虑导致的一种精神疾病，这个疾病来自精神的压力。这一顶帽子够沉重的了，别再招惹是非了，更何况那位也是个旷世异端，我猜想达尔文有可能是刻意不跟马克思不见面。</p>
+<p>但我还有另一个好奇，也是更大的好奇，如果这二位见面了，这两位旷世异端会交流些什么呢？我想最关键的交流，很可能是这二位非常愿意交流的关于人性的问题。所以我猜想这二位思想巨人，如果发生了交流一定会碰撞出火花的。谁会影响谁，太难预料了，很可能是双向的。不过我想以马克思对达尔文和他学术的尊重、好奇，他说不准在面对面的交流过程中受到达尔文的影响。其实这还不是谁比谁高明的问题，因为这两个人学科的性质是不一样的。</p>
+<p>其一，相比之下达尔文的学科是个基础学科。一般而言，在相互影响下基础学科更容易对它的上位学科发生影响。</p>
+<p>其二，在认识和透视人性上，还有哪个学科能比生物学更具有优势呢？也正是在解释人性的优势以及基础学科这个层面上，我认为如果这两位异端相遇，达尔文很有可能是更大的异端。达尔文的思想是几百年来，在人类认知历史上是一场最大的革命。</p>
+<p>接下来我们比较达尔文和爱因斯坦，我们换个角度来谈我们去比较达尔文与他的生物学和牛顿、爱因斯坦的物理学的不同。我们之前讲过爱因斯坦。1905 年爱因斯坦提出相对论。其实从牛顿直到爱因斯坦1905 年过后的几十年当中，在人类方法论的范畴中，物理学一直是大哥大，一直是执掌解释的牛。直到20 世纪中叶，达尔文所创建的生物学才慢慢地发扬光大，思想能量慢慢释放，人们才越来越认识到：要说对人类社会的解释，物理学来得太间接了，而生物学给予的帮助太直接了。</p>
+<p>我来给您举个例子，我们来讨论个性：什么是个性？</p>
+<p>我跟您说穷尽社会科学的库存，您也找不到什么思想、知识、资源，能给个性的基础做个透彻的解释。物理学也帮不上什么忙，物理学的世界中没有那么多有个性的东西。你说，螺丝钉有个性吗？如果有个性就麻烦了，那一定是个残品、废品。所有的螺丝钉都统一标准的个性来自什么地方？来自生命的世界，来自繁衍。而且还不是所有的繁衍都能产生个性，无性的繁衍其产物就没有个性，个性来自两性的繁衍。两性繁衍的物种中的每个成员都不一样，从面孔到身材通通具有独到的个性。乃至于如果我是一个独裁者，想消灭个性，做得到吗？我铲除了这些人的个性，但是我们在每一代的繁衍中，都不停顿地产生出大量的个性，这是奈何不了的东西。</p>
+<p>“个性”我们常常挂在嘴头，频繁见诸媒体的词汇，我们还只有借助生物学才能得到透彻的解答。我们接着比较，物理学提出了一个又一个放之四海的定理。这些定理大而言之，可以预测天体的运转；小而言之，在应用的层面上可以支持工业技术的设计。而生物学的思想是风格完全不一样的东西，它没有物理学里面那么多的定理，它不搞预测，它的思想风格就是解释。而你想想今天的社会历史科学，解释不是这种思想活动的主要风格吗？为什么解释成了这两个思想体系：生物学和社会科学的主要风格呢？因为生物和人类的社会二者本身就是牵手挂钩的东西。马克思说哲学家的任务是解释世界，我们的任务是改造世界。我们没有马克思那样的万丈雄心，我们也知道社会是个超复杂的系统，改造世界太艰难了。</p>
+<p>而同时我们又知道改造世界不是学者们的事情，把解释世界的重任留给我们已经很好了，那也是意义非常重大的事情。并且今天又和马克思的时代不同了，在马克思的时代解释世界几乎都是被哲学家垄断，而今天在解释世界的时候，哲学家几乎边缘化了今天唱主角的是谁？是生物学家、心理学家、历史学家、社会学家。</p>
+<p>接下来，我们讨论一下对人类下的定义。您可能听说过不少对“人”的定义，我们随便说几个：“人是制造工具的动物”，“人是使用工具的动物”，“人是语言动物”，还有一个定义我非常欣赏，“人是具有可能性的动物”这是罗胖子下的一个定义。</p>
+<p>这么多定义，他们最后都落到了这个核心词、关键词上，“动物”，人是动物，人是一种动物。既然人是一种动物就应该首先具有“动物性”，也就是兽性。科普作家刘慈欣曾经说过这么一句话——失去人性，我们失去很多；失去兽性，我们一无所有。而我们今天对于动物性知道多少？假设我们对动物性了解得不透彻，我们能够认识人性吗？能够深刻地认识人类社会吗？哪一门学科可以帮助我们更多地认识动物性，乃至更深刻地认识人性、认识人类的社会，在21 世纪的今天，非生物学莫属。</p>
+<p>我认为达尔文的学说是目前遭遇到最大、最多误解的一门学说。为什么这样说呢？因为这个学说的思想太超前，是全新的，在人类以往的思想储库中没有类似的东西。既然误解甚多了，我们就试着分析其中主要的三种误解。</p>
+<p>第一种误解：用进废退</p>
+<p>其实这是拉马克提出来的。我认为这一种误解几乎就是无知，但是基本上很多对达尔文理解的人都存在这样的误解。你只要问一些科学老师，你知道达尔文的进化论吗？他都会告诉你知道。那你给我讲讲什么是达尔文的进化论，结果一讲出来的基本上是拉马克的理论，就是所谓“用进废退”，拉马克是一位早于达尔文的法国生物学家，是个自然史的博物学家。举个例子，什么叫“用进废退”？长颈鹿的脖子为什么这么长？拉马克的解释是长颈鹿要伸着脖子去够树上的树叶，一代这样伸，伸完了脖子长了四五厘米，那么生出来的孩子脖子就更长了。脖子更长的长颈鹿在这一代里又继续做这个伸展运动，那脖子就更长了，并且遗传给下一代。多少代过去，脖子就很长很长了。</p>
+<p>这种解释说得通吗？其实是说不通的。为什么说不通呢？这是因为肌肉的抻拉运动，体细胞的变形，不能影响生殖细胞的，用今天的话来说就是基因并没有改变呀。把你的某种品性传递给下一代靠的是你的基因，肌肉的伸展运动改变不了你的基因。既然运动根本改变不了基因，那么通过运动改变的特征怎么能传递给下一代呢？如果拉马克的理论是说得通的，那么达尔文何必还要建立自己的新的解释机制呢？这是第一个误解。</p>
+<p>第二种误解：物种是种间竞争还是种内竞争？</p>
+<p>第二种、第三种误解是因为达尔文的理论是全新的才会产生的。第二种误解在于进化中是种间竞争，还是种内竞争发挥了更大的作用？很多人认为是种间竞争。</p>
+<p>比如，羚羊为什么跑得这么快？种间竞争在其中起了更大的作用。狮子、老虎一直想捕捉羚羊，所以羚羊只有往快了跑，于是一代两代三代下来，羚羊就跑得飞快了。这种解释最终还是回归了拉马克的解释，这就是“用进废退”。</p>
+<p>我认为羚羊跑得快其实是种内竞争决定了谁更是适合者。在物种当中，存在着两种羚羊，一种是跑得快的羚羊，还有一种是跑得慢的羚羊。跑得慢的羚羊在更大概率上将成为天敌的点心，而跑得快的则活下来了。它们之间的竞争导致了物种后代的品性。</p>
+<p>我们换个角度来说，也许能帮助你更好地理解。天敌，其实只是羚羊生存环境当中的一个因素。除了天敌之外，还有若干因素在考验着羚羊。比如当它们迁徙到一个比较寒冷的地带，气温也在考验着羚羊。有些羚羊不适应这样的气温，那么就会被淘汰出局，更适应者可以存活下来，当然可以繁衍。除了天敌，除了寒冷，还有若干其他的因素。比如，水里面是不是含有一种过去所没有的某种毒素、病菌、病毒，这些东西都将导致一部分羚羊被淘汰，一部分羚羊存活下来。</p>
+<p>也就是说，狮子、老虎、天寒、水源等等，共同构成了羚羊的外部生存条件，它们共同构成了羚羊所面对的“自然”。“自然”选择了哪些羚羊可以活下来，哪些羚羊活不下去。这就是种内竞争推动了物种的进化。</p>
+<p>我们可以用人类社会做一个类比，是企业家和工人的竞争，导致企业能力的提升、商品品质的提升；还是企业家和企业家之间的竞争，即资本家和资本家的竞争，导致了商品品质的提升呢？</p>
+<p>我认为是资本家和资本家的竞争，他们更像是同一个物种。他们之间的竞争导致一些企业因为自己的产品质量不够高，败给了另一些企业家，他们破产了。而在竞争当中，有一些企业进一步提升了。所以，我认为是种内竞争导致了商品品质的提升，导致了这个物种成员品性的提升。</p>
+<p>好了，我们接着讲到这一讲的主题了，也就是误解之三。</p>
+<p>这第三种误解就叫做自然选择</p>
+<p>在人们的思想中，大概存在着四种选择。</p>
+<p>第一种选择是神的选择。无论是创世纪上帝创造人，还是上帝拣选一部分人带他们上天堂，这都毫无疑问地说明了上帝是有意识的存在。</p>
+<p>第二种选择是人工选择。比如说奶牛饲养者对奶牛的选择。最愚钝的饲养者在育种的时候，比如他有四五只奶牛，他肯定会选择产奶最多的奶牛，让它产子。产奶较少的奶牛是没有生育权的。产奶最多的奶牛产子之后，后代就继承了它的品性，产奶也就比较多。饲养者又从后代产奶较多的奶牛中，选一个产奶更多的奶牛，让它来产子繁衍下一代。这样经过一代又一代的选择，奶牛的品性就逐渐被改变，剩下的奶牛产奶都很多了。</p>
+<p>第三种选择是市场的选择。</p>
+<p>市场的选择和人工的选择，构成一个非常有趣的对比。一是两者有些共性，两者都是有目的、有意志的。从市场选择的角度来看，无论是商品的设计者，还是消费者，他们都有自己的目的。设计者的目的是什么呢？希望他的商品畅销。消费者的目的是什么呢？希望他选择的商品适合他的意志、爱好。</p>
+<p>当然市场选择和人工选择还有一个不同之处：人工选择中每个选择的主体都是具名的个体如张三、李四、王二麻子；而市场选择的是匿名的大众。用我们流行的话说，是一只“看不见的手”，而人工的选择是“看得见的手”。</p>
+<p>“看不见的手”指的是什么呢？更多人的倾向，事先是看不到的。并且候选的商品很多，哪一种被淘汰，哪一种活下来，哪一种日后走红畅销，这些事先都是不知道的。以上的三种选择，它们有一个共同性，其中就是都是有意志、有目的的。自然选择的无目的性</p>
+<p>第四种选择就是达尔文所提出的自然选择。</p>
+<p>自然选择之所以让人费解，就是因为其中没有目的，没有意志。还是说狮子和羚羊，狮子和羚羊都听凭本能的驱使，狮子每个星期要吃一只羚羊，要不然不能存活，羚羊的存活首先是不被吃掉。羚羊并没有要“向跑得更快去进化"，它们不需要这样的目标。</p>
+<p>这二者都是听凭本能去行事，二者都没有目的。但是这二者博弈下来，最后导致羚羊越跑越快，因为慢的被吃了，快的才有生存的机会，才有繁衍的机会。所以下一代都是跑得快的羚羊，儿子、孙子它们越跑越快。而跑得更快的下一代羚羊当中去繁衍它们的后代，它们的后代比上一代更快了。总之是那些跑得更快的羚羊有生存和繁衍的机会，这就导致羚羊越跑越快。但这里必须要注意，进化的过程之所以能发生，有一个前提就是羚羊跑得不一样快。有的羚羊跑得快，有的羚羊跑得慢。</p>
+<p>这个差异是怎么来的呢？差异是变异所决定的。变异会导致一个物种中的成员在品性上呈现出多样性。不仅仅是跑得快慢，还有毛色。当年伦敦的蛾子，在工业革命发生之前，它的主体是灰色的，而在工业革命发生之后，大部分蛾子的主体是黑色的。为什么会产生这样的变化？因为工业革命之前，伦敦的天空像一个灰色的天幕。而当工业革命发生之后，伦敦竖立起成千上百个冒着黑烟的大烟囱，冒着黑烟，所以这个天幕变成了黑色。</p>
+<p>当年是在灰色天幕下，体色是灰色的蛾子更易生存，天敌不容易发现它们，它可以藏匿在天幕之下。天幕变成黑色了以后，事情就改观了，体色黑的蛾子更容易生存。这里面没有目的，不是你想怎么样就能怎么样的。不是说形势变了，我把我的体色给变了，你要想改变是改变不了的。遗传是具有稳定性的，遗传是由基因决定了的。</p>
+<p>这个事情是怎么改变的呢？因为工业革命之前，蛾子的主体虽然是灰色的，但因为变异的原因，其中有极少数体色是黑色的。而当天幕的颜色变成黑色以后，灰色的蛾子因为在天幕的映衬下显得格外引人注目，容易被天敌捕捉吃掉，而黑色的蛾子藏身更好。</p>
+<p>所以经过一段时间，黑色的蛾子有更好的生存和繁衍的机会，它们就取代了灰色的蛾子而成为伦敦蛾子的主体。优胜劣汰，适者生存。关乎生存的头等大事实际上是在无目的中完成的，这是达尔文自然选择的难以理解之处。而且自然选择这一个词汇一拿出来，本身就为误解留下了伏笔。那么，达尔文能不能找出一个不容易被误解的词汇呢？一个更合适的词汇？恐怕很难。</p>
+<p>我们要知道达尔文形成进化论的思想是在1838 年，而《物种起源》的问世是1859 年，这之中间隔了21 年的时间。我们之前讲过，他之所以不能够尽快地把它呈现给这个世界，是因为他恐惧，这个思想太异端了。在这21 年的时间中，达尔文没有闲着，他字斟句酌，最后拣选了“自然选择”这样一个词汇。选定这个词汇被使用了，那么带来误解恐怕就在所难免。但之所以找不到一个更恰当的词汇，是因为在前达尔文的世界中，人们以为一切建树都是神或人完成的，这二者都是有意志的，他们的行为都是有目的的。无目的的建树和后果在前达尔文的时代是不可想象的东西。而自然选择不仅是无目的的，它还是偶然的。</p>
+<p>自然选择的偶然性的产生有两大原因。第一个原因是基因的变异是偶然的。比如蛾子为什么会出现新的毛色，这是偶然的。偶然出现了新的毛色，所以毛色不同的蛾子，共同面对变迁的环境经受拣选。甚至还有一些很特异的事情，有些猴子尾巴可以勾在树枝上头，这时尾巴就相当于一条腿，一个胳膊。那其他类型的猴子能不能学到这一点呢？尽管你有这个愿望，你看到别人这样了，你自己也做不到。你为什么做不到呢？因为在你们物种当中没有发生这样的变异，没有这样的候选者。如果有这样的候选者，它们可能会被拣选，然后有这样的品性可能会在你们的物种中光大，但事实是没有发生这样的变异。变异是偶然的。</p>
+<p>第二个偶然的成因，就是环境的变化也是无法预料的。比如伦敦的工业革命和它释放的大量黑烟，这些是事先无法预料到的，特别是蛾子们无法预料的，因此黑蛾子成了蛾子的主体是偶然的。</p>
+<p>综上所述，自然选择和适应是两个革命性的、伟大的关键词，它们开启了全新的思想方法。</p>
+<p>好了，今天关于达尔文我们先聊到这里，让我们一起自我迭代，好好学习，格致教育工作坊每天都在这里等你。</p>
+<p>讲座时间：2018 年4 月27 日</p>
+<p>文字整理：曾宝俊林蓝刘小艳</p>
+
+
+<p style='float:right;'>本页共59段，7336个字符，20909 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

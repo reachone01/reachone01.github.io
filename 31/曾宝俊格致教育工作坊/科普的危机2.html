@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>科普的危机2</h3>
+
+<p>昨天我们说了科普的传播方式和科学知识的生产者，接下来就要说说接受科普知识的人——社会大众了。</p>
+<p>今天，我们要来讨论的是科学败给迷信的第三个原因，社会大众怀疑精神的丧失。我将卫生、心理学以及自然科学知识传播的整个过程，总结了一套知识普及基本传播模式，这个模式有四个阶段，分别是：传播、普及、稀释和碎片化。在科学和迷信不断斗争的过程中，起初是科学精神的胜利，然而好景不长，由于科学本身为我们生活提供了许多的确定性，大家对科学“太放心了”，导致理性的“科学精神”不断被稀释，再加上大家在不断接受着碎片化的知识，“怀疑精神”也渐渐丧失，这反而让迷信有了生存的空间。</p>
+<p>科学知识被普及的第一个阶段就是通过直接传播进行的。在这个阶段，科学还没有那么复杂，各种科学知识距离普通人的生活也不太遥远，不需要专门的人来把科学家们的发现翻译成普通人听得懂的语言。比如，在19 世纪的时候，一个进行正规医疗实践的医生很可能会对坚持“放血疗法”的医生提出质疑和批评，这种质疑和批评不只局限于医学界，而是希望直接争取普通人的支持，让坚持“放血疗法”的那个医生放弃这种做法，因为这时候的科学传播还自带有“反对谬误”的功能。</p>
+<p>所以在那个时候，“科学”这个词有着非常正面的意义——就是正确。科学的生活方式成了社会大众普遍追求的一个目标，这时候的科学不但“正确”，而且“流行”。在这个时期，科学方法和科学精神得到了广泛传播，各种迷信和神秘主义开始变得不再有那么多的市场，到了19 世纪末，很多传统的迷信观点实际上已经被扫进了历史的垃圾堆了。</p>
+<p>随着科学的发展，科学理论开始变得不那么好理解了，普通人与科学之间的距离感就拉开了，这时候，科学的传播就进入了第二个阶段，第二个阶段就是所谓的“普及”。</p>
+<p>到了普及阶段，很多人就已经开始听不懂科学家们究竟在争论些什么了。记得我曾经讲过几期物理课，在物理课里，我曾经提到过“空间颗粒”、“膜理论”，估计很多科学老师在听我讲座的时候，基本是不太能听懂的。因为那些理论是需要读过一定的或者是读过大量的量子力学的和宇宙学的书，才能知道的。这时候，其实特别需要一类人站出来，就是我们刚刚提到的“科学人”。昨天我们讲过“科学人”这个概念，是专门做科普的、专门生产科学知识的人，他们来专门解释这些问题。实际上，在上个世纪的普及阶段，很多这样的一种公共的科学讲座才开始发展，就是科学家们到一个城市里面，就由当地的牧师、医生和律师帮忙散发广告，邀请当地的居民来听免费的科学讲座。</p>
+<p>当然了，在科学讲座上面，为了拉近和人们距离，那些科学家们通常会展示一些很酷炫的科学实验，让他们感受一下科学的力量。比如向人们展示电磁现象、各种剧烈的化学反应，或者让观众吸一吸所谓的“笑气”，“笑气”就是一氧化二氮，一吸这种气体就能让人发笑。在这个阶段，“科学人”向公众们传达的是一种对科学的坚定信念。在科学和迷信的斗争中，在这个时期中，科学取得了绝对优势。</p>
+<p>当然了，这个过程有四个阶段，在前两个阶段，科学都是占了绝对上风，但是接下来，剧情就要开始反转了。</p>
+<p>科学传播的第三个步骤叫“稀释”。具体来说，科学知识后来随着发展变得越来越专业化、越来越难以被所有人掌握。为了解释这些复杂的概念，就必须通过打比方、举例子、讲故事等方法来帮助人们更好地理解这些科学概念。但是加入这些比方、例子和故事，实际上就是在往严肃的科学概念里加水，它不但冲淡了科学概念本身，还对科学精神造成一种破坏。在这个传播阶段，对科学知识就叫做“稀释”。而在这个阶段，媒体开始成为了科学知识传播的主力军。</p>
+<p>二战后，心理学在美国一度变得非常流行，杂志、电视、电影都开始关注心理学以及精神病学。杂志上面会刊登犯罪者的心理分析，还会刊登一些心理测试题，而有的电视、电影剧情设定可能就参考了一些精神病学方面的研究，这其实就是在原有的科学概念上掺水“稀释”。“稀释”的好处很明显，它就是让科学知识变得更加容易传播，但读者和观众要是误以为这些就是严格的科学，那就非常危险了。比如就拿电影来说，假如有一部跟心理学有关的剧情，一个电影很有可能会因为剧情的需要，对心理疾病进行简化或者绝对化的处理。如果科学方法和科学精神被“注水”的话，那就很有可能成为“迷信”的温床。比如，电影《非诚勿扰2 》，一开始孙红雷扮演的那个人说得了“绝症”，原因就是身上长了一些黑色的物质。电影一播出以后，医院里边去看物质的人成倍增加，这就是一种对于“疾病”进行简单化、绝对化的处理，这个处理出来以后，其实就形成了“迷信”的温床。</p>
+<p>随着媒体力量的发展，科学的传播就进入到第四阶段，这个阶段就叫做“碎片化”，就是我们现在的时代。这时的科学传播实际上已经看不到什么科学家了，科学家都在研究所去作研究，科学传播完全由媒体来主导，包括我们的自媒体频道，也是一个科学传播的频道。普通人接收到的其实都是碎片化的科学进展和科学成果。比如读到一篇有关科技进展的报道，你可能觉得好神奇”，而没有学到任何科学原理，更没有学到科学的思维方法和质疑、怀疑的精神。其实这样的科学报道，只是在让人们相信各种“奇迹”，这样的科学报道其实在导致人们开始把“科学”看成是另外一种新的“魔法”。</p>
+<p>我们今天其实就生活在这个一个阶段：各种各样的媒体、自媒体报道着各种各样的关于“人工智能”的新闻。但是我想：绝大部分人，包括我在内，可能完全不了解“人工智能”的工作原理，可能也从来没有思考过在遇到各种问题的时候，该选择使用怎样的“人工智能”的算法，我们很有可能只是把“人工智能”当成一种“魔法”来接受，这其实是对科学精神的一种背叛。</p>
+<p>所以，在科学传播进入碎片化的时候，“迷信”其实已经彻底地打败了“科学”，因为“科学”必须经过某种类似于“迷信”的方式才能传播，“科学”实际上已经逐渐地被当作一种“巫术”在被接受了。</p>
+<p>我们来总结一下今天所讲的内容：科学的普及分为传播、普及、稀释和碎片化四个阶段，在这四个阶段当中，一开始，“迷信”就得到了有效的压制，但是随着科学的传播变成了由媒体主导，人们接收到的科学知识变成了碎片化的科学进展和科学成果的时候，那么“科学”必须经过某种类似于“迷信”的方式，才能传播，这就导致了“怀疑精神”的丧失，最终也就导致了“科学”被“迷信”所打败。到这里为止，关于科普的危机我已经讲得差不多了。</p>
+<p>最后，我们来总结一下这两期音频的内容。</p>
+<p>当前，科普的危机——“科学”败给“迷信”有三个原因。首先，由于媒体的发展，为了追求所谓的传播效应，科学知识的严肃性被削弱，媒体中所宣传的科学发现可能会被夸大或者歪曲，真正有价值的科学发现往往会被媒体冷落甚至排斥。即使是新闻媒体保持的专业精神，新闻报道中碎片化的个例仍然有可能会违背科学精神。此外，广告也在迷信的传播中起到了推波助澜的作用。在这些因素的作用之下，最终导致科学的传播臣服于大众传媒和消费文化。</p>
+<p>第二个方面，介绍了在科学传播的过程中，科普作品的生产者——“科学人”发生了一系列变化。在19 世纪的时候，曾经涌现出了一大批优秀的“科学人”，他们不仅是“科学”的传播者，而且是“理性文化”的代言人。随着各个学科迅速发展，专业分工变得越来越细，这一批“科学家”、“科学人”群体就逐渐退出了科普舞台，这样的话就直接导致了科学传播过程当中“科学思想”和“理性精神”的缺失。</p>
+<p>今天，我介绍了科学普及过程的四个阶段，这四个阶段分别是：传播、普及、稀释和碎片化。在19 世纪前期，科学知识的传播和普及阶段，“迷信”得到了有效的压制。然而，随着媒体的兴起，“理性精神”不断被稀释，大家也在不断接受着碎片化的知识，这就导致了“怀疑精神”的丧失，这就让“迷信”有了生存的空间。</p>
+<p>在今天讲座的最后，我还想补充一点，我们其实可以分析一下在21 世纪的今天，各种新媒体、自媒体在科学知识传播中的作用。我们能看到：像传统媒体，比如广告的作用其实已经在慢慢地减小，而移动互联网上，社交媒体的影响越来越大。但是，危机并没有得到解决，社交媒体甚至为“迷信”的传播注入了全新的动力。</p>
+<p>和传统媒体不一样的是：现在每个人都可以建立自己的自媒体，社交网络上文章的内容不需要再有任何专业人士把关，内容的准确性和科学性也就完全无法得到保证。更可怕的是，在社交网络上，一个人如果喜欢各种伪科学的信息，通过社交网络上的信息，也就是说“人工智能”这种推荐机制，很可能接触到更多传播“谣言”的账号，就会反复强化他对“谣言”和“迷信”的认知。</p>
+<p>所以要解决这个问题，我觉得：“科学人”不能拒绝媒体，也就是科学工作者们不能拒绝媒体，而是要去创作同时有科学性和传播性的科学作品。像美国的宇航局，就非常善于利用社交网络传播真正的科学知识，每次有什么重大的科学发现，在新闻发布会之前，他们总是会在社交媒体上先进行预热，勾起大家的兴趣，吸引更多的人来观看他们的发布会。再比如，微信公众号，还有“科学的历程”公众号，他们也是在不断地推出科学的强有力的信息。也就是说，想要传播正确的科学知识，科学家们也要服从于传播学的规律，这样的话才能让“科学”打败“迷信”。</p>
+<p>好了，今天先聊到这里。让我们一起自我迭代，好好学习，格致教育工作坊每天都在这里等你。</p>
+<p>讲座时间：2018 年5 月14 日</p>
+
+
+<p style='float:right;'>本页共24段，3928个字符，11382 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>科学与音乐的和谐</h3>
+
+<p>今天我们聊的一个话题是“科学与音乐”。我特别喜欢听这几首曲子，一首是《梁祝》，一首是《十面埋伏》，还有贝多芬的交响曲，每次听这些音乐的时候我还是比较陶醉的。《梁祝》优美动听的旋律，《十面埋伏》的铮铮琵琶声，贝多芬令人激动的交响曲，田野中昆虫啁啾的鸣叫……当沉浸在这些美妙的音乐中时，你是否想到了它们与科学有着密切的联系？音乐的本质起源于人类对自然的模仿。风雨雷电，鸟鸣蛙噪，天籁之音被古人感受，心中有感而作乐，由音而乐。音乐的起源，可能是伴随着人类文明的产生。</p>
+<p>《吕氏春秋》载：“音乐之所由来者远矣，始于度量，本于太一”。《礼记·乐记》也载：“凡音之起，由人心生也。人心之动，物使之然也。感于物而动，故形于声。声相应，故生变，变成方，谓之音。比音而乐之，及干戚羽悸，谓之乐。乐者，音之所由生也。其本在人心之感于物也”。这两段都讲了音乐的产生，是由人内心深处一种感动而产生的。音乐追求的是一种音律上的和谐，美妙的音乐能给人以美的享受。2500年前，古希腊哲学家、数学家、音乐理论家毕达哥拉斯将声音量化，建立了西方音乐的数学概念。我在一份资料上看到，当时毕达哥拉斯学派用比率将数学与音乐联系起来，他们惊呼大自然的奥妙。他们不仅认识到所拨琴弦产生的声音与琴弦的长度有着密切的关系，从而发现了和声与整数之间的关系，而且还发现谐声是由长度成整数比的同样绷紧的弦发出的。于是，毕达哥拉斯音阶(the Pythagorean Scale)和调音理论诞生了，而且在西方音乐界占据了统治地位。毕达哥拉斯认为，几何、音乐、雕塑、天体都可以通过具体的数字和比例和谐地体现，由此毕达哥拉斯提出了“和谐学”，并有“音乐是数字而宇宙是音乐”之说。</p>
+<p>我们曾经讲过托勒密，虽然托勒密(C. Ptolemy ，约100—165年)对毕达哥拉斯音阶的缺点进行了改造，得出了较为理想的纯律音阶(the Just Scale)及相应的调音理论，但是毕达哥拉斯音阶和调音理论的这种统治地位直到十二平均律音阶(the Tempered Scale)及相应的调音理论出现才被彻底动摇。我们之前讲过托勒密是西方的集大成者，连他都动摇不了毕达哥拉斯的音阶理论。</p>
+<p>在我国，最早产生的完备的律学理论是三分损益律，时间大约在春秋中期，有个人叫管子，他写的《管子·地员篇》和《吕氏春秋·音律篇》中分别有述；明代朱载(1536-1610)在其音乐著作《律学新说》对十二平均律的计算方法作了概述，在《律吕精义·内篇》中对十二平均律理论作了论述，并把十二平均律计算的十分精确，与当今的十二平均律完全相同，这在世界上属于首次。由此可见，在古代，音乐的发展就与数学紧密地联系在了一起。从那时起到现在，随着数学和音乐的不断发展，人们对它们之间关系的理解和认识也在不断地加深。古罗马神学家奥古斯丁曾说：和谐是宇宙间最神秘的音乐。奥古斯丁穷其一生，致力寻求和谐。鸟儿轻唱、小虫低鸣，他说，这就是和谐。风拂柳梢，流水过隙，他说这也是和谐。在奥古斯丁看来，聆听宇宙间这神秘的音乐，就是在自己心灵中谱写另一曲和谐。</p>
+<p>西方音乐美学的代表人物汉斯里克也指出：音乐的原始要素是和谐的声音，它的本质是节奏。爱因斯坦也说：这个世界可以由音乐的音符组成，也可以由数学公式组成。爱因斯坦除了会研究相对论，他还特别喜好拉小提琴。爱因斯坦在成了大科学家后，很多人拍他马屁，知道了他喜欢拉小提琴后，有一天请他和一个著名的小提琴演奏家一起演出，结果演奏到一半小提琴家跑了。他说：“他哪是在拉小提琴，这是在锯木头。”爱因斯坦拉琴并不是要享受音乐的美妙，他是借助音乐来进行思考。在科学思维中，永远存在这音乐的因素，真正的科学和真正的音乐要求同样的思维过程。我在科学上的成就，很多是由音乐启发的。音乐、科学、和谐之间存在某种联系。</p>
+<p>科学的本质是什么？科学是对自然界的认识，特别强调规律性的认识。规律性的认识和自然界的和谐是同构的，因为，两者是一种镜像关系。之所以科学和音乐有相同的共性——和谐，因为人类认识的终极实体是自然界。何为终极实体？终极实体是人类认识的源泉。科学与音乐两者都是对自然界一个维度的认识。两者虽然有区别，但却都有着共同的认识对象，必然在认识上有其交集。即使两者对自然界认识的表现手法各异，但人是自然界的目的是一样的——追求人与自然的和谐。</p>
+<p>对于科学的和谐性，爱因斯坦说过：要是不相信我们世界的内在和谐性，那就不可能有科学，这种信念是，并且永远是一切科学创造的根本动力。</p>
+<p>科学、音乐两者之间的关系，法国现实主义文学家福楼拜生动地比喻道：科学与艺术在山脚分开，在山顶会合。我们认为，科学与艺术在“山脚分开”是指两者不同的表现手法，而“山顶会合”是指两者对和谐的一致追求。科学家在考察大自然、研究自然规律的过程中，常常会遇到使他们产生欣喜情感的形象，而正是这些与科学问题密切相关的生动形象，才有引发我们称之为“科学美”的审美快感的可能。比如说，通过对郁郁葱葱的森林的考察，生态学家能够感受到生物群落、生态平衡的和谐之美；透过浩瀚广袤、丰富多彩的星空，天文学家能够感受到天体运行的有序之美；在渺渺的微观领域里，物理学家能够感受到晶体结构的精巧之美。科学思维常常被认为是抽象思维，代表着严谨、逻辑、合理等特点的有规则的锯齿形、几何形等。音乐艺术思维则被认为是形象思维，流动变幻的云或轻快飘逸的曲线等极富想象力。蟋蟀鸣叫可以说是大自然之音乐，殊不知蟋蟀鸣叫的频率与气温有着很大的关系，我们可以用一个一次函数来表示：C=4t–160。其中C代表蟋蟀每分钟叫的次数，t代表温度。按照这一公式，我们只要知道蟋蟀每分钟叫的次数，不用温度计就可以知道天气的温度了!</p>
+<p>科学技术发展促进音乐发展，音乐也极大地促进科学研究。音乐在科学研究中占着特殊的地位。</p>
+<p>科学家们不仅具有敏锐的科学思维，同时拥有精深的音乐修养。西欧科学家始终深信古典音乐与现代科学有共通之处：大数学家拉格朗日求积分极值的变分法念头是在都灵圣保教堂聆听圣乐时而萌发；德国物理学家海森堡成功完成原子跃迁基频与次频的实验则源于音乐理论中泛音振动频率是基音振动整倍数的启发；英国化学家纽兰兹创造出“八音律”是受音阶的启示；物理学巨擘“相对论”开创者爱因斯坦不仅酷爱音乐且造诣很深，心爱的小提琴陪伴着他的整个科学生涯，他说：“在科学思维中，永远存在着音乐的因素，真正的科学和真正的音乐要求同样的思维过程。我在科学上的成就，很多是由音乐启发的。”一个严密、完美的创造思维过程是人脑左右两个半球相互协调配合的结果，音乐与科学的结合正是身、脑同步运行的最佳境界。一串串闪烁跳跃的音符激发了科学家们的想象力，唤起了他们无穷无尽的联想，打开了通向科学道路的大门。</p>
+<p>科学中有些奇巧的图形、图像，明显具有外在的美感。因为它是科学规律的奇巧体现，这就不同于艺术创作中的视觉形象，而具有自然科学特征和艺术形象特征的二重性。诸如几何学上有一道证明题，其图示构成了一朵绚丽多彩的雪花图像，其中包含了许多美丽的变形曲线。</p>
+<p>当然，科学幽隐世界中有的图景确实仅存在于科学家的想像、推测或幻觉之中，是科学家心目中的一种拟像。它有可能表述、外化为一种也能为一般美学家和大众群体所感悟到的图景。笔者可以举出许多这样的例子。例如，当量子力学的规律突然闪现在海森堡脑海中的时刻，海森堡是怎样一种愉快的心情？这种愉快的心情正伴随着审美愉快。透过原子现象的外表，他看到了异常美丽的内部结构。当想到大自然如此慷慨地将珍贵的数学结构展现在他眼前时，他几乎陶醉了。他太兴奋了，以至不能入睡。天刚蒙蒙亮，他就来到一个岛的南端。以前，他一直向往着在这里爬上一块突出于大海之上的岩石。他现在没有任何困难就攀登上去了，并在等候着太阳的升起。海森堡夫人在她所写的一本有关她丈夫的书中写道：“在一个月光皎洁的夜晚，我们漫步于海因山，他完全被他所看到的幻觉所吸引，一路上，他试图向我解释他的最新发现。他谈到对称性的奇妙之处在于可以把它作万物的原型；他还谈到和谐、简朴的美以及它的内在的真实性。”希尔伯特在纪念闵可夫斯基的致辞中说：“我们无比热爱科学，科学已把我们团结在一起。在我们面前它像一座鲜花盛开的花园。在这个花园熟悉的小道上，你可以悠闲地观赏，尽情地享受，不需费多大力气，与彼此心领神会的伙伴同游尤其如此。但我们更喜欢寻找幽隐的小道，发现许多意想不到的令人愉悦的美景；当其中一条小道向我们显示这一美景时，我们会共同欣赏它，我们的欢乐也达到尽善尽美的境地。”幽隐世界的拟像化，这种美感一般只存在与科学家心目中，但他们显然又可以描绘这种美感并传递给周围的人。</p>
+<p>好啦，今天我们就讲到这里。让我们一起自我迭代，天天学习。</p>
+<p>讲座时间：2017年8月13日</p>
+
+
+<p style='float:right;'>本页共15段，3674个字符，10587 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

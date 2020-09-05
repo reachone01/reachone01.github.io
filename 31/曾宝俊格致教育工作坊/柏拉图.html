@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>柏拉图</h3>
+
+<p>我们今天继续来聊聊柏拉图对人性与人类社会的观察。昨天我们看到柏拉图的洞穴之喻，今天呢我们更进一步，今天我们谈的主题是：拥有魔戒，你会做些什么？在今天这一讲我要设法说明人性十分脆弱，经不起检验，所以这个社会需要法律也需要教育。</p>
+<p>接下来我们谈第一个重点：人性到底是善还是恶？我们中国很早就有这样一种争论：孟子说，性本善。荀子说，性本恶。那么西方人是怎样看待人性是恶还是善呢？</p>
+<p>在这里我们和大家从一部电影开始说起。这部电影的名字叫做《魔戒》，很多人都看过，那么这部电影的原文，照字面翻译叫做《指环王》（The Lord of the Rings）。它里面有一个简单的桥段出现好多次，那就是只要你一戴上魔戒，整个人就会隐形不见了。那这样一个桥段在西方是有很长远的背景的，这个背景最早就出现在柏拉图的《理想国》，所以我们今天要介绍这个魔戒故事最早的版本是什么，就是来自于《理想国》，同时我也借由这个故事来探讨人性到底是什么。柏拉图对于人类应该怎么样面对这样的挑战也提出他的观点。</p>
+<p>首先，我们说一下《魔戒》这个故事是怎么回事呢？柏拉图要探讨人性到底是善还是恶，是要为善还是为恶，一个人是不是完全自由的呢？于是他就在他理想国那本书里提出这样一个古代的传说。在古希腊，有个城邦叫做吕底亚（Lydia），这个城邦的国王叫做盖吉兹（Gyges），这就是他的故事，一般魔戒的故事被称作为《盖吉兹的戒指》（The Ring of Gyges）。</p>
+<p>盖吉兹在吕底亚他原来是个牧羊人，每天在郊外牧羊。有一天，雷雨大作，出现了严重的地震，地面裂开了。地震之后，盖吉兹跑到裂开之处一看，底下好像有一些重要的珠宝，他就爬到地底下，珍珠宝贝是不用说的，另外看到一个空心的青铜质的马，马中间有一具尸体，尸体手上有一枚戒指，他就把戒指拿下来戴在自己手上，然后继续牧羊。</p>
+<p>要知道在古希腊的时候牧羊是一份重要的职业，而且牧羊是吕底亚国家重要的产业，每隔几个月就有一次牧羊人大会，然后推举代表向国王报告牧羊的情况。在这么一个聚会的场所里面，盖吉兹觉得无聊就开始转动自己的戒指，一般戴戒指有个戒面它是朝外的，他转动的时候呢，把戒面朝向自己，忽然之间，他发现好像别人看不到他，明明是认识的人，他冲他挥挥手，别人也不理他，好像没看到一样。他就在想难道别人看不到我吗？他就跑下来在广场中央跳舞，在那个不应该跳舞的地方跳舞，如果平时早就有卫兵来把他驱赶，可是今天无论他怎么跳也没有人来制止他，这说明什么？大家一定猜到了就是隐形，他真的就隐形了。他回到座位上，再把戒指的戒面转到朝外面，他又恢复正常了。</p>
+<p>他知道这个秘密之后，怎么办？他可以隐形啊，他可以做任何事都不会被发现，都不用负责任啊，这一下就麻烦了，他怎么做呢？他立刻就安排自己被选为牧羊人代表，进入王宫向国王报告这次开会的情况。他又用隐形的方法，诱奸了皇后，谋杀了国王，取而代之，自己成为国王，这就是魔戒的故事也叫做《盖吉兹的戒指》的故事。</p>
+<p>柏拉图讲这个故事用意何在呢？我们可以再继续看。后面他就说：“假如有两枚这样的戒指，一枚给一个我们所知道的好人，另一枚给一个我们所知道的坏人，我们来看看他们后面的表现如何。”也就是说你可以隐形，那么你还需要做好事吗？你还怕做坏事吗？事实上，结果让柏拉图非常失望，他说：“最后，这两个人根本分不出谁是谁。”你想，有谁可以免于这样的诱惑呢，可以隐形的时候依然走在人生的正路上，不去侵犯别人的产业？然后在市场上可以取得任何你要的东西而不会被发现，到别人家里去夺取任何你要的东西，可以去跟任何人做爱，可以自由地谋杀任何人，或从牢房里放走任何人，这简直就是成为人群中的神啊。结果呢？我们刚刚说到，好人跟坏人也就分不清楚了。</p>
+<p>所以柏拉图下了一个结论，这个结论相当让人失望，他说：“没有人是心甘情愿地去行善的，没有人是以行善为乐的。”每一个人行善都是有一些压力，都有被迫的成分。也就是因为你不能隐形啊，所以你必须遵守规范，天下有很多人本身没有行善却被别人相信他是行善的，但是有谁愿意真正做个善人而不只是被相信他是行善的呢？简单的结论就是，一个人行善是为了行善而行善，或者是为了某种外在的名声，或者是为了有形的报酬而行善，其实这个问题确实是非常深刻的。</p>
+<p>第二个方面我想讲的是：人性其实很软弱。</p>
+<p>我们可以进一步思考，如果你可以隐形的话，你要做什么事情呢？事实上，在很多年前，美国就做过一个民间的调查，在民间发出问卷，其中有个问题就是问老百姓，如果你可以隐形的话，你要做什么？结果呢，你能想象吗？80%的受访者都说要去抢银行。我们现在才知道银行为什么需要这么多的保安啦，这么多的警卫还有摄像机、探头，因为人性太脆弱了，太经不起诱惑了。</p>
+<p>人性确实很软弱，都是好逸恶劳，希望不劳而获，同时又贪得无厌，完全禁不起诱惑。我们自己可以思考一下，如果我们可以隐形的话，最希望做什么呢？当然是随心所欲啊。这句话有出处的，我们在《论语》里面读过，孔子说他十五岁立志求学，三十而立，一路发展上去，努力修行，到最后呢，“七十而从心所欲不逾矩”。换句话说，孔子是一个典范，人类的典范，他很清楚地知道自己到了七十岁才能从心所欲而不逾矩。这句话说明了什么呢？就是在七十岁之前的孔子如果从心所欲就有可能逾矩。</p>
+<p>我们一般人千万不要心存侥幸，以为人性都是善的，这个说法是一种太冒险的想法，你如果真的以为人性善的话，这个社会恐怕就不堪设想了。所以如果可以隐形的话，说不定我就想做一些不可能的任务，像电影里面可以易容改装，扮演别人，现在你可以直接隐形，不就是更方便吗？有部电影就是专门拍隐形人的。所以隐形可能造成什么？造成天下大乱呀。你要这样想，如果别人都跟你一样，也都是可以隐形的话，请问后果能设想吗？</p>
+<p>所以，柏拉图在晚年的时候就特别强调法律的重要性，柏拉图的《对话录》留下来的有26篇，其中最后一篇就叫做《法律篇》，这个时候他已经接近八十岁了，等于说是对整个的一生做一个全面的总结。他说如果你不能找到理想的君王，也就是不能找到哲学家来担任君王的话，那就只能靠法律来管理社会，所以他认为法律是次佳的选择。最佳当然是哲学家来担任君王，道德品质都一流，仅次于这个选择的叫次佳选择，依靠法律。</p>
+<p>今日我讲的第三个重点是：柏拉图的“法律金律”</p>
+<p>有关法律方面，柏拉图提出一些观点。第一个就是他提出的一个金律。所谓的金律就是我愿意别人对我做什么，我也要如此对别人做，用我们中国话来说就是“己之所欲，施之于人。”儒家有句话叫做“己所不欲，勿施于人”。反过来说就是“己之所欲，施之于人。”柏拉图这句话说出来之后经过了四百年，西方出现了耶稣，他也说了类似的话，几乎是完全一样，耶稣说：“你们愿意别人怎么对你们做，你们就要先对别人怎么做。”我们中国孔子说的话，一般被称作银律，那就是我们所熟知的“己所不欲，勿施于人”。</p>
+<p>金律、银律为什么这么排呢？为什么柏拉图的称之为金律，而孔子的话称之为银律呢？有金有银意味着银要次一等，金律代表着积极的，我要对别人行善，因为这个善是我自己愿意的，我也希望别人这样对我，这是积极的作为，所以称作为金律。而银律代表消极的，我不要做什么事情，我不要做哪些事呢？我不要别人对我做自己不愿意碰到的事，这叫做银律。当然了，事实上，这两者是不能区分的。</p>
+<p>柏拉图在《法律篇》里面他进一步要求我们，不可欺负陌生人，他说：“我们对于陌生人所犯的罪行，比起我们对同胞，认识的人所犯的罪行，将会更直接地引来神明的报复，因为陌生人既无亲戚，也无朋友，所以他们可以要求更多的关怀与宽容，不论是人们或是是神明的关怀与包容。”</p>
+<p>既然如此，如果我们可以隐形，我们能做什么侵犯别人的事吗？当然不行。柏拉图进一步强调，这就是对自我有强烈的执着，这是一切罪恶的最常见的来源，这在我们每一个人身上都是如此，也就是执着于自我。我们前面提到盖吉兹和他手上的戒指，不就是因为隐形，使自我变成了世界的中心，有如神明一样吗？在这个时候，你如果所做的事情违反法律的规定，请问是不是合适呢？</p>
+<p>所以在这里要问什么？别人看不到你隐形的时候，别人看不见你，但是神明看得见你，然后，如果你隐形的时候可以去做这些事，别人跟你一样，也做这些事情，那后果会如何呢？所以，这些都是从魔戒这个概念引申出来的思考。</p>
+<p>那么，我们来总结一下今天我们所学的内容，我们今天也是学到了三点：</p>
+<p>第一点，人性确实软弱，我们到今天如果还在社会上站得很稳的话呢，不是因为我们很坚强，而是因为我们还没有碰到真正的考验，所以对于人性不能够掉以轻心，要随时保持警觉，不断进行修炼。</p>
+<p>第二点，换位思考是非常重要的。我们要常常想，如果我是他，如果他是我，我们应该如何互动、如何来往呢？这样的换位思考，是我们儒家很好的思想，在儒家被称为忠恕之道，在西方来说，也会慢慢发现这是人与人相处最重要的基础。</p>
+<p>还有第三点，法律是不可或缺的，所以柏拉图晚年的时候，他不能达成他最早的理想，也就是希望出现一位哲学家君王，或是让君王学哲学，他觉得这个太难了，他自己在有生之年，也曾经做过试验，结果失败了，所以他说：“法律是次佳的选择。”</p>
+<p>好了，今天先聊到这里，今日我要给大家出一道思考题，如果你拥有一枚魔戒，可以让你隐形，请问，你最想做的一件好事跟一件坏事分别是什么？欢迎提供你的想法。</p>
+<p>让我们一起认知越狱，自我迭代，格致教育工作坊每天都在这里等你。</p>
+<p>讲座时间：2018年8月2日</p>
+
+
+<p style='float:right;'>本页共28段，4022个字符，11542 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

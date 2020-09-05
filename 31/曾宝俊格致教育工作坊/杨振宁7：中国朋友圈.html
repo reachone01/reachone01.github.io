@@ -1,0 +1,325 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>杨振宁7：中国朋友圈</h3>
+
+<p>这里是格致教育工作坊，欢迎大家穿越时空，来享受一碟知识的小菜，让我们一起天天学习，好好向上！今天我们继续来聊聊杨振宁。</p>
+<p>有句话说得好，“想了解一个人，不妨去看看他的朋友圈”，如果你看这个人的朋友圈里面，每天都在发他的思考、思想，那么这个人一定是为思想家；如果一个人的朋友圈整天晒美食，那他一定是个吃货；如果一个人朋友圈每天都是风景，那他一定是个驴友。所以，从朋友圈我们就能看出一个人的价值观和他所交往的世界。所以这节课和下节课我们反过来——从杨振宁的朋友圈，从他所处的关系网络，来认识杨振宁这个人和他所处的那个时代。这一节课我们先说杨振宁的中国朋友圈，下节课我们再说他的外国朋友圈。</p>
+<p>杨振宁的中国朋友圈，我们从他7岁时搬到清华校内讲起。清华大学是1911年用美国退还的庚子赔款建起来的留美预科学校，也就是说清华大学的学生主要是往美国去留学的。大家都知道，庚子赔款是第二次鸦片战争后赔给欧美列强的费用，是一大笔钱，大约有4亿两白银，相当于每人赔付一两白银，是一种惩罚性的赔偿。当时有4万万同胞，因此要赔付4亿两白银。其实当时八国联军中并没有美国，但他作为其中的代表，根据大陆开放政策，他也获得了一份。拿到后，他又觉得不光荣，因此通过国会又退给了中国。但光是他一个国家退会引起其他国家的反感，于是，他将庚子赔款的钱当做善款捐给中国的留美学童，詹天佑、鲁迅都是这笔善款的受益者。</p>
+<p>到1929年杨振宁进入清华的时候，已经是一个学科比较完备、独立的大学了，不再是留美预科学校。这个时候中国的大学虽然数量不多，但因为基本都和退还的庚子赔款有关，所以都是在美国的支持下建设起来的，建设的核心就是教师和学生，而不是设备。因为人才数量少、水平高，又相对集中，所以那时候只要生活在清华、北大、南开这样的大学校园里，每天都能见到很多的大学者。从小一起玩泥巴的小伙伴，长大后也有不少成为了中国某个领域的开创者。这就是杨振宁上学时期朋友圈的大致状况。</p>
+<p>其实不只是物理学这一个领域，民国时期很多学科分支的顶级人物都互相熟识，他们的子女也常常成为同学，甚至结为夫妻。昨天我们吃饭的时候，就谈到当时民国时曾有一个电影学会，这里面会长是蔡元培，执行委员是徐悲鸿，这些顶尖的人物互相熟悉的，互有建树、互相支持，他们的子女常常是同学，甚至很多结为夫妻。</p>
+<p>杨振宁小时候是清华园里的孩子王，外号“杨大头”，因为他的花样最多，成天带着一群孩子玩儿。这些孩子里就有清华大学数学系教授熊庆来的儿子，后来的法国雕塑家熊秉明，数学系教授郑桐荪的儿子郑士京、女儿郑士宁。姐姐郑士宁后来嫁给了大数学家陈省身，回忆起小时候，说杨振宁兄弟和几个孩子整天都在一起玩。</p>
+<p>还有一个就是邓稼先，后来新中国的“两弹元勋”，比杨振宁小两岁，当时也跟着玩儿。邓稼先憨厚正直，外号“老憨”，杨振宁经常替他打抱不平。他们俩从小学到西南联大一直是一个学校，连去美国留学都是邓稼先和杨振宁的弟弟杨振平一起去的。</p>
+<p>高中和大学时，杨振宁的朋友圈和初中之前没有本质区别，只不过扩大了很多。因为西南联大是清华、北大、南开合并来的，当时这三所学校大部分优秀老师都转移过来了，所以虽然物质条件艰苦，但教学水平哪怕放在欧美也是一流的。</p>
+<p>在科学方面，当时杨振宁的老师，大一基础物理教师赵忠尧，赵忠尧后来成了纽约大学石溪分校的电机系主任，大二电磁学吴有训、统计力学王竹溪、经典力学周培源、大三原子核物理张文裕、大四量子力学吴大猷，数学是陈省身，当然还有自己的父亲杨武之。</p>
+<p>除了科学方面的课程，还有语文课。这门课当时施行“轮流教学法”，每个老师讲一两个星期的课，然后换，两个老师教的内容基本没有衔接。朱自清、闻一多、罗常培这些大师都给杨振宁上过语文课。这些老师教出的出色学生就更多了，先后有2个诺贝尔奖得主、8个“两弹一星”的元勋、174位两院院士。</p>
+<p>杨振宁前后7年在那里读书，覆盖了大部分西南联大的历史，是当时学校最出名的学生。那时杨振宁、张守廉、黄昆3人，有个绰号叫“西南联大三剑客”。</p>
+<p>除了杨振宁，那两个人后来怎么样了呢？张守廉，后来成了纽约大学石溪分校的电机系主任；黄昆后来50年代初回国在北大物理系任教，领导了中国半导体物理行业。中国现在所有从事半导体芯片、半导体材料的人基本上都是黄昆的弟子，或者弟子的弟子，或者是弟子的弟子的弟子。直到今天各大学《固体物理学》的课本，都还在使用黄昆的版本。世界上刚刚出现芯片行业，中国就能赶上，黄昆功不可没。这些曾经的老师和同学，大都和杨振宁保持着终身的友谊，尤其是那些曾经上过杨振宁回国会见名单的。因为一旦进入那个名单，就意味着可以摘掉特务、坏分子、右派的帽子。邓稼先的全家和他当时领导的十几人的科研小组，以及科研小组这些成员的家人，就是这样得救的。</p>
+<p>刚刚我们把杨振宁的中国朋友圈大致梳理了一下，你可能会觉得有种群雄荟萃的感觉。我下面从科学知识传承的角度，把这些人在更大的历史背景下排个序。</p>
+<p>如果从中国出现现代科学开始，按辈分算，杨振宁是第四代。第一代是容闳、黄胜、黄宽3个人。他们是中国历史上第一批留美、留英并且拿到学位的人。容闳回国后在晚年促成了一项计划，就是分4年派出120名平均年龄只有13岁的孩子去留学，俗称“留美幼童计划”，这些幼童就是第二代。虽然因政治原因，他们中途被勒令撤回，最终只有2人毕业，但后来也成了清末和民初政界、军界、文化界的领军人物。</p>
+<p>在留美幼童中年的时候，又促成了另一项伟大的计划，那就是让各国退还《辛丑条约》的赔款，俗称“庚款退还计划”。退还的形式80%都是兴办学校、资助留学。这笔资金对当时中国的高等教育来说，算得上数额极其巨大。详细算过到底有多么巨大，结论就是，这笔钱相当于给全国高校师生中最优秀的千分之一的人，比今天还多100倍的资助，并且持续25年以上。</p>
+<p>所以第三代、第四代、第五代，大约20年一代、20年一代，就这样延续了下去。庚款留学项目启动之后，第一个10年里归国的那些人，就是第三代人。这第三代人是1921年之前，撑起中国第一批13所大学的绝对主力，也是中国各学科最早的奠基人。我们今天听说的“某某学科之父”，大都是从第三代这批人里来的。</p>
+<p>接下来说说杨振宁的老爸，杨振宁的父亲虽然拿的是安徽省留学奖金，不是庚款奖金，但也算第三代这批人中的一个。所以杨振宁自然就是第四代。如果集中看物理学领域，第三代人里出现了中国物理学的四大元老——饶毓泰、叶企孙、吴有训、胡刚复。其中前三位在清华任教时，都曾经教过杨振宁物理课。第三代和第四代人里的物理学家，还有一个特别的标签，他们当年留学时的导师大都是物理黄金年代的科学家。比如：夏元瑮的导师是量子力学创始人普朗克（Max Planck），李耀邦、颜任光和赵忠尧的导师是测量出电子带电量的那个密立根（RobertMillikan），饶毓泰和吴有训的导师是证明了光具有动量的“康普顿效应”的那个康普顿（ArthurCompton），王守竞和周培源的导师是第一个给出了量子力学矩阵形式，后来又主导德国研发原子弹的海森堡（WernerHeisenberg），我的同乡束星北的导师是第一个用实验证明了广义相对论的爱丁顿（ArthurEddington），叶企孙的导师是测出最精确普朗克常数的布里奇曼（Percy Bridgman）……</p>
+<p>这种例子数不胜数。</p>
+<p>由于师承关系和人脉，导致中国1949年之前留过学的物理学家大都出自5所大学——密歇根大学、芝加哥大学、哈佛大学、麻省理工大学和加州理工大学。纵观这几代人，他们的职业走向有一个分水岭——前三代人拿下学位后基本都回中国了，并且起到了巨大的推动作用，让中国的科学水平在短短30年里迅速提升。这种速度放在任何一个国家都是惊人的，这也是中华民族进取心强的一个例证。</p>
+<p>但从第四代开始，大多数都没有回国。原因很直接，因为先是1937年国内全面抗战，而后中美关系紧张，一耽误就是几十年。等到回国的窗口在70年代再次打开的时候，他们的学术巅峰期早就已经过去了。</p>
+<p>我们再回到杨振宁身上，他为什么可以在物质条件那么差的情况下，不受战乱影响，集中精力在学业上，而且还养成了一套成熟的物理学审美体系呢？原因就是，西南联大和民国时期的大学有孕育知识的土壤。从国家政策上开始，总原则就是战时的学校禁止搞煽动民族主义情绪的教学内容，维持正常教学内容。当时教育拨款的一半以上，都用来补助学生食宿和学费。从老师的为人做事上看，他们只有一件最重要的事，就是把课教好。当时的大学首先保证教学部分，研究没有条件就不搞了。</p>
+<p>如果对比现在的情况，你会发现反差很大。现在那些年富力强，知识体系足够棒、足够新的学者，大都不会把主要精力放在教学上。真正愿意把课打磨好的，除了个别新入职的博士生，就是早已不会晋升的老教授们。</p>
+<p>所以杨振宁的出色并不是小概率个案，他的出现伴随着几十个黄昆、张守廉一样的人物，几百个今天院士级别的同学，和几百个陈寅恪、吴大猷、叶企孙那样的优秀教师。他们在一起组成了足够肥沃的土壤，互相启发，言传身教，最后才出现了杨振宁这个物理史上的杰出人物。</p>
+<p>杨振宁的朋友圈可以说是群星璀璨、大佬云集。在你的生活工作中，有没有哪个瞬间让你感到“物以类聚，人以群分”呢？</p>
+<p>好了，今天先聊到这里，让我们一起认知越狱，自我迭代，格致教育工作坊每天都在这里等你。</p>
+<p>讲座时间：2019年6月12日</p>
+
+
+<p style='float:right;'>本页共27段，4005个字符，11320 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

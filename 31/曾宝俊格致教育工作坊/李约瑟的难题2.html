@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>李约瑟的难题2</h3>
+
+<p>今天我们继续来聊李约瑟难题。现代代科学为什么会出现于西方？在1953 年，爱因斯坦的一封信中曾经写下了关于“近现代科学产生的基础”的著名论断。西方科学的发展是以两个伟大的成就为基础的，那就是古希腊哲学家发明的形式逻辑体系。这个形式逻辑体系其实是隐藏在欧几里德的几何学当中的，在文艺复兴时期，发现通过系统的实验可以找出因果关系。那些关注西方人眼里中国古代科学形态的人们，或许会对爱因斯坦接下来的话不以为然，爱因斯坦说：“在我看来，中国的贤者没有走上这两步是用不着惊奇的，令人惊奇的是这些发现居然在西方被做了出来。”英国剑桥大学教授，著名的科学家与科学史学家李约瑟在自己的论文《中国科学传统的贫乏和胜利》当中引用了这段话，李约瑟的皇皇巨著《中国科学与文明》这本书里面处处体现出关于中国科学技术史的中心论题，就是人们熟知的李约瑟难题，这也与爱因斯坦对现代科学渊源的探求大有关联。</p>
+<p>尽管中国古代对人类科技发展做出了很多很重要的贡献，但为什么现代科学和工业革命竟然出现于西方，而不是中国？与其追究历史上未曾发生的问题，不如去研究那些已成事实已有共识的历史。陈方正教授在他的皇皇巨著《继承与叛逆》这本书当中，就对李约瑟难题的真知灼见，另辟蹊径的提出了一个值得深思的问题，现代代科学为什么会出现代西方？在陈方正教授看来，西方科学虽然经历了转折、停滞、长期断裂与多次移植，但从其至为根本的办法、理念与内涵来看，有古希腊到十七世纪欧洲形成的是一个前后相连续的大传统，而且现代科学的出现虽然必定受到李约瑟一再强调的社会、经济、技术等诸多外部因素的影响，但其最为主要的动力依然是内在的这一传统本身。</p>
+<p>想要回答中国知识分子在五四运动前后所提出来的“为何中国科学发展落后”这个大问题，就必须全面认识和深入了解现代科学赖以立基、传承、发展的整个西方科学传统，包括这一传统哲学与宗教以及时代背景的互动关系。因此，事实上这是一部以叙述和讨论西方科学史为主体的，却隐含着中西科学发展对比的醉翁之意不在酒的高妙之作。这个高妙之作就是我现在手边拿到的这本皇皇巨著《继承与叛逆》，它的作者就叫做陈方正。这本书的副标题就叫做“现代科学为什么会出现于西方”。</p>
+<p>接下来，我就来谈谈一次传统和两次革命。这个问题呢，从表面上看可谓是千头万绪，千丝万缕。但是陈方正教授却认为它是西方科学传统经历革命之后的产物，一言以蔽之，西方科学这个大的传统所具有的历史悠久的发展中心，虽然多次转移与宗教关系极度密切，以及两次革命性的巨变的出现，是它最终能够蜕变成现代科学的四大宏观原因。这并非是一个单纯的重复历史作为解释的循环论证，其实质内涵在于西方科学传统的整体性，既包含了成体系的一整套理论、观察、论证、方法，而非是孤立的观念、学术、发明、技术、人物。它又具有能够蓬勃发展、能够折服再生、能够推陈出新的强大延续性。正因为如此，西方科学的演变，在经过科学发展为中心的回还、游走，主导文化和语言背景的多次转变之后，仍然是堪称一脉相承。</p>
+<p>而广义西方世界中，复杂的地理环境，多种民族与文化并存的文明结构没有大一统，以及窒息科学自由发展的强大王朝长时间的控制，还有宗教的热忱、大学的体制等诸多因素的影响，都进一步促成了它最终走向现代科学。换言之，西方并不是命中注定必定要拥有现代科学，但是现代科学却天然地产生于西方。至于开创和结束这一大传统的两次革命，只不过是这一个长长的链条当中重要的，但却不是决定性的一环，这个也能够让我们更好地理解西方科学的传统的整体性。</p>
+<p>我们接下来梳理一下西方科学这个简单的逻辑体系。在公元前四世纪，通过毕达哥拉斯学派与柏拉图学员相互融合，形成了一个新普罗米修斯革命，建立了一个新的科学体系。这个科学体系以严格论证为核心的数学以及在此基础上发展起来的天文学、物理学，其标志就是我们前面数次提到的《几何原本》，这是世界上最著名最完整流传最广，并对西方科学技术与文化影响深远的著作，这无论在规模上、深度上还是在问题意识上都是以解决具体问题为目的的。古埃及古巴比伦的科学完全是不能比拟的。与新普罗米修斯革命属于同一层次的，应当说是牛顿革命。以牛顿的《自然哲学的数学原理》这本书的出版为标志，宣告了数学、观测与思想三者紧密有机地结合起来的一个崭新的实验哲学的诞生。这并不是一个孤立的学术，或者说是一种简单的理论，而是一整套前所未有的科学观念、科学态度、科学理论和科学方法。也就是说，这是一个崭新的科学体系，从这个意义上来说，无论是哥白尼的革命，或者说是爱因斯坦的革命，都难以与牛顿的革命相提并论。正是这样一个传统与两次革命一面继承一面叛逆，在相互的演进当中，现代科学诞生了。</p>
+<p>两千年前，无数一流的头脑心智未知焚膏继晷、殚精竭虑，在雅典、亚历山大、巴格达、开罗、巴黎、牛津、剑桥等一个个响亮的地名，先后成为不断转移的科学发展中心。十七世纪的革命与突破，只不过是这一幅如繁星闪耀，似日月争辉般的激荡人心的壮观图景当中的最后一抹激情的色彩而已。但是这一抹色彩不过是一个壮丽的死胡同啊，在这幅图景当中，中国古代的位置在焦虑不安和尴尬不已中依然难以找到。陈方正教授说：中国古代并不是说没有数学，但是没有发展出以了解数的目的、性质或者说空间关系本身为目的的以严格证明为特征的纯数学。中国古代也并不是没有对自然规律的探求，但是却没有将这种探求与数学结合起来。我国第一部天文学典籍叫做《周髀算经》，集合数学与天文学模型的思路而自豪的时候，我们也不得不遗憾地看到《周髀算经》这个书它并没有能够在中国文化的土壤中继续发展。先行者成为一个绝响，至此，西方与中国科学的真正分野在亚历山大数理科学的出现，甚至是在毕达哥拉斯柏拉图的数学与哲学传统形成之际那就是已经决定了。</p>
+<p>李约瑟曾经非常称颂中国古代的几大发明。李约瑟曾经将作为机械石器的宋代输送大水钟，也就是那个铜壶滴漏，那个计时仪与指南针、火药、印刷术等我们现代的中国人非常耳熟能详的几项大发明并致。在比较中西方文明对普世科学的贡献事业途中特别标明，李约瑟这样做了。但是曾经一起研究输送水钟的普莱斯早已发现了一个同样复杂的、精巧的希腊机械钟，而且其年代比输送水钟要早上一千年。研究计时仪器发展史的有个叫做兰德斯的人，他在一本书当中，（这本书我也有，就在我跟前）就是时间革命《时钟与现代世界的建构》这本书当中，他从构造原理上面论证了输送水钟没有影响欧洲的单摆计时，断定输送水钟为没有发展前途的技术的死胡同。输送水钟的坎坷命运在中国人读来当然是甚为痛心的。在北宋之后的那个漫长岁月当中，后人绝望而徒劳的试图恢复不断闪失的那种制钟技术，但是这未必就能证明中国科学的间断性发展乃至被难蒙城。但兰德斯在书中谈及这一个章节的时候，无疑是许多西方科学史学家对中国古代科学技术发展的那种看法与心态的最佳写照。这个写照就是一个词，叫做“壮丽的死胡同”，实际上，这也就说明了中国古代科技实际上走入了一条壮丽的死胡同当中，是没有什么出路的。</p>
+<p>在陈方正教授看来，中国人对于西方的科学看法实际上经历了三次根本的转变。第一次是在十六世纪，中国人认为西方的科学可以学，但需要发扬传统的科学，而超越之，慎之。第二次是在二十世纪上半叶，通过在西方留学的知识分子，生出了我们昨天所说的中国古代无科学这个感慨。在二十世纪五十年代，由于李约瑟的研究影响之大，令不少人认为长期以来中国古代科学都比西方优胜，其落后只不过是文艺复兴以来的事情。陈方正这本书当中，多次语重心长地指出：这多次转变都是对西方科学和它的发展史认识不足而导致的。西方科学并非只是众多学术领域里面的分支，而是其整个文明精神的体现。</p>
+<p>要真正认识西方科学及其背后的精神，就需要同时全面的了解西方哲学、宗教乃至文明整体。陈方正教授的切切之意昭然若揭、句句不虚啊。在陈教授看来，夸大中国传统科学技术成就，贬低西方古代科学的重要性，虽然好像能够帮助重建民族自尊心，其实这是极度危险的，有百害而无一利的。因为这个很容易就会自满自豪，就会被利用，被这种情绪所蒙蔽，取代本因对西方科学历史文化所拥有的客观的虚心和深入了解呀。陈教授这种当头棒如同苦口良药，实际上依我看来，如果说一个国家的科学发展史是其文化政治社会等因素综合作用的结果，那么我们也理应将一个国家如何看待自己科技发展史视为其文化内涵，政治品德，社会风气，同时这种看法也是民族心态的一种综合反映啊。</p>
+<p>当然，陈方正没有去详细探寻那些对本国本民族历史文化的无心出书，或者说有意遮蔽、有心虚设。但是，只有中国人真正认识西方科学以及背后的文化精神，才能不枉作者的一片苦心和一番美意。</p>
+<p>好啦，关于李约瑟问题，今天我们先谈到这里，明天我们继续来谈李约瑟问题是怎么诞生的。让我们一起自我迭代，天天学习，格致教育工作坊每天都在这里等着你。</p>
+<p>讲座时间：2017 年11 月15 日</p>
+
+
+<p style='float:right;'>本页共14段，3701个字符，10873 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

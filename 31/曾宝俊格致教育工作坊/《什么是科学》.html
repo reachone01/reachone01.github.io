@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>《什么是科学》</h3>
+
+<p>这里是格致教育工作坊，欢迎大家穿越时空，来享受一碟知识的小菜，让我们一起天天学习，好好向上！今天我们继续来聊吴国盛的《什么是科学》。</p>
+<p>听了我昨天所讲的，你对古希腊科学转变成现代科学的过程就有所了解了。吴国盛说，除了古希腊科学以外，现代科学的另一大源头是基督教，没有基督教，就没有现代科学。其中，经院哲学的发展，让科学有了跟神学平起平坐的机会。而唯名论运动的发展，最终将只追求真理的希腊科学，改造成了追求力量的现代科学。</p>
+<p>前两个问题讲的都是西方的科学，那接下来最后一个问题，就要从中国的视角来看看，中国古代到底有没有科学。</p>
+<p>刚才讲到了，西方科学一种特殊的文化产物，它有两个源头，一个是希腊科学，这起源于西方人对自由的追求；一个是基督教，它将希腊科学改造成了现代科学。那你可能会想，中国古代既不追求自由，更没有基督教，那中国古代有没有科学这个问题，答案不是很明显了吗？肯定没有科学啊，这还有什么好说的呢？</p>
+<p>其实未必。吴国盛在这本书中一直强调的观点就是：中国古代有没有科学，是一个定义的问题。我们刚才讲到了一个科学的定义，科学就是指数理实验科学，这个定义当然没错，也是主流定义，按照这个定义，中国古代没有科学。但是吴国盛说，数理实验科学的定义虽然是主流，但它是一个狭义的定义，不够全面，如果我们把科学的定义放宽一点，那我们就能在数理实验科学之外，找到另一个西方科学的传统——博物学，而从博物学这个更广的视角来看的话，中国古代就是有科学的。吴国盛为什么这么说呢？</p>
+<p>我们先来看看什么是博物学。博物学还有另外一个名字，叫《自然志》。听名字就知道，其实就是把各种对动物、植物、矿物的观察记录等文献汇编起来，它注重的是客观记录，未必会去探究背后的原因。那博物学也算是科学吗？吴国盛说，博物学在现在已经被边缘化了，但它在科学史上曾经辉煌过。</p>
+<p>比如，亚里士多德就曾经写过一本博物学方面的著作，叫《动物志》，这就对近代生物学的形成影响很大；在哥伦布发现新大陆以后，欧洲出版了大量关于新大陆动植物的博物学著作，那时候博物学研究非常兴盛；到了18 世纪，著名的博物学家林奈出版了一系列博物学著作，他所创立的植物分类方法以及用拉丁语命名的双命名法，我们至今还在沿用；到了19 世纪，博物学孕育出了一个极其伟大的理论，就是达尔文的进化论。进化论的科学价值、科学地位以及对人类社会的深远影响，在这里无需赘言，我们所要知道的是，达尔文提出进化论，用的不是现代实验生物学的方法，而是博物学的方法。达尔文是跟着航船在全世界各地考察，通过观察、记录和总结的方法，最终提出了进化论，他是一位伟大的博物学家。</p>
+<p>那博物学既然曾经这么辉煌，为什么在现代却没着落了呢？这也是没办法的事。因为到了19 世纪，博物学所积累的材料越来越多，没人能够掌握所有知识。以前一个博物学家可以既懂植物，又懂动物，还懂地质学，但现在已经不行了。所以此后各个领域的研究越来越细化，博物学就分成了动物学、植物学、地质学等等学科，动物学下面又细分成了鸟类学、鱼类学等等学科，这么一来，博物学就逐渐被掏空了，到了现在，基本上就只剩下一个动植物分类学了。</p>
+<p>从刚才这些历史中我们就能看到，博物学的确属于西方科学的传统，只不过随着科学的分科化，它现在变得弱势了，所以吴国盛认为，我们可以把博物学看成是西方科学的另类传统。如果把博物学看作是科学的话，那中国古代的一些文化成就，一下子就找到了落脚点。</p>
+<p>举个例子，天文学。中国古代的天文学，基本上是为政治服务的，是为伦理生活服务的。古人把天象当作日常生活的伦理指南，就是之前所谓的老黄历，来看今天适不适合嫁女儿、明天适不适合祭祀等等。统治者也用天文现象来指导自己的政策，比如，如果发生了日全食，那就是皇帝德行不端，上天对他进行了警告等等。所以说，中国古代的天文学，其实是一种天文解释学、星象解码学，而不是像西方那样，想对天体运行进行解释，探究天体运动本质的数理科学。如果按照数理实验科学的定义，那中国古代的天文学就不算科学。</p>
+<p>但是，也正是这样的原因，中国古代是非常敬畏天象的，因为它跟政治、生活各方面都高度相关，所以天空中哪怕发生了任何一点微小的变化，都要忠实的记录下来。那么带来的结果就是，中国古代的天文学数据非常丰富，观测记录之详实和完整远远超过西方，直到现在都是价值千金。相比较来说，希腊科学家的观测数据就要少很多。因为在他们看来，天空是不生不灭的、永恒的，是一个非常完美的模型，不会发生什么变化，所以太阳黑子、超新星这样的东西，他们压根就不想注意，直接忽略了，彗星、流星等现象也被看成是大气层内发生的事情，没有系统记录。而中国天文学家记录过几千年来29 次哈雷彗星回归的完整数据、100 多次太阳黑子的数据，这些都是世界之最，西方科学家要进行天文研究也得依赖这些数据。如果我们把博物学看作是科学，那中国古代的天文学就有一部分肯定属于科学范畴。</p>
+<p>除了天文学之外，中国古代的数学、地质学、农学甚至是医学，都有不少属于博物学方面的科学成果。比如，在地质方面，各地的气象、地貌、动植物物种甚至地震信息，都有详细记录；在农学上，《齐民要术》这部著作把谷物、蔬菜、水果、养蚕、养鱼、种树等等领域的农业知识都做了归纳集合；在医学上，《神农本草经》、《本草纲目》这些著作也记录了大量动植物、药物的功能和服用方法等等。从博物学的角度来看，这些知识都是属于科学，那我们当然可以说，中国古代是有科学的。</p>
+<p>讲到这里，结论已经很明确了。如果我们把科学定义成狭义的希腊理性科学和数理实验科学，那么中国古代就没有科学，一点点都没有；但如果我们采取一个比较包容的定义，把博物学也算进科学的范畴，那么中国古代就有科学。所以吴国盛才说，中国古代有没有科学，本质上是一个定义问题。</p>
+<p>听到这里你可能会想，这不就是一个文字游戏吗？还真没这么简单。吴国盛说，采取包括博物学在内的科学定义，对我们复兴传统文化是有好处的。为什么这么说呢？你看，如果非要采用数理实验科学的分类方法，来对中国传统文化进行整理的话，那我们很可能会扭曲这些传统文化。比方说，如果我们非要按照现代的学科体系，去寻找中国古代的天文学、地质学知识的话，那根本就是牵强附会，因为中国古代压根就没有这些东西。这等于是把很多碎片强行凑到一块，说这就是中国古代的科学，根本不符合事实。</p>
+<p>吴国盛说，李约瑟的《中国科学技术史》这本书其实就有这样的问题。比如，李约瑟按照现代数学的标准，整理了中国古代的数学知识，这就会让人误以为中国古代有跟希腊一样的数学理论体系，但实际上，《九章算术》这样的著作里面记载的只不过是不同的粮食之间怎么进行交换、盖房子时要用多少立方米的土等等实用的计算题，也就是说，只有技术，没有数学理论，压根就不是西方意义上的数理科学。而如果用博物学的视角去整理传统文化，就不会出现这样的问题。</p>
+<p>而且，采取包括博物学在内的广义科学定义，也有利于我们真正地把中国传统文化和现代科学结合起来。我们不能为了面子扭曲事实，说中国古代数理科学多么多么发达，这是一种自欺欺人，我们应该去分析中国传统文化的缺陷和优势，知道我们的长处在于博物学而非数理科学，以一种求真的态度去重写中国古代科技史，找到传统文化和现代科学的连接点。</p>
+<p>讲到这里，《什么是科学》这本书的精髓你大概已经了解了，我再来为你总结一下。</p>
+<p>首先，讲到的第一个问题是西方科学的起源。吴国盛说，科学是一种非常独特的文化现象，起源于对自由的追求。而中国古代由于环境的不同，对理想人性的追求不是自由，而是仁爱，所以无法孕育希腊那样的理性科学。</p>
+<p>第二个问题是古希腊科学转变成现代科学的过程，这跟基督教有关，没有基督教，就没有现代科学。经院哲学的发展，让科学获得了跟神学平等的地位。唯名论运动的发展，最终把传统的希腊科学改造成了追求力量的现代科学。</p>
+<p>最后一个问题，我们谈了——中国古代有没有科学，吴国盛认为，这要看我们如何定义科学。如果说科学就是希腊理性科学和现代的数理实验科学，那么中国古代就没有科学；如果把博物学也加入科学当中，那么中国古代就有科学。总而言之，如果我们要说中国古代有科学，那最多也是博物科学，而不是数理实验科学。</p>
+<p>好了，《什么是科学》这本书就读到这里，在后续的《科学简史》中，我还会继续引用吴国盛教授的观点，让我们在那里一起认知越狱，自我迭代，格致教育工作坊每天都在这里等你。</p>
+<p>讲座时间：2018 年6 月1 日</p>
+
+
+<p style='float:right;'>本页共23段，3595个字符，10404 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

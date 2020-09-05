@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>物种的脚步</h3>
+
+<p>这几年我常常跳槽，最初从扬州跳到了无锡江阴，后又从江阴跳到了宁波，再从宁波跳到苏州，人在四十多岁的时候持续跳槽是需要一定勇气的。当你天天蹲在深山想着如何去改变世界，可是假如连大城市长什么样都不知道，那你还谈什么梦想呢。一个人要不断迁徙，与不同环境和知识领域碰撞，才能不断成长，得到你想不到的得到。在这不断地跳槽过程中，也让我明白了很多。</p>
+<p>最近我看了一本书，书名叫《1493 ：物种大交换开创的世界史》，这是一本像砖头一样很厚的书，这本书主要讲哥伦布发现新大陆以后美洲大陆和亚欧大陆的物种交换。过去我们看哥伦布发现新大陆这件事，会觉得欧洲人走运，他们具有冒险精神，找到了一片丰饶的土地，然后对这块地进行掠夺和殖民。可是看了这本书以后，我们发现看待问题可以有另外一个视角。</p>
+<p>在这里我先透露一个信息，中国历史上人口一直不多，从来没有超过一亿，人口最少是在魏晋南北朝的时候，那时候周围一片血腥的大屠杀，尤其是五胡乱华的时代，汉族人口区区几百万，三国时期也是这样。可是到了清代，中国人口突然出现了大爆炸，一口气突破四亿，所谓的“四万万同胞”就是这个来源。这是为什么呢？其中一个重要原因就是在明朝末年的时候美洲被发现了，美洲的红薯、玉米和土豆这些高产的作物传入中国，让更多的人有饭吃。其实这种影响不仅发生在中国，也发生在欧洲。你看，土豆、番茄酱、辣椒是西餐非常重要的原料，但是实际上这些都不是欧洲自古以来就有的物种，欧洲人也是从1493 年以后才吃得上这些东西的。在这之前，人口问题一直是欧亚文明的一个障碍。</p>
+<p>就拿中国来说，因为土地资源有限，养活不了那么多人口，所以历史上的中国一直有一个人口上限，一旦突破这个上限，社会就要爆发大的动荡，大规模的农民起义，外族的入侵杀戮，包括种族内部的血腥屠杀，直到美洲作物的传入，这个问题才得以解决。这样的例子在《1493 ：物种大交换开创的世界史》这本书里还有很多。哥伦布发现美洲最大的影响是产生了一个副作用，就是对神权的打击，以前人们觉得万事万物都是神创造的，它是无所不知的，结果有这么一大片的陆地，神却好像从来没有说过，说明神也是有局限的。</p>
+<p>再比如，我们都知道瓦特改良了蒸汽机，让蒸汽机的效率大大提高。但是瓦特发明的蒸汽机还有一个明显的缺陷，密封性的问题一直难以解决。其实蒸汽机的机械原理也不复杂，就是把蒸汽热力转化为机械动力，在这过程中有一点很重要，要尽可能地保证蒸汽不外泄。因为蒸汽在传输过程中一外泄，气压就不足，气压不足动力就不足。在当时这个问题一直很难解决，有以下几点原因：第一，当时的工艺不可能把整个机器做成浑然一体，这样连生产都生产不出来，更别说维修和装配了；第二，既然生产不出来，连接的地方就要做密封，密封材料必须要有可塑性和延展性，这样才能有密封效果，即使出了故障也好生产好拆卸，我们不能说一漏气就把整个机器给拆了；第三，这个密封材料还得耐高温和耐磨。所以解决这个问题的关键不是科技，不是机械，而是材料，即传统的密封方法要么耐不住蒸汽的高温，要么耐不住磨损，要么延展性就不够。直到1493 年后，欧洲人从印第安人那里发现了橡胶，它具有可塑性和延展性，在生产过程中加入硫磺还可以变成耐高温的“硫化橡胶”，现在的汽车轮胎就是这样的，所以，蒸汽机的密闭性一下子就被解决掉了。不仅如此，作为重要的化工原料，橡胶已经无处不在，比如现在运用最为广泛的汽车轮胎。你看要是没有橡胶的话，第二次工业革命的内燃机和电气革命也就不会发生，就没有了汽车。现在的人类是离不开汽车的，美国还被称为“轮子上的国家”。所以一位美国的地理学家就曾经说：“工业革命需要三种基本材料——钢铁、煤和橡胶。前两种材料在亚欧大陆上广泛存在，只有橡胶是新大陆独有的。”</p>
+<p>工业革命爆发以后，不仅手工业的效率大大提高，农业生产的水平也得到改良。但这个时候新的问题又出来了，人的生产力可以大幅度增加，机械可以解决人力问题，但土地的生产力却没办法解决。一块失去肥力的土地，你用再先进的机器也种不出庄稼来，庄稼也是长不好的。当时的欧洲人对肥料其实有很大需求，当时最有效的方法是把动物骨头磨碎加工变成肥料，但是因为需求量太大了，屠宰场的动物骨头已经不够用了，于是人的骨头也沦落为肥料的原料。当时甚至有报纸说到阵亡士兵是非常有商业价值的商品，是阵亡士兵的尸体养活了英国约克郡农民的庄稼。</p>
+<p>解决这个尴尬问题的依然是美洲，只不过这次不是美洲大陆，而是在一些海中的小岛。因为四周都是汪洋大海，所以这些小岛成了鸟类唯一的栖息地。于是，在这些岛上就形成了一层厚厚的鸟粪，这是一种独特的资源。鸟粪这玩意第一量多，有可能攒了几万年甚至几十万年；第二，鸟粪非常疏松，很好处理，只要按比例掺入粘土和沙子就可以变成很好的肥料。所以欧洲立马就掀起了一股“鸟粪热”，短短四十年内，秘鲁就出口了1400 万吨鸟粪。当然，开采鸟粪的环境十分恶劣，由于没人愿意干，很多人都是被骗过去的，比如很多去美洲淘金的中国人，实际上没去成旧金山挖金矿，而是被骗去秘鲁掏鸟粪。</p>
+<p>以上故事是在说美洲作物对欧亚大陆的影响，其实这种影响并不是单向的，欧亚大陆的生物也解决了美洲的不少问题。我看过一本书《蚯蚓改变世界》，原本美洲是没有蚯蚓的，当地的蚯蚓在上一次冰河期时都被冻死了，所以美洲土地的肥力就不如亚欧大陆。1493 年之后，蚯蚓从欧洲的船上被无意中被带到了美洲，没过几年蚯蚓就能把土地重新翻新一遍，而且它的繁殖力也极强，这样不仅让土质更加松软透气，还清除了常年积累的落叶和腐败植物，种植土地更加肥沃了，也大大改善了山野林地的土壤环境。</p>
+<p>再举一个例子，美洲长期处在比较原始的帝国模式中，生产力和文明水平都很有限。这倒不是说美洲人不聪明，而是他们先天不足。有本名叫《枪炮、病菌与钢铁》的书，它的作者是戴蒙德，建议大家也去读一读。戴蒙德在这本书里面就说，美洲大陆文明不发达的原因之一就是他们没有牛马这些大型的生畜，勉强能用的只有羊驼。见过羊驼的人都知道它的力量和一条狗差不多，别说耕地了，连人都载不动。所以哥伦布发现新大陆的真正意义，是帮美洲大陆引入了很多关键因素，打破了之前两个大陆内部系统的博弈平衡。我们经常可以看到，无论是一块大陆、一种文明、一个国家，还是一个公司，或者一所学校，因为掌握的资源和方法有限，系统体内的博弈竞争好听的说法是找到平衡，不好听的说法是陷入困境。这个时候，如果继续调度大量的资源投入，往往是没有用的，反倒是一些细小的外部因素，可能刚开始看微不足道，但只要它是原来系统没有的，倒有可能带来天翻地覆的变化。明白了这一点，我们再去看一些事情，视角就不一样了。解决问题的根本在于要跳出原来的问题，钥匙不在锁上，就要到别处去找。有时侯是内部因素起了决定作用，但更大可能是外部因素是发酵剂，对于事物的变化起了决定作用。</p>
+<p>跳出原来的逻辑，用上帝视角去审视，能看到不一样的因果关系。这让我想到了鲶鱼效应：渔夫在运输过程中引入鲶鱼来促使沙丁鱼不断游动，以保证沙丁鱼活着。记得“罗辑思维”中的罗振宇在《破局》一集中提到，管理的目的不是为了形成规则和规矩，而是为了破局而出，通过引入一些外部因素，打破已有的平衡，往往能够取得很好的效果。万维钢老师所说“喜欢=熟悉+意外”，这个意外就是个神来之笔。在此之前罗振宇在《两只眼》也提到，以某点“资源优势获取特许权利”为第一只眼，以“创新、延伸、嫁接”为第二只眼，活下来的可能性会大很多，很多道理其实都是相通的。当然引进外来因素需要冒风险，也需要循序渐进，让机体能够逐渐适应，否则很有可能是一场灾难。在《枪炮、病菌与钢铁》这本书里就提到，欧洲人对美洲的征服中，病菌其实也起到了非常关键的作用，因为当地土著对此根本不具有任何免疫力和抵抗力。</p>
+<p>再比如，文艺复兴就是欧洲文明自身达到了一个平衡态，这个时候再引入阿拉伯人保留下来的古希腊古罗马的文化因素，一下子就点燃了一个全新的时代。再比如，著名的新浪公司，本来在三大门户网站当中已经做得最好了，但是困境也很明显，如果持续在门户上投入资源，只会在原有路径中越陷越深，这个时候美国的Twitter模式给了他们启发，新浪推出了微博，公司重获新生。你看，再重要的内部因素都潜藏着一个风险，让系统在原有路径上越陷越深；反过来再不起眼的外部因素，都暗含着一个机会，它有可能带来全新的基因，让系统焕然一新。</p>
+<p>记得《冬吴相对论》的吴伯凡老师讲过一句话，说：“遇到困境看镜子，遇到顺境看窗外。”上半句好懂，遇到困境问题往往出在自身，所以要看镜子。但是遇到顺境为什么要看窗外呢？从今天我们讲的这个原理来看，所谓顺境就是内部平衡即将达成的时候，表面看起来顺风顺水，但是实际上危机已经隐藏其中，如果这时看着窗外，注意引进那些你原有系统中没有的因素，也许会有大的妙用。</p>
+<p>从人自身来看，想把一件事做到100 分和做到90 分所花费的努力程度是完全不同的，因为最后的10 分往往需要比前面90 分需要花更大的努力和天赋。因此当人们做到90 分时就面临了一个选择，是继续在同一领域花费更大的精力去得到最后的10 分，还是转换思路将精力投入不同领域，获得另外一个90 分。上周罗辑思维介绍的“两眼论”实际上就给了我们同样的启发，选择进入其他领域并将两个领域融合，往往是更有效的出路，并不是说将事情做到极致不好，只是这往往更需要天赋，并非所有人都能达成。吴伯凡老师最后的话“顺境看窗外”对我们也很有启发，不管是人还是企业一旦停止了脚步，实际上就面临了危机，要有向死而生的精神，不断自我迭代，才能减缓进入死亡阶段的过程。在感到顺风顺水时，就是“人无远虑、必有近忧”的时候，不仅是企业还有个人，那些找到了外部关键因素并引入的企业和个人才可以脱离泥沼。之前罗胖在视频节目也提到过《1493 ：物种大交换开创的世界史》这本书，我买到这本书后打开一看，真的让我大开眼见。从来没有想过物种的脚步让世界成为了现在的世界，这真的很有意思，最近这两天吴伯凡老师在讲“不适者生存”、万老师在回顾《俭省》，共同的意思是要在极度的环境下利用好自有资源发挥到极致，而罗胖今天则讲了在内部陷入困境时可以引入外部资源，这是一个完整的多角度逻辑。</p>
+<p>今天提到的三本书，《1493 ：物种大交换开创的世界史》和名著《枪炮、病菌与钢铁》，我也希望科学老师都来读一读，相信一定会对你有所启发。第三本是谈蚯蚓的，过两天向大家作个推荐。</p>
+<p>今天咱们就聊到这里，明天见！</p>
+<p>讲座时间：2017 年6 月6 日</p>
+
+
+<p style='float:right;'>本页共17段，4395个字符，12784 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

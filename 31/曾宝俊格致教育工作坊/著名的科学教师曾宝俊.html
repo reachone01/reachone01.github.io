@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>著名的科学教师曾宝俊</h3>
+
+<p>男，1971 年1 月生，1991 年参加工作。大专学历，小学高级教师，江阴华士实验学校科研处主任。现任教于江阴市华士实验学校。</p>
+<p>1991 年，从师范毕业的曾宝俊来到扬州市新河湾小学报到上班。1994 年的一场胃病意外地让他和小学科学教育结下了不解之缘：因为生病，领导让他教低年级数学兼自然课。机缘巧合，那一年，区里举行自然教师教学优质课比赛，第一次上自然课的他代表乡镇参赛，从此，曾宝俊老师就扎根于小学自然（科学）教学这个领域，一发不可收，成为省内外颇有影响的一位科学老师……</p>
+<p>【获得荣誉】</p>
+<p>先后被评为“无锡市名教师，无锡市教育科研带头人，小学科学学科带头人，中央教科所‘十五’教育科研先进工作者”。他是全国李镇西班主任教育思想研究会秘书长、苏教版小学《科学》教材编写组核心成员、教材培训专家组成员、《科学实验通讯》责任编辑。他上的课获得过全国一等奖，他写的近百篇教育教学论文在多家报纸、杂志上发表，他在杂志上开专栏论坛一年，所论专题在小学科学教育界引起较大反响；他到全国七十多座城市做过百余场讲座，上过几十节公开课，深受欢迎；他还作为“大陆科学教育参访团”成员赴台湾考察科学教育。</p>
+<p>【先进事迹】</p>
+<p>虽然身在村小，但他不因地处农村而思想狭隘。他进行了一系列大胆的尝试：建构了具有个性特色的科学探究体系，尝试编了一份《自然》教学大纲，尝试编了一套“班本”自然教材，更尝试了一节节设计新颖的课堂教学探索：《昼夜的形成》《毛细现象》《热胀冷缩》《磁铁的性质》《花的解剖》《食物的营养》……尤其是执教《月相观察》，他像一位魔术师，巧妙引导孩子连续观察一个月的月相……这些设计新颖的课使他从同行中脱颖而出，名声大振。这一系列的成果也使他成为扬州市第三批小学科学学科带头人。</p>
+<p>2001 年，在路培琦老师的引荐之下，曾宝俊走进了苏教版小学《科学》教材组，成为教材组内为数不多的一线老师。之后他又参与了教材整体框架的建构，执笔编写了全套8 册教材中的6 册（15 个单元）。《冷和热》《土壤和生命》《太阳和影子》《生命之源——水》《电和磁》《共同家园》等这些苏教版小学《科学》教材中颇有影响的单元都是出自他的手笔。不仅如此，他还撰写了5 册教材12 个单元的教学参考书，参与了全套科学教材的实验册设计，独立执笔6 年级的实验册；参与编写了全套苏教版小学科学教材《案例与评析》，并担任了6 年级上册《案例与评析》的分册主编。</p>
+<p>作为无锡市引进的优秀科学教师，曾宝俊在无锡和江阴等地对全市的科学老师作科学专题报告10 多场，每学期他都要以一个全新的主题开讲：《我的科学课堂的实践与思考》《关注课堂细节，提升科学素养》《努力做一个思索着——谈谈科学探究指导的深入和精细》《寻找一面镜子——对科学本质的反思》《大陆与台湾科学教育之比较》……一场场观点新颖，操作性强的主题报告，让无锡市广大的科学老师获益匪浅。</p>
+<p>作为教材编写组的骨干力量，曾宝俊老师还承担起苏教版小学《科学》教材的教师培训重任。受教材组委托，他在全国各省作教材培训讲座和学术报告近百场，到云南、厦门、温州、广东等地执教各类公开课54 多节，足迹遍及全国15 个省，73 个城市；2007 年10 月，他还作为大陆科学教育参访团的成员考察了台湾科学教育。此外，他还作为主讲老师录制了全套的小学科学教材培训光盘和录像课，录制了五、六年级的全册教材的科学实验活动指导光盘，他的课堂教学录像多次在中国教育电视台播放。这些光盘和录像为广大苏教版科学教材使用地区的科学老师带来了极大的便利。在教材培训过程中，他能认真组织指导当地的教师参与教材分析，并给予广大教师确切到位的指导和帮助，成为科学教材实验老师的良师益友。且本人能够做到带头学习，尤其重视科研理论的学习，为教材组的教材建设做出了重要的贡献。</p>
+<p>【教学理念】</p>
+<p>随着对科学教材编写和实践及理论研究的不断深入，曾宝俊老师逐步形成了具有自己特色科学教育思想。这从他的科学课堂可以看出。他的课既是对传统自然课弊端的冲击与反思，又是对新生科学课的理念思考与呼唤。</p>
+<p>他的教育观——注重兴趣，全员参与，让每个孩子享受最好的科学教育。他认为每个学生都是怀着对科学的一种憧憬而来，每个学生都渴望在科学课堂上得到充分的发展，而且每个学生都蕴含着巨大的创新潜能，每个学生都有自我实现的良好愿望。教学中他注重激发学生的兴趣，让学生全体都参与进来，在参与中学到科学知识；在亲历探究中，经历挫折与失败、成功与兴奋，从而理解科学的本质、精神、意义与价值。</p>
+<p>如在教《四季星座》的时候，他就发动每个学生各自在喜欢的时间里，把自己喜欢的星星用线连起来，建立自己的星座。通过建立“我的星座”来激发学生去观察星座，保持看星座的兴趣。由于这个教学案例的参与性强，操作型好，结果被《国家小学科学（3 -6 年级）课程标准》收录为典型案例。</p>
+<p>他的教学观——强调动手，注重人文，为孩子奠定厚重的精神底蕴。他在教学中，创设了大量的动手的机会让学生参与，重视每堂课实验到位。他认为学习科学是学生自己实践的事，所以，学生必须亲自动手做，而不能由别人来代劳，不是要别人做给他们看。他还认为，除了动手，学生还必须有“动脑”的理性体验，学科学的过程应该是体与脑的共同活动过程。在强调动手和动脑的同时，他更注重科学与人文的相融共生，因为在他的心目中，和谐的人格比扎实的知识技能要重要得多，把探究的快乐根植于孩子们的心灵，是小学科学教育的重要使命。</p>
+<p>他的课堂观——大胆改革，追求创新，让课堂成为师生共同成长的精神家园。有人说：“课堂永远是一门遗憾的艺术。”但他努力使课堂成为艺术而不留下遗憾。日常工作中，他重视上好每一节科学课。从课前钻研教材、设计教法学法，到课中导入新课、创设意境，到课后小结、效果反馈等，不轻易放过任何一个环节。教育过程中，他根据课的内容设计方案，努力通过动手实践给学生带来科学探究的体验，把学生带到科学探究的意蕴中去，提高学生对科学的兴趣和感受力，发展学生的科学素养。</p>
+<p>例如：在《月相观察》一课中：他由观察早晨的月亮出发，激起学生的观察兴趣，然后通过描述自己看到的月亮，再次看到月亮就给老师打电话，看到满月就给老师写信等多种手段，调动学生的兴奋点，使学生保持了一个多月的观察月亮的兴趣。后来这个教学设计被“中国教学学会小学自然教学专业委员会”的会刊《科学课》评为优秀教学设计一等奖。2005 年，在山西召开的全国年会上，这堂课还被评为全国“一等奖”。</p>
+<p>他的学生观——体验童心，发现未来，每个孩子都具有科学探究的潜质，都是一个快乐的心灵。曾宝俊老师的课堂教学正是标示着这个方向，他的课上得很科学，很快乐，很人文，孩子在他的课堂上，把探究当作一件快乐的事儿。他在《暗盒里有什么》一课中，设计了几个独特的暗盒。课堂上，学生围绕着几个暗盒开展了一系列有意义的探究，此时，学生在他的眼里都是一个个鲜活的、发展着的、你追我赶的生命个体。他的责职是服务和呵护，让他们在充满阳光和空气的天地里快活地、健康地成长为参天大树。他的教学方式充满人情味，他的课堂充满生命活力，在这种探究的环境中，孩子们都能获得科学的滋润，体会到探究的快乐，成长的快乐，即使下课了，孩子们也不愿意离开，还争论不休，就连听课的几百个老师也是疑惑不解，连称“神奇”“有意思”，最后，这堂课以无可争议成绩获得江苏省科学探究案例教学展示一等奖的第一名。</p>
+<p>在实践的基础上，他潜心于科学教育教学理论的总结和提升。他撰写的科研文章曾获9 个国家级小学科学教学论文评比一等奖，他在省级以上报刊发表了小学科学教育教学论文79 篇，参编了教育教学书籍近百万字；他被中国教育学会《科学视野网》聘为网络编辑、苏教版小学科学教学网论坛版主。尤其是2006 年，他在《小学教学设计》杂志上开辟专栏，连载了11 篇《小学科学课堂教学论坛》，在全国范围内引起了极大的反响。2007 年，从《科学课》杂志第10 期开始，他又以“苏教版小学科学教材组”的名义连载文章《科学探究过程技能单元的设计与思考》，2006 年，作为全国杰出的科学老师代表，他的事迹被刊登在全国小学科学教育专业委员会会刊《科学课》杂志《教坛百花园》栏上。2008 年第2 期《科学课》杂志还将发表其教学思想与经验的长篇报道——《走向“名师”的脚印》。</p>
+<p>【人物故事】</p>
+<p>2004 年暑假，曾宝俊老师从古城扬州来到江南小镇——华士。来到华士实验学校，必将抛弃原先在扬州的所有荣誉和地位：学校科教科室主任、区教研站长、市兼职教研员……然而，当华士实验学校夏青峰校长问他有什么加盟条件的时候，他说：“让我做一个专职的科学老师就行！”</p>
+<p>在来华士的第二年，他开始主持学校科研处的日常工作，负责学校人文课题研究的具体事务。其实从2001 年起，他自己就开始了课题研究之路，独立申报了江苏省“十五”规划“青年专项”课题《设置综合研究课题培养科学探究能力》。该课题已于2006 年4 月结题。在结题会上，与会专家被他规范的课题操作所折服，认为“个人课题居然制定了课题管理章程，真的是令人想不到！”在整个课题研究过程中，他先后完成了3 份研究报告：分别是《基于探究能力的综合课题的设置》《小学生科学探究能力的评价目标及体系》《小学生科学素养的测试及调查》，组织了13 次的大型课题研讨，撰写了近百个案例，其中有86 个案例发表或获奖，发表了40 多篇论文，积累了近60 万字的文字。在整理成册的近25 万的文字中，他就小学科学综合研究课题的设计、小学生科学探究能力的培养与测试等诸方面都作了开创性的探讨和研究，研究成果得到了专家们的肯定。</p>
+<p>2005 年，他接手华士实验学校的全国教育科学“十五”规划立项课题“中小学生人文精神培养的研究”的结题任务。在结题材料准备期间，他日夜加班，梳理学校在十五期间对校园人文精神培养的研究资料。由于华士实验学校在十五期间发展十分迅速，从一所乡镇九年一贯制学校迅速拓展成为一所具有国际化视野的综合性教育集团，在这个过程中，学校举办了大量的、卓有成效的人文研究活动，一次次的沙龙、论坛、研讨、会议对校园人文的培养作了深入的思考和探索，积累了大量的原始研究资料。但由于人事变更，这些资料没有被及时整理。在曾老师和课题组的同伴共同努力之下，经过近两个多月的辛劳，编撰四本专著（每本近20 万字），两本人文校本教材。对学校“十五”期间的课题研究工作，做了详尽的研究整理，撰写了内容翔实、科学，格式规范的关于“中小学生人文精神培养”的研究报告。结题鉴定会上，中央教科所所长朱小蔓、江苏省教科所所长彭刚、成尚荣等专家们对该课题研究作出了高度的评价。同年10 月，课题组相关成果文章在《中国德育》杂志上发表，后又被《中国人民大学报刊资料中心》转载。学校也因在十五期间卓有成效的研究被评为“无锡市教科研先进学校”、“中央教育科学研究所十五先进教科研基地”，曾宝俊也被评为“无锡市教育科研带头人”、“中央教科所教科研先进个人”。2006 年，由曾宝俊老师执笔的《未成年人人文精神的培养》又被江苏省教育科学“十一五”规划列为重点课题。他本人申报的《小学生科学前概念水平测试的研究》再次被列为省“青年专项”课题。“梅花香自苦寒来”！2006 年9 月，无锡市人民政府授予他一份非常崇高的荣誉——“无锡市名教师”的光荣称号！</p>
+<p>在努力让自己成为学习型、反思型、专家型老师的同时，曾宝俊老师还不断为年轻教师的成长提供帮助。在他的悉心指导下，江阴的季荣臻和朱蕾老师分别获得江苏省课堂教学优质课评比一等奖。陈强、顾锦荷、姚强东、田晓军等老师都分别在无锡市和江苏省的其他小学科学教学比赛中获得一、二等奖。他本人也被聘为无锡市和江阴市科学中心组成员，并多次承担无锡市、江阴市科学比赛的评委工作。</p>
+<p>如今，作为无锡市名教师，作为华士实验学校负责教育科研的主任，他更是意识到自己承担了更多的责任，更是站在一个更高的平台上思考学校科学教育今后的发展，思考作为一所中央教科所附属学校的科研品质。他师德优秀，教学水平高，理论功底扎实，教学艺术性强，教育教学效果特别显著，是一个难得的学者型教师、科研型教师、创新型老师。我们相信在今后的教学实践中，他将会以火一般的热情，以勇往直前的气魄，以过人的智慧和胆识，探索出了一条富有特色的科学教育发展之路，为我国的小学科学教育事业作出他应有的贡献。</p>
+
+
+<p style='float:right;'>本页共25段，5222个字符，14979 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

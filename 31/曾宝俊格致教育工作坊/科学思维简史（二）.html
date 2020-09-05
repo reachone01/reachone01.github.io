@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>科学思维简史（二）</h3>
+
+<p>关于科学时代的思维特点，其实昨天我们已经提到过了，就是尽量地追求客观，也就是实证。任何人都可以基于观察、想象、推理，甚至是依据一些经典，来提出一些原理性的观点。这些观点如果不能被证实，那它就是假说。这当然很依赖于技术手段，比如哥白尼虽然很早的时候就提出日心说，但是必须要等到伽利略改进望远镜之后，日心说才能被证实和广泛地接受。</p>
+<p>最著名的例子就是爱因斯坦的相对论了。包括爱因斯坦在内的所有人都认为宇宙是静止的，或者更准确地说，时空应该是静止的，但是在相对论方程的描述下，宇宙并不是静止的，而是处于不断的膨胀之中。所以，就连爱因斯坦本人也认为相对论方程有缺陷，于是就在方程里加进了一个宇宙常数，用来确保宇宙的静止。但是，哈勃望远镜的出现，证实宇宙真的处在不断的膨胀之中，这让爱因斯坦认为，在相对论中加入宇宙常数是他的学术败笔之一。</p>
+<p>同时，在科学思维阶段，实证不仅能证明科学假说的是对还是错，还能推动科学的发展。比如，哈勃望远镜的出现不仅证明了相对论的正确，而且还推动了大爆炸理论的发展。因为，宇宙膨胀的现实说明，过去的宇宙一定比现在的宇宙小，也就是说，在很久很久以前，宇宙可能是一个密度极大但体积极小的存在，也就是宇宙起源时的样子。所以，我们看，在科学思维时代，科学假说需要实证，而实证出来以后的新发现，又可以推动科学的发展，这是一个良性循环，这是我们说科学时代。在这一阶段，科学和技术可以进行良好的互动，科学推动技术的发展，技术也能推动科学的深入。这就是我们说的科学时代的思维特点。我们把宇宙万物作为研究对象，提出种种推论和假说，然后通过技术手段证明它是否正确。</p>
+<p>这一阶段大约是从伽利略正式开始，到爱因斯坦开始动摇。为什么说这一阶段的科学思维到爱因斯坦开始动摇呢？因为随着科学发展越来越快，它和技术之间就存在一个问题，就是科学发展太快，技术跟不上了。说再简单一点，就是科学家推导出的新假说，既不能被证实，也不能被证伪，可能成为永远的假说。这就是我们说的后科学时代。</p>
+<p>首先要明确一点的是，这里所说的后科学时代并不是一个普遍的现象，而是只存在于少数几个领域中。比如，最典型的就是物理学领域。这个尴尬的局面其实从爱因斯坦开始就有了。我们都知道，爱因斯坦《相对论》的论文中有三个著名的预言。其中，第一个预言在当时就解决了，第二个预言在1919 年全世界观测了日食之后也被解决了，而第三个预言了引力波——两个大质量的天体在相互碰撞的时候会产生引力向宇宙传播，这样一个预言在过去一个世纪中，引力波都只是一个假说，直到2017 年5 月份才被证实。像这样的例子，在今天的物理学中有很多，比如我们熟悉的“平行宇宙”“高维空间”还有“弦理论”“膜理论”，都是难以被证实的假说。以弦理论为例，它描述的主要是普朗克尺度下的宇宙，也就是10 -33 厘米和10 -43 秒，这是现在的技术手段无论如何都达不到的领域。也正因为是这样，很多物理学家都抱怨，在过去的几十年中，天文物理学都没有什么实质上的发展。后科学时代的特点是，人类在天文物理学领域的探索已经达到非常深度的阶段了，之前那种实证精神已经没有条件实现了，这就导致了科学本身的发展开始变得艰难起来，甚至要比前科学时代还要艰难。严格来说，这不是特点，而是一种困境，至于怎么走出这个困境，目前还看不到答案。</p>
+<p>这就是我们说的科学思维发展的三个阶段。在前科学时代，无论是巫术，还是早期的自然哲学，人们对世界的理解其实都是建立在主观意识上；而到了科学时代，科学与技术开始相辅相成，互相促进；再到后科学时代，新的科学理论很难通过技术手段验证，自身的发展也开始停滞。在这一过程中，我们不仅能了解人类思维的发展变化，也能看出科学思维的发展其实很依赖于外部条件，尤其是技术条件。</p>
+<p>通过前两部分的叙述我们知道了，求知是人类的欲望，这种欲望让我们不断地寻找和发现新的知识，这就是科学思维的起源，而在科学思维的发展过程中，技术起到了非常关键的作用。那么，在这个过程中，除了那些我们获得的外部知识，也就是有关这个世界的真相和操控环境的方法之外，在思维和认知上，我们还有什么突破和改变呢？</p>
+<p>我们首先是动物，而对于动物来说，第一个挑战就是如何开启自我意识的觉醒。人和动物之间最大的区别就是人是知道人会死的，而动物是不知道的。我们都知道，在中国古代的神话中，天地是盘古创造的，而人是女娲的后裔；在古希腊神话中，人则是天神用各种金属材料创造出来的，不同材料的人有不同的品质；而在印度神话中，人也是从神灵的身体里分离出来的；而在其他文明的神话中，人都是各种神明的造物。这是一个很有意思的现象，这背后其实有一个重要的思维变化过程。智人刚开始走出非洲的时候，只知道找个合适的地方，采采果子，打打猎，很少想其他的事情，但是，当智人有了语言之后，不仅能交流各种信息，还能围着火堆讲故事，而故事的主体，一定是“我”，“我”经历了什么？“我”看见了什么？也就是说，在几万年前，可能突然有一个瞬间，人类突然意识到了“我”的存在。这是一个非常重要的变化，就是人类和其他动物最大的区别。我曾经看过一个电视片，讲美是怎么产生的。我就突然意识到人类和动物的区别就在于人类认识自我的一瞬间。电视片里有几个原始人或类人猿他们在泥潭里打架。突然有一只猿捡起了一块美丽的石头，他很高兴贴在自己的脑门上。他认为这块石头就是他力量的象征、意志的象征，这就是我。美的产生实际上就是意识的产生，人区别于动物的重要标志，就在于人会试图理解自身的存在。也就是我们经常说的哲学三问——我是谁、我从哪来、要到哪去——其中最关键的一问，就是“我是谁”。</p>
+<p>这就跟小孩一样，当孩子还处在婴儿期的时候，他只会一些本能反应，当他开始意识到自身的存在时，他会有一大堆问题：你是谁？我是谁？我从哪来？早期的人类也是一样的：我们是谁？又为什么会那么特殊？而所有的创世神话其实都在回答这些问题，人从一开始就觉得自己很特殊，所以是神的儿子，或者神的造物。从这些答案中，我们就能看到人类自身的定位，天地万物都以人为中心。但是，这个认知在过去几千年中一次又一次地崩坏。而在这一崩坏的过程中，也伴随着第二个挑战，就是对外部世界、对宇宙自然的不断探索。</p>
+<p>一开始，人类是神的造物，居住在宇宙的中心。但是，16 世纪的时候，突然跳出来一个哥白尼，他把人从宇宙中心的位置上拉了下来，换上了太阳。那么好吧，就让太阳呆在宇宙中心吧，反正离我们也不远。但是没多久，太阳在宇宙中心的位置待不下去了，它只是银河系里的一颗恒星，银河系就是整个宇宙。而人们还没有在这个问题上缓过神来的时候，达尔文出现了，他告诉大家，我们不是上帝的造物，只是猴子的子孙而已。就在这之后不久，人们又发现了，银河系之外还有其他的星系，银河系既不是唯一的星系，也不是宇宙的中心。好吧，就算地球没什么特殊的，就算我们是猴子的近亲，至少我们是地球上唯一的高级动物。但是，即便在这个层面上，我们也不是唯一的，我们只是智人。注意，智人这个名称是我们自己封的，除了智人之外，地球上还有尼安德特人、直立人、佛罗雷斯人、能人等等。那即便是还有其他的人种又如何？我们仍然是唯一存活下来的。这倒是不假，但智人到今天也不过二三十万年的历史，十万年之后我们还存不存在都是个未知数，而直立人可是在地球上存活了二百万年，也就是说我们至少还要在地球上存在一百八十万年，才能成为有史以来在地球上存在时间最长的人类。这些东西已经够打击我们的自尊心了，但是量子力学告诉我们，我们看到的世界都是假象，而暗物质的发现让我们知道了一个事实，就是我们所知的物质，包括各种元素和粒子，只占到宇宙的5 %，剩下95 %我们根本不知道是什么，只能用“暗物质”“暗能量”这样的词来描述。甚至有可能，我们所在的宇宙都不是唯一的宇宙，我们自己都不是这个宇宙中唯一的自己。</p>
+<p>看看，在过去几千年里，我们都知道了些什么吧，人类的身份、人类的地位在不断地下降，甚至崩坏。尽管相似的场景出现过很多次，但是每一次出现都让人难以接受。这也是为什么每一次变革发生的时候，真理都举步维艰的原因。“变革对我们的头脑提出新要求，迫使我们走出舒适区，打破我们的思维定势。它让人困惑和不知所措，它要求我们放弃旧有的思维方式。”</p>
+<p>那如果按照这样的说法，我们是不是应该时时刻刻对旧思维发起挑战呢？当然不是，这其实是一个很矛盾的过程。一方面，我们已经知道，尽管已经到了21 世纪，人类的文明水平已经如此发达了，但是我们对于这个世界的认知和对自己的思考，虽然不能说是错的，但一定是有局限性的，所以，各个领域最前沿的人都在不断地尝试探索思维和认知的新边疆；但是，另一方面，我们又要保证现有的思维和认知成果不会被轻易地替代或推翻，因为它的有效性是被时间证明了的。这也就是为什么托勒密的地心说要等到一千多年后才会被日心说取代。一方面要更新，一方面又要保证更新不会轻易发生，这好像听上去很矛盾，但其实一点也不矛盾。旧的思维和认知代表过去，新的思维和认知意味着对未来的探索，生活在今天的我们的思维挑战，不是一味地守护过去，也不是一味地探索未来，而是，连接过去和未来。</p>
+<p>好了，科学思维就聊到这里，让我们一起认知越狱，自我迭代，格致教育工作坊每天都在这里等你。</p>
+<p>讲座时间：2018 年8 月13 日</p>
+
+
+<p style='float:right;'>本页共15段，3895个字符，11376 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>8堂现代物理课：构成宇宙的基本粒子</h3>
+
+<p>这里是格致教育工作坊，欢迎大家的到来，穿越时空，享受一碟知识的小菜，让我们一起天天学习，好好向上！今天我们来上第四堂现代物理课，我们来聊聊构成宇宙的基本粒子。</p>
+<p>物质是由一些基本微粒组成的这种思想可以追溯到远古的希腊。当时德莫克利特就认为物质都是由“原子”（古希腊语是“不可分”的意思）组成的。中国古代也认为自然界是由金木水火土五种元素组成的。但是物质是由原子组成的这一概念一直到19 世纪才确定，这成为了科学的认识。而在此之前，全都是一种猜想和思辨。当时知道原子是化学反应所涉及的物质的最小基本单元。在1897 年，英国的汤姆逊发现了“电子”，它带负电，电量与一个氢离子所带的电量相等。它的质量大约是氢原子质量的1 /1800 ，它存在于各种物质的原子中，这是人类发现的第一个比原子更为基本的粒子。随后1911 年卢瑟福通过实验证实了原子是由电子和原子核组成的。他做了一个著名的实验。1932 年又确认了原子核是由带正电的质子和不带电的中子组成的。这种中子和质子也成了构成物质世界的基本粒子。1932 年他还发现了正电子，其质量和电子相同，只不过是带有等量的正电荷。</p>
+<p>昨天的课里我们说到了宇宙，说到宇宙里面有光和其他物质在运动。光由光子组成，这是爱因斯坦凭直觉想象出的光的微粒。我们看到的物体都是由原子组成的，原子由一个原子核和围绕它的电子组成，原子核由紧密聚合在一起的质子和中子构成。质子和中子则由更小的粒子构成。这个更小的微粒美国物理学家盖尔曼把它取名为“夸克”。我们所接触到的每样东西都是由电子和这些夸克组成的。夸克之所以能够在质子和中子中黏在一起，这是因为一种物理学家们称作“胶子”的粒子，而“胶子”是从英文的“胶水”变化而来的。科学家们取名时并没有发现这个词有点好笑。我们身边的所有物体都是由电子、夸克、光子和胶子组成的，这些粒子就是物理学中所讲的“基本粒子”。除此之外科学家还讲到了其他几种粒子，比如“中微子”，在电影《2012 》中就讲到，太阳里爆发了一次大规模的中微子，导致地球内部热度升高以及大面积的地震而毁灭地球、毁灭人类。科学家认为中微子布满了整个宇宙，但并不跟我们发生交互作用。还有前几年刚发现的“希格斯波粒子”，它是在前不久日内瓦欧洲核磁研究中心大型对撞机中发现的粒子。它很早就被预言过了，但一直没被找到。直到2011 年被找到。这些基本粒子并不多，只有不到十几种。就如华裔科学家丁肇中发现了J粒子而获得了诺贝尔奖。但这少量的基本原料就如同大型积木中的小积木，靠它们建造出了我们身边的整个物质世界。</p>
+<p>量子力学就是描述这些粒子的性质和运动方式。当然，这些粒子并不像小石子那般真实可感，而是有相应的场的“量子”，比方说“光子”是电磁场的量子，它们的消失和重现遵循着量子力学的奇特定律。它们中的每一个粒子的存在都是不稳定的，永远都在从一种相互作用状态跃迁到另一种相互作用状态。即使我们观察的是空间中一块没有原子的区域，我们还是可以探测到粒子的微小运动，彻底的虚空是不存在的。就像平静的海面，我们凑近看还是会发现细微的波动和振荡。构成世界的各种场，也就是之前所讲的各种膜也会轻微地波动起伏。我们可以想象，构成世界的基本粒子在这样的波动起伏中不断地产生、消失。这就是量子力学和粒子理论所描述的世界。这和牛顿描述的世界完全不同。牛顿描述的世界是机械可感的。而在量子力学的领域，冰冷的小石子在不变的几何空间里沿着精确而漫长的轨迹永恒不变地在运动着。量子力学和粒子实验告诉我们，世界是物体连续的、永不停歇的波动，这就是我们曾经讲过的膜的振动，所谓“上帝的琴弦”就是这个意思。稍纵即逝的实体不断地出现和消失就形成了一系列的振荡，整个世界就是振荡得表现。就像20 世纪60 年代的美国那时候的一种嬉皮士文化，构成了当时的嬉皮世界。这是由一个个事件构成的而非人构成的。当然每个人可以变成嬉皮士也可以不变。如美国总统克林顿当时就是一个嬉皮士，后来变好了就变成了国家总统。这个理论的细节在20 世纪50 年代到70 年代逐渐得到完善。参与这项工作的有20 世纪最伟大的物理学家，如理查德·费曼和盖尔曼，还有一群举足轻重的意大利人。这些细节的建构导出了一个复杂的理论，它建立在量子力学的基础上，这个理论被称为“基本粒子标准模型”，当然名字不太浪漫。</p>
+<p>20 世纪70 年代，在所有预测被一系列实验验证以后，这个“标准模型”终于得以确立。1984 年，意大利现在仍活着的参议员卡洛·鲁比亚还凭着这个模型的首批数据获得了诺贝尔奖。2013 年希格斯波粒子的发现，完成了“标准模型”确认工作的最后一环。希格斯波粒子很早被预测出来但是找不到，2013 年在欧洲大型对撞机中被撞出来了。很难说它是由电子、质子或中子构成的，前面所说的正电子也加入了“基本粒子”的行列。之后，人们制造了大能量的加速器来加速电子或质子，企图用这些高能量的粒子作为炮弹轰开中子或质子来了解其内部结构，从而确认它们是不是真正意义上的基本粒子。但是，令人惊奇的是在高能粒子轰击下，中子和质子不但不破碎成更小的碎片，而且在剧烈的碰撞过程中还产生许多新的粒子，有些粒子的质量比质子的质量还要大，因而情况显得更为复杂，这就叫做无中生有。后来科学家们通过类似的实验从宇宙射线中又发现了几百种不同的粒子，它们的质量不同、性质不同，且能相互转化，这就很难说哪种粒子更基本。所以现在科学家就把“基本”二字取消，统称它们为“粒子”。</p>
+<p>虽然有一系列成功的实验，可是物理学家们却从未真正认真看待“标准模型”。因为这个理论至少第一眼看上去零零碎碎，东拼西凑。它由不同的理论和方程集合而成，看不出有什么清晰的秩序。它描述了某些场，如电磁场。它通过由某些常数决定的某些力相互作用，表现出某些对称性。这个距离广义相对论和量子力学的简洁方程还很遥远。“标准模型方程”对世界进行预测的方式也复杂得离谱，我说不出来，只能简单的照本宣科。直接使用这些方程会得出一些毫无意义的预测，因为计算出来的每个数都可能是无穷大。要想得到有意义的结果，必须假定某些参数本身就是无穷大。只有这样，才能抵消荒谬的结果，让预测变得合理。虽然它们在实际应用上是可行的，但那些追求简洁的人仍然觉得它有所欠缺。</p>
+<p>爱因斯坦之后，20 世纪最伟大的科学家，量子力学最重要的建立者，标准模型第一个也是最主要的方程的作者叫做保罗·狄拉克。他是在20 世纪继爱因斯坦后最伟大的科学家，由他创立了量子力学。在他生命的最后几年曾反复表达他对这一状况的不满，他说：“我们到现在还没有解决这个问题。”在20 世纪其实有三位伟大的科学家，第一位是爱因斯坦，第二位是保罗·狄拉克，第三位就是我们中国的杨振宁。很多人对杨振宁有误解，这是一种典型的抹黑。杨振宁创立的“规范场理论”是20 世纪物理学一个伟大的理论，以后我们再来谈这一理论。近几年，狄拉克做出的标准模型还出现了一些明显的缺陷。比如天文学家们发现，在每一个星系的周围都存在着一团巨大的云状物。我们是通过它对星体的引力和它使光线发生偏折现象才间接发现它们。但我们无法直接看到这团巨大的云，也不知道它由什么组成。科学家们曾经提出了很多假设，却没有一个说得通。很明显，有东西在那儿，但它具体是什么，我们却无从知晓。今天我们把它称为“暗物质”，一种无法用标准模型描述的东西。不然我们也不会看不见它们了。暗物质不是原子，不是中子，更不是光子。</p>
+<p>老师们，其实天空、地上存在着很多超出我们的哲学或物理学想象的东西，如今这也不是什么新鲜事了。就在不久之前，我们人类还曾经怀疑过无线电波和中微子的存在呢！尽管这些无线电波、电磁波充满了整个宇宙。迄今为止，70 年代建立起来的标准模型仍然是解释物质世界最好的理论，它的预测全都得到了证实。除了暗物质和广义相对论中被描述为时空曲率的引力之外，其它的都很好地解释了已知世界的方方面面。</p>
+<p>曾有人提出其他理论试图替代标准模型，但都被实验推翻了。例如，20 世纪70 年代有人提出了一个叫做SU（5 ）理论，它看起来很不错，用一个更简洁优雅的结构取代了标准模型中无序的方程。这个理论预测质子会以一定的概率衰变，分解成电子和夸克。科学家们造了很多巨型仪器，来观测质子的衰变。由于衰变需要太长时间，所以不能一次只观测一个质子，有些物理学家为寻找可观测到的质子衰变奉献了一生。可惜至今为止还没有一个科学家观测到质子的衰变。SU（5 ）这个漂亮的理论，虽然简洁美妙，却得不到上帝的青睐。同样的故事或许正在上演。还有一种理论被称为“超对称”的理论，预言一定存在一类新粒子。</p>
+<p>在整个物理生涯中，我们不断听到有满怀信心地期待着新粒子发现。但是随着时间的流逝，一天天、一月月、一年年、数十载……这些被称之为超对称粒子依然没有现身。这就意味着物理学并非只有成功。所以我们现在还只能依赖狄拉克建立起来的标准模型。它可能不太优美，但是用它来解释我们周围的世界却很好用。谁知道呢，仔细想想，或许并不是这个模型不优美，而是我们还没有学会从正确的角度看待它，或者没有发现这个复杂的模型中隐藏着的某种简洁。</p>
+<p>如今，我们对物质的认识是这样的：屈指可数的几种基本粒子，不断地在存在和不存在之间振动、起伏，充斥在似乎一无所有的空间中。它们就像宇宙字母表里的字母，以无穷无尽的方式组合，组合成星系、繁星、阳光、山川、森林、田野以及电视节目里的孩子脸上的笑脸和笑容，以及今天这堂课的声音，或者组成一个星光璀璨夜空，组成一个人类的漫长历史。</p>
+<p>好了，关于基本粒子我们就先聊到这里，我估计能听懂的老师没有几个。明天我们来聊一聊构成这个世界的空间颗粒。让我们一起自我迭代，好好学习，格致教育工作坊每天都在这里等你。</p>
+<p>讲座时间：2017 年12 月25 日</p>
+
+
+<p style='float:right;'>本页共14段，4089个字符，11823 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>科学本质观（一）</h3>
+
+<p>各位老师大家好，这里是格致教育工作坊，欢迎大家的到来，穿越时空享受思想的盛宴，让我们一起天天学习好好向上。今天我们一起来聊聊小学科学课程的价值取向。</p>
+<p>昨天我开始上小学科学课，我上的是四年级的课，然后听了一年级的课，今天又听了一节一年级的课，这就让我感觉到小学科学课，尤其在低年级阶段的时候，我们要有一些本质形式的认识，我们要让学生知道些什么？</p>
+<p>小学科学课程，其实就是要让学生正确认识什么是科学？什么是伪科学？要让学生能够识别、辨认科学的真伪，从而使学生从小就学会正确运用方法获取科学知识，帮助学生认识自然，了解社会，促进学生的科学素养。因此，从这个角度来说，从科学哲学发展的历史来看，可以把人类对科学本质的认识归纳为以下几类，通过对科学本质观的梳理，我们可以发现，科学哲学对小学科学课程的变革所产生的巨大的影响，深刻地认识小学科学课程改革所蕴含的哲学思想对于我们当下把握课堂有特别的重要之处。</p>
+<p>举两个例子：昨天我们听了一堂一年级的科学课，上课的老师是一个有过六年幼儿教师经验的老师，今天也有一位新老师上了一年级的科学课。今年这位新老师是第一次上科学，所以他对科学的一些基本的内容，还不能准确把握，对一年级的学生的性格或者说对一年级学生的性质还不能完全的了解，但是这两位老师无一例外地在强调知识，这是为什么呢？其实如果从科学哲学的角度去思考，他们上的课，其实还是可以能够理解的，因为在他们所学到的科学的教育里面或者说他们所形成的科学哲学观，用一个词来概括就是经验主义科学本质观。</p>
+<p>经验主义科学本质观也称之为归纳主义科学本质观，它的主要代表人物，非常有名，一个叫培根，一个叫洛克。大家都知道培根是著名的科学家，洛克是著名的教育家，他们就认为科学是经验事实，通过归纳导出来的知识。他们有一句非常著名的话——科学始于观察。科学是以我们能够看到的、听到的以及接触到的东西为基础的，个人的思想、个人的意见、个人爱好以及个人的思辨和想象在科学中是没有地位的。科学是客观的，科学知识是可靠的知识，因为它是在客观上被证明了的知识，这就涉及到了一个科学观察者应该具有没有被伤害的，没有被损害的感觉器官，应该能够忠实地记录下他所能看到的、所能听到的，作为他和正在观察情况的相关现象。因此他在做这些事情的时候不应该再有任何偏见，其实我们上课的老师不断地让小孩子坐正，认真听讲，就是基于这样一个原因。他们认为小孩子现在所看到的一定是他们的事实。</p>
+<p>经验主义特别强调经验、强调感觉、强调它们的重要性，其主要的观点就是基于知识的来源于现实的生活，知识不是间接的经验和书本知识，而是直接的，知识的获取方式是从个别到一般，而且只有这种方式获得的知识才是可靠的，有效的。培根就说过这么一句著名的话，一切自然知识都求应于感官。洛克也在他的一本著作里面说过一句著名的话——我们的一切知识都在经验里扎着根基。知识归根到底是由经验而来的，因此根据经验主义的观点，小学科学课程的性质就是要培养学生的观察能力，课程的内容主要来自于学生的经验和现实生活。观察法是小学科学学习的基本方法，学生通过观察自然现象，观察现实生活，利用自己已有的经验和自己的感官去获取科学知识。从这个角度上来说，小学低段其实就是应该丰富学生的经验。如何丰富学生的经验？其实就是让学生充分地去观察，充分地运用感官去接触自己周围的生活。</p>
+<p>我们苏教版的教材从第一个单元开始，学会研究；第二单元就是用感官观察；同样教科版的教材也是充分利用各种感官来获取科学知识；充分用各种感官去观察植物，观察植物的叶、观察植物的根、观察植物的生长；充分运用自己已有的经验去认识周围的事物，这就是低年级的科学。当然，仅仅是基于已有的经验是远远不够的，因此后来的科学哲学价值观就又向前发展，这个发展就是提出在经验之上的理性，这个理性主义的知识观或者说科学本质观，主要代表人物是另外一位科学家笛卡尔，还有德国那位刻板得不得了的大哲学家康德。还有非常著名的黑格尔，笛卡尔有句非常著名的话叫做——我思故我在，这句话其实就是将理性置于一个重要的地位，明确了知识是如何产生的，明确了知识与主体的关系，也就是说只有通过理性思维才能获得可靠的知识。康德曾经讲过，我们的眼睛是不可靠的，经验之所以可能，仅仅是由于基于感官与组织的具有普遍的自我意识或者是一种统觉，统一的统，知觉的觉。他说经验如果不能被接纳到意识里面，那么一切直观对于我们什么都没有，跟我们毫不相关，它可以直接地或间接地经过意识，只有这样才可能有知识，看！说的多深刻啊！</p>
+<p>我身边有本书刚好就是讲康德、笛卡尔，因此理性主义认为知识是被认为是客观的、绝对的、科学的，它不是以人的意志为转移的。什么叫客观？知识是一种具有客观基础的，得到充分证据的、真实的个人信念。它与仅仅是个人的意见和证据支持的主观信念相区别，什么叫绝对的呢？就是指通过严格的与科学的逻辑，什么叫科学的逻辑呢？就是理性思维过程，获得的知识是绝对的，有我们普遍的价值特征，科学知识是不容置疑的。那么还有一个就叫科学的，理性主义认为知识是科学的。所谓的科学的就是指知识是按照学科体系，自成一统，成为一种具有某种共同兴致的学科知识，每一种学科都有自己的知识体系和语言。按着经验主义的观点来说，小学科学课程应该交给学生已经被证明了的绝对的知识。小学科学课程应该为学生提供系统的科学知识，学生必须通过理性思维才能获得学科知识，但是理性主义的科学本质观是不怎么符合我们小学低年级科学教学，它在中学里面应该是大量存在的，具有很大的一部分市场。</p>
+<p>我们知道还有一种科学本质观叫建构主义科学本质观。建构主义科学本质观也被称之为逻辑实证主义的科学本质。逻辑实证主义又被称之为逻辑经验主义，从字面上看它有两个基本原则，一个要符合逻辑，第二要经过实证。逻辑实证主义是目前为止是广为大家所接受的一个科学本质观。我们浙江的喻伯军老师，浙江省教研员，他曾经写过一篇文章，科学，它的本质究竟是什么？题目，我记得不是特别清楚。这篇文章我非常欣赏，从文章的内容来看，喻伯军老师接受的就是逻辑实证主义的科学本质观，科学是逻辑的，科学是理性的，科学是需要实证的，这是喻伯军老师在文章中提出的三个观点。</p>
+<p>逻辑实证主义认为科学知识来自纯粹的、客观的观察，再由所谓的科学方法进行提升得到知识或者理论。所谓的科学方法就是培根所说的归纳法。整个科学研究的过程，它基本上是这么去描述，就是先以一种开放的眼光观察自然现象，通过归纳我们发现某些规则，然后在头脑中形成某种假说，再经过收集证据验证这个假说。如果假说成立，那么这个思考的东西就变成了科学知识，完全依据上述过程所产生的知识就是所谓的科学知识。而且科学知识产生的过程被认为是相当的客观的，因此一旦被确立为科学知识，那么这个东西变成了绝对的真理，既然是真理，那么它的地位就应该是稳固的、恒定的、就不可能被推翻。所以科学知识的形成实际上就代表着真理不断地增加，也就是说科学知识是以一种真理线性累加的方式来增长的。逻辑实证主义视科学知识为客观真理，人们很自然地就把知识及其结构看成科学的本质。逻辑实证主义实际上在我们科学老师头脑中具有广泛的哲学基础，我们所有老师通常都有这么一句话，你不相信我就证明给你看，于是做个实验给你看一下，你就相信了。殊不知这个实验往往有时证明不了或者说这个实验在逻辑上本身就有缺陷，只不过我们的老师，他们又哪里有这个意识？</p>
+<p>我这边还有一本书正在翻开，是布鲁纳的《教育的过程》，他指出一门学科的课程是由基本原理赋予学科结构的，应当与这些基本原理，最基本的理解为目标决定其课程。为能弄清知识领域广泛的基本结构情境，而教授具体课程和技能从某种意义上来说是不经济的。这种话读出来都是很拗口，实际上逻辑实证主义对科学本质的认识可以归纳一下有三个方面。</p>
+<p>第一个方面就在科学知识方面。任何没有遵循科学探究所得到的结果都是无效的，不能被称之为科学知识，因此，科学与非科学的区别，最明显的就在于科学探究的模式，看看是不是归纳法。科学知识形成的过程被认为相当客观，是对自然界做真实的描述，因此是不容易被改变的。因此在逻辑实证主义这个地方，科学知识的地位是相当高的，它被视为绝对客观的真理，因为每一个科学知识被视为真理，所以科学知识增加就代表着真理在不断地累加。</p>
+<p>第二个方面就是科学方法方面。科学观察一直是人类科学认识的来源，而且人们认为观察是价值中立的一个客观活动，不受任何因素的影响，包括观察者已知的知识，理论和信念。所以它所得到的资料一定是客观的，科学探究的模式一般表现为搜集证据、处理分析、比较与归纳然后提出假设、验证假设。大家有没有发现，逻辑实证主义的这个科学探究的模式跟我们平常所提出来的探究模式是不一样的，我们平常提出探究的模式是什么？提出问题、做出假设、收集证据、验证结论、公开表达与交流。你看，这个探究模式跟逻辑实证主义的探究模式是不一样的。逻辑实证主义的探究模式，首先在前面有一个形成问题的过程，通过收集资料、比较分析、归纳提出某种假设理论，然后再去对这个假说和理论进行验证。如果验证了，相符了，那么这就是符合的，就可以接受的。如果不能验证那么重写或者是重新验证或者就是抛弃原来的科学假说。</p>
+<p>第三个方面就是在科学视野方面。科学家的任务就是在发现关于自然界已经存在的真理。因此，科学家被认为是一个价值中立，客观独立的研究者。实际上逻辑实证主义对我们小学科学课程的影响表现是非常大的，这一种所谓非常大，其实具体表现在我们认为科学知识获得的最佳途径就是通过科学观察，通过观察归纳总结我们对自然界的认识和了解。人们认识科学，人们获得科学知识的方法主要就是科学探究，科学探究使人们认识到什么是科学？什么是伪科学？小学科学课程的目标，其实就是要让小孩子学会观察，学会归纳，学会探究，具有对科学价值的一个判断力。好了，关于科学的本质观，今天我就讲到这里，让我们一起自我迭代，好好学习，天天向上。</p>
+<p>讲座时间：2017 年9 月5 日</p>
+
+
+<p style='float:right;'>本页共16段，4184个字符，12308 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

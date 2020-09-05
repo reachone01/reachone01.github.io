@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>亚里士多德</h3>
+
+<p>已经好多天没有聊亚里士多德了，今天我们来聊一聊亚里士多德作为科学家的一个成果：他的《物理学》。《物理学》这本书是亚里士多德理论知识的代表，是他大量研究自然作品之后所做出来的一个总论。当然也是西方最早的系统论述物理理论的一本著作。这本书探讨了自然、运动、无限、时间、空间、偶然、必然等等这一系列重要的问题。亚里士多德从理论而非经验角度对这些问题做了一系列的研究，这也刺激着一代又一代的哲学家和科学家在反思一些根本性的问题，像时间到底是什么，运动到底是什么，力到底是什么之类。因此这部著作基本上算是西方最早的系统论述物理学理论的著作。</p>
+<p>在背景介绍的时候，我们介绍过亚里士多德。在前几期介绍亚里士多德的节目当中，我们曾经说亚里士多德将全部的知识分为理性的、实践的和生产的知识。《物理学》这本书所记载的就是亚里士多德理论知识的一部分。实际上，我们虽然把亚里士多德的这本书翻译为《物理学》，但是在古希腊文字当中，它的本意其实是“自然”。因此这本书，如果用阿拉丁语翻译应该叫做《论自然》。其实这也没关系，因为我们通常所说的物理学，其实最早就是关于自然的一门学问。当然，我们现在一提到自然第一反应肯定是大自然，也就是我们周围这个自然世界。但是这并不是亚里士多德所说的自然的意思。亚里士多德所说的自然是一个更为狭窄，更为确切的定义，即每一个自然事物在它自身之中都有运动和静止的原理。那么这些事物之中它的那种自然的原理就是运动和静止。那么和自然相对应的就叫人造物。对于这些人造物而言，它的运动变化规律，不在自然当中，而在人的制造当中。亚里士多德在这本书当中讨论了天体、气象，也讨论了灵魂、记忆、睡眠、做梦。当然亚里士多德的著作很多，他另外还有五本关于动物的著作。这五本动物的著作也开创了西方研究动物学的历史。</p>
+<p>我们从今天开始来了解亚里士多德的《物理学》所研究的一些具体问题。亚里士多德的《物理学》更多的有点像现在的理论物理，不是我们现在经常说的那种实验物理。我们一提到理论物理，马上就会想到什么相对论、量子力学、大爆炸、奇点之类的，总不免倒吸一口冷气，因为这些问题很难理解，也很难用日常语言说清楚。亚里士多德处理这些理论物理问题的时候，其实也有类似的性质。也就是说在两千多年之前他就提出了这些问题，并且给出了他的答案。当然不管答案本身是对还是错，这些都是后来哲学家和科学家继续研究探讨这些问题的一个起点。而且他的一些观点，比如我们现在所说的相对运动、无限、时间等一些本质问题的讨论，从某种程度上来说并不完全过时。所以在今天依然有重温亚里士多德《物理学》的必要。</p>
+<p>关于物理学，我们来跟大家探讨三个话题。一是关于物理学最核心的“运动”概念。我们来探讨亚里士多德如何给运动分类，如何试分析运动中的各要素。其实关于“运动的讨论会把我们推向谁”是这个世界的第一推动者的思考。第二我们来看一看亚里士多德如何处理“无限”这个概念，最后我们来探讨一下亚里士多德怎么理解时间的本质。</p>
+<p>我们先来看看第一个问题：亚里士多德如何理解“运动”。我们前面说过自然是事物当中的运动和静止的原则。这是亚里士多德下的一个定义。因此，运动和静止也就自然而然的成为《物理学》这本书当中最核心的概念，也就是亚里士多德最核心的概念。不过亚里士多德更关注的是“运动”。“静止”只是作为“运动”的对立面顺便提到了，不是亚里士多德讨论的重点。当然我们在这里所说“运动”并不是我们平常狭义所说的体育运动，在操场上跑步只是亚里士多德所讨论的几种运动当中的一种，这个叫做位移，也就是说位移最基本的物理运动。但是在亚里士多德的《物理学》这本书当中讨论的运动就是一个非常宽泛的概念，基本上可以跟“变化”这个词画上等号。事实上，古希腊语当中“运动”和“变化”是同一个词，只是到了现代语言当中才强调了重点。在接下来的阐述当中，我会按照一般性的语言习惯，有时候用“运动”，有时候用“变化”，只不过你要知道我说的是同一个东西就好。亚里士多德说运动或变化，一共分成四类：第一类叫做生存与毁灭，指的是一个事物从无到有或者从有到无，这是一种实体意义上面的变化，或者说是本质性的变化。比如一个孩子出生、一棵大树死亡，这就叫做生成与毁灭的变化。第二类的变化就是指数量的变化。一个孩子出生了，他的体重从三公斤长到了四十公斤，身高从一米四长到了一米五这就叫做数量上面上的变化。第三类的变化是指性质的变化。比如我去在太阳底下一晒我从白变成了黑，再比如我去参加学习，那么我就从无知变成了有知。第四类变化就是叫做位移运动，这个比较简单，我就不举例了。</p>
+<p>关注了区分还不够，亚里士多德还继续阐述这四种运动或变化背后有什么共同的原理和要素。也就是说，一切运动都少不了共同特征，了解了这些原理我们就可以解释我们日常生活中所看到的一切的运动。亚里士多德认为：一切的运动和变化说到底都有三个共同的要素和原理。第一个就是变化的主体，或者说是承载者；第二个就是缺乏；第三个叫形式。三者之间是什么关系？这三者之间变化的承载者实际上是变化之前已经存在的东西，也就是说变化之中永远不会变的东西就是之前就是什么样子的。实际上我们平时所看到的一切事物是缺乏变化前发生的状态的，也就是说某个事物还没有或者还没有用时的某种性质。但是经过运动和变化之后这个事物就存在了，它就拥有了某种确定的性质。比如一个孩子的降生就是个生成过程。当然在一个精子和卵子结合之前这个孩子是不存在的，因此是一种缺乏存在的。但是当一个精子和卵子结合到一起去，形式与质量就结合到一起了，这个孩子也就有了最初的萌芽。再比如刚才说的，因为我晒太阳就变黑了，这就是一个性质上面的变化，那么在这里变化的承载者就是我这个人，晒太阳之前和之后都是我。那么晒太阳之前是白的，尚未获得黑这种性质，那么这种性质对于我来说就是一种缺乏，当然晒完太阳之后，黑色就是已经变成功了，那么这个变化的过程就是获得的就是一种黑色的形式。</p>
+<p>理解运动变化的时候，亚里士多德的哲学当中经常出现所谓的潜能、现实这个概念经常发挥重要作用，实际上运动和变化，就是一种潜在的存在，或者说潜在的具有某种性质的事物现实当中存在了，或者说现实的具有了某种性质。例如一个孩子在出生之前，只是一个潜在的孩子，但是出生这个运动将一个潜在的孩子变成了现实的孩子。比如我从苏州坐高铁到天津，在到达天津之前，我只是潜在的到达天津，但是当位移运动完成之后我就实实在在的在天津了。关于运动的这些分析，实际上亚里士多德引向了你这样的一个思考：就是一切运动的最终原因。他认为一切运动说到底都是被推动的。前面我们说过一切运动是从潜能到现实的过程。这个过程，不可能自己发生，它需要某种推动才可能发生。虽然说自然是运动和静止的内在原理，但是即便是这些自然，也是灵魂推动身体，形式推动质量，而不是严格意义上那种所谓的自己推动自己。亚里士多德认为这里所说的推动还不是仅仅地推一下就完了，而是伴随着运动始终存在的。从今天的角度来看的话，亚里士多德这个理论很显然是错误的。不过他所说的所有的运动必须有一个维持的推动者，从实际经验来看的话它是有一定道理的，有直观上面的吸引力。比如我们推车，小车就运动了；如果不推，车就停止了。我们跑步是灵魂驱动着我们的身体，如果灵魂停止驱动，我们就会停下来。正因为有着这样一种直观上面的吸引力，亚里士多德的理论一直主导着西方的科学研究。实际上一直到牛顿提出惯性定理之前，亚里士多德的理论都是被当作一条颠覆不破的真理。</p>
+<p>如果一切运动说到底是被推动的，那就意味着有一个推动者和一个被动者。按照这个模型推论下去的话，任何一个运动a一定是被某种原因b推动的，而任何一个b又是被c推动的，c又被d推动的。这么看起来，就是一直可以推到无穷。但是亚里士多德认为从逻辑上讲一切无穷倒退是不可接受的，因为这就违背了人的认知规律。根据这两个前提，也就是说：第一，一切运动都是被推动的；第二，不可能有无限的因果链条。那么这个结论就是必然存在的一个第一推动者，它本身是不会被任何东西推动的，而只能去推动其他东西。这个第一推动者必然就是一个不动的东西，是运动的永恒的原因。而这个第一推动者也不可能是一个有形体的东西，因为有形体者就意味着有质量，有质量就是有潜能，也就意味着它可以被推动。所以第一推动者只能是一个类似于灵魂的、精神性的存在，它并不属于宇宙的任何一个位置，而是在宇宙的外边或者说在宇宙的边缘，以某种方式推动的天体进行永恒的圆周运动。而天体的运动就直接导致了地球上面各种东西发生了各种各样的生命变化。这个就是我要讲述的第一点。大家觉得是不是有点烧脑啊？简单总结一下，这里讲的是亚力士多德最核心的运动概念，他把运动分成四种：生存与毁灭、数量变化、性质变化和位移。他讨论了一切运动的三个基本原理，就是运动的主体和载体，运动的缺乏，运动的形式。最终我们可以看到亚里士多德用这样一个逻辑推导出第一推动者，这个第一推动者让他的物理学和形而上学殊途同归。</p>
+<p>接下来我们开始理解亚里士多德的“无限”概念。在亚里士多德看来，要想真正的理解运动、时间、空间、质量，甚至是宇宙什么的，我们必须首先要理解“无限”是怎么回事。但是理解这个概念非常困难。一方面，无限好像随处可见，所有的运动都发生在时间当中啊，时间看起来是无限可分的。一个物体发生位移运动的时候看起来就是穿越过了一个无限可分的空间，任何一个具体的质料过程呢，大小的事物看起来也都是穿过了无限可分的。这有点像庄子里面所说的那句话叫做“一尺之锤，日取其半，万世不竭”。但是从另外一个角度来讲，无限又好像是不存在的。我们总是在有限的时间里走过有限的距离。一个物体的大小也总是有限的，我们如果对一个有确定大小的东西进行切割，这样的切割不可能真的无休无止地进行下去，这样看来无限好像无处不在，又好像不是真的存在一样。那么面对这样一个左右为难的局面，亚里士多德的回答是：这两个角度都有道理。他说我们必须要区分两种不同意义上面的无限。一个是潜在意义上面的无限，另外一个是现实意义上面的无限。没有任何人，也没有任何方法能够给一个确定的长度进行划分，从而让它成为现实意义上面的无限。如果我们实际划分一个东西，那么这个划分的过程肯定在进行了，有限制之后就结束了。但另外一个方面，一个长度上面的任何一个点都有可能进行划分，因此这个长度又潜在的存在着无限可分的。正是这种无限可分的潜能保证了时间、空间、质料这些东西都是连续的，而不是离散，这样我们才有理解连续的运动。因此你看这亚力士多德关于无限的讨论当中有一个关键词叫做“点”的论述。我们平常可能说一个长度是由无限个点组成的，好像点是客观存在的。但是如果点是客观存在的，那么不管有没有长度都会出现严重的困难。如果点有长度，那么一个确定的长度就不可能是由无限个点组成。如果点没有长度，那就没有办法组成一个确定的长度。因此无限个零加起来还是一个零。面对这样一个难题，亚里士多德给出的解决方法是这个点并不是实际存在的东西。只是我们进行分析时的一个理想工具，或者说叫做思想工具，也就是由我们思想创造出来的。点其实就是进行划分的一种可能性，但是这种可能性不会全部呈现出来。这和我们今天在数学里面学到的某个点其实是一样的，或者说现在数学继承了亚里士多德关于点的一个理解。通过上面的讨论，我们理解了在亚里士多德那里无限并不是一个巨大无边的东西，它可以包含其他东西。事实上也恰恰相反，无限是一种铁人，它只能被包含在其他东西之内。亚里士多德的这种主张其实是非常具有革命意义的，因为在他之前不少哲学家认为宇宙是无限大的，他们认为无限大才能包罗万象。但是亚里士多德的观点恰恰相反，说无限并不能包罗万象，恰恰是被万有包容的。他认为宇宙并不是无限大小的，而是有着确定大小的。这种不束缚于任何实验观察仅仅基于逻辑分析对宇宙整体所做出来的判断，你说他是不是有点像今天的理论物理学家呢。而且非常让人惊讶的是，他这个结论其实非常符合现代人对宇宙的一种认识。</p>
+<p>那么在讲完亚里士多德关于无限的理解之后，我们来看一看这个理论怎么帮助亚里士多德反驳一个叫芝诺提出来的运动悖论。芝诺是个哲学家，比亚里士多德大约早一百年出生。芝诺其他的成就现在找不着，他最主要的成就就是他提出了一系列的叫做芝诺悖论的东西来表明运动和变化是不可能的。所以我们今天看到的这些所谓的运动和变化都是虚幻的。因此芝诺在哲学和数学领域当中有着很大的影响。在这里，我们来简单分析其中的两个悖论，明天我们来讨论他的第三个悖论。第一个悖论叫做二分法。二分法是什么意思，就是我们永远不可能从一个地方走到另外一个地方。因为如果要从a走到b，我们必须要先走过ab的一半，要达到ab的一半，那么首先要走过ab的四分之一。要走过ab的四分之一需要走过ab的八分之一直至无穷。这样一看就是要走过任何不论多小的距离，我们都意味着我们首先要跨过无限多个点，而这是不可能的。芝诺提出来第二个悖论，叫做阿喀琉斯跑不过乌龟的悖论。阿喀琉斯是古希腊神话当中最有名的英雄，他以善于征战和跑得快著称。芝诺在他一个悖论当中去论证了阿喀琉斯追不上乌龟。他说如果阿喀琉斯和乌龟相距一段距离，那么阿喀琉斯就永远追不上乌龟。因为当阿喀琉斯跑到乌龟现在位置的时候，乌龟已经又向前爬出来一段距离，当阿喀琉斯追上这段距离的时候，乌龟又向前爬了一段距离，这样看来的话，阿喀琉斯只能无限接近乌龟，但却永远不可能追上乌龟。听完了这两个悖论，不知道是什么感觉啊，是不是咋一听感觉还有道理，但是又很显然不可能啊。这不是废话吗，这个与我们日常经验相矛盾。你如果只是想一想的话，估计还一下子真想不出芝诺到底是哪弄错了。我告诉你，这就叫做哲学里面悖论的秘密，也叫悖论的奥秘、悖论的魅力。“悖论”这个词最初的含义就是看起来有道理，但是却和日常观点相反。</p>
+<p>关于这两个悖论，亚里士多德运用了他关于无限的理论三下五除二就把芝诺的论点给拆解了。他的反驳就是区分潜在的和现实的点。他首先承认我们没有走过现实存在的无限个点，那么确实不可能走过ab。同样，如果阿喀琉斯要追上乌龟，的确是要跑过实际存在的无限个点，那么他确实没办法追上乌龟，但是他又说，当我们沿着一个长度运动的时候。其实并没有将无限多个点都实现出来。那么芝诺所说的无限多个点只是一种潜在意义上面的存在。</p>
+<p>好了，你看这就是我们要解读的第二点。当然，关于亚里士多德所要解决的无限概念，他认为无限并不是一种现实的存在，而是一种潜能，用这个理论他反驳了前人认为宇宙无限大的理论，也反驳了芝诺关于运动的这两个悖论。</p>
+<p>好了，亚里士多德的《物理学》这本书，我们今天先聊到这里。今天聊的话题有点烧脑。让我们一起认知越狱，自我迭代，格式教育工作坊每天都在这里等着你！</p>
+<p>讲座时间：2018 年12 月4 日</p>
+
+
+<p style='float:right;'>本页共15段，6118个字符，18083 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

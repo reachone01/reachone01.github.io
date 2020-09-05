@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>爱因斯坦的三个身份标签</h3>
+
+<p></p>
+<p>大家应该记得，在前面我们曾经花过5 期节目来谈过爱因斯坦，那一次我是从爱因斯坦的生平经历说起的，主要向大家介绍了爱因斯坦是如何获得诺贝尔物理奖的过程，今天我换一个角度来谈爱因斯坦，来谈谈他的三个身份标签。</p>
+<p></p>
+<p>说到爱因斯坦，很多人马上就会想起他的照片，就是蓬乱的头发，炯炯有神的眼光，还喜欢叼着烟斗，一个典型的科学怪咖。像这样一个形象，我们也都知道他是一位伟大的物理学家，创立了相对论，还曾经推动美国研制原子弹，促使了二战提前结束。如果我问，你对爱因斯坦还有什么了解？我估计绝大多数人就说不上来了。那真实的爱因斯坦到底是一个人怎样的人呢？当然，我们还知道爱因斯坦小时候有个小板凳，爱因斯坦小时候玩过一个指南针，实际上爱因斯坦不仅在科学上做出了伟大的成就，他还积极参与各种政治活动；他既喜欢安静地独处，也享受被万众瞩目的感觉；他既关心被战争和独裁统治迫害的陌生人，也有对身边人苛刻和冷酷的一面。实际上我们需要知道一个更加真实和立体的爱因斯坦。</p>
+<p></p>
+<p></p>
+<p>下面我将通过解读爱因斯坦身上最突出的三个身份标签，来帮助你更加全面立体地了解这位传奇人物的一生。这三个标签分别是：物理学家、犹太人以及民主主义者。</p>
+<p></p>
+<p>毫无疑问，爱因斯坦是人类历史上最伟大的物理学家之一，他的聪明才智为人类科学进步做出了巨大的贡献。但从前面谈过的五期节目，我们知道他的科学研究之路并不平坦，因为犹他拥有一个犹太人的身份，他的研究成果受到一些民族主义者的偏见，特别是在德国纳粹上台之后，他被迫离开当时的世界理论物理的中心柏林，流亡到美国。因为见识到专制统治和战争对人类的危害，爱因斯坦一生都在积极地倡导和平与自由。所以他的伟大之处，不仅在于他的科学贡献，还在于他对于人类命运的深切关心。</p>
+<p></p>
+<p>我们先说说他的第一个身份标签：物理学家。</p>
+<p></p>
+<p>说到爱因斯坦的科学贡献，很多人都能想到相对论，但因为相对论非常高深，同时我们在生活中也很少实际应用，所以绝大多数人既不清楚相对论讲了什么，也不知道它的伟大之处到底在哪里。实际上相对论和我们的生活关系还是十分密切的，我们生活中经常使用的GPS，就是运用到了狭义相对论的原理。</p>
+<p></p>
+<p></p>
+<p>那么在这里，虽然我曾经介绍过狭义相对论，但是还是要简单介绍一下狭义相对论是怎么回事。我相信很多人都听说过，1905 年被称为世界物理学上的奇迹年，因为这一年，25 岁的爱因斯坦陆续发表了5 篇科学论文，每一篇都称得上是重大发现，其中就包括著名的狭义相对论。因为，当时物理学界普遍认同牛顿的绝对时空观，就是不管静止的物体还是运动的物体，你都会发现物体的大小以及时间的流逝都是不变的，这也符合我们一般人的认知。但是狭义相对论认为，空间和时间都是相对的，一个物体的运动速度越快，它的尺寸就越小，时间流逝的速度也会变慢。对于GPS卫星来说，一方面由于卫星围绕地球高速飞行，所以卫星上的时间比地球表面的时间要慢；另一方面GPS对时间的准确度要求又非常高，所以就要根据广义相对论和狭义相对论的相互作用的影响来校正时间误差。可以说，如果没有狭义相对论的话，GPS定位根本没法用。另外，我们指导，狭义相对论还能推倒出那个著名的质能方程E=mc，说的是能量等于质量乘以光速的平方。这个质能方程它是研制原子弹的一个理论基础。我们说道这里，很多人就认为爱因斯坦的伟大成就就结束了。</p>
+<p></p>
+<p></p>
+<p>虽然狭义相对论很了不起，但其实爱因斯坦还有两项更加伟大的理论，一个是广义相对论，另一个是光量子理论。广义相对论颠覆了人们对引力的认知，广义相对论就提出引力的本质是物体使时空产生了弯曲。就好比你把一个球放在一个蹦床上，球的质量会使蹦床弯曲，弯曲就产生了引力。我们现在耳熟能详的黑洞、引力波这些概念，其实都是从广义相对论推导出来。如果未来人类可以到太空进行宇宙航行的话，那么广义相对论是必不可少的。而爱因斯坦提出的光量子理论揭示了光的性质。因为，在当时物理学界普遍认同光是一种电磁波，既然是电磁波那就是连续的波动，就像海面上的波浪一样。但爱因斯坦提出，光同时也具有粒子的性质，光是由一个个叫做光子的微小粒子组成。爱因斯坦对光电效应的解释直接推动了量子力学的诞生。量子力学我们虽然不太了解，但它的应用我们现在却非常熟悉。我们平时使用的手机、电脑这些东西，这些电子设备处理器上使用的晶体管，实际上就跟量子力学有关。可以说，如果没有量子力学，人类不可能进入到现在的信息社会。</p>
+<p></p>
+<p>当然了，不管是量子力学还是相对论，都不是简单几句话可以讲清楚的，但通过刚才的介绍，相信我们对爱因斯坦这些科学成就的意义会有一些具体的认识。同时我们也可以看到，他的每一项理论都很非常颠覆常识，在当时的物理学界，这些理论也非常前卫。其实爱因斯坦所处的那个时代，物理学是人才辈出，其实你只要数一数，当时那些人，比如跟爱因斯坦一直作争论的波尔、薛定谔、泡利这些人都是非常著名的物理学家。但为什么爱因斯坦最终取得了远超同时代人的伟大成就，而不是其他人呢？在这里，我给你推测，首先爱因斯坦很聪明他有过人的智慧，他在瑞士专利局工作时，不仅工作环境轻松，而且他在那样一个工作岗位上可以接触大量的研究专利，也就是说最前沿的研究都经过他的手；还有其他同行直接或者间接的为他提供帮助等等，这些可能都起到了一些作用，但是还有两个至关重要的原因。一个就是爱因斯坦独立思考、不迷信权威的性格特点；另一个是他始终抱有一种信念，相信宇宙中存在一套简洁、理性、统一的自然规律，所有事物的发展和演化都遵循这套规律，它无处不在，同时又很难被发现。</p>
+<p></p>
+<p></p>
+<p>比如，在爱因斯坦发表狭义相对论之前，几乎是同一时间，另外还有一名科学家庞加莱，他也是著名的科学家，他也推导出了类似的方程。但不过庞加莱要保守很多，他虽然也对时间的绝对性有过怀疑，但最终还是没有勇气彻底颠覆牛顿的绝对时空观。用另外一位物理学家的话来说，其实也不能怪庞加莱太保守，只能说改变人们固有的时空观念这件事情太需要勇气了。年轻的爱因斯坦没有那么多顾虑，他相信理性思考的判断，从来都不觉得权威就是正确的。在物理学的发展过程中，其实每一次重大发现都是对理性对常识的颠覆。你看，哥白尼提出日心说就是这样的，爱因斯坦提出相对论也是这样。另外，牛顿假设空间中存在一种物质叫以太，包括光在内的所有物体都是相对于以太在做运动，庞加莱也保留了这样一个以太的假设，但这意味着要凭空加上一个根本观测不到的东西，跟爱因斯坦坚定相信宇宙规律的简单性是不相符的，所以爱因斯坦果断抛弃经典物理学，提出了狭义相对论。</p>
+<p></p>
+<p>但是你会发现爱因斯坦自己并不满足，他很快就发现狭义相对论有局限性。一方面狭义相对论它规定所有事物速度都不能超过光速，但牛顿的引力理论又认为，引力可以在远距离的物体之间瞬间发生作用，这两者有冲突；其次，狭义相对论只能用在匀速直线运动的情况下，适用范围比较窄。为了使相对论的适用范围更广，爱因斯坦开始着手研究新的理论，也就是后来的广义相对论。他先是从物理上思考引力的本质，也就是我们前面讲的时空弯曲。然后他还找自己的好朋友他的同学格罗斯曼帮忙解决一些数学问题，格罗斯曼的数学非常好，但这正是爱因斯坦欠缺的。经过长达十年的努力，等到1915 年的时候，广义相对论才终于完成。</p>
+<p></p>
+<p>但是我们前面也说过，爱因斯坦的科研之路走得并不平坦，这很大程度上是因为他犹太人的身份。</p>
+<p></p>
+<p>接下来我们就介绍爱因斯坦身上的第二个标签：犹太人。看看犹太人的身份给爱因斯坦的人生带来了哪些麻烦，又是如何深刻地影响他的所作所为。</p>
+<p></p>
+<p></p>
+<p>1919 年对爱因斯坦来说是非常不平凡的一年，这一年发生了两件重要的事。第一件事是英国科学家在爱丁顿和戴森带领下，去南半球观测，利用日食现象成功观测到了光线在太阳引力作用下偏移的数据。这个数据比用牛顿引力理论计算出来的结果大一倍，但跟相对论的预测结果却十分吻合。所以，全世界的许多媒体对这件事都做了大量报道，说爱因斯坦推翻了牛顿的理论，甚至有人说爱因斯坦的理论是人类思想史上最伟大的成就。这下，爱因斯坦不仅在科学界，甚至在公众心中都获得了极高的声望。第二件事情是什么呢？就是第一次世界大战刚刚落下帷幕，德国作为战败国不仅自尊受到了挫败，还背上了沉重的赔偿债务。一部分德国人为了寻找替罪羊，就把战败的原因归结到了犹太人身上，认为犹太人出卖了德国，于是德国的反犹主义开始抬头。恰好这个时候爱因斯坦刚刚成名，但是他是一名犹太人，他也长期居住在德国，所以自然而然就成为反犹主义者的攻击对象。</p>
+<p></p>
+<p></p>
+<p>比如当时有一个人叫保罗·魏兰德，他是德国右翼民族主义政党的激进分子。魏兰德意识到，其实很多科学家都对相对论抱有怀疑的态度，认为相对论只是一种抽象的假说，而不是建立在牢靠的实验基础之上，于是魏兰德就发表文章，谴责相对论是一场大骗局，还召集了一群二流科学家一起攻击相对论，说爱因斯坦的学说带有强烈的犹太性，意思是看起来高深玄妙，其实就是在忽悠人。爱因斯坦看到这些言论非常生气，他在报纸上发表文章展开反击，还说“假如我是德国的民族主义者而不是犹太人，他们就不会攻击我的理论”。正所谓看破不说破，爱因斯坦的耿直正好中了敌人的下怀，他的言论不仅没能澄清事实，反而给自己带来更多不好的名声。</p>
+<p></p>
+<p>犹太身份给爱因斯坦带来的麻烦不光体现在公众舆论上，也使他在科学界受到了不公正的待遇。你看，1919 年的日食观测数据印证了相对论的正确性，按理说爱因斯坦应该可以获得1920 年的诺贝尔物理学奖才对，但结果并没有。当时，有一位著名的物理学家勒纳德，他积极劝说其他科学家，让他们相信相对论其实算不上一个发现，也没有得到证明，那些所谓的实验数据可以通过其他理论来解释。勒纳德批评相对论具有犹太科学的特征，本质上是属于一种哲学臆想。当时诺贝尔奖委员会主席很显然支持勒纳德的观点，主席在解释爱因斯坦为什么没有获奖的报告中，就引用了勒纳德和其他反犹主义者的论证。到了第二年也就是1921 年，爱因斯坦获奖的呼声已经远超其他人，但仍然有一些人试图阻止，最终1921 年的诺贝尔物理学奖谁也没有得。直到1922 年，爱因斯坦才获奖，而且获得是1921 年的奖，但是获奖原因还不是相对论，而是他所提出来的光量子理论。</p>
+<p></p>
+<p></p>
+<p>也就是在这个时候，爱因斯坦感受到德国歧视和迫害犹太人的现象越来越严重，他开始重视自己犹太人身份，也对自己的民族同胞感到同情。为了生存，一部分犹太人通过改变自己的宗教信仰和文化传统，试图彻底放弃犹太人的身份，强调自己是一个德国人或者欧洲人。爱因斯坦一方面对这种行为进行公开批评，倡导不同民族和平共处，另一方面采取实际行动支持犹太复国主义，也就是犹太人建立起自己的国家。这相当于对反犹主义者公开宣战，为此爱因斯坦还收到过纳粹分子的暗杀威胁。当时爱因斯坦已经成名，他到全世界各地进行演讲，为犹太复国陆续募集资金，第一站就是美国。爱因斯坦在美国受到了政府和民众的热烈欢迎，几乎每一次演讲都座无虚席，但那些真正有钱有势的美国犹太人却很少参与，所以最后募资的结果并不理想。可以说，支持犹太复国主义运动是爱因斯坦第一次在国际舞台上表达自己的政治主张。虽然爱因斯坦付出了很多努力，但实际上收效甚微，作为一名科学家他可以改写物理学的历史，但在国际政治中他却是无力的。1933 年，希特勒成为了德国总理，他开始对犹太人进行全面清洗，爱因斯坦的家也被抄了。不过，爱因斯坦似乎早就预料到了，当时他已经举家搬迁到美国，幸运地躲过一劫。</p>
+<p></p>
+<p>很多人可能都认为，像爱因斯坦这样的科学家，应该一心一意地投入科学研究，不会过多地参与政治。但事实上，爱因斯坦从年轻时就有着自己鲜明的政治主张，他倡导和平，同情受压迫者，强调社会正义，同时反对狭隘的民族主义，反对军国主义。在纳粹上台之后，他甚至改变了一贯的反战态度，意识到纯粹的和平主义无法抵御暴政，也无法抵御战争狂热的威胁，因此他也参与了反对专制的政治运动。</p>
+<p></p>
+<p>这就是下面我们将介绍的爱因斯坦身上的第三个标签：反对专制和暴政的民主主义者。</p>
+<p></p>
+<p></p>
+<p>实际上，从中学时代起，爱因斯坦就非常反感学校的专制氛围，因为当时整个德国社会都比较压抑，军国主义盛行，所以爱因斯坦就干了一件事，他放弃了自己的德国国籍。其实，爱因斯坦一直以来对国家和民族的意识都比较淡薄，即使他在行动上支援犹太复国主义运动，也是出于保护犹太人生存权利的无奈之举。他在1946 年，在华盛顿向一个研究巴勒斯坦局势的国际委员会作证时提出，应该让更多的犹太人移民入境，但并不认为犹太人应当组建一个国家。他认为人们应该弱化国家的重要性，要把自己看成一个世界公民。而且为了维持世界和平，仅仅是靠缔结条约或者裁军是不够的，应该削减国家的权力，同时建立强有力的世界政府来维持秩序。这种通过建立凌驾于国家之上的政府、组织来维持和平的政治理想，可以说贯穿了爱因斯坦的一生。</p>
+<p></p>
+<p>很多人可能觉得爱因斯坦的想法太理想化，实际上，放在当时的时代背景下，这种想法是很有根据的。在第一次世界大战之后，有个国家组建了一个叫国际联盟的组织，是由美国的总统提出来的，这个组织就是现在联合国的前身。而国际联盟的宗旨就是减少武器数量、平息国际纠纷、促进国际贸易。但是由于国际联盟没有军队武力，所以在处理国际冲突时必须依赖那些大国的力量，最后就难免沦为大国操纵的工具，很难真正发挥作用。在国际联盟的牵线搭桥下，爱因斯坦曾经和著名心理学家弗洛伊德进行了公开讨论，主要讨论的是战争的原因以及避免战争的方法。他们两个人的往来信件最终被集结成册，名字叫《为什么要战争》。爱因斯坦首先指出，像国际联盟这样的组织想要真正发挥作用，掌握军事力量是必不可少的，同时，每个国家都要放弃自由采取军事行动的权力，这几乎是不可能做到。因为一方面，统治阶层的典型特征就是对权力充满渴望，他们肯定抵触任何对国家权力的限制；另一方面，人类内心深处天生就存在着仇恨和毁灭的欲望，统治阶层利用教育、媒体、宗教这样一些途径，很容易就能控制大众的情绪。所以爱因斯坦认为，想要真正避免战争，或许可以从抵御人类仇恨和毁灭的欲望入手。从爱因斯坦跟弗洛伊德讨论的内容可以看出，在他看似理想化的政治主张中，也包含着对政治和人性的深刻见解。</p>
+<p></p>
+<p></p>
+<p>在爱因斯坦晚年，有一件事情更加坚定了他的想法，就是美国用原子弹轰炸了日本的广岛和长崎。前面我们也曾经说过，爱因斯坦曾经积极建议美国研制原子弹，原因是担心如果德国先研制出来，会对世界和平造成严重威胁，但他同时也认为核武器不应该控制在某一个国家手里。在美国使用了原子弹之后，一些科学家就签署了一份联合声明，目的是建议政府组织一个国家顾问委员会来控制核武器。爱因斯坦随后给领导研制原子弹的物理学家奥本海默写了一封信，在信中说他理解这份声明背后的情感，但他认为如果不能建立一个凌驾于各国之上的政府组织来指导国际关系，实现和平是不可能的。接下来的几个月，爱因斯坦继续在一些文章和采访中发出倡议，不过很显然他的努力并没有起到什么作用。在20 世纪40 年代末，有人采访爱因斯坦时问他下一次世界大战会是什么样子，他回答说他不知道第三次世界大战会用什么武器，但他知道第四次世界大战肯定是用石头。他就是这样一个坚定的和平主义者。</p>
+<p></p>
+<p>好了，关于爱因斯坦我们先聊到这里，让我们一起认知越狱，自我迭代，格致教育工作坊每天都在这里等你。</p>
+<p></p>
+<p>讲座时间：21018 年8 月30 日</p>
+
+
+<p style='float:right;'>本页共58段，6642个字符，18879 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

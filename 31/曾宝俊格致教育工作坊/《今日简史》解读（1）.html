@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>《今日简史》解读（1）</h3>
+
+<p>这里是格致教育工作坊，欢迎大家穿越时空，来享受一碟知识的小菜，让我们一起天天学习，好好向上！</p>
+<p>今天我们来聊聊2018年8月刚出版的一本新书《今日简史》，作者就是写过现象级畅销书《人类简史》和《未来简史》的以色列历史学家尤瓦尔·赫拉利，这本书是他“简史三部曲”的收官之作。</p>
+<p>赫拉利和很多传统历史学家不一样，传统历史学家看问题基本只用历史学的方法和视角，但赫拉利能把很多领域都打通，比如历史学、人类学、生物学、信息技术等，然后用综合视角来分析那些我们已经很熟悉的事情，并由此得出很多新鲜的、可能更触及本质的解释和结论。这本《今日简史》当然也延续了这种思想风格。</p>
+<p>在赫拉利的“简史三部曲”中，《人类简史》是第一本，说的是人类社会如何形成，《未来简史》是第二本，是在2017年特别火的一本，说的是未来社会如何演化，这两本书一本是回顾过去，一本是展望未来，而这本《今日简史》考察的却是当下，说的是生活在今天的你和我将要面临、或者正在经历的事情。</p>
+<p>那么当下的生活怎么了？难道有什么问题吗？表面上看起来我们当下的生活没啥问题，最多有一些磕磕碰碰，比如中东动乱、中美贸易摩擦等等，总体来说还是很不错的。但在赫拉利看来，我们之所以会认为当下的世界还不错，是因为大部分人还只是在用过去的视角、经验和知识来评判现在。他在书里说：“人类正在面临前所未有的变革，所有旧故事正在分崩离析，至今还没有新故事足以延续。”</p>
+<p>这话是什么意思？我们来回顾一下。</p>
+<p>在《人类简史》中，赫拉利说，人类社会之所以能发展到今天，是因为我们塑造了很多“想象的现实”，也就是故事，比如，国家、民族、宗教、经济、公司、婚姻等等。这些都是我们想象出来的并不存在的实体。而生活在今天的你和我面临的问题是，过去讲的大部分故事都不管用了，这些故事将被一些新的变量冲击、瓦解，甚至是失效。其中有一个变量，就是现在高速发展的信息技术、互联网技术。我们现在好像已经对信息技术习以为常了，但赫拉利却认为，我们严重低估了信息技术将要带来的影响。对人类社会来说，信息技术不是一个普通变量，而是一个超级变量。正是有了这个超级变量的出现，让很多我们延续了多年的事情变得完全不一样。</p>
+<p>接下来我就通过六个领域，工作、教育、自由、平等、恐怖主义以及战争来和大家说说这本书。这本书的解读我将分两期来讲，今天我们来讲工作和教育两部分。</p>
+<p>在赫拉利的笔下，当下的世界和我们过去理解的有一些不一样。我们先来看看第一个不一样的地方。</p>
+<p>第一个领域是工作。赫拉利认为，人工智能的崛起会造成人类社会大规模的失业。在《未来简史》中我们已经知道：这一次的失业和过去发生的失业很不一样。在工业革命的时候，大批的农民失业变成了无产阶级。可是这次人工智能的崛起，它会让大部分的工人阶级，或者说会让大部分人都变成一个“无用阶级”，变成所谓的“无用之人”。</p>
+<p>是怎么回事呢，我们这话还是得从美国的总统特朗普说起。特朗普给美国人讲了一个故事，他在竞选的时候对选民们说：外国移民正在抢占美国人的工作机会和种种社会福利，所以应该限制移民，要在美墨边境修筑一堵高墙，甚至他们要拒绝一些其他民族的人进来，或者说把一部分移民赶出去。当时很多美国人都相信了这个故事，开始变得非常排外。但赫拉利认为，美国人都被特朗普误导了，因为在十几年、最多几十年后，不管是美国人还是非美国人都会面临一种情况，就是大面积的失业，大部分人的工作都会被人工智能取代。昨天，我去高邮一个朋友那里玩，参观了他的新工厂。在三百多亩的厂房中，硕大无比的机器，但是只有三五个人在零星管理。高度的自动化使得全厂工人不过三百多人。以前我们进工厂所看到的那种大规模、密集的、劳动力型的生产方式，在这样一种现代化的工厂里面是压根看不到的。所以在这个话题当中实际上也就意味着：传统意义上的那种制造业大规模、劳动密集型的工厂里的工人是会失业的。所以说起来，大家对这个话题一点也不陌生，讨论这个话题的学者专家太多了。但在赫拉利看来，我们这些学者专家对这个话题的讨论太过于乐观了。</p>
+<p>乐观的理由有两个。第一个是认为在很多面对具体问题的领域，比如维修、医生、律师、教师、设计师、编程的程序设计员等工作很有可能被人工智能取代，而那些需要创造性的领域，比如艺术、文学、商业等领域，就是人工智能达不到的。但事实情况可能并不是这样，现在的人工智能发展已经非常快了，它完全可以取代人的翻译，可以去书写，甚至创造非常高级的歌词、音乐，甚至可以根据某些人的既成品，创作出以假乱真的新作品。书中讲到了这样的一些例子，比如人工智能对巴赫音乐的大量分析，然后谱写出一些曲子来让人家去辨别，人家一听就认为这是巴赫的作品。人工智能对一些画家，比如像印象派、野兽派画家的画进行大规模扫描，然后模拟作画。作出来的画，画风跟原作者几乎是差不多。也就是说在创造领域当中，人工智能已经完全可以代替人的智慧。</p>
+<p>赫拉利说，我们其实对创造行为有很深的误解。就拿围棋来说，我们都知道2016年的时候alphago战胜了李世石，后来升级版的 AlphaGo Zero，它们在和人类竞赛的过程中，往往能下出人类棋手无法想到甚至无法理解的棋路。这是因为，在创造力方面人类的大脑其实是有一个缺陷的：我们很难想象从来没有见过的事物。比如，在乔布斯设计出 iPhone 之前，没人能想到手机居然还能这样设计，而在 iPhone 之后，所有的手机都跟iphone一个样，因为大家都开始模仿。但是没有任何一台新手机能想象下一代手机到底是什么样子，所以我们只有等下一个乔布斯出现。但人工智能就没有这方面的限制，给它设定一个目标，比如下赢这盘棋，或者设计一个比 iPhone 更好的手机，只要人工智能的数据和算法足够强大，它就能“想”出很多人类想象不到的办法来达成目标，这种创造力实际上比人类强大得多。</p>
+<p>对人工智能的第二个乐观理由，包括我之前也是这么去理解的。就是这一次人工智能革命和过去的许多次工业革命一样，虽然会替代很多工作，却也会创造出很多新工作。比如，美国每次派出一架无人机，不要小看这个一架无人机在天上飞，它其实是有三十多个人在幕后操作，因为有这么多人在操作，所以美国也曾一度陷入无人机数量足够却无人幕后操作的局面。确实，我们也知道这话说得没错：人工智能革命肯定会创造出很多新工作，但问题是，在1920年的时候，工业革命或者说电气化革命开始以后，因为农业机械化而失去工作的人可以去拖拉机工厂干装配，但是，大家有没想过在十几年之后，那些被人工智能取代的司机、收银员不可能成为刚才说的那种无人机的幕后运营维护人员。也就是说，人工智能革命替代的工作大部分是基础型工作，而创造的新工作大部分是高端工作，二者之间有着不可逾越的鸿沟。也就是说人工智能的出现，会让我们的工作和生活变得完全不一样，人类的工作必然会大规模的被人工智能所取代。被取代的人会享受到人工智能所带来的红利，基本上可以做到衣食无忧。但是，被取代的这些人，他并不能够真正的融入到人工智能时代当中。他会成为一个“无用之人”。他会被社会和时代边缘化。</p>
+<p>赫拉利说：“不要以为自己不会被人工智能取代，人工智能不用做到完美，它只要做得比你好，就能取代你。”这就是在加入信息技术这个变量之后，人类的工作领域将要发生的巨大变化。</p>
+<p>说完工作，接下来我们再来说第二个领域，教育。对于教育，赫拉利认为，当下的教育模式正在失效，我们需要重新建立新的教育体系。</p>
+<p>为什么这么说呢？我相信，所有使用App、微信收听这期音频的用户，在过去几十年中都只经历过一种教育模式，就是连续性、分层制的应试教育。什么意思呢？也就是说，每个人都是两三岁的时候开始上幼儿园，然后经历小学、初中、高中、大学，可能还有硕士和博士。过去的人通常都是在人生前二十多年的时间里集中学习，而学习的目的只有两个，大学前的目的是为了上大学，大学后是为了学一门专业，找个好工作。这一点，无论中国还是外国都是一样的，只不过中国可能更加注重考试。这种教育模式有一个隐含的前提，就是一个人用前二十多年的时间集中学习之后，获得的学习成果基本上可以适用于他的后半生。但是，赫拉利说，这种教育模式可能正在过时。</p>
+<p>就像我们在第一部分说的那样，在未来，人工智能会大面积地取代人的工作，但是这种取代不会在一瞬间发生，它会是一个循序渐进的、慢慢演变的过程。比如，十年之后，人工智能可能在驾驶领域获得突破，于是它就会取代大部分司机；又过十年，人工智能可能在编程领域取得突破，取代大部分程序员；再过十年，可能被取代的是医生或者律师。也就是说，过去那种把学习时段和工作时段截然分开的模式在人工智能时代肯定是不适用了，可能大多数人在将来面对的是不断地被取代、不断地再学习这样一个很悲惨的局面。赫拉利在书里就说：“未来的重大改变，很有可能改变人生的基本框架，让不连续性成为最显著的特征。”也就是说，未来的人可能二十岁走出学校，工作十年，三十岁时必须再进入学校学习，如此反复，这就是不连续的人生。</p>
+<p>在明白这一点之后，赫拉利进一步指出，现在的我们根本不知道该如何应对这种情况。不管是应试教育还是所谓的素质教育，在本质上都是分段式人生下的教育模式，没有性质上的区别，而这种未来的、不连续性的、终身学习性的教育模式应该怎么建设和展开，到目前为止还没有人知道，只有少数的人和公司在尝试。也就是说，我们的人生将不再是集中式学习，而是分段式的终身学习。这就是信息技术时代，我们要面临的教育难题。</p>
+<p>好了，关于这本书今天先聊到这里，让我们一起认知越狱，自我迭代，格致教育工作坊每天都在这里等你。</p>
+<p>讲座时间:2018年8月12日</p>
+
+
+<p style='float:right;'>本页共22段，4076个字符，11753 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

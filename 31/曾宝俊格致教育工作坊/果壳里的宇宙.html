@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>果壳里的宇宙</h3>
+
+<p>各位老师，大家好！这里是格致教育工作坊，欢迎大家的到来。穿越时空，享受思想的盛宴，让我们一起天天学习，好好向上，今天让我们来聊一聊霍金的另一本书《果壳里的宇宙》。霍金的第一本书《时间简史》我已经在一期节目里面讲过，而且讲得很透，但是很多人并不知道，霍金还有一本书，也很出名，今天我就来向大家简要介绍一下他的这本书。</p>
+<p>在2002 年的8 月15 日这一天，也就是我讲课的这一天，在美丽的杭州西子湖畔，科学大师霍金用他唯一能活动的那只手指，对3000 观众讲述了他的“果壳的宇宙”。什么叫做“果壳里的宇宙”呢？“果壳的宇宙”是一个典故，这个典故出自于莎士比亚的哈姆雷特，哈姆雷特当时在剧中吟唱道：即便是把它关在果壳里，它仍然是一个无限的空间之王。艺术和科学是息息相通的，昨天我们就已经讲过，莎士比亚和霍金本来就是各自领域当中的无限空间之王，都是各自领域中最顶尖级的人物。霍金是宇宙学最顶尖级的人物，他认为整个宇宙都是一个高维的，果壳状的泡泡演化来的，果壳上的褶皱叫做量子扰动，在演化中产生了今天宇宙所有的结构。</p>
+<p>30 多年来，世界上一大批天才的头脑，创建了一门叫做“弦论”的学科，有一本书就叫做《宇宙的琴弦》，以后我有机会讲给大家听。最新的版本，在这个《宇宙的琴弦》里面，又提出了一个M理论，弦论能解释所有已知的自然力。科学家把大自然当中的力分为四种，强力、弱力、电磁力和引力。因此，没有哪一个理论能够解释这四种力之间的所有的关系，而弦论尝试着就把这四种力完全做了解释，所以弦论又被称之为万物理论。</p>
+<p>那么弦什么意思呢？它其实是一种高维空间，霍金就在这本书里面认为，维数应该是在十一维或十维当中的一个客体。我们生活在一个三维空间当中，加上时间就叫做四维，这是能够顺利理解的。可是五维空间是什么样？一般人就很难理解的。我在读这本书的时候尝试着努力去理解，可是想破脑袋也没想明白。这些科学家、数学家的脑袋里面这个弦可以拓展到十一维空间，所以弦的概念其实可以进一步推广到P胚，后者就是高维空间这个P的课题。</p>
+<p>霍金认为，时空就是一张推广了的“膜”，不过这张膜不是二维的，而是四维的。物理学家为此还曾经创造了一个新词，尽管这个词被使用了很多年，但是目前为止这个词并没有被牛津词典所收入，这个词的读法叫brane。在我们国家的一些学术文章里面直接就把它翻译为“胚”。当P处于0 的时候，胚就是一个点粒子；当P处于1 的时候，胚就是一个弦；当P等于2 的时候，这个胚就是一个膜；而在一般情况下就称为胚，这个胚就是高维的“膜”。</p>
+<p>人们常说，弦论是21 世纪的数学，但是不幸早产了，在20 世纪诞生，所以人们虽然已经讨论了很多弦论的许多性质，更知道它是一个真正了不起的理论，但要把弦论讲清楚实在是很不容易。弦论有个基本假设，不存在什么粒子，只有弦在空间当中运动。一条弦，这是一个画在空间中的圆，弦论假设只存在一种弦，而各种不同的粒子，只不过是弦的不同振动模式而已。当一条弦随着时间运动的时候，它的轨迹不是一根线，而是一根管子，两条弦还可以结合成一条新的弦，一条弦也可以分裂成两条的弦。</p>
+<p>我估计讲到这里，很多人头脑中是一团浆糊了，但是我在讲的时候是清清楚楚的，我努力把这个地方能够给读懂。自然界一切的相互作用，包括电子、光子的作用都可以用弦的分裂和结合来进行解释。</p>
+<p>在研究的过程当中，存在这五种不同种类的自洽弦理论，这与弦论追求的单一理论的初衷相左。经过多年的研究，物理学家终于找到了解决问题的钥匙，尽管目前这个理论没有得到物理学界的一致认同，但至少它已经为自己取了一个名字叫M理论。</p>
+<p>在M理论当中，时间和空间以普朗克尺度为基本单位。什么叫普朗克尺度呢？普朗克尺度是可以根据已知的基本原理来建立的，它的长度是10 -33 厘米，普朗克时间为10 -44 秒。在M理论当中时空是十维的，或者说是十一维的，那么为什么我们日常所见的时空是四维的呢？理论认为存在两种解释，一种可能就是所有额外的维的尺度非常小，以至于就像普朗克尺度那样非常小，经常看不到，难以观察。第二种可能性就是额外的维的尺度相当大，大到无穷大，就在是目前的观测条件下尚未观测到。霍金认为，大的额外维是新理论探索的激动人心的境界，它涵盖着我们生活在一个胚世界里面，在一个高维的时空里面，四维的面或者膜当中，强力、弱力、电磁力都将被限制在这个胚里，所以任何与引力不相关的物理问题就会和在这四维空间里面一样的。比如支配构成人体的物理定律，就是描写电磁力的那种量子电动力学，所以胚世界的存在并不影响人体的构造，与此相反，引力则会弥散到整个高维空间当中去，也就是说引力随距离的减少可能比以往估计得还更快一点。</p>
+<p>如果引力的这种更快地减小的速度可以延伸到天文距离的话，那么，如果在行星轨道上面观测，应该能够观察到这一效应，这样的话，行星的轨道就会是不稳定的，这就意味着行星要么是掉到太阳当中去，要么就逃逸到寒冷黑暗的星际空间当中去。</p>
+<p>如果该额外的维在远离人类生活其上的胚不远的另一胚处终结的话，这种效应就不那么这种效应就不会发生。那么对于超过两个胚相分离的距离，引力上面，就应该像上述电磁力那样，不能够自由的发散开去，而是被有效的局限在胚上面，并且减小的速率刚好等于行星的轨道。</p>
+<p>在实验室中，精确测量物体之间的万有引力，是一件十分困难的事情。实验尚未探测出当胚的分离小于几毫米时它的效应，尽管理论家预言，在距离短于胚之间的分离距离的时候，引力会下降更加快，但是实验研究者迄今缺乏有效的手段进行测量，一旦在根本具体下测量成功，这就意味着能够鉴别能力所在胚的世界究竟是这样，是这样的呢还是那样的？</p>
+<p>为了解释恒星围绕银心转动的速度，就必须假设存在着暗物质。恒星围绕银心作缓慢转动的时候，大约2000 多年才转动一圈，银河系的形状像个盘子，银心附近聚集大量的恒星，银盘里面包含了更多的气体、尘埃以及一些恒星。如果套用开普勒定律，银心外部的恒星的运动速度应当比靠近银星中间的那个转的更慢。科学家实际观测的结果并非如此，整个银盘就是银河系内的，只是盘内的恒星运动速度大致都是相同的，所以天文学家认为银河系内存在着大量的暗物质，他们中的大部分是分布在银盘的外部，从而加快了这部分区域内的恒星的运动速度。对于星系团内的全部星系运动状况的研究也得出了相同的结论。</p>
+<p>我们今天讲课的尺度非常大，小到粒子的，大到宇宙的、银河的。对于宇宙更大尺度的结构的仔细研究，其实也表明了可能存在的暗物质，这种结构是以星系团和超星系团集结在一起的方式出现的，进一步考虑到宇宙的年龄在一秒到三分钟之间的核反应，以及宇宙氢元素的这种丰富程度，暗物质必须以不参与核反应的方式存在。这就意味着暗物质应该是以一种中微子或类似于中微子的轴子，有质量、弱相互作用的粒子等等的形式出现，他们不带电荷，应该不受电磁力和强力的影响。在《时间简史》里面，霍金提出了一个黑洞的存在，在《果壳中的宇宙》里面，霍金提出了暗物质的存在，其实这就是霍金的伟大和了不起的地方。</p>
+<p>霍金认为，在四维的膜世界里面，人类生活在一个胚中，附近还有一个影子胚。因为光被限制在胚当中，不能传播到另外一个胚，所以人类就看不到另外一个影子世界，但是人类会感觉到影子胚当中的物质的引力的影响。</p>
+<p>这种引力在人类所在的胚世界当中，会形成一种“暗”源，检测影子胚仅有的办法就是通过引力的途径。霍金说弦、膜、胚，你看这些词，今天真的是一个新词，它与宇宙当中的任何东西一样都会有量子起伏，这些量子起伏就使得胚这样的一类客体会自发的产生和消失。这个过程就有点像煮沸的开水一样，沸腾的水中的水蒸气、气泡形成的过程那样一下子出现了，然后又消失了。</p>
+<p>量子力学当中的海森堡不确定性原理，导致了胚从泡泡当中创生。如果这个四维的泡泡继续长大的话，那么生活在这个泡泡上面的人会感觉到宇宙正在膨胀，你看，霍金又似乎在解释宇宙大爆炸理论。按照霍金的无边界的设想，胚世界自发的创生在有一段虚时间的历史。在这段的历史当中，宇宙就像一个果壳，它是一个四维球面。不妨我们把它想象成是一个多了两维的核桃壳，只是果壳是空的，在这个胚世界里面的图像当中，四维的果壳是满的，人类生活在其中的胚，在一个虚时间当中的历史是一个四维之球，它是一个五维泡泡的边界，而余下的五维或六维是卷曲的，并且卷得非常小。</p>
+<p>依照霍金的理论，胚在虚时间的历史将决定它在实时间的发展。高维泡泡在虚时间中产生一个完全光滑的球形的四维“果壳”的概率是最高的。然而，这又对应于在实时间内以暴胀方式永远膨胀的胚。星系不能在这种胚世界中形成，从而智慧生命也不会出现。然而，高维泡泡在虚时间中产生一个有点不光滑和偏离球形的四维“果壳”的概率，虽然稍低一些，但是却能与实时间中的减速暴胀过程相对应。胚在开始时有一个加速、膨胀、暴胀的过程，随后膨胀又缓慢下来。在这个减速暴胀过程中，星系可能形成，智慧生命也会出现。有趣的是，这些智慧生命将会创造一种宇宙理论，认识到他们来自于不那么光滑，也不那么圆的四维“膜”的世界。</p>
+<p>我估计今天我这个讲课能听懂的老师不是特别多。随着霍金神奇的手指在那个电脑屏幕上面滑来滑去，随着一页又一页的书翻开以后，你会发现霍金为我们构建了一个神奇的膜的世界，神奇的果壳的世界，在游历了霍金神奇的“果壳的宇宙”之后，你会有一些什么样的感受呢？你会发现是不是每个人都是来自于那个神奇的果壳里的森林？霍金是不是在讲一个神奇的童话故事呢？不知道！</p>
+<p>今天就讲到这，今天让大家脑洞大开，也让大家脑洞糊涂，让我们一起认真学习，自我迭代。</p>
+<p>讲座时间：2017 年8 月25 日</p>
+
+
+<p style='float:right;'>本页共22段，4067个字符，11739 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,338 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>特级教师曾宝俊的成长历程</h3>
+
+<p>08021 4 </p>
+<p>曾宝俊</p>
+<p>这个号码对于我来说，具有特别的意义，这是我的特级教师证书的编号。我在2008 年被评为江苏省特级教师，08 表示年份，02 表示无锡，14 表示位序，我位列无锡市第十批特级教师第14 位，这一次无锡市一共被评上了28 位特级教师。</p>
+<p>特级教师是令人羡慕的！</p>
+<p>记得读师范的时候，我第一次知道“特级教师”。那时候，我以为特级教师都是一些教学艺术高超、师德高尚、年过半百的老教师。学校经常给我们看一些特级教师的录像带，像斯霞、顾美云这样一些响亮的名字深深镌刻在我的心坎里。在师范留给我印象最深是特级教师章鼎儿老师的两节自然课，一节是《声音的产生》，还有一节是《红黄蓝》。在实习的那一个月，我所在的扬州市凤凰桥小学请来了扬州市东关小学的一位特级教师徐宝娣来为我们做讲座。她是扬州市东关小学的语文老师，那时候她的讲座内容我已经记不清了，但我知道，那个老太婆的学问一定是“一泓深潭”。在毕业前夕，学校请来了当时扬州市最有名的特级教师翟裕康来校做学术讲座。翟裕康风趣幽默的谈吐向我们勾画了一个别有味道的教育风景，同样他独特的求索经历也让我怦然心动，我也可以成为他那样！</p>
+<p>工作以后，接触到的第一位特级教师是校长的先生——胡明健老师。他是扬州中学的数学权威，高三数学的把关教师，享受国务院政府津贴。在刘校长的家里，我分明感受到一股浓浓的书卷气息，高高的书架上一摞摞新的旧的书籍占据了大半个卧室。窗前的书桌上永远是一尘不染，不问家事国事的老先生精神矍铄，厚厚的眼镜背后透出来的是一股深邃的思想。胡老先生是上海人，即使我们在他家做客，他也照样研究他的学问。难道特级教师就是这一副模样吗？我知道，精纯和深钻是一个特级教师必备的素质，也只有业务精纯才能配得上这个称号。</p>
+<p>第一次有人告诉我——我也可以成为特级教师的是我的师范老师夏巍然主任。那时候，我还是自然学科的一个新兵。98 年，扬州市青年教师自然教学基本功大赛中，我认识了夏巍然老师（以前虽然师范里有所接触，但由于夏主任并不担任我们的课，所以并不熟悉）。而这一次由于自然教学比赛使我对他有了更多的了解，而他也“发现”了我。98 年暑假，扬州市举办自然教师实验教学培训，夏巍然主任邀我讲实验创新的相关内容。前几站我独立讲课，在经历了宝应、高邮、广陵区等几个县市的讲课以后，我在邗江实验小学（瓜州小学）遇到了夏巍然主任。他听了我的报告之后，对我说了一段改变我一生命运的话：“你具有特级教师的潜质，要好好努力！”他还分析道：“有的老师会写文章，但不会上课；有的老师会上课，但不会讲座；而你同时具备这几样基本功，而且讲座上课很大气……”听了夏教授的鼓励，我当时心潮澎湃，仿佛已经是特级教师了。从那以后，我就立下了做特级教师的宏愿，那时候，我还在QQ的自我介绍中写道：特级教师是我的梦想……，但过不了多久我就把这一段话删除了，因为，那时候我立下的几乎是一个盲目的宏愿，其实那时候我离特级教师还远着呢！</p>
+<p>在我的专业领域里，有几位全国闻名的特级教师：天津的路培琦老师、浙江的章鼎儿老师、上海的李子平老师。最初，我是从录像带上认识他们的，从文章中认识他们的，而实际上看到真实的人是在99 年的一次全省自然教学活动。99 年春，省教研室卢新祁老师在无锡东绛举行“科学精神和科学教育研讨会”。在会上，我第一次看见了路培琦老师，同行的还有浙江的章鼎儿、北京的王大光、上海的陈国麟，湖北的姜允珍，还有李子平老师等。这些曾经在书籍、杂志上、录像上出现过的名字都一一出现在主席台上，这是我第一次亲睹这些大师。会上，专家们分别就科学精神和科学教育作了专题发言，我做了详细的笔记，只觉得过瘾。整个会议过程中，我的目光一直搜寻着这些大师的身影。</p>
+<p>最后一天晚餐，会议组织者举行会餐，上了一些酒水。因为比较轻松也和同行的伙伴开始推杯换盏。虽然喝的不多，但到晚餐结束时，我也是面色红润了。</p>
+<p>走出餐厅门口时，我忽然发现餐厅门口立着一个熟悉的身影——路培琦老师，他神情比较悠闲，好像正在等着谁……于是，我大着胆子走上前去，向路老师作了一个简单的自我介绍：“路老师，您好！我是扬州的一位村小的自然老师……”路老师听说我是“村小”的自然老师，就一把拉住我的胳膊，说：“好呀，好呀！走，咱们好好聊聊，村小自然课就是需要像你们这样的年轻老师……”</p>
+<p>就这样我被路老师拽到了他的房间。我真后悔呀，早知道有这样的机会，我绝对不会喝酒的，你看这面红耳赤的，多丢人呀！也记不得和路老师谈了什么，只知道路老师说了一大堆勉励的话，我心里热乎乎的！临别，路老师还给了我一张名片，名片的一角半截蜡烛正在燃烧……</p>
+<p>这一张名片搭起了我和路培琦老师联系的桥梁，我至今珍藏着！</p>
+<p>然而那时候我并没有成为特级教师的可能。让我成为特级教师可能的是我加入苏教版小学科学教材组。2000 年8 月，我调到扬州市武塘小学。暑假快要结束的时候，学校派我到南京参加省教研室举办的“自然教材培训会”。在会上，科学课程标准研制小组第一次把新的科学《课标》拿出来亮相，征求意见。这是我第一次读到课标的原稿，全新的理念一下子吸引了我。</p>
+<p>第二天，从小道消息得知，课标核心组成员也将到会，尤其让我兴奋得是，路培琦老师也会来！虽然我们在电话、书信里已经交流多次，彼此的声音、文字都已熟悉，但是，估计路培琦老师已经不记得我的容貌了，我也渴望着和路老师第二次见面。</p>
+<p>晚餐的时候，在华东饭店的餐厅，我发现一个熟悉的身影——路老师。他穿一件白色暗花纹T恤，正在自助餐桌前拿菜呢！我赶紧走到路培琦老师跟前，对路老师说：“路老师，我是曾……”还没等我说完，路老师就一把握住我的手，温暖的手很有力道：“曾宝俊！哎呀，曾老师，扬州的曾老师，我们通过好多次电话，今天终于见着了！”我说：“路老师，您先吃饭吧！”他说：“好好，吃过饭，到我房间来，咱们好好聊聊……”</p>
+<p>这是我和路老师第二次见面。正是这一次见面，彻底改变了我的命运！</p>
+<p>这一次会议除了《课标》征求意见之外，还开始物色《科学》教材的编写人员。晚上，我来到在路培琦、郝京华、章顶儿的房间，聆听大师的交流。在交谈中，他们发现我的“谈吐颇有思想”（章老师语）！</p>
+<p>第二天，会议结束。本来我是要回扬州的，但是郝京华教授让我留下来和他们一起开会。一起开会的还有中国科协的葛霆司长，我第一次和这么高级别领导坐在一张桌子上真有点儿拘束。会议主要讨论新的教材怎么编，各抒己见！我是一个小人物，专家们侃侃而谈，我是插不上嘴的！虽然我也有一些想法，然而在这样的场合里，我只能保持沉默！</p>
+<p>中途休息，在走廊上遇到路老师，我就和路老师谈了谈我的想法，他说：“你的想法很好，很有创意，可以供大家思考、借鉴呢！等一下，你一定要发言！”当会议再次开始的时候，路老师首先发言：“扬州的曾老师有一些新的想法，大家可以听一听！”于是，我就大着胆子介绍了我在学校里所探索的《冷和热》的单元设想，谁知这个方案一下子得到了大家的认可，大家认为这是一种新的教材思路……</p>
+<p>后来，第一版的苏教版科学教材中就有一个单元叫做《冷和热》。正是由于路老师的鼎力推荐，我走进了苏教版《科学》教材组！2000 年8 月，路培琦老师改变了我的人生轨迹……</p>
+<p>在教材组这个团体中，我结识了众多的全国知名学者，南师大的郝京华教授、苏州的樊琪教授，上海教科院的顾志跃教授、山东的常初芳教授、四川的冯梦月老师等等，另外还有一些天南海北的老师，如大连的孙红柳、沈阳的国红梅、山西的李霞等。在他们跟前，我只是一个普通的老师，我通过各种途径向这些前辈老师们学习，正是这样一种如蚕觅食的学习态度使我发生了悄悄的改变，内涵变得更加丰厚，视野变得更加宽广，思维变得更加敏捷，前途似乎是一片光明。</p>
+<p>在专业的发展道路上，我并非一帆风顺，也遇到了一系列的阻力。那时候，我很孤独，也很苦恼，常常到夏巍然教授家里去倾诉内心的苦闷，夏教授给了我很多精神上的力量。如果没有他当时的支持，我很难坚持到现在。中国有一句古话：“树挪死，人挪活”！何必吊在一棵树上呢？于是，我来到了江阴华士实验学校。</p>
+<p>偶尔读到支玉恒老师的一段经历，更加坚定了我的想法。支玉恒老师是全国知名的语文教师，我一直以为他是一个特级教师，但实际上他是一个从体育专项到小学语文的兼职教师。在他如此盛名之下，又有谁会在意他是否是特级教师呢？显然他是一个“超级教师”，虽无特级教师之名，却有特级教师之实。</p>
+<p>在如此的一种淡定的心境中，我来到江南小镇。其实，非常简单，我就是为了做一个科学老师，做一个非常纯粹而又虔诚的科学老师。我放下了以往所获得的诸多荣耀，进行了一次彻底的“人生清零”。将自己定位于一个初入门的师范学生，扎扎实实地埋头于课堂，潜心于自己的“小儿科”研究（“小学儿童科学启蒙教育”简称“小儿科”）。所谓“清零”，就是回到原点。把自己当成一个最最普通的人，没有取得过一丝一毫的成果，做一个老老实实的科学老师。而不是一个飞扬跋扈、意气风发的指使者，我必须改变我。在已有的成绩和荣誉面前能够拿得起，放得下，甩掉名利包袱，一切从“0 ”开始，把每一天、每一月、每一年都当作是新的起点，这才是积极主动、正确的“归零”方法。</p>
+<p>谁知，正是这种放弃让我获得意想不到的成功。2005 年，我被学校任命为“教科室主任”，主持学校科研工作；2006 年被评为“无锡市名教师”，2007 年被评为“中央教科所优秀工作者”，同年底，被评为“无锡市教科研带头人”。就在这样一个土壤里，我重新得到了江阴、华士同行以及行政的认可。</p>
+<p>我的特教师之梦重新燃起！</p>
+<p>今年初，学校同事段老师打电话给我，告诉我无锡市正在评“第十批特级教师”。我一向并不注重这些消息，但老段的电话让我心头一热，我要感谢这些关心我的朋友。于是我着手整理我的相关材料。在我初步准备好自己的材料之后，学校也给了我正式的通知。于是在朋友们的祝福声中，我幸福地忙碌着，一路走来，满怀着希望。年前大雪成灾，原本想去一趟南京郝京华教授处将自己在教材组的身份做一份书面证明，但未能如愿。于是怀着一种兴奋，我回家过年了。</p>
+<p>年初八，学校里打来电话，通知我交材料。我意识到，我从江阴出线了，我走出了第一关。其实评选特级教师最难的就是在区县一级的评审。因为在这一级要顾及很多因素：校际平衡、学科平衡什么的，材料是否充实是一回事，但是否能够得到教育局的认可又是一回事，所以说，这一关最容易走人。然而，我很幸运，这得益于我所在的学校，因为学校名声的缘故，我沾了不少的光。</p>
+<p>年后开学第一天，无锡市就来进行民调和面试。怀着忐忑不安的心情，我知道我必须过这一关。面对着无锡市人事部门的领导，我坦诚心迹：重视，但不会因此背上负担。看得出来，面对面的谈话中，这几位领导对我态度是非常满意的。</p>
+<p>不久，无锡市教育局就通知我上课了。特级教师是我人生中的一个最大的愿望！所以，以往一贯对名利并不太注重的我这一次显得特别的焦虑。然而，留给我的时间实在有限，周五抽到题目：五年级的《折形状》，周六、日备课，我把自己关在办公室里，终于找到了一个比较好的突破口。周一试教了一遍，周二又试教了一遍。两遍当中效果一好一差：第一遍效果不错，学生被充分调动起来了，只有几个小环节处理不够稳，其中最大的疏漏居然是忘记提醒孩子们相同条件来比较，是个较大的失误。第二遍试教的时候，就有意识地压一压学生，然而，不温不火的说话却让时间白白浪费了，结果后面的内容显得紧了，应该不好。如果正式上课的时候，效果赶得上第一遍就不错了！因为我知道，上课上到这个层次上，已经不是一般的挑小毛病的问题了，评委们一定会在这个教师的综合素质上多关注了，他们一定关注是否拖堂，是否关注学生，是否关注科学等等，所以，我给自己一个定位，这堂课一定要求稳，稳稳当当地操作、实验、下课，一定要不急不躁，从从容容。如果那样，课就成功一大半了，如果我在课堂上没有什么明显的科学错误，应该就没问题了。其实，我到了这个程度，科学性问题应该不会出了。</p>
+<p>这堂课，我以没有遗憾而结束，我做到了我的最好！</p>
+<p>这堂课，是我汪洋恣肆的“表演”。演示、板书、互动、才情、智慧在评委众目睽睽之下一览无余。在我的带领下，课堂时而行云流水般地平滑，时而鸦雀无声般地等待，时而慷慨激昂般地喷薄，时而百川归海般地澎湃。我个人的魅力、风格，得到最大化呈现。课堂中出现了好几个“意外”，却都悄悄地变成了无法预约的“精彩”。这里有我精心预设的“包袱”，更有我意料之外的惊喜。此时的课堂就是舞台，因为它为我和学生设置表现自我的广阔天地，舒展情怀的自由空间；此时的课堂又不是舞台，因为这里没有事先编好的“台词”，没有矫情做作的表演，一切都在自然地运行中，一切都在我机智地调控中，一切都在学生地独特体验中。这一堂课，我带给孩子的是一个真正体现童年色彩的课堂，让孩子观赏的是一轴终生回味的童年画卷。</p>
+<p>课的成功当然得益于我的精心准备，要知道为了这一天的到来，我等了整整十年呀！</p>
+<p>随后很长一段时间，我没有得到来自这方面的消息。</p>
+<p>五月，无锡市公示名单中我位列最后，因为是小学科学。直到暑假，我才知道省里的评审也通过了，八月，省特级教师名单在教育厅的网站上公示，我的名单赫然在目。</p>
+<p>放暑假前，我又知道省内的竞争对手不止一位，海门的徐杰、徐州的沈宁、盐城的丁加华也是候选人，这时候，我倒是心里坦然得很，多了也好！在比较中才能显出真实水平，虽然有风险，但我不怕！</p>
+<p>直到有一天，陪妻一起去医院摘除脸上的疣子，高邮的田老师打来电话，告诉我，省里正在公示，而我赫然在列。我几乎不相信，对他说：“开什么玩笑？”电话里，田晓军一阵信誓旦旦之后，我的心里立刻掀起了波澜。回到学校上网一查，果真如此！我知道，在中国公示之后，就表示上榜了，很少有公示之后再落下的，我决定慰劳一下家里人，于是暑假里我们去了云南半个月，这半个月，什么都不想，尽情地享受一家三口的快乐！</p>
+<p>九月初，依然毫无动静。直到九月8 日，学校通知我第二天去参加江阴市教育先进表彰，在会上，我第一次看到了我的特级教师证书，编号：“08021 4 ”。会后，证书又被教育局的收了回去——明天无锡市表彰还要用。第二天就是9 月10 日，无锡市在人民大剧院举行隆重的表彰大会，表彰无锡市杰出的教育单位和教师代表。学校特意安排了车送我去无锡市人民大剧院。在大剧院门口，我看到了一个高达三米的光荣榜，我的名字赫然在目，接下来绶带、鲜花、在一边欣赏优美的节目之后，一边感受领导的“关怀”之后，我领回了这本证书。</p>
+<p>直至今日，我真真切切地手捧鲜红的证书，才如同从梦中醒来，人生一梦，十年方醒！！！</p>
+
+
+<p style='float:right;'>本页共40段，6216个字符，17884 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

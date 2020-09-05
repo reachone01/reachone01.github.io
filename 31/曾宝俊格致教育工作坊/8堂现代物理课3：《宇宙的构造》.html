@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>8堂现代物理课3：《宇宙的构造》</h3>
+
+<p>二十世纪上半叶，爱因斯坦用相对论描述了空间和时间的运动方式。波尔则用一系列的方程捕捉到了物质奇怪的量子特性。在二十世纪下半叶，物理学家们在这个基础上，把这两个新理论广泛运用在了自然界的各个领域，从宏观世界的宇宙构造到微观世界的基本粒子。今天我们先来讲一讲宇宙的构造，明天我们继续来聊一聊基本粒子。</p>
+<p>在很多很严肃的物理书里面，都画了一些简单的图示来说明这个世界的基本结构。作者其实是想告诉我们，在实验、测量、计算和严格的推导之前，科学首先是一个视觉活动，而科学思想等于用新的方式来“看”事物的能力。</p>
+<p>在远古时代，人类对宇宙结构的认识是处于十分幼稚的状态，他们通常按照自己的生活环境，对宇宙的构造做了幼稚的推测。在中国西周时期，生活在华夏大地上的人们提出了早期的“盖天说”，“盖天说”认为天穹像一口锅倒扣在一个平坦的大地上面。后来，这个学说又发展成为后期的“盖天说”，他们认为大地的形状也是拱形的。而在公元前七世纪古巴比伦认为，天和地都是拱形的，大地被海洋所环绕而其中央则是高山。古埃及人把宇宙想象成以天为盒盖、大地为盒底的一个巨大的盒子，大地的中央则是尼罗河。古印度人想象是一个圆盘型的大地上面站了几只大象，大象站在巨大的乌龟背上，乌龟站在另外更加巨大的乌龟背上。公元前七世纪古希腊的哲学家泰勒斯认为，大地是浮在水面上的巨大圆盘，上面笼罩着穹形的天穹。也有一些人认为，地球只是乌龟身上的一片甲板，而乌龟站在那个拖着一个又一个的乌龟塔上面。几千年来人们对宇宙构造的认识，简单来说就是地在下，天在上。通常天文学的书上面画的图也是一个人站在地面上，脚下是大地，头顶是天空。</p>
+<p>第一次伟大的科学革命是发生在2600 年前，是由阿克西曼德发起来的，他是一个古希腊的天文学家。他想弄清楚为什么太阳、月亮以及各种星辰都围绕着我们转。于是，宇宙在他那里就变成了另外一幅样子：画面的正中央画了一个长方形的盒子，这就是我们的地球。盒子的上面和下面都站满了人，盒子的四周则是天空。现在我们发现在他的这个图形里面天空不仅在地球的上方，还把地球包围起来了，地球是一块漂浮在空中，不会远、不会坠落的大石头。</p>
+<p>很快就有人意识到，对一块飞在空中的土地而言，更合理的形状应该是球形，因为球形的各个方向向上都是相等的。古希腊的亚里士多德就用很多很具有说服力的科学论述，证明了地球是圆形，天空是环绕着大地的，日月星辰是在天空中运行的。结果宇宙就变成了一幅我们通常看到的那幅图景。地球的正中间是个球形，人在球体的表面，太阳月亮星星都围绕着地球来旋转。</p>
+<p>亚里士多德用多种方法论述了地球是球形：他从人们从港口归来的时候，总是先看到船帆再看到船身，推测大海的海平面是弧形的；他又从月食的图景上面意识到月食的黑色阴影是地球的影子，黑色的阴影是圆弧形的就说明了地球是一个圆弧形。亚里士多德是第一次不从思辨的角度论述宇宙的结构，而是第一次从论证的方式论述了地球为什么是一个球体。亚里士多德有部著作叫做《论天》，在《论天》里面描述了宇宙，宇宙的这幅图代表了从地中海文明到中世纪之前人们对宇宙的认知。亚里士多德的这样一个宇宙的结构统治了人们的思想大约有一千两百年。在当时的但丁和英国的莎士比亚这些学校里面，学的宇宙的图形就是亚里士多德的。</p>
+<p>最早认识到大地是球形的其实是古希腊人，不是从论证的角度来论辩的，是从思辨哲学的抽象角度来谈的。在公元前六世纪就是毕达哥拉斯学派，他们从美学观念出发，认为一切的立体图形当中最美的图形是球形，因此主张天体和我们所居住的大地都是球形的，只是我们大地太大了，所以看起来是平，后来这个观点为很多古希腊的学者所继承。但是怎么证明大地是球形呢？那要到四百年前，在1519 年到1520 期间，葡萄牙的航海家麦哲伦率领他的船队完成了一个探险工作，这个探险队第一次完成了人类真正意义上面的环球航行，那个时候地球是球形的观念才最终被证实了。</p>
+<p>在这个时候对宇宙的认识，对地球模型的认识，大家已经形成了一个统一的思想，而对宇宙认知的飞跃则是后来由哥白尼来完成的。为什么科学大革命是从哥白尼开始的呢？我们来看看哥白尼的观点。其实和亚里士多德的观点并没有多少区别，哥白尼的宇宙观是讲太阳在宇宙的中心，而亚里士多德的观点是地球是宇宙的中心。其实太阳是宇宙的中心和地球是宇宙的中心都能解释我们在地球上面所看到的日月星辰的运转现象，而这种运转现象相比较亚里士多德以及他后来的继承者托勒密，解释可能还更准确一点。但关键是哥白尼重拾了在一个古老的观点之后，他深思熟虑之后指出处在那些行星运动中心的不是我们的地球而是太阳，我们的地球只是那些行星当中的一员，一边高速地自转一边绕着太阳旋转。这个观点直接就挑战了地球是宇宙中心的观点，直接就把一个古老的问题抛了出来，就是人为什么站在地上不会掉下去，因为地球是一个球体，我们有可能是倒着呀。因为在亚里士多德看来地球是个球体，它的中心就是宇宙的中心，所以人类天然地向着这个中心，所以你站在这个球体上不会掉下来，这是毫无疑问的，因为在那个时候人们还没有引力这个概念。而哥白尼却说太阳是宇宙的中心，那么人类为什么站在这个球体上面不掉下去呢？这时候我们就知道了，哥白尼实际上是重启了一个革命，这个革命是彻底地颠覆了亚里士多德地球是宇宙中心的这样一个概念。</p>
+<p>但是随着后来人们逐渐逐渐地认识，随着科学知识地持续增长，随着科学仪器的不断变革，我们很快知道太阳系只是不计其数地星系当中的一个。而我们的太阳也只是众多恒星当中的普通的一颗，是浩瀚银河系星云当中的沧海一粟而已。但是在上个世纪20 世纪30 年代，天文学家对星云也就是说对恒星之间经过白色的那个云团进行了精确的测量之后，发现银河系本身也是众多星系当中浩瀚星云当中的一颗尘埃，这些星系一直蔓延到我们最强大的天文望远镜、射电望远镜、哈勃太空望远镜都看不到的那个地方，而整个世界就成了一片均匀的没有尽头的疆域。</p>
+<p>目前，在哈勃太空望远镜上拍到了一张星云的照片，它向我们展示了最强大的望远镜能看到的宇宙深处。如果用肉眼去看的话，那里将是漆黑夜空中及其微小的一片，但是通过哈勃望远镜，我们却可以看到在那里有无数遥远的小光点，而每一个小光点就是一个星系，而每一个星系里面都有上千亿个像太阳一样的恒星，尤其在近几年，我们发现绝大多数这样的恒星都有行星在环绕，所以宇宙当中还存在着不计其数地像地球一样的行星。无论向夜空的哪个方向看过去，我们都会看到这样的一个画面：书中的图片在一个浅色的背景之下，密密麻麻地布满了大大小小的黑点，这一片均匀无边的宇宙并不像看上去那么简单，就像我们的第一节课解释过的这个空间，并不是一马平川，而是一个弯曲的。宇宙布满了星系，所以我们想象它的纹理有个小波浪一样上下起伏。</p>
+<p>我们现在终于知道了这个布满星系、富有弹性的浩瀚宇宙大约是在一百五十亿年前有一次大爆炸形成的，由一个极热极密的小的星云演化而来。宇宙在诞生的时候就像一个小球，大爆炸之后一直膨胀膨胀到它现在的规模，这就是我们现在对宇宙最大程度的了解了。</p>
+<p>在汉语当中，“宇”表示上下四方，皆所有的空间，而“宙”则表示时间，代表了古往今来，表示所有的时间与无限空间。所以“宇宙”这个词就是有“所有的时间和空间”的意思。把“宇宙”的概念与时间和空间联系在一起，它体现了我国古代人民的一种智慧。“宇宙”这个词最早出现在《庄子》这本书里面，“宇”在庄子那里表示一切空间，东、西、南、北的一切地点，是无边无际的；“宙”则表示一切的时间，表示过去、现在、未来，白天、黑夜是无始无终的。“宇宙”就是在空间上面无边无际，时间上面无始无终，按照客观规律运动的一个物质世界。</p>
+<p>现在的物理学对“宇宙”的定义是：空间时间物质和能量所构成了一个统一体。我们看来宇宙只是万物的总称，是时间和空间的统一。宇宙是一个物质世界，它不依赖于人的意志而客观存在，并且处于不断运动和发展的过程当中。而宇宙也是多样而统一的，多样表现在物质表现的状态是多样而统一的；而统一就统一在不管它是什么样子他都是物质的。</p>
+<p>从哲学的角度来看，宇宙是无始无终，无边无际的。不过，对于这个深奥的概念我并不打算深入地去探讨还是留给那些哲学家们去研究。我们不妨把眼光缩小一些，讲一讲利用我们现有的科学技术所能了解观测到的宇宙，那么我们就把这片宇宙称之为是“我们的宇宙”或者说叫做“总星系”。</p>
+<p>从当前最新的观测资料来看，人类已经观测到离我们最远的星系是130 亿光年。也就是说，如果有一束光以每秒钟30 万千米的速度从该星系出发，那么要经过130 亿年才能到达地球。130 亿光年这个距离便是我们（2009 年）所知道的宇宙的一个范围。或者说说得更明确一点，我们今天所知道的宇宙范围，或者说是大小，是一个以地球为中心，以130 亿光年的距离为半径的一个球形空间。当然，地球也并不是什么宇宙的中心，宇宙也未必是一个球体，只是限于我们目前的观测能力，我们只能了解到这个程度而已。</p>
+<p>在这个以130 亿光年为半径的球形空间当中，目前已经被人们发现和观测到的星系大约是1250 亿个，而每个星系又拥有像太阳这样的恒星几百到几百万颗几万亿颗。因此只要做一道简单的数学题，你就不难了解到，在目前我们已经观测到的宇宙中拥有多少个星星。而地球在如此浩瀚的宇宙当中，也真的就只是沧海一粟，渺小得微不足道。</p>
+<p>还有别的什么吗？大爆炸之前还有什么东西存在吗？或许还有啊！这两节课之后我们继续讲。有没有跟我们有一个类似的或者不同的宇宙？这个我们到现在还不知道。</p>
+<p>关于宇宙的构造，我今天就给大家聊到这里。明天我们来聊一聊构成这个世界的基本粒子，让我们一起自我迭代，好好学习，格致教育工作坊每天都在这里等着你。</p>
+<p>讲座时间：2017 年12 月24 日</p>
+
+
+<p style='float:right;'>本页共20段，4121个字符，11943 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

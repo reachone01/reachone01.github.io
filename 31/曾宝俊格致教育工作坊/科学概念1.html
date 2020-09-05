@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>科学概念1</h3>
+
+<p>今天我们来聊一个科学教育里面比较专业的话题，就是关于“科学概念”，什么是科学概念以及科学概念教学的基本要素是什么？在客观世界当中存在着各种各样的个别事物，每一种事物都有它的许多属性。在日常生活当中，人们是通过感觉、知觉，以及印象、记忆，对客观事物有一个感性的认识，在生活中认识一个个具体的事物，比如张三、李四；男人，女人；中国人、外国人等等。</p>
+<p>什么是科学概念？概念是反映的事物特有属性的一种思维形态，概念也被称之为思维的一个工具，如果没有概念，思维就没办法产生。而科学概念也没有一个确切定义，比如在大不列颠百科全书、辞海、现代汉语词典当中，你去查概念，但是你就查不到科学概念这个词条。或许就像人们所说的那样，科学是一种复杂的社会现象，要给出一个精确而完整的定义是十分困难的，而给科学概念下一个完整的、准确的定义或许就更难。一般来说，我们仿照这个概念的定义法，我们可以这么说：科学概念就是客观事物的共同属性和本质特征在人们头脑中的反应，是对科学事物的一种抽象，是人们在观察、实验和思维相结合的一种产物，是组成科学知识的一个基本单元，是形成科学学科结构的一个基础。这是我给科学概念下的一个定义，也许不太准确，或者更准确的说，我下的这个定义模仿成分比较重，因此它也不算是一个权威的定义。关于科学概念我们就先聊到这。</p>
+<p>接下来，我们就来聊一聊科学概念的教学，提高科学概念的教学的效率。谈到这个，我们就必须要了解与科学概念相关的几个基本要素，第一个就叫做词语——科学词汇；第二个就是科学概念的内涵；第三个就是科学概念的外延；第四个就是科学概念的例证，以及前科学概念，或者说迷失科学概念。</p>
+<p>先说第一个科学词汇。我们前面已经讲过，概念是人们认识自然事物的一个结果，它反映的是客观事物的思想，而词语、词汇则是表达事物或表达概念的声音与笔划，概念是词语的思想内容。这话不是我说的，是一个著名的一个哲学家——金岳霖说的。词语是概念的语言形式，金岳霖先生对这个词语和概念之间的关系，做了一个准确的表达。金岳霖先生就是当年追求林徽因的一个才子。他写过去好几本书，《形式逻辑》《论知识》，这些书都是拿到手看不懂的。概念与词汇之间的关系是非常密切的，金岳霖先生就这么去表达：概念的存在必须依附于词汇、词语，不依附于一个词汇的赤裸裸的那个概念是不存在的。那么词语的学习就属于表征学习的范畴，也就是说学习单个符号或一组符号的意义，这就叫做表征学习，表征学习是概念学习的基础和前提。词语和概念之间，其实并不是对应的，不是说一个词语就能表示一个概念，原因很简单，因为同一个概念可以用不同的词语来表达。词语是分地方的，有中文、有英文，我们各个地方有不同的方言，因此词语、词汇基本上是一个民族习惯的产物，不同的民族，对同一个事物的词汇是可以表示不同的。比如我们对水的表达，中国就叫水，英文就叫做water，然后我们中文说脱氧核糖核酸，英文就三个字母——DNA，这样的一些词都是表达了相同的概念。同样在同一个民族当中，也常常用不同的词语来表达同一个概念，比如像生物多样性的保护方式之一，就叫做异地保护。异地保护也可以说成是迁移保护，异地就是换个地方。同样像生物学当中还有什么过敏反应，过敏反应也叫超敏反应，你看这个词，都表示同一个概念。这是第一个，就是词语跟跟概念之间，并不是一一对应的。</p>
+<p>第二个想说的就是同一个词语，也可以表达不同的概念，就是一词多义，在汉语当中。因为同一个词语在不同的语境当中就可以表达不同的概念。比如我们说有一种鸟叫白头翁，但是我现在这个白头发，虽然年纪不大，他们有时候也叫我白头翁；再比如一种鸟叫杜鹃，杜鹃既可以表示一种鸟，也可以表示一种叫做杜鹃的花。当然在科学概念当中，也有好多是广义和狭义之分，比如“新陈代谢”这个词，狭义的新陈代谢，就是指生物体当中那个活细胞中全部有序的那种化学变化，这叫狭义的生物学里面的一个概念。当然新陈代谢本身就是不管广义或狭义，都是生物学里面的，它就是指生物体活细胞中全部有序的一种化学变化。广义的新陈代谢，就是指有机物与外界环境之间的物质与能量的交换，以及生物体内部物质与能量的一个转变过程。同样生物学当中还有一个词也很有意义，就是“翻译”，这个翻译在生物学当中就是指氨基酸把RNA合成一定有顺序的蛋白质的过程。“翻译”，就是那天我听一个讲座的时候，我就感觉RNA起到一个翻译的作用，就是DNA转化成蛋白质。但是你回头再想想，当我们说到“翻译”这个词的时候，往往是指做“翻译”的工作人员，把一种语言翻译成另外一种语言，而是使他们的原来的意思保持不变。也就是说概念和词语之间，他并不表示是同一个，并不是一一对应。</p>
+<p>接下来我们就来谈科学概念的内涵。所谓的内涵就是指这个事物的特有属性，或者换一个词来说，用我们刚才那个词汇来说，就叫做概念的含义。内涵，往往表示的是这个概念质的规定，它反映的是概念所反映的对象属性是什么？任何一个概念都是有内涵的。在科学教学当中，科学概念往往是通过对事物的本质属性，或者说是对它的内涵进行确切、简要的说明来进行界定的，或者说这也就是概念的一个定义。</p>
+<p>什么叫定义？就是揭示事物特有属性的一个逻辑方法。这个特有属性，我们换个词来说就叫做固有属性，或者说本质属性。我们怎么来定义一个概念的内涵？或者说给一个概念下定义呢？第一种方法叫做属加种差。比如我们对基因做个定义，基因就叫做有遗传效应的DNA片段，它被定义项为基因，定义项叫做有效遗传，有遗传效应的DNA片段，在被定义基因就等于是什么？它是遗传效应的DNA片段，首先它是属于DNA片段，然后它跟其他的DNA的片段有什么不一样？它就是有遗传效应DNA。很多人定义，人是会说话的两足动物，如果鸡会说话的话，那么鸡可以被定义为人。培根曾经下过这个定义，后来被人家反驳的，这个定义为叫做属加种差，它属于哪一类的，它跟同一类的其他的有什么不一样，这就是一种定义的方式。科学概念定义还常常用事物发生或形成过程的情况作为种差。比如刚才我们说那个“翻译”，有时候像这样的一些词，在生物学当中叫“转入”。什么叫“转入”？那就是RNA在细胞核当中，以DNA的一个链作为模板进行一个合成，这就是“转入”。我刚才对转入下定义，用的是把这个事物发生和形成的过程的情况，作为一个区别其他情况的一个种差。当然说这个RNA、DNA，大家有点陌生，我说一个大家都不陌生的一个词——“光合作用”。“光合作用”是什么？就是光对和绿色植物，就是叶绿素进行化学反应，吸收二氧化碳产生氧气的过程，这个就叫做把事物的形成发生过程作为种差来做定义。这是一种定义的方法。</p>
+<p>第二种定义的方法就叫做词语定义，这个就比较简单，比如我们科学当中有一个词，大家用的比较多，这个英文词叫“ATP”，“ATP”指什么意思？就是一种叫做三磷酸腺苷的一个英文缩写，它实际上是细胞里面的一种高能的磷酸化合物。这个细胞内的一种高能磷酸化合物，就是用词语定义的，就是用规定的词来说明词语的意义。比如出生率，就是指单位时间内所产生的个体的数目占总群个体种族的比例；比如速度，就是单位时间内所走的距离。这样的词就是用一个短语与短词来进行界定。</p>
+<p>第三个叫概念的外延，概念的外延就是指具有概念所反映的特有属性的事物，就是概念属性全部的对象。外面它包括多少，要全部把它囊括在内，外延就是概念的量的一个规定，它表明这个概念有哪些？比如像“生物群落”这个词，它的概念的外延就是指同一时间聚集在一定区域内各种生物种群的集合。那么它这个概念的外延就是指特有属性对象，生态系统是这个概念的外延。因此我们在教学当中，往往会把概念分成几个逻辑互相遮严的部分来表述这个概念外延的整体。比如“昆虫”这个概念，它的外延就包括所有昆虫的种类；像细胞，它就是指自然世界当中所有对应的细胞；像鸟，就是指所有的鸟。有一些概念，它在自然界当中并没有，但是它也是可以有外延的。比如有一种鸟，我们中国人都知道，叫“凤凰”，它是想象出来的，它是百鸟之王，这是定义。它羽毛很美丽，雄的叫“凤”，雌的叫“凰，这就叫作概念的外延，这个概念的内核就是百鸟之王。当然“凤凰”这种鸟，它是主观的虚构，那么在客观世界当中，它没有相对应的事物，看起来它就是没有外延对不对，但是雄的叫“凤”，雌的叫“凰”，这是它的外延。当然还有一些概念，它是没有外延的，比如像“鬼”“神”，这些东西在自然界当中根本不存在，它是没有外延的。相反，有一些物种灭绝了。比如像北美的“旅鸽”，这是最后一种灭绝的鸟，还有冰岛的海雀、南飞的斑驴、澳洲的袋狼，这些绝种的物种，虽然在地球上面难觅其踪影，但它并不是虚构的，所以它的概念仍然是真实的，有明确的、具体的外延的。今天因为时间关系我不再多讲了，最后再讲一讲科学概念的例证，我们把“前概念”或者“迷失概念”放到明天来讲。</p>
+<p>内涵和外延是概念的两个重要方面，概念的内涵规定了概念的“质”，概念的外延则规定了概念的“量”。那么，在概念教学当中，我们要通过对概念的“质”和“量”两个方面的学习，来形成科学的概念，但是仅仅依靠“质”和“量”两方面学习，往往是空对空。因此，我们在概念的掌握当中，还特别需要得到例证的支持，这个例证就包括正例、反例，还有特例。比如我们刚才所说的“昆虫”这个概念，它的概念的正例，就是平常最典型的那些概念的例子，比如蜜蜂、蚂蚁毫无例外。另外反例，比如不属于这个昆虫的蜘蛛，鼠妇虫它就不属于这个，还有一些特例，一般的概念，昆虫当中都有两对翅，可是蚂蚁是没有的。一般的哺乳动物当中都是胎生的，可是却有一种特别，鸭嘴兽是卵生，是卵生哺乳动物。概念的正例，往往反映的是概念本质属性的那些具体事物，是具体对象。如果用数学的方式来说，概念的外延是一个集合，那么这个概念的正例，就是这个集合当中的所有的元素，因此概念的外延是一个整体，概念的例证就是一个个体。概念的外延是一个范围，而概念的例证，一定是在这个范围当中。概念的外延，它往往是笼统的、抽象的。所有的鸟都是鸟的外延，像仙鹤、麻雀，就是具体的、明确的。</p>
+<p>在我们概念教学当中，列举概念“正例”，有利于学生来分析这个概念的特征。比如我们以“生态系统概念”为例，什么叫“生态系统”？就是生物群落与它的无机环境相互作用而形成的统一整体，在这一句话当中有三个词，也就是说对生态群系统有三个词来概念，第一个就是“生物群落”、第二个就是“无机环境”、第三个是“相互作用”，这个形成一个统一的整体，就叫做生态系统。那么“正例”去举，比如一个小池塘，还有生态群落里面所有的生物。动物，植物，还有无机环境，泥土、岩石相互作用形成一个整体，比如像一块草地、一片农田、一片森林、一条河流，这些都是属于一个小的生态系统。生态系统我们这样去理解它，它就要通过“正例”来理解。“反例”就是指不在这个外延当中的，在概念教学当中，举“反例”是特别重要的。因为在这里要区分某种事物的“本质属性”和“非本质属性”。取舍之后要取出前者就是“本质属性”出来，这是概念形成的一个种方法。比如我们说生物当中的“竞争”。生物当中的“竞争”指利用共同资源生存的两种生物之间，由于争夺食物、争夺空间发生的斗争，“正例”我们就可以去选择“鸠占鹊巢”等等，但是两个狗抢骨头就是“反例”，两个狗抢骨头，虽然是属于抢夺食物，但是他们不是在利用共同资源，不是大战争。比如像鱼的“反例”就是也是生活在水里面的，像鲸、海豚，那就不属于鱼类，同样，蝙蝠也不是“鸟类”，这就叫做“反例”。刚才所说的特例，就是指概念教学当中的一些特殊的例子，往往这些生物不具备或不完全具备概念所反映的那些“本质属性”。一提到这个，我就想到我们课标上面提出来的一个词叫“微生物”，一听这个词往往就觉得，这一类生物形体很微小、结构比较简单，一般要借助显微镜、电子显微镜才能观察到，如果说它的外延，就是所有这些微小生物的总称叫微生物，这是外延。但是微生物也有特例，就是我们平常所吃的蘑菇、木耳、金针菇，这些生物身体并不微小，它根本不需要借助显微镜、电子显微镜才能观察到，但是它们又都属于微生物；比如像哺乳动物，一般都是胎生、哺乳，可是刚才我们说过鸭嘴兽偏偏是卵生，也吃妈妈的奶，所以它是一个“特例”。</p>
+<p>好了，关于科学概念的几个要素，今天我们就聊到这里，让我们一起认知越狱，自我迭代，格致教育工作坊每天都在这里等着你。</p>
+<p>讲座时间：2019 年5 月9 日</p>
+
+
+<p style='float:right;'>本页共14段，5143个字符，15107 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

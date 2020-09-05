@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>科学简史6-希腊自由的科学2</h3>
+
+<p></p>
+<p></p>
+<p>上一期我们提到，希腊的科学是一种自由的科学。那在古代希腊时期所谓的科学都有哪些类型呢？至少有两大类型，第一个叫作“数学”，第二个叫“哲学”。一般来讲，希腊人以18 岁划界的话，18 岁以前都要学数学，18 岁以后要学哲学。因此哲学是高阶科学，数学是初阶的科学。今天我们就讲一讲希腊的数学的基本内容，它如何体现希腊这种自由科学的品质。</p>
+<p></p>
+<p></p>
+<p></p>
+<p>我们首先对“数学”做个定义，数学到底是什么呢？</p>
+<p></p>
+<p>“数学”一词来自于希腊文，它并不像我们今天所说的，数学就是和数字有关系，它的意思是“可教可学”。这个词很古怪，希腊的青少年首先学的一门课，意思居然是可教可学的东西。那为什么要强调数学是“可教可学”呢？这个是希腊人就学习这件事情一直有的一个纠结点。</p>
+<p></p>
+<p>我们先来探讨下“可教可学”的来源。</p>
+<p></p>
+<p>在苏格拉底以前，智者学派里曾经有一个广泛流传的学习悖论，是这么说的，你学一样东西，究竟对这个东西懂还是不懂？如果懂，就没必要学。如果不懂，又怎么学得会呢？柏拉图对此有一个明确的回答，他认为，我们只能学习那些本来就懂的东西，因为如果我们根本就不懂，是学不会的，之所以懂还要学，是因为我们本来是懂的，但是后来给忘了。因此所谓学习不过就是回忆而已，回忆起我们的灵魂曾经懂的东西，所以强调学习就是回忆。这是柏拉图一个很重要的思想，这个思想今天看来很荒谬，如果从一种经验心理学意义上说，也是很荒谬的，谁会本来就懂然后忘掉了。我们一直寻找的，却是自己原本早已拥有的；我们总是东张西望，唯独漏了自己想要的。</p>
+<p></p>
+<p></p>
+<p></p>
+<p>“可教可学”的内在意义到底是一种什么呢？如果从一种哲学意义上讲的话，“数学”的意思就很深刻了，这句话无非是说，所有能成为我们人类知识的东西，它一定是在一种先天意义上为我们人类所能够理解和掌握的东西。如果我们人类根本就没法理解和掌握的东西，那是不可能成为我们知识的对象。</p>
+<p></p>
+<p>为什么希腊人强调“数学”？数学之所以很幸运地成为希腊人的第一类知识，所有的人都要学的粗略知识，在于它本来的意思就是可学可教的，就是说你本来就懂这东西。</p>
+<p></p>
+<p></p>
+<p></p>
+<p>对希腊人来讲，数学就是所谓的人尽皆知的，本来就懂的那些知识。所以我们看到希腊人之所以强调数学，不是我们今天想象的那样，对计算的爱好以及计算能力的追求，而是说我们本质上只能学习那些我们本来就能够学习的东西，这是强调知识的内在性，强调作为科学，它具有内在特征。你有没有发现，在讲这一段的时候有点像绕口令的感觉，反复、重复地绕概念。内在特征的意思就是说，它自己决定自己，自己能推出自己。希腊“数学”的内容是什么呢？希腊“数学”又分为哪些门类呢？希腊的数学既然是自己能够推出自己的，怎么个学法呢？我们知道希腊数学有四大门类。第一个门类叫作算术，第二个门类叫作几何，第三个门类叫作音乐，第四个门类叫作天文。音乐和天文为什么也算在“数学”内？算术、几何、音乐、天文，这四门学科都称之为“数学学科”，在我们今天看来很古怪，算术几何，当然是归到数学里去，那为什么音乐和天文也规定进去了呢？那我们就要重新理解希腊人对数学的定义了，就是说这四门学科其内容是我们人类本来就熟悉的。因此我们不但有算数、数数、辨数的能力，也有辨别形状和了解形状之间关系的能力，同时我们也本来就拥有体会和谐音乐的能力，体会天空运行的能力。</p>
+<p></p>
+<p></p>
+<p></p>
+<p>古希腊有个很著名的学派，叫毕达哥拉斯学派。这个学派在对整数比值和音符高低之间的关系做研究。他们认为，如果一个人不能够懂得音乐之间是否和谐，听不出嘈杂和美妙，那么你这个人就算不上是个人，就不知好歹了，也就失去了鉴别能力。天文学也是一样的，它之所以是数学，说的是天体之间的这样一些关系，也是我们人本来就能够看懂的。所以数学在希腊人那里扮演的角色其实就是跟先前所讲的自由的科学是一脉相承的。希腊的“算数”，我们就先尝试谈一谈“算数”。希腊的算术，在希腊时期，跟计算没有任何关系。希腊人另外有一门学科，是管计算的，接近于我们中国古代的算数，是专门研究计算的。比方说“5 +3 =8 ，8 ×3 =24 ”，这是计算类的，它并没有被希腊人看作是每个人都必须学的。相反每个人都必须学的算数，它讲的不是计算，讲的应该是数与数之间的关系和道理。比如他认为“1 ”就是整个天地，“2 ”就是朋友、两个人，“3 ”就是家庭、稳定，“4 ”就是社会，“5 ”“6 ”“7 ”“8 ”“9 ”每一个数字都有其特定的翻译，数与数之间也有其特定的道理。因此我们把它译成数理学大概是更准确的，现在也有人把它译成数论，就是专门研究数的。</p>
+<p></p>
+<p></p>
+<p></p>
+<p>《白银帝国》中，账房先生把算盘接成一圈，计算年终分红。跟希腊人不同，中国人更偏向于实用的计算。希腊人“算数”的根源是什么？研究数有什么讲究呢？希腊的算数，它根源于毕达哥拉斯学派。毕达哥拉斯这个人也是一个神人，他在古代世界创办了一个集科学、哲学、宗教、政治，四位一体的组织。这个组织成员都信奉毕达哥拉斯所说的“数即万物，万物即数”这样的哲学信念，也秉承某些很神秘的宗教信念。比方说圆是最完美的，所以黄豆不能吃之类的这些思想。他们当然也是一些有政治抱负的人，所以毕达哥拉斯学派造就了希腊的算术传统，那么毕达哥拉斯搞算数，搞什么呢？？毕达哥拉斯的“算数”研究的是哪些东西呢？刚才说了他并不搞计算，他主要做的事情是研究数之间的关系，他研究事物的分类体系，研究不同的数之间如何能够达成这样一种和谐的比例关系，有点像我们古代的数秘术。</p>
+<p></p>
+<p>但是，我们的数秘术更多的是讲破解，比方说这个数意味着什么，那个数意味着什么。所以，我们中国的数秘术在星占、占卜的方面比重较大，而数方面下功夫不多。我们知道，中国的算术在古代是相对比较简单的，无非用八卦或二进制。相反，毕达哥拉斯学派在数理方面下功夫很多，分了很多类别，比方说奇数偶数是从那继承下来的，他强调奇数偶数本身就表达世界的两类不同性质。和我们中国文化相反，我们中国人重视双数，不重视单数，因为好事成双，所以我们很喜欢双数，觉得双数更吉利，单数不够吉利。不过毕达哥拉斯学派代表着希腊思想，认为奇数更吉利，偶数不够吉利，这个想法跟我们相反。中国古代建筑的“门当户对”，所以喜欢双数，希腊人喜欢独立自由，所以喜欢单数。</p>
+<p></p>
+<p></p>
+<p></p>
+<p>接下来我们来谈谈第一次数学危机。第一次数学危机是什么危机呢？说来也很有意思，就是根号二的发现。那么根号二是个什么东西呢？我们知道，它的平方等于2 ，它自己就叫根号二。毕达哥拉斯学派早年发现了一个毕达哥拉斯定理，我们中国人现在称为“勾股定理”，就是，勾三股四弦五，毕达哥拉斯更加直白，就是直角三角形，它的直角边的平方和，等于斜边的平方，因此一个等腰直角三角形，它的斜边就是根号二。按照毕达哥拉斯学派的看法，既然是一个等腰直角三角形的斜边，那么这个斜边就应该是一个数，如果是一个数的话，就应该可以写成数的比例，这是他们的一个基本的教条。结果，就有一个人发现，其实根号二是不能写成两个数的比例的，用我们今天说的话就是，根号二是一个无理数，或者说它是一个无限不循环小数，无限不循环的意思就是说，你没法写成两个数的比例。其实，这件事情在我们听起来也无所谓了，可是对毕达哥拉斯学派来说就是个大事情，因为他们一直秉承的“万物皆数，数即万物”信念，事物的规律就是世界的规律，因此你突然发现一个东西，它不是个数，不能按照传统的方法来表示数的比例的话，那对他们来讲就是一个很大的事情。所以据说在场的人都十分的痛苦，想了半天也没有办法发现那个人的证明就是对的。据传说，最后他们没有办法，就把那个发现根号二不是个数的女人扔到海里去了。所以我们说，第一次出现危机，实际上是表现了“数即万物”这个命题其实是不成立的。这件事情对古希腊的哲学产生了一个很重要的困难。中西方对待理论规则的差异是非常大的，第一次数学危机，在我们中国人看来是个笑话。你发现根号二不是个数就不是，你把她扔到海里去干什么。这只能说明某些东西在人家看来非常重要的，非常不能容忍的事情，在我们看来其实是无所谓的。中国人对什么比较有所谓呢？我们中国人对关系很看重，不能够颠倒，在礼仪上也不能够有差错。至于说，天地万物这些数学规则，那都没必要讲那么严格。所以中国自古以来，对宇宙的形状，始终是抱有一种无可无不可的态度，以至于我们过去认为天圆地方，后来也有人说其实天圆地也是圆的，多数人也觉得不置可否。甚至，洋人来了之后说地球其实是一个球体，我们也就慢慢接受了，之所以能够接受，就是因为我们根本上就不在乎。而相反，西方人对道理、观念、理论，抠得比较死。所以我们说第一次数学危机所产生的这样一种血案，也反映出希腊人那种特有的精神气质和科学精神，这种科学精神就是很拘泥很较真。</p>
+<p></p>
+<p></p>
+<p></p>
+<p>希腊第一次数学危机以后，算数就没有办法再发展了，因为人们发现不仅根号二不是个数，在那个意义上，根号三、根号五、根号七都不是个数，也就是一大堆东西都不是数，那么传统意义上这个算数的规范就没法做下去了。所以希腊的算数，后来就衰落了，最后带出来另外一个学科，就是“几何学”。</p>
+<p></p>
+<p>好了，今天先聊到这里。让我们一起自我迭代，好好学习，格致教育工作坊每天都在这里等你。</p>
+<p></p>
+<p>讲座时间：2018 年1 月15 日</p>
+
+
+<p style='float:right;'>本页共46段，4074个字符，11429 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

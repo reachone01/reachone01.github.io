@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>李约瑟的难题5</h3>
+
+<p>中国古代科学技术内容博大渊深，成就辉煌，但对其进行全面总结并不是中国人自己，而是一个西方人——李约瑟，并且之后再也没有后人能够超越。可以说，当今中国科技史的研究只不过是对李约瑟《中国科学技术史》一书的注脚。这又是为什么呢？</p>
+<p>李约瑟自己曾说过，要想写好《中国科学技术史》这样的著作，应满足如下六个条件：1 .科学修养；2 .科研经验；3 .熟谙欧洲历史；4 .在中国人民中生活的体验；5 .通晓中国古今语文；6 .获得中国学者的良好协助。</p>
+<p>的确，在今天看来，李约瑟之所以能写出如此巨著，首先是因为李约瑟本人不仅学贯中西，对中国文化有极大的兴趣和热爱。其次是他有一个广阔的视野，能站在统领全局的制高点来观察和思考，而很多学者尤其是中国学者的思维常常囿于本领域之内，不能跳得更远、更高的角度去审视一种文化；同时李约瑟不仅有一种宽厚的学术背景和知识面，而且掌握了多种语言；更重要的是他有一种哲学思维，即高度概括的能力和创新思考的能力。正因为如此，李约瑟才能不拘泥于传统观念，敢于打破“西欧中心主义”的神话。李约瑟不仅对中国文明高度赞赏，而且也充分肯定其他任何民族和地区的文化。他认为，世界科学就像一个大海一样，是由不同的河流汇集而成的，即“百川朝宗于海”。他还预言，各个民族的文化会像科学一样，最终融合在一起，历史是整个人类的历史。概括来说，只有科学和人文的融合才有如此宽广的视野。正如诺贝尔化学奖得主、耗散结构论创始人普利高津指出的那样（我曾经讲过普利高津一书《普利高津的时间》），西方科学和中国文化对整体协调性理解的完美结合，将导致创立新的自然观和哲学观。李约瑟著作中展现出东西方文明广阔的历史背景，而西方科学与文化的交流与比较则是贯穿全书的一条主线。</p>
+<p>物理学大师海森堡曾在其《物理学与哲学》一书中这样说：今天，当人们谈到现代物理学时，首先想到的原子武器，并且都心悦诚服地承认物理学对一般政治形势的影响比以往任何时期都要大。但是现代物理学对政治真的是最重要的方面吗？每个工具都当真有用来创造它的那种精神吗？因为每个国家和政治集团，不管它的地理位置和文化传统如何，都必须以某种方式关心这种新武器，所以现代物理学的精神必将渗透到许多人的心灵之中，并以各种不同的方式和传统联系起来。对于某些地区和某种文化传统，它“将同本地文化的宗教基础和哲学基础发生冲突。这种冲突可能引起全新的、难以预料的发展”。现代数学在中国的传播和发展过程恰好证实了这个论断。这个过程是漫长而且充满冲突的，欧几里得的《几何原本》传入中国就是一个例证。</p>
+<p>中国思想在世界科技史上的作用，美国科学史家尤里达在《中国古代的物理学与自然观》一书中说：现今的科学大厦不是西方的私有成果和财富，也不仅仅是亚里士多德、欧几里得、哥白尼和牛顿的贡献，其中也有中国的老子、邹衍、沈括和朱熹的功劳，尤其受惠于中国《易经》的理论。如果中国科学独立发展，我们不知其情景将会如何，但我们可以说，当今科学所选择的某些方向，统一整体世界观的某些方面具有中国的，而非别国的特点，中国自然哲学和中国科学求索千年的主旨在于把握有机的统一性、自发性、有序性、和谐性和相关性。</p>
+<p>现代物理学家的研究方向同中国古代思想家们的某些思想如此相近，表明中国古典哲学中包含着今天的科学思想中的许多萌芽。因此，中国古典哲学是否可以为现代自然科学提供有益的哲学启示，就成为值得重视的研究课题。</p>
+<p>人类文明进程是多元化的，是立体丰富多彩的图景，或者用李约瑟本人的话来说，是“百川纳海”的壮丽景象，而不像以往的观点，认为科学是围绕一条主线演化而来的。科学有一个源头，这个源头在西方，或者在巴比伦。巴比伦在西方学者眼里也是属于西方的，从巴比伦，然后埃及，然后古希腊，特别是古希腊，到古希腊那里突然发达起来，然后有一个中世纪，从中世纪以后，突然出了一个文艺复兴。文艺复兴以后就有了科学革命，然后又有在英国发生的工业革命，美国发生的政治革命，法国发生的政治革命，然后发展到现在。这是一条线，非常简单的一个线性发展规律。</p>
+<p>历史到底是怎么发展的？但绝不是从欧洲、从文艺复兴一直到现在的这样一条主线。世界真实图景并不是这样的，而是丰富多彩的。我们今天要强调这个多样化的概念在生物学中非常重要。生物学中如果没有多样性，可能我们这个地球的鲜活和美丽就不复存在。世界之所以丰富多彩，就是因为有多样性。同时，我们看历史，看文化，以及理解人类文化，人类文明之能够发展到今天，也是因为人类文化具有千真万确的多样性。</p>
+<p>中国有一句成语——独木不成林！李约瑟曾以天文学为例，讲清了这个道理。他说：“如果我们现代的天空在命名方面是希腊式的话，那么在计量恒星精确位置这一同样重要方面却完全是中国式的。计量恒星位置有三种经典方式：希腊式，按黄道和黄极决定一切，一颗星的位置以黄经、黄纬表示；穆斯林式，用地平坐标系，以高度和地平经度表达；中国式，是从赤道和时圈起量，跟今天我们说的赤经、赤纬完全相同。中国人测量了每一宿的距度，并以去极度代替了去赤道度，他们的系统同现代的一致。有人可能要问，西方是什么时候变过来的呢？那是在文艺复兴时期，十六世纪下半叶第谷进行伟大的天文观测的时期。看来，他是部分受到了精通中国系统的阿拉伯人的影响而选择了现代体系。”</p>
+<p>自然学科研究的是客观的自然界的现象或者说是规律，无论是研究现象还是规律，由于其本身的客观性，所以必须用客观的手段得到客观的答案，那么这个答案就是唯一的，也就是大家都在追求的唯一正确的真理。</p>
+<p>既然自然科学需要唯一正确的真理，那么现在课堂上讲的和书本上所写的是否就是我们最后所追求的真理呢？未必是。因为每个人都知道尽信书不如无书的道理，而这样的事情在历史上也是无数次被证明了。牛顿否定了亚里士多德，爱因斯坦又否定了牛顿，这样的例子还可以举出很多，而自然科学正是在不断地否定前辈经验的过程中不断地发展完善而形成的。我们又怎会如此肯定我们今天得到的结论不会被明天的人否定？甚至于科学本身也有被人否定的可能。所谓科学是比迷信更加进步的一种认识自然的方法，在上古时期人们由于认识能力的不足才会相信某些自然现象是鬼神所为，随着人类认识能力的加强，出现了更加进步的方法那就是科学。</p>
+<p>那么随着人类认识能力的进一步提高，是否出现更习惯了服从，那么让他否定，是很难的，甚至于他都已经忘记了否定。体现在学校教育里那就是“没有了标准答案他会很不舒服，很不适应”。就像印度人用一根很细的绳子栓大象一样，当大象还是小象的时候它就已经习惯于被一根绳子拴住，当它长大之后，它已经有能力也有机会摆脱那根绳子，可是它已经忘了摆脱，甚至于有时没有绳子它也要找一根来拴住自己。这也许就是钱学森之问答案的症结之所在！</p>
+<p>世上没有无缘之果，世事也不会违反因果律。近代西方科学技术发展及成果就是西方社会民主政治文化思想所结出的果实。过去的西方中心论也好，欧洲中心论也好，就是这样一个观点。今天越来越多的有识之士，包括西方大多数学术界的主流，大多珍视文化多样性的理念。所以，李约瑟工作最重要的意义，就在于它从人类文明多样性的视角，对中国古代文明做了一个全方位的透视。过去认为中国没有科学技术，但李约瑟向世人证明了：有！不但有发明创造，而且也有科学的思想、科学的概念。这就是李约瑟工作的最主要的意义。</p>
+<p>李约瑟上个世纪就曾预言，相较于20 世纪物理学领域量子力学、相对论以及生物学领域DNA双螺旋结构的发现，如果下一世纪还要爆发科学革命的话，我敢说，他将不会是牛顿的、尼古拉斯式的，而是海森堡式的。这是什么意思呢？就是说，如果科学革命在21 世纪再发生，绝不会是一种建立在一种机械论的哲学观基础上的一个东西，一定是建立在一种注重整体的、注重辩证思维的，是这样或者是跟这类似的一种思想、一种哲学的基础上产生的，一种观念上的革命。李约瑟说这个话的时候，他还不知道科学到了20 世纪末或者到了我们现在21 世纪初，出现这么多新鲜东西，比方说，像混沌理论、爆炸理论、非线性的科学、复杂性的理论、突变理论等等，所有的这些都或多或少地跟这种所谓的总体论、有机论的自然观相关。而恰恰中国古代哲学，最醒目的一个特征，就是有机论的自然观。另外，现任李约瑟研究所所长古克礼博士转述了李约瑟临终前的观点：李约瑟先生透过他多年来对中国以及中国人的了解，他确信中国能够再度崛起，一个拥有如此伟大文化的国家，一个拥有如此伟大人民的国家，必将对世界文明再次做出伟大的贡献。</p>
+<p>好了，关于李约瑟难题我们今天先谈到这里，明天我们接着说。让我们一起自我迭代，终身学习，格致教育工作坊每天都在这里等着你！</p>
+<p>讲座时间：2017 年11 月18 日</p>
+
+
+<p style='float:right;'>本页共17段，3650个字符，10619 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

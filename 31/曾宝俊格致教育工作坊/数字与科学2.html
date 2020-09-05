@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>数字与科学2</h3>
+
+<p>人类到底是怎样在没有数字的情况下，把数字给发明出来的？我们都知道：人类在长达150 万年漫长的时间里，过得十分艰难的生活，寿命也非常的短，常常遭到非洲的那些大型动物的袭击。许多古人类学家在非洲的古人类化石当中发现，大部分的化石明显表现出骨折，或者其他的骨骼损伤的痕迹，而且这个化石上也可以清晰的看到食腐动物的那种牙印，就是巨蜥那些动物的牙印。</p>
+<p>直到10 万年前，人类的思维能力突然出现了一个巨大的提升，人类学家就开始推测：人类是不是就在这时候具备了区分“三”以上数量的能力？当然这是一个搞数学的人类学家，这种能力并不是那种所谓的基因突变的结果，而是人类祖先有着强烈的理解三以上数量的压力和动力，他们急需进去记录袭击部落的人数，记录周围动物的数量等等，这些事情几乎又都关乎着族群的生死存亡，这种推测有两个依据：第一个依据，就在挪威卑尔根大学，有一个考古小组在非洲的布隆伯斯洞窟，在里面发现了最古老的计数工具，这些计数工具是目前已知的最古老的人造计数工具，这些计数工具，就是在那个时期被制造出来的；另一个依据就是在这之后，古人类学家就在洞穴里面发现了人类完整的骨架和动物的骨头碎片，这意味着什么？就是捕食关系发生了逆转，动物成了人类的盘中餐。用这两个依据来推理，也就是说明人类掌握计数能力之后，提高了自己的生存几率。</p>
+<p>人类是怎样区分了“三”以上的一个数量？昨天我们谈到一个人类学家叫凯莱布，他在查阅了大量的文献资料以后发现：人类借用了手指理解了数量，从而发明了数字。比如看到数量是“五”的物品的时候，就联想到这是物品正和一只手的手指数是相同的，于是就把这么多数量称之为一只手。经过数百万年的演化和人类集体的智慧，一只手到了今天就演化为阿拉伯数字“五”。人类就用手指理解更多的数量，很重要的一个原因就是人类很早就认识到了对称性。古人类学家在人类的洞窟里面挖掘出了不同类型的手斧，手持的斧头，无论是哪一种形状的手斧，都有一个共同的特点——对称。</p>
+<p>今天我们已经很难弄清楚，人类为何会采用这个样子的构造，但是可以肯定的是，这种对称不是巧合，人类很显然是在完成手斧之前就考虑好了它的形状，比如打磨一块奇形怪状的碎石，人类都能预先在头脑中设置好它的对称。人类看到左手和右手互为对称，自然而然地联想到手也可与物品进行对称。在这个过程中，人类天生的树杆也就帮了你的忙了。你想，既然我们的祖先能够精确的识别四以下的数量的这个区别，那么在认识到手指的替代性作用之后，不就自然而然的想到可以描述四、五这些数量。有两个证据证明人类是借用了手指发明了数字，第一个证据就是我们今天使用的数字系统，虽然这个数字系统已经历经了数百万年的演化。但仍然能够从中找到手指的痕迹，比如我们使用的阿拉伯数字在系统里面采用的都是十进制，也就是逢十进一，那么英语里面也是这样子的，表达数字的词，也是严格按照十进制的规则来的，比如30 thirty，40 forty。等等都是以ty结尾，“ty”意思是什么？就是把前面的数字加上十，thirty就是三，加上十。十进制的一个源头，其实就是我们一双手的手指数。我们昨天讲了亚马逊河流那个领域有一个原始部落，就是卡利吉亚那那个语言，它的语言还没怎么演化，从中可以看出来，十进制的源头就是一双手的证据，在卡里吉亚那语当中，用来表示数量的“五”的词，翻译成中文就是我们的手，表示“十一”的词语翻译成中文是我们的一个脚趾头，什么意思？两个手不够了，就要算一个脚趾头了。“十一”显然这个词里面就隐含了十进制在里面，因为一个脚趾加上十，才是这个词想要表达的“十一”。</p>
+<p>今天世界上面大部分的数字系统都存在着进制规则，也就是说，世界上大部分的数字系统起源都是起源于手，只有少数的几种素质中的数字系统是不存在进制规则的，比如，在那个新几内亚有一个地区，他那个数字系统是六进制。为什么要采用六进制？当地人储存地瓜（红薯），他所彩用的摆放规则，就是六个一放。</p>
+<p>第二个证据就是最近有心理学家对儿童进行了一项数量实验，这个实验发现，这些儿童虽然不能用数字来表述数量，但是能用手指动作表示相同的数量，这也就说明，人类的手和手指是人类用来表达数量的第一套工具。由此，凯莱布就认为数字的发明是从手指而来的。最后，我再来补充一个证据，这个证据很有意思，来自哈佛医学院遗传学系的主任叫克里夫.塔宾，有几本国际学术期刊，我建议大家去了解了解，医学的《柳叶刀》、《自然科学》science，当然还有一个生物学的《细胞》，他在这个国际学术期刊上面发表文章说：他在研究脊椎动物的肢体发育以后，发现人类能够做出精细，主要是因为拇指和食指，多一根和少一根手指对人类的精细动作不会有什么改变，但是会改变人类的数字技术。如果我们每只手。手指有六个，那么我们可能就会采用十二进制。</p>
+<p>这就是我们的第二个数字现场。在这样的一个现场，我们还原了人类发明数字的经过，人类就用手指理解了数量，从而发明了数字。数字是人类在强大的生存压力之下发明的一个工具，我们之前讲的南美洲的比拉.哈伦，她不识数，最近有一支语言学家组成的团队在那个地方调研，还有其他地方调研，说地球上至少还有193 个族群，人就是不识数的。他们在这些族群文化当中发现：这些族群的文化是没有技数活动，他们的房屋结构、狩猎工具以及他的人造物品啊，这些东西的制造都不需要用到精确、区分数量的能力，也就是说他们没有发明数字，也没有借用我们的数字工具，是因为他们没有使用数字的动力和压力。</p>
+<p>接下来我们来了第三个现场，我们来还原数字促成文字诞生的经过，数字的发明，促成了世界范围内各种文字系统的诞生，而文字的诞生就对人类的发展起到了决定性的作用。我们都知道：人类发明一个工具之后，后人只需要传承工具的使用方法，并且改进它就行了，而不需要去一遍又一遍的重复发明同一种工具，这一切的实现，其实就在于人类掌握了文字。这个文字帮助人类储蓄和传承知识，要不然以往人类的知识只能靠基因来遗传，这就极大地提高了人类生存几率和发展的效率，如果没有文字的话，知识只能储蓄在某个人的头脑当中，那么这个知识很有可能会随着这个人的死亡而消亡。在极端的情况下，甚至可能导致整个族群的走向毁灭，所有的文字以后，我们可以记住文字系统来传承这个民族的所有的知识和智慧。所以过去那种口口相传，口传文化，现在是极需要去通过整理、发掘，把它文字化。将这样的一整个族群走向毁灭，这样的悲剧，曾经发生在格陵兰岛西北角的那个土著人身上，我们都知道，那个地方的我们以前都叫他爱斯基摩人，其实它的名字叫做因纽特人。在19 世纪中期，有一场席卷全球的流行感冒，当时也流传到了格陵兰岛上面，当时这个因纽特人的这个族群当中，几个年长者因为一场流行病相继去世了，但这个族群有个风俗习惯，就是长者去世之后，它的狩猎工具要作为陪葬品下葬，但是这个族群是没有书写习惯的，而这些狩猎工具的发明过程和使用方法，也就没有办法去记录下来，最终像这样的一种陪葬的风俗就导致了极地因纽特人制造和使用工具的能力的明显下降，当地人的人口数量也随之减少。大约在40 年以后，在另外一个极地因纽特族群的帮助之下，当地的人口数目、财产才从这种灾难中恢复过来。</p>
+<p>我们说回数字是怎么做成文字？产生了这个问题。人类第一个真正的文字系统诞生于两河流域的美索不达米亚地区，当时那个地区的文字叫楔形文字，就是现在的伊拉克一带。早在八千年前，这个地区，人们就开始使用农产品和动物进行交易就必须要用到精致的描述数量，那么美索不达米亚地区的人是怎么做的？他们就在陶土的容器当中放入与交易同等数量的标志物，然后将陶土容器当做合同，想到这个方法，对当时而言的人们并不困难。当人们认识到如果用五根手指来代替五个猎物的时候，自然就会举一反三，用五根羊毛来指代五头羊。比如一个地主向另外一个地主出售五头绵羊，那么，卖方就会拿出同样数量的羊毛放在陶土的容器当中，那么这个陶土容器就代表了合同，然后把这个容器封上面，这样的话他就是个陶土球，可以经受长期在运输。当买方收到了绵羊和陶土球的时候，就扎破这个容器，确认里面的数量，可是这个方法有缺陷，长途运输当中需要随时确认羊群数量，又不能老是把这个陶土球给砸碎了。怎么办才好呢？很快就找到一个解决方法，人们借助切割过的芦苇杆，在每个密封的陶土球的表面划出内部封装的数量，这样的话就可以不用再破坏陶土球的这个前提之下，随时掌握数量。终于到了有一天，有人突然就意识到，既然数量都已经刻画在陶土球的表面，干嘛还要在里面封存这个数量，这完全是多此一举。于是人们就找来了陶土片，把物品的种类和数量写在图片上面，把同等数量的替代物装进了陶土球，再直接在陶土片上写出物品的种类和数量，在这个过程当中，楔形文字就诞生了。楔形文字的诞生使得数字从被计量的物体当中解放了出来，这句话怎么理解？有本书叫做《万物皆数》，建议大家都要去读一读这本书，这本书可以为你找到答案，《万物皆数》这本书介绍：在楔形文字发明之前，无论是陶土球还是陶土片，计数的符号都取决于被记住的对象。比如一头绵羊、一头母牛是不同的，所以数羊的符号和数牛的符号就长得不一样，但是有了楔形文字，人类就有了抽象的工具，数字就获得了属于自己的符号。为了表示八只羊，人类就不再使用八个表示羊的符号，而是写一个表示“八”的数字符号，然后画上一只羊就行了，为了表示八头牛，人们只需要把羊的符号换成牛就行了，而数字“八”这个符号本身就保持不变。数字符号就促成了楔形文字的诞生，而楔形文字的诞生，又反过来促成了真正的数字的诞生。从此数字就成了语言中的一个独立部分，随后数字经历了数百万年的演化，凝聚了人类的集体智慧，逐渐发展到了今天我们所见到的模样。</p>
+<p>由于我们这两讲讲的是数字的起源，所以数字后续的演化就不在我们的讨论范围了，让我们说回楔形文字，楔形文字的出现，就把美索不达米亚地区的人们，从狩猎时代带回到了农耕时代，人们就不再需要靠狩猎为生，而是转向了农耕为生，人类也不再散居生活了，逐渐就形成了规模更大、居住地点更为固定和集中的社会，城市就随之诞生了。如果没有楔形文字这种相对成熟的文字系统的出现，人类停留在用同等数量的物品来指代数量的层面上面，那些看起来十分简单的农业活动就不可能发生。比如，记录月圆的周期、记录时间、记录农产品的数量，计算，交易过程等等，这些都是农业社会的关键要素，而这些关键要素都要依赖于较为精细的文字系统。</p>
+<p>楔形文字还影响了当时古埃及文明的诞生，《得到逻辑思维》有一门课叫做卓克科学思维课。</p>
+<p>在这个科学思维课里面，卓克就讲到了古埃及能够迅速的形成闻名，其原因就在于借鉴了美索不达米亚地区的楔形文字系统，形成了属于自己的圣书字系统，在美索不达米亚地区，人们发现了文字系统之后的3000 多年以后，在中国才出现了甲骨文，最早的甲骨上面刻录的内容同样是各种各样的数量关系，比方敌人的数量、狩猎捕获的鸟和动物的数量、自己家里牛的数量等等。这也说明中国也是先发明了数字记账系统，随后才开始出现了真正意义上面的文字。</p>
+<p>美索不达米亚地区的楔形文字、古埃及的圣书字、中国的甲骨文，这是世界上三种独立产生的古代文字系统，在这三大文字系统萌芽的时候，就已经有了书面的数字符号。关于数字促成文明系统的诞生，《数字起源》这本书就写到了这里。《万物皆数》这本书里面则明确的指出：人类要想发展出更大的数字，就必须要发展文字系统。这句话怎么理解？举个例子来阐述一下。假设我请你想象有一只绵羊你会想到什么？你的头脑中会想到一只四蹄的那个哺乳动物，披着毛绒绒皮在“咩咩”的叫，你的头脑中是不会想到绵羊这两个字的。但是如果我请你想象一下数字——134 ，你会想到什么？你的脑海中一定会想到一、三、四这三个数字字符，一个挨着一个排列在一块儿，你头脑中不会想到十进制，也不会想到100 加上30 ，再加上4 ，再进一步，我如果让你想象一个更大的数字，你脑海中出现了仍然是数字，仍就会跟它的写法是一模一样。所以对于其他事物而言，文字只不过是誊抄口语中已经存在的内容，但是对于数字而言，就是文字决定了语言。比如我让你说出134 的时候，你只是念出134 这个数字，显然，如果没有文字，我们的语言中也就没有表示大数量的数词了，所以人要想发展，出更大的数字，就必须要发展文字系统，而文字系统的诞生对人类又意味着什么？文字的诞生对人类的发展就起了决定性的作用，有了文字，人类的知识、智慧文化就可以得到储存和传承，这就极大地提高了人类的生存几率和发展效率，这也是人类在进化过程当中脱颖而出的根本原因。</p>
+<p>好了，今天我们就先聊到这里，让我们一起认知越狱，自我迭代，格致教育工作坊每天都在这里等着你！</p>
+<p>讲座时间：2019 年2 月28 日</p>
+
+
+<p style='float:right;'>本页共16段，5289个字符，15461 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

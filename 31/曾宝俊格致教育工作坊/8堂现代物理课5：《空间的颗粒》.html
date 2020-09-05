@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>8堂现代物理课5：《空间的颗粒》</h3>
+
+<p>我前面介绍的物理理论，尽管有些晦涩繁杂，并且有的问题仍旧悬而未决，却已经比过去更好地描述了这个世界。我们本该对此心满意足，可事实却并非如此。在我们所了解的物理世界的中心，存在着一个悖论。我说过，20 世纪物理学的两颗明珠是广义相对论和量子力学。前者是宇宙学、天体物理学、引力波、黑洞以及其他许多研究的起源；后者则是原子物理、核物理、基本粒子物理、凝聚态物理等学科的基础。这两个理论带来了丰富的成果，奠定了当代科技的基石，彻底改变了我们的生活方式。但这两个理论不可能同时正确。至少依照目前的形式，它们是相互矛盾的。</p>
+<p>一个大学生如果早上听了广义相对论的课，下午学了量子理论，可能会觉得教授们犯糊涂了，或者怀疑他们是不是至少有一个世纪没有交流过了，不然为什么早上世界还是弯曲的空间，所有东西都是连续的，下午它就成了一个能量量子跃动的平直空间？</p>
+<p>悖论在于两个理论都非常好用。大自然就像一位年长的智者，有两个人跑去找他解决争端。听了第一个人的话，智者说：“你说得有道理。”第二个人坚持为自己辩解。智者听完对他说：“你说得也有道理。”智者夫人在另一个房间听到了他们的谈话，大声说道：“但是他们两个不会都有道理吧？”智者认真思考了一下，点点头说：“你也很有道理。”</p>
+<p>群散布于五大洲的理论物理学家正在努力解决这个问题。这个研究领域被称为“量子引力”，其目标是找到一个理论，也就是一系列方程来解决现在这种“精神分裂”的局面。物理学已经不是第一次面对两个看起来完全对立的伟大理论了。而过去每一次成功地将相互矛盾的两个理论统一时，我们的世界观都产生了巨大的飞跃。牛顿整合了伽利略的抛物线运动和开普勒的天体椭圆运动，发现了万有引力。麦克斯韦将电和磁的理论结合起来，提出了电磁场方程。爱因斯坦在解决电磁学和经典力学的明显冲突时，发现了相对论。因此，物理学家发现这种伟大理论之间的矛盾时只会兴奋不已：这是一个难得的机会。</p>
+<p>我们是否可以建立一个思考世界的概念框架，来兼容上述两种理论呢？在这里，在科学的前沿，在人类认知能够抵达的边界，科学变得愈发迷人了，它闪耀在对原初想法的锻造中，在直觉和尝试里，在那些被选择又被放弃的道路上，在不断产生的热情中，在于努力想象那些从未被想象过的事。</p>
+<p>二十年前，这个领域还是一团迷雾，现在道路已经出现，唤起了大家的乐观与热情。然而道路不止一条，因此还不能说问题已经解决。多样性引发了争论，但这是健康的：在迷雾完全消散之前，相互批评，各抒己见，是有益而无害的。解决这个问题的一个重要尝试是一个叫做“圈量子引力”的研究方向，许多国家的研究小组都在从事相关研究。</p>
+<p>圈量子引力试图把广义相对论和量子力学结合起来。这个尝试很谨慎，它只使用这些理论中已有的假设，适当改写这两个理论，使它们相容。但它的结论相当激进：它又一次深刻地改变了我们看待现实世界结构的方式。</p>
+<p>它的中心思想很简单。广义相对论告诉我们空间不是一个静止的盒子，而是在不断运动，像一个移动中的巨大软体动物，可以压缩和扭曲，而我们被包在里面。另一方面，量子力学告诉我们，所有这样的场都“由量子构成”，具有精细的颗粒状结构。于是物理空间当然也是“由量子构成的”。</p>
+<p>这正是圈量子引力的核心结论：空间是不连续的，不可被无穷分割，而是由细小的颗粒，或者说“空间原子”构成的。这些颗粒极其微小，比最小的原子核还要小几亿亿倍。圈量子引力用数学形式描述了这些“空间原子”，也给出了它们演化的方程。它们被称为“圈”或环，因为它们环环相扣，形成了一个相互关联的网络，从而编织出了空间的纹理，就像细密织成的巨大锁子甲上的小铁圈一样。</p>
+<p>这些空间的量子在哪里？它们不存在于任何地方，也不在“空间之中”，因为它们本身就是空间。空间就是一个个引力量子相互勾连而成的。世界又一次显得更接近关系的集合，而非物质的集合。</p>
+<p>圈量子引力理论的第二个结论更为极端：在“空间是连续的、物体存在其中”这个观念消失后，“时间不受事物影响、一直流逝”这个基本而又原始的想法也不复存在了。这些描述空间和物质的颗粒的方程不再包含“时间”这个变量。</p>
+<p>这并不是说一切都保持稳态，没有变化。相反，它说明变化是普遍存在的，但我们不再能把这个基本过程形容为“一个瞬间接着另一个瞬间”。在空间颗粒的微小尺度下，大自然的舞步不再追随，唯一的乐团指挥手中，那根棒子所挥出的同一节拍，每一个物理过程都有自己的节奏，独立于邻近的其他过程。时间的流逝发生在世界之内，从量子事件之间的相互关系中产生，这些量子事件本身就是时间的源头。</p>
+<p>这个理论描述的世界和我们熟知的那个相去甚远。这里不再有“包含”着世界的空间，也不再有事件发生“于其中”的时间。这里只有空间和物质的量子持续相互作用的基本物理过程。我们周围连续的空间和时间只是这些密集发生的基本过程产生的模糊景象。就像阿尔卑斯山上平静而清澈的湖泊，其实是无数微小的水分子快速舞动形成的。</p>
+<p>这个理论可以通过实验证实吗？我们正在进行思考和尝试，但目前还没有得到实验的证实。然而，已经有很多不同的尝试了。其中之一源于对黑洞的研究。我们现在可以观测到天空中由恒星坍缩形成的黑洞。被自身的重量压垮后，组成恒星的物质坍塌，并从我们的视野中消失了。但它去了哪里呢？如果圈量子引力理论正确的话，那么物质不可能坍缩成一个无穷小的点，因为无穷小的点是不存在的，存在的只有一块一块的有限空间。被自身重量压塌的物质，会变得越来越密，直到量子力学可以产生一个反作用力，来抗衡这个压力。</p>
+<p>我们假定在恒星生命的最后阶段，时空的量子浮动平衡了物质本身的重量，这个阶段的恒星就被称为“普朗克恒星”。如果太阳停止燃烧，形成一个黑洞，那这个黑洞的直径约为1 .5 千米。在黑洞内部，组成太阳的物质会继续坍缩，最终形成一颗如原子般大小的普朗克恒星。组成太阳的全部物质挤压在一个原子大小的空间里，普朗克恒星就是由这种极端的物质状态形成的。</p>
+<p>普朗克恒星是不稳定的。一旦压缩到最大程度，就会回弹，重新开始膨胀。这就会导致黑洞的爆炸。假设有一个人在黑洞内部，坐在普朗克恒星上，他看到的爆炸过程其实是极高速的回弹。但是，时间流逝的速度对于他和黑洞外的人是不同的，就像时间在高山上比在海边流逝得快一样。只因为是极端情况，所以这里时间流逝的速度差异极为巨大。对黑洞内部的观察者来说回弹是瞬间发生的，对外部的人来说却是一个极为漫长的过程。所以在我们看来，黑洞在很长时间内都没有变化。我们说黑洞就是回弹的恒星，只不过这个过程是以极慢的速度在我们眼前播放的。</p>
+<p>有可能在宇宙初生瞬间的熔炉里，就有黑洞形成，其中有一些现在还在爆炸。如果是这样的话，我们或许可以在天空中观测到它们爆发时发射的信号，也就是来自天空的高能宇宙射线，从而观察和测量由量子引力支配现象的直接效果。这是一个大胆的想法，有可能行不通，比如原始宇宙中并没有形成足够的黑洞，让我们今天还能观测到它们的爆炸。但是寻找信号之旅已经开始了，让我们拭目以待。</p>
+<p>这个理论的另一个结论极其轰动，它有关宇宙的起源。我们已经知道如何重建宇宙的历史，追溯到最初它只有一丁点的时候，但是在此之前呢？圈量子引力的方程让我们可以把宇宙的历史再往前推一点。</p>
+<p>我们发现，当宇宙被压缩到极限的时候，根据量子理论会产生一个反作用力，造成大爆炸，这个著名的大爆炸很可能实际上是大反弹：我们的宇宙在自身重量下坍缩到非常小，然后反弹，开始膨胀，变成现在我们周围不断扩张的宇宙。宇宙被压缩到坚果壳大小，开始回弹的那一瞬间，就真正进入了量子引力的领域：时间和空间一起消失了，世界融化成一团涌动的概率云，尽管如此，我们还是可以用方程描述它。我们的宇宙很可能诞生自某一个状态后的反弹，经历了一个过渡时期，在此期间，时间和空间都荡然无存。</p>
+<p>物理开阔了人类的眼界，我们看到的东西不断地让我们惊异。我们意识到人类满脑子都是偏见，我们对世界本能的认识是片面和狭隘的。世界在我们的眼前不断变化，我们对它的认识也在一点一点地不断深入。</p>
+<p>地球不是平的，不是静止不动的。如果我们把20 世纪物理学所有的发现放在一起，得到的线索会完全推翻我们以往对物质、空间和时间的认识。圈量子引力就是在试图破译这些线索，让我们看到更远的地方。</p>
+<p>好了，关于空间的颗粒我们就先分享到这里，明天我们来聊聊时间。让我们一起自我迭代，好好学习，格致教育工作坊每天都在这里等你。</p>
+<p>讲座时间：2017 年12 月26 日</p>
+
+
+<p style='float:right;'>本页共24段，3606个字符，10424 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

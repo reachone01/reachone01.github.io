@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>杨振宁9：怎么看待中国传统文化</h3>
+
+<p>这里是格致教育工作坊，欢迎大家穿越时空，来享受一碟知识的小菜，让我们一起天天学习，好好向上！今天我们最后一次来聊杨振宁。</p>
+<p>上一节课最后我们留了一个尾巴：杨振宁实力这么强，他还是用实力来说话，来征服了导师跟合作者，一般人来说，这样的人很容易跟周围的人发生矛盾、引来嫉妒，那么杨振宁是怎么把和导师的关系，跟其他教授的关系维持得这么好呢？</p>
+<p>虽然说我们杨振宁有一个杨李的这个争论，或者说决裂，但是除此之外我们没有听说杨振宁跟其他的教授、导师发生什么矛盾。那么，说句老实话，我所读到的杨振宁的传记和他的文章，我就发现他身上具有中国传统文化的底色。</p>
+<p>你可能以为杨振宁他既然是在美国那么多年，他的家庭应该就完全西化了。他老爸也是一个著名的数学家，他应该跟传统文化交集不大，其实并不是的。杨振宁的父亲杨武之是一个很注重传统文化的人，他是一位数学教授，他在杨振宁已经表现出在学校里面数学课吃不饱的时候，他却在杨振宁初一、初二的时候，专门请清华历史系的研究生给杨振宁讲了整整两个暑假的《孟子》。所以一直到老，杨振宁都说他可以背诵3万字的《孟子》全文。这一点杨振宁在评价他父母亲对自己的影响的时候也谈到了。他说自己学术以外的特点，受母亲的影响最大。杨振宁的老妈基本上算是旧社会的妇女，但是这种女性往往比男人的意志更加坚强。这种传统文化的熏陶让杨振宁更加隐忍，更加的能吃苦耐劳，更加的注重合作。所以即便是杨振宁自己拥有很强的实力，也会留意不让自己处于跟每一个人都竞争的环境当中，而更注重跟他们的融合。</p>
+<p>所以，在这节课我希望把这个话题稍微做个延伸，我们就来说一说杨振宁是怎么看待中国传统文化的。这个要从杨振宁的一篇文章开始说起。</p>
+<p>下面我就从负面、中性、正面这三个角度来说一说杨振宁对中国传统文化的评价。</p>
+<p>首先，杨振宁对中国的传统文化是有个负面评价的。杨振宁在80多岁之后，也就是2004年之后，虽然还有一部分精力放在研究冷原子上，但杨振宁说他从80岁以后他更多的精力就放在科学史和科学文化的领域当中去了。</p>
+<p>其中，在2004年9月3日他提出来一个观点引起了很大的争议，那次是在北京人民大会堂举行的“2004年文化高峰论坛”上，当时不仅仅是一个物理学的会议，还有其它的会议。其中，当时他还被称为华裔物理科学家，以“《易经》对中华文化的影响”为题，提出了自己的观点，对《易经》提出了批评。他说，“<strong>《易经》影响了中华文化的思维方式，而这个影响是近代科学没有在中国萌芽的重要原因之一”。他认为中国的易经和八卦属于模糊思维，不是西方的逻辑思维，精确性很低，所以中国近代科学没有兴起。</p>
+<p></strong></p>
+<p>当然，中国没有产生现代科学有很多原因，有思想原因、文化原因、科举制度、政治原因，比如中国人一直轻视技术，重文轻理，认为技术是雕虫小技。但是在杨振宁看来，至少有两个原因是跟《易经》密切相关的。</p>
+<p>1.<strong>中国传统文化里没有推演式、演绎式思维方法；</strong></p>
+<p>2.<strong>中国传统文化里有“天人合一”的观念。</strong>这个也是我秉持的一个观点，我曾经写过一篇文章，就是中国传统文化当中“天人合一”的思想阻碍了中国的科学思维。</p>
+<p>第一个，“没有演绎思维”是什么意思呢？现代科学的成就，从思维方法上来看，无非就是两种，一种是观察无数的现象，然后从现象当中归纳出规律，这种叫<strong>归纳法</strong>。这个我们中国有，像印度文明、古希腊文明、古埃及文明都有。</p>
+<p>还有一种方向跟这个思路相反，就是当你发现了规律以后，用它来预测和验证现象，让规律发挥效力。这个叫<strong>推演法</strong>，我们中国就没有了，所以，杨振宁认为这是我们中国传统文化里缺乏的。</p>
+<p>我们中国传统文化当中多是类比推理，类比推理有创造力、想象力。当然这些方法没有谁好谁坏之分，在不同时期里面，每一种方法都能产生很伟大的成果。比如电磁学理论，最开始是由法拉第做归纳，法拉第就是一小学徒工，他对数学是一窍不通，但是，法拉第对各种电磁现象做了非常完备的归纳。我们说法拉第是电磁学之祖。十几年后，麦克斯韦出现了，他就提出了一整套的麦克斯韦方程组。到此为止，归纳法结束了。再接下来就是推演了。无数的科学家、工程师就利用麦克斯韦方程来验证电磁波，制造电动机、发电机，甚至延伸到光的研究，最后产生电磁学的终极描述。仅仅在这一个理论上，就完整地呈现了<strong>归纳法和演绎法必须结合使用</strong>这个道理。</p>
+<p>中国传统文化的一大特色就是，只有归纳，没有有效的推演。而在中国，归纳法最早就来自于《易经》。它从最初用来占卜，衍生出后来的卦与相。理论虽然复杂，但不规范地做推演，怎么可能发现这里面的缺陷呢？包括中国后来的魏晋时期的玄学、宋元时期的理学和明清时期的道学，这些内容也都很多，但是都不能推演现象去验证，玄学、理学、道学也就只能是空想，而不可能是科学思想。</p>
+<p>杨振宁说的第二点——“天人合一”，它是怎么影响了中国科学的出现呢？</p>
+<p>因为《易经》说的是“天人一物，内外一理”。就是外面的自然界跟人内在的思想是一回事。也就是说每一卦都包含天道、地道、人道，非常坚定地<strong>认为自然客观的规律跟人世间的规律是一回事，也就是说硬要把人文规律的研究用到了自然现象上。</strong>我们都知道曾经出现过王阳明格物致知的事情，王阳明格竹子，王阳明研究竹子是怎么生长完全是可以的，可是他在格竹子的时候就在那想，想竹子、想人，半天什么也没有想出来，大病一场。</p>
+<p>而古希腊时期的西方很幸运地躲开了这种逻辑。跟我们不一样，<strong>他们信奉的神在很大程度上代表了大自然本身。所以对神的信仰，会更顺利地发展出分析自然现象的行为。而这种行为，又很幸运地引导出了现代科学的萌芽。</p>
+<p></strong></p>
+<p><strong>科学最初的突破，就是在打破“天人合一”这种观念，承认人世间是人世间的规律，自然界是自然界的规律，它们是两回事，不能混在一起思考。</strong></p>
+<p>上面是杨振宁的观点，我在2004年的时候，一开始读到这些观点的时候我是不怎么认可的，但是后来，当我持续的对李约瑟难题这类问题做了系统的研究之后，我是转回到支持杨振宁的观点了。</p>
+<p>杨振宁的论点立时在互联网上引起了激烈的讨论，引发了好多中国道学家来攻击杨振宁。说杨振宁你什么都不懂你谈什么中国文化，最终，争论的中心论点扯出了一个老话题——李约瑟难题，即：为什么近代科学没有在有着先进文明的中国萌芽？正如杨振宁自己所说的，加入讨论的人们大多数对他的观点持反对意见，但杨振宁的观点并没有被压倒，仍然有一小部分人支持他的观点也显示出力量来了。杨振宁说，一直以来都有学者持有他的这一观点，但是中国学者当中有很多人都迫于学界压力，不敢公开宣称自己的观点。争论的高潮出现在2004年10月。当时，由清华大学高等研究中心和《科技中国》杂志社联合主办的“中国传统文化对中国科技发展的影响论坛”在清华大学举行，杨振宁、董光璧(中国科学院自然科学史研究员)、陈方正(香港中文大学中国文化研究所所长)等知名人士参加了这次论坛，并分别阐述了自己的观点。众多的专家学者在论坛上对这一话题进行了激烈的争论，很显然他们争论并没有画上句号。</p>
+<p>公平地说，<strong>世界上大部分地区的文化都没能萌发出现代科学思想，只有古希腊这一支萌发了出来，这不得不说古希腊他们很幸运。</strong>但是当前的文明之所以是科学占了主流，并不是因为科学的口号喊得响，所谓的振兴中华民族。因为在最近500年的历史中，遵循科学思维方式的人留下了更多的后代。而且这种思维方式目前已经占据了主流，所以你要融入现代文明，起码不能排斥现代文明。</p>
+<p>至于说我们要如何对待自己民族留下来的那些好的传统思想呢？我们<strong>可以把它作为文化历史，继续来研究它的演变</strong>。至于它会不会成为未来的主流，这只能看运气和它的属性了。</p>
+<p>杨振宁对中国传统文化还有一些中性的评价，这种中性的评价大多数是基于杨振宁横跨两种文化多年后的对比。他认为，中西方的差异实际上从四千年前就开始产生了。<strong>中国的文化是基于人，西方的文化是基于神。</strong></p>
+<p>他还列出了一个对照表，是两种文化当中对应元素的一一对照。他列出了11个可对比的项目，都非常经典。我们应该怎么理解这些差异呢？</p>
+<p>其实你想这些差异都是中性的，它们都是在特定的场合体现自己的优劣。比如家族关系，中国人更注重紧密和血亲，这在大灾大难来临的时候可以互相照应，提供更多缓冲。但也因为生活重叠大、干涉多，一个年轻人想摆脱家族的陈规陋习就很难，除非你跟家族决裂。可是西方强调只要成年了就自己做主，自己对自己的行为负责，哪怕是危险也要独立承担。这东西都是有利有弊的，所以很难说它们之间有什么优劣之分。</p>
+<p>但是从演化的角度上说，还是应该存在一个判断的标准，那其实这个判断的标准就是多样性强的好，多样性弱的差。如果一个地区文化多样性丰富，那在更大的时间跨度上说，那里的文化更可能是今后的主流。</p>
+<p>但到底是哪一支是主流呢？说句老实话，是东方的还是西方的没法预测。所以应该在尊重多样性的前提下跟随主流，这是一种健康的对待文化的态度。</p>
+<p>当然，杨振宁对中国传统文化也有正面的看法，这个看法就叫“韧性”。韧性指的既不是宁折不弯，也不是知难而退，而是坚韧不拔。它的好处是，在极端的压力下可以委曲求全留下生的希望，也能在除此之外的各种困难下做到不离不弃。</p>
+<p>杨振宁对比了2004年和1920年中国社会的状况，也对比了同时期体量和中国大致相当的大国，比如印度和巴西这些国家，结果发现这些国家的改变都远远不如中国。</p>
+<p>一般来说，改变越是剧烈，过程当中受到的阻力就越大，阵痛也就越强烈，<strong>也只有中华民族才能具有这样强大的韧性才能承受如此巨大的全民变化。</strong>你想，一九一零年的时候还是满清王朝统治，到了一九二几年的时候民国政府就已经出现了经济的振兴，一九三几年日本全面侵华，带来了整个亡国灭种的危险，到了建国以后，我们的一波又一波的政治运动让整个中华民族处于折腾的状态，但是，我们中国人在经济极为困难的状态下居然能够发展出“两弹一星”，可以在经历了几十年战乱纷争后让文盲率迅速降低到5%以下，我们甚至可以用了短短的30年就实现了经济腾飞，并且在这30年当中我们让两三亿农民实现了转移，变到了城镇来。</p>
+<p>这些东西一般的民族是很难做到的，这种做得到它就需要文化来维系，都是<strong>中国传统文化中的韧性</strong>。所以，杨振宁非常热爱中国传统文化，他继承自己的根，也要让自己融入现代文明。</p>
+<p>回到杨振宁身上，他的身上带有中国传统文化的根，在美国这样一个移民国家也是一个多样的存在，而且杨振宁这种中国文化传统的根被美国同事们看在眼里，甚至被利用。我们前面讲过杨李之争，它的公开化就是《纽约客》里面发表的那篇文章，挑起杨李之争的那个二流物理学家，他曾经的办公室挨着杨振宁的，他经常听到杨振宁和李政道这两个人在办公室激烈地讨论物理问题。但杨振宁和李政道两人争吵物理时用的是中文，只因为偶尔蹦出几个英文物理单词，其他物理学家才知道他们是为物理而争吵的。</p>
+<p>实际上，在杨振宁和李政道的矛盾闹得沸沸扬扬的时候，和两人关系都很近的物理学家们也不知道到底发生了什么事情，他们去问杨振宁也不说，李政道也不说，后来李政道公开讲了，他们看也看不懂。</p>
+<p>杨振宁和李政道有个共同的朋友派斯（Abraham Pais），也是个物理学家，就说过：“要了解杨振宁和李政道为什么会产生矛盾，为什么会决裂，可能要对中国文化有更多的了解才行。”</p>
+<p>虽然这个原因只有当事人才能解释清楚，但我们起码知道，以西方文化的视角看，西方人还是无法理解他们为什么会决裂。</p>
+<p>事实上，杨振宁身上有着很重的中国传统文化的底色。在1999年杨振宁退休，他当时是从纽约石溪大学退休的时候，系里给他办了一个隆重的退休仪式。在仪式上，杨振宁的好朋友戴森（Freeman Dyson），在晚宴上发言这么说，他最喜欢看杨振宁在1983年出版的论文集，那本论文集是杨振宁第一次正式回 应李政道在外面所说的事情，戴森说他更喜欢论文集前言中引用的杜甫的诗——“文章千古事，得失寸心知”。</p>
+<p>没有美国，杨振宁不会成为世界一流的科学家。但是，杨振宁自己说，“离开了中国和他的父亲，他将成为无根之树。”</p>
+<p>在最后，杨振宁自己发言时这么说：“过去一年半中我和杜致礼（他的夫人）经历了4次手术，所幸每一次都很顺利。但我知道，一个人逐渐老去的时候，他的哲学观点也必然会随之改变。我想起大约1200年以前唐代大诗人李商隐写下的不朽诗句——夕阳无限好，只是近黄昏。而本世纪初，另一位作家朱自清，也是我父亲的朋友，把那两句诗改写成——但得夕阳无限好，何须惆怅近黄昏。”</p>
+<p>你看，即使是在美国，杨振宁也经常这样在演讲中提起中国诗人的名言。他不会因为在座的很多外国人听不懂，而换用其他名人名言来表达同样的意思。因为那些诗句表达的美和含义是中华传统文化所特有的，是其他文化替代不了的。这是一种典型的文化自信的表现。</p>
+<p>所以，我说杨振宁首先做到了融入现代文明，然后才继承了自己的文化之根。所以即便他在美国生活了58年，我们现在谈起他，仍然觉得他是中国人，依然觉得中华民族以他为荣。</p>
+<p>好了，关于杨振宁我们就聊到这里，我们一共讲了九天的杨振宁。我希望通过这九期杨振宁的阐述，能够让你全面了解杨振宁，也拉近自己跟现代科学的距离。让我们一起认知越狱，自我迭代，格致教育工作坊每天都在这里等着你。</p>
+<p>讲座时间：2019年6月14日</p>
+
+
+<p style='float:right;'>本页共46段，5903个字符，16347 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

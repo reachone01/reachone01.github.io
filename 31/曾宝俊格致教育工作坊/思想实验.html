@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>思想实验</h3>
+
+<p>我前面曾经讲过几讲这个实验，但是思想实验室是第一次讲物理学，从本质上来说，它是一门实验科学，实验科学当中的这个物理验，它在物理学当中的发展，物理学教育或者说科学教育当中占有极其重要的地位，可以这么说，离开的实验就无法了解物理。</p>
+<p>正是因为如此，在我们的科学教育的研究和教学当中，对于科学实验，历来十分重视。无论是从实验的设计，仪器的制作和调试，还是到实验过程的控制，实验结果的分析等各个环节都被强调了一丝不苟，相比之下，与此有关的、关联的那些思想实验却介绍的不多，因此，对于科学教育章中的思想实验，我们进行一个纵向的历史考察，也进行一个横向的比较研究，那就是十分必要的。</p>
+<p>那么我们接下来就来看看，什么是思想实验。谁是思想实验的先驱者？提到这个思想实验我们就不得不提一个人叫做伽利略，他是近代物理学的先驱，对物理学做出了很多方面的贡献，其中他发现的那个自由落体定律和惯性定律，是现代物理学的两块坚固的基石，伽利略的成功其实就得益于他率先采用了科学思想实验。其中伽利略应该算是近代科学的这个物理学的先驱。他的物理实验或者说他所提出来的一系列的科学观念得益于他独创的物理实验和思想实验相结合的这样一种科学方法，伽利略的出色工作，表明了他是一位物理学的大师，也是一位进行思想实验的先驱，我们都知道做实验老早就开始做了，可是做思想实验，并且把思想实验和物理实验结合起来，伽利略是第一个人。</p>
+<p>众所周知在很长的时间当中，人们对于力和运动的物理现象、物理规律的认识一直是受到伽利略学术的一个就是影响，而伽利略之前的人一直是受亚里士多德学术的束缚，为什么说是束缚呢？因为大家都不敢反对他，我们前几天讲了这个亚里士多德，对亚里士多德做了个系统的分析和梳理压力，亚里士多德他认为呀，物体运动的速度大小和有无是由它是否受到力、受到的力的大小来决定，就是地面上面轻重不同的物体下落的速度是不一样的，重的就下落得比较快，轻的就下落的比较慢。这个呢，他是纯粹种经验层面做出的一个归纳，当然，对此也曾经有人反对过这个错误的说法，但并没有确切的实验和理论的论证，所以没有被人重视。虽然有过反对，但是没有被人重视。</p>
+<p>第一个成功打破亚里士多德权威的就是伽利略，伽利略巧妙地运用了一个思想实验否定的这样一个统治了欧洲将近2000 年的一个错误理论——就是物体的下落的速度和物体的重量成正比。伽利略在他的一个著名的著作叫做《关于两种新科学的对话和数学证明》当中，就这么写到，他说：我十分怀疑亚里士多德是不是曾经做过实验？当两个石头，一个重量是另外一个重量的十倍，从同一个高度落下的时候，它的速度差别会达到那种程度，以至于是十倍的差别啊。所以伽利略就抓住了这么一个怀疑点，他设计了一个思想实验来进行了分析和论证，是说如果亚里士多德这个论断成立的话，就是重的物体比轻的物体下落的快，就是重的物体比轻的物体下落的快，那么如果重的物体和轻的物体我绑着一起下楼的时候，由于快的受慢的阻碍，它就会减速；慢的受快的驱使，它就会加快了。其结果绑在一起的这个物体下落的速度，一定是介于原来两个物体的速度中间。也就是说，它要小于原来重物下落的速度，但是如果把两个物体绑在一起，它就变成了一个复合，比原来重的物体还要重，而且亚里士多德的论断复合体下落的速度，要比原来的重的物体下落的速度要快，就和上面的相矛盾了。由此可知：重物下落不会比轻物下的快，二者下落的速度应该是相等的。</p>
+<p>正是这样一个思想实验坚定了伽利略落体实验的信心和决心，在否定了亚里士多德的自由落体定律之后，伽利略就进一步对自由落体运动进行了定量研究，根据自由落体运动的定性观察，他就发现了速度越来越快的基础，上面假设自由落体的运动是一种匀加速运动，于是他就在1590 年到1592 年这两年期间进行了大量的这种落体实验，但是在当时又没有钟表，又没有准确的计时工具。在那种测试条件之下，他不可能用实验证实这个假设，伽利略就用思想实验与真实实验相结合的方法来解决这难题。他求助于数学，他就求出了从静止开始的匀加速运动的那个距离s与时间t之间的关系，于是就找到那个词——常量，就是s比上t平方，这是一个常量，这个时候就不包括速率了，只要直接测量s、t就行了。</p>
+<p>但是他发现，物体自己下落还是太快了，当时的计时工具无法精确指令，伽利略想用不太快的一个运动来测量，于是他就想出了一个方法——用斜面代替自由落体，经过多次的反复的实验测定，他得到了以下的一个结果就是：当这个斜面的倾角固定的时候，球滚过的距离s所用的时间与t平方之比是一个常数，这也就是这S比上t平方等于c，c就是一个常数。在改变倾面角的时候就是S比上t平方的这个值也随之而改，但是小球通过的距离与时间的平方正比之间的关系不变。也就是说，变化的只是比例的常数。于是伽利略就用这个思想实验，把这个结果推到了极致：当一个倾角为90 度的时候，也就是这斜面达到90 度，这个物体做自由落体定律的时候，这个论断也成立。由此，他得出一个结论就是：自由下落的物体的运动是匀加速运动。伽利略对自己这个所独创的物理实验和思想实验相结合的科学方法，就感觉到由衷的高兴。伽利略之后，随着科技的发展和认识以及活动的深入，这个思想实验在物理学当中得到了日益广泛地自觉地运用，就出现了一系列的科学现象，马赫、爱因斯坦，还有波瓦呀，包括薛定谔，这些科学家都善于使用思想实验，在物理学的各个分支就产生了很多著名的思想实验，比如在力学当中，马赫就对牛顿有一个实验叫旋转水桶的思想实验，他这就是否定了牛顿的绝对时空绝对运动，在量子力学当中就有证明，波粒二象性的这个粒子波动，还有但电子衍射实验，也就是每次只发出一个电子，当然，这是做不到的，只能是想象。包括能量陷阱等等的只是思想实验，由此来推测了一系列测不准的关系，这样一个思想的显微镜，还有这个电子单缝衍射实验对不对？在相对论当中，我们都知道非常著名的那个爱因斯坦的列车——光之火箭等等的思想实验。可以这么说，如果没有思想学物理学，现代物理学是很难发展起来的，它的理论体系也建设不起来。</p>
+<p>因此，爱因斯坦的曾经就这么评价说伽利略的发现：伽利略的发现以及他所应用的科学推理方法是人类思想史上面最伟大的成就之一，而且标志着物理学的真正开端。在这里呢，我们就要对思想实验它的基本特点来做一个历史的考察，我们可以看到思想实验并不是说随便想想的，它需要按照真实实验的格式展开的，它是一项非常复杂的思维推理活动，其思想操作就包括这么几个方面的：第一，就对前所未有经过的或潜在可能的实验进行预想，然后对真实实验的理想化进行抽象和外推。这就是思想实验，在现实中不存在的，与经验当中相矛盾的，但是在逻辑上面讲得通的，在物理学上面进行这样一种抽象的、有意义的抽象，这种思想实验操作不必物化，不必物化就可以得到确定的结论。由此可见，物理学当中的这个思想是具有一下几个特点：第一它虽然没有经过实验操作，但是它一定具有实验的可操作性，思想实验就是不必实际进行的那一类实验，但之所以又被称之为实验，是因为这种思维活动是按照实验的格式而展开的，它是可操作的。</p>
+<p>一位科学家曾经这么说：“所谓思想实验就是想象中的操作模型，思想实验的操作者根据自己的认知和思考，使用存储于头脑中的经验表象、语言材料通过分析、想象、类比、猜测和逻辑推理进行想象的操作。”思想实验的这种仪器可以是假想仪器，可以是对假想的主体，可以对假想的客体进行作用。爱因斯坦在确定那个火车实验的时候，确定同时性程序的时候，他就这么认为：假如光是按照直线以横竖传播，和对这两个同样的钟的步骤就是测好这两个钟的距离，找到它们中点，守在两只钟旁边的两个观察者，当各自的钟指向七点钟的时候发信号，如果这两个信号这中点相遇，那么这两个钟就是同步的，假想科技在不断变化的形象是思想实验最主要的那种，也是思想实验操作的必然过程，假想的主体和仪器都是维持而存在的，并对假想的客体的观察和重要的过程当中介入了研究事物的本质和相互关系，从而达到思想实验预定的那个目的。</p>
+<p>从刚才的表述当中，我们会发现思想实验第二个非常重要的一个特点，刚才第一个特点就叫可操作性；第二个特点，就叫严密的逻辑性。就是在思想实验进行的时候，逻辑推理是它的基本思想，物理学家在构想构思思想实验的时候，想象是充分自由的，它可以根据自己掌握的经验的知识，当时的科技水平以及被研究的课题进行充分的联想，联想从何而发，向哪个方向延展？都是随机的。当众多的形象、材料、经验、表象在科学家的头脑中涌现的时候，其展开和联系常常借助于彼此之间相关的那个概念和关系，这种概念和关系同时又下一步决定的逻辑思维的联系，而这种联系又共同构思着向前的那种预定的目标。只要逻辑推理允许，它甚至还可以接纳那些违背我们日常经验的那种事实。现在已经确定了的一些物理规律，它也可以相对中立的作为一种表象进入到思想实验当中去。所以，思想实验操作过程它既是想象自由展开的过程，它又是符合逻辑运动的过程，在这个过程当中，逻辑就起着一个主导的作用，它引导着控制着想象，保持着想象的丰富性，但是又不是胡思乱想。想象活动就为逻辑运动提供了可靠的素材基础，逻辑运动在想象的过程当中，他又逐次去展开，两者相辅相成，浑然一体；第三个特点就是创造性，科学家的思想实验的目的是为了揭示物质内部的规律，因此他们探索应该就是史无前例的，带着高度的创造性。爱因斯坦曾经在一本著作——《物理学的进化》当中指出：任何一个理论，带有目的性的去指导我们理解新情况，启发我们去做新实验，从而就可以让我们发现新的现象和规律。思想实验就是如此。</p>
+<p>法国一个物理学家和工程师叫卡诺，他是研究热效率和热机效率的，他当时受到那个瀑布落差的启示进行了一个卡诺循环的思想实验，他构想还有两个非常理想的等温过程和两个理想的绝热过程来完成一个热力学循环，通过这样一个理想的热力学循环的实验，卡诺就得到了热机的最高效率。在物理学上有关于这个的公式：最高效率等于（t2 -t1 ）：t1 ，他创造性的解决了热机效率的问题。</p>
+<p>思想实验在科学史上是有着积极的作用，它这种积极的作用就表现在：第一，它带有强力的质疑批判性，就是运用思想实验是往往是从传统的理论自己入手，然后深刻的、准确的，而且是生动的，去揭开旧理论的缺陷、旧理论的伤疤、批驳旧理论里面的错误。所以，你看看当时我们说的这个还是要说到伽利略去批驳亚里士多德是不是？在当时，那个亚里士多德在整个欧洲享受至高无上的威望，亚里士多德他就说：推一个物体时，当你不再去推它的时候，这物体就归于静止了。从表面上面来看，这个理论统治人们的思想长达2000 多年。伽利略就提出了质疑，在斜面实验的这个基础上进行了这个思想实验，他说，一个物体运动如果有了某种速度之后，如果没有增加和减少速度，外部原因则始终保持这个速度。这个条件在水平面上也是可能的，假如，就是沿着水一斜面运动的一个东西朝下运动有个加速的过程，那么有了一个朝上的运动，也就有个减速的过程，由此可以知道：只要在水平面上运动是不变，所以他们速度就不会变，运动既不会减小也不会消灭。那么，这时候伽利略就对亚里士多德那个缺陷进行正确的区分了——速度和速度变化，由此提出了惯性这个思想，就得到了力与速度改变之间的联系，一个崭新的力学理论它否定了力与速度之间的那个旧理论，这就是第一个强有力的批判作用。第二个，就是深刻的创新作用，这个刚才已经讲过了，它一定是推动了新的研究、新的方向，开拓了新的领域，最后再跟大家聊聊思想实验之间的相互关系，思想实验与真实验是存在着原则的区别，真实实验是一种科学活动，它是尽可能的去排除外界的干扰，突出主要因素，并且能够细腻的观察各种物理现象之间的相互关系，就是使某一种过程重演，所以科学实验是源于实践又高于实践的一个活动。它是发现、检验科学理论的唯一标准。</p>
+<p>思想实验就是一种理性的思维活动，但是它不是这种脱离主观臆想，而是以实际为基础，刚才已经讲过了，它是按照实验的格式来展开的，是具有实践性的，它对实验过程要进行更深的那种抽象分析，推理过程是以一定的逻辑法则为依据的，因此它是一种相对独立的一个科学方法。思想实验和真实实验之间是互相密切联系也是互补的，就是物理学当中很多理论规律，是从大量的实验室中概括出来。那么物理学当中，很多假设争论，它也是有赖于真实实验的验证。但是，在真实实验当中，有时候为了获得这种规律性的认识，通过仪器、设备、手段进行严格的控制，但是往往由于这个现实条件的限制，实验效果不会那么好，这时候思想实验就会对真实实验开始之前的过程进行预想和设计，同时会辅助于观测，就是对实验材料的分析、概括，这两者之间就可以得到一个互相的弥补。</p>
+<p>因此，在科学研究当中思想实验是一种不可替代的科学方法，还由于思想实验是以科学思维的严密性、精确性，它可以弥补真实实验的不足，应该指出：现在物理学已经发展到理论科学的阶段，认识活动已经日益远离人们的日常营业和人们的直觉，已经深入到人类感觉不能直接感知的那种宏观的领域当中和微观的领域当中，那么事物的现象跟本质之间的关系也越来越复杂，越来越隐蔽，因此纯粹的物理学实验是不能够满足科学研究需要的。科学研究的设备虽然日趋精细庞杂，但是历史如此。理性思维的地位就更加突出，而思想实验作为一种科学方法，在科学研究当中将会得到更广阔的领域当中的应用，这点在我们小学科学教育当中，我们基本上都还没有用到这块呢，所以在这一点上面，我们的科学老师可以大有作为的。</p>
+<p>好了，我们今天就聊到这里，让我们一起认知越狱，自我迭代，格致教育工作坊，每天都在这里等着你。</p>
+<p>讲座时间：2019 年4 月7 日</p>
+<p>文字整理：王凤梅韦利</p>
+
+
+<p style='float:right;'>本页共18段，5686个字符，16684 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

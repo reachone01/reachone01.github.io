@@ -1,0 +1,331 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>科学家的核心价值观</h3>
+
+<p>大家好，这里是格致教育工作坊，欢迎大家的到来！穿越时空，来享受一碟知识的小菜，让我们一起天天学习，好好向上。</p>
+<p>今天我们来聊一聊科学家的核心价值观。当今世界，谁不是科学家的崇拜者呢？前两天英国的大科学家霍金去世，中国人像追捧明星一样的去追捧这位大科学家。世人现在公认，科学是第一伟大的力量。科学家的社会形象都特别好，他们有时候会像明星一样受到热爱。有时候人们把科学家当成体育明星，就像球迷谈论梅西一样。他们去吹嘘科学家的丰功伟绩，吹嘘霍金多么牛的水平，仿佛和他一样很荣耀。有时候他们还把科学家的事迹当做文艺八卦，就像流行美剧《生活大爆炸》那样，认为这是一群怪异但是特别可爱的人。比如中国人只要谈起杨振宁，就不一定谈他的学术水平，而一定会谈他跟翁帆那种老少之恋，82 岁老头子娶个28 岁的小姑娘。</p>
+<p>科学实际上是一个很酷的姿态，可以是一个很范儿的行为。绝大多数科学家实际上不去追求公众形象公众地位，因为他们做梦也没想过自己能够拥有这样一种公众地位和形象，更多的可能就是在一个角落默默地做着自己喜欢做的事情。</p>
+<p>如果你一直用追星的情绪看科学家的话，实际上你就错过了科学家身上那种最有价值的东西。有一本书叫《思维简史》，讲的就是人类历史当中最厉害的那些科学家的冒险故事，这里冒险不是指的科学家的那种身体的冒险，而是指他思想上的冒险。如果你要想从他们身上学到真东西，读这本书最好的视角不是把自己当成粉丝，而是把自己想象成是他们当中的一个。这本书的作者叫伦纳德·蒙洛迪诺，他不是那种报道科学家的记者，为科学家写传记的作家，他是一个非常成功的科学作家，也是一个真正的物理学家。</p>
+<p>我猜想每个物理学家实际上都想在有生之年写一本关于科学史的书，这本书真的能够让你从科学家身上学到一点真东西。这也算是一本写科学史的书。书里面这些内容可能真的跟你以前想的不一样，这种不一样，我把它提炼了一下，就叫做科学家的核心价值观。为了确保你能学有所得，我来给你细细的做一个解说，我条分缕析提炼了这么几条：</p>
+<p>第一条，脱离日常生活才有科学。这就是说科学要高于我们的生活。</p>
+<p>有这么一句话，科学是人们对生活生产的观察和总结，科学知识对实践有着指导意义。请问这句话有没有道理？错了，这句话答案完全是错的。如果你相信这句话，那么你就是亚里士多德的学生，而你也应该知道科学从伽利略那个时代开始已经不是这个意思了。伽利略实际上是第一个做抽象实验的人，他想研究物体是怎么下落的，可是当时在他研究的那个过程当中没有精确的计时设备，因此他只能设法减慢物体下落的速度。怎么去做这个实验的呢？伽利略做了个斜面实验，让一个大铜球从斜面上滚下来。这个实验之所以抽象，是因为伽利略所做实验的关键一步就是把球面和斜面都弄得非常光滑，甚至还抹了油来减少摩擦力，或者说尽可能把摩擦力降到最低。因为这不是日常生活中的物体运动，伽利略试图研究的是一种理想化的情况。什么叫理想化？就是没有任何摩擦阻力。因为也只有这样，他的数学定量的方法才有意义。伽利略发现这个铜球下落的速度越来越快，但是下落的速度和球的重量无关。这就是一个绝对的反常识的发现，此前亚里士多德在日常生活中的观察是越重的物体，下落的速度越快。所以开启科学的第一步，不是为了适应生活，为了改造生活，为了让生活更好，而是脱离我们眼前眼见为实的日常生活。</p>
+<p>牛顿三大运动定律也是这样子的，在日常生活中根本没有什么对照物。第一运动定律就是说一个没有任何外力作用的物体，将会保持匀速直线运动。生活中哪有什么做匀速运动的物体？牛顿考虑的也是一个没有空气阻力、没有摩擦力的理想世界。牛顿的《自然哲学的数学原理》这一本书几乎一出世就受到了热烈的欢呼。可是这本书里面所讲的内容，对当时那些人的生活生产完全没有指导意义。它是一个哲学内容，目的是为了解释天体的运动。人们研究自然哲学的时候，心里想的不是将来要搞什么发明创造，进行什么工业革命，改革发明什么机器，他们纯粹想知道的是这个世界到底是怎么回事，是怎么运转的？这种与直接的生存本能无关的一种思维需求，也许才源自人类进化成智能以来的这样一个特性。尤瓦尔·赫拉在《人类简史》当中说智人相对于其它直立人的认知升级是什么？就是我们智人能够想象一些不存在的东西，有很多事情是我们事先想到，然后才做到的。</p>
+<p>中国有许多人认为，生产生活方式决定了人的思维方式，然后思维方式才能够对生产生活有一定的指导作用。可是你只要仔细考察一下人类的历史，似乎并不是这样。</p>
+<p>在真实的历史中，思维方式总是先行，是先有思维方式的重大改变，才有了人类生活生产的重大改变。比方说，以前的学者就以为新石器时代的人是因为有了农业种植生产才有了固定的住所。可是最新的考古发现当中，有一个叫做哥比亚利市镇，这是一个采集狩猎时代的人建的，是一个宗教遗迹。当时的人们似乎是为了宗教祭祀的方便，才住到了一起。由此推测，人们是为了能够住到一起才开始种植农业的。科学不就是这样的吗？先有一个与日常生活无关的想法，这个想法就带来了我们生活方式的一种改变。</p>
+<p>其实永远都是想法先行，想法能超越日常事务同时又有价值，这才是科学的本质行为。科学家是人不是神，人产生科学想法的过程一点都不自然。</p>
+<p>第二点，我们来跟大家聊一聊科学家的内心挣扎。“得到”APP上面有一个今日客叫万为刚，他写过很多书，有的书写得非常好，比如有一本书叫《万万没想到》。这个作者以前是个物理学家，是搞核物理研究的，他做过十多年的核物理研究，他有一个体会，做研究和学知识是完全不同的事情。他说再难的物理教科书也是对真实的物理研究一种极大的简化，有很多东西一旦被你说破了，你接受了，完全就可以很轻松地照着去做了。但如果没有人告诉你，你自己想出来那可就难了，有时候你还要克服心理障碍。比方说万有引力，现在人人都知道，任何有质量的东西，它们两者之间都有吸引力。可是当年牛顿并不知道，所以苹果砸在牛顿的头上，牛顿发生了顿悟这个故事其实是一个童话。牛顿写第一版《自然哲学的数学原理》的时候，仍然只是把引力当成天体间的作用力，他没有想到，或者想到了但是还不确信地球上面的各种东西之间，物体之间也存在着引力，牛顿后来才慢慢相信引力是个普遍现象。但是到了这一步，人类就必须接受一个在当时很不寻常的观念，就是天上和地上的东西都受同一套物理定律支配。当时人们很难接受，当时人们的观点是天贵地贱，天上的东西比地上的东西要高贵，地上是污秽不堪的，是不值得一提的，天上物体的组成物质和运行方式，跟地面上面的物质组成方式和运作方式是不一样的。</p>
+<p>生物学家达尔文其实也面临着这个问题。达尔文提出了进化论，但是没有办法协调进化论和上帝之间的关系。如果各种生物都能自发地通过演化产生，那要上帝干嘛？如果科学定律不是仅适用于天上地下，还适用于人的话，那上帝就无事可做了。很多时候人们会问你把上帝放在什么位置？我记得有一个科学家有个很牛气的回答，在我的体系里面没有给上帝留下位置。其实他这么说的时候，心里面其实还是有一个上帝的。</p>
+<p>伽利略、牛顿、达尔文，他们其实都是非常虔诚的宗教徒，他们是怎么解决自己的宗教信仰、自己的思想和自己的科学思想之间的冲突的呢？今天的人可以轻松的来一句，他们要么相信科学要么相信宗教。殊不知当时的科学家们，他们经历了多少内心的挣扎，才把这个世界的图样画给你，才把这些世界观留给了你。</p>
+<p>这样做了以后，牛顿几乎就成了新的上帝。在牛顿之后的学者们，试图把所有的学科都牛顿化，化学家甚至相信把化学连在一起的那个力，也是牛顿的万有引力。但是到了后来，爱因斯坦提出了相对论，他就发现牛顿定律够不着了，日常生活在达不到这个地方，他就改写了牛顿定律。几个科学家对常识进行了革命，又有新的科学家对这几个科学家进行了革命。科学家的故事主题是什么？就是两个字，革命。</p>
+<p>蒙洛迪诺说，爱因斯坦的相对论最大的意义就在于给后来的新生代的物理学家提供了勇气。但是我们看到爱因斯坦自己本人连这种勇气都接受不了。紧接着玻尔提出了轨道量子化的理论，爱因斯坦说，玻尔这个理论我也想过，可是我觉得过于离奇了没敢发表。后来玻尔不断劝说爱因斯坦，就跟爱因斯坦辩论，他始终说服不了爱因斯坦接受量子理论，玻尔都要被气得哭了。</p>
+<p>如果你在那本书读到这个位置内心没有什么波澜起伏的话，我估计你根本就没读懂。原子论刚刚出来的时候，很多物理学家是无法接受的，他们认为原子这个东西看不见，摸不着根本无法研究。原子论只适合哲学，它不应该是科学领域的事情。</p>
+<p>好不容易大家都接受了原子论，人们又不接受汤姆逊发现的电子论了。因为大家本来就觉得原子是不可分割的，可是汤姆逊居然说原子外面还绕着一层电子，究竟是怎么回事？等到卢瑟福做了那个著名的实验，就是用铂金轰击的实验，他就提出了原子核可以衰变。主流物理界当时是一连声地反对，一个原子怎么可能变成另外一个原子？这难道不就是变炼金术吗？这是迷信不是科学。</p>
+<p>科学家的工作估计都是反常识的。我们都知道世间的万物都由一定的时间、空间、位置、速度来确定的，到了海森堡那里，连位置、速度、确定性这些概念都要被推翻了。不要说我们普通人接受不了，就算那个大科学家爱因斯坦到死都不接受海森堡的测不准原理。</p>
+<p>面对这样的一个历史，我们现在人都是感觉到爱因斯坦太笨了，你连这个都不能接受，你要是来一句科学家你不能有成见，科学就是革命的事业，你可能太轻佻了。最容易理解革命的时候，是在革命成功了的时候。如果革命是那么的容易，请问科学怎么没有在中国产生？</p>
+<p>第三个方面我们就跟大家讨论一下，为什么中国没有科学。</p>
+<p>从冯友兰到李约瑟很多热爱中国的科学家、学者都讨论过这么一个问题，为什么中国古代没有科学？人们分析了种种原因，有的人还坚持认为中国古代有科学，比如墨子搞的那个难道不是现代物理学吗？不是现代的光学吗？不是现代的机械学吗？你要是不知道科学是什么，你根本不要来跟我谈这个话题。</p>
+<p>科学永远是一个反常识的，永远是在革命的，它是不以实用为目的的东西，是一个纯粹的精神上面的追求。这是人类想要知道这个世界底层的逻辑，想要破译这个世界的源代码。举个例子，小闹钟你见过的，我们表面看到的闹钟三长一短“哒哒哒哒”这么走，但是问题是，假如你不打开后盖，你知道后面的机械表盘是怎样互相配合运转的吗？</p>
+<p>实际上鉴于生物的本能是生存和发展优先，一个民族如果没有产生科学是正常的，有科学反而是不正常的。为什么中国古代或者说古代中国没有科学？答案是只有古代希腊有科学，因为在古希腊之外，其他的地方都没有科学。希腊跟罗马相比，罗马更强大，但是罗马没有科学。罗马帝国征服了希腊，统治了欧洲那么长时间，欧洲在那段时间里面没有任何科学，就连当时的希腊人也都放弃了科学，幸亏后来十字军东征，把阿拉伯人把希腊的经典著作都翻译了过去，科学在穆斯林的世界里面得以保存。</p>
+<p>阿拉伯人也没有科学，阿拉伯人翻译科学著作不是为了追求科学，是认为那东西可能有用，再加上当时的阿拉伯人有钱，也有时间，所以就干那种傻事。阿拉伯帝国衰落以后，欧洲人又把那些东西再翻译回欧洲。当时欧洲人这么做，是不是在为了追求科学？他们这么做也不是为了追求科学，他们只是觉得这些可能有用。另外欧洲当时那些贵族认为把这些东西搞过来，可以彰显自己的身份和地位。但是古希腊科学的种子毕竟保存下来了，并且在漫长的中世纪里面默默的传承，直到伽利略的出现。等到伽利略开始做那些反常的科学实验的时候，科学才开始真正在欧洲复兴。</p>
+<p>那古希腊为什么会有科学？也许因为希腊有一个哲学传统，但是当时希腊的那套哲学传统，追求的恰恰是什么？无用！不追求有用。也许纯属偶然，古希腊出现了一个泰勒斯，一个大哲学家，他把从埃及学到的几何学跟自己研究到的哲学结合到一起，他认为这个世界应该是数学的，而不是什么神的，他抓住了产生科学最关键的一步。</p>
+<p>科学是一个难能可贵的东西。可能在一个初始条件一模一样的平行宇宙当中，宇宙人、地球人到今天也没有科学。科学可能还是一个很脆弱的东西。希腊科学并没有帮助希腊人富国强兵，古罗马人认为希腊那一套东西没用，直接就把科学给放弃了。在二战的时候，德国纳粹曾经禁止研究量子论。第一，因为当时搞量子论的那部分科学家大部分都是犹太人，你搞这个研究就是不爱国。第二，量子论研究的那些东西太过于抽象，就好像当时兴起来的抽象派艺术一样，不符合主流的审美价值观。</p>
+<p>一直到100 年以前，科学家也不是全社会最受崇拜的人。但是现在人不一样，现代人如此崇拜科学，很大程度上是从1945 年那一颗原子弹爆炸开始的，因为那颗原子弹让人们见识了科学的力量，由此人们才开始崇拜科学。人们真正崇拜的不是科学本身，而是科学所诞生的力量。我觉得这种崇拜是有点势利的。</p>
+<p>在这个科学已经大行其道的年代，蒙洛迪诺提醒我们，科学家的初心是什么？我觉得科学家的初心可以总结成下面三句话。第一句话，你的目的就是想知道这个世界到底是怎么回事。第二句话，你的理论要能用数学进行精确的表述。第三，你的理论对错与否取决于对自然的观测和实验，其他的都不重要。</p>
+<p>科学就是科学自身在推动自身的发展。近代中国人总想对人类文明作一个比较大的贡献，以彰显我们的大国地位。这样的贡献其实并不好做啊。</p>
+<p>好了，今天先聊到这里，让我们一起自我迭代好好学习，格致教育工作坊每天都在这里等着你。</p>
+<p>讲座时间：2018 年5 月12 日</p>
+
+
+<p style='float:right;'>本页共33段，5646个字符，16399 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>哥伦布的一个错误</h3>
+
+<p>各位老师，大家好！这里是格致教育工作坊，欢迎大家的到来，穿越时空，感受思想的盛宴，让我们一起天天学习，好好向上！今天我们来聊一个话题——哥伦布究竟撞了个怎样的狗屎运，在这么多航海家当中，让他发现了新大陆？</p>
+<p>现代，当人们在说到哥伦布航海发现美洲的时候，经常会产生一个问题：哥伦布为什么会有这样的决心和勇气？有人用一个小故事来解释哥伦布的性格，这个故事说，哥伦布从美洲回来后，人们给他举行盛大的宴会，但有人用轻蔑的语气对哥伦布说，发现新大陆有什么了不起，只要开个船去就行了。于是哥伦布让他们把鸡蛋立起来，他们说“这个鸡蛋怎么立啊？”于是，哥伦布一下把鸡蛋敲碎，然后让鸡蛋站起来，寓意“不破不立”，他的意思是当美洲没有人知道的时候，是我第一个发现了它。用这个“不破不立”以显示哥伦布的勇气和独特的思维方式。其实，据科学史考证哥伦布到达美洲的航行，源自于他的一个低级错误。</p>
+<p>15 世纪的时候，世界上航海知识最发达的国家应该是葡萄牙，哥伦布最初的航海经验，也是在葡萄牙人那里获得的。哥伦布是意大利人，父亲是一个纺织匠，哥伦布从小没有受过多少专业教育，但是他喜欢另一个意大利人写的书——马可波罗的《游记》，这本书让哥伦布对中国和亚洲充满向往，但是，这种向往主要是黄金。马可波罗的书里有一些道听途说的内容，比方说，他没到过日本，却说日本遍地黄金，宫殿是黄金盖的，道路是黄金铺的，门窗也是黄金做的。《马可波罗游记》中这类关于财富的描述，强烈吸引了拜金狂哥伦布，他曾在一封信里写道：“谁占有黄金，谁就能获得他在世上所需要的一切，同时也就取得了把灵魂从炼狱中拯救出来，并使灵魂重享天堂之乐的手段。”</p>
+<p>哥伦布20 多岁的时候，就开始计划向西到达中国或亚洲的航行，在将近20 年的时间里，哥伦布拿着自己的计划，向很多有钱人或者国王推销，大多数人都没有兴趣。哥伦布的计划最早的推销对象就是葡萄牙。他住在葡萄牙，还与一位葡萄牙女子结了婚，目的是通过这名大家闺秀，打通与葡萄牙王室的关系。但是，具有长期航海经验的葡萄牙王室拒绝了哥伦布。其实，这是为什么呢？</p>
+<p>现在有人说，葡萄牙拒绝哥伦布的计划是因为他的要价太高，其实并非完全如此。真正的原因是，葡萄牙航海家认为哥伦布计划的计算是错误的，事实上，哥伦布对距离的远近的计算也确实是错误的。</p>
+<p>在15 世纪的时候，地球是圆的这一概念，虽然在普通人那里还不常见，但是，对于航海家来说，这个观念并非奇谈怪论，航海知识丰富的葡萄牙人也同样接受这个观念，葡萄牙人知道地球是圆的，知道哥伦布的想法是可能的。</p>
+<p>但是，哥伦布根据《圣经》的描述，认为地球很小，他对地球直径的估计，在今天看来完全是一个很离谱的错误。哥伦布认为，欧亚非三个大陆的面积，占地球总面积的6 /7 ，海洋面积只占地球总面积的1 /7 。因此，按照地球经度是360 度来计算，哥伦布认为，从西非海岸到亚洲东岸，其间的经度不超过80 度。我们现在知道，地球上的海洋面积占总面积的71 %，超过2 /3 ，西非与东亚的经度，陆地相差超过120 度，从哥伦布航海方向，相差约240 度。而80 度的经度，正好与大西洋的经度夹角差不多。</p>
+<p>如果大家都认为地球像哥伦布所说的那么小，那么，向西航行到达中国的航程确实应该是最短的。但是，知识经验积累更加正确的葡萄牙航海家认为，地球要比哥伦布的计算大得多，因此，绕过非洲通向亚洲的航线，要比哥伦布想象中的航线近得多。既然如此，何必舍近求远？而且葡萄牙人已经在非洲海岸线上有了长距离的探索和积累。葡萄牙人的看法在今天看来更加正确，他们只是不知道，也想象不到，在那个通向亚洲的更远的道路中，还有一块巨大的陆地。</p>
+<p>哥伦布的幸运是因为他的文化知识不高，从而坚持自己的错误，以至于到了偏执的地步。他的另一个幸运在于，最终资助他的西班牙王室的公主知识水平也不高，轻信了他的错误计算。当哥伦布向西班牙推销他的计划时，西班牙像葡萄牙一样，组织了专门的委员会，讨论哥伦布的计划。这种委员会用今天的话来说，就是一个国家级的专家委员会。葡萄牙的专家们用更接近正确的计算，否定了哥伦布航线更近的猜测。但是，西班牙的委员会则是另一番景象。一个西班牙的委员会专家问哥伦布：如果地球是圆的，你的船有一段航行必然是从低处向高处的“爬坡”，如何才能“爬”上去呢？哥伦布也回答不上来。</p>
+<p>但是，哥伦布对于黄金的追求不可阻挡，这一点与西班牙公主一样，他们都希望获得大量的黄金。在这个共同点下，一个计算错误的冒险家和一个不懂科学的有钱公主的结合，开始了一场错误的航行。但是，几个错误加起来，又遇到了一个“幸运”，在哥伦布的方向上，有一块巨大的“未知”陆地。虽然哥伦布到死都没有意识到自己错了，他以为这是亚洲。但是，很多年以后，这块“新大陆”带来的财富，已经让人们喜欢上了哥伦布的错误。谁还会再去追究呢？</p>
+<p>当然，人们对哥伦布所犯错误的“遗忘”，还过了一段时间。哥伦布的发现，并没有给他带来黄金。首航成功后，西班牙王室立即又出了一大笔钱，再次组织第二次航行，17 艘船，1200 名船员。但是，依然一无所获，没有发现黄金。哥伦布的发现，显然刺激了葡萄牙，他们决定加快行动，趁哥伦布还在几个小岛之间漂来漂去的时候，赶紧抢先到达亚洲。在达伽玛启航前往印度的次年，1498 年，哥伦布第三次前往想象中的“亚洲”。虽然达伽玛成功的消息还要再过一年才能传回欧洲，哥伦布此时并不知道达伽玛的真实情况，但是，两次没有收获的航行，已经让西班牙王室感到心凉，第三次航行，哥伦布只带了6 条船和一批囚犯。1499 年，达伽玛回到葡萄牙，宣告在与西班牙的竞争中获胜。</p>
+<p>达伽玛这次来回历时2 年的东方航行，装了一船东方的香料回到欧洲。这船香料在欧洲市场的价值，等于这次2 年航行费用的60 倍。葡萄牙立即用最先进的大炮，垄断了这条通往东方的发财路。1500 年，没有给西班牙带来多少黄金的哥伦布，因其在“印度”的残暴统治和无能管理，被投入监狱。关了不到2 个月，被国王放了出来。临近的葡萄牙不时传来发财的欢笑声，1502 年，51 岁的哥伦布请求西班牙国王再给他一次机会。这一次，他只带了4 条船，仍然没有发现大批黄金。1506 年，哥伦布在西班牙默然地去世。</p>
+<p>从达伽玛到达东方以后，长达20 年的时间里，哥伦布的“发现”给欧洲带来的是一次次的失望，哥伦布的“发现”在当时一些人看来，更像一个重大的失败。西班牙王室的花费没有回报，葡萄牙庆幸自己当初没有听信哥伦布这个没文化的意大利人。</p>
+<p>转机发生于1519 年，西班牙人在这一年，很偶然地发现了位于今天墨西哥的印第安人国家，阿兹特克帝国。这个富裕的帝国，终于第一次满足了西班牙人对黄金的初步渴望。在白白投资了27 年后，我们是否就能理解，这些拜金狂见到黄金时疯狂的贪婪？在商业上，这叫投资回报。为了正常的投资回报，杀人算什么？所以西班牙人把阿兹特克帝国灭绝了。此后，美洲除了发现有黄金外，还发现了大量的银矿，这块“新大陆”才开始让葡萄牙人后悔。</p>
+<p>关于美洲的名字为何没有用哥伦布的名字命名，现在常见的说法是，哥伦布始终认为自己到达的地方是亚洲。有一个意大利佛罗伦萨人，名叫亚美利哥，他与哥伦布认识，还帮助了哥伦布的两次航行，还说他亲自去了美洲很多次，他也因此被称为“航海家”。他在一些私人信件中认为，哥伦布发现的不是亚洲的中国，而是新大陆。于是，哥伦布死后，人们给这块“新大陆”安上了亚美利加的名字。但是，一些历史资料显示，关于亚美利加几次航行到美洲的说法，似乎只来源于他自己的信件。因此，一些史学家认为，亚美利加窃取了哥伦布的发现权，他根本没有到过美洲，他利用了哥伦布的错误，成功地宣传了自己。其实，关于美洲是不是中国，只要像葡萄牙人那样好好计算一下地球到底有多大，就能得出结论。</p>
+<p>所以，哥伦布发现新大陆其实是源于一个错误；美洲到底是不是哥伦布发现的，还是归功于给它命名的人，这在科学史上一直是一个争论。</p>
+<p>好了，关于哥伦布，今天就先聊到这儿，让我们一起自我迭代，终身学习！</p>
+<p>讲座时间：2017 年8 月11 日</p>
+
+
+<p style='float:right;'>本页共19段，3431个字符，9784 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

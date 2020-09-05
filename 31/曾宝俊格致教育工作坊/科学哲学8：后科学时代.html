@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>科学哲学8：后科学时代</h3>
+
+<p>这里是格致教育工作坊，欢迎大家穿越时空，来享受一碟知识的小菜，让我们一起天天学习，好好向上！今天我们是科学哲学8 讲的最后一讲，今天我们来聊一聊后科学时代。</p>
+<p>在聊后科学时代时我们先来讨论一个问题，为什么所有的科学最终却要拿经验来检验，或者说都要拿实验观察来检验？也就是说最高端的精密逻辑模型，最终却要用最低端的眼见为实来检验。尽管眼见其实也不为实，我们却偏偏用它来检验，因此我们当下也把科学称之为实证科学。请注意，实证和证明是两回事，证明是指广义逻辑证明和狭义逻辑精密的建模，实证仅仅指底层的感性逻辑验证，所以这是两个概念。但问题是既然我们昨天就说逻辑比事实更真实，为什么要用低端感性的逻辑来检验它呢？</p>
+<p>请大家注意，我前面曾经反复讲过的两点。第一，人类的感知跟外部世界的沟通是通过广义逻辑自洽模型实现的。因此如果你在高端逻辑达成，你在广义逻辑的底层是不能验证的，这样的话整个广义逻辑通道没有打通。第二，越原始越底层的东西，越具有奠基性，它的决定性和稳定性越高。这就是王东岳先生所讲的递弱代偿原理的规定，使得高端逻辑精密模型最终却必须用最粗疏的底层感性实验观察来验证。这就是当下科学表面上的背反形态发生的原因。所以我们可以讲逻辑比事实更真实，但是你不能讲逻辑比事实更可靠。因为这个里面的逻辑指狭义逻辑，你不能讲理性比感性更可靠，因为越低端的东西越具有稳定性。大家要理解这段话，可以把我们前面几讲联通起来一起理解。</p>
+<p>那么我们下面再讨论一个问题，波普尔给科学做出证伪主义定义，对不对呢？粗略一看，似乎成立，但其实也不对。为什么不对？因为我们如果不限于科学事业，如果我们把认知现象拉大尺度，情形就会为之一变。我们会发现一个现象，越原始的认知越难以被证伪，越高端的认知被伪速度越快，这跟科学无关。</p>
+<p>从神学、哲学、科学全系列都是如此。所以我们不能说神学不能被证伪，它只是很难被证伪，它的稳定度极高，你也不能说此前的哲学不能被证伪，它同样也是证伪的难度更高。王东岳先生在他的《物演通论》里已经讲了，神其实是可以被证伪的，因为神代偿量太大，属性和能力太高，因此它根本不可能在我们的前面，它只会在我们的身后。所以赫拉利的《未来简史》这本书的原名叫《从智人到神人》，它原来的书名的表述是非常精当的。哲学上过去的问题也不是不能被证伪，比如唯心主义、唯物主义、不可知论，它都是可以被证伪的，它是不能在广义逻辑上融洽的，它是不能他洽的。</p>
+<p>它只是要比科学的证伪更难，它需要更多的信息量，需要大于一般科学的信息量，仅此而已。而且我们把尺度再拉大一点，我前面已经讲过，感性比知性稳定，知性比理性稳定，即使在动物阶段也是如此。如果我们把整个人类的认知史拉大成万物演化认知史，把人类认知史，跟动物认知史拉开，你会发现越低级越原始的认知方式越稳定，比如电子和质子之间的电磁感应肯定是最稳定的，它比感性看所有的植物叶子啊，那个波长是绿色还要稳定。因此证伪主义在大尺度上表现为一切认知成果越高端越飘摇这是个总趋势。如果是这样，那它就不仅仅是科学阶段的定义，而是整个认知史的定义。因此把证伪主义作为科学的定义不成立。是不是这样？因为“定义”是指你所讨论的这个问题的明确边界，这个边界就在这个定义中被框定。所以波普尔的证伪主义不能只作为科学的定义，它可以作为一切认知史的失稳趋势的表达。但是由于波普尔对最基本哲学问题的探求深度不够，因此他当年已经发现了科学的正确率在下降。顺着这个逻辑的推演，他应该得出人类的认知，含真量是越来越低的，因此也是越来越远离本真的。可他仍然最终说，科学的发展过程是越来越逼近于真理的，从而他的理论上发生了重大逻辑混乱。</p>
+<p>那么我们下面给出一个也不能算是精确的科学定义，它不在我的书中表达，因为我在书中不敢表达，因为它不够精确，我只能在讲课中大致粗略地表达。科学是什么？首先从狭义逻辑模型上进行定义，科学是哲学逻辑游戏的产物。第二，科学就是分科治学。由于它的高度抽象化和缜密精确化，因此它可以容纳更大的不断扩容的信息量。当信息量扩充到一定程度，也就没有任何人的精力可以完整地消化吸收全部其中的信息，于是人类就不得不以分工的方式分科研究这个逻辑模型的总体，这就叫分科治学。第三，科学是高度动荡的逻辑模型。由于它是人类逻辑高端产物，达到理性逻辑的高级阶段，因此它是最失稳的模型。这是波普尔说，凡是能证明是错了的学问，就叫科学的原因。逻辑模型，表达科学非真。分科之学，表达科学残缺分化。动荡状态，表达科学危局。它的基本特征叫逻辑模型在前，精确缜密形态高度可证伪性，这样一个知识系统叫科学。</p>
+<p>我就用这样最简略的方式，把科学做了一个基本概括性总结。</p>
+<p>下面我们讨论知识创新的逻辑路径。你只有了解了科学知识，人类的一切文化成果究竟是什么东西，它的思想运用形态，它跟世界的对应关系是什么？你只有把这些东西搞清楚，你才有可能建立新知，你才有可能进行思想创新。因此我们今天把前面的课程讲到这个层面上，我们可以就思想本身的创新，指出它的逻辑路径。我下面用比较直观的方式跟大家讨论。</p>
+<p>第一，切勿相信此前的任何科学理论是真理，反倒要确认它是距离真理最远的东西，正等待着你来重塑它的泥胎金身。就是你首先要确认科学不是真理。你想想，如果你确认科学就是真理，面对既往的科学，你敬畏都来不及，你怎么敢去创新？所以请牢牢记住，不光是科学，人类一切学问都跟真理无缘，这是创新的第一个最基本的背景意识要求。</p>
+<p>第二，你不要指望自己能发现什么根基永固的真理，因为根基不固恰好说明你的发现属于科学范畴，而不属于伪科学的糟粕。因为科学是那个错的最快的东西才叫科学。因此当你建立一个理论模型的时候，你不要指望建立一个永恒的稳定的真理系统，不要抱这个奢望，不挂这么高的要求，创新才有可能成为一个现实的目标。</p>
+<p>第三，回避休谟问题，就是归纳法不成立，不要一味搜集和归纳正在研究的课题素材。因为归纳法不能证明只能证伪，因为归纳的素材永远无法穷尽。如果你不断地搜罗事实，你不断地搜罗要归纳要素，那么它将是一个无边无际的工作量。所以黑格尔有一句名言，博学绝不是真理。就是任何一个好的理论，跟博学没有关系，跟你搜集的事实量也没有关系。所以现在所谓的大数据有时候是骗人的，大数据可以证明吸烟有害健康但是它却不能证明吸烟有害你的健康。请大家看科学史，人类最重大的科学发现者大多是年轻人，开普勒二三十岁，天文历法者。牛顿，大学没有毕业，由于黑死病不得不回家休学，26 岁在家里建立平方反比定律。什么叫“平方反比定律”？就是万有引力定律，我再重复一下，引力等于两个物体质量的乘积做分子，也就是说与引力成正比，与两个物体距离的平方做分母，也就是与引力成反比，再乘引力系数、引力常数，这就是万有引力定律简称平方反比定律。这个东西是牛顿26 岁，当时牛顿大学还没有毕业就发现了，只不过牛顿当年都没有想到这是一个重大突破。他当时认为这可能是一个很平凡的很简单的现象，他没当回事。直到40 岁左右，他在剑桥大学任职做教授。有一次和一群学者喝酒，酒喝高了，有一个叫虎克的院士，给牛顿在酒席上说，我有一个重大发现，平方反比定律。当时牛顿就说扯淡，这东西我20 多岁就知道了。这算什么重大发现？争辩者大为恼火，说有种你给我证明。牛顿为这场争论回家立刻就写了《自然哲学的数学原理》，然后发表出来。他没钱出版，他的朋友哈雷替他出版，他一出版，胡可就傻掉了。如果这场酒不喝高，牛顿力学就不一定诞生。我想讲什么？牛顿发现他的学说是20 来岁。</p>
+<p>大家知道爱因斯坦相对论，狭义相对论出现的时候，爱因斯坦不到30 岁，是个民科。在瑞士伯尔尼专利局当个小职员。狭义相对论的产生，论文发表几乎没有人能看得懂。十年以后，30 多岁广义相对论发表。此后，后半辈子几十年，他想研究统一场论，把物理学的四大作用力统一起来，结果失败了。年龄成长了，知识增多了，反而什么也做不成了。什么意思？知识多绝不是真理，博学绝不是真理。20 多岁的牛顿，20 多岁的爱因斯坦，20 多岁的开普勒，他比当时的物理学教授的知识量要差多少？当时五六十岁的大学物理学教授满处都是，学问啊车载斗量，可是又有谁缔造了新的知识模型呢。所以记住博学绝不是真理，不要无边无际的搜索，归纳素材，那不叫研究。那种做法是对人类思想模型的建立完全缺乏了解的愚蠢表现。我这个讲到就是休谟问题。</p>
+<p>第四，康德问题，也就是在基本逻辑前提下做演绎性假设，叫猜想与建模。想想我前面讲的哥白尼的建模，它是不需要事实的，它是需要逻辑猜想的，是需要一个理念来进行演绎的。</p>
+<p>第五，保持好奇心。这个话说起来很平凡，可大家一定要知道它太难了。因为我前面讲过，一个人长成的标志是丢失了好奇心。什么叫保持好奇心，就是保持童心。因为只有儿童才会惊异、讶异、惊奇，才会对万事万物好奇，才会不断地追问。一个人到了成年，由不得自己会消失掉好奇心，看很多东西没意思。“我知道，这个我已经晓得了”，变成思想僵化的载体。所以说保持好奇心，说来简单，做起来极难，它甚至会让你显得有些怪诞，或者有些不成熟。我记得我40 多岁的时候，偶然碰见了一个十年二十年没见过的童年时代的邻居小朋友。这个时候他跟我都已经40 多岁了，我们坐在一起喝酒聊天，喝完酒他给我说一句话，他说你这人都40 多岁了，怎么看起来还像个青瓜蛋子，就是到现在还全然是学生心理，就没长熟，其实我到现在也是这样。可这个状态，恰恰是我能做学问的状态。</p>
+<p>所以大家记住，保持好奇心，实际上就是阻止精神生长，这在生物学上叫幼态持续，难度极高。</p>
+<p>第六，发挥想象力，听明白什么含义了吗？我们说世界永远是我们主观缔造的思想模型，不是客观世界的本真反映。因此具备想象力，才具备知识的创建力，这叫异想天开。大家想想，如果我们的感知是本真反应，你还有什么想象的余地呢？人类还需要思想干什么？思想的价值就在于我们得不到本真，我们永远用猜想去虚拟本真。感知的过程就是层层虚拟的过程。请记住VR虚拟世界绝不是今天的现象，宇宙认知史就是虚拟迭代史。</p>
+<p>想想电子对质子达成的那个电中性是不是一个虚拟？想想酸根对碱基达成的那个盐的收获是不是一个虚拟？想想你把光能量转化成明亮是不是一个虚拟？想想你把波长变成颜色是不是一个虚拟？想想你建立的逻辑模型，只不过是打不开的那个宇宙表壳的模仿和猜想是不是一层虚拟？宇宙认知史就是一个虚拟发展史。VR的现象其实只不过是虚拟迭代的当代形态而已。既然我们的一切知识都是虚拟，那么虚拟需要的是什么？想象力。人类文明就是在这个异想天开的想象力系统上展开的，所以发挥和保持想象力在知识上的创新至关重要。但是我后面要补充一句话，异想天开，保持想象虚构和假设建模能力绝不意味着胡思乱想。它后面有一个严格的要求，叫精密逻辑证明。如果你做不到后半段，前面的想象力就叫扯淡。</p>
+<p>所以请牢牢记住第七条，苛守严谨性。在学术和思想上最遭反感、最忌讳的就是缺失严谨，而严谨指精密逻辑证明。</p>
+<p>最后第八，只要在逻辑上成立，或者说只要逻辑自洽而圆融，一般就不用担心该假说得不到验证，那是后人的事业，你验证不了，你此刻已经大功告成了。你只要建立了一个严谨的经过证明的逻辑模型，它将来就有可能是事实。即使你的有生之年不能被验证，就像阿波罗尼提出来的圆锥曲线证明，要隔将近2000 年才得到验证。但这尽管是阿波罗尼的遗憾，却是人类的收获。听懂了这八点，就叫知识创新的逻辑路径。理解这八点，前提条件就是在于理解哲学思绪的整个系统，理解这8 天讲课所讨论的所有问题的精髓。</p>
+<p>我们最后讨论一个问题，大家听我这节课很容易产生一个错觉，我高度赞赏西方哲科思维体系，而贬低中国技艺文化粗率的逻辑体系。别搞错。我再说一遍，我不讲好与坏，只讲所以然。</p>
+<p>我只告诉大家不同文明缔造的思维方式，它是怎样发生的，它是什么形态，它以什么方式展开，它以什么方式运行，它又以什么方式纵深，它达成怎样的思想后果。这里面没有好坏对错的评价。</p>
+<p>因为正是科学技术它将会给人类带来巨大的灾难。我们今天人类面临的重大危机，都是人类智能潜力过度调动的产物。请记住我在前面讲，哲学叫爱智慧。爱智慧是什么？人类智能储备的过度调动。而我当时就讲，任何功能储备过度调动，都是损害性的。那么我们最后落实这一点，当人类把自己的哲科思维能力充分调动的时候，它到今天展现为人类整体生存的巨大危机的时候，给人类未来前途带来巨大阴霾的时候，成为人类未来必须将来处理的十分棘手的困境和难题的时候。因此我说，既往的思想家、哲学家、科学家，他们不是人类的工程师而是人类的灾星。而且我可以这么说科学时代行将终结，后科学时代正在扑面而来。因为科学已经带来两重效应：第一，它越来越难以贯通整个广义逻辑。大家都知道，到了爱因斯坦时代，科学界已经惊呼，理论物理学是理论的天堂，实验的地狱。而到今天，超弦理论、M理论、多重宇宙理论、平行宇宙理论等等都是科学上的最大创新，居然这些东西全都无法做基础验证，成为飘散在空中的奇谈怪论，它标志着科学越来越虚无缥缈和玄学化，它标志着从学术角度思维的高层失稳形态达到极致，它标志着科学作为一门学术行将结束。</p>
+<p>同时科学缔造的结果，人类今天也无法承受，它已经给人类带来巨大性毁灭性灾难基础和灾难力量。而任何文化一定是对其载体具备维护效应方得存在。因此我说，科学时代行将结束了，后科学时代很快扑面而来。我们因此可以说科学时代是人类此前思维范式中最短命的一个时代，神学时代近万年，哲学时代两三千年，科学时代从哥白尼算起迄今才不过短短数百年，它将要结束了。而且我们可以想象，后科学时代那个时候的人看今天的科学时代，一定会觉得我们极端可笑，怎么会相信那些乱七八糟的东西？就像我们今天看跳大神的巫师，觉得他十分可笑一样。可是你一定要知道，当年的巫师相当于今天的科学院院士。</p>
+<p>同时我们也应该意识到后科学时代一定是需要处理更大信息量的时代，因为我们没有退路可走。按照物演定律，世界的运行是在信息增量的代偿过程中展开的。因此后科学时代一定是处理更大信息量的时代，只不过这个信息量的处理将会和今天科学时代有一个重大区别。科学时代但凡见到能够整顿成模型的信息量，立即加以建模验证。而后科学时代将对超大信息量要具有筛选鉴别能力，要能够确定更大信息量所带来的实际文化效应的远期预判，这是科学根本做不到的。</p>
+<p>我们人类自有文明史以来，历来都是眼前处理问题，能够当前处理问题有效，就视为建树，可它的远期效果是什么我们根本无从判定，因为我们信息量不足。未来的信息量将会使我们对任何一个信息整理的知识模型的远期效果做出高信息量预判，从而达成对其危害效应的摒除。</p>
+<p>因此未来的世界一定是信息增量过程的继续，而不是原有演化路径的反动。因此后科学时代一定得纠正今天科学时代带来的那个灾难性效应，而且它的前导部分仍然将以哲学前瞻的方式推动。因为我前面讲过，哲学是科学前瞻，它是在信息量不足的情况下提前探讨问题。</p>
+<p>那么哲学的这种前瞻性功能将在后科学时代继续表达，只不过它表达的后果不是科学前瞻，而是后科学前瞻，这就是未来哲学对未来后科学时代文化继续发挥功能的重大思路导向作用。这也是在我们今天科学时代的人有必要继续保持哲学前瞻性探究精神的意义所在。</p>
+<p>好了，今天关于哲学科学我们就先聊到这里，让我们一起认知越狱，自我迭代，格致教育工作坊每天都在这里等你。</p>
+<p>讲座时间：2019 年02 月17 日</p>
+
+
+<p style='float:right;'>本页共31段，6474个字符，18841 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

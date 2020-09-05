@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>宇宙中发生的四个大事件——文明</h3>
+
+<p>大家好！这里是格致教育工作坊，欢迎大家的到来，穿越时空，来享受一碟知识的小菜，让我们一起天天学习，好好向上！我们继续来聊聊发生宇宙中的四件大事情。今天我们来聊最后一件大事情——文明。文明为流，是我们的第四元认知。</p>
+<p>我们都知道宇宙的第一件大事是宇宙的诞生，第二件大事是人类生命的诞生，第三件大事是人类理性的诞生。掌握了理性思维能力，人类就开始掌握宇宙和自然的规律，同时人类也开始编写自己的规则。在编写自己的规则之后，人们超越了其他一切生物，创造出了一种只属于我们人类自己的生存方式。这种生存方式完全不同于其他一种生物的生存方式。其他生物的生存方式是尊重上帝的规则或者说尊重大自然的规则，也就是达尔文所说的：物竞天择，优胜劣汰，适者生存。达尔文意思也就是说：你如果要活下去，你就要适应自然，要跟随自然的变化而变化。其他的生物都很听话，都是这样做的。它们完全臣服自然界。它们不断改变自己来适应变化的自然界。不能适应，它们就会被淘汰。比如，冬天来了，对于大多数动物来说，面临的主要问题就是如何御寒。怎么办？有的动物长毛，全身长出厚厚的长毛。比如狗熊、狗、狐狸……如果天再冷，有的动物就降低自己的新陈代谢，比如黑熊躲到树洞里去睡觉冬眠。有的动物则选择离开，飞到温暖的地方去。总之，它们都是改变自己来适应自然界。</p>
+<p>但是，你有没有发现人类不这样，人类是所有动物中，唯一采取这样一种生活方式的动物：他们不再接受上帝的安排，不再接受自然的规则，不再改变自己的基因，反而人类意图想方设法去改变上帝，改造自然界，让上帝听命于自己，要让自然界来适应自己。</p>
+<p>人类的这种和动物完全不同的生存方式，有一个非常美丽而动听的名词叫文明。什么是文明？就是人类所创造出来的生存方式的总和。人类为什么能采取这种独特的生存方式？原因很简单，就是因为人有了理性，有思维，有高度发达的大脑，并通过理性思维形成了我们在昨天所讲的两种独特的能力：第一，发现规律；第二，编写故事。</p>
+<p>我们先谈谈人类发现规律的能力。人类发现规律的过程是一个渐进的过程，是一个不断深化的过程，是一个漫长、跳跃、突变并且漫无止境的过程；同样人类编写故事的过程和发现规律相应的，同样是漫长跳跃、突变而漫无止境的过程，所以人类文明的演进就像孔子所说的那样逝者如斯乎，就如同滔滔的大江大河一样奔流不息。</p>
+<p>类不断地发现宇宙的真相、自然的真相和历史的真相，人们不断找到科学的规则和科学的规律，以获得顺应自然进而掌控自然，人们顺应人性又获得掌控人性的力量。同时人类又不断编写自身的故事，创造自身的规则，形成人类所谓的普世价值观。让人类和其他动物的野性保持严格的界限和区别，让人类群体得到凝聚，最终也就是让人类掌握的自然规律和技术技能得到更充分的发挥。这一切就是人类的文明产生和存在的理由。</p>
+<p>大家想到过吗？人类追寻真相和人类创造故事这两件事情有时是统一的，是相辅相成的。但有时又是对立的，是自相矛盾的。历史学家汤因比曾举例说：为了保持人的尊严，把人和其它野兽严格区别开，长期以来，人类都通过编造自己的故事和规则，把人类的行为掩盖起来。但是，另一方面，人类又越来越强烈地用追求真相、追求科学的精神来教育自己的后代，告诉他们，发现真理、正视真理和尊重真理是人类最重要的品格。老一代必须认识到，他们过去制定并遵循的性禁忌和性规范体系，并不是神圣不可侵犯的，必须随着时代的进步而变化。而新一代也需要认识到，为了保持每个人的尊严，性行为必须遵循一定的准则和规范。在性问题上鼓吹完全的毫无约束的自由和解放，最终也会损害人类的根本利益。</p>
+<p>总而言之，自从人类文明出现以后，文明不但成了人类社会的标志，而且成了人类社会演进、发展和变革的力量。从此人类自身的进化，主要不再是依靠基因的改变，而是依靠文明规则的改变和社会制度的发展而改变。文明取代基因成为人类进化的一种主要方式。随着生产力的进步，旧的、过时的文明和秩序必将阻碍人类理性和技术的发展，于是到了那个时候，突破旧文明、创造新文明的时机就出现了。所以人类社会一直是在固守文明和突破文明的矛盾之中寻找平衡。</p>
+<p>一切生物的发展是非常多元的一样，人类的发展也是非常多元的。生物的多元化是通过基因变异实现的，而人类的多元化则是通过文明的变异和演进而实现的。20 世纪初的历史学家汤因比是专门研究人类文明的最重要的学者，他曾概括出了人类社会先后存在过31 种文明，并对之进行了非常深刻的分析，提出了文明发展的一系列特征和规律。而20 世纪末的政治学家亨廷顿写了一本书《文明的冲突》则提出：文明的冲突超越一切政治、经济、文化和宗教意识形态，成为人类社会一切冲突的根源。文明的冲突是社会冲突的根源，他的一些预言现在看来不无道理，而且很多预言都实现了。所以对世界上不同文明的研究是当前人类面临的重大课题。而在人类各种文明相互理解、相互包容的基础之上建立起人类命运共同体，是今天人类避免自我毁灭、甚至地球生物圈避免自我毁灭的最紧迫的必由之路。</p>
+<p>从文明的最高层次角度看，也就是说，从人类自己创造的秩序、规则和制度的最高层次角度看，人类的全部历史不是像马克思那样所分为原始社会、奴隶社会、封建社会、资本主义社会、共产主义社会，其实只分为三个阶段：第一阶段原始社会，那时候生产力比较低下；第二出现了农耕技术，称之为农耕社会；第三个阶段就是当下的工商社会，以经济基础统整全世界这样一个规则。实际上我们把所有的文明都可以分为两个：一个叫农业文明，原始社会我们可以称为农业文明；第二个工业文明。当然，人类即将进入未来社会，同时也将创造未来文明。</p>
+<p>史本来是人类争议最大、最难形成共识的领域。但是，对于人类包括未来在内的全部历史的这四个阶段、三个文明的划分，无论东方、西方，中国还是外国，几乎所有主流历史学者竟然都对之高度认同。这也是一个挺有意思的现象。</p>
+<p>当然，世界的发展是如此不平衡。一直到今天，原始的游猎采集社会形态、古老的农耕养殖社会形态，以及现代的工商产业社会形态几乎在这个地球上几乎并存。全球大多数学者从政治正确的角度出发，都强调这些社会形态没有高低贵贱、文野优劣、上下好坏之分。但是从实践的角度观察，文明发展是有方向的，是不可逆的。也就是说，无论在世界上哪个区域、哪个部落、哪个民族，文明总是沿着从原始游猎采集、向农耕畜牧养殖、向现代工商产业，最终向未来文明的方向推进，而不是相反。</p>
+<p>会发展到今天，至少绝大多数人来说，生产效率的提高，个人财富的增长，个人自由的扩大，特别是人们遭受暴力侵犯的减少和消除，人们忍受繁重劳动、艰苦工作和恶劣环境折磨的减少和消除，包括个人不得不从事的必要劳动时间的减少等等，这些都是文明发展的重要指标。如果人类的幸福感和快乐感不好度量，至少人类对痛苦和折磨的感觉是共通的。许多研究表明，人类从原始社会到农耕社会，再到工商社会，世界确实是这样变化的。人类享有的自由和财富等该增加的东西，一直都在增加。人类遭受的暴力和折磨等该减少的东西，一直都在减少。所以，人类的历史在进步，人类的文明有方向。</p>
+<p>总结：由宇宙中发生的第四个大事件——人类文明的演进，我们得到了第四个元认知，那就是，文明是人类创造的完全不同于动物的生存方式和发展方式。人类对外部规律的不断探索以及对自身故事的不断创新，推动了文明的演进发展。恪守文明和突破文明是人类进化的主要方式，文明走势具有不可逆的方向性。</p>
+<p>好了，关于宇宙中发生的四件大事件，我们就聊到这里，让我们一起自我迭代，好好学习，格致教育工作坊每天都在这里等你。</p>
+
+
+<p style='float:right;'>本页共16段，3187个字符，9317 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

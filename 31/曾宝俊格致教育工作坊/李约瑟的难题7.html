@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>李约瑟的难题7</h3>
+
+<p>昨天我们谈到东西方哲学在认知风格上存在差异，今天我们来谈谈东西方科学思维在认知风格上存在的差异。</p>
+<p>2005 年7 月30 日，钱学森曾向温家宝总理进言：“现在中国没有完全发展起来，一个重要原因是没有一所大学能够按照培养科技发明创造人才的模式去办学，没有自己独特的创新的东西，老是‘冒’不出杰出人才。这是很大的问题。”那么什么样的办学模式能够培养出杰出人才来？上个世纪30 年代钱学森在美国加州理工学院所接受的教育，就是这样一种模式。“在这里，你必须想别人没有想到的东西，说别人没有说过的话。”钱学森回国以后不止一次这样说。而中国的教育是这样的一种模式吗？这个实际上涉及到两种思维方式的不一样。</p>
+<p>东西方不同的哲学和科学传统，直接带来的是特点各异的思维方式，而不同的思维方式与方法，也就决定了科学发展的不同路子。当然，影响科学技术发展水平的因素是多方面的，如社会制度、文化传统、政治制度、教育体系、经济基础等，但必须看到西方近代科学革命是在中世纪长达千年的宗教神学统治下爆发的，而中国近代科学的衰落是在古代科学技术发展到较高水平上开始走下坡路的。</p>
+<p>在探讨导致东西方近代科学两种不同走向的原因时，必须关注东西方不同的思维方式和特点。一个民族的思维方式不仅会影响科学技术的发展，而且可关乎社会、经济、政治、文化和教育等各方面。</p>
+<p>东西方思维方式的不同首先表现为<strong>西方怀疑批判和东方诠释经典——科学精神的本质是怀疑，科学进步的动力是批判，科学创新是怀疑和批判过程中的副产品，这是基于对科学真理的认识和理解。所谓“科学真理都是相对的”是特定时代的产物，是特定认识的反映，永远也不会停留在一个水平上。</strong>古希腊自然哲学思维的思维方式是对神话自然观的批判；近代英国哲学家弗朗西斯·培根专门撰写《新工具》，主要针对古希腊亚里士多德的著作《工具论》一书进行批判。培根认为，科学面前没有权威，只有真理，检验真理的唯一标准是实践和实验。因此，亚里士多德的所有理论包括方法必须接受怀疑和批判。量子力学的产生是在批判牛顿力学的基础上发展起来的，<strong>因为牛顿力学只能解决宏观低速物质运动的规律，而量子力学是分析微观高速物质运动规律的有效工具。</strong>现代系统论、信息论、控制论以及耗散结构理论、协同学、超循环理论、突变论，特别是混沌理论等系统科学理论与方法的综合发展，已形成了现代系统思维的崭新方式，这也是在批判传统的以决定论为核心的线性和还原论的思维方式基础上发展而来的。由此可见，科学总是在怀疑中前进、在批判中发展。科学批判精神的核心不是去占有真理，而是不断去追求真理。</p>
+<p>中国传统的思维方式与西方截然不同。对真理的认识、传统的理解、权威的态度，还有对历史的评价，西方人多用怀疑的眼光和批判的态度，常摇头说“不”；而东方人则用赞许的目光和默认的态度（有时可能是违心的），常点头说“是”。国人至今仍乐意讲“在继承中发展”，而“在批判中进步”则难以启齿。这种思维方式与中国学者长期形成的“笺注经书”学术传统密切相关。“笺注经书”对传承先哲的思想起了积极的作用，但一旦形成这样一种思维定式，又对科学的进步、学术的繁荣是非常不利的。从儒家学术的创始人孔子开始就倡导“述而不作，信而好古”。历代学人案牍劳形、皓首穷经地注解前任、诠释经典，拘泥于旧义陈言，揣摩先哲们的“微言大义”和经典中的精蕴奥秘，不思创新，甚至“以圣人之是非为是非”，要求在诠释经典时“注不破经”、“疏不破经”，致使经学取代了学术上的百家争鸣，笺注主义取代了理论上的创新，制约了学术思想的自由发展，遏制了思维的个性化，造成了民族进取机能的衰竭。</p>
+<p>中国传统社会的统治者历来把新思想、新理论、新学术视为异端邪说，把技术发明或技术制作斥为“奇技淫巧”、“雕虫小技”。儒家的经典著作《尚书》上，在批判商朝的皇帝纣时说他“作奇技淫巧，以悦妇人”。孔颖达注解说：“奇技谓奇异技能，淫巧谓过度工巧，二者大同。但技据人身、巧指器物为异耳。”这里“以悦妇人”泛指宫廷游乐。中国传统上视科学技术为“奇技淫巧”就是从这里来的。实际上，在集权统治下，是有一批人想靠进献发明以图皇帝嘉许，而达到做官的目的。古代有许多发明，在没有市场经济的需求下，只能作为宫廷游乐之用。例如与力学有关的发明，如：被中香炉、孔明灯、轮船、爆竹、火箭、焰火、风筝、竹蜻蜓、编钟等都是这样的。上述儒家著作的观点，认为靠这种发明以求晋升的路子是一条不足取的道路，不是仕途的正道。所以，中国历史上的许多新理论、新学说，只能通过表面上的笺注经书而实际上融入新内涵的形式阐发出来，《水经注》就是一个典型。所以中国古代的学者只有淡泊名利，追求国计民生之学，从而自绝于社会“潮流”和学人“价值”，才能有所建树，比如宋应星的《天工开物》就是一个例子。</p>
+<p><strong>东西方思维工具的不同另一方面表现在西方崇尚锻造工具而东方崇尚悟道。</strong>科学是建立在经验和逻辑基础上的理性思维。经验是感知客体时所产生的关于个别事物的知识，逻辑上用于发现个别事物之间内在联系的思维工具。作为思维内容的经验和作为思维形式的逻辑相结合，是科学产生和发展的必要条件。古希腊是古代民主思想实践的摇篮。思想的自由打开了欧洲人自由思想的大门，解放了欧洲人的思想，哲学便放出照耀人类文明的智慧之光，欧洲人的思想便激发、释放出无穷的智慧。“通过系统的实验发现有可能找出因果关系”是逻辑思想的升华、运用、发展，至此形式逻辑体系得到层质的提高，显示出了逻辑思想内容方式的光辉和光芒。逻辑思想的精神是什么？杨振宁在香港中文大学“新亚书院”所做题为《中国文化与科学》演讲中说：“徐光启对于逻辑的重要性有很深入的了解，……《几何原本》里所讲的推理方法，是一步一步的，‘于前后更置之不可得’，就是说，这一步步的，就是从1 到2 、从2 到3 、从3 到4 ，你不能颠倒过来，这是逻辑里头的一个基本的精神，……可是这个推演的精神、逻辑的精神，在中国传统里头没有。”</p>
+<p>“徐光启先生还说‘似至晦，实至明；似至繁，实至简；似至难，实至易’，……看上去是非常复杂的，是非常隐晦的，是非常难的，可是你如果懂了这个逻辑的精神以后，就完全不是这回事，其实是很简单、明了、容易的。”</p>
+<p>《几何原本》的思想方式奠定了西方近代科学的基础，单是其哲学思想所包含的智慧已经超越了中国古代的科学成就，即使当代中国的发展都不能足具这种思想。杨振宁在演讲中讲到的“唯象理论”就是这样的思想精神的体现。</p>
+<p>西方崇尚思维工具的锻造，科学的思维方式通过思维工具的锻造而得到传承。如果说泰勒斯是力图用理性的方式通过物质元素来揭示自然的本原，古希腊的哲学家和数学家毕达哥拉斯则力图用逻辑的方法通过抽象的“数”及其关系来描述世界的本质。柏拉图学院门口更有一句警言：“不懂数学者免进！”正是对“数”的崇拜、对数学思维的工具的锻造。欧几里得几何学是人类历史上第一个在思维的条理性、语言的严格性、体系的严密性和推理的逻辑性上都无可挑剔的数学公理演绎系统。</p>
+<p>在近代，牛顿第一次用数学公式F=ma揭示了力学的本质，为建立牛顿力学大厦奠定了基础，为科学如何运用数学方法提供了典范；在现代，爱因斯坦同样用简洁的数学公式E=mc2 ，揭示了物质世界的能量和质量之间的关系；在当代，计算机技术的高速发展为数学方法提供了强大的技术支撑，使数学工具和方法向不同的科学领域渗透。</p>
+<p>除了数学思维工具的锻造，西方学者同样崇尚逻辑思维工具的运用与发展。自亚里士多德第一次提出以“三段论”为核心的演绎推理，开创了逻辑的形式化、公理化、抽象化和体系化以后，近现代发展起来的不论是数理逻辑还是辩证逻辑，都是以形式逻辑作为基础的。作为逻辑基础的“三段论”，看上去是一个简单朴素的推理，但它孕育了科学理性的精神，锻造了科学思维的工具，对科学进步的意义是深远的。</p>
+<p>爱因斯坦说，西方近代科学的发展是以两个伟大成就为基础的：一是以欧几里得几何学为代表的希腊哲学家发明的形式逻辑体系，二是文艺复兴时期证实通过系统的实验有可能找出因果关系的重要原则。（选自《爱因斯坦文集》第1 卷）换言之，就思维方法而言，近代科学具备两个不可或缺的特征：严密的逻辑原则和严格的实验原则。</p>
+<p>与西方的科学不同，中国传统的“格物致知”中的“物”并非指物质或万物的“物”，而是作为“事”理解。王明阳说：“物者，事也。凡意之所发，必有其事。意所在之事谓之物。”所谓“格物穷理”中的“理”也不是物理的“理”，而更多地是“天理”，是所谓“绝对的真理和绝对的智慧”。格致的对象和范式所产生的思维方式与西方是截然不同的。在如何“格致”及方法上，中国古代倡导的是“用心悟道”、“心包万理”，而不是锻造思维的工具和手段。“名为格致，实为格心”、“心外无物”，这种主观内求的思维方式，把认知活动导入了道德修养。这种内省的智慧，时人很难发现书本以外的自然知识，“格物是为人君止于仁、为人臣止于敬。”另外，“穷理”亦只是对封建纲常穷根究底。因此，“格物穷理”转变为一种修身的方法，而非探究万物的奥秘和物质的本质。中国传统的“格致”思维方式，决定了其在科学上难以有所作为、有所成就。</p>
+<p>从理论上讲，东西方科学传统的思维方式的比较不是目的，而是手段。目的是通过比较研究，使人们能够透过历史反思未来、直面未来。中国科学传统在近现代的落伍，并不意味着中国将永远步西方的后尘；西方的科学传统在近代科学诞生中大放异彩，也不表明在将来仍能独领风骚。我们既不能厚此薄彼，也不能妄自尊大，而应该理性地审视自我，发现中国科学传统中的缺陷、中国传统思维方式上的不足。惟有如此，才能在未来对人类科学文明的发展中做出应有的贡献。</p>
+<p>我想，东西方思维的差异不仅仅可以解释“李约瑟难题”，也可以给“钱学森之问”以启迪吧！不管是“李约瑟难题”的科学技术问题，还是“钱学森之问”的教育问题，科学技术、教育都是社会中的一个行业，科学技术本身也不只是科学问题，而教育也不是独立于社会之外，因此科学和教育的形成发展都不是可以独立于社会之外，自身决定其发展内容、方式、去向的，二者的发展方向都要受政治社会发展思想方式的影响。正是这些社会因素在引导、束缚教育思想发展的方向、内容、方式，其教育作用在于对社会发展思想的引导和规范，并最终凝成了民族的特有的思想方式，指引社会发展。因此这两个问题的根源是相同的，这两个问题的解也是可以是相同的，而且最好的解答应该是1953 年爱因斯坦在美国加利福尼亚州给圣马托和J·E·斯威策的复信：</p>
+<p>“西方科学的发展是以两大伟大的成就为基础，那就是：希腊哲学家发明形式逻辑体系(在欧几里得几何学中)，以及通过系统的实验发现有可能找出因果关系(在文艺复兴时期)。在我看来，中国的贤哲没有走上这两步是用不着惊奇的，令人惊奇的倒是这些发现（在中国）全都做出来了。”</p>
+<p>这封信寥寥数语，却实在是切中问题的根源。爱因斯坦的信给中国人传递了一个什么思想精神呢？用黑格尔的两句话正好可以概括：“人是靠思想站立起来的”、“方法不是外在的形式，而是内容的灵魂”。</p>
+<p>好了，我们一连谈了七天的《李约瑟难题》，关于李约瑟难题之解，无论正解还是反解都已经做了系统的解说，明天我们再谈新的话题。</p>
+<p>讲座时间：2017 年11 月20 日</p>
+
+
+<p style='float:right;'>本页共22段，4769个字符，13766 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
