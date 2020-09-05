@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>开国将帅授衔</h3>
+
+<p>我和高晓松都是1969 年生人，我们都生活在一个崇拜英雄的年代。男孩子凑到一起谈论的往往都是古往今来谁武艺更高强？谁更打？并且经常是“关公战秦琼”，脑海里为项羽、吕布、李元霸到底谁是古往今来第一条好汉纠结不已。我儿时的生活打架是“主业”，学习是“副业”，我那时还把打架和打仗混为一谈。而且最搞笑的是当时对着宣传栏里的十大元帅，十大将的标准像反复端详，想的竟是他们中谁武艺最高强？谁枪法最准？跟古时候的英雄好汉单挑战果会如何？那时候，改革开放刚开始，十大元帅的标准像里没有林彪，而用周总理的标准像来代替。后来，才知道林彪长什么样，当时感觉尖嘴猴腮的一看就是奸臣……上中学后，年龄稍大一点人就变得理性一些了，就开始琢磨在开国将帅中到底谁最能打？都有什么战功？而这种爱好一直延续到今天。从叶剑英到朱德，从许光达到粟裕，从滕代远到王震，十大元帅，十大将，中国人民解放军的各兵团司令都倒背如流。57 名上将，177 名中将都如数家珍。我还为到底谁是什么军衔同别人打赌，而且每赌必赢，赢得过数顿酒肉……</p>
+<p></p>
+<p>我还是在《晓松奇谈》里听高晓松自己说过在《晓说》里做过“评衔”的节目，但我在网上搜索了无数遍，但怎么都没找到，我当时就感觉是不是这个话题有些敏感，再加上高晓松比较敢“喷”，是不是已经被删掉了？就在我已经陷入绝望的时候，《晓说》“开国将帅授衔秘闻”的网页突然“蹦”了出来，让我欣喜若狂，我二话没说，反反复复看了三遍，对晓松兄大部分观点都击节赞叹，并认为这是谈军衔最深入、最生动的节目。虽然看我的标题气势汹汹，不依不饶的，但其实高晓松的大部分观点我还是举双手赞同的。我仅就个别我同晓松不同的观点提出来商榷。</p>
+<p></p>
+<p></p>
+<p>其实一谈起55 年授衔，首先想到对“无冕元帅”粟裕的如何不公平？但晓松说，评出的十位元帅还是比较公平的，而粟裕能当元帅的机会其实不在叶帅而在陈老总身上，这些都分析得特别鞭辟入里。但我边听边感觉晓松有两点说错了。即林彪被评为元帅时，已经是政治局常委了。而罗荣桓资历不够，只是四野的副政委，授予元帅军衔主要原因是其参加过秋收起义。我特地上网查了一下，林彪是1955 年4 月，在七届五中全会上才被增选为政治局委员的，而当年九月，他被授予元帅军衔。而到了1958 年5 月，林彪才被增选为政治局常委和中央副主席的。而罗荣桓是四野的政委这我早就知道，而且是第一政委。四野是解放军最能战斗的部队，从黑龙江一直打到海南岛，罗荣桓是四野第一政委，抗战时期，又是八路军第一主力师115 师的政委。而且我军又高度重视政治工作，军政主官一向都平级对待，我军历来强调党指挥枪，对政治工作高度重视，这几乎和其他所有国家军队都不一样。即使像前苏联，赫鲁晓夫担任方面军政委时才是中将军衔，而方面军司令则是苏联元帅军衔。所以罗荣桓被授予元帅军衔一点都不牵强，而且还排在了十大元帅的第七位。邓小平是二野政委，授衔的话，也可授予元帅军衔，因为授衔时已转入地方工作，所以未授衔。当时，授衔时，有一条规定，就是转入地方工作的同志都不授予军衔。当然也有例外。比如，陈毅当时已转入地方工作，担任国务院副总理兼外交部长，如果陈毅不授军衔的话，粟裕自然可以代表新四军和三野被授予元帅军衔。所以，晓松说粟裕当元帅的机会在陈毅身上是完全正确的。</p>
+<p></p>
+<p></p>
+<p></p>
+<p>晓松分析，粟裕放在十大将里显得比较突兀，比其他九位大将高一大块。按常理来讲，如有可能的话，他最应该替代十大元帅中排名最后的叶剑英，但事实恰恰不是这样：叶剑英担任过红军的总参谋长，八路军的参谋长，解放军的总参谋长，这种资历不授予元帅军衔是没有任何道理的。晓松分析得真是合情如理，但他还忘说了一点，其实叶帅的资历在十大元帅中都算比较深的。创建黄埔军校的时候他已经担任教授部副主任了，而徐帅是黄埔一期，林彪是黄埔四期。在北伐时期，叶帅已经担任军参谋长了。其实，我个人也一直认为，叶剑英授予元帅当之无愧。唯一感觉有些遗憾的就是从红军时期到解放战争时期，叶帅都没有单独指挥过大军作战，其前线指挥能力到底如何无从而知……</p>
+<p></p>
+<p></p>
+<p></p>
+<p>依常理论，粟裕和叶剑英一个将头一个帅尾，关系应该最为紧张，但事实恰好相反。十大元帅中最赏识粟裕的有两个人，一个是刘伯承，而另一个就是叶剑英，刘伯承在解放战争期间，就称粟裕为我军最优秀将领，对其指挥艺术激赏不已。而叶帅对粟裕一直关爱有加。1958 年，粟裕被错误批判，辞去总参谋长一职，就是被“发配”到军事科学院当副院长，而该院院长就是叶剑英。叶帅对粟裕一直关爱有加。改革开放后，叶帅曾提名粟裕担任军委副主席，但被另一大人物否决……</p>
+<p></p>
+<p>晓松说，粟裕辞帅确无其事。因为，你要辞职最起码人家任命你或者准备任命你，但其实粟裕一直都没有在中央准备授予的名单之列。而十大元帅授予就是除邓小平之外当时十位中央军委副主席，粟裕当时不是军委副主席，自然无法获得元帅军衔。这样的分析，确实应该点赞。</p>
+<p></p>
+<p></p>
+<p></p>
+<p>晓松还说，当时有些将帅对排序都有不满意的，比如贺龙就不满意自己在元帅里只排第五，并且说贺老总并不是特别能“打”的一个元帅，这些都是事实。但他还说贺龙在解放战争中只是个兵团司令，这就不对了。其时，贺龙是西北军区司令员。西北军区是一级军区，同野战军平级，但主要负责守卫解放区和后勤保障任务。晓松在三期评衔节目中，说的最出彩的应该是红一、四方面军关系问题，来龙去脉交代的非常清楚，感兴趣的朋友可以找视频来研看一下。</p>
+<p></p>
+<p>当然，我写这篇文章一是表达我对晓松节目的激赏，二是要“鸡蛋里挑骨头”，那就让我们继续挑下去……</p>
+<p></p>
+<p>晓松说，刘志丹要是不牺牲，必是元帅，但我看未必。刘志丹牺牲时红十五军团副军团长，而军团长徐海东才授大将。而在上世纪80 年代末，编撰《中国大百科全书·军事卷》的过程中，中央军委认定了33 位军事家，就是以有无大将军衔或相当于大将资历为基线的，而这33 人中并无刘志丹。而到了1994 年8 月，在编撰《中国大百科全书·军事卷》的过程中，中央军委经过审议，又确定增补黄公略、方志敏、刘志丹3 人为军事家。也就是刘志丹在中央军委认定的36 位军事家中，最后入选，也排名最后。而如果刘志丹同志如果没有牺牲，55 年授衔的时候，他最有可能获得的军衔是大将。</p>
+<p></p>
+<p></p>
+<p></p>
+<p>晓松还说，除了粟裕之外，其余的九位大将放在上将里也进不了前三。这话说得有些武断，其实我们认真梳理一下九位大将的简历，就不难发现除了许光达之外，其余八位放在上将里比资历都是名列前茅的，却大都为各野战军和大解放区副职，而且曾担任过兵团司令员兼政委的陈赓和萧劲光刨去资历，单凭战功，放到上将里也是佼佼者。</p>
+<p></p>
+<p>而在大将中排名最后的许光达，晓松明确指出，萧克本来作为二方面军代表授大将的，但因为在毛泽东和张国焘的斗争中没有表态，故大将军衔授予了资历和战功都不是很够的许光达。而且其余九位大将都是四级干部，相当于国务院副总理。而只有许光达是五级干部。这些都没错，但还有一点，晓松没有说到。当时，中国准备从苏联进口坦克和装甲车，作为装甲兵司令员许光达负责和苏方谈判，而苏军的装甲兵司令员军衔是大将，为了和苏军对等，而许光达又在二方面军任职过一段时间，故授予其大将军衔一举两得。但许光达同志比较高风亮节，向中央上书坚辞大将，只是未获批准。而其享受五级干部待遇，并不是中央为了拉开其与其他九位大将的差距，而是他自己要求的结果。</p>
+<p></p>
+<p></p>
+<p></p>
+<p>除了许光达之外，要求降衔的还有罗荣桓要求降为大将，徐海东要求降为上将，徐立清要求降为中将。其中，只有徐立清要求获得了中央批准。而在徐海东和许光达的降衔要求中，都明确提到萧克和王震应该升为大将军衔。其实萧克的问题和粟裕一样，值得大书特书。晓松说，评衔的时候，主席找萧克谈过，你当然可以评大将，之所以给你放到上将里边就是为了很多人没话说。其实评衔时毛主席还是有深谋远虑的。你不想当元帅吗？粟裕才是大将。你不想当大将吗？萧克才是上将。你不相当上将吗？张震才是中将。你不想当中将吗？贺晋年才是少将。委屈了一个人，让其他想评更高军衔的人都无话可说了。要不然，评衔这事就永远都扯不完也扯不清楚了……</p>
+<p></p>
+<p></p>
+<p></p>
+<p>但只授予萧克上将军衔确实有些委屈。晓松只是交代了萧克曾任红二方面军副总指挥，八路军120 师副师长，凭这样的资历授予大将军衔没有任何问题。但关于萧克，我还想多说两句。萧克与林彪同是黄埔四期，参加过北伐及后来的南昌起义。南昌起义失败后，上了井冈山。萧克凭战功24 岁当上了红八军的军长，与林彪当军长时同龄。萧克是红军中文武双全的“白袍小将”，闻名遐迩。按理说，萧克应该算是毛泽东的井冈山嫡系了。但从萧克个人回忆录上看，他对毛一直是有保留支持，这在日后或多或少影响了他的前程。八路军三个师的师长和115 师，129 师副师长授衔的时候都是元帅，只有萧克被授了上将军衔，而依资历和战功即使评萧克为元帅也说得过去，而即便退而求之，评大将也应该是“坐二望一”。而且授衔的时候，表面上萧克的名字排在上将最前面，但其实并不是真正官方认可的上将第一。上将及以下将领是按所在大单位的顺序和任职顺序排列，即按照国防部、军委各总部、军种、兵种、军事院校、大军区、志愿军等各大军事单位的顺序排列的。但萧克真是“心底无私天地宽”，对个人荣辱得失真不是十分计较，正因为有这么好的心态，他居然活了了一百多岁，其间还创作出版了长篇小说《浴血罗霄》，文采斐然，人物鲜活，荣膺中国长篇小说最高奖茅盾文学奖，让人钦佩不已。</p>
+<p></p>
+<p>而其实授衔中最委屈的还真不是粟裕和萧克，而是贺晋年。贺晋年就是指挥林海雪原剿匪的四野名将，也是四野主力兵团的副司令员，解放后任东北军区副司令员，早在红军时期就是红27 军军长，依资历和军功，获封上将应该毫无问题。但就因为“高岗事件”的影响，才被授予了少将军衔，但事后证明其与“高岗事件”毫无联系，只不过曾经是高岗的下级而已。</p>
+<p></p>
+<p></p>
+<p></p>
+<p>晓松在节目中，多次提到许世友应该被授予大将军衔，对此我有不同意见。许世友是少林武僧出身，有一身好武艺，打起仗来也勇猛无比，曾十一次光着膀子，挥舞大刀领着敢死队打冲锋。但他指挥作战，往往是勇猛有余，机智不足，这在解放战争中后期指挥大兵团作战时，就短板凸显。而且他还经常违抗军令。孟良崮战役许世友怒摔粟裕电话，济南战役更是私自将“助攻”变“主攻”，结果被中央撤职，使其无法参加以后的淮海战役，渡江战役和解放大上海。而1955 年授衔时，只是因为其资历较老，才获得上将军衔的。晓松说，中共最能打的将领早期是徐帅，后来是林彪和粟裕，我也完全同意这一判断。我内心深处，我军的十大战将排行是：林彪（元帅）、粟裕（大将）、徐向前（元帅）、刘伯承（元帅）、彭德怀（元帅）、陈赓（大将）、邓华（上将）、韩先楚（上将）、聂风智（中将）、钟伟（少将）。</p>
+<p></p>
+<p></p>
+<p></p>
+<p>最后还需要补充一点就是抗美援朝对中基层官兵的提升和评衔起到了一定作用，但对高级将领的评衔似乎作用不大。如果不参加抗美援朝，彭德怀依旧会被授予元帅，陈赓依旧会被授大将，邓华、杨勇等人依旧会被授上将，而王近山、秦基伟等人依旧会被授中将。但让人有些看不懂的是，志愿军参谋长解方文武双全，韬略满腹，却只被授予了少将军衔……</p>
+
+
+<p style='float:right;'>本页共49段，4871个字符，13720 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

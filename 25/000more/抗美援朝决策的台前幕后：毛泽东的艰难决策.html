@@ -1,0 +1,354 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>抗美援朝决策的台前幕后：毛泽东的艰难决策</h4>
+
+<p>    朝鲜方面和斯大林的来信</p>
+<p>    朝鲜战争是1950年6月25日爆发的。战争一开始，北朝鲜方面打得很顺利，朝鲜人民军主力部队很快推进到朝鲜半岛南部，占领朝鲜南部重要城市汉城，眼看整个朝鲜半岛就要全部解放。但是，美国却插一手进来，并且决定入侵朝鲜。9月15日，美军的大部队在朝鲜的仁川登陆，这使朝鲜人民军最高统帅部意识到了所面临的危险局面。</p>
+<p>    美军在仁川成功登陆后，一开始，朝鲜人民军还打了几次硬仗，但渐渐地就支持不下去了。金日成得知前方不利消息后，于9月28日召集了朝鲜劳动党中央政治局紧急会议。会上对目前军事形势进行了讨论，并最终认定，由于大部分人民军主力未能撤回来，一旦美军越过三八线，在北方的人民军不可能进行有效的抵抗。因此，朝鲜面临十分严重的危险局面。朝鲜党中央政治局领导人决定，由金日成出面，给苏联和中国最高领导人各写一封信，信的基本内容，就是要求苏联和中国动用军事力量，直接支援朝鲜。</p>
+<p>    斯大林是在10月1日收到金日成的求援信的，当时，斯大林正在高加索黑海边阿德列尔休养所疗养。当天凌晨，苏共中央给斯大林发来加急件，秘书打开后，见是一封急信，立即交给斯大林看，斯大林几乎是一口气读完的这封信。这封信是由苏联驻朝鲜大使转来的，署着金日成和朴宪永的名字。斯大林读罢信后，陷入了深思。他意识到了事态的严重性：如果朝鲜人民军失败，北朝鲜就会落入以美国为首的西方阵营手中，远东的政治、军事格局将立即改变，苏联的远东地区会直接受到威胁。</p>
+<p>    斯大林意识到，苏联是决不能让西方占领整个朝鲜的。但是，苏联方面又不能和美国产生正面冲突。因为苏联与美国有协议，苏联国内也正在进行大规模的建设。如果与美国发生正面冲突，对苏联是十分不利的。怎么办？斯大林想到了中国。</p>
+<p>    想到此，一个大胆的蓝图在斯大林脑海中出现，这就是：由中国出兵，进入朝鲜，直接支援朝鲜抗击美国和南朝鲜军队，由苏联方面给装备落后的中国军队提供较先进的武器装备和弹药。打定主意后，斯大林坐下来，提笔给毛泽东和周恩来写了一封信，斯大林在这封信中，非常客气地用商量的口气，向毛泽东提出了由中国直接出兵朝鲜的要求。斯大林写罢，用加急件发至苏共中央，由苏共中央用电报加急发至苏联驻中国大使馆，再由大使馆翻译成中文，转给中共中央。</p>
+<p>    毛泽东从多方面考虑</p>
+<p>    斯大林的电报是经过苏联大使罗申送到毛泽东手中的，当时已经是1日的中午了。这个时候，金日成的特使朴一禹已带着金日成和朴宪永的求援信到了中南海。毛泽东几乎是同时收到苏联和朝鲜两国首脑的来文的。毛泽东反复地读了斯大林和金日成的来电和来信后，又把朝鲜特使朴一禹请到住处，听取了他对朝鲜战况的介绍。之后，毛泽东让秘书紧急把刘少奇、周恩来、朱德请到他的住处。</p>
+<p>    刘、周、朱来到后，毛泽东把苏联和朝鲜两国首脑的来文给他们看了，又向他们介绍了朝鲜战局。四个人讨论起来。周恩来、朱德和刘少奇都对朝鲜局势和中国出兵问题谈了自己的看法。总的来说，他们的意见是对出兵朝鲜有很大顾虑，认为出兵对中国不利，因此，会上没有就是否出兵问题达成一致意见，于是，毛泽东决定，第二天召开中央书记处扩大会议，邀请在京高级军事领导人参加，再行讨论。</p>
+<p>    在10月2日下午召开的会议上，毛泽东曾经主张出兵朝鲜，并且认为出兵朝鲜已是万分火急，他鉴于林彪有病，提议要彭德怀挂帅。当然，这还要征求更多人的意见，特别是彭德怀本人此时正在西安，没有参加会议。但是，会议上的多数人不同意立即派兵进入朝鲜。大家对国内和国际局势进行了认真分析，摆出了许多理由。毛泽东认为，这些意见都很有道理，他不能不慎重考虑这些意见。</p>
+<p>    考虑到斯大林还在等回音，毛泽东决定也用商量的口气和斯大林探讨一下这件大事。2日夜里，毛泽东约见了苏联大使罗申，口述了一封电报。电报说：“我们原先曾打算，当敌人向三八线以北进攻时，调动几个师的志愿军去北朝鲜帮助朝鲜同志。但是，经过慎重的考虑，我们现在认为，这一举动会造成极为严重的后果。</p>
+<p>    第一，靠几个师很难解决朝鲜问题（我军装备极差，同美军作战无胜利把握），敌人会迫使我们退却。第二，最大的可能是，这将引起美国和中国的公开对抗，结果苏联也可能被拖进战争中来，这样一来，问题就变得极其严重了。中共中央许多同志认为，对此必须谨慎行事。</p>
+<p>    当然，我们不派兵援助，这对于正处在如此艰难境地的朝鲜同志来说，是十分不利的，我们自己也于心不忍；但如果我们出动几个师，随后又被敌人驱赶回来，并由此引起美国与中国的公开冲突，那么我们的整个和平建设计划将会被全部打乱，国内的许多人将会对我们不满（战争给人民造成的创伤尚未医治，人民需要和平）。</p>
+<p>    因此，目前最好还是克制一下，暂时不出兵，同时准备力量，这样做在与敌作战的时机上会比较有利。由于暂时的失利，朝鲜应该换一种斗争方式，进行游击战。”</p>
+<p>    毛泽东在电报的最后还进一步讲：“我们将召开党中央会议，中央各部门负责同志都将出席。对此问题尚未作出最后决定。这是我们的初步电报，我们想同您商量一下。如您同意，我们准备立刻让周恩来和林彪同志飞到您休养地，同您讨论这件事，并报告中国和朝鲜形势。”</p>
+<p>    收到毛泽东的复电，斯大林陷入了沉思。苏联虽然不害怕和美国一战，但这个时候和美国打起来，显然对苏联十分不利。斯大林坚信，中国和苏联都不愿意看到整个朝鲜落入美国手中。他认为，再和中国方面商议，中国是会同意出兵朝鲜的。他决定，召开政治局会议，议一下这个问题。</p>
+<p>    10月5日，苏共中央政治局开会，专门讨论朝鲜问题。斯大林讲了自己的想法后，苏共中央政治局成员都同意他的意见。会上形成了一致的意见：无论如何，必须避免苏联直接与美国发生冲突，即使是放弃朝鲜，苏联也不要和美国发生冲突。但是，又不能放弃北朝鲜，只有一个办法：进一步劝说毛泽东改变主意，请中国出兵朝鲜，支持朝鲜人民军把美国军队打回去。</p>
+<p>    会议决定，由斯大林出面，再给毛泽东发一封电报，力劝毛泽东。电报稿在会上就起草好了，经过政治局主要成员审过后，当天就发给了毛泽东。这封电报的主要内容，就是力陈由中国出兵对维护中国国家利益是十分有利的理由。电报中说：</p>
+<p>    “我之所以向您提出派兵去朝鲜的问题，而且至少而不是至多派五六个师，是基于以下几点国际方面的考虑：1．如朝鲜事件所表现出来的那样，美国目前还没有为发动一场大规模战争作好准备；2．军国主义势力尚未在日本死灰复燃，它没有能力向美国人提供军事援助；3．有鉴于此，美国将不得不在朝鲜问题上向有盟友苏联为后盾的中国作出让步，将不得不接受就朝鲜问题进行调停的条件，这些条件会对朝鲜有利而不至于使敌人把朝鲜变成它的军事基地；4．由于相同的原因，美国将被迫放弃台湾，被迫放弃与日本反动派的单方面和约，放弃复活日本军国主义的活动，放弃其欲变日本为它在远东的军事基地的企图。”</p>
+<p>    斯大林在电报中进一步指出，如果中国消极地等待，那中国就不仅得不到这些让步，甚至连台湾也得不到，美国人会把台湾作为它的一个基地。斯大林说：“如果战争是不可避免的话，那就让它现在来吧，而不是拖到几年之后，因为到那时，作为美国的盟友的日本军国主义将会复活，美国和日本将会在亚洲大陆上得到李承晚的朝鲜这样一个现成的基地。”</p>
+<p>    接到斯大林的再次来信，毛泽东考虑得很多。他从更广阔的角度，考虑了中国出兵朝鲜的问题。从目前掌握的材料来看，毛泽东当时考虑的是相当多也相当深远的，他既考虑到了中朝所面对的现实，更考虑到了中朝两国在历史上的关系。毛泽东考虑到了中朝之间的地缘政治关系。</p>
+<p>    从地理上看，朝鲜半岛与中国地理相连，在政治上一直存在密切关系。1894年，日本侵略朝鲜，中日之间爆发了一场大战，这就是历史上著名的甲午战争。结果，中国战败。1895年3月，中国和日本签订了屈辱的《马关条约》。之后，中国同朝鲜的关系完全停止。21年后，日本又制造事端，发动了侵略中国的“九·一八”事变，占领了中国东北。1937年，日本全面侵略中国。历史事实证明：日本的目标，就是利用朝鲜作跳板，最终发动侵华战争。</p>
+<p>    中国共产党与朝鲜劳动党结下的传统友谊，也是毛泽东考虑出兵朝鲜的重要因素。不仅如此，两党之间还有许多特殊关系。朝鲜共产党建立后，主要是在中国境内开展活动，他们的活动，不光是得到中国共产党的支持，而且许多重要活动，是在中国共产党统一布置下进行的。</p>
+<p>    朝鲜共产党中许多人，特别是领导人，大多数加入过中国共产党。30年代末和40年代初，一批朝鲜共产党人到了延安，参加中国共产党领导的抗日战争。后来担任朝鲜内务相的朴一禹就是其中的一个。在中国抗日战争后期以及解放战争期间，大约有10万名朝鲜人参加了中国共产党领导的军队。</p>
+<p>    在中国解放战争初期，东北是共产党与国民党军事较量的主要战场。国民党军队占领了大城市并控制了交通线，给当地的共产党武装以极大的压力。面对这种形势，1946年6月中共中央东北局决定把北朝鲜作为东北部队的战略后方与供应基地。当年6月，东北局委员朱理治和萧劲光赴平壤，在北朝鲜建立了东北局特别办事处。其主要任务是：把伤病员和重要的战略物资转移到北朝鲜；通过北朝鲜维持中共北满与南满军队之间的交通与联络；从北朝鲜寻求援助及采购战争物资。</p>
+<p>    1946年7月，南满的中共军队把大约2万吨的战略物资转移到北朝鲜。这一年冬天，在东北的国民党军队实行“南攻北守、先南后北”的作战方针，以绝对优势兵力向南满解放区连续进攻，先后占领了安东、通化等城市。南满共产党军队为了集中兵力歼灭敌人有生力量，又主动放弃了一些地方，所以，解放区逐步缩小，到这年年底只剩下临江、抚松、长白等县，其他都变成了游击区。</p>
+<p>    国民党军于1947年春继续向临江地区发动进攻。中共东北野战军南北夹击，终于打败了国民党的军队。东北战史上说的“三下江南，四保临江”就是指这时的情况。在这期间，在中共“让开大路、占领两厢”的方针下，朝鲜又成了东北战场同关内交通联络的重要通道。</p>
+<p>    不仅如此，朝鲜还为东北中共军队提供物质与人员援助。许多朝鲜的志愿人员参加了中共领导的解放战争。在人员方面，中国人民解放军第四野战军中的三个精锐师（一五六师、一六四师和一六六师）主要由朝鲜战士组成。在物资方面，1946年至1948年，朝鲜向中共提供2000车皮日本人留下的战争物资。</p>
+<p>    中华人民共和国成立后，朝鲜民主主义人民共和国又紧随苏联等国家之后，同新中国建立了正式外交关系。建交之后，两国一直保持着良好的关系。</p>
+<p>    可以说，中朝两国是山水相连、唇齿相依的。另外，毛泽东也考虑到了当时的国际政治形势。自从第二次世界大战结束以后，世界逐渐划分为以美国为首的资本主义阵营和以苏联为首的社会主义阵营。新中国成立前后，毛泽东多次强调，在当前的国际局势下，中国只能坚定地站在苏联等社会主义和民主主义国家一边，不能站在美国一边，也不能走中间道路。朝鲜战争爆发后，苏联限于种种历史和现实的原因，不便直接与美国刀兵相见。因此，便积极支持中国出兵朝鲜。</p>
+<p>    毛泽东在做出出兵朝鲜的决策之前，反复考虑了以上这些因素，他十分重视中朝两国历史上形成的山水相连、唇齿相依的地理、政治关系，更重视中朝两党历史上形成的并肩作战的传统友谊，因此，在中共中央政治局扩大会议上，毛泽东的思想倾向仍然是要出兵援朝。他当然也知道中国出兵援朝面临的困难，当会上大家把这些困难摆出来之后，毛泽东说了这样一段话：“你们说的都有理由，但不管怎么说，别人要亡国了，我们站在旁边看，不论怎么说，心里也难过。”</p>
+<p>    彭德怀后来回忆说：“我把主席的话，反复念了几十遍，体会到这是一个国际主义和爱国主义相结合的指示。‘你们说的都有理由’，但如果不把它同朝鲜处于危急时刻联系起来考虑，那就是民族主义而不是国际主义者。我想到这里，认为出兵援朝是正确的，是必要的，是英明的决策，而且是迫不及待的。我想通了，拥护主席这一英明决策。” 可见，毛泽东的这番话，深深地影响了彭德怀，实际上，这番话不仅影响了彭德怀，也影响了政治局许多人，可以说，毛泽东的这番话对中共中央做出抗美援朝的战略决策起到了关键性作用。</p>
+<p> 毛泽东最后下了决心</p>
+<p>    毛泽东是务实的，他考虑到了中国军队在实力上不如美国军队，因此，他当时很希望苏联方面能够给中国军队以武器等方面的支持，特别是希望得到苏联空军的支援，以争取制空权，保证中国入朝作战的地面部队顺利推进。但是，苏联在军事装备和空军支持这两个方面，态度都不明朗，迟迟不做出承诺。此时的毛泽东，从中国长远的国家安全考虑，从中国与朝鲜的唇亡齿寒的特殊关系考虑，从中国的国际主义义务考虑，已经下了这样的决心：即使苏联方面不给中国武器装备和空军支援，中国也要派兵入朝作战。</p>
+<p>    毛泽东的这个决心，从10月4日政治局扩大会议上可以得到证明。在这次会议上，毛泽东明确表示：我们要派兵入朝作战，我们在争取苏联方面支援我们，但即使没有苏联的支援，我们也要派兵入朝。我们不能看着朝鲜亡国不管。但是，毛泽东对苏联的支援，还是采取积极争取的态度。</p>
+<p>    他当然认识到：有了苏联的支援，中国军队入朝作战后，战斗力会大大增强，困难会小一些，而且，中国军队现代化的进程将会加快。据彭德怀回忆：10月4日那天，他从西安飞赴北京参加了政治局扩大会议。会后，毛泽东和他有过一次长谈。谈话中，彭德怀说：“苏联完全撒手，我们装备差得很远，只好让朝鲜亡国，是很痛心。”毛泽东向彭德怀提出这样的设想：如果苏联援助得多一些、快一些，我们的装备改善得好一些，这场仗是不是能打？彭德怀反复考虑后肯定地表示：这不是没有可能的，问题在于这种援助能够到什么程度，空军能掩护到什么程度，这个问题解决得好，可以同美国军队较量一下。</p>
+<p>    得到彭德怀这样的回答，毛泽东十分满意。他明确提议，有关苏联援助的问题，由周恩来去苏联与斯大林商量解决，出兵的准备继续做，由彭德怀来担任志愿军的司令员兼政委。10月5日下午，中央政治局继续在颐年堂开会，对是否出兵援朝再次进行讨论。</p>
+<p>    在发言中，彭德怀讲了自己的观点：出兵援朝是必要的，打烂了，最多等于解放战争晚胜利几年。如让美军摆在鸭绿江岸和台湾，它要发动侵略战争，随时都可以找到借口。如等美国占领了朝鲜半岛，将来的问题更复杂，所以迟打不如早打。彭德怀发言后，毛泽东站起来，坚定地说：“彭老总说得好！我们出兵参战的困难确实很多，但是，朝鲜是中国的友好邻邦，中国人民不能眼看着美国侵略者对其肆行践踏而置之不理；唇亡则齿寒，户破则堂危。我们应当参战，必须参战，参战利益极大，不参战损害极大。”</p>
+<p>    中国出兵援朝的决策，就在这次会议上定下来了。</p>
+<p>    毛泽东曾考虑出兵限度问题</p>
+<p>    毛泽东在出兵朝鲜问题上，曾经有一个考虑基点，这就是：如果美军不越过三八线，中国也派兵，但只摆在鸭绿江一线或者北朝地区，作为朝鲜人民军的战略支持力量，而不与美国军队正面交战。早在朝鲜战争爆发之前，毛泽东就对来访的金日成说，一旦朝鲜境内爆发战争，我们打算在鸭绿江边摆上三个军，帝国主义如果不干涉，没有妨碍；帝国主义如果干涉，不越过三八线，我们也不管；如果过了三八线，我们一定打过去。</p>
+<p>    显然，毛泽东考虑了中国出兵朝鲜的限度问题，并且把这个限度讲得十分清楚：美国越过了三八线，中国军队必然打过去；美国军队不越过三八线，中国就不参战。这一点，从朝鲜战争爆发初期中国的反映也可以看出来。朝鲜战争爆发，特别是美国第七舰队进入台湾海峡后，新中国立即作出强烈反应。除了声援朝鲜，还对美国干涉中国内政，插手中国台湾事务给予愤怒的声讨。</p>
+<p>    但在此时，毛泽东还不想牵涉进这场战争中去而打乱自己原定的工作部署。如下事实可以证明这一点：1950年6月30日，即朝鲜战争爆发5天之后，中央人民政府颁布了《中华人民共和国土地改革法》，在中国大陆展开了大规模的土地改革运动。同一天，毛泽东、周恩来联名签署了《关于人民解放军1950年复员工作的决定》，开始大规模削减中国军队员额。当时有人建议，朝鲜战争爆发，东北地区受到威胁，是否停止军队复员，让现有军队转入战备。</p>
+<p>    周恩来的回答是：对朝鲜战场的情况，总参谋部、外交部要密切加以注视，而复员工作仍按原计划进行。由于朝鲜战局的变化，毛泽东也不得不预先作好准备。7月13日，中共中央决定成立东北边防军，加强东北边防。周恩来对此有一个说法：宁可“备而不用”。从历史情况来看，1950年8月下旬之前，毛泽东和中共中央其他领导人的主要注意力，仍主要是放在土地改革和国内经济建设上。</p>
+<p>    到8月下旬，朝鲜战局恶化，毛泽东产生了深深的忧虑，此时，他才考虑了出兵朝鲜的问题。周恩来在8月25日召开的第47次政务会议上说，朝鲜战争拖长的可能性增加了。周恩来讲这句话之后的第二天，他就召开了检查和讨论东北边防军准备工作的会议。在这次会上他指出：“我们对于朝鲜，不仅看作兄弟国家问题，看作与我东北相连接有利害关系的问题，还应看作是重要的国际斗争问题。”要设想战争的长期化，要考虑到出国作战的问题。“如果出国作战的话，主要对象是美帝国主义”。</p>
+<p>    9月15日，美国军队在仁川登陆，并且迅速向朝鲜北方推进，朝鲜人民军有被美国军队全部消灭的危险，朝鲜亡国在即。毛泽东把注意力转向了朝鲜。那个时候，毛泽东每天都站在朝鲜半岛地图前，久久思索，他频繁地找中共中央领导人和高级军事领导人商议，和周恩来商议的时候最多。显然，毛泽东此时开始考虑了出兵朝鲜的问题。毛泽东和周恩来商议后决定，先派人到朝鲜了解情况。</p>
+<p>    9月17日，中央军委派遣一个5人小组随柴军武赴朝了解情况，同时熟悉一下朝鲜战场的情况。9月22日，中国政府在公开声明中表示：“居留中国的朝鲜人民有权力回去保卫祖国。”这个声明一方面表示中国人民坚决支持朝鲜人民与美国进行斗争，一方面也警告美国，不要越过三八线进犯朝鲜北部。</p>
+<p>    毛泽东还考虑并实施了这样的方案：通过第三国，向美国表示中国的意图。这个第三国，毛泽东和周恩来选定了印度。印度奉行不结盟政策，同东西方两大阵营都保持着联系。朝鲜战争爆发后，印度总理兼外长尼赫鲁曾经积极调停。他在征得中国的意见后，曾分别致函斯大林和艾奇逊，以协调苏、美立场，消除分歧。考虑到这个背景，毛泽东和周恩来决定，通过印度向美国传话。9月25日，聂荣臻奉命会见印度驻华大使潘尼迦。从目前查到的记录材料看，此次会见，双方谈话中很重要的内容就是中美关系。</p>
+<p>    谈话结束后，尼赫鲁立即将中国方面的态度转告给美国政府。但美国国务院研究后认为，这只是中国恫吓威胁的宣传而已。9月29日，印度方面向中国政府转达了美国的态度。中国方面做出了强烈回应。30日，周恩来在庆祝新中国成立一周年大会上发表讲话时指出：“中国人民热爱和平，但是为了保卫和平，从不也永不害怕反抗侵略战争。中国人民绝不能容忍外国的侵略，也不能听任帝国主义者对自己的邻人肆意侵略而置之不理。”各国记者立即向全世界报道了周恩来的讲话。10月1日，《人民日报》也全文发表了周恩来的讲话。</p>
+<p>    10月3日，南朝鲜军队在东海岸越过三八线向北推进了15公里。美国军队也在沃克将军的指挥下，越过了三八线，向北推进。毛泽东于当天得知这个消息后，立即和周恩来一起商议了对策，并且下决心出兵朝鲜。当天凌晨1时，周恩来紧急召见潘尼迦，向他郑重说明中国政府对待朝鲜战争的严正立场，即美国军队不能越过三八线，如果越过，中国肯定派兵入朝。印度方面很快就把中国的态度转告了美国和英国，但是美英两国显然无视中国的立场和态度。</p>
+<p>    越过三八线，实际上是美国的既定军事目标。从目前美国方面已经解密的材料中可以看到：9月27日，杜鲁门已经给麦克阿瑟发出了正式的命令：“你的军事目的是摧毁北朝鲜的武装力量。为达此目的，授权你在朝鲜的三八线以北进行军事行动，包括两栖登陆和空降或地面行动。”</p>
+<p>    当中国的警告传到美国后，一向轻视中国的美国最高决策者们，并没有把这当作一回事。杜鲁门甚至怀疑，周恩来的警告可能是一种宣传策略。美国国务院远东问题专家亚历克西斯·约翰逊认为，周恩来发出的信息“无疑含有极大的虚张声势的成分”，只是出于谨慎考虑，他建议在三八线以北只使用南朝鲜军队，联合国的空军和海军只提供军事支援。艾奇逊则认为，周恩来的声明是苏中试图迫使联合国撤军所做的努力的一部分。</p>
+<p>    对于中国的决心，美国决策者做出的决策是：万一“在朝鲜的任何地方发现中共公开或秘密部署的主力部队”，只要“有获胜的机会”，仍可以继续行动；但是，除非得到华盛顿的授权，否则不得对中国境内的目标采取行动。显然，美国认为，中国不会出兵朝鲜。他们当然不了解毛泽东，更不了解：毛泽东一旦下了决心，就会以钢铁般的意志去行动。</p>
+<p>    周恩来后来的回忆，也讲过毛泽东出兵朝鲜的底线问题，他说：“当时，我们发表政府声明，警告美国不要越过三八线，进逼鸭绿江，否则，中国决不能置之不理。美国不听。这时，我们再次警告。除这两次公开警告，我们还正式通过印度向美国提出过。当时，印度相信我们的警告，劝美国要谨慎。美国不听，一直进逼鸭绿江，逼我们到墙角，我们才进行抗美援朝。”</p>
+<p>    10月7日，美国再次操纵联合国通过了“统一”朝鲜的决议。10月8日，中国方面已经获悉：大批美军越过了三八线，第二天，麦克阿瑟发出了向平壤进攻的命令。毛泽东所设定的不出兵朝鲜的底线已经被美国突破。和平解决朝鲜问题已经不可能了。正如彭德怀后来所回顾：“美军一过三八线，我就知道不打不行了。”</p>
+<p>    10月8日，毛泽东发布组成中国人民志愿军的命令：“为了援助朝鲜人民解放战争，反对美帝国主义及其走狗们的进攻，借以保卫朝鲜人民、中国人民及东方各国人民的利益，着将东北边防军改为中国人民志愿军，迅即向朝鲜境内出动，协同朝鲜同志向侵略者作战并争取光荣的胜利。”</p>
+<p>    从此，抗美援朝战争正式打响。（中国共产党新闻网）</p>
+
+
+<p style='float:right;'>本页共58段，9399个字符，26585 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

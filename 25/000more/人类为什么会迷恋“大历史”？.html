@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>人类为什么会迷恋“大历史”？</h3>
+
+<p>宏伟壮丽又通俗易懂的大历史叙事，是否有过于庞大的野心？它是一种科普读物，还是一种新型世界观的输出？本周书评周刊专题，梳理了大历史学派的知识脉络与受众心理，探询想象力在人文、历史与科学中的边界。</p>
+<p>这几年，大时空尺度的历史叙事似乎一下子流行起来。尤瓦尔·赫拉利的超级畅销书《人类简史》在世界范围内带红了“简史”系列，也让“大历史”这门学问进一步走进中国公众的视野。</p>
+<p>在人文与科学大融合的语境下，似乎已成过时之物的宏大叙事也有所复兴。21世纪是全球化时代，也是信息爆炸的时代。我们过着后现代、碎片化的日常生活，却拥有前所未有的知识储量，精专细化的学科分工。“大历史”类读物搭乘时代红利，基于所有人类知识，将整个宇宙作为叙述范围，从而重新定位人类在宇宙演化过程中的历史坐标。</p>
+<p>技术拓展了历史研究的地域与时间范畴，大历史则把跨学科的知识点串联起来，赋予其传统创世神话故事般的感染力。</p>
+<p>宏伟壮丽又通俗易懂的大历史叙事，是否有过于庞大的野心？它是一种科普读物，还是一种新型世界观的输出？本周书评周刊专题，梳理了大历史学派的知识脉络与受众心理，探询想象力在人文、历史与科学中的边界。</p>
+<p>10月19日《新京报·书评周刊》</p>
+<p>撰文 | 董牧孜</p>
+<p>说起“大历史”，前几年人们最先想到的恐怕还是黄仁宇的“Macro-history”，如今，有关“大历史”的印象正在被蔚蓝的宇宙图景、进化中的人类、动物与现代物什所覆盖。“大历史”（big history）俨然不同于学术界通行的人类史，而是将人类史置于宇宙史大框架下，从宇宙开端囊括当今地球上的全部生命，乃至望进恍惚炫目的未来。</p>
+<p>作为一种相当“非主流”的历史路径，“大历史”似乎正在以一种富有时代特色的方式而被普通读者和学院学者所逐渐接受。对于沉溺后现代小叙事、日常宅居的当代人来说，这种空前庞大的时空叙事尺度看似矛盾，却也生逢其时。时空压缩与信息爆炸让世界变得扁平，我们似乎可以轻易地找到凭据描摹过去或预测未来，将自身安放在世界的初始与尽头。“大历史”的知识狂想曲，同样也契合了这个时代个人的信息饥渴与知识焦虑。</p>
+<p>迷恋</p>
+<p>宇宙初始的渴望，宏大叙事的复苏？</p>
+<p>“宇宙越是为人所理解，便显得愈发没有意义。”</p>
+<p>——《宇宙最初三分钟》史蒂芬·温伯格（物理学家）</p>
+<p>“大历史”对于宏大尺度的迷恋其来自有。很多人会将自己世界观尺度的设定，追溯到某个决定性时刻。比如“大历史”学者弗雷德·斯皮尔，在自己书写知识狂想曲的开篇，便提到1968年阿波罗8号实现首次人类登月时，航天员威廉·安德斯的回忆：</p>
+<p>“能够亲眼看到地球是那么渺小，令我顿开茅塞，这就是最大的哲学，甚至完全打破了我以往所有认知的根基……把眼球贴近宇宙飞船的窗户，就会看到差不多半个宇宙……那种感觉，倒不是地球有多渺小，而是地球之外的世界有多么广阔。”</p>
+<p>激动万分、又茫然不知所措地望向深处，这是一种被冷战时期的太空探索与发现所打开了的目光。科幻小说家与“大历史”学家都迷恋这种风景，但选择了讲故事的不同方式。</p>
+<p>值得一提的是，几乎所有“大历史”学者都拥有跨学科、通文理的背景，或是综合性知识的爱好者，这也影响了他们看待世界的方式。大卫·克里斯蒂安与俄国、苏联史的宏大叙事渊源甚深，斯皮尔接受的则是古典荷兰教育，包括拉丁文、古希腊文、英语、法语和德语，还有数学、物理、化学、地理和历史。在接受教育的阶段，所有知识都是彼此孤立的，不会从某个统一的视角加以陈述。21世纪的学科专业化是无可避免的趋势，碎片化是它的后果之一：只试图求解较小较具体的问题。</p>
+<p>“大历史”叙事的取向和乐趣不同，它想做众多学术研究成果的集合。我们很容易发现，“大历史”书籍或课堂所传授的，都是学术圈现成的知识。他们只是被重新嵌入了整体的宏“大历史”框架中，或者被某种统一的历史叙事形式所融合了。</p>
+<p>这似乎是一门收集癖的学问。而这种做法似乎显得相当“19世纪”，或者有点“博物学”气质。不过，不同于依赖地方性知识、与百姓生活世界关联密切的博物学，“大历史”的知识谱系并不倚重具体经验，而是仰赖人类全部科学知识的整合——我们的科学知识已经走到了数据库的阶段。</p>
+<p>在纯粹知识的堆叠之上，“大历史”带着讲故事的热忱，重建框架的野心，它热衷于大多数学术研究并不特别关注的根本性问题。富有好奇心的人对近乎无穷尽的问题求取答案，构成永无休止的对话。“大历史”具有百科全书式的特点。</p>
+<p>太阳系概念图。</p>
+<p>“大历史”有几个主要的叙事线索。讲从“大爆炸”肇始的恒星、新的化学元素、行星、生命，直至当今社会不断提升的复杂性，这似乎有悖“熵增原理”。其原理是，复杂物必须不断从周围的环境中摄取能量方能维持稳态平衡的存续。这一方面说明，人类从外界摄取能量的能力不断提升，另一方面也凸显了当今时代的可持续危机。</p>
+<p>其次，“大历史”强调“集体知识”，人类具有非常精确、有效地分享信息的能力，个体习得的知识能够被存储到群体和整个物种的集体记忆之中，从而实现世代的累积。在克里斯蒂安看来，这是人类能主宰整个地球并不断提升自己复杂度的根本原因。</p>
+<p>对于时间的内涵，克里斯蒂安有个非常量化的说法：假如将整个130亿年的宇宙演化史简化为13年的话，那么人类的出现大约是在3天前。最早的农业文明发生在5分钟前，工业革命的发生不过6秒钟以前，而世界人口达到60亿、第二次世界大战、阿波罗登月都只不过是最后一秒发生的事情。这些事情让人类用一些全新的视角看待自身，看待自己所处的星球，看待这一秒之前的“十三年”发生的一切事情。</p>
+<p>大历史渴望抵达某种普遍性历史，于是更改历史讲述的时间尺度，回到解释人类起源的问题，这就打破了传统史学的地域、国家、民族、种族、宗教界限。用创始人大卫·克里斯蒂安的说法，“大历史”是建立在现代科学基础之上的“创世神话”。</p>
+<p>质疑</p>
+<p>简易的世界观？</p>
+<p>“大历史”的知识虽然大而冷，看似不够实用，可一旦与尺度、格局与世界观这类当代人为之痴迷的“境界”联系起来，就显得“有用”起来。</p>
+<p>在盖茨基金会支持下，美国有一千所以上的高中开设“大历史”课程。相比作为大学学科，“大历史”似乎更适合以基础教育的面貌出现。对于中国读者而言，以色列怪才赫拉利的超级畅销书《人类简史》（连同此后的《未来简史》《今日简史》）带起的“简史”热潮，让“大历史”变得更有存在感。据说赫拉利撰写“简史”系列的重点参考书就是大卫·克里斯蒂安的“大历史”（big history）著作。如今学界也有《大历史学刊》出版。</p>
+<p>“大历史”本身属于易于营销的那类知识，这是它的魅力也是缺陷，更准确地说，它符合当今人的知识现状，人们渴望习得一套足以囊括所有知识的世界观。张向荣在《漏洞百出的“简史”，为什么也能畅销？》一文里，提出了对于“大历史”的警惕。他认为“大历史”虽然比“简史”更严谨，但二者能畅销的秘密，根本在于能够为读者提供一个简便易懂的世界观。</p>
+<p>人类进化示意图。</p>
+<p>在他看来，“大历史”牺牲掉了史实的丰富性，评论缺乏个性，通过构建一个结构简单、结论易懂、内容丰富的框架，帮助读者用最快的时间，把碎片化的新旧知识整合起来，给旧的世界观打上补丁，升级知识系统，甚至全部替换。</p>
+<p>一个人要逐渐形成对世界的整体性看法，需要阅读、理解、梳理、容纳大量知识，并结合漫长的自身实践；但如今，大多数人很难有这样丰沛的精力和充裕的时间。“大历史”及简史类作品的出现，“展示着人类试图消化掉现有知识的雄心壮志，也充分考虑了读者能够一次性、一口吃掉这些知识的便利性诉求”，但却“无法进行深刻的沉思，最终只能抛出一个庞大的观念，却无法阐释出一套具有启发性、原创性的历史哲学。”</p>
+<p>从读者群来看，得出这种结论看似无可厚非，毕竟“渴望尽早获取新知识以预测未来商机的商界精英、害怕知识落伍被时代抛弃的白领、好为人师夸夸其谈的‘交际草’（主要是男性）以及正处于世界观形成期的学生”，的确是“大历史”或简史类著作的主要受众。</p>
+<p>然而，换个角度看，这对于世界好奇、饥饿、紧张感和求知欲未尝不是一件好事。如陶林所说，只要有一个契机把这种欲望引导爆发出来，那将产生非常巨大的能量。毕竟，这是时代的渴望，“大历史”前所未有的整合能力，并非由这种研究或写作方式本身生成的（“大历史”的写法甚至有些老套），而是时代阶段的复杂性所赋予的契机。再没有人能掌握全部知识，但这种收集癖般的欲望始终蠢蠢欲动。</p>
+<p>作者：董牧孜</p>
+<p>编辑：徐学勤宫照华喻子豪榕小崧罗东</p>
+<p>校对：翟永军</p>
+
+
+<p style='float:right;'>本页共39段，3708个字符，10419 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>从信仰走向信念</h3>
+
+<p>原创生命之科学2020 -06 -17 06 :01 :00 </p>
+<p>编者按：神话或宗教中经常会谈到“神”。在文化不太普及、文明不太昌明的远古或中古时代，古圣先贤以宗教或外在神灵的方式来引导和教化众生，这符合时代的特征和需求。但在科技发达的现代社会，人们的理性和逻辑思维得到了空前发展，追求与外在神灵的连接与合一已失去了现实基础。现在已经到了要揭开“神灵”的神秘面纱、脱下“神灵”的情感外衣、还原“神性（理性）”真相和归属的时候了。</p>
+<p>“神”的两个含义</p>
+<p>“神”有两个含义。第一个含义是指宗教中所信仰的各种高高在上的神灵，如“上帝”“玉皇大帝”“真主”“菩萨”等等，不同文化对神灵的称谓不尽相同。第二个含义是指我们生命内在的神性。对“神性”，不同的文化也有不同称谓，在印度传统文化中称之为“大梵”，瑜伽称之为“纯粹意识”，儒家称之为“德性”或“仁”，道家称之为“道”，基督教称之为“上帝”，哲学家称之为“存在”“本体”“理性”或“真理”，佛家对此的称谓更是名目繁多，“法身”“真如”“如来藏”“法界”“佛性”等等。</p>
+<p>神灵与神性的区别</p>
+<p>那么，神灵与神性又有何不同之处呢？</p>
+<p>不同之处有三点：</p>
+<p>第一，神灵外在，神性内在。</p>
+<p>第二，神灵有形，有格位；神性无形，无格位。</p>
+<p>第三，神灵是人的情感归宿和寄托对象，神性则是理性的生发之源和归宿之处。</p>
+<p>前两点好理解，就第三点我们多讲一些。</p>
+<p>人是情感动物，既有浅层的喜怒哀乐，也有一些深层的情感，如恐惧、无聊、无价值感等等这些最为基础、最为根本性的情感，表面上的喜怒哀乐建立在这些基本情感之上。尤其是成年人，常常会感到人生漂泊无归宿，像个孤儿似的，被抛弃到了地球上，孤立无援。亲人朋友的陪伴与帮助是暂时的，根本性的孤立感始终摆脱不了，它像影子一样跟随我们一生。</p>
+<p>宗教的出现，为人们创造了一个个有着具体形象的神灵，让人们可以把情感寄托在这个或这些神灵之上。此时，人们的空虚感、无聊感、恐惧感、被抛弃感等等，得以慰藉，人们的喜怒哀乐也获得了调节和归依。他们以为找到了自己情感的终极寄托，找到了自己情感的家园。</p>
+<p>其实所有的神灵都是不存在的，所有历史上的宗教家都明白神灵是不存在的，那为什么他们还要到处宣扬神灵的存在呢？因为他们知道，神灵是宗教徒及芸芸众生们的精神家园和情感归宿。这些宗教家因为非常珍爱世人，为了给世人一个情感的安顿和人生的归属，便创造了神，这是人世间可能有的最大的慈悲、最美丽的谎言。神灵不生不死，永远不改变他的初衷，永远不欺骗我们，永远不背叛我们——这就是神灵在人类生活中的功用。信仰应运而生，它建立在人类情感诉求和非理性冲动基础之上的，为获得神灵的救赎而存在。</p>
+<p>而神性，则是人类信念的归宿。神性就是理性，理性就是神性。信念以神性、理性为基础，它对神性有充分的理解与身心实证，为彰显内在的神性而存在。</p>
+<p>东西方理性之不同</p>
+<p>“理性”在东西方哲学中都是一个使用率极高的词汇，但却有着完全不同的含义。西方人讲的理性，实则指的是知性，包括概念、知识、逻辑等。简言之，知性是通过后天的长期训练，对外界各种信息之综合处理和提炼整合能力，故知性本质而言，是后天经训练而成的逻辑主体。知性适用对象是现象世界，知性所探知之理为外在事物的形构之理，其所成就之科学为自然科学与社会科学。</p>
+<p>东方人讲的理性，则是指生命内在的神性，或佛家说的“佛性”，哲学上称之为“存在”“本体”“真理”等。简言之，理性是与生俱来的、心性内涵的本有之理，此理又名存在之理，即生命或曰主体内在的法则与属性。理性适用对象是生命世界，理性所呈现之理为内在的存在之理，其所成就之科学为生命科学。</p>
+<p>理性即真理。真理在我们未出生之前就存在着，比如“否定之否定规律”“对立统一规律”等，我们死了以后它们还在，它超越我们的生死，先于我们的生死。但知性却完全是后天得到的一种逻辑思维，是经过后天的学习和经验积累建立起来的。西方哲学中所谓的“理性”，我们中国人没有把它弄清楚，就匆忙地把它翻译成“理性”，实则应该翻译为“知性”更为准确。</p>
+<p>是故，真正的理性在东方。什么叫理性？就是以理为性。性就是本性，或者叫理体。神性就是我们的理性，神性里面就含着人类、宇宙、生命一切的终极真理。只要把这个终极真理显化出来，就够了，就掌握了真理。耶稣说：“我是道路，真理，生命。”不单是道路、真理、生命，也是光明，所有的圣贤都是道路，真理，生命，光明。他们开悟了，悟到了他们内在的神性，悟到了真理。所有的真理都隐藏在我们的神性之中，只要打开了我们的神性，就掌握了宇宙和生命的真理。圣贤们掌握了真理，他们就拥有了智慧。这就是为什么我们一定要打开、显化我们的神性的原因，打开神性就是打开神性中的真理。所以，神性就是理性——以理为性。</p>
+<p>那么，当今社会到底是该与外界的神灵连接（信仰），还是与内在的神性贯通呢（信念）？这是一个十分值得深究的问题。在文化不太普及、文明不太昌明的远古或中古时代，人类停留在情感阶段，此时的古圣先贤们主要是以宗教方式引导和教化众生，这是符合那个时代的特征和需求的；而当今社会，通讯发达，教育提高，人们的理性和逻辑思维得到了空前的发展，在这种情况下，我们认为，追求与外在神灵的连接与合一，已失去现实基础，故而特别适合弘扬与内在神性相结合的文化。</p>
+<p>神灵、神性与文化体系</p>
+<p>“神”有两个含义。第一个含义是指宗教中所信仰的各种外在的高高在上的神灵，如“上帝”“玉皇大帝”“真主”“菩萨”等等，不同文化对神灵的称谓不尽相同。第二个含义是指我们生命内在的神性。在人类的各大文化体系中，哪些文化体系代表的是与外在的“神灵”进行连接，哪些文化体系代表的是与内在的“神性”进行连接？</p>
+<p>信仰型文化体系——基督教、伊斯兰教、印度教、奉爱瑜伽等；</p>
+<p>信念型文化体系——佛法、道法、儒法、皇冠瑜伽。</p>
+<p>在此，请注意我的措辞——“佛法、道法、儒法”。佛家可分为三个组成部分：佛教、佛法、佛学。佛教是一个信仰体系；佛法是通过系列的身心修行而达到开显本有智慧，以实现生命之究竟觉醒与人生之终极关怀的生命科学；佛学是关于佛教和佛法的学术性研究。不仅可以将佛家分为三大组成部分——佛教、佛法与佛学，道家同样可以区分为道教、道法和道学，儒家亦复如是。面对佛家所构成之三大支系，我们的态度是非常明确的：深入研究佛学；切实修证佛法；坚持不信佛教。</p>
+<p>从信仰走向信念</p>
+<p>讲学要与时俱进，要契合大众意趣。过去的人通过信仰就可以获得解脱，每一个教派的大宗教圣徒都是人间的圣人，比如信奉奉爱瑜伽的教徒，无我地奉爱着天上的神，个个都是品行高洁、庄严肃穆的圣人。在当今这个时代，众生的根基、意趣不在信仰上，导致很多人一有宗教信仰就迷进去了，信着信着就信偏了，不仅难以获得解脱，还产生了各种各样的问题，不是精神分裂了，就是成了一名宗教小狂徒。这十几年我在国内外看到这样的问题很多，很是心痛。</p>
+<p>走信念之路的以儒家为代表，其代表人物就是孔子。孔子为济天下苍生，周游列国，尝尽人间苦难，九死一生，但是矢志不渝，绝无后悔。如果上天再给他一次机会，他仍会毫不犹豫地再次周游列国，继续宣传他仁政博爱之主张。不管对方是否采纳，孔子坚持做他该做的。他身为一个仁者，一个君子，势必要成为爱的化身，成为仁的化身。他就是仁，仁就是他，他的每一个言行都是爱和仁的显化，因为他已经融化到仁中，融化到爱中。</p>
+<p>儒家走的是信念之路，他们不信神不信鬼，所以“子不语怪力乱神”。孔子没有信仰，但孔子有如钢铁般无坚不催的信念：他不信天、不信地、不信鬼、不信神，但信自己、信心灵、信道、信仁。这就是孔子的“信”——无信仰，但有信念，这也可以催发出心中伟大的爱——博爱。不管是通过鬼神的信仰，还是通过某种理念、信念来实现博爱、爱心和爱行，都可以，这个并不重要。</p>
+<p>随着宗教的逐步没落，人们的宗教信仰逐步萎缩。我们认为，未来的文化、未来的人类文明将会由信念逐步取代宗教信仰，即由儒家为代表的信念取代佛教、基督教和印度教等宗教所代表的信仰。西方人抨击我们的文化里没有宗教——我们是没有像西方基督教式的宗教，我们没有神灵和上帝，但我们有“天”，有“道”，有“法”。如果一定要以宗教的概念来解释的话，天、道、法就是我们的敬拜对象，就是我们的上帝，我们的文化就是我们的宗教之教义。因我们的文化是人文文化，我们的宗教自然也就成了人文宗教。在这个人文宗教中，我们同样可以实现西方基督教所推崇出来的全部人之美德：虔诚、热情、重德、博爱、奋斗、超越、献身、牺牲、无我等等，而无一遗漏之，且以更为善巧之方式——信念，而贞定之，成全之，充实之。</p>
+
+
+<p style='float:right;'>本页共32段，3715个字符，10631 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
