@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>互联网的本质</h3>
+
+<h4>互联网就是平台</h4>
+<p>对于互联网这样一个庞大的，无所不在的，任何人既看得见摸得着，却又无法完全找到其边界的“怪物”，不同人肯定会有不同的认识。当然，这些认识有正确的和错误的，有深刻的和肤浅的。第一个深刻认识互联网的人是亚马逊的创始人杰夫·贝佐斯（Jeff Bezos，1964—）。</p>
+<p>由于互联网获取信息快速、便捷和形象的特点，大家在互联网上冲浪和逛商店一样爽快，因此非常适合将商品放到网上销售，电子商务应运而生。在各种网店如雨后春笋般诞生的20世纪90年代后期，纽约商人贝佐斯在1995年创办的网上书店只不过是其中之一。不过，贝佐斯对互联网的认识却比他的竞争对手们深刻得多。在贝佐斯看来，互联网并不仅仅是一个方便购物、能为客户省掉一些中间费用的新媒体，更重要之处在于，它是一种很容易将一个领域成功经验推广到另一个领域的平台，这样一个平台可以节省大量劳动，大大提高整个社会的效率。因此，亚马逊绝不仅仅是一个网上书店或电商，而是一个平台公司，不过为了说清楚这一点，我们还是要先从贝佐斯卖书说起。</p>
+<p>亚马逊的员工喜欢讲一个笑话，说当年贝佐斯听说硅谷有许多优秀的工程师，于是驾车横跨北美大陆，从大西洋边上的纽约一直开到美国西部太平洋的海岸，在快开到美国西海岸时，贝佐斯走错了路，本来该南下到加州硅谷，却北上来到了西雅图。后来他发现西雅图同样有大量优秀的工程师，于是就决定在那里发展了。笑话归笑话，亚马逊选在了既有科技基础而人口又相对稀少的华盛顿州西雅图附近，是为了给占美国人口八分之一、在线购买力占全美五分之一的加州人省去8—9%的销售税，以刺激自己的销售。这种跨州邮购是否应该缴税，当年在美国一直有争议，但是卓有远见的克林顿总统搁置争议，让这些电子商务公司先发展再说，这在一定程度上帮助了电子商务的起步。后来志大才疏的奥巴马总统开始贪图在线销售税的蝇头小利，大大降低了美国电商的竞争力，当然这是后话了。</p>
+<p>亚马逊一开始规模很小，无力控制货源、物流和仓储，于是选择以图书这种特殊的商品作为网上销售的起点。相比其他商品，图书更适合在网上销售，原因很多。首先，它不像食品那样会腐烂，需要特殊的执照，也不像大电器那样害怕磕碰，便于运输。其次，读者都是知道自己要买什么书的，书不像衣服和鞋子那样需要试穿，这样，退货的比例就比较低。另外，在美国，图书价格和毛利都很高，而传统书店因为店面的成本很高，书价难以下降，因此网上销售的价格优势较大。除了这些众所周知的原因，贝佐斯选择先在网上售书还有两个特殊的原因。</p>
+<p>第一，贝佐斯最终的目标是建立一个网上的沃尔玛，当然这件事不是一天能做成的，因此他选择先解决其中简单的问题，然后将成功的经验推广到困难问题的解决上，图书是很好的切入点。</p>
+<p>第二，贝佐斯看中了互联网上内容的重要性，他希望通过售书最终能拥有数字化的内容，包括图书、音像和新闻内容。他显然比微软的鲍尔默要高明，没有在互联网泡沫时随大流，办一家二流的媒体，而是通过销售图书、音像制品逐步进入数字内容的市场。今天，它不仅向用户出售电子书，而且一个用户每年只需要交99美元（2014年以前是79美元）的年费，就可以在线观看电影电视、听音乐和借教科书。2013年，亚马逊终于买下了一家很有影响力的媒体——华盛顿邮报，向着拥有自己的新闻内容迈进了一步。</p>
+<p>亚马逊在打造网上书店的同时，积累起了互联网技术和零售业的经验，并将它们成功地推广开来。在贝佐斯看来，互联网是一个非常好的将工程规范化的平台。以前大型软件公司在开发软件时，不同的项目和产品的负责人常常强调自己辖区内的特殊性，以至于每一个项目和产品都有独立的程序代码库，项目之间的接口很难统一。当然，在互联网时代之前，要让各个项目统一接口，成本也确实很高。但是，并非工程师出身的贝佐斯却看到了互联网的平台效应，他要求亚马逊所有的项目在互联网这个平台下必须统一接口，并且在亚马逊内部强制推行。这个做法的好处很快就显现出来，因为所有的接口都标准化（当然是亚马逊内部的标准）后，很容易就将亚马逊的系统给类似的商家使用。这些标准化的接口就是今天亚马逊云计算服务AWS（Amazon Web Services）接口的维形。</p>
+<p>亚马逊利用互联网这个平台做的另一件事情是将几乎所有的商品搬到互联网上。有了卖书以及为其他线下连锁店建立网店的经验后，亚马逊最终建立起了世界上最大的“网店”。亚马逊在全球有很多的“仓储中心”，每个仓储中心都有好几个足球场大。</p>
+<p>当然，光靠这些仓储中心还不能完全发挥互联网的平台效应，在贝佐斯看来，互联网不仅仅是一个小商家们可以开网店的平台，更是一个可以重新整合零售业中各个环节资源的平台。在对互联网的理解上，贝佐斯的境界比一般从事电商的老板以及建设网站的创始人要高得多。作为平台，亚马逊要做的第一件事是把其他大小商家都拉进来。当然，这些商家也不傻，如果亚马逊在自己的平台上和其他商家打价格战，那么吃亏的自然是这些外来的商家。为了打消商家们的这个顾虑，亚马逊一直坚持不在价格上和商家竞争，以至于在亚马逊平台上大多数网店商品的价格要低于亚马逊自营同款商品的标价。至于用户是从哪个商家购买，则要看各商家的服务和信誉了。除了吸引商家入驻，还要统一电子商务一些至关重要的环节，这样才能为买家提供一站式服务。事实上，对于诸多的商业环节，亚马逊只把控了两个——付款和送货。对于一个买家来讲，他们的付款方式（比如信用卡）只存在亚马逊，他们不需要提供给商家们，这样就大大降低了信用卡信息被盗的可能性。其次，商品递送的价格由亚马逊和物流公司统一谈好（在美国是统一的3.99美元），这样既避免了商家乱收费的可能性，也让商家在物流上享受到了“大宗批发”的价格优势。</p>
+<p>当然，亚马逊对互联网的理解并不是从1994年成立的第一天就形成的，而是在20年的发展过程中不断深化、不断完善的结果。不过早在1998—1999年各互联网公司在烧钱抢流量、花钱买用户时，亚马逊对自身定位就有了相对清晰的认识。它那时做的两宗并不起眼的收购，今天看来都符合它后来十几年来的战略，其中的一次是并购在线电影数据库IMDb公司，这和亚马逊后来控制图书音像内容的宗旨相吻合，另一次是并购监控互联网流量公司Alexa，使亚马逊得以了解互联网上各网站的流量分布以及用户上网的行为。</p>
+<p>2000年前后，那些烧钱与亚马逊抢用户和打价格战抢流量的电商公司，由于缺乏清晰的战略，要么在烧完钱后倒闭了，要么成为了今天亚马逊上众多的商户之一，而亚马逊则成为了一个平台。</p>
+<p>和亚马逊同时的电子商务网站还有eBay公司。它采用了与亚马逊完全不同的商业模式一网上拍卖，在美国以外的地区，这种模式还没有成功的案例，主要原因是其他国家既没有美国那么完善的信用体系、也不像美国人那样关注信用记录。不过eBay很快将自己扩展成一个为小商家提供服务的电子商务平台，并且在全球互联网哀鸿遍野的2000—2003年间，成为唯一一个连续十几个季度股票跑赢大盘的公司。和亚马逊不同的是，eBay只是提供了一个交易平台，既没有控制物流和商品的供应，也没有提供数字内容的服务，因此它的发展速度渐渐趋缓。</p>
+<p>与亚马逊和eBay非常相似的公司还有中国阿里巴巴，大家对它都不陌生，在此不再赘述。</p>
+<p>不同人对互联网的认识也不同，贝佐斯看到的是平台，而Google的创始人佩奇和布林看到的则是数据和信息。</p>
+<h4>互联网就是信息和数据</h4>
+<p>我们在“伟大的博弈”一章里介绍过，当2000年整个互联网行业的营收和风险投资的资金不足以维持数量庞大的.com公司集体烧钱时，互联网泡沫很快就破碎了。从2000年到2002年，每天都有很多互联网公司关门，大量上市公司被迫下市，不下市的，股价也一落千丈，就连领头羊雅虎也亏损了几个季度，股价跌掉了九成以上。然而，就在这时一家不大的公司从雅虎手里接过了开放、免费的旗帜，而且将它进一步发扬光大了，这就是Google公司。</p>
+<p>讲到互联网，无论是现在和将来，都不能不提Google公司，它是互联网时代的巨无霸。2013年全年利润达到129亿美元，几乎等于亚马逊、eBay、雅虎、Facebook、腾讯、阿里巴巴和百度的总和。当然，它不仅是最大的互联网公司，而且被认为是最好的科技公司，它总是给人以惊喜。从搜索引擎，到安卓（Android）操作系统；从可以看清楚地球上每一个角落的地图服务，再到容量近乎无限大的电子邮箱；从神奇的眼镜计算机，再到无人驾驶汽车。不过在这一切的背后则是数据和信息。</p>
+<p>关于Google的故事，在拙作《浪潮之巅》里有非常详细的介绍，这里重点介绍Google是如何通过利用数据和整合信息引领互联网发展的。</p>
+<p>佩奇和布林进入互联网行业要比他们的学长杨致远和费罗晚了三年，就是这三年的迟到，让他们错过了对决美国在线和微软，来确定互联网运营模式的大时代。但是，正如我在前面讲到的那样，由于互联网快速发展变化的特点，后来者如果能对互联网的某个领域有深刻的理解，同样有可能把握住互联网的下一次机会，而佩奇和布林就是这样的人。</p>
+<p>当佩奇和布林决定在互联网这个领域找一个博士论文题目做研究时，互联网上的内容已经不少了，比杨致远和费罗创办雅虎时多了成千上万倍，而当时查找信息就成了一个大问题。虽然当时已经有包括Alta Vista在内的各种搜索引擎，但是搜索结果很不令人满意，十次搜索能有两三次找到想要的东西就不错了，因此佩奇和布林会选择在这方面做研究就毫不奇怪了。最终他们从搜索引擎出发，创办了Google公司。</p>
+<p>佩奇、布林和很多Google早期的员工从一开始就体会到数据的重要性。2001年，在互联网行业尸横遍野的时候，NASA的人工智能专家诺威格博士却选择加盟Google，负责机器学习和后来的Google研究院（Google Research）。后来他的伯克利校友们问他是什么原因做出这样（明智）的决定时，他回答到，“这个决定做起来很容易，你们知道在大萧条时，那些买银行股票的人后来都发了大财，后来人们问他们为什么敢在经济危机最严重时买那些随时可能倒闭的银行的股票，他们说，因为钱都在银行里。对我来讲，因为数据都在Google。”在Google内，持这种观点的人非常多。比如Google早期的副总裁霍尔斯（Urs Horlse）博士就曾经说，“我们拥有网上所有的数据，我们还拥有70%用户部分的搜索习惯，这些是Google最宝贵的资产，只要善加利用，我们的产品就能达到其他公司无法超越的水平。”就在霍尔斯说这番话的同时，刚刚从剑桥大学毕业的西蒙·童（Simon Tong）博士已经开始行动了。2002年，我提出借助用户点击数据提高搜索质量，同事们告诉我，西蒙·童正在做这件事了，事实证明采用了用户点击搜索结果的数据后，搜索质量有大幅提升，而且因为其他的公司没有这么多的数据，因此在搜索质量上很难追赶Google。关于点击数据在提高搜索质量上的作用，读者朋友可以阅读拙作《数学之美第二版》中的第31章 “谈谈数据的重要性”。西蒙·童还发明了一个利用大数据进行机器学习的工具SETI，以方便大家都用数据来改进产品。这个工具后来帮助提高了Google诸多产品的质量。在Google内部，有大量像西蒙·童这样的工程师，他们并非天生就对数据那么敏感，但是到了Google这个环境中，不知不觉地把互联网理解成信息和数据了。</p>
+<p>Google的创始人和早期的工程师们，最终把“互联网就是信息和数据”这个朴素的想法上升成了Google的使命，即“整合全球信息，使人人皆可访问并从中受益”。当然，这句话的原文“to organize theworld’s information and make it universallyaccessible and useful”其实含义更丰富，尤其是universallyaccessible可以理解成随时随地访问。为了实现这个目标，Google在很多城市提供免费的Wi-Fi服务，大力发展包括Android操作系统在内的智能手机技术，并且努力让光纤连到家庭。在外面很多人看来，Google内部的项目特别多，而所做的产品涉及各个领域，似乎毫无关联，但是如果用整合、处理和使用信息（包括数据）这条主线串起来，一切都可以理解了。</p>
+<p>先谈谈Google的商业模式，大家都知道它主要的收入是广告，这和雅虎没有什么区别，但不同的是，广告在Google看来不过是一种商品和服务信息而已。Google第一个广告产品是搜索广告，对于它的处理（投放）可以大量使用搜索技术，因为搜索和搜索广告（Ad Words）同为信息处理，它们之间是相通的。这样不仅使得它能够在极短的时间（半年）内开发出来广告系统，而且能做到很好的广告投放效果。Google的第二个广告产品是根据网页内容投放的广告Ad Sense，其核心是对网页内信息的分析和处理。</p>
+<p>Google的其他产品（包括并购来的）都是与信息处理和访问相连的。比如Google地球和地图，实际上是地理信息的处理和应用，即便是自动驾驶汽车，其实核心技术之一也是依靠街景信息定位汽车的当前位置，并规划后续的路径。当然，Google地球最初的数据是通过并购Keyhole公司获得的。Google的YouTube实际上是视频信息的存储和服务，当初正是因为YouTube上有大量的视频信息，而且每天还在不断地增加，Google才抢在微软之前并购了它。另外，在Google众多并购中，最早期收购的博客软件公司Blogger也是信息的提供者，其用户创造了大量的博客（另一种信息），而Google在2013年并购的Nest智能家居公司，则是因为它的产品是收集（家庭）信息最好的工具。当然，除了收集和处理信息外，如何让用户可以方便地访问和共享这些信息，也成为了Google业务的重点。它的电子邮箱服务Gmail，在线办公套件Google Docs，都是为了方便用户访问和共享信息的。为了做到随时随地访问和使用信息，Google并购了一家很小的手机操作系统公司Android，并且投入大量人力物力将其打造成为智能手机市场的主流操作系统，借由智能手机实现了随时随地使用信息的可能。在Google诸多的并购中，唯一一个例外是收购摩托罗拉，那是为了获得这家老牌移动公司的专利，而不是跟什么信息有关。因此，在达到获取专利的目的后，Google又卖掉了这家与自己的使命没有什么关系的公司。</p>
+<p>Google成功的另一个原因是它拥有无比强大的全球系统架构（Global Infrastructure），这包括它在全世界各地巨大的数据中心，以及在数据中心硬件之上的云计算服务，它们是Google得以不断推出新产品的技术保障。在Google和其他公司工作过的人估计都会同意，Google的系统架构是任何公司无法比拟的。而搭建这样强大的系统架构的目的，也是为了方便信息的存储和处理。</p>
+<p>为了实现上述使命，Google一直在大量地招聘一流的人才，并且大规模建设全球互联网的基础设施，这些都需要大量的资金，而且远不是通过烧风险投资人或者华尔街的钱就能满足的，它需要有很稳定的收入来源。我们今天知道，Google大部分的收入来自于在线广告。为什么Google能从广告中挖出那么多真金白银呢？其他一些互联网公司，比如雅虎、Facebook和腾讯，流量也很大（甚至一度更大），为什么广告收入只有Google的一个零头呢？因为Google的广告比较有效——Google搜索广告单位流量产生的价值比传统的展示广告高出两个数量级。相对来讲，Google的各种服务在界面上是最干净的，但是广告收入却是最高的，这在很多互联网公司看来是不可思议的事情。而这种不理解恰恰说明了两者之间境界的差异。Google懂得一个道理，就是在一切看似免费的互联网中，什么东西最值钱，那就是人的关注度。互联网上的内容可以无限制增长，服务可以无限制增加，但是每个人上网的时间是有限的，因此每个人每天能关注到的网络信息是有限的。对于广告这种商业信息，与其强行灌输给用户，不如在他们真正需要时提供。因此，Google的广告系统和其他互联网公司类似产品在理念上的一个根本不同之处是，其他在线广告是向用户推送，而Google的则是由用户在有广告需求时拉取，这个差别导致了广告效果的天壤之别。用Google主管销售的高级副总裁科斯坦德尼（Omid Kordestani）的话讲，“客户永远是喜欢买东西，而不是被卖东西的。”</p>
+<p>有人说Google是幸运的，因为它碰巧找到了搜索广告这么好的挣钱方式，然后再利用充足的资金，围绕信息的处理和使用打造了完整的互联网生态链。但是光有运气显然是不够的，因为运气可以给它带来一次成功，却不能给它带来后来很多次的成功。或许恰恰是因为有了Google，互联网的广告业才变得如此之大，才能长期维持提供免费服务。根据我对这家公司十几来的密切观察，牢牢把握住用户是Google长期立于不败之地的根本原因。</p>
+<p>和以往的公司不同，Google严格地将自己的“用户”和自己的“客户”分别开来。以前大多数公司是把用户和客户划等号的，比如AT&T的用户就是给它付钱的客户，如果你像乔布斯年轻时那样，不打算给钱就偷偷使用它的电话服务，小心被抓。只有在互联网时代，用户和客户是可以分开的，Google的用户就是你、我和他这样的每一个人，对于用户，Google的服务基本上都是免费的。Google的客户是那些向它付钱的广告商和使用其云计算增值服务的企业，对于企业是收钱的。当然雅虎的用户和客户也是分开的，但是在用户的利益和客户的利益发生冲突时，两家的做法就完全不同了。</p>
+<p>雅虎和绝大多数早期互联网公司的做法是维护客户利益，其结果就是在网站上放满了广告。而Google的原则是先保证用户的利益。Google认为，它对于客户的价值在于那些客户可以通过它渗透到它广大的用户，只要用户在自己的手里，客户即使有流失也会再回来，而没了用户，就什么都没了。这样，尽可能地获取广大的用户，不仅成为Google，也成为有志向的互联网公司的不二选择。而获取用户最好的办法，就是给他们提供最好的免费服务。因此，从一开始，它就为用户提供干干净净的搜索服务，不带有商业功利，它后来一直坚持这个原则，比如开放并免费提供安卓操作系统。实际上，今天最成功的互联网公司都是拥有大量忠实用户的公司，除了Google外，Facebook、腾讯、阿里巴巴无一不是如此。Google将用户和客户分开的做法，其实是今天互联网商业模式的精髓。</p>
+<p>当然，Google对互联网本质的理解也是有限的，比如它对互联网的通信功能理解就未必深刻，因此也有很多它不擅长的领域，而在那些领域能够做得好的公司必定是对这些领域有深刻认识的公司。因此，在Google快速发展了近10年后，它遇到了自成立以来最大的一次危机，而这次它的对手是一个不到它十分之一大的小公司Facebook。</p>
+<h4>互联网就是通信</h4>
+<p>Facebook不仅是互联网时代的一个奇迹，也是金融史上的一个奇迹，这家每年仅有20亿美元利润的公司，居然有将近2000亿美元的市值。如果按照人均市值计算，它人均2700万美元的市值不仅在全世界所有公司中高居榜首，而且远远高于第二名Google的人均800万美元。2012年Facebook的上市过程也成了金融史上最轰动的事件，很多股票承销商最后亏损为它“打工”，目的只是为了获得该公司早期员工的资产管理权。说到这里大家可能会有一个疑问，为什么这家似乎不很大、也不很赚钱的公司这么受投资者们追捧呢？排除其中资本泡沫的因素，Facebook必然有很多“过人之处”值得大家这样做。那么，Facebook是一家什么样的公司呢？</p>
+<p>关于这个问题，很多人首先会想说Facebook是一家非常成功的社交网络公司，这一点没有错，因为Facebook起源于社交，并且它的故事已经被拍成电影《社交网络》（Social Network）。但是Facebook并不像那部电影里描述的那样，仅仅是贴了哈佛金字招牌的又一家Friendster，否则它的命运也不会比Friendster好到哪里去。当然使用过Facebook的人都知道这家社交网站胜过之前诸多类似网站的一点是，Facebook每个用户的脸谱下，是一个实实在在的人，而不是像Friendster等社交网站那样，虚拟世界的人和现实世界的是连不上的。在Facebook之前，我们常常看到一些关于网络交友上当的报道，原因就是源于这种不实的脸谱。Facebook起初只对在校大学生和教授开放（当然后者不是它的发展对象），因为它要求有一个.edu的Email账号才能登录，而大多数人一旦离开了学校便不再拥有这样的账号。</p>
+<p>Facebook根据大学和大学的系把用户分成组，一个人可以得到自己同学的真实资料，而无法直接获得其他大学学生的资料。由于每个用户的Email是真的，而且早期几乎所有资料（包括年龄、性别、地址和电话）都是真的，便为大学生们谈恋爱提供了方便。不少本科生对我讲，他们去“早期”的Facebook的原因是需要真实的性爱（他们的原话是Young people need sex）。这就如同Facebook共同创始人的女朋友也是这么找到的一样。由于Facebook早期只对大学开放，甚至在不同的大学之间也无意识地通过Email的域名筑起了一道虚拟的围墙，大学生们通过Facebook交往是安全的。Facebook就这样发展起来了。这其中，原Napster的创始人，Facebook的首任总裁肖恩·帕克（Sean Parker）对Facebook的快速发展做出了巨大的贡献，使Facebook得以迅速从哈佛扩张到欧美各大学。当Facebook第一拨用户从大学毕业后，Facebook便渐渐向全社会开放。这时Facebook的性质才由原来以交友为主的网站，变成了一个虚拟的社会，但是在这个虚拟社会下，一直具有着真实性。相比之下Orkut和My Space则是割裂了虚拟世界和现实世界，因此虽然它们是Facebook的同一代产品，而且规模一度远超Facebook，但是很快就被Facebook超越并且被永远地甩在了后面。</p>
+<p>不过，虚拟社会的真实化虽然让用户感觉在这样的网站上交友踏实，但并不能保证这个社交网站就比竞争对手发展得快。在中国，腾讯的QZone是一个完全虚拟的世界，而和它同时代的人人网却是一个类似Facebook的、比较真实的社交平台，但是人人网从来不曾对腾讯构成什么威胁，这又作何解释呢？有人试图把人人网的不成功归结于腾讯的垄断性以及对竞争对手的毫不留情。不过，要知道Facebook刚起步时情况比人人网好不到哪儿去，Google的Orkut领先于Facebook，而且有Google众多的财力和用户资源在支持，但是却丝毫没有能阻止Facebook的崛起。因此，只能说社交网站的真实性并非Facebook成功的根本原因。事实上，在腾讯内部还有一个实名制的社交产品“朋友”，而且还是由QZone的同一个VP主管，也有充足的资源，但是做得也很不成功，以至于可能很多读者都没有用过。</p>
+<p>当然，今天回过头来看Facebook的发展，都知道它除了社交网络的功能外，还是一个很好的互联网2.0公司。关于互联网2.0，我们会在下一节中详细介绍，这里我们要强调，在互联网2.0的网站上，内容和服务都是由第三方提供的，而不是像当年雅虎和MSN那样自己产生的。应该讲，Facebook为用户和软件开发者提供了一个很方便的网络平台。在这个平台上，任何人不但可以提供内容，而且可以提供服务。按照Facebook前总裁帕克的话讲，他们其实不需要知道用户想在Facebook上做什么，只是让用户感到酷，至于在这个平台上用户需要什么，就让他们自己去开发好了。这样，Facebook就不必承担任何产品决策错误的风险，而是一门心思专注于把这个平台做酷、做好。到了2008年，为Facebook提供服务的各种软件技术人员多达十万人，并且在短短的几年里，为Facebook提供了上万种大大小小的服务，这才是让Google感到最担心的事情。</p>
+<p>太史公在《史记·货殖列传》中论述管理者和商人的关系时讲到，“故善者因之，其次利道之，其次教诲之，其次整齐之，最下者与之争”。意思是说，好的管理者应因势利导，不干预商业活动，次一等是对商人和企业家诱之以利，再下一等的是对商业行为指手画脚，差的是将商业管得死死的，而最差的是自己跳进去和商人争利。作为一个互联网公司也是一样，好的公司不需要提供具体的内容和服务，而是让用户自行解决，这是互联网2.0的精髓所在。假的互联网2.0公司，自己一方面提供平台，另一方面思维还停留在互联网1.0时代，身兼内容和服务的提供商，与用户争利，中国很多视频网站都是如此。从这个角度看，Facebook做到了互联网公司的最高境界。</p>
+<p>接下来我们还有两个问题必须回答。第一个问题是，为什么Google不能够同样搭建这样一个平台。事实上Google在互联网2.0时代并不落后，它从很早就开始布局了，并且在很多方面（比如视频）还颇为领先。关于这方面的细节，大家可以阅读拙作《浪潮之巅》第18章 “挑战者——Google公司”。第二个问题是，在智能手机和移动互联网兴起之后，Facebook的平台效应被大大地削弱了，因为更多的开发者从Facebook上转到iOS或者安卓上去开发应用程序，而更多的互联网用户使用手机或者平板电脑，而不是PC上的服务。那么在这样的情况下，为什么Google和苹果还是无法撼动Facebook的根基呢？</p>
+<p>其实，答案很简单。Facebook从本质上讲是一家互联网上的“通信”公司，而Google不是。同样的道理，在中国只有腾讯是互联网上的通信公司，而百度和阿里巴巴都不是。根据我的“公司基因理论”，没有通信的基因就做不好通信的事情。人类和其他动物的一个非常大的差别就在于人类有很强的通信能力和需求。Facebook在帮助大家交友和提供互联网2.0平台服务的同时，它实际上在很大程度上取代了电话和电子邮件成为了30岁以下的年轻人通信的工具。在很多国家，大学生和高年级高中生每时每刻都挂在Facebook上，以便通信，就如同今天中国的手机用户都挂在微信上一样。当然，在互联网时代，通信的形式不只是语音和文字，而且包括多媒体和游戏这些应用。应该承认，在通信功能上，Facebook做得比Google同类产品要好。</p>
+<p>从2008年起，Google开始感受到来自Facebook的威胁，但是Google最初看到的只是Facebook利用社交网络这个平台吸引了大量的大学生“泡”在上面，以至于流量上涨很快，而并没有看到Facebook其实填补了Google在互联网上的一个短板，那就是通信的功能。Google当时甚至认为，在Facebook上浪费时间是年轻人打发时间的表现，佩奇甚至说过，我从不玩Facebook，因为它已经不是我这个年龄的人的兴趣所在，当时佩奇只有36岁。不过，到了2009年，随着越来越多的所谓“成熟的”互联网用户开始使用Facebook，而自己的社交网站Orkut在南美洲和印度以外打不开市场，Google倒是真的有点着急了，一方面和Facebook的竞争对手My Space合作，另一方面打造了一个后来颇有争议的Buzz社交工具。应该讲这款产品的通信功能还是不错的，但是在对个人隐私的保护上有所欠缺，因此2010年初上线不久就惹了官司，很快就下线了。</p>
+<p>2011年，Google又推出了一款社交网络产品Google+，这是迄今为止Google最成功的社交产品，不过在很多Google忠实用户的印象中，这款产品除了非常积极地“拉用户”外，没有什么亮点。按照Google+自己的讲法，它在商业上是成功的，因为在短短的3年时间里就发展了5亿以上的用户，并且有效地抑制了Facebook的势头。但是从产品上讲，却非常不成功（如果不算失败的话），因为它的5亿多用户大多是僵尸用户——他们是通过Google的其他产品，尤其是从Gmail上强拉过去的。公平地讲，Google+的功能并不少，但是为什么没有人用呢？主要是Google对互联网的通信本质理解不够深刻。</p>
+<p>Google看到了Facebook这类的社交网络在建立和使用用户关系链上的重要性，以及通过社交网络这个平台将网上的各种应用串联到一起的功用，因此它的Google+在这两方面下了大功夫，应该讲效果还是不错的，但是它的通信功能非常弱。2012年，我回到Google之后向主管Google+的高级副总裁冈多特拉（Vic Gimdotra）介绍了腾讯的微信产品，并且建议Google+放弃PC的市场，把重点完全转到移动互联网上，并且学习腾讯做一款类似微信的通信产品。冈多特拉对我讲，微信的这些功能，在手机版的Google+上都有，于是我们一一做了对比，对比之后我承认他所言非虚。但是，我和他都奇怪的是使用这些功能的用户很少。他的看法是这说明通信功能对Google+不重要，而我的看法是这正说明Google+的通信功能没有做好。举例来说，在微信上两个人聊天时，要再拉进来一个人一起聊非常容易，但是在Google+手机版上却很难办到。总的来讲，Google+依然没有跳出Google分享信息的框框，在使用Google+时，一头是用户，另一头是组织得当却有点冰冷的信息。而在使用腾讯或者Facebook的产品时，用户感觉到另一头也是一个人。这便是这两类公司非常大的差别。</p>
+<p>2012年后，Google成功地抑制了Facebook毫无阻力的扩张势头，但真正起作用的是Google的安卓操作系统，而非Google+。至于为什么这么讲，会在下一章详细分析。而正是因为来自安卓的压力，Facebook才耗资190亿美元收购了不到百人的小公司Whats App，因为这家小公司不仅在运营一款类似腾讯微信的产品，而且它的活跃用户数比腾讯还多。</p>
+<p>分析到这里，我们可以对Facebook做一个总结。它是一家互联网时代的通信公司，在它的眼里，互联网的本质是通信。</p>
+<p>亚马逊、Google和Facebook对互联网有着自己独特却非常深刻的理解，正因如此，他们才能在各自的领域里引领风骚。相比之下，雅虎虽然开发了无数互联网产品，在历史上它的产品线几乎涵盖了Google、Facebook和亚马逊三家的总和，但是这些产品都没有什么特色，做得比较平庸，而且各产品之间彼此没有什么联系，给人的感觉是，只要是能带来流量的产品，雅虎就会去做，这种做法延续至今。业界很多人调侃说，雅虎开发了很多排名第二、第三的产品，但是这么多第二、第三加起来不如一个重要领域的第一名，而做到第一名就必须有第一名的境界和水平。</p>
+<p>互联网在本质上讲，除了平台、信息和通信这三个核心，是否还有其他的本质未被发现？对此我现在也无法给出答案。但是有一点是肯定的，如果有这样一个本质，那么把握住这个本质的小公司就是下一个Google或者Facebook。</p>
+
+
+<p style='float:right;'>本页共48段，12998个字符，34453 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
