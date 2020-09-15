@@ -224,7 +224,7 @@ function MM_findObj(n, d) { //v4.01
 			festive2=parseInt((festive-today2)/spd*24)-parseInt(festive1*24);
 			festive3=parseInt((festive-today2)/spd*24*60)-parseInt(festive1*24*60)-parseInt(festive2*60);
 			festive4=60-secs
-		festivewri.innerHTML=event1+"</br>"+cdtime+"</br>"+"count down:"+"</br>"+festive1+"天"+festive2+"时"+"</br>"+festive3+"分"+festive4+"</br>"+"</br>"+"学会从容"+"</br>"+"减少欲求"+"</br>"+"&nbsp;"+"</br>"+"由今往昔"+"</br>"+"一日三省"+"</br>"+"前瞻五年"+"</br>"+"未来的你"+"</br>"+"回溯如今"+"</br>"+"审视反省"+"</br>"+"思维行动"+"</br>"+"修正调整"+"</br>"+""+"</br>"+"真善美爱"+"</br>"+"Truth"+"</br>"+"Kindness"+"</br>"+"Beauty"+"</br>"+"Love"+"</br>"+""+"</br>"+"知行勤思"+"</br>"+"Knowledgement"+"</br>"+"Action"+"</br>"+"Diligent"+"</br>"+"Reflection";<!--设置festivewri的格式-->
+		festivewri.innerHTML=event1+"</br>"+cdtime+"</br>"+"count down:"+"</br>"+festive1+"天"+festive2+"时"+"</br>"+festive3+"分"+festive4+"</br>"+"</br>"+"学会自律"+"</br>"+"减少欲求";<!--设置festivewri的格式-->
 	tim1.innerHTML=hours+":"+mins+":"+secs;<!--设置tim1和tim2的格式-->
 	/*tim2.innerHTML=hours+":"+mins+":"+secs*/
 	setTimeout1('settimes()',1000);<!--每1秒更新一次时间-->
