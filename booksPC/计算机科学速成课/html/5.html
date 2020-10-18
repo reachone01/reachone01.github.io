@@ -329,6 +329,9 @@ margin:0;
 <div class='layout'><p>so as we talked about last episode, the result is 0 and the 1 is carried to the next column.</p><p>上集说过，二进制1+1的结果是0，1进到下一位</p></div>	
 <div class='layout'><p>So the sum is really 10 in binary.</p><p>和是10<sup>(二进制)</sup></p></div>	
 <div class='layout'><p>Now, the output of our XOR gate is partially correct 1 plus 1, outputs 0.</p><p>XOR门的输出，只对了一部分，1+1输出0</p></div>	
+
+<img style="float:right;" width="70%" src="../img/0501.png" />
+
 <div class='layout'><p>But, we need an extra output wire for that carry bit.</p><p>但我们需要一根额外的线代表"进位"</p></div>	
 <div class='layout'><p>The carry bit is only "true" when the inputs are 1 AND 1,</p><p>只有输入是1和1时，进位才是"true"</p></div>	
 <div class='layout'><p>because that's the only time when the result (two) is bigger than 1 bit can store</p><p>因为算出来的结果用1个bit存不下</p></div>	
@@ -337,6 +340,7 @@ margin:0;
 <div class='layout'><p>but let's abstract away even this level of detail</p><p>让我们抽象化</p></div>	
 <div class='layout'><p>and encapsulate our newly minted half adder as its own component,</p><p>把"半加器"封装成一个单独组件</p></div>	
 <div class='layout'><p>with two inputs bits A and B and two outputs, the sum and the carry bits.</p><p>两个输入A和B都是1位，两个输出"总和"与"进位"</p></div>	
+<img style="float:right;" width="70%" src="../img/0502.png" />
 <div class='layout'><p>This takes us to another level of abstraction</p><p>这进入了另一层抽象</p></div>	
 <div class='layout'><p>heh I feel like I say that a lot.</p><p>我好像说了很多次，</p></div>	
 <div class='layout'><p>I wonder if this is going to become a thing.</p><p>说不定会变成一个梗</p></div>	
@@ -349,7 +353,8 @@ margin:0;
 <div class='layout'><p>it takes three bits as inputs: A, B and C.</p><p>有3个输入：A，B，C（都是1个bit)</sup></p></div>	
 <div class='layout'><p>So the maximum possible input is 1 + 1 + 1,</p><p>所以最大的可能是1+1+1</p></div>	
 <div class='layout'><p>which equals 1 carry out 1, so we still only need two output wires: sum and carry.</p><p>总和1"进位"1，所以要两条输出线："总和"和"进位"</p></div>	
-<div class='layout'><p>We can build a full adder using half adders.</p><p>我们可以用半加器做全加器</p></div>	
+<div class='layout'><p>We can build a full adder using half adders.</p><p>我们可以用半加器做全加器</p></div>
+<img style="float:right;" width="70%" src="../img/0503.png" />	
 <div class='layout'><p>To do this, we use a half adder to add A plus B</p><p>我们先用半加器将A和B相加</p></div>	
 <div class='layout'><p>just like before but then feed that result and input C into a second half adder.</p><p>然后把C输入到第二个半加器</p></div>	
 <div class='layout'><p>Lastly, we need a OR gate to check if either one of the carry bits was true.</p><p>最后用一个OR门检查进位是不是true</p></div>	
@@ -371,6 +376,7 @@ margin:0;
 <div class='layout'><p>Then, we take any carry from this full adder,</p><p>然后，把这个全加器的进位，连到下个全加器的输入，处理A2和B2</p></div>	
 <div class='layout'><p>and run it into the next full adder that handles A2 and B2.</p><p>然后，把这个全加器的进位，连到下个全加器的输入，处理A2和B2</p></div>	
 <div class='layout'><p>And we just keep doing this in a big chain until all 8 bits have been added.</p><p>以此类推，把8个bit都搞定</p></div>	
+<img style="float:right;" width="70%" src="../img/0504.png" />
 <div class='layout'><p>Notice how the carry bits ripple forward to each subsequent adder.</p><p>注意每个进位是怎么连到下一个全加器的</p></div>	
 <div class='layout'><p>For this reason, this is called an 8-bit ripple carry adder.</p><p>所以叫"8位行波进位加法器"</p></div>	
 <div class='layout'><p>Notice how our last full adder has a carry out.</p><p>注意最后一个全加器有"进位"的输出</p></div>	
@@ -455,9 +461,11 @@ margin:0;
 <div class='layout'><p>For example, if we subtract two numbers, and the result is 0,</p><p>比如相减两个数字，结果为0</p></div>	
 <div class='layout'><p>our zero-testing circuit, the one we made earlier, sets the Zero Flag to True (1).</p><p>我们的零测试电路（前面做的），会将零标志设为True（1）</p></div>	
 <div class='layout'><p>This is useful if we are trying to determine if two numbers are are equal.</p><p>如果想知道两个数字是否相等，这个非常有用</p></div>	
+<img style="float:right;" width="70%" src="../img/0505.png" />
 <div class='layout'><p>If we wanted to test if A was less than B,</p><p>如果想知道：A是否小于B</p></div>	
 <div class='layout'><p>we can use the ALU to calculate A subtract B and look to see if the Negative Flag was set to true.</p><p>可以用ALU来算A减B，看负标志是否为true</p></div>	
-<div class='layout'><p>If it was, we know that A was smaller than B.</p><p>如果是true，我们就知道A小于B</p></div>	
+<div class='layout'><p>If it was, we know that A was smaller than B.</p><p>如果是true，我们就知道A小于B</p></div>
+<img style="float:right;" width="70%" src="../img/0506.png" />	
 <div class='layout'><p>And finally, there's also a wire attached to the carry out on the adder we built,</p><p>最后，还有一条线连到加法器的进位</p></div>	
 <div class='layout'><p>so if there is an overflow, we'll know about it.</p><p>如果有溢出，我们就知道</p></div>	
 <div class='layout'><p>This is called the Overflow Flag.</p><p>这叫溢出标志</p></div>	

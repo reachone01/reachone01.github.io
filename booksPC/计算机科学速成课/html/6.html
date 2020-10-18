@@ -323,11 +323,18 @@ margin:0;
 <div class='layout'><p>So this circuit records a 0, the opposite of our other circuit.</p><p>这个电路能记录0，和之前那个相反</p></div>	
 <div class='layout'><p>Like before, no matter what input we apply to input A afterwards, the circuit will always output 0.</p><p>就像之前，无论A设什么值，电路始终输出0</p></div>	
 <div class='layout'><p>Now we've got circuits that can record both 0s and 1s.</p><p>现在有了能存0和1的电路</p></div>	
+
+
+<img style="float:right;" width="70%" src="../img/0601.png" />
+
 <div class='layout'><p>The key to making this a useful piece of memory is to combine our two circuits into what is</p><p>为了做出有用的存储<sup>(memory)</sup>，我们把两个电路结合起来</p></div>	
 <div class='layout'><p>called the AND-OR Latch.</p><p>这叫"AND-OR锁存器"</p></div>	
+<img style="float:right;" width="70%" src="../img/0602.png" />
 <div class='layout'><p>It has two inputs, a "set" input, which sets the output to a 1，called the AND-OR Latch.</p><p>它有两个输入，"设置"输入，把输出变成1，称为AND-OR锁存器。</p></div>	
+<img style="float:right;" width="70%" src="../img/0603.png" />
 <div class='layout'><p>and a "reset" input, which resets the output to a 0.</p><p>复位输入，把输出变成0</p></div>	
 <div class='layout'><p>If set and reset are both 0, the circuit just outputs whatever was last put in it.</p><p>如果"设置"和"复位"都是0，电路会输出最后放入的内容</p></div>	
+<img style="float:right;" width="70%" src="../img/0604.png" />
 <div class='layout'><p>In other words, it remembers a single bit of information!</p><p>也就是说，它存住了1位的信息！</p></div>	
 <div class='layout'><p>Memory!</p><p>存储！</p></div>	
 <div class='layout'><p>This is called a "latch" because it "latches onto" a particular value and stays that way.</p><p>这叫"锁存"，因为它"锁定"了一个值</p></div>	
@@ -342,6 +349,7 @@ margin:0;
 <div class='layout'><p>which is called the write enable line.</p><p>这条线叫"允许写入线"</p></div>	
 <div class='layout'><p>By adding a few extra logic gates, we can build this circuit,</p><p>加一些额外逻辑门，可以做出这个电路</p></div>	
 <div class='layout'><p>which is called a Gated Latch since the "gate" can be opened or closed.</p><p>这叫"门锁"，因为门可以打开和关上</p></div>	
+<img style="float:right;" width="70%" src="../img/0605.png" />
 <div class='layout'><p>Now this circuit is starting to get a little complicated.</p><p>现在有点复杂了</p></div>	
 <div class='layout'><p>We don't want to have to deal with all the individual logic gates...</p><p>我们不想关心单独的逻辑门</p></div>	
 <div class='layout'><p>so as before, we're going to bump up a level of abstraction,</p><p>所以我们提升一层抽象</p></div>	
@@ -386,6 +394,7 @@ margin:0;
 <div class='layout'><p>we put them in a grid.</p><p>而是做成网格</p></div>	
 <div class='layout'><p>For 256 bits, we need a 16 by 16 grid of latches with 16 rows and columns of wires.</p><p>存256位，我们用16x16网格的锁存器，有16行16列</p></div>	
 <div class='layout'><p>To activate any one latch, we must turn on the corresponding row AND column wire.</p><p>要启用某个锁存器，就打开相应的行线和列线</p></div>	
+<img style="float:right;" width="70%" src="../img/0606.png" />
 <div class='layout'><p>Let's zoom in and see how this works.</p><p>放大看看怎么做的</p></div>	
 <div class='layout'><p>We only want the latch at the intersection of the two active wires to be enabled,</p><p>我们只想打开交叉处锁存器的"允许写入线"</p></div>	
 <div class='layout'><p>but all of the other latches should stay disabled.</p><p>所有其他锁存器，保持关闭</p></div>	
@@ -424,12 +433,14 @@ margin:0;
 <div class='layout'><p>So if we pass in 0000, it will select the very first column for us.</p><p>如果输入0000，它会选择第一列</p></div>	
 <div class='layout'><p>If we pass in 0001, the next column is selected, and so on.</p><p>如果输入0001，会选择下一列，依此类推</p></div>	
 <div class='layout'><p>We need one multiplexer to handle our rows and another multiplexer to handle the columns.</p><p>一个多路复用器处理行<sup>(row)</sup>，另一个多路复用器处理列<sup>(column)</sup></p></div>	
+<img style="float:right;" width="70%" src="../img/0607.png" />
 <div class='layout'><p>Ok, it's starting to get complicated again,</p><p>好吧，开始有点复杂了</p></div>	
 <div class='layout'><p>so let's make our 256-bit memory its own component.</p><p>那么把256位内存当成一个整体好了</p></div>	
 <div class='layout'><p>Once again a new level of abstraction!</p><p>又提升了一层抽象！</p></div>	
 <div class='layout'><p>It takes an 8-bit address for input the 4 bits for the column and 4 for the row.</p><p>它输入一个8位地址：4位代表列，4位代表行</p></div>	
 <div class='layout'><p>We also need write and read enable wires.</p><p>我们还需要"允许写入线"和"允许读取线"</p></div>	
 <div class='layout'><p>And finally, we need just one data wire, which can be used to read or write data.</p><p>最后，还需要一条数据线，用于读/写数据</p></div>	
+<img style="float:right;" width="70%" src="../img/0608.png" />
 <div class='layout'><p>Unfortunately, even 256-bits of memory isn't enough to run much of anything,</p><p>不幸的是，256位的内存也没法做什么事</p></div>	
 <div class='layout'><p>so we need to scale up even more!</p><p>所以还要扩大规模</p></div>	
 <div class='layout'><p>We're going to put them in a row.</p><p>把它们并排放置</p></div>	
@@ -438,11 +449,13 @@ margin:0;
 <div class='layout'><p>To do this, we feed the exact same address into all 8 of our 256-bit memory components at the same time,</p><p>为了存一个8位数字，我们同时给8个256位内存一样的地址</p></div>	
 <div class='layout'><p>and each one saves one bit of the number.</p><p>每个地址存1位</p></div>	
 <div class='layout'><p>That means the component we just made can store 256 bytes at 256 different addresses.</p><p>意味着这里总共能存256个字节（byte）</p></div>	
+<img style="float:right;" width="70%" src="../img/0609.png" />
 <div class='layout'><p>Again, to keep things simple, we want to leave behind this inner complexity.</p><p>再次，为了简单，我们不管内部</p></div>	
 <div class='layout'><p>Instead of thinking of this as a series of individual memory modules and circuits,</p><p>不看作是一堆独立的存储模块和电路</p></div>	
 <div class='layout'><p>we'll think of it as a uniform bank of addressable memory.</p><p>而是看成一个整体的可寻址内存</p></div>	
 <div class='layout'><p>We have 256 addresses,</p><p>我们有256个地址</p></div>	
 <div class='layout'><p>and at each address, we can read or write an 8-bit value.</p><p>每个地址能读或写一个8位值</p></div>	
+<img style="float:right;" width="70%" src="../img/0610.png" />
 <div class='layout'><p>We're going to use this memory component next episode when we build our CPU.</p><p>我们下集做CPU时会用到这个内存</p></div>	
 <div class='layout'><p>The way that modern computers scale to megabytes and gigabytes of memory</p><p>现代计算机的内存，扩展到上兆字节（MB）和千兆字节（GB）的方式</p></div>	
 <div class='layout'><p>is by doing the same thing we've been doing here</p><p>和我们这里做的一样</p></div>	
@@ -466,6 +479,7 @@ margin:0;
 <div class='layout'><p>This is a matrix of 128 by 64 bits.</p><p>这个矩阵是128位x64位</p></div>	
 <div class='layout'><p>That's 8192 bits in total.</p><p>总共8192位</p></div>	
 <div class='layout'><p>Each of our 32 squares has 4 matrices, so that's 32 thousand, 7 hundred and 68 bits.</p><p>每个方格4个矩阵，所以一个方格有32768个位（8192x4=32768）</p></div>	
+<img style="float:right;" width="70%" src="../img/0611.png" />
 <div class='layout'><p>And there are 32 squares in total.</p><p>而一共32个方格</p></div>	
 <div class='layout'><p>So all in all, that's roughly 1 million bits of memory in each chip.</p><p>总而言之，1个芯片大约存100万位</p></div>	
 <div class='layout'><p>Our RAM stick has 8 of these chips, so in total, this RAM can store 8 millions bits,</p><p>RAM有8个芯片，所以总共800万位</p></div>	
