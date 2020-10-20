@@ -1,0 +1,750 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>summary</h3>
+
+<h4>第 1 集：计算机早期历史</h4>
+<p>提到的设备：算盘 → 步进计算器 → 差分机 → 分析机 → 打孔卡片制表机</p>
+<p>提到的人名：Charles Babbage, Ada Lovelace</p>
+<p>02:27 最早的计算设备是算盘，举例如何使用</p>
+<p>04:31 Computer 从指代职业变成指代机器</p>
+<p>04:57 机器里有名的是：步进计算器。第一个可以做加减乘除的机器</p>
+<p>06:44 炮弹为了精准，要计算弹道，二战是查表来做。但每次改设计了就需要做一张新表</p>
+<p>07:30 Charles Babbage 提出了 "差分机", 在构造差分机期间，想出了分析机, 分析机是通用计算机</p>
+<p>08:50 Lovelace 给分析机写了假想程序，因此成为了第一位程序员</p>
+<p>09:25 人口普查 10 年一次. Herman Hollerith 的打孔卡片制表机大大提升了效率</p>
+<h4>第 2 集：电子计算机</h4>
+<p>提到的设备：继电器 → 真空管 → 晶体管</p>
+<p>00:17 20世纪的发展要求更强的计算能力。柜子大小的计算机发展到房间大小</p>
+<p>01:06 哈佛 Mark 1 号，IBM 1944 年做的</p>
+<p>02:25 继电器，继电器一秒最多 50 次开关</p>
+<p>03:24 继电器出 bug</p>
+<p>03:49 1904 年，热电子管出现，第一个真空管。改进后变成和继电器的功能一样</p>
+<p>05:34 "巨人1号" 计算机在英国布莱切利园首次大规模使用真空管。但编程麻烦，还要配置</p>
+<p>06:40 1946 年，宾夕法尼亚大学的 ENIAC 是第一个通用可编程计算机</p>
+<p>07:36 1947 年，贝尔实验室做出了晶体管，晶体管有诸多好处，IBM 很快全面转向晶体管</p>
+<p>09:27 硅谷的典故：很多晶体管和半导体的开发都是这里做的。而生产半导体最常见的材料是硅</p>
+<p>09:41 肖克利半导体 → 仙童半导体 → 英特尔</p>
+<h4>第 3 集：布尔逻辑和逻辑门</h4>
+<p>01:00 什么是二进制, 为什么用二进制, 布尔逻辑</p>
+<p>02:46 3个基本操作：NOT，AND，OR</p>
+<p>02:51 解释3个基本操作</p>
+<p>07:11 XOR 异或</p>
+<h4>第 4 集：二进制</h4>
+<p>00:46 用十进制举例二进制的原理，演示二进制加法。存储单位 MB GB TB 等</p>
+<p>05:30 正数，负数，整数，浮点数的表示</p>
+<p>07:20 美国信息交换标准代码 - ASCII, 用来表示字符</p>
+<p>09:00 UNICODE 1992 年诞生，是字符编码标准，解决 ASCII 不够表达所有语言的问题</p>
+<h4>第 5 集：算数逻辑单元 - ALU</h4>
+<p>00:03 简单介绍 ALU ，英特尔 74181</p>
+<p>01:24 ALU 有 2 个单元，1 个算术单元和 1 个逻辑单元</p>
+<p>01:32 算术单元</p>
+<p>半加器 (处理1个 bit，2个输入)</p>
+<p>全加器 (处理1个 bit，3个输入)</p>
+<p>8 bit 加法 (1个半加器，7个全加器）</p>
+<p>溢出的概念，吃豆人的例子</p>
+<p>乘法除法</p>
+<p>07:32 逻辑单元</p>
+<p>检测数字是否为 0 的电路（一堆 OR 门最后加个 NOT 门）</p>
+<p>ALU 抽象成一个 V 符号</p>
+<p>Flag 标志（是否相等，是否小于，是否溢出等等）</p>
+<h4>第 6 集：寄存器和内存</h4>
+<p>本集重点是 Memory （存储 / 内存两种含义）</p>
+<p>03:30 存 1 位 (Gated Latch - 锁存器）</p>
+<p>04:48 存 8 位 (Register - 寄存器)</p>
+<p>05:46 16x16 的矩阵存 256 位</p>
+<p>数据选择器/多路复用器 (Multiplexer) 解码 8 位地址，定位到单个锁存器</p>
+<p>07:38 4 位代表行， 4 位代表列</p>
+<p>08:16 组合 256 位内存 + 多路复用器</p>
+<p>09:01 可寻址的 256 字节内存</p>
+<p>一条1980年代的内存，1M 大小</p>
+<p>10:14 8个模块，每个模块有32个小方块，</p>
+<p>每个小方块有 4 个小块，每个小块是 128 位 x 64 位</p>
+<h4>第 7 集：中央处理器（CPU)</h4>
+<p>重点</p>
+<p>拼个 CPU 出来</p>
+<p>CPU 怎么执行命令</p>
+<p>01:00 RAM + 寄存器 + ALU 做个 CPU</p>
+<p>04:00 解释 "取指令→解释→执行" 这个循环</p>
+<p>08:00 时钟是什么, 时钟速度和赫兹</p>
+<p>10:00 超频提升性能, 降频省电</p>
+<h4>第 8 集：指令和程序</h4>
+<p>本集重点：一步步带你运行一遍程序</p>
+<p>00:45 回顾上集的例子程序，一步步讲解。介绍”指令集”的概念</p>
+<p>LOAD_A，LOAD_B，SUB，JUMP，ADD，HALT 等指令</p>
+<p>05:16 带条件跳转，JUMP NEGATIVE 是负数才跳转，还有其他类型的 JUMP</p>
+<p>08:00 真正现代 CPU 用更多指令集。位数更长。</p>
+<p>09:07 1971年的英特尔 4004 处理器，有 46 个指令</p>
+<p>09:36 如今英特尔酷睿 i7, 有上千条指令</p>
+<h4>第 9 集：高级 CPU 设计</h4>
+<p>00:24 早期是加快晶体管切换速度，来提升 CPU 速度</p>
+<p>01:20 给 CPU 专门的除法电路 + 其他电路来做复杂操作，比如游戏，视频解码</p>
+<p>02:28 给 CPU 加缓存，提高数据存取速度，更快喂给 CPU，用计算餐馆销售额举例</p>
+<p>05:13 脏位 - Dirty bit</p>
+<p>05:33 流水线设计，用 1 个洗衣机和 1 个干燥机举例</p>
+<p>06:01 并行处理 - parallelize</p>
+<p>07:33 乱序执行 - out-of-order execution</p>
+<p>08:21 推测执行 - speculative execution</p>
+<p>08:50 分支预测 - branch prediction</p>
+<p>09:34 多个 ALU</p>
+<p>09:54 多核 (Core)</p>
+<p>10:11 多个独立 CPU</p>
+<p>10:52 超级计算机，中国的"神威太湖之光"</p>
+<h4>第 10 集：早期的编程方式</h4>
+<p>本集重点：早期计算机如何编程</p>
+<p>打孔纸卡 → 插线板 → 面板拨开关</p>
+<p>00:00 开头说本集重点：程序如何进入计算机</p>
+<p>00:53 拿纺织业举例，给机器编程的需求远在计算机出现前就有了</p>
+<p>01:41 打孔纸卡 - Punched card</p>
+<p>02:36 插线板 - Plugboard</p>
+<p>04:20 冯诺依曼架构 - Von Neumann Architecture</p>
+<p>07:00 面板编程 - Panel programming</p>
+<p>07:29 第一款取得商业成功的家用计算机: Altair 8800</p>
+<p>08:15 编程依然很困难，人们需要更友好更简单的方式编程</p>
+<p>08:44 下周主题：编程语言</p>
+<h4>第 11 集：编程语言发展史</h4>
+<p>编程：二进制 → 助记符（汇编器）→ A-0（编译器）→ FORTRAIN</p>
+<p>01:45 二进制写程序，先纸上写伪代码，手工转二进制，很快就烦了</p>
+<p>02:28 用 "助记符” 写代码（LOAD_A 14）为了把助记符转二进制，汇编器诞生 (Assembler)</p>
+<p>04:32 葛丽丝·霍普 (Grace Hopper) - 哈佛1号计算机首批程序员, 海军军官</p>
+<p>05:13 Grace 设计了编程语言 A-0</p>
+<p>05:29 Grace 1952 年做了第一个编译器 (Compiler)，实现 A-0</p>
+<p>06:29 变量 (Variables)</p>
+<p>07:01 FORTRAN</p>
+<p>08:18 COBOL</p>
+<p>09:25 新语言</p>
+<p>1960 年代：ALGOL，LISP，BASIC</p>
+<p>1970 年代：Pascal，C，Smalltalk</p>
+<p>1980 年代：C++，Objective-C，Perl</p>
+<p>1990 年代：Python，Ruby，Java</p>
+<h4>第 12 集：编程基础 - 语句和函数</h4>
+<p>00:50 变量, 赋值语句</p>
+<p>02:08 Grace Hopper 拍虫子游戏</p>
+<p>02:52 if 判断</p>
+<p>04:19 while 循环</p>
+<p>05:48 for 循环</p>
+<p>07:00 函数</p>
+<p>11:11 下集介绍算法</p>
+<h4>第 13 集：算法入门</h4>
+<p>03:00 选择排序 - Selection sort</p>
+<p>03:52 大 O 表示法 - Big O notation</p>
+<p>04:31 归并排序 - Merge sort</p>
+<p>08:03 Dijkstra 算法</p>
+<h4>第 14 集：数据结构</h4>
+<p>00:39 数组 - Array</p>
+<p>02:06 字符串 - String</p>
+<p>03:12 矩阵 - Matrix</p>
+<p>04:05 结构体 - Struct</p>
+<p>04:46 指针 - Pointer</p>
+<p>04:44 节点 - Node</p>
+<p>04:53 链表 - Linked List</p>
+<p>06:21 队列 - Queue</p>
+<p>06:21 栈 - Stack</p>
+<p>07:31 树 - Tree</p>
+<p>08:01 二叉树 - Binary Tree</p>
+<p>08:26 图 - Graph</p>
+<p>08:50 没时间讲红黑树和堆, 不同数据结构适用不同场景</p>
+<h4>第 15 集：阿兰·图灵</h4>
+<p>00:33 介绍图灵</p>
+<p>00:52 可判定性问题</p>
+<p>01:14 阿隆佐·丘奇，Lambda 算子</p>
+<p>01:38 图灵机</p>
+<p>04:54 停机问题</p>
+<p>08:09 破解德军英格玛加密机</p>
+<p>10:40 图灵测试</p>
+<p>11:18 图灵的个人生活</p>
+<p>12:07 图灵奖</p>
+<h4>第 16 集：软件工程</h4>
+<p>01:31 对象 Object</p>
+<p>02:39 面向对象编程 Object Oriented Programming.</p>
+<p>03:55 API Application Programming Interface</p>
+<p>04:33 public, private</p>
+<p>05:36 集成开发环境, IDE - Integrated Development Environments</p>
+<p>06:09 调试 debugging</p>
+<p>06:31 文档和注释 - readme, comment</p>
+<p>07:33 版本控制 Version control</p>
+<p>08:50 质量控制 Quality Assurance testing，QA</p>
+<p>09:21 Beta, Alpha</p>
+<h4>第 17 集：集成电路与摩尔定律</h4>
+<p>本集重点：晶圆的制作流程：光刻 (04:21~07:42)</p>
+<p>00:51 分立元件 Discrete components</p>
+<p>01:09 数字暴政 Tyranny of Numbers - 是 1960 年代工程师碰到的问题</p>
+<p>意思是如果想加强电脑性能，就要更多部件，这导致更多线路，更复杂。所以很难做</p>
+<p>04:21 光刻 Photolithography</p>
+<p>04:26 晶圆 Wafer</p>
+<p>04:57 光刻胶 Photoresist</p>
+<p>05:08 光掩膜 Photomask</p>
+<p>06:00 掺杂 Doping</p>
+<p>09:09 摩尔定律 Moore’s Law.</p>
+<p>09:38 英特尔 Intel</p>
+<p>10:20 晶体管数量大幅度增长, 1980年三万个，1990年一百万个，2000年三千万个，2010年十亿个</p>
+<p>11:44 进一步小型化会碰到 2 个问题 1. 光的波长不足以制作更精细的设计 2. 量子隧穿效应</p>
+<h4>第 18 集：操作系统</h4>
+<p>00:48 操作系统 Operating systems</p>
+<p>01:34 批处理 Batch processing</p>
+<p>01:58 计算机变便宜变多，有不同配置，写程序处理不同硬件细节很痛苦，因此操作系统负责抽象硬件</p>
+<p>02:12 外部设备 Peripherals</p>
+<p>02:48 设备驱动程序 Device drivers</p>
+<p>04:43 多任务处理 Multitasking</p>
+<p>05:54 虚拟内存 Virtual Memory</p>
+<p>07:09 动态内存分配 Dynamic memory allocation</p>
+<p>07:31 内存保护 Memory Protection</p>
+<p>07:54 1970年代，计算机足够便宜，大学买了让学生用，多个学生用多个 "终端" 连接到主机</p>
+<p>08:29 多用户分时操作系统，Multics</p>
+<p>09:32 Unix</p>
+<p>11:02 MS-DOS</p>
+<p>12:09 下集是内存&存储介质</p>
+<h4>第 19 集：内存&储存介质</h4>
+<p>本集重点：存储技术的发展</p>
+<p>01:01 纸卡 Paper punch cards</p>
+<p>02:01 延迟线存储器 Delay Line Memory</p>
+<p>04:06 磁芯 Magnetic Core Memory</p>
+<p>06:08 磁带 Magnetic Tape</p>
+<p>07:08 磁鼓 Magnetic Drum Memory</p>
+<p>07:43 硬盘 Hard Disk Drives</p>
+<p>08:53 内存层次结构 Memory Hierarchy</p>
+<p>09:36 软盘 Floppy Disk</p>
+<p>10:09 光盘 Compact Disk</p>
+<p>10:51 固态硬盘 Solid State Drives</p>
+<h4>第 20 集：文件系统</h4>
+<p>00:47 文件格式：可以随便存文件数据，但按格式存会更方便</p>
+<p>01:00 TXT 文本文件：ASCII</p>
+<p>01:31 WAV 音频文件：每秒上千次的音频采样数字</p>
+<p>02:47 BMP 图片文件：像素的红绿蓝 RGB 值</p>
+<p>04:43 文件系统：很早期时空间小，整个存储器就像一整个文件。后来随容量增长，多文件非常必要</p>
+<p>05:37 目录文件：用来解决多文件问题，存其他文件的信息，比如开头，结尾，创建时间等</p>
+<p>06:39 平面文件系统 - Flat File System：文件都在同一个层次，早期空间小，只有十几个文件，平面系统够用</p>
+<p>06:57 如果文件紧密的一个个前后排序会造成问题，所以文件系统会： 1. 把空间划分成一块块 2. 文件拆分存在多个块里</p>
+<p>08:30 文件的增删改查会不可避免的造成文件散落在各个块里，</p>
+<p>如果是磁带这样的存储介质就会造成问题，所以做碎片整理</p>
+<p>09:46 分层文件系统 - Hierarchical File System：有不同文件夹，文件夹可以层层嵌套</p>
+<h4>第21集讲压缩</h4>
+<p>第 21 集：压缩</p>
+<p>00:26 压缩的好处是能存更多文件，传输也更快</p>
+<p>01:52 游程编码 Run-Length Encoding</p>
+<p>02:45 无损压缩 Lossless compression</p>
+<p>03:55 霍夫曼树 Huffman Tree</p>
+<p>05:56 "消除冗余"和"用更紧凑的表示方法"，这两种方法通常会组合使用</p>
+<p>06:07 字典编码 Dictionary coders, 游程编码和 字典编码都是无损压缩</p>
+<p>08:03 感知编码 Perceptual coding</p>
+<p>08:09 有损压缩 jpeg 格式</p>
+<p>09:39 时间冗余 Temporal redundancy</p>
+<p>10:30 MPEG-4 视频编码</p>
+<h4>第 22 集：命令行界面</h4>
+<p>本集重点：计算机早期同时输入程序和数据（用纸卡/纸带）</p>
+<p>运行开始直到结束，中间没有人类进行操作，</p>
+<p>原因是计算机很贵，不能等人类慢慢输入，执行完结果打印到纸上 (02:34)</p>
+<p>到1950年代，计算机足够便宜+快，人类和计算机交互式操作变得可行</p>
+<p>为了让人类输入到计算机，改造之前就有的打字机，变成电传打字机 (02:44~05:38)</p>
+<p>到1970年代末，屏幕成本足够低，屏幕代替电传打字机，屏幕成为标配 (07:24)</p>
+<p>00:32 人机交互 Human-Computer Interaction</p>
+<p>00:50 早期输出数据是打印到纸上，而输入是用纸卡/纸带一次性把程序和数据都给进去</p>
+<p>03:00 QWERTY 打字机的发展，克里斯托弗·莱瑟姆·肖尔斯发明于 1868 年</p>
+<p>05:38 电传打字机 Teletype machine</p>
+<p>06:32 命令行界面 Command line interface</p>
+<p>06:38 ls 命令</p>
+<p>08:22 早期文字游戏 Zork (1977年)</p>
+<p>08:47 cd 命令</p>
+<h4>第 23 集：屏幕与 2D 图形显示</h4>
+<p>00:05 PDP-1 计算机。键盘和显示器分开，屏幕显示临时值</p>
+<p>01:14 阴极射线管 Cathode Ray Tube (CRT)</p>
+<p>01:38 CRT 有两种绘图方式：</p>
+<p>矢量扫描 Vector Scanning</p>
+<p>光栅扫描 Raster Scanning</p>
+<p>02:14 液晶显示器 Liquid Crystal Displays (LCD)，像素 (Pixel)</p>
+<p>03:32 字符生成器 Character generator</p>
+<p>03:45 屏幕缓冲区 Screen buffer</p>
+<p>05:09 矢量命令画图</p>
+<p>06:34 Sketchpad, 光笔 (Light pen)</p>
+<p>09:00 函数画线，矩形</p>
+<h4>第 24 集：冷战和消费主义</h4>
+<p>本集重点：冷战导致美国往计算机领域投入大量资源 (00:00~01:43)</p>
+<p>范内瓦·布什预见了计算机的潜力，提出假想机器 Memex</p>
+<p>帮助建立国家科学基金会，给科学研究提供资金 (01:43~03:43)</p>
+<p>1950 年代消费者开始买晶体管设备，收音机大卖</p>
+<p>日本取得晶体管授权后，索尼做了晶体管收音机，为日本半导体行业崛起埋下种子 (03:43~04:29）</p>
+<p>苏联 1961 年把宇航员加加林送上太空，导致美国提出登月</p>
+<p>NASA 预算大大增加，用集成电路来制作登月计算机 (04:29~06:27)</p>
+<p>集成电路的发展实际上是由军事应用大大推进的，阿波罗登月毕竟只有 17 次</p>
+<p>美国造超级计算机进一步推进集成电路 (04:29~07:11)</p>
+<p>美国半导体行业一开始靠政府高利润合同活着，忽略消费者市场，1970年代冷战渐消，行业开始衰败</p>
+<p>很多公司倒闭，英特尔转型处理器 (07:11~08:23)</p>
+<p>末尾总结：政府和消费者推动了计算机的发展</p>
+<p>早期靠政府资金，让技术发展到足够商用，然后消费者购买商用产品继续推动产品发展 (08:23~10:41)</p>
+<h4>第 25 集：个人计算机革命</h4>
+<p>本集：全是历史故事</p>
+<p>00:18 1970年代初成本下降，个人计算机变得可行</p>
+<p>01:51 Altair 8800</p>
+<p>02:32 比尔·盖茨和 保罗·艾伦写 BASIC 解释器</p>
+<p>03:45 乔布斯提议卖组装好的计算机，Apple-I 诞生</p>
+<p>04:40 1977年出现3款开箱即用计算机：</p>
+<p>"Apple-II"，"TRS-80 Model I"，"Commodore PET 2001"</p>
+<p>06:26 IBM 意识到个人计算机市场</p>
+<p>IBM PC 发布，采用开放架构，兼容的机器都叫 IBM Compatible (IBM 兼容)</p>
+<p>生态系统产生雪球效应：</p>
+<p>因为用户多，软硬件开发人员更愿意花精力在这个平台</p>
+<p>因为软硬件多，用户也更乐意买 "IBM 兼容" 的计算机</p>
+<p>08:44 苹果选封闭架构，一切都自己来，只有苹果在非 "IBM 兼容" 下保持了足够市场份额</p>
+<h4>第 26 集：图形用户界面 (GUI)</h4>
+<p>01:10 图形界面先驱：道格拉斯·恩格尔巴特（Douglas Engelbart）</p>
+<p>03:20 1970年成立帕洛阿尔托研究中心（Palo Alto Research Center）</p>
+<p>03:29 1973年完成 Xerox Alto(施乐奥托) 计算机</p>
+<p>04:42 举例：写一个简单的 GUI 程序</p>
+<p>06:38 1981年的 Xerox Star system(施乐之星系统)</p>
+<p>08:18 史蒂夫·乔布斯去施乐参观</p>
+<p>07:45 所见即所得 WYSIWYG</p>
+<p>09:15 1983年推出 Apple Lisa</p>
+<p>09:31 1984年推出 Macintosh</p>
+<p>10:12 1985年推出 Windows 1.0，之后出到 3.1</p>
+<p>10:43 1995年推出 Windows 95 提供图形界面</p>
+<p>11:08 1995年微软做失败的 Microsoft Bob</p>
+<h4>第 27 集：3D 图形</h4>
+<p>01:15 线框渲染 Wireframe Rendering</p>
+<p>01:39 正交投影 Orthographic Projection</p>
+<p>01:50 透视投射 Perspective Projection</p>
+<p>02:14 网格 Mesh</p>
+<p>02:37 三角形更常用因为能定义唯一的平面</p>
+<p>03:09 扫描线渲染 Scanline Rendering</p>
+<p>05:04 遮挡 Occlusion</p>
+<p>05:19 画家算法 Painter's Algorithm</p>
+<p>06:09 深度缓冲 Z Buffering</p>
+<p>07:45 Z Fighting 错误</p>
+<p>07:51 背面剔除 Back Face Culling</p>
+<p>08:53 表面法线 Surface Normal</p>
+<p>09:33 平面着色 Flat Shading</p>
+<p>09:43 高洛德着色 Gouraud shading, 冯氏着色 Phong Shading</p>
+<p>10:06 纹理映射 Texture Mapping</p>
+<p>11:24 图形处理单元 GPU, Graphics Processing Unit</p>
+<h4>第 28 集：计算机网络</h4>
+<p>02:05 局域网 Local Area Networks - LAN</p>
+<p>02:36 媒体访问控制地址 Media Access Control address - MAC</p>
+<p>02:55 载波侦听多路访问 Carrier Sense Multiple Access - CSMA</p>
+<p>05:18 指数退避 Exponential Backoff</p>
+<p>05:36 冲突域 Collision Domain</p>
+<p>07:08 电路交换 Circuit Switching</p>
+<p>07:36 报文交换 Message Switching</p>
+<p>10:20 分组交换 Packet Switching</p>
+<h4>第 29 集：互联网</h4>
+<p>02:23 IP - 互联网协议 - Internet Protocol</p>
+<p>03:00 UDP - 用户数据报协议 - User Datagram Protocol</p>
+<p>03:41 校验和 - Checksum</p>
+<p>05:26 TCP - 传输控制协议 - Transmission Control Protocol</p>
+<p>08:21 DNS - 域名系统 - Domain Name System</p>
+<p>10:47 OSI - 开放式系统互联通信参考模型 - Open System Interconnection</p>
+<h4>第 30 集：万维网</h4>
+<p>01:01 超链接 Hyperlinks</p>
+<p>02:20 URL - 统一资源定位器 - Uniform Resource Locator</p>
+<p>03:01 HTTP - 超文本传输协议 - HyperText Transfer Protocol</p>
+<p>04:13 HTML - 超文本标记语言 - HyperText Markup Language</p>
+<p>04:24 写一个简单网页，用到了 &lt;h1> &lt;a> &lt;h2> &lt;ol> &lt;li> 标签</p>
+<p>06:04 第一个浏览器和服务器是 Tim Berners-Lee 花了 2 个月在 CERN 写的</p>
+<p>06:32 1991年正式发布，万维网就此诞生</p>
+<p>07:19 开始讲搜索引擎的故事</p>
+<p>07:40 Jerry 和 David 的万维网指南后来改名成 Yahoo</p>
+<p>07:52 搜索引擎 JumpStation</p>
+<p>09:07 搜索引擎 Google</p>
+<p>09:20 网络中立性</p>
+<h4>第 31 集：计算机安全</h4>
+<p>01:00 Secrecy, Integrity, Availability</p>
+<p>保密性, 完整性, 可用性</p>
+<p>01:49 Threat Model 威胁模型</p>
+<p>03:14 身份验证 (Authentication) 的三种方式：</p>
+<p>What you know, 你知道什么</p>
+<p>What you have, 你有什么</p>
+<p>What you are, 你是什么</p>
+<p>07:34 访问控制 Access Control</p>
+<p>08:48 Bell LaPadula model 不能向上读取，不能向下写入</p>
+<p>11:00 隔离 Isolation, 沙盒 Sandbox</p>
+<h4>第 32 集：黑客与攻击</h4>
+<p>01:28 社会工程学 Social Engineering</p>
+<p>01:38 钓鱼 Phishing</p>
+<p>02:06 假托 Pretexting</p>
+<p>02:50 木马 Trojan Horses</p>
+<p>03:32 NAND镜像 NAND Mirroring</p>
+<p>04:12 漏洞利用 Exploit</p>
+<p>04:16 缓冲区溢出 Buffer Overflow</p>
+<p>05:45 边界检查 Bounds Checking</p>
+<p>06:16 代码注入 Code Injection</p>
+<p>09:32 零日漏洞 Zero Day Vulnerability</p>
+<p>09:53 计算机蠕虫 Worms</p>
+<p>09:58 僵尸网络 Botnet</p>
+<p>10:11 拒绝服务攻击 DDoS</p>
+<h4>第 33 集：加密</h4>
+<p>00:16 多层防御 Defence in depth</p>
+<p>01:00 加密 - Encryption，解密 - Decryption</p>
+<p>01:11 凯撒加密 Caesar cipher</p>
+<p>01:27 替换加密 Substitution cipher</p>
+<p>01:59 移位加密 Permutation cipher</p>
+<p>02:03 列移位加密 Columnar transposition cipher</p>
+<p>02:37 德国 Enigma 加密机</p>
+<p>04:54 1977年"数据加密标准" - Data Encryption Standard (DES)</p>
+<p>05:24 2001年"高级加密标准" - Advanced Encryption Standard (AES)</p>
+<p>07:06 密钥交换 - Key exchange</p>
+<p>07:33 用颜色来举例"单向函数"和"密钥加密"的原理</p>
+<p>08:24 迪菲-赫尔曼密钥交换 - Diffie-Hellman Key Exchange</p>
+<p>10:18 非对称加密 - Asymmetric encryption</p>
+<p>11:22 非对称加密算法 RSA</p>
+<h4>第 34 集：机器学习与人工智能</h4>
+<p>01:23 分类 Classification</p>
+<p>01:25 分类器 Classifier</p>
+<p>01:34 特征 Feature</p>
+<p>02:03 标记数据 Labeled data</p>
+<p>02:38 决策边界 Decision boundaries</p>
+<p>03:00 混淆矩阵 Confusion matrix</p>
+<p>03:39 未标签数据 Unlabeled data</p>
+<p>03:49 决策树 Decision tree</p>
+<p>04:25 支持向量机 Support Vector Machines</p>
+<p>05:52 人工神经网络 Artificial Neural Network</p>
+<p>08:34 深度学习 Deep learning</p>
+<p>09:21 弱AI, 窄AI Weak AI, Narrow AI</p>
+<p>09:43 强AI Strong AI</p>
+<p>10:42 强化学习 Reinforcement Learning</p>
+<h4>第 35 集：计算机视觉</h4>
+<p>02:41 检测垂直边缘的算法</p>
+<p>03:26 核/过滤器 kernel or filter</p>
+<p>03:56 卷积 convolution</p>
+<p>04:23 Prewitt 算子 Prewitt Operators</p>
+<p>05:34 维奥拉·琼斯人脸检测 Viola-Jones Face Detection</p>
+<p>05:35 卷积神经网络 Convolutional Neural Networks</p>
+<p>07:33 识别出脸之后，可以进一步用其他算法定位面部标志，如眼睛和眉毛具体位置，从而判断心情等信息</p>
+<p>08:52 跟踪全身的标记点，如肩部，手臂等</p>
+<h4>第 36 集：自然语言处理</h4>
+<p>01:50 词性 Parts of speech</p>
+<p>02:15 短语结构规则 Phrase structure rules</p>
+<p>02:32 分析树 Parse tree</p>
+<p>05:30 语音识别 Speech recognition</p>
+<p>07:26 谱图 Spectrogram</p>
+<p>07:44 快速傅立叶变换 Fast Fourier Transform</p>
+<p>08:42 音素 Phonemes</p>
+<p>09:29 语音合成 Speech Synthesis</p>
+<h4>第 37 集：机器人</h4>
+<p>02:08 法国吃饭鸭 - Digesting Duck, Canard Digerateur</p>
+<p>02:23 土耳其行棋傀儡, 下国际象棋</p>
+<p>02:43 第一台计算机控制的机器出现在1940年代晚期，叫数控机器, Computer Numerical Control(CNC)</p>
+<p>03:32 1960年 Unimate，第一个商业贩卖的可编程工业机器人</p>
+<p>03:47 简单控制回路 simple control loop</p>
+<p>04:08 负反馈回路 negative feedback loop</p>
+<p>05:17 比例-积分-微分控制器 Proportional–Integral–Derivative controller PID 控制器</p>
+<p>10:48 机器人三定律 Three Laws of Robotics</p>
+<h4>第 38 集：计算机心理学</h4>
+<p>00:45 我们需要了解人类心理学，做出更好的计算机</p>
+<p>01:12 易用度 - Usability</p>
+<p>01:31 颜色强度排序和 颜色排序</p>
+<p>02:30 分组更好记，电话号码 317-555-3897 比 3175553897 好记</p>
+<p>03:25 直观功能 - Affordances</p>
+<p>04:33 认出 vs 回想 Recognition vs Recall</p>
+<p>05:45 让机器有一定情商以及 Facebook 的研究</p>
+<p>08:40 用软件修正注视位置。让视频通话时看起来像盯着对方，而不是盯着下方</p>
+<p>09:58 把机器人做的像人，恐怖谷理论</p>
+<p>11:35 有很多开放式的问题，心理学帮助我们明白不同选择可能带来的影响</p>
+<h4>第 39 集：教育科技</h4>
+<p>02:15 通过调速，暂停等技巧，加强学习效率</p>
+<p>03:15 大型开放式在线课程 - Massive Open Online Courses (MOOC)</p>
+<p>05:08 智能辅导系统 - Intelligent Tutoring Systems</p>
+<p>05:22 判断规则 - Production rule</p>
+<p>06:10 域模型 - Domain Model</p>
+<p>06:46 贝叶斯知识追踪 Bayesian knowledge tracing</p>
+<p>学生已经学会的概率</p>
+<p>瞎猜的概率</p>
+<p>失误的概率</p>
+<p>做题过程中学会的概率</p>
+<p>09:27 教育数据挖掘 Educational Data Mining</p>
+<h4>（完结）第 40 集：奇点，天网，计算机的未来</h4>
+<p>01:21 普适计算 Ubiquitous Computing</p>
+<p>04:55 奇点 Singularity</p>
+<p>06:51 把工作分为4个象限，讨论自动化带来的影响</p>
+<p>10:15 机器人的存在时间可能长过人类，可以长时间探索宇宙</p>
+
+
+<p style='float:right;'>本页共452段，16004个字符，25539 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

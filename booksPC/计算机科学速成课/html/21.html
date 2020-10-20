@@ -311,6 +311,7 @@ margin:0;
 <div class='layout'><p>To ensure that computers don't get confused with which bytes are run lengths and which</p><p>为了让计算机能分辨哪些字节是"长度" </p></div>	
 <div class='layout'><p>bytes represent color, we have to be consistent in how we apply this scheme.</p><p>哪些字节是"颜色"，格式要一致</p></div>	
 <div class='layout'><p>So, we need to preface all pixels with their run-length.</p><p>所以我们要给所有像素前面标上长度</p></div>	
+<img style="float:right;" width="70%" src="../img/2101.png" />
 <div class='layout'><p>In some cases, this actually adds data, but on the whole, we've dramatically reduced</p><p>有时候数据反而会变多，但就这个例子而言</p></div>	
 <div class='layout'><p>the number of bytes we need to encode this image.</p><p>我们大大减少了字节数，</p></div>	
 <div class='layout'><p>We're now at 24 bytes, down from 48.</p><p>之前是48 现在是24</p></div>	
@@ -359,16 +360,20 @@ margin:0;
 <div class='layout'><p>With this, we can write out our code dictionary.</p><p>现在可以生成字典</p></div>	
 <div class='layout'><p>Yellow-yellow is encoded as just a single 0.  White-yellow is encoded as 10</p><p>黄黄 编码成 0 ，白黄 编码成 10，</p></div>	
 <div class='layout'><p>Black-Yellow is 1 1 0. and finally white-white is 1 1 1.</p><p>黑黄 编码成 110，白白 编码成 111</p></div>	
+<img style="float:right;" width="70%" src="../img/2102.png" />
 <div class='layout'><p>The really cool thing about these codewords is that there's no way to</p><p>酷的地方是  它们绝对不会冲突</p></div>	
 <div class='layout'><p>have conflicting codes, because each path down the tree is unique.</p><p>因为树的每条路径是唯一的</p></div>	
 <div class='layout'><p>This means our codes are prefix-free, that is no code starts with another complete code.</p><p>意味着代码是"无前缀"的，没有代码是以另一个代码开头的</p></div>	
 <div class='layout'><p>Now, let's return to our image data and compress it!</p><p>现在我们来压缩！</p></div>	
 <div class='layout'><p>NOT BYTES -BITS!! That's less than 2 bytes of data!</p><p>注意是位(bit)！ 不是字节(byte)！，14位(bit) 还不到2个字节(byte)！</p></div>	
+<img style="float:right;" width="70%" src="../img/2103.png" />	
 <div class='layout'><p>But, don't break out the champagne quite yet!</p><p>但，先别急着开香槟！</p></div>	
 <div class='layout'><p>This data is meaningless unless we also save our code dictionary.</p><p>字典也要保存下来，否则 14 bit 毫无意义</p></div>	
-<div class='layout'><p>So, we'll need to append it to the front of the image data, like this.</p><p>所以我们把字典 加到 14 bit 前面，就像这样</p></div>	
+<div class='layout'><p>So, we'll need to append it to the front of the image data, like this.</p><p>所以我们把字典 加到 14 bit 前面，就像这样</p></div>
+
 <div class='layout'><p>Now, including the dictionary, our image data is 30 bytes long.</p><p>现在加上字典，图像是 30 个字节(bytes) ，</p></div>	
 <div class='layout'><p>That's still a significant improvement over 48 bytes.</p><p>比 48 字节好很多</p></div>	
+<img style="float:right;" width="70%" src="../img/2104.png" />	
 <div class='layout'><p>The two approaches we discussed,</p><p>消除冗余和"用更紧凑的表示方法"，这两种方法通常会组合使用</p></div>	
 <div class='layout'><p>removing redundancies and using more compact representations, are often combined,</p><p>消除冗余和"用更紧凑的表示方法"，这两种方法通常会组合使用</p></div>	
 <div class='layout'><p>and underlie almost all lossless compressed file formats,</p><p>几乎所有无损压缩格式都用了它们，</p></div>	
