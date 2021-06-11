@@ -1,0 +1,1839 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>remark</h3>
+
+<p>[1]Einstein to Eduard Einstein, Feb.5，1930.当时爱德华正患有严重的精神疾病。德语原文为：“Beim Menschen ist es wie beim Velo.Nurwenn er fehrt, kann, erbequemdie Balance halten.”更加忠实于原文的翻译为：“和人打交道就像骑自行车。只有在运动时，才能轻松地保持平衡。”感谢耶路撒冷希伯来大学爱因斯坦档案馆的芭芭拉·沃尔夫Barbara Wolff）的帮助。</p>
+<p>[2]中译本为《爱因斯坦恩怨史》，方在庆、文亚，等译，上海科技教育出版社2004年版。——译者注</p>
+<p>[3]原文为Hungarian-German。实际上，勒纳德的袓上来自奧地利的蒂洛尔，应该是日耳曼裔。匈牙利裔的说法，让人混淆。他出生的地方属于奧匈帝国，归匈牙利管。——译者注</p>
+<p>[4]对于“米列娃·玛里奇”而言，“米列娃”是名，“玛里奇”是姓，按常规应该以“玛里奇”作为姓名的简称，但由于一般的书里习惯上称“米列娃”（就像“伽利略·伽利雷”一般称“伽利而不称“伽利雷”一样），所以在本书中一般译成“米列娃”而不是“玛里奇”。——译者注</p>
+<p>[5]原文。其实，当时的苏黎失联邦工学院还没有物理系。爱因斯坦和米列娃读的都是为中学培养数学和物理教师的数理VIA部。——译者注</p>
+<p>[6]此处所述有误。爱因斯坦没有与他合写一本书。爱因斯坦只是在尼科莱起草的《告欧洲人书》上签过名。此外，还有另外两人也签了名。当时这篇文章并没有发表，尼科莱后来写过一本《战争的生物学》将此文附在里面，这或许是艾萨克森认为它为爱因斯坦与尼科莱合写的原因。尼科莱因此书受到战争法庭审判，遭降级处分。战后他失业了，移民到南美。感谢中科院自然科学史研究所方在庆研究员指出这一讹误。——译者注</p>
+<p>[7]Einstein to Conrad Habicht,May 18 or 25，1905.</p>
+<p>[8]这些说法出自我在Time, Dec.31，1999和DiscoverSept，2004上写的短文。</p>
+<p>[9]DudleyHerschbach，“EinsteinasaStudent”，Mar.2005，交予笔者的表的论文。赫施巴赫说：“改善科学教和文化素养的努力遇到了一个根本问题，那就是，科学与数学不再被当成整个文化的一部分，而是被看作祭司般的专家才能涉足的领域。爱因斯坦被视为杰出的偶像，孤独天才的最典型代表。这助长了一种完全扭曲的科学观。”</p>
+<p>[10]Frank 1957，xiv；Bemstein 1996b：18.</p>
+<p>[11]Vivienne Anderson to Einstein, Apr.27，1953：AEA60—714；Einstein to Anderson,May 12，1953：AEA60-716.</p>
+<p>[12]Viereck，377.也参见Thomas Friedman，Learning to Keep Leaming, New York Times, Dec.13，2006.</p>
+<p>[13]Einstein to Mileva Mari，Dec，12，1901；Hoffmann and Dukas，24.霍夫曼是20世纪30年代爱因斯坦在普林斯顿的朋友。他指出：“事实证明，他早年对权威的怀疑是极为重要的，这种怀疑从未离开过他。”</p>
+<p>[14]Einstein message for Ben Scheman dinner, Mar.1952：AZA 28—931.</p>
+<p>[15]Einstein toSybille Blinoff，May 21，1954：AEA 59—261；Ernst Straus, Reminiscences, in Holton and Elkana，419；Vallentin，17；Maja Einstein, lviii.</p>
+<p>[16]例如参见Thomas Sowell, The Einstein Syndrome：Bright Children Who Talk Late（NewYork：BasicBooks，2002）。</p>
+<p>[17]诺贝尔奖获得者詹姆斯·夫兰克引用爱因斯坦的话，参见Seelig 1956b：72。</p>
+<p>[18]Valientin，17；Einstein to psychologist Max Wertheimer, in Wertheimer，214.</p>
+<p>[19]Einstein to Hans Muehsam, Mar.4，1953：AEA 60—604.此外还有：“我认为出身问题不必去考虑。”爱因斯坦的这段话引自Seelig 1956a：11。也参见Michelmore，22。</p>
+<p>[20]MajaEinstein, xvi；Seelig 1956a：10.</p>
+<p>[21]www.alemannia-judaica.de/synagoge_buchau.htm.</p>
+<p>[22]Einstein to Carl Seelig, Mar.11，1952：AEA39—13；Highfield and Carter，9.</p>
+<p>[23]Maja Einstein, xv；Highfield and Carter，9；Pais 1982：36.</p>
+<p>[24]Birth certificate,CPAE1：1；Fantova,Dec.5，1953.</p>
+<p>[25]Pais 1982：36—37.</p>
+<p>[26]Maja Einstein, xviii.“玛丽亚（Maria）这个名字有时被用来取代她在犹太家族中的名字“米里亚姆”（Miriam）。</p>
+<p>[27]Frank 1947：8.</p>
+<p>[28]Maja Einstein, xviii xix；F?lsing，12；Pais 1982：37.</p>
+<p>[29]有些研究者认为这可能是一种轻度的孤独症或阿斯伯格综合征（Asperger’s syndrome）的表现。剑桥大学孤独症研究中心主人西蒙·巴伦-科恩（SimonBaron-Cohen）：这种观点。他说孤独症与“极强的系统化冲动I低的冲动相联系”。他还指出，这“解释了孤独症患者在数学绘画等学科表现出来的‘能力小岛’（islets of ability）现象，因为所有这些学科都要求有很强的系统能力参见Simon Baron-Cohen，The Male Condition, New York Times, Aug.8，2005；Simon Baron-Cohen, The Essential Difference（New York：Perseus，2003），167；Norm Legdin, Aspergrr’s and SelfEsteem：Insight and Hope through Famous Role Models（NewYork：Future Horizons，2002），chapter 7；Hazei Mui r, Einstein and Newton Showed Signs of Autism, New Scientist, Apr 30，2003；Thomas Marlin, Albert Einstein and LD, Journal of Learning Disabilities, Mar.1，2000：149。用Google搜索Einstein+Asperger's会得到146000项结果。这种推断有些不着边际，它并不能使我信服。十几岁的，爱因斯坦有了好朋友，与异性也有了浪漫交往，他积极参与大学讨论，交流能力强，而且能够设身处地为朋友着想，并移情整个人类。</p>
+<p>[30]Einstein 1949b，9；Seelig 1956a，11；Hoffmann 1972，9；Pais 1982，37；Vallentin，21；Reiser，25；Holton 1973，359；author’s interview with Shu-lamith Oppenheim, Apr.22，2005.</p>
+<p>[31]Overbye，8；Shulamith Oppenheim, Rescuing Albert.Compass，（NY：Crocodile，2003）.</p>
+<p>[32]Holton 1973，358.</p>
+<p>[33]F?lsing，26；Einsteinto Philipp Frank, draft，1940，CPAE1，p.lxiii.</p>
+<p>[34]MajaEinstein, xxi；Bucky，156；Einstein to Hans Albert Einstein, Jan.8，1917.</p>
+<p>[35]Hans Albert Einstein interviewin Whitrow，21；Bucky，148.</p>
+<p>[36]Einstein to Paul Plaut, Oct.23，1928：AEA 28—65；Dukas and Hoff-mann，78；Moszkowski，222.希伯来大学爱因斯坦档案馆的芭芭拉·沃尔夫说，爱因斯坦最初写的是，音乐与科学“在提供解脱方面互为补充”，但后来却将“解脱”改成了“满足”。</p>
+<p>[37]Einstein to Otto Juliusburger, Sept.29，1942：AEA 38-238.</p>
+<p>[38]Clark，25；Einstein 1949b，3；Reiser，28.（“安东·莱泽尔，’是“鲁道夫泽尔，的笔名，他娶了爱因斯坦第二任妻子爱尔莎的女儿伊尔莎。）</p>
+<p>[39]Maja Einstein，xix，说他是7岁上的学：实际上他1885年10月1日就入学了，那时他6岁。</p>
+<p>[40]根据他的继子后来所讲述的，这师接着说，耶稣是“被犹太人”钉在了十字架上；Reiser，30。但爱因斯坦的朋友，也是他的物理学同事菲利普·弗兰克在讲述这件事时特别指出，这位老师并未提及犹太人所扮演的角色；Frank 1947，9。</p>
+<p>[41]F?lsing，16；Einstein letter to an unknown recipient，Apr.3，1920，CPAE 1：lx.</p>
+<p>[42]Reiser，28—29；Maja Einstein, xxi；Seelig，15；Pais 1982，38；F?lsing，20.玛雅说，他是8岁上的这所中学，而他实际上是1888年10月上的学，当时是9岁半。</p>
+<p>[43]里普利的“信不信由你！”（Ripley.Believe It or Not！），是1918年由罗伯特·里普利开设的美国报纸专栏。它将天下的奇闻异俗汇总在一起，今仍在多家报纸上发表。——译者注</p>
+<p>[44]Brian1 996，281.2006年用Google搜索Einstein failed math，大约会得到648000项结果。</p>
+<p>[45]Pauline Einstein to Fanny Einstein, Aug，1，1886；F?lsing，18—20,ci-ting Einstein to Sybille Blinoff，May 21，1954 and Dr.H.Wieleitner in Nuest Nachrichten, Munich, Mar.14，1929.</p>
+<p>[46]Einstein to Sybille Blinoff，May 21，1954：AEA 59-261；Maja Einstein, xx.</p>
+<p>[47]Frank 1947，14；Reiser，35；Einstein 1949b，11.</p>
+<p>[48]Maja Einstein, xx；Bernstein 1996a：24—27；Einstein interview with Henry Russo, TheTower, Princeton, Apr.13，1935.</p>
+<p>[49]Talmey，164；Pais 1982，38.</p>
+<p>[50]第一版有12卷 ，于1853年至1857年出版。玛雅文章中所提到的新世于19世纪70年代，内容做了适时的更新·爱因斯坦所拥有的版本有21卷，被装成四五本厚书。关于这套书对爱因斯坦的影响，权威性的研究见Frederick Gregory, The Mysteries and Wonders of Science：Aaron Bemstein’s Naturwissenschaftlichen Volksbiicher and the Adolescent Einstein, in Howard and Stachel 2000：23—42.MajaEinstein, xxi；Einstein 1949b：15；Seelig1956a：12.</p>
+<p>[51]Aaron Bernstein，Naturwissenschanftlichen Volksbiicher，1870 edition, vol.s 1，8，16，19；Howard and Stachel，2000：27—39.</p>
+<p>[52]Einstein 1949b，5.</p>
+<p>[53]Talm ey，163.（塔尔穆德在美国改名“塔尔梅”，之后写了一篇简短的传略。）</p>
+<p>[54]Einstein,Onthe Method of Theoretical Physics, Herbert Spencer lecture, Oxford, June 10，1933，inEinstein 1954，270.</p>
+<p>[55]Einstein 1949b，9，11；Talmey，163；F?lsing，23（他猜测这本“神圣的”书也许是另一本教材）；Einstein 1954，270.</p>
+<p>[56]Aaron Bernstein, vol.12，cited by Frederick Gregory in Howard and Stachel 2000，37；Einstein 1949b，5.</p>
+<p>[57]Frank 1947，15；Jammer 15—29.霍尔顿写道：“意欲从事卓越的科学活动，这有赖于他少年时代炽热的宗教感情所留下的余烬参见Holton 2003，32。</p>
+<p>[58]Einstein 1949b，5；Maja Einstein, xxi.</p>
+<p>[59]Einstein, What I Believe，Forum and Century（1930）：194，reprinted as The World As I See It, in Einstein 1954，10.根据弗兰克的说法：“在他看来，这种行进是人被逼成为机器时的运动。”Frank 1947，8.</p>
+<p>[60]Frank 1947，11；F?lsing，17；C.P.Snow, Einstein, inVariety of Men（NewYork：Scribner.，1966），26.</p>
+<p>[61]Einstein to Jott Winteler, July 8，1901.</p>
+<p>[62]Pais 1982，17，38；Hoffmann 1972，24.</p>
+<p>[63]MajaEinstein, xx；Seelig 1956a，15；Pais 1982，38；Einstein draft to Philipp Frank，1940，CPAE1，p.lxiii.</p>
+<p>[64]Stefann Siemer, The Electrical FactoryofJacob Einstein and Cie.，inRenn 2005b：128一131；Pyenson，40.</p>
+<p>[65]Overbye，9—10；Einstein draft to Philipp Frank，1940，CPAE 1，p.lxiii；Hoffmann，1972，25-26；Reiser，40；Frank 1947，16；Maja Einstein, xxi；F?lsing，28-30.</p>
+<p>[66]Einstein to Marie Winteler, Apr.21，1896；F?lsing 34；The Jewish Spectator，Jan.1969.</p>
+<p>[67]Frank 1947，17；Maja Einstein, xxii；Hoffmann 1972，27.</p>
+<p>[68]Einstein,On theInvestigation of the Stateof the Ether inaMagnetic Field, summer 1895，CPAE 1：5.</p>
+<p>[69]Einsteinto Caesar Koch, summer 1895.</p>
+<p>[70]Albin Herzog to Gustave Maier, Sept.25，1895，CPAE1（English），p.7；F?lsing，37；Seelig1956a，9.</p>
+<p>[71]这种想象的过程是康德主义哲学家所说的“直观”。参见Miller 1984：241-246。</p>
+<p>[72]Seelig1956b，56；F?lsing，38.</p>
+<p>[73]Miller 2001，47；Maja Einstein, xxii；Seelig 1956b，9；F?lsing，38；Holton,On Trying to Understand Scientific Genius, in Holton 1973：371.</p>
+<p>[74]Bucky，26；F?lsing，46.爱因斯坦在《爱因斯坦自述》中给出了更详细的描述，参见Schilpp，53。</p>
+<p>[75]Gustav Maier to Jost W inteler, Oct.26，1895，CPAE 1：9；F?lsing，39；Highfield and Carter，22—24.</p>
+<p>[76]Valientin，12；Hans Byland，Neue Bünder ZeitungFeb，7，1928，cited in Seelig 1956a，14；F?lsing，39.</p>
+<p>[77]Pauline Einstein to the Winteler family, Dec.30，1895，CPAE1:15.</p>
+<p>[78]Einstein to Marie Winteler, A pr.21，1896.</p>
+<p>[79]Entrance report, Aargau school, CPAE1：8；Aargau school record, CPAE 1：10；Herm ann Einstein to Jost Winteler, Oct.29，1995，CPAE 1：11 and Dec.30，1895，CPAE 1：14.</p>
+<p>[80]Report on a Music Exam ination,Mar.31，1896，CPAE1：17；Seelig 1956a，15；Overbye，13.</p>
+<p>[81]Release from Würtemberg citizenship, Jan.28，1896，CPAE 1：16.</p>
+<p>[82]Einstein to Julius Katzenstein, Dec，27，1931，cited in F?lsing，41.</p>
+<p>[83]Israelitisches Wochenblatt, Sept.24，1920；Einstein，“Why Do They Hate the Jews?”Collier's, Nov.26，1938.</p>
+<p>[84]Einstein to Hans M uehsam, A pr.30，1954，AEA 38—434；F?lsing 42.</p>
+<p>[85]Examination results, Sept.18—21，1896，CPAE1：20—27.</p>
+<p>[86]Over bye，15；M aja E in ste in, xvii.</p>
+<p>[87]Einstein to Heinrich Zangger, Aug.11，1918.</p>
+<p>[88]Cahan，42；Editor.note, CPAE vol，1（German），p.44.</p>
+<p>[89]Einstein 1949b，15.</p>
+<p>[90]Recordand Grade Transcript, Oct.1996—Aug.1900，CPAE 1：28；Bucky，24；Einsteinto ArnoldSommerfeld, Oct 29，1912；F?lsing，50.</p>
+<p>[91]Einstein to Mileva Mari，Feb.，1898；Cahan，64.</p>
+<p>[92]Louis Kollros, Albert Einstein enSuisse，Helvetica PhysicaSupplement 4（1956），22，in AEA 5-123；Ado！Frisch, inSeelig 1956a，29：Cahan，67：Clark，55.</p>
+<p>[93]Seelig 1956a，30；Overbye，43；Miller，2001，52；Charles Seife, The True and the Absurd, in Brockm an，63.</p>
+<p>[94]Record and Grade Transcript, CPAE 1：28.</p>
+<p>[95]Seelig 1956a，30；Bucky，25（a slightly different version）；F?lsing，57.</p>
+<p>[96]Seelig 1956a，30.</p>
+<p>[97]Einstein to Julia Niggli, July 28，1899.</p>
+<p>[98]Seelig 1956a，28；W h itro w，5.</p>
+<p>[99]Einstein 1949b，15—17.</p>
+<p>[100]Ein stein interview in Bucky，27；Einstein to Elizabeth Grossmann,Sept. 20，1936，AEA 11—481；Seelig 1956a，34，207；F?lsing，53.</p>
+<p>[101]Holton l973，209—212.爱因斯坦的女婿凯泽尔和同事弗兰克都说，在联邦工学间，爱因斯坦在业余时间里读过弗的书。</p>
+<p>[102]Clark，59；Galison，32—34.伽里森写的关于庞加莱和爱因斯坦的著作生动地描述了他们提出概念的过程，以及庞加莱的发现如何“预示了爱因斯坦的狭义相对论，它的确是了不起的一步，只不过缺乏思想上的勇气将其在逻辑上贯彻到底，从而得出革命性的结论”（Galison，34）。Miller 2001，200—204也非常有用。</p>
+<p>[103]Seelig 1956a，37；Whitrow，5；Bucky，156.</p>
+<p>[104]Miller，2001，186；Hoffmann，1972，252；interview with Lili Foldes，The Etude，Jan.1947，Calap rice，150；Einstein to Emil Hilbquestionnaire，1939，AEA 86—22；Dukas and Hoffmann，76.</p>
+<p>[105]Seelig，1956a，36.</p>
+<p>[106]F?lsing，51，67；Reiser，50；Seelig 1956a，9.</p>
+<p>[107]Clark，50.布克沃尔德指出，经过仔细辨别，他在阿劳中学的一幅照片显示，他的夹克上有几个洞。</p>
+<p>[108]Einstein to Maja Einstein，1898.</p>
+<p>[109]Einstein to Maja Einstein, after Feb.1899.</p>
+<p>[110]Marie Winteler to Einstein, Nov.4—25，1896.</p>
+<p>[111]Marie Winteler to Einstein, Nov.30，1896.</p>
+<p>[112]Pauline Ein stein to Marie Winteler, Dec，13，1896.</p>
+<p>[113]Einstein to Pauline Winteler,May 1897.</p>
+<p>[114]Marie Win teler to Einstein, Nov.4—25，Nov.30.</p>
+<p>[115]诺维萨德是塞尔维亚民族的文化中心。长期以来，它一直是“帝国自由城市”，属于哈布斯堡王朝的一个塞尔维亚自治区。米列娃出生的时候，它处于奥匈帝国的匈牙利部分。她成年时，大约有40%的居民说塞尔维亚语，25%说匈牙利语，20%说德语。现在它是塞尔维亚共和国的第二大城市，仅次于贝尔格莱德。</p>
+<p>[116]Desanka Trbuhovic-Gjuric，9—38；Dord Krstic, Mileva Mari Einstein-Mariin Elizabeth Einstein，85；Overbye，28—33；Highfield and Carter，33—38；M arriage certificate,CPAE 5：4.</p>
+<p>[117]Dord Krstic, Mileva Einstein-Mari，in Elizabeth Einstein，88（Krstic的文章部分基于对校友的采访）：爱因斯坦生活的研究专家，希伯来大学爱因斯坦档案馆的沃尔夫说：“我想爱因斯坦是米列娃逃离苏黎世的主要原因。”</p>
+<p>[118]Mileva Marito Einstein, after Oct.20，1897.</p>
+<p>[119]Einstein to Mileva MariFeb.16，1898.</p>
+<p>[120]Einstein to Mileva Mari，after Apr.16，1898，after Nov.28，1898.</p>
+<p>[121]Recollection of Suzanne Markwalder, in Seelig 1956a，34；F?lsing，71.</p>
+<p>[122]Einstein to Mileva Mari，Mar.13 or 20，1899.</p>
+<p>[123]Einstein to Mileva Mari，Aug.10，1899，Mar.1899，Sept.13，1900.</p>
+<p>[124]Einstein to Mileva Mari，Sept.13，1900，early Aug.1899，Aug.10，1899.</p>
+<p>[125]Einstein to Mileva Mari，ca.Sept.28，1899.</p>
+<p>[126]Mileva Marito Einstein，1900.</p>
+<p>[127]Intermediate Diploma Examinations, Oct.21，1898，CPAE 1：42.</p>
+<p>[128]Einstein to Mileva Mari，Sept 10，1899；Einstein，1922c.（参见关于1922年12月14日的这场京都讲演的参考书目。）</p>
+<p>[129]Einstein，1922c；Reiser，52；Einstein to Mari，ca.Sept.28，1899；Renn and Schulmann，85，footnotes 11：3，11：4.维恩的论文在1898年9月提交于杜塞尔多夫，发表于当年《物理学纪事》第65卷 第3期上。</p>
+<p>[130]Einstein to Mileva Mari，Oct.10，1899；Seelig 1956a，30；F?lsing，68；Overbye，55；final diploma examinations, CPAE1：67.要想加权平均到总评里面，CPAE中记录的论文分数需要乘以4。</p>
+<p>[131]Final diploma examinations, CPAE 1：67.</p>
+<p>[132]Einstein to W alter Leich, A pr.24，1950，AEA 60—253；W alter Leich memo describing Einstein, Mar.6，1957，AEA 60—257.</p>
+<p>[133]Einstein，1949b，17.</p>
+<p>[134]Einstein to Mileva Mari，Aug.1，1900.</p>
+<p>[135]Einstein to Mileva Mari，ca.July.29，1900.</p>
+<p>[136]Einstein to Mileva Mari，Aug.6，1900.</p>
+<p>[137]Einstein to Mileva Mari，Aug.1，Sept.13，Oct.3，1900.</p>
+<p>[138]Einstein to Mileva Mari，Aug.30，1900.</p>
+<p>[139]Einstein to Mileva Mari，Aug.1，Aug.6，ca.Aug.14，Aug.20，1900.</p>
+<p>[140]Einstein to Mileva Mari，Aug.6，1900.</p>
+<p>[141]爱因斯坦经常用“勇敢的施瓦本人”指他自己，这一说法出自路德维希·乌兰德的诗作“Schw?biche Kunde”。原注</p>
+<p>[142]Einstein to Mileva Mari，ca.Aug.9，Aug.14，Aug.20，1900.</p>
+<p>[143]Einstein to Mari，ca.Aug.9 and ca.Aug.14，1900.送两封信都写自访问苏黎世期间。</p>
+<p>[144]Einstein to Mari，Sept 13，1900.</p>
+<p>[145]Einstein to Mileva Mari，Sept 19，1900.</p>
+<p>[146]Einstein to Adolf Hurwitz, Sept.26，Sept.30，1900.</p>
+<p>[147]Einstein to Mileva Mari，Oct.3，1900；Einstein to Mrs.Marcei Gross-mann，1936；Seelig 1956a，208.</p>
+<p>[148]Einstein municipal citizenship application, Zurich, Oct 1900，CPAE 1：82；Einstein to Helene Kaufler, Oct.11，1900；minutes of the naturalization com-mission of Zurich, Dec.14，1900，CPAE1：84.</p>
+<p>[149]Einstein to Mileva Mari，Sept.13＆1900.</p>
+<p>[150]这里原文误为“与两者距离成反比”。——译者注</p>
+<p>[151]Einstein to Mileva Mari，Oct.3，1900.</p>
+<p>[152]Einstein, Conclusions Drawn from the Phenomena of Capillarity，der Physik，CPAE 2：1，receivedDec.13，1900，published Mar.1，1901.“这篇论文很难理解，这倒不是因为有许多显然的误；由于缺乏清晰性，我，们只能认为它没有经过独立评审……但是对于一个新近的毕业生来说，能够在没有获得独立科学建议的情况下写出这样的论文，是非常了不起了”。John N.Murrell and Nicole Grobert, The Centenary of Einstein’s First Scientific Paper，The Royal Societry（London），Jan.22，2002，www.journals.royalsoc.ac.uk/app/home/content.asp.</p>
+<p>[153]Dudley Herschbach, Einstein as a Student,Mar.2005，提供给笔者的未发表的论文。</p>
+<p>[154]Einstein to Mileva Mari，Dec.20，1900.</p>
+<p>[155]Einstein to G.Wessler, Aug.24，1948：AEA 59—26.</p>
+<p>[156]Maja Einstein, Sketch，19；Reiser，63；Minutes of the Municipai Natu-ralization Commission of Zurich, Dec.14，1900，CPAE 1：84；Report of the Schweitzerisches Informationsbureau, Jan.30，1901，CPAE1：88；Military Service Book, Mar 13，1901，CPAE 1：91.</p>
+<p>[157]Mileva Mari，Mar 23，Mar 27，1901.</p>
+<p>[158]Einstein to Mileva Mari，Apr.4，1901.</p>
+<p>[159]Einstein to Heike Kamerlingh Onnes, Apr 12，1901；Einstein to Marcel Grossmann, Apr 14，1901；F?lsing，78；Clark，66；Miller，68.</p>
+<p>[160]Einstein to Wilhelm Ostwald, Mar.19，Apr.3，1901.</p>
+<p>[161]Hermann Einstein to Wilhelm Ostwald, Apr13，1901.</p>
+<p>[162]Einstein to Mileva Mari，Mar23，Mar27，1901；Einstein to Gross-mann, Apr 14，1901.</p>
+<p>[163]Einstein to Mileva Mari，Dec.9，1901.</p>
+<p>[164]Einstein to Mileva Mari，Apr4，1901；Einstein to Michele Besso,June 23，1918；Overbye，25；Miller，78；F?lsing，115.</p>
+<p>[165]Einstein to Mileva Mari，Mar27，Apr4，1901.</p>
+<p>[166]Einstein to Marcil Grossmann,Apr 14，1901；Einstein to Mileva MariApr 15，1901.</p>
+<p>[167]Einstein to Mileva Mari，更准确的翻译应当是“晨服”。</p>
+<p>[168]Mileva Marito Einstein,May 2，1901.</p>
+<p>[169]普绪克是人类灵魂的化身，以长着蝴蟝翅膀的少女形象出现，与爱神丘比特相恋。——译者注</p>
+<p>[170]Mileva Mari，second half of May，1901.</p>
+<p>[171]Einstein to Mileva Mari，second half of May，1901.</p>
+<p>[172]Einstein to Mileva Mari，CPAE中暂定为May28，1901，实际日期可能是一周后。</p>
+<p>[173]Overbye，77—78.</p>
+<p>[174]Einstein to Mileva Mari，July 7，1901.</p>
+<p>[175]Mileva MaritoEinstein, afterJuly7，1901（在CPAE第8卷 中写为1：116，因为它是在第1卷 出版之后发现的).</p>
+<p>[176]Mileva Marito Einstein, ca.July31，1901；Highfield and Carter，80.</p>
+<p>[177]Einstein to JostWinteler, July 8，1901；Einstein to Marcel Grossmann, Apr.14，1901.与指南针的比较来自Overbye，65。</p>
+<p>[178]Renn2005a，109.雷恩是柏林马克斯·普朗克科学史研究所所长，曾任《爱因斯坦全集》主编。感谢他就这一话题提供的帮助。</p>
+<p>[179]Einstein to Mileva Mari，Apr.15，1901；Einstein to MarcelGrossmann, Apr15，1901.</p>
+<p>[180]Renn 2005a，124.</p>
+<p>[181]Einstein to Mileva Mari，Apr4，ca.June4，1901.由于寄给德鲁德的信以及他的回信已经散失，所以爱因斯坦的目标是什么已经无从知晓.</p>
+<p>[182]Einstein to Mileva Mari，ca.July 7，1901：Einstein to Jost Winteler，July 8，1901.</p>
+<p>[183]Renn 2005a，118.雷恩在注释中说：“感谢奥斯陆的Felixde Maez Oyens先生使我注意到了爱因斯坦1901年78右写给的信中缺的一页。不幸的是，我没有这一页的拷贝，所以我的解释只能基于这段话的一加工的抄本。</p>
+<p>[184]Einstein to Marcel Grossmann, Sept.6，1901.</p>
+<p>[185]Overbye，82—84.它很好地概述了玻尔兹曼-奧斯特瓦尔德争论。</p>
+<p>[186]Einstein, O n the Thermodynamic Theory of the Difference in Potentials between Metals and Fully Dissociated Solutions of Their Salts, Apr.1902.雷恩在分析爱因斯坦与德鲁德的争论时并未提到这篇论文，而只是考察了1902年6月的那篇论文。</p>
+<p>[187]Einstein, KineticTheory of Thermal Equilibrium and the Second Law of Thermodynamics, June1902；Renn，2005a，119；Jos Uffink, Insuperable Difficul-ties：Einstein’s statistical road to molecular physics, ophy of ModernPhysics 37（2006），38；Clayton Gearhart, Einstein Befo 1905：The early papers on statistical mechanics, AmericanJourna l ofPhysic（May 1990）：468.</p>
+<p>[188]Mileva Mari，Nov.28，1901.</p>
+<p>[189]Einstein toMileva Mari，Dec.17 and 19，1901.</p>
+<p>[190]Receipt for the return of Doctoral Fees, Feb，1，1902，CPAE1：132；F?lsing，88—90；Reiser，69；Overbye，91，Einstein toMileva Mari，ca.F eb.8，1902：“目前我正在向哈比希特讲述这篇提交给克莱纳的论文。他十分欣赏这些出色的想法，并且不让我有安宁，老是喋喋不休地说我应该论文中涉及玻尔兹曼著作的部分寄给玻尔兹曼。我也打算这样做。”</p>
+<p>[191]Einstein to Marcel Grossmann, Sept.6，1901.</p>
+<p>[192]Einstein to Mileva Mari，Nov.28，1901.</p>
+<p>[193]Mileva Marito Einstein, Nov.13，1901，Highfield and Carter，82.</p>
+<p>[194]Einstein to Mileva Mari，Dea12，1901；F?lsing，107；Zackheim，35；Highfield and Carter，86.</p>
+<p>[195]Pauline Einstein to Pauline Winteler, Feb，20，1902.</p>
+<p>[196]Mileva Marica.Nov.23，1901.</p>
+<p>[197]Einstein toMileva MariDec.11 and 19，1901.</p>
+<p>[198]Einstein to Mileva Mari，Dec.28，1901.</p>
+<p>[199]Einstein to Mileva Mari，Feb.4，1902；Dec.12，1901.</p>
+<p>[200]这几封信是“爱因斯坦文稿计划”的斯塔契尔在隐藏的400封家书中发现的，这些家书被爱因斯坦的儿子汉特的第二个妻子保存在加州的一个保中，他的第一在1949年去世后前往苏黎世整理列娃的住所，并将它了加利福尼亚。</p>
+<p>[201]Einstein toMileva Mari，Feb.4，1902.</p>
+<p>[202]Mileva Mari其中包含了萨维奇的孙子收藏的米列娃与萨维奇的一些通信。</p>
+<p>[203]Einstein toMileva Mari，Feb，17，1902.</p>
+<p>[204]Swiss Federal Council to Einstein, June 19，1902.</p>
+<p>[205]参见伽里森对那一时期欧洲时间校准的讨论，载Galison，222—248。亦参见后面的第六章 ，其中细论了它在爱因斯坦提出狭义相对论过程中可能扮演的角色。</p>
+<p>[206]Einstein to Hans Wohlwend, Autumn1902；F?lsing，102.</p>
+<p>[207]Einstein interview, Bucky，28；Reiser，66.</p>
+<p>[208]Einstein to Michele Besso, Dec.12，1919.</p>
+<p>[209]Einstein interview, Bucky，28；Einstein 1956，12.两者本质上说的都是一件事情，只不过措辞和翻译上有些出入。Reiser，64.</p>
+<p>[210]可惜的是，18年以后，所有专利都被销毁了。到了20世纪20年代，即使爱因斯坦那时已经举世闻名，他对那些发明的评语也都被处理掉了。F?lsing，104.</p>
+<p>[211]Galison，243，Flückiger，27.</p>
+<p>[212]F?lsing，103；C.P.Snow, Einstein, in Goldsmith et al，7.</p>
+<p>[213]Einstein interview, Bucky，28；Einstein 1956，12.参见DonHoward,A kind of vessel in which the struggle for eternal truth is played out, AEA Cedex-H。</p>
+<p>[214]Solovine，6.</p>
+<p>[215]Maurice Solovine, Dedication of the Olympia Academy，“A,D，1903，”CPAE5：3.</p>
+<p>[216]Solovine，11—14.</p>
+<p>[217]Einstein to Maurice Solovine, Nov.25，1948；Seelig 1956a，57；Einstein to Conrad Habicht and Maurice Solovine, Apr.3，1953；Hoff mann1972，243.</p>
+<p>[218]《爱因斯坦全集》的编者在vol.2，xxiv XXV的导言中描述了奥林匹亚科学院阅读过的书籍以及特定版本。</p>
+<p>[219]Einstein to MoritzSchlick, Dec.14，1915.在1944年的一篇论及罗素的文章中，爱因斯坦写道：“休谟的清晰论述似乎是颠覆性的：作为我们只是唯一源泉的感觉材料，通过习惯，也许会把我们引向信念和期待，但却不能引向知识，更不能引向对那些合乎规律的关系的理解。”Einstein 1954，22.亦参见，Einstein，1949b，13。</p>
+<p>[220]Davi1 Hume, Treatise on Human Nature, book 1，part 2；2005a.</p>
+<p>[221]关于康德的《纯粹理性批判》（1781），有各种不同的解释。我这里试图紧扣爱因斯坦本人对康德的看法。Einstein, Remarks on Bertrand Russell's Theory of Know ledge，（1944 in Schlipp；Einstein 1954，22；Einstein，1949b，11—13；Einstein,O n the Methods of Theoretical Physics, the Herbert Spen-cer lecture, Oxford, June.10，1933，in Einstein 1954，270；Mara Beller, Kant’s Impacton Einstein’s Thought,in Howard and Stachel 2000，83—106），亦参见Einstein, Physics and Reality，（1936）in Einstein 1950a，62；Yehuda, Elkana, The Myth of Simplicity, in Holton and Elkana，221。</p>
+<p>[222]Einstein 1949b，21.</p>
+<p>[223]Einstein, Obituary for Ernst Mach, Mar.14，1916，CPAE 6：26.</p>
+<p>[224]Philipp Frank, Einstein, Mach and Logical Positivism, in Schilpp，272；Overbye，25，100—104；Holton,Mach, Einstein and the Search for Reality, Daedalus（Spring 1968）：636—673，reprinted in Holton 1973，221：Clark，61：Einstein to Carl Seelig, Apr8，1952：Einstein，1949b，15：Norton 2005a.</p>
+<p>[225]Spinoza，Ethics，part I, proposition 29 and passim；Jammer 1999，47；Holton 2003，26—34；Matthew Stewart，The Courtie and the Heretic（NewYork：Norton，2006）.</p>
+<p>[226]Pais 1982，47；F ?lsing，106；Hoffmann 1972，39；Maja Einstein, xvii；Overbye，15—17.</p>
+<p>[227]Marriage Certificate, CPAE 5：6；Miller，64；Zackheim，47.</p>
+<p>[228]结婚后，她通常使用“米列娃·爱因斯坦-玛里奇”这个名字；离婚后，她继续使用“米列娃·玛里奇”。</p>
+<p>[229]Einstein to Michele Besso, Jaa 22，1903；Mileva Mari，Mar.1903；Solovine，13；Seelig1956a，46；Einstein to Carl Seelig, May.5，1952.AEA3 9-20.</p>
+<p>[230]Mileva Maristein, Aug.27，1903；Zackheim，50.</p>
+<p>[231]Einstein to Mileva Mari，笔者与舒尔曼的讨论和电子邮件。</p>
+<p>[232]Popovi，11；Zackheim，276；笔者与舒尔曼的讨论和电子邮件。</p>
+<p>[233]Michelmore，42.</p>
+<p>[234]Einstein to Mileva MariSept.19，1903.</p>
+<p>[235]Mileva Mari86；Whitrow，19.</p>
+<p>[236]Overbye，113，citing Desanka Trbuhovic-Gjuric，Im Schatten Albert Einstein（Bern：Verlag Paul Haupt，1993），94.</p>
+<p>[237]许多文献都说这句话出自开尔文勋爵1900年在英国科学促进会上的讲演。关于这一点，我没有找到直接的证据，所以我称它为“据说”。在1910年出版的两卷本开尔文传记S ilvanusP.Thompson，The Life of Lord Kelvin（New York：Chelsea Publishing，1976）中并没有这句话。</p>
+<p>[238]Pierre-Simon Laplace，A Philosophical Essay on Probabilities（1820；reprinted,New York：Dover，1951）.这段著名的决定论陈述出自一部概率论著作的序言。其潜台词是，就终极实在而言是决定论在起作用，但在现实中，我们却只有概率。他说，既然我们不可能获得完满的知识，所以需要概率。</p>
+<p>[239]Einstein, Letter to the Royal Society on Newton's bicentennial, Mar.1927.</p>
+<p>[240]Einstein 1949b，19.</p>
+<p>[241]关于法拉第的电磁感应理论对爱因斯坦的影响，参见Miller 1981，chapter 3。</p>
+<p>[242]Einstein and Infeld，244；Overbye，40；Bernstein 1996a，49.</p>
+<p>[243]Einstein to Conrad Habicht,May 18 or 25，1905.</p>
+<p>[244]1905年3月17日寄出，发表于Analen der Physik17（1905）。感谢耶鲁大学教授道格拉斯·斯通对于本节写作所提供的帮助。</p>
+<p>[245]MaxBorn, obituary for Max Planck, Royal Society of London，1948.</p>
+<p>[246]John Heilbron，The Dilemmas of an Upright Man，（Berkeley：University of California Press，1986）.关于对爱因斯坦量子论文的清晰解释，参见Gribbin and Gribbin；Bernstein 1996a，2006；Overbye，118—121；Stachel 1998；Rigden；A, Douglas Stone, Genius and Genius：Planck, Einstein and the Birth of Quantum Theory,Aspen Center for Physics Lecture, July.20，2005。</p>
+<p>[247]普朗克的方法实际上要更为复杂，他假设了一组振子，设定总能量大小为一个量子单位的整数倍。Bernstein 2006，157—161.</p>
+<p>[248]Max Planck, Speech to the Berlin Physical Society, Dec.14，1900.参见Lightman 2005，3.</p>
+<p>[249]Einstein 1949b，46.Miller 1984，112；Miller 1999，50；Rynasiewicz and Renn，5.</p>
+<p>[250]Einstein,On the General Molecular Theory of Heat, Mar.27，1904.</p>
+<p>[251]Einstein to Conrad Habicht, Apr.15，1904.杰里米·伯恩斯坦在2005年7月29日的一封电子邮件中讨论了1904年和1905年的论文之间的关联。</p>
+<p>[252]Einstein,Ona Heuristic Point of View Concerning the Production and Transformation of Light, Mar.17，1905.</p>
+<p>[253]“我们对19世纪光波理论发生的变化感到好奇，惊叹于爱因斯坦如何能够在平淡无奇的热力学公式中发现原子式的离散性的征象，”科学史约翰·D.诺顿说，“这个公式仿佛就是热辐射动力学的一个单调乏味的片段，它表述了一定体积内高频热辐射的熵的实验结果。爱因斯坦把这个表达式接过来，三下两下就把它转换了一个简洁的概率论公式，对于后者我们不得不做出这样的解释：辐射能量在空间上局限于为数众多（然而有限）的独立的点。”Norton 2006c，73.亦参见Lightman 2005，48。</p>
+<p>[254]爱因斯坦1906年的论文清晰地指出，普朗克并没有完全领会量子理论的完整内涵。显然，贝索建议爱因斯坦不要过于公开地批评普朗克。贝索后来写道：“诚然，在协助编辑你关于量子的论文时，我剥夺了你的一部分荣耀，但另一方面，我却为普朗克赢得了你这个朋友。”MicheleBesso to Einstein, Jan.17，1928.参见Rynasiewicz and Renn，29；Bernstein 1991，155.</p>
+<p>[255]Holton and Brush，395.</p>
+<p>[256]吉尔伯特·刘易斯于1926年生造了“光子”（photon）一词。1905年，爱因斯坦发现了光量子。直到1916年，他才讨论了这种量子的动量和零静止质量。杰里米·伯恩斯注意到，爱因斯坦在1905年没有做出的最有趣的发现之一就是光子。Jeremy Bernstein, letter to the editor，Physics Today，May 2006.</p>
+<p>[257]Gribbin and Gribbin，81.</p>
+<p>[258]Max Planck to Einstein, July.6，1907.</p>
+<p>[259]Max Planck and three others to the Prussian Academy, June.12，1913，CPAE5：445.</p>
+<p>[260]Mxx Planck, Scientific Autobiography（New York：Philosophical Library，1949），44；MaxBom, Einstein’s Statistical Theories, in Schilpp，163.</p>
+<p>[261]引自Gerald Holton, Millikan’s Strnggle with Theory，Europhysic New31（2000）：3。</p>
+<p>[262]Einstein to Michele Besso, Dec.12，1951，AEA7—401.</p>
+<p>[263]完成于1905年4月30日，1905年7月20日提交给苏黎世大学，1905年8月19日将修改稿寄给《物理学纪事》，发表于《物理学纪事》1906年1月。参见Norton 2006 c以及WWW,pittedu/?jdnorton/Goodies/Einstein_stat_1905/。</p>
+<p>[264]Jos Uffink, Insuperable Difficulties：Einstein.Statistical Road to Molecular Physics, Studies in the History and Philosophy of Modern Physics 37（2006）：37，60.</p>
+<p>[265]bulldog, u-net.com/avogadro/avoga.html.</p>
+<p>[266]Rigden，48—52；Bernstein 1996a，88；Gribbin and Gribbin，49—54；Pais 1982，88.</p>
+<p>[267]Hoffmann 1972，55；Seelig 1956b，72；Pais 1982，88—89.</p>
+<p>[268]Brwonian motion introduction, CPAE2（German），p.206；Rigden，63.</p>
+<p>[269]Einstein,On the Motion of Small Particles Suspended in Liquids at Rest Re-quired by the Molecular-Kinetic Theory of Heat, submitted to the Annalen der Physik on May11，1905.</p>
+<p>[270]Einstein 1949b，47.</p>
+<p>[271]均方根的平均值趋近于。对随机游走与爱因斯坦布朗运动的关系的出色分析，参见Gribbinand Gribbin，61；Bemstein 2006，117。感谢阿斯彭物理中心的乔治·斯特拉纳汉就这种关系背后的数学方面提供的帮助。</p>
+<p>[272]Einstein,On the Theory of Brownian Motion，1906，CPAE2：32（在其中他注意到了塞登托普夫的结果）：Gribbin and Gribbin，63：Clark，89；MaxBom, Einstein’s Statistical Theories, in Schilpp，166.</p>
+<p>[273]在椅子上“处于静止”的人实际上正随着地球以每小时1040英里的速度自转，同时每小时67000英里的速度绕太阳公转。当我说这些观察者速度恒定时，我忽略了因处在一个自转和公转的行星上而发生的速度变化，因为对大多数通实验不会造成什么影响。（Miler 1999，25）</p>
+<p>[274]对爱因斯坦狭义相对论的当代历史研究始于霍尔顿的一篇论文：“On the Origins of the Special Theory of Relativity”（1960），reprinted in Holton 1973，165。直到今天，霍尔顿仍然是这一领域的佼佼者。他早期的论文大都收于以下三本书中：Thematic Orig ins of Scientific Thought：Kepler to Einstein（1973），Einstein, Histrry and Othrr Passions（2000）以及The Scientific Imagination，Cambridge, Mass.：Harvard University Press，1988.在1916年的《狭义与广义相对论浅说》中，爱因斯坦本人对此做了通俗讲解，更为技术性地阐述参见他1922年的《相对论的意义》。狭义相对论的解释，参见Miller 1981，2001；Galison；Bernstein 2006；Calder；Feynman 1997；Hoffmann 1983；Kaku；Mermin；Penrose；Sartot；Taylor and Wheeler 1992；Wolfson。本章引用了这些书以及资料来源中列出的John Stachel；Arthur I.Miller；Robert Rynasiewicz；John D.Norton；John Earman, Clark Glymour and Robert Ry-nasiewicz以及Michel Jannsen的文章。亦参见Wertheimer 1959。韦特海默尔试图对爱因斯坦提出狭义相对论的过程进行重构，从而解释格式学，米勒对此持谨慎怀疑态度；：参见Miller 1984，189—195。</p>
+<p>[275]Jansen 2004概述了一些论证，它们主张爱因斯坦将广义相对论拓展到任何旋转运动的论证并没有完全成功，而且可能并不像他认为的那样必然。</p>
+<p>[276]Galileo Galilei，Dialogue Concerninthe Two Chief Wo（1632），translated by Stillman Drake，186.</p>
+<p>[277]更精确的说法是在真空中每秒钟行进176282.4英里或299792458米。除非特别指明，“光速”指的都是光在真空中的速度，这一速度适用于一切电磁波，不论可见还是不可见。正如麦克斯韦所发现的，这也是电流通过导线的速度。</p>
+<p>[278]Miller 1999，102.</p>
+<p>[279]Einstein, Ether and the Theory of Relativity, address at the University of Leiden,May 5，1920.</p>
+<p>[280]Einstein, Ether and the Theory of Relativity, address at the University of Leiden,May 5，1920；Einstein 1916，chapter 13.</p>
+<p>[281]Einstein, Ether and the Theory of Relativity, address at the University of Leiden,May 5，1920.</p>
+<p>[282]Einstein to Dr.H.L.Gordon,May 3，1949，AEA 58—217.</p>
+<p>[283]关于对爱因斯坦发现狭义相对论的一种富有洞见的虚构性反思，参见艾伦·莱特曼的《爱因斯坦之梦》（Einstein's Dreams）莱特曼讨论了可能对爱因斯坦产生影响的职业因素、个人情况和科学思想。</p>
+<p>[284]哈佛大学科学史家伽里森是关于技术环境影响爱因斯坦的最坚定的支持者，米勒的适中，诺顿、绍尔和阿尔贝托·马丁内斯则认为这种影响被夸大了。参见AlbertoMartinez, Material History and Imaginary Clocks，Physics in Perspective6（2004）：224.</p>
+<p>[285]Einstein 1922c.</p>
+<p>[286]Einstein，1949b，49.关于其他版本，参见W ertheim er，214；Einstein 1956，10。</p>
+<p>[287]Miller 1984，123中的一个附录解释了1895年的思想实验如何影响了爱因斯坦的思考。亦参见Miller 1999，30—31；Norton 2004，2006b。诺顿指出：“[这]对于一位以太理论家来说不是问题。麦克斯韦方程的确会直接导致观察者看到一个冻结的波形：这位以太理论家并不指望我们能够看到冻结的波形，因为我们并非以光速在以太中运动。”</p>
+<p>[288]Einstein to Erika Oppenheimer, Sept.13，1932，AEA 25—192；Mosz-kow ski，4.</p>
+<p>[289]霍尔顿第一次强调了弗普尔对爱因斯坦的影响。他引证了爱因斯坦的女婿莱泽尔所写的回忆录以及德文版《弗兰克传记》。Holton 1973，210.</p>
+<p>[290]Einstein, Fundamental Ideas and Methods of the Theory of Relativity（1920），unpublished dratt of an article forNature，CPAE7；31.亦参见Holton 1973，362—364；Holton 2003.</p>
+<p>[291]Einstein to Mileva Mari，Aug.10，1899.</p>
+<p>[292]Einstein to Mileva Mari，Sept.10 and 28，1899；Einstein 1922c.</p>
+<p>[293]Einstein to Robert Shankland, Dec.19，1952说，他在1905年前读过洛伦兹的书。在1922年的京都讲演中（Einstein 1922c），他谈起了自己1899年当学生时，“碰巧有读到了洛伦兹1895年的论文”。Einstein to Michele Beso, Jan.22，1903说，他开始“认真研究电子理论米勒对爱因斯坦当时所了解的知识做了很好的考察。参见Miller 1981，85-86。</p>
+<p>[294]这一部分选自Gerald Holton, Einstein, Michaelson, and the‘Crucial’Ex-periment, in Holtonl973：261—286，以及Pais l982，115—117。霍尔顿和派斯都对爱因斯坦的各种不同表述做出了。近年来，史学方为发展·例如，爱因斯坦终生的朋友——物理学家弗兰克在1957年写道，“爱因斯坦的出是，旧有的运动定律的传律无法解释最著名的观察事实：迈克耳孙实验”（Frank 1957，134）。在就这一话题写给笔者的信中（2006年5月30曰），哈佛大学科学史家霍尔顿说_“关于迈克耳孙-莫雷实验，直到三四十年前，几乎每个人都会说（特别是在教科书中），这个实验与爱因斯坦的狭义相对论有直接的联系。现在我们终于有机会认真考察爱因斯坦本人关于这一问题的表述，于是一切也就随之而改观……即使非历史学家也早已不再认为，这个实验与的工作之间存在着重要联系。”</p>
+<p>[295]Einstein 1922c；Einstein toast to Albert Michelson, the Athaneum, Caltech, Jan.15，1931，AEA8—328；Einstein message to Albert Michelson centennial, Case Institute, Dec.19，1952，AEA1—168.</p>
+<p>[296]Wertheimer 1959，chapter 10；Miller 1984，190.</p>
+<p>[297]Robert Shankland interviews and letters, Feb，4，1950，Oct，24，1952，Dec.19，1952，亦参见Einstein to F, G.Davenport, Feb，9，1954：“在我的历程中，迈克耳孙的结果并未造成很大影响，我甚至记不起我在写第一篇这方面的论文时是否知道它。因为出于某些一般性的理由，我坚信并不存在所谓的绝对运动。”</p>
+<p>[298]Miller 1984，118：“爱因斯坦没有必要考察每一个以太漂移实验，因为在他看来，它们的结果一开始就是预料之中的必然结论。”本章借鉴了米勒的研究成果以及他对于章初稿所提出的建议。</p>
+<p>[299]爱因斯坦将以太实验的零结果看成是对相对性原理的支持，而不是（像有时认为的那样）对光速不变原理的支持。参见JohnStachel, Einstein and Michelson：the Context of Discovery and Context of Justification，1982，in 2002a。</p>
+<p>[300]约翰·霍普金斯大学的莱纳西维奇教授等人强调爱因斯坦对归纳方法的依赖性，爱因斯坦后来经常说，他更多地依赖于演绎而不是归纳，但莱纳西维奇仍然认为这一点“非常有争议”。他说：“我对奇迹年的看法是，虽然缺少一种基本理论，但却存在着一些关节点，可以由它们继续往下做，这一胜利是靠归纳来保证的。”Rynasiewiczemail to me, commenting on an earlier draft of this section, June 29，2006.</p>
+<p>[301]Miller 1984，117；Sonnert，289.</p>
+<p>[302]Holton 1973，167.</p>
+<p>[303]Einstein, Induction and Deduction in Physics，Berliner Tageblatt，Dec，25，1919，CPAE 7：28.</p>
+<p>[304]E instein to T.McCormack, Dec.9，1952，AEA 36—549.McCormack是布朗大学的一个本科生，他曾经以崇拜者的身份给爱因斯坦写过一封信。</p>
+<p>[305]E instein 1949b，89.</p>
+<p>[306]以下分析源自Miller 1981以及资料来源中所列的斯塔契尔、诺顿和莱纳西维奇的著作。感谢米勒、诺顿和莱纳西围奇阅读本书初稿并提出修改建议。</p>
+<p>[307]假如声源正在朝你运动，虽然声波并不你这里，但是根据所谓的多普勒效应，缩，它们的间距将会变小。波长减味着高，这的高警报器经过你以后，变得更低）。类似的效应也适用于光。源正在朝你运动，那么波长就会减小增加），所以它将移向光谱的蓝端。由正在远离你的光源发出的光将被红移。</p>
+<p>[308]Miller 1981，311描述了爱因斯坦的光量子论文与狭义相对论论文之间的一种联系。在狭义相对论论文的第7节 中，论了光脉冲，并宣称_“注意的是，体的都按照同样的定律随着观察者的运动而改变。”</p>
+<p>[309]Norton 2006a.</p>
+<p>[310]Einstein to Albert Rippenbein, Aug.25，1952，AEA20—46.亦参见Einstein to Mario Viscardini, Apr.28，1922，AEA 25—301：“我当时拒绝了这一假说，因为它会导致巨大的理论困难（比如解释一个相对于光源运动的屏幕上形的影子）。”</p>
+<p>[311]Merm in，23.这一点后来被德西特1913年关于彼此高速旋转的双星的研究完全证实。不过在那之前，科学家们就已经注意注，没有证据表明，由运动的恒星或其他任何光源所发出的光的光速会发生改变。</p>
+<p>[312]Einstein to Paul Ehrenfest, Apr，25，June 20，1912.通过这一方案，又为终生使他困扰的量子理论奠定了基础。在这篇光量子论文中，他的波动说，又提出光也可以被看成粒子。然而就在他完成这篇光量子论文时，事实和直觉都使他放弃了相对论的这一方案。“在我看来，难以想象他会在同一年基于在他看来彼此矛盾的假设的自然观写出两篇论文，”物理学家彭罗斯说，“他必定认为（后来表明是正确的），麦克斯韦波动理论的准确性（事实上是‘真理性’）与他在量子论文中提出的‘量子’粒子观之间‘说到底’并不存在真正的冲突。我们不禁牛顿300多年前与同一问题的角力，他提出了一种奇特的观点，试图将波动说与微粒说调和起来，以解释光的行为的相互冲突的方面。”Roger Penrose,foreword to Einstein's Miraculous Year（Princeton：Princeton University Press，2005），xi.亦参见Miller 1981，311。</p>
+<p>[313]Einstein,On the Electrodynamics of Moving Bodies, June 30，1905，CPAE 2：23.爱因斯坦最初用V来表示恒定的光速，但7年后开始用现在通用的c来表示。</p>
+<p>[314]在这篇论文的第2节 ，他更加谨慎地定义了光速不变原理：“任何光线在‘静止的’坐标系中都是以固定的速度V运动着，不论这束光是由静止的还是运动的物体发射出来的话说，这条基本假设说不论光源运动有多快，光速都是相同的。在定义光速不变，许多人都将它与下面这个更强的断混淆了，即不论光源或观察者彼此靠近或远离的速度有多快，光在任何惯性系里总是以相同的速度运动。这一陈述也是正确的，但只有在将相对性原理与光速不变原理结合起来之后才是如此。</p>
+<p>[315]Einstein 1922c.在1916年的通俗著作《狭义与广义相对论浅说》中，在第7章 “光的传播定律与相对性的表面抵触”中解释了这一点。</p>
+<p>[316]Einstein 1916，chapter 7.</p>
+<p>[317]Einstein 1922c；Reiser，68.</p>
+<p>[318]Einstein 1916，chapter 9.</p>
+<p>[319]Einstein 1922c；Heisenberg 1958，114.</p>
+<p>[320]Sir Isaac Newton，Philosophiae Naturalis Principa Mathematica（1689），books 1 and 2；Einstein, The Methods of Theoretical Physics, Herbert Spencer lec-ture, Oxford, June 10，1933，in Einstein 1954，273.</p>
+<p>[321]F?lsing，174—175.</p>
+<p>[322]庞加莱还说他已经在《时间的测量》一文中讨论过这一思想。米勒指出，爱因斯坦的朋友索洛文也许读到过这篇法语论文，并同爱因斯坦讨论过。爱因斯坦后来引用过它，他对钟表同步的分析反映了庞加莱的某些思想。Miller 2001，201—202.</p>
+<p>[323]F?lsing，155：“他一边指着伯尔尼的钟塔，一边向朋友和同事们做着手势，然后还指向了附近穆尼村的一座钟塔。”Galison，253也选取了这个故事。他们都以Max Flückiger，Einstein in Bern（Bern：Paul Haupt作为资料来源。事实上，马克斯·弗吕基格只不过引用了一位同事的说法，说爱因斯坦把这些钟表当成一个假设性的例子。亦参见Alberto Martinez, Material History and Imaginary Clocks，Physics in Perspective6（2004）：229。不过马丁内斯也承认，说穆尼村有一个钟表与伯尔尼的钟表不同步，爱因斯坦在向朋友们解释理论时指着它，这的确很有意思。</p>
+<p>[324]Galison，222，248，253；Dyson.伽里森的论点基于他关于专利申请的原创性研究。</p>
+<p>[325]Norton 2006a，3 and 43：“另一种过度简化的看法则过分关注了爱因斯坦论文现在特别使我们感兴趣的那部分内容，即他天才地用光信号和钟表来对同时性进行概念分析。这种看法过分重视只是到了数年研究的最后才出现的思想……它对于狭义相对论或同时的相对性并不是必要的。”亦参见Alberto Mar-tinez, Material History and Imaginary Clocks，Physics in Perspective6（2004）：224—240；Alberto Martinez, Railways and the Roots of Relativity, Physics World, Nov.2003；Norton 2004。Dyson比较赞赏伽里森的研究和洞见，做出了一种不错的评价。亦参见Miller 2001。</p>
+<p>[326]Einstein interview, Bucky，28；Einstein 1956，12.</p>
+<p>[327]Moszkowski，227.</p>
+<p>[328]Overbye，135.</p>
+<p>[329]Miller 1984，109 and 114.Miller 1981，chapter 3解释了法拉第的旋转磁体实验对爱因斯坦狭义相对论的影响。</p>
+<p>[330]Einstein,On the Electrodynamics of Moving Bodies, Annalen der Physik 17（Sept.26，1905）.它有许多版本可以使用。网址参见www.fourmilab.ch/etexts/einstein/specrel/ww/。有用的注释本包括：Stachel 1998；Stephen Hawking, ed.，Selections the Principle of Relativity（Philadelphia：Running Press，2002）：Richard Muller, ed.，Cential Edition of The Theory of Relativity（San Francisco：Arion Press，2005）。</p>
+<p>[331]Einstein, unused addendum to 1916 book Relativity, CPAE 6：44a.</p>
+<p>[332]Einstein 1916.</p>
+<p>[333]Bernstein 2006，71.</p>
+<p>[334]对这个例子的清晰描述参见Miller 1999，82—83；Panek，31—32。</p>
+<p>[335]James Hartle, lecture at the Aspen Center for Physics, June British National Measurement Laboratory, report on time dilation experiments, Spring 2005，www.npl.co.uk/publications/metromnia/issue18/.</p>
+<p>[336]Einstein to Maurice Solovine, undated, in Solovine，33，35.</p>
+<p>[337]中文译为“相对论”。——译者注</p>
+<p>[338]Krauss，35—47</p>
+<p>[339]Seelig 1956a，28.关于对狭义相对论的完整数学描述，参见Taylor and Wheeler 1992。</p>
+<p>[340]Pais，1982，151，citing Hermann Minkowski, Space and Time, lecture at the University of Cologne, Sept.21，1908.</p>
+<p>[341]Clark，159一160.</p>
+<p>[342]Thorne，79.对此，Miller 2001，200也有很好解释：“洛伦兹、庞加莱以及其他任何物理学家都不洛伦兹的局域时间以任何实在性……只有爱因斯坦能够迈出这关键一步。”亦参见Miller 2001，240：“爱因斯坦指出了一种意义，而庞加莱却没有。爱因斯坦的思想实验使他能够将形式化的数学体系解释为一种关于空的新理论，而对庞加莱来说，这只不过是一种一般性的洛伦兹电子理论。米勒还在Scienti-Creativity：A Comparative Study of Henry Poincare and Albert Ein-stein，Creativity Research Journal5（1992）：375中探讨了这一话题。</p>
+<p>[343]Arthur Miller e-mail to the author, Aug.1，2005.</p>
+<p>[344]Hofmann 1972，78.量子理论家德布罗意曾经提出，粒子可以表现得像波一样。他在1954年谈到庞加莱时说：“庞加莱并没有迈出这性的一步，他留给了爱因斯坦获取相对性原理的一切推论的荣耀。”参见Schilpp，112；Galison，304。</p>
+<p>[345]Dyson.</p>
+<p>[346]Miller 1981，162.</p>
+<p>[347]Holtonl973，178；Paisl 982，166；Galison，304；Miller l981.这四位作者都对庞加莱和他所应得的荣誉做了重要研究，本章引用了其中的一些成果。感谢米勒教授惠赠论文“Why Did Poincare Not Formulate Special Relativity in 1905？”，并且编辑这一章的内容。</p>
+<p>[348]Miller 1984，37—38；Henri Poincaré lecture, May 4，1912，U niversity of London, cited in Miller 1984，37；Pais 1982，21，163-168.派斯写道：“终其一生，庞加莱都没有理解狭义相对论的基础……显然，庞加莱或者从未理解相对论，或者从未接受过相对论。”亦参见Galison，242等处。</p>
+<p>[349]Einstein to Mileva Mari，Mar.27，1901.</p>
+<p>[350]Michelm ore，45.</p>
+<p>[351]Overbye，139；Highfield and Carter，114；Einstein and Mileva Marito Conrad Habicht, July 20，1905.</p>
+<p>[352]Overbye，140；T rbuhovic-Gjuric，92—93；Zackheim，62.</p>
+<p>[353]关于米列娃的名字是否以任何方式出现在狭义相对论的手稿上，这是个棘手的问题，但后来事实表明，这一报道的唯一来源是一位已故的俄国物理学家，他从来没有过这种说法，也没有其他证据来支持这一观点。参见John Stachel's ap-pendix to the introduction ofEinstein's Miraculous Year，centennial reissue edition（Princeton，2005），lv。</p>
+<p>[354]The Relative Importance of Einstein’s Wife，The Economist，Feb.24，1990；Evan H.Walker, Did Einstein Espouse His Spouse, s Ideas?Physics Today，Feb.1989；Ellen Goodman, Out From the Shadows of Great Men, BostonGlobe Mar.15，1990；Einstein’s Wife, PBS，2003，www.pbs.org/opb/einsteins wife/index.htm；Holton 2000，191；Robert Schulmann and Gerald Holton, Einstein’s Wife, letter to theNew York Times Book Review，Oct.8，1995；Highfield and Carter，108—114；Svenk Saviin, www.zenskestudie.</p>
+<p>edu.yu/wgsact/e-library/e-lib0027，html_f tnl；Christopher Bjerknes，Albert Ein-stein：The Incorrigible Plagiarist，home.comcast.net/?xtxinc/CIPD, htm；Al-berto Martinez, Arguing about Einstein's Wife，Physics World，Apr.，2004，physic-sweb.org/articles/wo rid/17/4/2/1；Alberto, Handling Evidence in History：The Case of Einstein’s Wife，School Science Revirw，Mar.2005，51-52；Zackheim，20：Andrea Gabor，Einstein’s Wife：Work and Marriage in the Lives of Five Great Twentieth-Century Women（New York：Viking，1995）；John Stachel，Albert Einstein and Mileva Mari（New Brunswick, N.J.：Rutgers Uni-versity Press，1995），207-219；Stachel 2002a，25-37.</p>
+<p>[355]Michelmore，45.</p>
+<p>[356]Holton 2000，191.</p>
+<p>[357]Einstein to Conrad Habicht, June 30—Sept.22，1905.（几乎可以肯定是在9月初，那时爱因斯坦已经休假回来，开始写E=mc2的论文。）</p>
+<p>[358]Einstein, Does the Inertia of a Body Depend on Its Energy Content?Annalen der Physik18（1905），received Sept.27，1905，CPAE 2：24.</p>
+<p>[359]关于对爱因斯坦方程的背景和衍生品的富有洞见的考察，参见Bodani.还有一个有用的包含了关于这个方程的进一步细节：davidbodanis.com/books/emcZ/notes/relativity/siglev/iniej.html。对一颗葡萄干的质量所含能量的计算参见Wolfson，156。</p>
+<p>[360]Maja Einstein, xxi.</p>
+<p>[361]F?lsing，202；Mxx Planck，Scientific Autobiography and Other Papers（New York：Philosophical Library，1949），42.</p>
+<p>[362]更明确地说，费曼在其《物理学讲义》Lectures on Physics，Addison Wesley，1989），19-1中给出的定义是：“学中的作用量有精确的含义。它等于一个粒子的动能减去势能的时间平均。最小作用量原理说，一个粒子将沿着使得其动能与势能之差最小的路径前进。”</p>
+<p>[363]F?lsing，203；Einstein to Maurice Solovine, Apr.27，1906；Einstein tribute to Planck，1913，CPAE2：267.</p>
+<p>[364]Max Planck to Einstein, July 6，1907；Hoffmann 1972，83.</p>
+<p>[365]Mxx Laue to Einstein, June 2，1906.</p>
+<p>[366]Hoffmann 1972，84；Seelig 1956a，78；F?lsing，212.</p>
+<p>[367]Arnold Sommerfeld to Hendrik Lorentz, Dec，26，1907，in Diana Korm os Buchwald, The First Solvay Conference，Einstein in Context（Cam bricge, England：Cambridge Univesity Pes，1993），64，索默菲这里指的是德国物理学家埃米尔·科恩，他是电动力学专家。</p>
+<p>[368]Jakob Laub to Einstein, Mar.1，1908.</p>
+<p>[369]Swiss Patent Office to Einstein, M a r.13，1906.</p>
+<p>[370]Mileva Mari，Dec.1906.</p>
+<p>[371]Einstein,A New Electrostatic Method for the Measurment of Small Quanti-ties of Electricity, Feb.13，1908；Overbye，156.</p>
+<p>[372]Einstein to Paul and/or Conrad Habicht, Aug，16，Sept.2，1907，Mar.17，June, July4，Oct.12，Oct.22，1908，Jan.18，Apr.15，Apr.28，Sept.3，Nov.5，Dec.17，1909；Overbye，156—158.</p>
+<p>[373]Einstein,On the Inertia of Energy Required by the Relativity Principle,May 14，1907，CPAE 2：45；Einstein to Johannes Stark, Sept.25，1907.</p>
+<p>[374]Einstein to Bern Canton Education Department, June 17，1907，CPAE5：46；F?lsing，228.</p>
+<p>[375]Einstein 1922c.</p>
+<p>[376]他使用的德文短语是“die gliicklichste Gedanke”，—般译成“最幸福的”思想，但在这里也许更合适的译法是“最幸运的”思想。</p>
+<p>[377]Einstein, Fundamental Ideas and Methods of Relativity Theory，1920，un-published draft of a paper forNaturemagazine, CPAE7：31.他使用的说法是“我一生中最幸福的思想”（glü cklichste Ged ankemeines Lebens）。</p>
+<p>[378]Einstein Expounds His New Theory，New York Times，Dec，3，1919.</p>
+<p>[379]Bernstein 1996a，10指出，牛顿苹果下落的思想实验和爱因斯坦的升降机实验“所显示的洞见都揭示了日常经验中所包含的未曾预料的深度”。</p>
+<p>[380]Einstein 1916，chapter 20.</p>
+<p>[381]Einstein, The Fundaments of Theoretical P hysics，Science，May 24，1940，in Einstein 1954，329.亦参见Sartori，255。</p>
+<p>[382]在为《物理学纪事》1912年2写的一篇论文中，爱因斯坦次使用了这一短语。亦参见The Speed of Light and the Statics of the Gravitational Field, CPAE4：3。</p>
+<p>[383]Janssen 2002.</p>
+<p>[384]引力场必须是静态的和同质的，加速必须是均勻的和直线的。</p>
+<p>[385]Einstein,On the Relativity Principle and the Conclusions Drawn from It，Jahrbuch der Radioaktivit?t and Elektronik，Dec，4，1907，CPAE2：47；Einstein to Willem Julius, Aug.24，1911.</p>
+<p>[386]Einstein to Marcel Grossm ann, Jan.3，1908.</p>
+<p>[387]Einstein to the Zurich Council of Education, Jan.20，1908；F?lsing，236.</p>
+<p>[388]Einstein to Paul Gruner, Feb.11，1908；Alfred Kleiner to Einstein, Feb.8，1908.</p>
+<p>[389]Flückiger，117—121；F?lsing，238；Maja Einstein, xxi.</p>
+<p>[390]Alfred Kleiner to Einstein, Feb. 8，1908.</p>
+<p>[391]Friedrich Adler to Viktor Adler, June 19，1908；Rudolph Ardelt，Friedrich Adler（Vienna：?sterreichischer Bundesverlag，1984），165—194；Seelig 1956a，95；F?lsing，247；Overbye，161.</p>
+<p>[392]Frank 1947，75；Einstein to Michele B esso, Apr.29，1917.</p>
+<p>[393]Einstein to Jakob L aub,May 19，1909；Reiser，72.</p>
+<p>[394]Friedrich Adler to Viktor Adler, July1，1908；Einstein to July 30，1908.</p>
+<p>[395]Einstein to Jakob Laub,May 19，1909.</p>
+<p>[396]Alfred Kleiner, report to the faculty, Mar.4，1909；Seelig 1956a，166；Pais 1982，185；F?lsing，249.</p>
+<p>[397]Alfred Kleiner, report to faculty, M ar.4，1909.</p>
+<p>[398]Einstein to Jakob Laub,May 19，1909.</p>
+<p>[399]Einstein, verse in the Album of Anna Schmid, Aug.1899，CPAE1：49.</p>
+<p>[400]Einstein to Anna Meyer-Schmid, May 12，1909.</p>
+<p>[401]Mileva Marito Georg M eyer,May 23，1909；Einstein to Georg Mey-er, June 7，1909；Einstein to Erika Schaerer-Meyer, July 27，1951；Highfield and Carter，125；Overbye，164.</p>
+<p>[402]Mileva Mari，26一27.</p>
+<p>[403]Seelig 1956a，92；Dukas and H offm ann，5—7.</p>
+<p>[404]Einstein to Amold Sommerfeld Jan.14，1908.感谢耶鲁大学的斯通教授在关于量子的早期工作方面提供的。</p>
+<p>[405]Einstein lecture in Salzburg,On the Development of Our Views Concerning the Nature and Constitution of Radiation, Sept.21，1909，CPAE2：60；Schilpp，154；Arm in Hermann，The Genesis of the Quantum Theory（Cam MIT Press，1971），66—69.</p>
+<p>[406]Einstein to Arnold Som m erfeld, July 1910.正如爱因斯坦的朋友霍夫曼在《量子史话》（The Strange Story of the Quantum，New York：Dover，1959）中说：“他们只能勉为其难，四处踱步，并且愁眉不展地抱怨说，他们不得不在星期一、星期三、星期五把光看成波，星期二、星期四、星期六把光看成粒子，星期天则只是祷告。”</p>
+<p>[407]Discussion following, Sept.21，1909，lecture in Salzburg, CPAE2：61.</p>
+<p>[408]Einstein to JakobLaub, Nov，4 and 11，1910.</p>
+<p>[409]Einstein to Heinrich Zangger,May 20，1912.</p>
+<p>[410]关于迪昂对爱因斯坦的影响，唐·霍华德的研究最为出色，也最具原创性。参见Howard l990a，2004.</p>
+<p>[411]Friedrich Adler to Viktor Adler, Oct.28，1909，in F?lsing，258.</p>
+<p>[412]Seelig 1956a，97.</p>
+<p>[413]Seelig 1956a，113.</p>
+<p>[414]Seelig 1956a，99—104；Brian 1996，76.</p>
+<p>[415]Seelig 1956a，102；Einstein to Arnold Sommerfeld, Jan.19，1909.</p>
+<p>[416]Overbye，185；Miller 2001，229—231.</p>
+<p>[417]H ans Albert Einstein interview，Gazette and Daily（York, Pa.），Sept.20，1948；Seelig 1956a，104；Highfield and Carter，129.</p>
+<p>[418]布拉格大学是德语区最古老的大学。1882年，因为捷克民族主义者势力，被迫分成所大学，一个是捷克语的，另一个是德语的，尽管它们还享有一些共同的科系。正式的名称应为“卡尔-菲迪南大学”（德语）。另一所则相应为“卡尔-菲迪南大学”（捷克语）。——译者注</p>
+<p>[419]Einstein to Pauline Einstein, A pr.28，1910.</p>
+<p>[420]Student petition, University of Zurich, June 23，1910，CPAE 5：210.</p>
+<p>[421]相当于1909年的1057美元，考虑通胀因素后折合为2006年的23700美元。</p>
+<p>[422]Repeated in lecture by Max Planck, Columbia U niversity, Spring 1909；Pais 1982，192；F?lsing，271.</p>
+<p>[423]Einstein to Jakob, Laub, Aug.27，Oct，11，1910；Count Karl von Stürgkh to Einstein, Jan.13，1911；Frank 1947，98—101；Clark，172—176；F?lsing，271—273；Pais 1982，192.</p>
+<p>[424]Frnnk l947，104.弗兰克的书中说这次拜访发生在1913年，但它实际上发生在1910年9月，那时爱因斯坦在维也纳准备布拉格大学教授职位的官方面试。参见CPAE 5（German version），p.625的注释。</p>
+<p>[425]Einstein to Hendrik Lorentz, Jan.27，1911.</p>
+<p>[426]Einstein to Jakob Laub,May 19，1909.</p>
+<p>[427]Einstein to Hendrik Lorentz, Feb.15，1911.</p>
+<p>[428]Paisl982，8；Brian 1996，78；Klein 1970a，303.埃伦菲斯特的描述来自他对洛伦兹的一篇草稿。</p>
+<p>[429]Einstein, Address at the grave of Lorentz（1928），in Einstein 1954，73；Einstein, Message for hundredth anniversary of the birth of Lorentz”（1953），inEinstein 1954，73.亦参见Bucky，114.</p>
+<p>[430]Mileva Mari30；Einstein to Heinrich Zangger, Apr 7，1911.</p>
+<p>[431]Frank 1947，98.</p>
+<p>[432]Max Brod，The Redemption of Tycho Brahe（New York：Knopf，1928）；Seelig 1956a，121；Clark，179；Highfield and Carter，138.</p>
+<p>[433]Einstein to Paul Ehrenfest, Jan.26，Feb.12，1912.</p>
+<p>[434]Einstein, PaulEhrenfest：InMemorium，1934年为一份莱顿年鉴而作，重印于Einstein 1950a，132。</p>
+<p>[435]Klein 1970a，175—178；Seelig 1956a，125；F?lsing，294；Clark，194；Brian 1996，83；Highfield and Carter，142.</p>
+<p>[436]Einstein toPaul Ehrenfest, Mar.10，1912；Einstein to Alfred Kleiner, Apr.3，1912；Einstein to Paul Ehrenfest, Apr.25，1912.Einstein to Heinrich Zangger, Mar.17，1912：“我希望他能在送里接替我，但其狂热的无神论使这一切化为泡影。”仓格尔的信是2006年才公布的，作为CPAE 5：374a发表于vol.10的补遗。</p>
+<p>[437]Dirk van Delft, Albert Einstein in Leiden，Physics Today，Apr 2006，57.</p>
+<p>[438]Einstein to Heinrich Zangger, Nov，7，1911.</p>
+<p>[439]An invitationfromErnest Solvay, June 9，1911，CPAE 5：269；Einstein to Michele Besso, Sept.11，Oct.21，1911.</p>
+<p>[440]Einstein,On thePresent State of the Problemof Specific Heats, Nov.3，1911，CPAE 3：26；这句关于“在自然中真实存在”的引语出现在英译本第3卷 的第421页。</p>
+<p>[441]Discussion following Einstein lecture, Nov.3，1911，CPAE 3：27.</p>
+<p>[442]Einstein to Heinrich Zangger, Nov.7 andl5，1911.</p>
+<p>[443]Einstein to Michele Besso, Dec.26，1911.</p>
+<p>[444]加上1903年获得物理学奖，居里夫人成为第一位在两个不同领域获得诺贝尔奖的人。除她之外，获得此殊荣的只有鲍林，他获得了1954年的诺贝尔化学奖，后来又因反对核试验而获得了1962年的诺贝尔和平奖。</p>
+<p>[445]Bernstein 1996b，125.</p>
+<p>[446]Einstein to Heinrich Zangger, Nov，7，1911.</p>
+<p>[447]Einsteinto Marie Curie, Nov.23，1911.（这封信收在CPAE第8卷 的开头，而不是按照时间顺序插在第5卷 的相应处，因为5，这封信还没有公开。）</p>
+<p>[448]Mileva Marito Einstein, Oct.4，1911.</p>
+<p>[449]Overbye，201.爱因斯坦的话出自1952年5月5日的一封给塞利希的信。</p>
+<p>[450]她出生时就叫爱尔莎·爱因斯坦，后来嫁给了一个柏林商人，在这段不长的婚姻期间成了爱尔莎·勒温塔尔。爱因斯坦在同她结婚之前就称其为爱尔莎·爱因斯坦。为了清晰起见，我通篇都称她为爱尔莎。</p>
+<p>[451]Reiser，126.</p>
+<p>[452]Highfield andCarter，145.</p>
+<p>[453]Einstein to Elsa Einstein L?wenthal, Apr.30，1912；关于她保存的信件，参见CPAE5：389（German edition），footnot 12。</p>
+<p>[454]Einstein toElsa Einstein, Apr.30，1912；Einstein“scratchnotebook”，CPAE 3（German edition），appendixA；CPAE 5：389（German edition），foot-note 4.</p>
+<p>[455]Einstein toElsa Einstein,May 7 and 12，1912.</p>
+<p>[456]Einstein to Michele Besso,May 13，1911；Einstein to Hans Tanner, Apr.24，1911；Einstein to Alfred and Clara Stern, Mar.17，1912.</p>
+<p>[457]Mileva Mari，106.</p>
+<p>[458]Willem Julius to Einstein, Sept.17，1911；Einstein to Willem Julius, Sept.22，1911.</p>
+<p>[459]Heinrich Zangger to Ludwig Forrer, Oct.9，1911；CPAE 5：291（German edition），footnote 2；CPAE 5：305（German edition），footnote 2.</p>
+<p>[460]虽然学校有了新名字，但爱因斯坦称它为“联邦工学院”（Polytechnikum），为清晰起见，我将继续沿用这个名字。</p>
+<p>[461]Einstein to Heinrich Zangger, Nov，15，1911.</p>
+<p>[462]Einstein to Willem Julius, Nov.16，1911.</p>
+<p>[463]Marie Curie, letter of recommendation, Nov.17，1911；Seelig 1956a，134；F?lsing，291；CPAE 5：308（German edition），footnote 3.</p>
+<p>[464]Henri Poincaré，letter of recommendation, Nov，1911；Seelig 1956a，135；Galison，300；F?lsing，291；CPAE 5：308（Germ an edition），footnote 3.</p>
+<p>[465]Einstein to Alfred and Clara Stem, Feb.2，1912.</p>
+<p>[466]文章刊登于Bienna.weeklyp paperMontags-Revueon July 29，1912和Prague's Prager Tagblatton May 26 and Aug.5，1912.CPAE 5：414（Germ an edition），footnotes 2，3，11；Einstein statem ent, Aug，3，1912。</p>
+<p>[467]Einstein to Ludwig Hopf, June 12，1912.</p>
+<p>[468]Overbye，234，243；High-eld and Carter，153；Seelig 1956a，112.</p>
+<p>[469]在Einstein to Elsa Einstein, July 30，1914中，爱因斯坦回忆了爱尔莎如何取笑他在1912年5月7日的那封宣布停止通信的信中附上了这个新地址。</p>
+<p>[470]Einstein to Elsa Einstein, ca.Mar.14，1913.</p>
+<p>[471]Einstein to Elsa Einstein, Mar.23，1913.</p>
+<p>[472]Seelig 1956a，244；Levenson，2；CPAE 5：451（German edition），footnote2；Clark，213；Overbye，248；F?lsing，329.根据能斯特的女儿后来写的一封信，《爱因斯坦全集》说是白手帕，而其他文献都基于利希的叙述说是白玫瑰。</p>
+<p>[473]Max Planck, Walther Nernst, Heinrich Rubens, and Emil Warburg to the Prussian Academy, June 12，1913，CPAE 5：445.</p>
+<p>[474]Seelig 1956a，148.</p>
+<p>[475]Einstein to Jakob Laub, July 22，1913.</p>
+<p>[476]Einstein to Paul Ehrenfest, late Nov.1913.</p>
+<p>[477]Einstein to Hendrik Lorentz, Aug.14，1913.</p>
+<p>[478]Einstein to Heinrich Zangger, June 27，1914，CPAE8：5a，2006年公之于众，作为附录刊印于CPAE第10卷 。</p>
+<p>[479]Einstein to Elsa Einstein, July 14，19，before July 24，and Aug.13，1913.</p>
+<p>[480]Einstein to Elsa Einstein, after Aug.11，1913.</p>
+<p>[481]Einstein to Elsa Einstein, after Aug.11 and Aug.11，1913.</p>
+<p>[482]Eve Curie，Madame Curie（New York：Doubleday，1937），284；F?lsing，325；Highfield and Carter，157.</p>
+<p>[483]1913年9月21日，洗礼于诺维萨德的圣尼古拉教堂举行。Hans Albert Einstein to Dord Krstic, Nov.5，1970；Elizabeth Einstein，97；Highfield and Carter，159；Overbye，255；Einstein to Heinrich Zangger, Sept.20，1913；Seelig 1956a，113.</p>
+<p>[484]Einstein to Elsa Einstein, Oct.10，1913.</p>
+<p>[485]Einstein to Elsa Einstein, Oct 16，1913.</p>
+<p>[486]Einstein to Elsa Einstein, before Dec.2，1913.</p>
+<p>[487]Einstein to Elsa Einstein, after Dec.21 andAug.11，1913.</p>
+<p>[488]Einsteinto Elsa Einstein, after Dec.21，1913.</p>
+<p>[489]Einstein toElsa Einstein, after Feb.11，1914；Lisbeth Hurwitz diary, cited inOverbye，265.</p>
+<p>[490]Marianoff ， 1；Einstein to Mileva Mari，Apr.2，1914.</p>
+<p>[491]Einstein to Paul Ehrenfest, ca.Apr.10，1914；Paul Ehrenfest to Ein-stein, ca.Apr 10，1914；Highfield andCarter，167.</p>
+<p>[492]Whitrow，20.</p>
+<p>[493]Einstein to Heinrich Zangger, June 27，1914，CPAE8：16a，2006年公之于众，作为附录刊印于CPAE第10卷 。</p>
+<p>[494]Einstein, Memorandum to Mileva Mari，ca.July 18，1914，CPAE 8：22，Anna Besso-WintelertoHeinrich Zangger, Mar.1918，关于爱因斯坦离婚的备注，参见appendix, CPAE 8b（German edition），p.1032。</p>
+<p>[495]Einstein to Mileva Mari，ca.July 18 and also July 18，1914.</p>
+<p>[496]CPAE 8a：26，footnote 3（German edition）：memo from Anna Besso-Winteler to Heinrich Zangger, Mar.1918，CPAE 8b（German edition），p.1032；Overbye，268.</p>
+<p>[497]Einstein to Elsa Einstein, July 26，1914.</p>
+<p>[498]Einstein to Elsa Einstein, after July 26，1914.</p>
+<p>[499]Einstein to Elsa Einstein, July 30，1914（two letters）；Michele Besso to Einstein, Jan.17，1928（recalling the breakup）；Pais，242；F?lsing，338.</p>
+<p>[500]Einstein to Elsa Einstein, after Aug.3，1914.</p>
+<p>[501]Einstein to Mileva Mari，Sept.15，1914包括了对恶语中伤的指控。1914年的许多其他书信都详细记述了他们在钱、家具和对待孩子等方面的冲突。</p>
+<p>[502]Renn and Sauer 2006，117.</p>
+<p>[503]参见第七章 。就这里的讨论而言，我们指的是一个勻加速直线运动的参照系和一个静态的均勻引力场。</p>
+<p>[504]这种等效原理的描述遵循着爱因斯坦在1907年的年鉴文章和1916年的广义相对论论文中的表述。后来的其他描述有所修改。亦参见Einstein, Fundamental Ideas andMethods of Relativity Theory，1920，unpublisheddraft of a pa-per forNaturemagazine, CPAE7：31。</p>
+<p>章的某些内容源自《爱因斯坦全集》编者之一的一篇论文：Jeroenvan Dongen, Einstein’s Unification：General Relativity and the Quest for Mathematical Natualnes，2002。他不但给了我这篇文章的一个副本，也对本章提出了建议和意见。本章也借鉴了其他学者研究爱因斯坦广义相对论著作的成果。我感谢他和所有我撰写本章的人，包括绍尔、雷恩、诺顿和扬森。本章参考了他们以及斯塔契尔的著作，见参考文献。</p>
+<p>[505]Einstein, The Speed of Light and the Statics of the Gravitational Field，An-nalen der Physik（Feb.1912），CPAE4：3：Einstein 1922c；Janssen 2004，9.在1907年和1911年的论文中，爱因斯坦称之为“等效假说，但在这篇1912年的论文中，他把它提升至“等效原理（Aequivalenzprinzip）的地位。</p>
+<p>[506]我使用的是爱因斯坦始计算中的数据。后来的数据使之被修正为大约0.75弧秒，1弧秒是1度的1/3600。</p>
+<p>[507]Einstein,On the Influence of Gravity on the Propagation of Light, Annalen der Physik（June 21）：1911，CPAE 3：23.</p>
+<p>[508]Einstein to Erwin Freundlich, Sept.1，1911.</p>
+<p>[509]Stachel 1989b.</p>
+<p>[510]Record and grade transcript, CPAE 1：25；Adolf Hurwitz to Hermann Bleuler, July 27，1900，CPAE 1：67；Einstein to Mileva Mari，Dec.28，1901.</p>
+<p>[511]F?lsing，314；Pais 1982，212.</p>
+<p>[512]Hartle，13.</p>
+<p>[513]Einstein to Arnold Sommerfeld, Oct，29，1912.</p>
+<p>[514]爱因斯坦为通俗著作Relativity，1923的捷克语译本写的前言，参见utf.mff.cuni.cz/Relativity/Einstein, htm。爱因斯坦写道：“直到1912年我回到苏黎世之后，才想到要论的数学表述类比于高斯的表面论，当时我还不知道黎曼、里奇和莱维-契维塔的工作。是我的朋友曼第一次让我注意到了它们。Einstein 1922c“我认识到几何基础具有物理含义。当我从布拉格回到苏黎世时，我的挚友数学家格罗斯曼在那里。从他那里我第一次听说了里奇和黎曼。”</p>
+<p>[515]Sartori，275.</p>
+<p>[516]它的道理是这样的。如果你处于空间中的某一点，想知道距离邻近点（无限近）有多远，你只能利用勾股定理一般性的几何学知识，事情就会比较困难。计算与北边邻近点的距离的方法可能不同于计算与东边或上方邻近点的距离的方法。在空间中的每一点，我们都需要某种类似于小计分卡那样的，告诉我们该点与每一点的距离。在四维时空中，你的计分卡需要有十个数，才能使你能够处理与邻近点的时空距离相关的所有问题。空中的每一点，你都需要这样一个计分卡。但是一旦你有这些计分卡，你就可以计算沿任何曲线的距离：只要利用相应的计分卡，将途经的每一个无穷小距离加起来就可以了。这些计分卡构成了度规张量，它是时空中的一个场。换句话说，它在各点都有定义，但在各点可以有不同的值。感谢诺顿教授的帮助。</p>
+<p>[517]AmirAczel, Riemann's Metric, inAczel 1999，91—101；Hoffmann 1983，144-151.</p>
+<p>[518]感谢绍尔和科皮就本节提供的帮助。</p>
+<p>[519]Janssen 2002；Greene 2004，72.</p>
+<p>[520]Calaprice，9；Fliickiger，121.</p>
+<p>[521]苏黎世笔记本收在CPAE 4：10。网络版可参见echo, mpiwg-berlin.mpg.de/content/relativityrevolution/jnul亦参见Janssen andRenn。</p>
+<p>[522]Norton 2000，p.147.亦参见Rennan1 Sauer 2006，151。感谢绍尔对本节的编辑工作。</p>
+<p>[523]Zurich Notebook, CPAE4：10（German edition），p.39第一次记录了所谓的爱因斯坦张量。</p>
+<p>[524]RennandSauer 1997，42—43对这一难题提出了一种解释·关于爱因斯坦为什么没有在1913年年初找到正确的引力张量，以及他对坐标条件选择的理解，Renn 2005b，11一14做了很好的分析。他基本同意Norton1984的结论，并且提出了一些修正。</p>
+<p>[525]诺顿、扬森和绍尔都指出，爱因斯坦在1913年的糟糕经历，即放弃数学策略采取物理策略，以及他后来采用数学策略所取得的成功，1933年他在牛津大学斯宾塞讲演中表达的观点，以及他后半生寻找统一场论的过程中都可以反映出来。</p>
+<p>[526]Einstein, Outline[Entxvurf]of a Generalized Theory of Relativity andof a Theory of Gravitation（with Marctl Grossmann），before May 28，1913，CPAE 4：13；Janssen 2004；Janssen and Renn.</p>
+<p>[527]Einstein to Elsa Einstein, Mar.23，1913.</p>
+<p>[528]Einstein- Besso manuscript, CPAE4：14；Janssen，2002.</p>
+<p>[529]Einstein,On the Foundations of the General Theory of Relativity，Annalen der Physik（Mar.6，1918）CPAE7：4关于对牛顿水桶的生动说明以及它与相对论的关联，参见Geene 2004，23—74。在很大程度上正是爱因斯坦推出了马赫对一个空的宇宙的看法。参见Norton 1995c：Julian Barbour，“General Relativity as a Perfectlv Machian Theory”；Carl H oefer，“Einstein’s Formulation of Mach’s Princi-ple”以及Hubert Goenner，“Mach's Principle and Theories of Gravity”，均载于Barbour and Pfister。</p>
+<p>[530]Janssen 2002，14；Janssen 2004，17；Janssen 2006.扬森有一项重要工作分析了贝索和爱因斯坦在1913年的合作。克里斯蒂拍卖行有一份288页的目录收入了爱因斯坦-贝索手稿的复印本以及其他相关材料，还有扬森写的一篇讨论其重要性的论文，克里斯蒂拍卖行于2002年10月4日拍卖了原稿。（50页的爱因斯坦-贝索手稿以59.5万美元拍出。）关于爱因斯坦如何没有理会贝索的建议，即旋转坐标的闵可夫斯基度规不是《纲要》场方程的一个有效解（以及爱因斯坦如何一直感觉《纲要》实际上与马赫原理并不相容）的一个例子，参见EinsteintoMichele Besso, ca.Mar.10，1914.</p>
+<p>[531]Einstein to Ernst Mach, June 25，1913.Misner, Thorne and Wheeler，544.</p>
+<p>[532]Einstein toHendrikLorentz, Aug.14，1913.但两天以后，他又给洛伦写信说，他已经屈从于协变不可能的。“只有现在，在似乎檫掉了这一丑陋的污点之后，这理论才给我带来了喜悦。”Einstein to Lorentz, Aug.16，1913.</p>
+<p>[533]空穴论证是说，广义协变的引力理论将是非决定论的。广义协变的场方程无法唯一地确定度规场。完全指定某个没有物质的小区域，即所谓的“空穴”之外的度规场，将无法确定那一区域内部的度规场。参见Stachel 1989b；Norton 2005b；Janssen 2004。</p>
+<p>[534]Einstein to Ludwig Hopf, Nov.2，1913.亦参见EinsteintoPaulEhren-e s, Nov.7，1913：“可以证明，完全由物质张量来决定引力场的广义协变方程，是根本不可能存在的。必要的限定来自于守恒定律，还有什么事情能比这更美妙呢？这一守恒定律就能从所有的曲面中决定可以特许为坐标面的面。我们可以指定这些特许的面为平面，因为我们剩下的线性代换是唯一正当的。”爱因斯坦对空穴论证的最清晰的解释参见“Onthe Foundations of the GeneralizedTheory of Relativity andthe Theory of Gravitation”，Jan.1914，CPAE 4：25。</p>
+<p>[535]1913年9月，当爱因斯坦出现在德国科学家年会时，持不同观点的引力理论家古斯塔夫·米他发起了“实时”攻击，结果引发一场激辩，其言辞的尖刻远远超过了科学争论的范畴。爱因斯坦还与马克斯·亚伯拉罕进行了激烈争论，整个1912年，爱因斯坦都怀着极大的兴趣对拉罕的引力理论进行批评。Report on the Vienna conference, Sept.23，1913，CPAE4：17.</p>
+<p>[536]Einstein to Heinrich Zangger, ca, Jan.20，1914.</p>
+<p>[537]Einstein to Heinrich Zangger, Mar.10，1914.雷恩指出，虽然1913—1915年对《纲要》的桿卫和打磨并没有能够挽救理论，但它的确帮助爱因斯坦更好地理解了他用数学策略研究的张量所面临的困难。“事实上，爱因斯坦在苏黎世笔记本中碰到的所有技术问题，都在这一时期考察与《纲要》理论相关的问题的过程中得到了解决。”Renn 2005b，16.</p>
+<p>[538]Einstein to Erwin Freundlich, Jan，8，1912，mid-Aug.1913；Einstein to George Hale, Oct.14，1913；George Hale to Einstein, Nov.8，1913.</p>
+<p>[539]Clark，207.</p>
+<p>[540]Einstein to Erwin Freundlich, Dec，7，1913.</p>
+<p>[541]Einstein to Erwin Freundlich, Jan，20，1914.</p>
+<p>[542]F?lsing，356—357.</p>
+<p>[543]Einstein to Paul Ehrenfest, Aug.19，1914.</p>
+<p>[544]Einstein to Paul Ehrenfest, Aug，19，1914.</p>
+<p>[545]Einstein to Paolo Straneo, Jan.7，1915.</p>
+<p>[546]参见Levenson，特别是pp.60—65。</p>
+<p>[547]Elon，277，303—304.</p>
+<p>[548]F?lsing，344.</p>
+<p>[549]Einstein to Hans Albert Einstein, Jan.25，1915.</p>
+<p>[550]Nathan and Norden，4；Elon，326.</p>
+<p>[551]Einstein to Georg Nicolai, Feb.20，1915.全文见CPAE 6：8以及Nathanand Norden，5.Clark，228指出其中有些内容是爱因斯坦写的。亦参见Lev-enson，63；F?lsing，346—347，Elon，328。</p>
+<p>[552]Nathan and Norden，9；Overbye，275—276；F?lsing，349；Clark，238.</p>
+<p>[553]Einstein toRomainRolland, Sept.15，1915；CPAE 8a：118（German e-dition）footnote2；Romain Rolland diary, Nathan and Norden，16；F?lsing，366.</p>
+<p>[554]Einstein toPaul Hertz, before Oct.8，1915；Paul HertztoEinstein, Oct.8，1915；Einstein to Paul Hertz, Oct.9，1915.</p>
+<p>[555]Einstein, My Opinion on the War, Oct.23—Nov.11，1915，CPAE6：20.</p>
+<p>[556]Einstein to Heinrich Zangger, after Dec.27，1914，CPAE 8：41a, insupplement to vol.10.</p>
+<p>[557]Hans Albert Einstein to Einstein, two postcards, before Apr.4，1915，这部分家庭通信直到2006年才公之于世。CPAE 8：69a，8：69b, in supplement to vol.10.</p>
+<p>[558]Einstein to Hans Albert Einstein, ca.Apr.4，1915.</p>
+<p>[559]Einstein to Heinrich Zangger, July 16，1915.</p>
+<p>[560]Einstein to Elsa Einstein, Sept.11，1915；Einstein to Heinrich Zangger, Oct.15，1915；Einstein to HansAlbett Einstein, Nov.4，1915.关于爱因斯坦抱怨自己在1916年9月访问期间很难见到儿子们，参见Mileva Mari，Apr 1，1916：“我希望这次你不会又让孩子们几乎完全远离我。”</p>
+<p>[561]Einstein to Heinrich Zangger, Oct.15，1915；Michele Besso to Einstein, ca.Oct.30，1915.</p>
+<p>[562]我这里又一次引用了雷恩、绍尔、斯塔契尔、扬森和诺顿等人的著作。</p>
+<p>[563]Horst Kant, Albert Einstein andthe Kaiser Wilhelm Institute for Physics in Berlin, Renn 2005d，168—170.</p>
+<p>[564]Wolf-Dieter Mechler, Einstein’s Residences inBerlin, Renn 2005d，268.</p>
+<p>[565]Janssen 2004，29.</p>
+<p>[566]Einstein to Heinrich Zangger, July 7，and ca.July 24，1915；Einstein to Arnold Sommerfeld, July 15，1915.</p>
+<p>[567]具体而言，这个问题是《纲要》场方程在非自主地变换到标准对角线形式的闵可夫斯基度规的旋转坐标时是否保持不变。</p>
+<p>[568]Michele Besso memo to Einstein, Aug，28，1913，Janssen 2002；Norton 2000，149；Einstein toErwin Freundlich, Sept.30，1915.</p>
+<p>[569]Einstein to Hendrik Lorentz, Oct.12，1915.在以下给洛伦兹和索默菲的信中，爱因斯坦描述了他在1915年10月的突破。Einsteinto Hendrik Lorentz, Jan.1，1916：“去年秋天，我逐渐认识到，以前提出的引力场方程是不正确的，这使我经历了一段满腹懊恼的时光。过去我早就发现，得出的的水星近日点运动结果太小。加之我又发现，对于新坐标系的均勻旋转变换来说，这些方程并不具有协变性。最后我发现，我去年为了确定引力场的哈密顿函数H而进行的研究工作完全是白干了，因为很容易将其修改为完全自由地选择H，而根本不必对它施加任何限制性条件。于是我确信，引入合适系统是误入歧途了，必须要求一种范围更广的协变性，最好称之为广义协变性。现在广义协变性是实现了，以后指定坐标系时什么改变也不会发生。现在这些方程本质上就是我在三年前同格罗斯曼——是他使我注意到黎曼张量——一起考虑过的方程。”Einstein to Arnold Sommerfeld, Nov.28，1915：“最近这一个月，是我的生命中最令我激动和紧张的时期之一，也是成果最丰硕的时期之一。因为我认识到，我迄今为止的引力场方程统统都是站不住脚的！这么说有下列几条根据：1）我证明，一个勻速旋转系统的引力场并不满足场方程：2）水星近日点移动是每世纪18"而不是45"；3）我去年论文中思考的协变性并没有给出哈密顿函数H。如果得到恰当的推广，它容许任意的H。由此证明，相对于‘合适’坐标系的协变性是失败。”</p>
+<p>[570]Norton 2000，152.</p>
+<p>[571]关于他声称的1915年10月到11月由物理方案转向数学方案，研究广义相对论的史学有微妙的观点分歧。诺顿主张，爱因斯坦“新的策略是倒转他1913年的决定”，回到一种数学方案，强调产生广义协变的张量分析（Norton 2000，151）。类似地，杰伦·范·东恩说，策略的转移是清清楚楚的。“爱因斯坦立即发现了走出《纲要》困境的道路：他回到了曾经在苏黎世笔记本中放弃的广义协变的数学要求。”（Van Dongen，25）两位学者都引用了爱因斯坦后来说过的话，即声称他所吸取的一大教训就是要相信数学方案。而雷恩和扬森则认为，诺顿和东恩（以及记忆有些模糊的老年爱因斯坦）过于强调这一转移了。在1915年发现最终理论的过程中，物理考虑仍然挥着关键作用。“然而，在我们的重构中，爱因斯坦通过对《纲要》理论（这一理论几乎完全是基于物理考虑）做出重大调整而发现了回到广义协变场方程的道路……数学考虑指向了同一方向，这无疑加强了这是正确方向的信念，但引导他沿着这条道路走下去的是物理考虑而不是数学考虑。”（Janssen and Renn，13：我在文中引用的段落出自p.10），此外，Janssen 2004，35：“无论他后来怎么想、怎么说和怎么写，爱因斯坦只有在不平坦的物理学之路的尽头找到这些方程之后，才发现了通往爱因斯坦方程的数学道路。”</p>
+<p>[572]Einstein to Arnold Sommerfeld, Nov，28，1915.</p>
+<p>[573]Einstein,On the General Theory of Relativity, Nov.4，1915，CPAE 6：21.</p>
+<p>[574]Einstein to Michele Besso, Nov，17，1915；Einstein to Arnold Sommerfeld, Nov.28，1915.</p>
+<p>[575]Einstein to Hans Albert Einstein, Nov.4，1915.</p>
+<p>[576]Einstein to David Hilbert, Nov.7，1915.</p>
+<p>[577]Overbye，290.</p>
+<p>[578]Einstein,On the General Theory of Relativity（Addendum），Nov.11，1915，CPAE 6：22：Renn andSauer 2006，276：Pais 1982，252.</p>
+<p>[579]Einstein to David Hilbert, Nov.12，1915.</p>
+<p>[580]Einsteinto HansAlbert Einstein, Nov.15，1915；Einstein to Mileva Mari，Nov.15，1915；Einstein to Heinrich Zangger, Nov.15，1915.（2006年公之于世，刊印于第10卷 补遗）</p>
+<p>[581]Einstein to David Hilbert, Nov.15，1915.</p>
+<p>[582]Einstein, Explanation of the Perihelion Motion of Mercury fromthe General Theory of Relativity, Nov.18，1915，CPAE 6：24.</p>
+<p>[583]Pais 1982，253；Einstein to Paul Ehrenfest, Jan.17，1916；Einstein to Arnold Sommerfeld, Dec，9，1915.</p>
+<p>[584]Einstein to David Hilbert, Nov.18，1915.</p>
+<p>[585]David Hilbett to Einstein, Nov.19，1915.</p>
+<p>[586]这个方程可以以多种方式来表达。我这里用到的是爱因斯坦在1921年普林斯顿讲演中使用的表述。方程的整个左边用现在所谓的爱因斯坦张量Gμv来更简洁地表示。</p>
+<p>[587]Overbye，293；Aczel，117；archive, ncsa.uiuc.edu/Cyberia/NumRel/Einstein Equations, html#intro.惠勒引语的另一个版本参见他与适斯纳（Charles Misner）、索恩（KipThorne）合著的《引力》（Gravitation）的第5页。</p>
+<p>[588]Greene 2004，74.</p>
+<p>[589]Einstein, The Foundations of the General Theory of Relativity，Analen der Physik，Mar.20，1916，CPAE 6：30.</p>
+<p>[590]Einstein to Heinrich Zangger, Nov.26，1915；Einstein to Michele Besso, Nov.30，1915.</p>
+<p>[591]Thorne，119.</p>
+<p>[592]关于对希尔伯特贡献的分析，参见Sauer 1999，529—575；Sauer 2005，577—590。讨论希尔伯特的修正的论文包括Gory, Renn and Stachel；Sauer 2005等。关于这场争论，亦参见JohnEarman andClark Glymour, Einstein and Hilbert：Two Months in the History of General Relativity，Archive for History of Exact Sciences（1978）Logunov, MA Mestvirishvili and V.A Petrov, How Were the Hilbert-Einstein Equa-tions Discovered?Uspekhi Fizicheskikh Nank174，no.6（June 2004）：663-678；Christopher Jon Bjerknes，Albers Einstein：The Incorrigible Plagiarist，参见home ccmcast.net/?xtxinc/AEPBook htm；John Stachel, Anti-Einstein sentiment surfacesagain, Physics World，Apr.2003，physicsweb.org/articles/review/16/4/2/1；Christo-pher Jon Bjerknes, The Author ofAlbert EinsPa：The Incorrigible PlagiaristJohn Stachel's Personal Attack, home comcastnet/?txinc/Response htm；Friedwardt Winterberg,On“Belated Detsion in the Hilbet-Einstein Priotty Dispute”，Zeitschift fuer Naturforschung A（Oct，2004）：715—719，www.physics, unr.edu/faculty/winterberg/Hilbert-Einstein pdf；David Rowe, Einstein Meets Hilbert：At the Crossroads ofPhysics and Mathematics，Physics in Perspective3，no.4（Nov.2001）：379.</p>
+<p>[593]Reid，142.虽然这一评论在其他二手文献中也有引用，但《爱因斯坦全集》的编者绍尔（他正在写一本关于希尔伯特的著作）说，他从未找到它的原始出处。</p>
+<p>[594]Einstein to David Hilbert, Dec.20，1915.</p>
+<p>[595]Einstein to Arnold Sommerfeld, Dec.9，1915；Einstein to Heinrich Zang-ger, Nov.26，1915.</p>
+<p>[596]关于广义相对论是否真的使所有形式的运动和所有参照系等价，这是一个有争议的问题。当然可以说，正在做非勻速相对运动的两个观察者都可以正当地将自己看成“静止”，而另一个受到引力场的作用。但这并不必然意味着（爱因斯坦有时这样想，有时不这样想），正在做非勻速相对运动的两个观察者总在物理上等价，特别是有旋转发生时。比如参见Nortonl995b，223—245；Janssen 2004，8—12；DonHoward, Point Coincidences and Pointer Coincidences, in Goenner et al.1999，463；Robert Rynasiewiecz, Kretschmann’s Analysis of Covariance and Relativity Principles, in Groenner et al.1999，431；Dennis Diek, Another Look at General Covariance and the Equivalence of Reference Frames，Studies in the History and F'hilosophy of Modern Physics37（Mar.2006），174.</p>
+<p>[597]F?lsing，374；Clark，252.</p>
+<p>[598]Einstein to Michele Besso, Dec.10，1915.</p>
+<p>[599]Michele Besso to Einstein, Nov，29，1915；Einstein to Michele Besso, Nov.30，1915.</p>
+<p>[600]Hans Albert Einstein to Einstein, before Nov.30，1915；Einstein to Hans Albert Einstein, Nov.30，1915.</p>
+<p>[601]Michele Besso to Einstein, Nov.30，1915，亦参见Einstein to Heinrich Zangger Dec.4，1915：“有人正在一步步地狀害我儿子的灵魂，让他不再信任我。”</p>
+<p>[602]为清晰起见，我称爱因斯坦的儿子为汉斯·阿尔伯特，尽管他的父亲，总是径直称其为阿尔伯特（这种做法也许一些心理学家觉得好笑有一次，爱因斯坦给儿子写了一张明信片，署名“阿尔伯特”而不是“爸爸”。在接下来的一封信中，他尴尬地说：“我在上封信里滑稽的签名解释成，由于心不在焉，我签的往往不是自己的名字，而是收信人的名字。”（Einstein to Hans Albert Einstein, Mar.11 and 16，1916.）</p>
+<p>[603]Einstein to Mileva Mari，Dec.1 and 10，1915.</p>
+<p>[604]Einstein toHans Albert Einstein, Dec.23 and 25，1915.1915年12月18日，爱因斯坦也给汉斯·阿尔伯特写了一张类似的明信片。Einstein to Hans Albert Einstein, Mar.11，1916.</p>
+<p>[605]Einstein to Heinrich Zangger, Nov.26，1915；Einstein toMicheleBesso, Jan.3，1916.</p>
+<p>[606]Overbye，300.</p>
+<p>[607]Einstein to Mileva Mari，Feb.6，1916.</p>
+<p>[608]Einstein to Mileva Mari，Mar.12 and Apr.1，1916；Ne￡￡e，194.</p>
+<p>[609]Einstein to Mileva Mari，Apr, land 8，1916；EinsteintoMicheleBesso，Apr.6，1916；Michele Besso to Heinrich Zangger, Apr 12，1916，CPAE 8：211（German edition），footnote 2.</p>
+<p>[610]Einstein toElsa Einstein, Apr.12 and15，1916.亦参见EinsteintoElsa Einstein, Apr 10，1916，载2006年公之于世的家庭通信，CPAE 8：211a：“我与他的关系正在变得相当融洽。”</p>
+<p>[611]Einstein to Elsa Einstein, Apr.21，1916.亦参见Einstein to Heinrich Zangger July 11，1916：“在极为开心的复活节旅行之后，接下来几天在苏黎世的关系便急遽冷却。其中的原因我并不能完全说清楚。”</p>
+<p>[612]Einstein to Heinrich Zangger, July 11，1916；Einstein to Michele Besso, July 14，1916.参见CPAE 8：233（German version），footnote 4，仓格尔是信中谈到的另一个人。</p>
+<p>[613]Pauline Einstein to Elsa Einstein, Aug，6，1916，inOverbye，301.</p>
+<p>[614]Einstein to Michele Besso, July 14，1916；Michele Besso to Einstein, July 17，1916；CPAE 8：239（German version），footnote 2.</p>
+<p>[615]Einstein to Michele Besso, July 21，1916，两封信。</p>
+<p>[616]CPAE 8：241（German edition），footnote 3，4：Einstein to Heinrich Zangger, July 25，1916：Heinrich Zangger to Michele Besso, July 31，1916.</p>
+<p>[617]Einstein to Heinrich Zangger, Aug.18，1916；Einstein to Hans Albert Einstein, July 25，1916.亦参见Einstein to Zangger, Mar.10，1917。</p>
+<p>[618]Einsteinto Michele Besso, Aug，24，916；Einstein to Hans Albert, Sept.26，1916.</p>
+<p>[619]Hans Albert Einstein to Einstein, before Nov.26，1916.</p>
+<p>[620]Einstein to Michele Besso, Oct.31，1916.</p>
+<p>[621]Einstein to Helen，SaviSpt.8，1916.</p>
+<p>[622]Einstein, The Foundation of the General Theory of Relativity, Mar.20，1916，CPAE6：30.</p>
+<p>[623]Einstein，On the Special and the General Theory of Relativity，Dec，1916，CPAE 6：42，and many popular editions；Michelmore，63.爱因斯坦这部著作的网络版参见bartleby.com/173/或www.gutenberg.org/etext/5001.</p>
+<p>[624]Einstein, Principles of Research，1918，inEinstein 1954，224.</p>
+<p>[625]Einstein to Heinrich Zangger, Jan.16，1917；Clark，241.</p>
+<p>[626]Clark，248；Highfield and Carter，183；Overbye，327；Einstein to Paul Ehrenfest, Feb，14，1917；Einstein to Heinrich Zangger, Dec，6，1917.</p>
+<p>[627]Einstein to Michele Besso, Mar.9，1917；Einstein to Heinrich Zangger, Feb.16 and Mar.10，1917.</p>
+<p>[628]Einstein to Paul Ehrenfest,May 25，1917.</p>
+<p>[629]Einstein to Heinrich Zangger, June 12，1917.</p>
+<p>[630]爱因斯坦的薪水税后是13000马克。当时通货膨胀已经显现，德国马克的价值已从1914年的24分钱降到了1918年1月的19分钱。当时1马克可以买两打鸡蛋或四块面包。（一年之后，马克将只值12分钱，当恶性通货膨胀在1920年1月开始肆虐时降到了只有2分钱1918年1月，米列娃的6000马克年收入大约值1140美元，或者经过换算，低于2006年的15000美元。爱因斯坦的建议相当于将它提高一半。</p>
+<p>[631]Einstein to Mileva Mari，Jan.31，1918.</p>
+<p>[632]Mileva Marito Einstein, Feb，9，1918，from family trust correspon-dence, CPAE 8：461a, insupplement to vol.10.</p>
+<p>[633]Mileva Marito Einstein, after Feb.6，1918.注释32中提到的这封2月9日的信直到2006年才解密。它的日期显然应早于被《爱因斯坦全集》编者标注“2月6日之后”的信。</p>
+<p>[634]Overbye，338—339.</p>
+<p>[635]Mileva Mari；to Einstein, Apr.22，1918.</p>
+<p>[636]Einstein to Mileva Mari，，Apr 15，23，26，1918.</p>
+<p>[637]Maja Winteler-Einstein toEinstein, Mar.6，1918，family foundationcor-respondence, unsealedin2006，CPAE 8：475b, insupplement to vol.10.</p>
+<p>[638]Einstein toAnna Besso, after Mar.4，1918.</p>
+<p>[639]Anna Besso to Einstein, after Mar.4，1918.</p>
+<p>[640]Mileva MariJune 4，1918.亦参见Vero Besso（Anna and Michele’s son）to Einstein，Mar 28，1918，family trust correspondence：“您寄给我妈妈的明信片真的不够好……她说那些话并不是要冒犯您（如果您亲耳听到的话）：您对这些本可以一笑了之，不要太当真。”</p>
+<p>[641]Mileva Marito Einstein, Mar 17，1918：“我目前的健康状况是，我在家里躺下来没有问题，但无法下床·不过我几乎总能与孩子们相处得很好，这让我十分快乐，也对我的健康颇有助益。”Einstein to Heinrich Zangger,May8，1918.</p>
+<p>[642]Einstein to Heinrich Zangger,May 8，1918.</p>
+<p>[643]Einstein to Max Bom, after June 29，1918；Einstein to Michele Besso, July 29，1918.</p>
+<p>[644]Einstein toHans.Albert Einstein, after June 4，1918.</p>
+<p>[645]Einstein to Hans Albert Einstein, after June 19，1918.</p>
+<p>[646]Hans AlbertEinsteinto Einstein, ca.July 17，1918；Einstein to Eduard Einstein, ca.July 17，1918.</p>
+<p>[647]Edgar Meyer to Einstein, Aug，11，1918；Einstein to Michele Besso, Aug.20，1918.</p>
+<p>[648]Einstein toHeinrichZangger, Aug.16，1918；Einstein to Michele Besso, Sept.6，1918；F?lsing，424.</p>
+<p>[649]Reiser 140.</p>
+<p>[650]Nathan and Norden，24.</p>
+<p>[651]Bom 2005，145—147.我的叙述依据的是玻恩的回忆，这些内容以及爱因斯坦对此次事件的提及可见于1944年9月7日爱因斯坦给玻恩写的一封信。亦参见Bolles，3—11；Seelig 1956a，178；F?lsing，423；Levenson，198。</p>
+<p>[652]Einstein,On the Need for aNational Assembly, Nov.13，1918，CPAE 8：14；Nathan andNorden，25.纳坦说，爱因斯坦向大学生中的激进分子发表了这些评论。这一点似乎没有证据，玻恩并未提到这件事。报纸上说，新祖国联盟在当天晚些时候有一个讲演。参见CPAE 8：14（German edition），footnote 2。</p>
+<p>[653]Einstein to Max Born, Sept.7，1944.</p>
+<p>[654]Einstein, Deposition in Divorce, Dec.23，1918，CPAE 8：676.</p>
+<p>[655]Einstein to Mileva Mariand Hans Albert Einstein, Jan.10，1919；Ein-stein to Hedwig andMax Born, Jan.15 and 19，1919；Theodor Vetter to Einstein, Jan.28，1919.魏特（Vetter）是苏黎世大学的校长，他回复了爱因斯坦对讲座门口设置警卫的抱怨。</p>
+<p>[656]Divorce Decree, Feb.14，1919，CPAE 9：6.</p>
+<p>[657]Overbye，273—280.</p>
+<p>[658]Einstein to Georg Nicolai, ca.Jan，22 and Feb.28，1917；Georg Nicolai to Einstein, Feb.26，1917.</p>
+<p>[659]lisa Einstein to Georg Nicolai,May 22，1918，CPAE 8：545.</p>
+<p>[660]Einstein toElsa Einstein, July 12 and 17，1919.</p>
+<p>[661]Einstein toElsa Einstein, July 28，1919.</p>
+<p>[662]Professor Einstein Here，New York Times，Apr.3，1921.</p>
+<p>[663]PronouncedSense of Humor，New York Times，Dec，22，1936.</p>
+<p>[664]F?lsing，429；Highfield and Carter，196.</p>
+<p>[665]Reiser，127；Marianoff，15，174.这两位作者分别娶了爱尔莎的两个女儿。莱泽尔原名鲁道夫·凯泽尔。</p>
+<p>[666]Elias Tobenkin, How Einstein, Thinking in Terms of the Universe, Lives From Day to Day, New York E vening Post, Mar.26，1921.</p>
+<p>[667]Frank 1947，219；Marianoff，1；F?lsing，428；Reiser，193.</p>
+<p>[668]Overbye，314；Einstein to Schwarzschild, Jan.9，1916.</p>
+<p>[669]Einstein,On a Stationary System with Spherical Symmetry Consisting of Many Gravitating Masses，Annals of Mathematics，1939.</p>
+<p>[670]关于黑洞的历史、数学和科学，参见M iller 2005；Thome，121—139。</p>
+<p>[671]Freeman Dysomin Robinson，8—9.</p>
+<p>[672]参见第十四章 爱因斯坦在1920年莱顿讲演中对这一观点的修正。</p>
+<p>[673]Einstein to Karl Schwarzschild, Jan.9，1916.</p>
+<p>[674]CPAE vol.8收录了爱因斯坦与德西特的所有通信，并对这场争论做了很好的评注。Michel Janssen[uncredited author]，The Einstein-De Sitter-Weyl-Klein debate, CPAE 8a[German edition]，p.351.</p>
+<p>[675]Einstein to Willem de Sitter, Feb.2，1917.</p>
+<p>[676]Einstein to Paul Ehrenfest, Feb.4，1917.</p>
+<p>[677]Einstein, Cosmological Considerations in the General Theory of Relativity, Feb.8，1917，CPAE 6：43.</p>
+<p>[678]Einstein 1916，chapter 31.</p>
+<p>[679]Clark，271.</p>
+<p>[680]关于以这种思路写成的一个科幻故事，参见EdwinAbbott'sFlatland首版于1780年，有许多平装版。</p>
+<p>[681]Edward W.Kold, The Greatest Discovery Einstein Didn, t Make, inBrockman，205.</p>
+<p>[682]原文为kosmologische Gleid，当为kosmologische Gleid之误。根据德文词尾变化规则，在前面应补充定冠词das。——译者注</p>
+<p>[683]关于爱因斯坦发现宇宙正在膨胀后决定放弃这一项，参见第十四章 。</p>
+<p>[684]Lawrence Krauss and Michael Turner, A Cosmic Conundrum，Scientfic American（Sept.2004）：71；Aczel，155；Overbye，321.爱因斯坦这句关于大错的著名引语出自Gamow，1970，44.</p>
+<p>[685]Overbye，327.</p>
+<p>[686]参见第十四章 。</p>
+<p>[687]Einstein 1916，chapter 22.</p>
+<p>[688]爱丁顿1920年的经典著作现已以平装本再版，即Arthur Eddington, Space, Time ＆ Gravitation：An Outline of the General Relativity Theory（Cam-bridge, England：Cambridge Science Classics，1995）。第141页描述了这次普林西比远征。亦参见一篇获奖论文：MatthewStanley, An Expedition to Heal the Wounds of War：1919 Eclipse and Eddington as Quaker Adventurer, Isis 94（2003）：57—89.对所有检验的全面论述参见Crelinsten。</p>
+<p>[689]Douglas，40；Aczel，121—137；Clark，285—287；F?lsing，436—437；Overbye，354-359.</p>
+<p>[690]Douglas，40.</p>
+<p>[691]Einstein to Pauline Einstein, Sept.5，1919；Einstein to Paul Ehrensfest, Sept.12，1919.</p>
+<p>[692]Einstein to Pauline Einstein, Sept.27，1919；Bolles，53.</p>
+<p>[693]Ilsa Rosenthal-Schneider，Reality and Scientific Truth：Discussions with Einstein, von Laue, and Planck（Detroit：Wayne State University，1980），74，施奈德误把洛伦兹发来的电报当成了爱丁顿的。爱因斯坦的名言有许多翻译版本。施奈德记录的德语句子是：“Dak?nnt’mir halt der LiebeGott leid tun, die Theorie stimmt doch，”</p>
+<p>[694]Max Planck to Einstein Oct.4，1919；Einstein to Max Planck, Oct.23，1919.</p>
+<p>[695]Zurich Physics Colloquium to Einstein, Oct.11，1919.</p>
+<p>[696]Einstein to Zurich Physics Colloquium, Oct.16，1919.</p>
+<p>[697]Alfred North Whitehead，Science and the Modern World（1925；New York：Free Press，1997），13.亦参见pp.29和113。</p>
+<p>[698]The Timesof London, Nov.7，1919；Pais 1982，307；F?lsing，443；Clark，289.</p>
+<p>[699]The Timesof London, Nov.7，1919.</p>
+<p>[700]Einstein 1949b，31.Purchase of violin is in Einstein to Paul Ehrenfest, Dec.10，1919.</p>
+<p>[701]Douglas，41.Subrahmanyan Chandrasekhar，Truth and Beauty：Aesthetics and Motivations in Science（Chicago：University of 1987），117.（希尔伯特当然可能是第三个，虽然有许多人也有这个能力。）后来与爱丁顿共事的钱德拉塞卡对杰里米·伯恩斯坦说，这番话是他亲耳听爱丁顿说的；Bemstein 1973，192。</p>
+<p>[702]Clark，309.David Rowe, Einstein.Rise to Fame, Perimeter Institute, Oct.15，2005，www.mediasite.com是一篇不错的概述。</p>
+<p>[703]Fabric of the Universe，The Timesof London editorial, Nov，7，1919.</p>
+<p>[704]New York Timis，Nov.9，1919.</p>
+<p>[705]Brian 1996，100，from Meyer Berger，The Story of the New York Times（New York：Simon and Schuster，1951），251—252.</p>
+<p>[706]The New York Times，Nov.9，1919.</p>
+<p>[707]当然，《纽约时报》对这一理论进行了严肃的新闻报道，这一点值得称赞。</p>
+<p>[708]Einstein Expounds His New Theory，New York Times，Dec.3，1919.</p>
+<p>[709]Einstein to Heinrich Zangger, Dec.15，1919.</p>
+<p>[710]瑞·欧文（Rea Irvin），《纽约客》第一任美术编辑。——译者注</p>
+<p>[711]Einstein to Marcel Grossmann, Sept.12，1920.</p>
+<p>[712]Leopold Infeld, To Einstein on his 75th birthday, inGoldsmith，24.</p>
+<p>[713]New York Times，Dec.4，Dec.21，1919.</p>
+<p>[714]The Timesof London, Nov.28，1919.</p>
+<p>[715]Paul Ehrenfest to Einstein, Nov.24，1919；Maja Einstein to Einstein, Dec.10，1919.</p>
+<p>[716]Einstein to Max Born, Dec.8，1919；Einstein to Ludwig Hopf, Feb.2，1920.</p>
+<p>[717]C, P. Snow,On Einstein，in The Variety of Men（New York：Scribner's，1966），108.</p>
+<p>[718]FreemanJ. Dyson, Wise Man，New York Review of Books，Oct.20，2005.</p>
+<p>[719]Clark，296.</p>
+<p>[720]Bom 2005，41.</p>
+<p>[721]Hedwig Born to Einstein, Oct.7，1920.</p>
+<p>[722]Max Born to Einstein, Oct.13，1920.</p>
+<p>[723]Max Bom to Einstein, Oct.28，1920.</p>
+<p>[724]Einstein to MaxBorn, Oct.26，1920.这本书几个月后最终出版时，给索洛文写信说，莫什科夫斯基“令人”，“是个猥琐小人”，还说“他涉嫌伪造”，私自用一些爱因斯坦的信来暗示爱因斯坦为这本书写了一篇导言，参见Einstein to Maurice Solovine, Mar.8 and 19，1921。当他听说汉斯·阿尔特也买了这本书之后，他非常沮丧，说“我没能阻止它出版，这使我深感痛心”，参见Einstein to Hans AlbertEinstein, June 18，1921，亦参见Highfield and Carter，199。</p>
+<p>[725]Brian 1996，114—116；Moszkowski，22—58.</p>
+<p>[726]Bom 2005，41.</p>
+<p>[727]Frank 1947，171—174.</p>
+<p>[728]Michelmore，95；F?lsing，485.</p>
+<p>[729]Einstein to Heinrich Zangger, Dec.24，1919.</p>
+<p>[730]Einstein, My First Impressions of the U.S.A.，Nieuzve Rotterdamsche Courant，1921；Einste in 1954，3—7.</p>
+<p>[731]Einstein, Einstein on His Theory，The Timesof London, Nov，281919.</p>
+<p>[732]Einstein toHedwig and Max Born, Jan.27，1920；Einstein to Arthur Ed-dington, Feb.2，1920.爱因斯坦和颜悦色地对爱丁顿说：“与你们在相对论及其证实方面卓有成效的努力相比，授奖事件悲喜参半的结果丝毫不重要。”</p>
+<p>[733]Frida Bucky，引自Brian 1996，230。</p>
+<p>[734]Einstein, The World as ISee It（1930），in Einstein1954，8.另一种翻译载Einstein 1949a，3。</p>
+<p>[735]这种评价在Infeld，118中稍有不同；Infeld, To Albett Einstein on his 75th Birthday, in Goldsmith，25，and in the Bulletin of the World Federation of Scientific Workers, July 1954.</p>
+<p>[736]Editorialnote by Max Born inBorn 2005，127.</p>
+<p>[737]Abraham Pais, Einstein and the Quantum Theory，Reviews of Modern Physics，Oct.1979，亦参见Pais, Einstein, Newton and Success, in French，35；Pais 1982，39。</p>
+<p>[738]Einstein, Why Socialism?，Monthly Review,May，1949，reprinted in Ein-stein 1954，151.</p>
+<p>[739]Erik Erikson, Psychoanalytic Reflections on Einstein's Centenary, Holton and Elkana，151.</p>
+<p>[740]这种想法出自希伯来大学爱因斯坦档案馆的芭芭拉·沃尔夫。</p>
+<p>[741]Levenson，149.</p>
+<p>[742]Einstein to Paul Ehrenfest, Jan.17，1922；F?lsing，482.（由于爱因斯坦的国外收入没有寄回本国，而是寄到莱顿，这违反了德国货币规定，而且他还向隐瞒了个人收入，所以他和埃伦菲斯特通信时采用了密码式的说法，以交流财务处理方面的信息。——译者注）</p>
+<p>[743]Einstein to Eduard Einstein, June 25，1923，Einstein family correspondencetrust, unpublished, letterin possession ofBobCohn。鲍勃·科恩向我提供了一份拷贝。科恩是爱因斯坦文稿的收集者，JaniferStackhouse博士翻译了他所掌握的书信。感谢他们的帮助。</p>
+<p>[744]Michelmore，79.</p>
+<p>[745]Einstein to Mileva Mari，May 12，1924，AEA75—629.</p>
+<p>[746]Einstein to Michele Besso, Jan.5，1924，AEA 7—346；Einstein to Hans Albert Einstein, Mar.7，1924.</p>
+<p>[747]Einstein to Heinrich Zangger, Mar.1920；F?lsing，474；Highfield and Carter，192；Clark，243.</p>
+<p>[748]Paul Johnson，Modern Times（New York：Harper Collins，1991），1—3.当爱因斯坦选《时代》周刊世纪人物时，我曾写了一篇文章“Who Mattered and Why，”Time，DEC31，1999，本节即根据这篇文章改写。关于对这一思想的批判，参见DavidGreenberg, It Didn't Statt With Einstein, Slate, Feb.3，2000，www.slate, com/id/74164/.米勒的Einstein，Picasso也是一篇重要文献。</p>
+<p>[749]Charles Poor, professorofcelestialmechanics, Columbia University, in theNew York Times，Nov.16，1919.</p>
+<p>[750]New York Times，Dec.7，1919.</p>
+<p>[751]Isaiah Berlin, Einstein and Israel, Holton and Elkana，282，亦参见爱因斯坦的女婿莱泽尔的说法，Reiser，158：“相对论一词在普通人那里遭到了混淆，今天仍然与相对主义一词混为一谈。然而，爱因斯坦的工作和人格远非含混不清和相对主义，无论在知识论上还是在伦理上都是如此……伦理上的相对主义一切义不容辞的道德准则，它完全与爱因斯坦所代表和奉行的高尚的社会观念相抵触。”</p>
+<p>[752]Haldane，123.有一本当代的书就许多同类主题做了更加深刻的讨论，而且标题也相同，参见Thomas Ryckman，The Reign of Relativity.</p>
+<p>[753]Frank 1947，189—190；Clark，339—340.</p>
+<p>[754]Gerald Holton, Einstein's Influenceon theCulture of Our Time, in Holton，Einstein, History，andOther Passions，127，and alsoHolton and Elkana, xi.</p>
+<p>[755]Miller 2001，especially 237—241.</p>
+<p>[756]Damour 34；Marcel Proust to Armand de Guiche, Dec.1921.</p>
+<p>[757]Philip Courtenay, Einstein and Art, in Goldsmith，145；Richard Davenport-Hines，Proustat the Majestic（New York：Bloomsbury，2006）.</p>
+<p>[758]The Times ofLondon, Nov.28，1919.</p>
+<p>[759]Kurt Blumenfeld, Einstein and Zionism, in Seelig 1956b，74；Kurt Blu-menfeld，Erlebte Judenfrage（Stuttgart：Verlag-Anstalt，1962），127—128.</p>
+<p>[760]Einstein to Paul Epstein, Oct.5，1919.</p>
+<p>[761]Einstein, to German Citizens of the Jewish Faith, Apr.5，1920，CPAE 7：37.</p>
+<p>[762]爱因斯坦使用的原词是“Stammesgenossen”。虽然“Stamm”通常意为“部族”（tribe），但这种译法可能含有某些种族意味。一些爱因斯坦学者说，译成“kindred”“clan”或“lineage”可能更清楚一些。</p>
+<p>[763]Einstein, Anti-Semitism：Defense through Knowledge, after Apr.3，1920，CPAE 7：35.</p>
+<p>[764]Einstein, Assimilation and Anti-Semitism, Apr.3，1920，CPAE 7：34.亦参见Einstein, Immigration from theEast, Dec.30，1919，an article inBerliner Tageblatt，CPAE 7：29。</p>
+<p>[765]Einstein, Anti-Semitism：Defense through Knoweldge, after Apr.3，1920，CPAE7：35；Hubert Goenner, The Anti-Einstein Campaign in Germany in 1920，inBeller etal.，107.</p>
+<p>[766]Elon，277.</p>
+<p>[767]Hubert Goenner, The Anti-Einstein Campaign in Germany in 1920，in Beller etal.，121.</p>
+<p>[768]New York Times，Aug.29，1920.</p>
+<p>[769]Frank 1947，161；Clark，318；F?lsing，462；Brian 1996，111.</p>
+<p>[770]Einstein to Leave Berlin，New York Times，Aug.29，1920；电头为柏林的这篇报道说：“当地报纸称，鉴于对相对论和他本人的许多无端攻击，爱因斯坦教授将离开德国的首都。”</p>
+<p>[771]Einstein, My Response, Aug.27，1920，CPAE7：45.</p>
+<p>[772]特别参见Philipp Lenard to Einstein, June 5，1909。</p>
+<p>[773]Einstein, My Response, Aug.27，1920，CPAE7：45.</p>
+<p>[774]Seelig 1956a，173.</p>
+<p>[775]Hedwig Born to Einstein, Sept.8，1920.</p>
+<p>[776]Paul Ehrenfest to Einstein, Sept.2，1920.</p>
+<p>[777]Einstein to Max and Hedwig Born, Sept.9，1920.</p>
+<p>[778]Einstein to Paul Ehrenfest, before Sept.9，1920.</p>
+<p>[779]Arnold Sommerfeld to Einstein, Sept.11，1920.</p>
+<p>[780]Jerome，206—208，256—257.</p>
+<p>[781]Bom 2005，35；Einstein to Max Bom, Oct.26，1920.</p>
+<p>[782]Clark，326—327；F?lsing，467；Bolles，73.</p>
+<p>[783]F?lsing，523；Adolf Hitler，V?lkischer Beobachter，Jan.3，1921.</p>
+<p>[784]Dearborn（Mich，）Independent，Apr.30，1921，on display a“Chief Engineer of theUniverse”exhibit, Kronprinzenpalais, Berlin,May-Sept.2005.该页下方的一个大标题称：“犹太人承认布尔什维克主义！”</p>
+<p>[785]Einstein to Paul Ehrenfest, Nov.26，1920，Feb.12，1921，AEA9—545；F?lsing，484.1920年以后的爱因斯坦书信尚未在CPAE中发表，我用爱因斯坦档案（AEA）的编号来标记这些未发表的书信。</p>
+<p>[786]Clark，465—466.</p>
+<p>[787]Einstein to Maurice Solovine, Mar.8，1921，AEA 9—555.</p>
+<p>[788]Einstein statement to Abba Eban, Nov.18，1952，AEA 28—943.</p>
+<p>[789]FritzHaber to Einstein, Mar.9，1921，AEA 12—329.</p>
+<p>[790]Einstein to FritzHaber, Mar.9，1921，AEA 12—331.</p>
+<p>[791]Seeligl956a，81；F?lsing，500；Clark，468.</p>
+<p>[792]New York Times，Apr.3，1921.</p>
+<p>[793]Illy，29.</p>
+<p>[794]Philadelphia Public Ledger，Apr3，1921.</p>
+<p>[795]这些引文和叙述源自New York Times，New York Call，Philadelphia PublicLedr和New York American1921年4月3日的报道。</p>
+<p>[796]Weizmann，232.</p>
+<p>[797]Einstein Sees End of Time and Space，New York Times，Apr.4，1921.</p>
+<p>[798]City’s Welcome for Dr, Einstein，New York Evening Post，Apr5，1921.</p>
+<p>[799]Talmey，174.</p>
+<p>[800]New York Times，Apr.11 and 16，1921.</p>
+<p>[801]这尊纪念雕像位于宪法大街和22街的叉口，草地广场西北侧，是华盛顿秘藏的财宝（见图）。雕塑者是罗伯特·贝尔克斯，附近肯尼迪中心的肯尼迪半身像也出自他之手，园林建筑师是范·斯维登（Van Sweden）。爱因斯坦手持的板上写有三个方程，分别描述光电效应、广义相对论和质能关系E=mc2。雕像所倚靠的大理石台阶上刻有三段话，其中一句是：“如果让我选择，我只想生活在一个公民自由、宽容和在法律面前人人平等已经深入人心的国家。”参见www.nasonline.org。</p>
+<p>[802]Washington Post，Apr.7，1921；New York Times，Apr.26and27，1921；Frank 1947，184.帕萨迪纳的“爱因斯坦文稿计划”了加州理工学院的天文学家夏普利（Harlow Shapley）所描述的科学院晚宴的情形。</p>
+<p>[803]Charles Mac Arthur, Einstein Baffled in Chicago：Seeks Pants Dimensions, Faces Relativity of Trousers，Chicago Herald and Examiner，May 3，1921.</p>
+<p>[804]Chicago Daily Tribune，May3，1921.</p>
+<p>[805]Memorandum of Agreement, Einstein andPrinceton University Press,May 9，1921.版权归普林斯顿独家所有，美国其他地方都不得出版他的任何讲演。4次讲演作为《相对论的意义》（The Meaning of Relativity）出版，现在是它的第5版。</p>
+<p>[806]Philadelphia Evening Bulletin，May 14，1921.</p>
+<p>[807]我使用的是派斯偏爱的译文。爱因斯坦的德语原文是：“Raffiniert ist der Herr Gott, aber boshaf ist Ernicht.”</p>
+<p>[808]Einstein to Oswald Veblen, Apr.30，1930，AEA 23—152.Pais 1982，114给出了这句话的历史，爱因斯坦的秘书杜卡斯为爱因斯坦档案准备的一个备忘录中讲述了它的细节。壁炉在202房间的教员休息室，在普林斯顿大学的琼斯楼（Jones Hall），此前一直叫“法因楼”（Fine Hall），后来这个名字被用到了一幢新的数学大楼。</p>
+<p>[809]Seelig 1956a，183；Frank 1947，285；Clark，743.</p>
+<p>[810]New York Times，July31，1921.</p>
+<p>[811]Einstein to Felix Frankfurter,May 28，1921，AEA 36—210.</p>
+<p>[812]参见Ben Halpem，A Clash of Heroes：Brandeis, Weizmann and American Zionism（Oxford Univ.Press，1987）。</p>
+<p>[813]Boston Herald,May 19，1921.</p>
+<p>[814]那一周稍早前，州长钱宁·考克斯也做了该测试。他给出的前三个回答是：虫胶来自哪里？“来自罐头。”什么是季风（monsoon）？“一个听起来很逗的词。”李子从哪里来？“早饭。”</p>
+<p>[815]New York Times，May 18，1921；Frank 1947，185；Brian 1996，129；Illy，25-32.</p>
+<p>[816]Hartford（Conn.）Daily TimesMay 23，1921.亦参见Hartford Daily Courant，May 23，1921.</p>
+<p>[817]Clevednd Press，May 26，1921.</p>
+<p>[818]Illy，185.</p>
+<p>[819]F?lsing，51.</p>
+<p>[820]Einstein, How I Became a Zionist, interview in Judische Rundschau, June 21，1921，conducted on May 30，CPAE7：57.</p>
+<p>[821]Einstein to Mileva Mari，Aug，28，1921，Einstein family trustcorre-spondence, letter in possession of BobCohn.在这次旅行中，为了尊重爱尔莎的感受，他在最后一刻不住在米列娃处。</p>
+<p>[822]Einstein to Walther Rathenau, Mar.8，1917；Rathenau to Einstein,May 10，1917.</p>
+<p>[823]Reiser，146，describes the Weizmann-Rathenau-Einstein discussions.亦参见F?lsing，519；Elon，364。</p>
+<p>[824]Weizmann，288；Elon，268.</p>
+<p>[825]Frank 1947，192.</p>
+<p>[826]Reiser，145.</p>
+<p>[827]Milena Wazeck, Einstein on the Murder List, Renn 2005d，222；Einstein to Max Planck, July 6，1922，AEA 19—300.</p>
+<p>[828]Einstein to Maurice Solovine, July 16，1922，AEA 21—180.</p>
+<p>[829]Einstein to Marie Curie, July 4，1922，AEA 34—773；Marie Curie to Einstein, July 7，1922，AEA 34—775.</p>
+<p>[830]F?lsing，521.</p>
+<p>[831]Nathan and Norden，54.</p>
+<p>[832]Hermann Struck to Pierre Comert, July 12，1922；Nathan and Norden，59.（爱因斯坦请他们共同的朋友画家施特鲁克通知国际联盟的新闻官考默特[Comert]。）</p>
+<p>[833]Nathan and Norden，70.</p>
+<p>[834]Einstein, Trip diary：Japan-Palestine-Spain, AEA 29—129.本节所引的爱因斯坦日记均出自本文献。</p>
+<p>[835]Joan Bieder, Einstein in Singapore，2000，www.onthepage.org/outsiders/einstein_in_Singapore, htm.</p>
+<p>[836]F?lsing，527；Clark，368；Brian 1996，143；Frank 1947，199.</p>
+<p>[837]Einstein to Hans Albert and Eduard, Einstein，12，1922，AEA 75—620.</p>
+<p>[838]Frank 1947，200.</p>
+<p>[839]Einstein, Trip diary：Japan-Palestine-Spain, AEA 29—129.</p>
+<p>[840]Clark，477—480；Frank 1947，200—201；Brian 1966，145；F?lsing；528—532.</p>
+<p>[841]Svante Arrhenius to Einstein,Sept.1，1922.AEA 6-353；Einstein to Arrhenius,Sept.20，1922.AEA 6-354.</p>
+<p>[842]Pais，506-507；Elzinga，82-84.</p>
+<p>[843]Robert Marc Friedman 2005，129.亦参见Friedman'S book，The Politics of Excellence：Behind the Nobel Prize in Science（New York：Henry Holt，2001），特别是第7章 ，Einstein Must Never Get a Nobel Prize！；Elzinga；Pais 1982，502.</p>
+<p>[844]Pais 1982，508；Hendrik Lorentz and Dutch colleagues to the Swedish Academy,Jan.24，1920；Niels Bohr to the Swedish Academy,Jan.30，1920；Elzinga，134.</p>
+<p>[845]Brian 1996，143引用了作家欧文·华莱士（Irving Wallace）为其小说《奖》（The Prize）所做的调查采访。</p>
+<p>[846]Elzinga，144.</p>
+<p>[847]R.D.Friedman，130.亦参见Pais 1982，508。</p>
+<p>[848]Arthur Eddington to the Swedish Academy,Jan.1，1921.</p>
+<p>[849]Pais 1982，509；R,M.Friedman 131；Elzinga，151.</p>
+<p>[850]Marcel Brillouin to the Swedish Academy,Jan.1922；Arnold Sommerfeld to the Swedish Academy,Jan.11，1922.</p>
+<p>[851]Christopher Aurivillius to Einstein,Nov.10，1922.在另一个译本中，实际寄给爱因斯坦的诺贝尔奖证书上有以下说法：“不依赖于（在最终证实后）可能被归于相对论和引力理论的价值。”</p>
+<p>[852]Elzinga，182.</p>
+<p>[853]密立根由于在芝加哥大学做的关于光电效应的实验工作而于1923年获得诺贝尔奖。当时他已经成为加州理工学院物理实验室主任。20世纪30年代初，他邀请爱因斯坦到那里访问。</p>
+<p>[854]Svante Arrhenius,Nobel Prize presentation speech,Dec，10，1922，nobel-prize.org/physics/laureates/1921/press.html.</p>
+<p>[855]Einstein,Fundamental Ideas and Problems of the Theory of Relativity,Nobel Lecture,July 11，1923.</p>
+<p>[856]Einstein to Hans Albert and Eduard Einstein,Dec.22，1922，AEA 75-620.诺贝尔奖金的整个故事非常复杂，多年来引发了大量争论，随着爱因斯坦与米列娃的通信在2006年被公布才真相大白。根据离婚协议，诺贝尔奖金被存入一家瑞士银行。米列娃可以使用利息，但只有在爱因斯坦同意后才能花这笔钱。1923年，在咨询了一位理财师之后，爱因斯坦决定只把一部分钱放在瑞士银行，而把其余的钱存入一个美国账户。这使米列娃感到恐慌，并引起了摩檫，后来在朋友们的斡旋下才逐渐平息。在爱因斯坦的准许下，米列娃1924年用瑞士银行的钱和一大笔贷款在苏黎世买了一幢公寓。其租金可以用来支付贷款、物业费以及一部分家庭开销。两年后，经过爱因斯坦首肯，米列娃又用诺贝尔奖金中的40000瑞士法郎以及一些贷款买了两幢房子。后来证明，这两幢新房子的投资是失败的，为了不危及第一幢房子（米列娃和爱德华在那里居住）的所有权而不得不卖掉。与此同时，美国经济的大萧条降低了在那里开户和投资的价值。爱因斯坦继续为米列娃和爱德华支付数量可观的钱，但米列娃的确有理由担心在经济上是否能够得到保障。到了20世纪30年，爱因斯坦建了一家控股公司，从米列娃那里购买了剩下的公寓（她仍然在那里居住），并且接管她的债务，以免房子再被银行收走。米列娃可以继续住在这公寓中，并获得多余的租金。此外，爱因斯坦还每月寄一笔钱以帮助抚养爱德华。这种安排一直持续到20世纪40年代末，那时米列娃再也无法照顾房子了，来自租金的这笔收入已经入不敷出。在爱因斯坦的准许下，米列娃卖掉了房子，但依然拥有对房子的所有权。来自这笔收益的钱最后在米列娃的床垫下面被找到了。一些批评者指责爱因斯坦听任米列娃在贫困中死去。虽然米列娃有时肯定感到被遗弃和穷困潦倒，但爱因斯坦的确试图保护和爱德华免受经济上的压力，不仅支付了他应付的那，而且还对他们的生活开销给予补助。感谢希伯来大学爱因斯坦档案馆的芭芭拉·沃尔夫就这一话题所提供的帮助。亦参见Alexis Schwarzenbach，Das verschmahte Genie：Albert Einstein und die Schweiz（DVA，2003）。</p>
+<p>[857]Einstein to Heinrich Zangger,Dec.6，1917.</p>
+<p>[858]“除了少数几个特例，理论物理学中一切真正伟大的发现都已经被30岁以下的人做出了。”Bernstein，1973，89，着重表示是原文就有的。爱因斯坦36岁完成了广义相对论的工作，但他的第一步，即他关于引力与加速等效的“最幸福的思想”是在28岁时获得的。普朗克在1900年12月做量子讲演时是42岁。</p>
+<p>[859]Einstein to Heinrich Zangger,Aug.11，1918；Clive Thompson,Do scien-tists age badly?The Boston Globe,Aug.17，2003.现代计算机的创始人之一冯·诺依曼曾经说，数学家的思考能力在26岁达到顶峰。有一项对随机抽取的科学家的研究表明，80%的人是在40岁左右做出最出色工作的。</p>
+<p>[860]Einstein to Maurice Solovine,Apr.27，1906.</p>
+<p>[861]Aphorism for a friend,Sept.1，1930，AEA 36-598.</p>
+<p>[862]Einstein to Lorentz,J une 17，1916；Miller 1984，55-56.</p>
+<p>[863]Einstein,Ether and the Theory of Relativity,speech at University of Leiden,May 5，1920，CPAE 7：38.</p>
+<p>[864]关于牛顿的思想实验，即位于空虚空间的水桶中的水是否受到惯性力，从而压向水桶，参见第九章 。关于爱因斯坦1916年的观点（他正在修正的），即一个空荡荡的宇宙将既没有惯性，有时空结构，参见第十一章 。</p>
+<p>[865]Einstein to Karl Schwarzschild,Jan.9，1916.</p>
+<p>[866]Einstein,Ether and the Theory of Relativity,speech at University of Leiden,May 5，1920，CPAE 7：38.</p>
+<p>[867]Greene 2004，74.</p>
+<p>[868]Jansen 2004，22.爱因斯坦在1921年普林斯顿讲演中将这一点说得更清楚，但还说：“马赫似乎正确地认为，惯性依赖于物质的相互作用。”Einstein 1922a,chapter 4。</p>
+<p>[869]Einstein,Ether and the Theory of Relativity，”speech at University of Lei-den,May 5，1920，CPAE 7：38.</p>
+<p>[870]Einstein,On the Present State of the Problem of Specific Heats,Nov，3，1911，CPAE 3：26；关于“在自然中真实存在”的引语出资英译本第三卷 的第421页。</p>
+<p>[871]Robinson 84-85.</p>
+<p>[872]Holton and Brush 435.</p>
+<p>[873]Lightman 2005，151.</p>
+<p>[874]Clark 202；George de Hevesy to Ernest Rutherford,Oct，14，1913；Ein-stein 1949b，47.</p>
+<p>[875]Einstein,Emission and Absorption of Radiation in Quantum Theory,July 17，1916，CPAE 6：34；Einstein,On the Quantum Theory of Radiation,after Aug.24，1916，CPAE 6：38，and also in Physikalische Zeitschrift 18（1917），参见Over-bye，304-306；Rigden，141；Pais 1982，404-412；Folsing，391；Clark，265；Daniel Kleppner,Rereading Einstein on Radiation,Physics Today（Feb，2005）：30.此外，爱因斯坦在1917年写了一篇关于力学理论中能量量子化问题的论文，名为《论索默菲和爱因斯坦的量子定理》。它显示了经典量子理论运用到混沌学系统时所碰到的问题。早期的量子力学先驱曾经引用过这篇论文，但此后几乎被遗忘。对这篇论文以及它在量学发展史中重要性的出色，参见Douglas Stone,Einstein’s Unknown Insight and the Problem of Quantizing Chaos,Physics Today（Aug.2005）。</p>
+<p>[876]Einstein to Michele Besso,Aug.11，1916，</p>
+<p>[877]感谢耶鲁大学的斯通教授就此处的叙述提供的帮助。</p>
+<p>[878]Einstein to Michele Besso,Aug.24，1916.</p>
+<p>[879]Einstein,On the Quantum Theory of Radiation,after Aug.24，1916，CPAE6：38.</p>
+<p>[880]Einstein to Max Born,Jan.27，1920.</p>
+<p>[881]Einstein to Max Born,Apr.29，1924，AEA 8-176.</p>
+<p>[882]Niels Bohr,Discussionwith Einstein,in Schilpp，205-206；Clark，202.</p>
+<p>[883]Einsteinto Niels Bohr,May 2，1920；Einstein to Paul Ehrenfest,May4，1920.</p>
+<p>[884]Niels Bohr to Einstein,Nov.11，1922，AEA 8-73.</p>
+<p>[885]Folsing，441.</p>
+<p>[886]John Wheeler,Memoir,in French，21；C.P.Snow,Albert Einstein,in French，3.</p>
+<p>[887]玻尔的这句妙语经常被引用。我能找到的一个叙述不太简练的出处是玻尔和爱因斯坦1927年在索尔维会议上对存在的描述：“爱因斯坦开玩笑似的问我们是否真的亲爱的上帝会掷骰子。对此我以古代思想家提出的要求作为回应，他们说，在用日常语言赋予上帝属性时要非常谨慎。”Niels Bohr,Discussion with Ein-stein,in Schilpp，211，讨论时在场的海森伯也重述了这句妙语：“玻尔对此只能回答：‘但是，不能由我们来告诉上帝如何去管理世界。’”Heisenberg 1989，117.</p>
+<p>[888]Holton and Brush，447；Pais 1982，436.</p>
+<p>[889]以每小时90英里的速度掷出的棒球的德布罗意波长大约是10-34米，它比原子甚至质子都要小得多，这么小的尺寸根本无法测到。</p>
+<p>[890]Pais 1982，438.泡利回忆说：“1924年秋天，在因斯布鲁克举行的物理学会议讨论中，爱因斯坦建议用分子束来研究干涉衍射现象。”Pauli，91.</p>
+<p>[891]Einstein,Quantum Theory of Single-Atom Gases,partl，1924，part 2，1925.这句引语出现在第7节 ，第2部分。这篇论文的手稿于2005年在莱顿被发现。</p>
+<p>[892]1995年，玻色-爱因斯坦凝聚终于被Eric A.Cornell,Wolfgang Ketterle和Carl E.Wieman用实验观察到，他们也因此而获得2001年诺贝尔奖。</p>
+<p>[893]感谢耶鲁大学的斯通教授帮助写作本节内容，并解释爱因斯坦工作的基础重要性。斯通是一位理论凝聚态物理学家，他正在写一本关于爱因斯坦对量子力学的贡献及其意义的书，尽管爱因斯坦后来拒斥这一理论。根据斯通的说法，“这一被称为玻色-爱因斯坦凝聚的基本发现有99%应归功于爱因斯坦。玻色甚至并没有意识到他是以不同的方式进行计算的”。关于因实现玻色-爱因斯坦凝聚而获得的诺贝尔奖，参见nobelprize,org/physics/laureates/2001/public,html。</p>
+<p>[894]Bernstein1973，217；Martin J.Klein,Einstein and the Wave-Particle Du-ality，Natural Philosopher（1963）：26.</p>
+<p>[895]Max Born,Einstein’s Statistical Theories,in Schilpp，174.</p>
+<p>[896]Einstein to Erwin Schr?dinger,Feb.28，1925，AEA 22-2.</p>
+<p>[897]Don Howard,Spacetime and Separability，1996，AEA Cedex H；Howard 1985；Howard 1990b，61-64；Howad 1997.后者认为叔本华的哲学影响了爱因斯坦的空间可分离性理论。</p>
+<p>[898]Bernstein 1996a，138.</p>
+<p>[899]更加准确地说，与概率成正比的是波函数的平方。Holton and Brush，452.</p>
+<p>[900]Einstein to Hedwig Born,Mar.7，1926，AEA 8-266；Einstein to Max Bom,Dec.4，1926，AEA 8-180.</p>
+<p>[901]aip.org/history/Heisenberg/p07.htm；Born 2005，85.</p>
+<p>[902]Max Born to Einstein,July 15，1925，AEA 8-177；Einstein to Hedwig Born,Mar 7，1926，AEA 8-178；Einstein to Paul Ehrenfest,Sept.25，1925，AEA 10-16.</p>
+<p>[903]Werner Heisenberg to Einstein,June 10.1927，AEA 12-174.</p>
+<p>[904]Heisenberg 1971，63；Gerald Holton,Werner Heisenberg and Albert Ein-stein，Physics Today（2000），www.aip.org/pt/vol-53/iss-7/p38.html.</p>
+<p>[905]Frank 1947，216.</p>
+<p>[906]Aage Petersen,The Philosophy of Niels Bohr，Buletin of the Atomic Sci-entists（Sept.1963）：12.</p>
+<p>[907]Dugald Murdoch，Nieis Bohr’s Philosophy of Physics（Cambridge,Eng-land：Cambridge University Press，1987），47，citing the Niels Bohr Archives：Sci-entific Correspondence，11：2.</p>
+<p>[908]Einstein,To the Royal Society on Newton’s Bicentennial,Mar，1927.</p>
+<p>[909]这是对爱因斯坦的谑称。——译者注</p>
+<p>[910]Einstein to Michele Besso,Apr.29，1917；Besso to Einstein,May 5，1917；Einstein to Besso,M ay 13，1917.有关于此的出色分析，参见Holton,Mach,Einstein,and the Search for Reality,in Holton 1973，240。</p>
+<p>[911]“Belief in an external world independent of the perceiving subject is the basis of all natural science，”Einstein，“Maxwell’s Influence on the Evolution of the Idea of Physical Reality，”1931，in Einstein 1954，266.</p>
+<p>[912]Einstein to Max Born,Jan.27，1920.</p>
+<p>[913]Einstein’s introduction to Rudolf Kayser，Spinoza（New York：Philosophical Librny，1946）.凯泽尔娶了爱因斯坦的继女，写了一本关于爱因斯坦的比较权威的回忆录。</p>
+<p>[914]E?lsing 703-704；Einstein to Fritz Reiche,Aug.15，1942，AEA 20-19</p>
+<p>[915]Einstein to Max Born,Dec.4，1926，AEA 8-180.</p>
+<p>[916]原文误为“广义相对论”。——译者注</p>
+<p>[917]他1905年的狭义相对论说：“大家知道，麦克斯韦的电动力学——就像通常所理解的那样——应用到运动物体时，会引起一些不对称，而这种不对称似乎不是现象所固有有的。比如设想一个磁体同一个导体之间的电动力的相互作用。”他1905年的光量子论文说：“在物理学家关于气体和其他有重物体所形成的理论同麦克斯韦关于所谓空虚空间中的电磁过程的理论之间，有着深刻的形式上的区别。”</p>
+<p>[918]Einstein,Ideas and Problems of the Theory of Relativity,Nobel Lecture,July 11，1923.见nobelprize.org/nobel_prizes.本节参考了以下讨论爱因斯坦统一场求索的文章：van Dongen 2002，感谢作者；Tilman Sauer,Dimensions of Einstein’s Unified Field Theory Program，即将出版于Canbrdge Companion to Ein-stein，感谢作者；Norton 2000；Goenner 2004。</p>
+<p>[919]Einstein,The Principles of Research,a toast inhonor of Max Planck,Apr.26，1918，CPAE 7：7.</p>
+<p>[920]Einstein to Hermann Weyl,Apr 6，1918.</p>
+<p>[921]Einstein to Hermann Weyl,Apr 8，1918.在1918年5月8日致仓格尔的信中，爱因斯坦称外尔的理论很“天才”，但“在物理上不正确”。不过，它后来的确成了杨-米尔斯规范理论公认的一个先驱理论。</p>
+<p>[922]我对卡鲁扎和克莱因理论的描述取自于Krauss，94-104。这是一部引人入胜的著作，讨论的是额外维度对于解释宇宙的作用。</p>
+<p>[923]Einstein to Theodor Kaluza,Apr.21，1919.</p>
+<p>[924]Einstein to Niels Bohr,Jan.10，1923，AEA8-74.</p>
+<p>[925]塞壬：希腊神话中半人半鸟的女海妖，以美妙歌声诱惑过往海员，从而使驶近的船只触礁沉没。——译者注</p>
+<p>[926]Einstein to Hermann Weyl,May 26，1923，AEA 24-83.</p>
+<p>[927]Einstein,On the General Theory of Relativity,the Prussian Academy,Feb.15，1923.</p>
+<p>[928]Nexv York Times，Mar.27，1923.</p>
+<p>[929]Pais 1982，466；Einstein,On the General Theory of Relativity,the Prussian Academy,Feb，15，1923.</p>
+<p>[930]Einstein,Unified Field Theory of Gravity and Electricity,July 25，1925；Hoffmann 1972，225.</p>
+<p>[931]Steven Weinberg,Einstein’s Mistakes,Physics Today（Nov.2005）.</p>
+<p>[932]Einstein,On the Unified Theory,Jan.30，1929.</p>
+<p>[933]Einstein to Michele Besso,Jan.5，1929，AEA 7-102.</p>
+<p>[934]New York Times，Nov.4，1928；Vallentin，160.</p>
+<p>[935]Clark，494；London Daily Chronicle，Jan.26，1929.</p>
+<p>[936]Einstein’s Field Theory，Time，Feb.18，1929.爱因斯坦还上过《时代》周刊1938年4月4日、1946年7月1日的封面，以及去世后上过1979年2月19日和1999年12月31日的封面。爱尔莎曾经上过1930年12月22日的封面；</p>
+<p>[937]F?lsing，605；Clark，496；Brian 996，174.</p>
+<p>[938]New York Times，Feb.4，1929.</p>
+<p>[939]Einstein to Maja Winteler-Einstein,Oct.22，1929，AEA 29-409.</p>
+<p>[940]Wolfgang Pauli to Einstein,Dec.19，1929，AEA 19-163.</p>
+<p>[941]Nexv York Times，Jan.23，Oct.26，1931；Einstein to Wolfgang Pauli,Jan.22，1932，AEA 19-169.</p>
+<p>[942]Goenner 2004；Elie Cartan,Absolute parallelism and the unified theory,Review Metaphysic Morale（1931）.</p>
+<p>[943]1932年诺贝尔奖获得者朗缪尔为会议拍摄了两分钟的录像，参见www.maxborn.net/indez.php?page=filmnews。</p>
+<p>[944]Einstein to Hendrik Lorentz,Sept.13，1927，AEA 16-613，</p>
+<p>[945]Pauli，121.</p>
+<p>[946]John Archibal Wheeler and Wojciech Zurek,Quantum Theory and Measurement（Princeton：Princeton Univ,Press，1983），7.</p>
+<p>[947]F?lsing，589；Pais 1982，445，出自第五届索尔维会议记录。</p>
+<p>[948]Heisenberg 1989，116.</p>
+<p>[949]Niels Bohr,Discussion with Einstein,in Schilpp，211-219对索尔维会议以及其他讨论做了细致生动的描述；Otto Stem recollections,in Pais 1982，445；F?lsing 589。</p>
+<p>[950]“Reports and Discussions，”in Solvay Confererce of 1927（Paris：Gauthier-Villars，1928），102.亦参见Travis Norsen,Einstein’s Boxes，American Journal of Physics，vol.73，Feb.2005，pp.164-176。</p>
+<p>[951]Louis de Broglie,My Meeting with Einstein,in French，15.</p>
+<p>[952]Einstein,Speech to Professor Planck,Max Planck award ceremony,June 28，1929.</p>
+<p>[953]Léon Rosenfeld,Niels Bohr in the Thirties,in Rozental 1967，132.</p>
+<p>[954]Niels Bohr,Discussion with Einstein,in Schilpp，225-229；Pais 1982，447-448.感谢Murray Gell-Mann和David Derbes对本节写作的帮助。</p>
+<p>[955]Einstein,Maxwell’s Influence on the Evolution of the Idea of Physical Reality 1931，in Einstein 1954，266.</p>
+<p>[956]“存在即被感知”意味着说未被感知的事物—贝克莱最著名的例子就是森林中的树，“没有人从旁边经过去感知它们”——真实存在是没有意义的。（George Berkeley，Principlss of Human Knowledge，section 23.）</p>
+<p>[957]Einstein,Reply to Criticisms（1949），in Schilpp，669.</p>
+<p>[958]对爱因斯坦实在论更完整的讨论参见本书第二十章 。此对立的观点，参见Gerald Holton,Mach,Einstein,and the Search for Reality,in Holton 1973，219，245（他认为爱因斯坦哲学中存在着一种非常清晰的转变：“对于一个科学家来说，如此根本地改变其哲学信念是罕见的。”）；Fine，123（他认为：“爱因斯坦经历了一种哲学转变，从年轻时的实证主义变得越来越倾向于实在论。"Howard 2004（他认为：“爱因斯坦从来也不是一个热忱的‘马赫式的’实证主义者，也不是一个科学实在。”）本节还参考了Dongen 2002（他认为“宽泛地说，可以说爱因斯坦的立场从早年马赫的经验论变成了后来很强的实在论。”）亦参见Anton Zeilinger,Einstein and Absolute Reality,in Brockman，121-131。</p>
+<p>[959]Einstein,On the Method of Theoretical Physics,the Herbert Spencer lecture,Oxford,June 10，1933，in Einstein 1954，270.</p>
+<p>[960]Einstein 1949b，89.</p>
+<p>[961]Einstein，“Principles of Theoretical Physics，”inaugural address to the Prussian Academy，1914，in Einstein 1954，221.</p>
+<p>[962]Einstein to Hermann Weyl,May 26，1923，AEA 24-83.</p>
+<p>[963]John Barrow，“Einstein as Icon，”Nature，Jan.20，2005，219.亦参见Norton 2000。</p>
+<p>[964]Einstein,On the Method of Theoretical Physics,the Herbert Spencer lec-ture,Oxford,June 10，1933，in Einstein 1954，274.</p>
+<p>[965]Steven Weinberg,Einstein’s Mistakes，Physci Today（Nov.2005）：“自爱因斯坦以后，我们已经学会不再信任这种审美标准。我们在基本粒子物理学中的经验教导我们，只要基本原理允许，物理学场方程中的任何一项都可能存在于方程中。”</p>
+<p>[966]Einstein,Latest Developmentso of the Theory of Relativity，1931年5月23日，在牛津的三次罗得斯（Rhodes）讲演中的第三次，这一天爱因斯坦被授予牛津大学的名誉博士学位。重印于Oxford University Gazette,June 3，1931。</p>
+<p>[967]Einstein,On the Method of Theoretical Physics,Oxford,June 10，1933，in Einstein 1954，270.</p>
+<p>[968]Marcia Bartusiak,Beyond the Big Bang,National Geographic（May 2005）.爱尔莎的妙语被广泛报道，但从未给出过完整的出处。参见Clark，526。</p>
+<p>[969]Associated Press,Dec.30，1930.</p>
+<p>[970]正如爱丁顿所表明的，即使宇宙后来被证明是静态的，宇宙学项可能也不能奏效，因为它要求一种微妙的平衡，任何一点小的扰动都可能造成宇宙无法控制的膨胀或收缩。</p>
+<p>[971]Einstein to Michele Besso,Mar.1，1931，AEA7-125.</p>
+<p>[972]Gr eene 2004，279：“这当然可以列为历史上的伟大发现，甚至是最伟大的发现。”亦参见Edward W.Kolb,The Greatest Discovery Einstein Didn’t Make,in Brockman，201。</p>
+<p>[973]Einstein,On the Cosmological Problem of the General Theory of Relativity,Prussian Academy，1931；Einstein Drops Idea of‘Closed’Universe,New York Times,Feb.5，1931.</p>
+<p>[974]Einstein 1916，appendix Ⅳ（最初见于1931年版）</p>
+<p>[975]Gamow 1970，149.</p>
+<p>[976]Steven Weinberg,The Cosmological Constant Problem,inMorris Loeb Lectures in Physics（Cambridge,Mass.：Harvard University Press 1988）；Steven Weinberg,Einstein’s Mistakes,Physics Today（Nov.2005）；Aczel167；Krauss 117；Greene 2004，275-278；Dennis Overb y e,A Famous Einstein‘Fudge’Re-turns to Haunt Cosmology,New York Times,May 26，1998；Jeremy Bernstein,Einstein’s Blunder,Bernstein 2001，86-89.</p>
+<p>[977]凯斯西储大学的Lawrence Krauss和芝加哥大学的M ichael Turner认为，对宇宙的解释需要用到一个宇宙项，它与爱因斯坦加到场方程中继而抛弃的项有所不同。他们的宇宙项源于量子力学而非广义相对论，而且基于这样一个前提：甚至“空虚”空间的能量也不必然是零。参见Kraussand Turner,A Cosmic Conundrum，Scientific American（Sept.2004）。</p>
+<p>[978]Einstein’s Cosmological Constant Predicts Dark Energy，Universe Today，Nov.22，2005.这一特殊的大标题乃是基于一个被称为“超新星遗迹研究”（Super-nova Legacy Survey,SNLS）的超新星研究项目。根据加州理工学院的一则新闻报道，SNLS“旨在发现和考察700颗遥远的，以勾勒宇宙膨胀的历史。这项研究证实了较早的发现，即宇宙过去膨胀得较慢，现在加快了。然而，朝前迈进的关键一步发现，爱因斯坦1917年对空虚空间恒常能量项的解释与新的超新星数据非常吻合”。</p>
+<p>[979]Vallentin，163.</p>
+<p>[980]New York Timas.Mar.15，1929.</p>
+<p>[981]Reiser，205.</p>
+<p>[982]Reiser，207；Frank 1947，223；Folsing，611.</p>
+<p>[983]www.einstein-website,de/z_biography/caputh-e.html；Jan Otakar Fischer,Einstein’s Haven，Intemational Herald Trilune，June 30，2005；F?lsing 612；Einstein to Maja Einstein,Oct.22，1929；Erika Britzke,Einstein in Caputh,in Renn 2005d，272.</p>
+<p>[984]Vallentin，168.</p>
+<p>[985]Reiser，221.</p>
+<p>[986]Einstein to Betty Neumann,Nov.5 and 13，1923.这些信连同其他信被赠予了希伯来大学，在爱因斯坦档案中没有编目。</p>
+<p>[987]Einstein to Betty Neumann,Jan.11，1924；Pais1982，320.</p>
+<p>[988]Einstein to Elsa Einstein,Aug.14，1924，part of sealed correspondence released in 2006；Einstein to Betty Neumann,Aug.24，1924.感谢耶路撒冷爱因斯坦档案馆的罗森克朗茨和加州理工学院帮助找到并翻译这些信件。</p>
+<p>[989]Einstein to Ethel Michanowski,May 16 and 24，1931，in private collec-tion.</p>
+<p>[990]Einstein to Elsa Einstein and Einstein to Margot Einstein,May 1931，part of sealed correspondence released in 2006.感谢《爱因斯坦全集》的罗森克朗茨帮助提供背景和译文。</p>
+<p>[991]Einstein to Margot Einstein,May 1931，sealed correspondence released in 2006.</p>
+<p>[992]他终生持这种观点。Einstein to Eugenia Anderman,June 2，1953，AEA 59-097：“你一定知道，根据天性，大多数男人（以及许多女人）并非一夫一妻。当传统挡住路时，这种天性愈发得到了加强。”</p>
+<p>[993]F?lsing，617；Highfield and Carter，208；Marianoff，186.（注意：弗尔辛将她的名字成了“Qenbach”，根据爱因斯坦档案的副本，这是不正确的。）</p>
+<p>[994]Elsa Einstein to Hermann Struck，1929.</p>
+<p>[995]George Dyson,Helen Dukans：Einstein’s Compass,in Brockman，85-94.（乔治·戴森是普林斯顿高等研究院的物理学家弗里曼·戴森的儿子，爱因斯坦去世后，杜卡斯照看乔治·戴森的孩子。）亦参见Abraham Pais,Eulogy for Helen Dukas，1982，American Institute of Physics Library,College Park,Md。</p>
+<p>[996]Einstein to Maurice Solovine,Mar.4，1930，AEA 21-202.</p>
+<p>[997]Einstein to Mileva Mari，Feb，23，1927，AEA 75-742.</p>
+<p>[998]Einstein to Mileva Mari，Feb，23，1927，AEA 75-742.</p>
+<p>[999]Einstein to Hans Albert Einstein,Feb.2，1927，AEA 75-738，and Feb.23，1927，AEA 75-739.</p>
+<p>[1000]Highfield and Carter，227.</p>
+<p>[1001]Einstein to Eduard Einstein,Dec.23，1927，AEA75-748.</p>
+<p>[1002]Einstein to Eduard Einstein,July 10，1929，AEA 75-782.</p>
+<p>[1003]Eduard Einstein to Einstein,May 1 and Dec.10，1926.两封信都在2006年公布的密封的书信夹中，在档案中没有编目。</p>
+<p>[1004]Eduard Einstein to Einstein,Dec.24，1935.这封信也在2006年公布的密封的夹中，在档案中没有编目。</p>
+<p>[1005]Sigmund Freud to Sandor Ferenczi,Jan.2，1927.关于对弗洛伊德与爱因斯坦相互影响的分析，参见Panek 2004。</p>
+<p>[1006]Viereck，374；Sayen，374.亦参见Bucky 113：“我很怀疑他的一些理论。我认为弗洛伊德过分强调的理论了。毕竟，一个盛满垃圾的密室产生不了所有东西……另一方面，弗洛伊德读起来十分有趣，他也非常。我当然不是想过分挑剔。”</p>
+<p>[1007]Einstein to Eduard Einstein，1936 or 1937，AEA 75-939.</p>
+<p>[1008]Einstein to Eduard Einstein,Feb.5，1930，未编目；Highfield and Carter，229，234.参见本书卷首引语的注释。</p>
+<p>[1009]Einstein to Eduard Einstein,Dec.23，1927，AEA 75-748.</p>
+<p>[1010]Einstein to Mileva Mari，Aug.14，1925，AEA 75-693.</p>
+<p>[1011]Marianoff，12.他显然弄错了自己结婚的年份。他称是在1929年秋，而实际上是在爱因斯坦1930年年底第二次访美之前不久。希伯来大学爱因斯坦档案馆的芭芭拉·沃尔夫说，她相信这则轶事有修饰的成分。</p>
+<p>[1012]Elsa Einstein to Antonina Vallentin,undated,in Vallentin 196.</p>
+<p>[1013]Einstein,Trip Diary to the U.S.A.，Nov.30，1930，AEA 29-134.</p>
+<p>[1014]Einstein Works at Sea，New York Times，Dec，5，1930.</p>
+<p>[1015]Einstein Puzzled by Our Invitations，New York TimesNov，23，1930.</p>
+<p>[1016]Einstein Consents to Face Reporters，New York Times，Dec.10，1930.</p>
+<p>[1017]Einstein,Trip Diary,Dec.11，1930，AEA 29-134.</p>
+<p>[1018]Einstein on Arrival Braves Limetlight for Only 15 Minutes，New York Times，Dec.12，1930.</p>
+<p>[1019]He Is Worth it，Time，Dec.2，1930.</p>
+<p>[1020]Brian 1996，204；Einstein Receives Keys to the City，New York Times，Dec.14，1930.</p>
+<p>[1021]Einstein Saw His Statue in Church Here,New York Times,Dec，28，1930.</p>
+<p>[1022]George Sylvester Viereck,profile of John D.Rockefeller，Liberty，Jan，9，1932；Nathanand Norden，157.爱因斯坦在写给玻恩的一封信中提到了与洛克菲勒的这次会见：letter to Max Bom,Day 30，1933，AEA 8-192。</p>
+<p>[1023]和平主义着认为不需要其他解释，但不知何故，当时有些报道竟认为这些纽扣指的是2%的啤酒。</p>
+<p>[1024]Einstein,New History Society speech,Dec.14，1930；Nathan and Nor-den，117；Einstein Advocates Resistance to War，New York Times，Dec，15，1930，p.1；Folsing，635.</p>
+<p>[1025]Einstein Considers Seeking a New Home,Associated Press,Dec，16，1930.</p>
+<p>[1026]Einstein,Trip Diary,Dec.15-31，1931，AEA 29-134；Einstein Welcomed by Leaders of Panama，New York Times，Dec.24，1930；Einstein on Radio，New York Times，Dec.26，1930.</p>
+<p>[1027]Brian 1996，206.</p>
+<p>[1028]Hedwig Bom to Einstein,Fed，22，1931，AEA8-190.</p>
+<p>[1029]玫瑰碗橄榄球赛是美国最古老、最著名的大学橄榄球碗杯赛（bowl game），每年元旦在加利福尼亚州帕萨迪纳的玫瑰碗体育场举行，赛前有玫瑰碗巡游，队伍中有许多玫瑰花车。——译者注</p>
+<p>[1030]Amos Fried to Robert Millikan,Mar.4，1932；Robert Millikan to Amos Fried,Mar.8，1932；cited in Clark，551.</p>
+<p>[1031]Brian 1996，216.</p>
+<p>[1032]Seelig1956a，194.根据派特森（Cissy Patterson）女士的一篇生动报道，爱因斯坦看电影时“目不转睛，全神贯注，就像一个孩子在看圣诞的童话剧”。派特森是一位雄心勃勃的年轻记者，她也记述了爱因斯坦裸身晒日光浴的情形。她后来掌管了《华盛顿先驱报》（Washington Merald）。Brian 1996，214，citing theWashington Herald，Feb.10，1931.</p>
+<p>[1033]Einstein address,Feb.16，1931，in Nathan and Norden，122.</p>
+<p>[1034]At Grand Canyon Today,TheNew York Times，Feb.28，1931；Einstein at Hopi House,www.hanksville.org/ssnd/Einstein,html.</p>
+<p>[1035]Einstein in Chicago Talks for Pacifism，New York Times，Mar.4，1931；Nathan and Norden，123.</p>
+<p>[1036]F?lsing 641；Einstein talk to War Resisters’League,Mar.1，1931；Na-than and Norden，123.</p>
+<p>[1037]Nathan and Norden，124.</p>
+<p>[1038]Marianoff，184.</p>
+<p>[1039]Einstein to Mrs.Chandler and the Youth Peace Federation,Apr.5，1931；Nathan and Nor Gen，124；F?lsing，642.这段话的图片见www.albertin-stein.info/db/ViewImage.do? DocumentID=21007＆Page=1。</p>
+<p>[1040]Einstein interview with George Sylvester Viereck,Jan.1931，in Nathan and Norden，125.</p>
+<p>[1041]Einstein to Women’s International League,Jan，4，1928，AEA 48-818.</p>
+<p>[1042]Einstein to London chapter of War Resisters’International,Nov，25，1928；Einstein to the League for the Organization of Progress,Dec.26，1928.</p>
+<p>[1043]Einstein statement,Feb.23，1929，in Nathan and Norden，95.</p>
+<p>[1044]Manifesto of the Joint Peace Council,Oct，12，1930；Nathan and Norden，113，</p>
+<p>[1045]Einstein,The 1932 Disarmament Conference，The Nnation，Sept.23，1931；Einstein 1954，95；Einstein,The Road to Peace,TheNew York Times，Nov.22，1931.</p>
+<p>[1046]Nathanand Norden，168；Einstein Assails Arms Conference，New York Times，May 24，1932.</p>
+<p>[1047]Einstein to Kurt Hiller,Aug.21，1931，AEA46-693；Nathan and Norden，143.</p>
+<p>[1048]Jerome，144.特别参见第十一章 ，“How Red?”</p>
+<p>[1049]Einstein,The Road to Peace，New York Times，Nov.22，1931；Einstein 1954，95.</p>
+<p>[1050]Thomas Bucky interview with Denis Brian,in Brian 1996，229.</p>
+<p>[1051]Einstein to Henri Barbusse,June 1，1932，AEA34-543；Nathan and Norden，175-179.</p>
+<p>[1052]赫斯特（William Randolph Hearst，1863-1951），美国大富豪，拥有多家报纸、杂志、广播电台和两个电影制片厂。——译者注</p>
+<p>[1053]Einstein to Isaac Don Levine,after Jan.1，1925，AEA 28-29.00（这篇亲笔书写的文章的图片见www.alberteinstein.info/db/View Image.do?Document ID=21154＆Page=1；Roger Baldwin and Isaac Don Levine，Letters from Russian Prisons（New York：Charles Boni，1925）；Robert Cottrell，Baldwin and the American Civil Libertiss Union（New York：Columbia，2001），180。</p>
+<p>[1054]instein to Isaac Don Levine,Mar.15，1932，AEA 50-922.</p>
+<p>[1055]Einstein,The World As I See It,originally published in1930，reprinted in Einstein 1954，8.</p>
+<p>[1056]Ask Pardon for Eight Negroes，New York Tims，Mar.27，1932；“Ein-stein Hails Negro Race，”New York Times，Jan，19，1932，引用了1932年2月即将出版的《危机》（Crisis）杂志中一篇爱因斯坦的文章。</p>
+<p>[1057]Brian 1996，219.</p>
+<p>[1058]Einstein to Chaim Weizmann,Nov.25，1929，AEA 33-411.</p>
+<p>[1059]Einstein,Letter to an Arab,Mar.15，1930；Einstein 1954，172；Clark，483；F?lsing，623.</p>
+<p>[1060]Einstein to Sigmund Freud,July 30，1932，http：//www.cis,vt,edu/modernworld/d/Einstein.html.</p>
+<p>[1061]Sigmund Freud to Einstein,Sept.1932，http：//www.cis.vt.edu/mode-mworld/d/Einstein,html.</p>
+<p>[1062]Charles Kessler,ed,The Diaries of Count Harykesl（New York：Grove Press，2002），322（entry for June 14，1927）；Jammer 1999，40.Jammer 1999对爱因斯坦思想的传记、哲学学等方面做了。</p>
+<p>[1063]Einstein,Ueber den Gegenwertigen Stand der Feld-Theorie，1929，AEA 4-38.</p>
+<p>[1064]Neil Johnson,Creorge Sylvestr Viereck：Poet and Propagandist（Iowa：University of Iowa，1968）；George S.Viereck，My Flesh and Blood：A Lyric Au-tohiogrrphy with Indiscreet Assotatioss（New York：Liveright，1931）.</p>
+<p>[1065]Viereck，372-378；菲尔埃克最初发表的这篇采访是What Life Means to Einstein，The Saturdy Evnig Pos，Oct，26，1929，我大致采用了Brian 2005，185-186和C alaprice中的翻译和解释。亦参见Jammer 1999，22。</p>
+<p>[1066]Einstein，“What I Believe”最初写于1930年，并为德国人权联合会录了音。它以“我的世界观”（The World as I See It）为题发表于Forum and Centu-ry，1930；in Livin g Philosphies（New York：Simon and Schuster，1931）；in Ein-stein 1949a，1-5；in Einstein 1954，8一11.这些版本的翻译均略有不同，并有稍许改动。录音版本见http：www.yu.edu/libraries/digital_library/einstein/cre-do.html。</p>
+<p>[1067]Einstein to Schayer,Aug.5，1927，AEA 48一380；Dukas and Hofmann，66.</p>
+<p>[1068]Einstein to Phyllis Wright,Jan.24，1936，AEA 52-337.</p>
+<p>[1069]“Passover，”Time，May13，1929.</p>
+<p>[1070]Einstein to Herbett S.Goldstein,Apr.25，1929，AEA33-272；Ein-stein Believes in Spinoza’s God,New York Times,Apr.25，1929；Gerald Holton，“Einsteins Third Paradise”Daedalus（Fall 2002）：26-34.戈德斯坦是哈勒姆犹太会堂的拉比，长期担任美国正统派犹太会众联合会主席。</p>
+<p>[1071]Rabbi Jacob Katz of the Montefiore Congregation,quoted in Time,May 13，1929.</p>
+<p>[1072]Calaprice，214；Einstein letter to Hubertus zu L?wenstein,ca.1941，in L?wenstein’s book，Towards the Further Shore（London：Victor Gollancz，1968），156.</p>
+<p>[1073]Einstein to Joseph Lewis,Apr.18，1953，AEA 60-279.</p>
+<p>[1074]Einstein to unknown recipient,Aug.7，1941.AEA 54-927，</p>
+<p>[1075]Guy Raner Jr to Einstein,June 10，1948，AEA 57-287；Einstein to Guy Raner Jr.，July2，1945，AEA 57-288；Einstein to Guy Raner Jr.，Sept.28，1949，AEA57-289.</p>
+<p>[1076]Einstein，“Religion and Science，”New York Times，Nov.9，1930，re-printed in Einstein 1954，36-40.也参见Powell。</p>
+<p>[1077]Einstein,Speech to the Symposium on Science,Philosophy and Religion,Sept，10，1941，reprinted in Einstein 1954，41；“Sees No Personal God，”Associated Press,Sept.11，1941.奥维尔·莱特给了我一份发黄的剪报。他当时是一位年轻的海军军官，已经保存这份剪报报60年了；它曾在他的船上广为传阅，并从不同水手那里得到了注释，比如他们会说“告诉我，你对此怎么看”这样的话。</p>
+<p>[1078]“在心灵中没有绝对的或自由的意志，但心灵有这个意愿或那个意愿却是被一个原因所决定，而这个原因又为另一原因所决定，这个原因又同样为别的原因所决定，如此递进，以至无穷。”Baruch Spinoza，Ethics，patt 2，proposition 48。</p>
+<p>[1079]Einstein,statement to the Spinoza Society of America,Sept.22，1932.</p>
+<p>[1080]这句话有时会译为“人可以做他想做的，但不能要他想要的（A man can do what he wants,but not want what he wants.）”我没有在叔本华的著作中找到这句话的出处，不过这种情感的确符合叔本华的哲学。比如他说：“一个人的生活，大事小事，都像钟表的运动一样必然被预先决定着。”Schopenhauer,On Ethics,inParerga and Paralipomena：Short Philosophical Essays（New York：Ox-ford University Press，2001），2：227。</p>
+<p>[1081]Einstein,The World as I see It,in Einstein 1949a and Einstein 1954.</p>
+<p>[1082]Viereck，375.</p>
+<p>[1083]Max Born to Einstein,Oct.10，1944，in Born 2005，150.</p>
+<p>[1084]Hedwig Born to Einstein,Oct.9，1944，in Born 2005，149.</p>
+<p>[1085]Viereck，377.</p>
+<p>[1086]Einstein to the Rev.Cornelius Greenway,Nov.20，1950，AEA 28-894.</p>
+<p>[1087]Sayen，165.</p>
+<p>[1088]Einstein trip diary,Dec.6，1931，AEA 29-136.</p>
+<p>[1089]Einstein trip diary,Dec.10，1931，AEA 29-141.</p>
+<p>[1090]Flexner，381-382；Batterson，87-89.</p>
+<p>[1091]Abraham Flexner to Robett Millikan,July 30，1932，AEA 38-007；Abraham Flexner to Louis Bamberger,Feb.13，1932，in Batterson，88.</p>
+<p>[1092]Einstein trip diary,Feb.1，1932，AEA 29-141；Elsa Einstein to Rosika Schwimmer,Feb.3，1932；Nathan and Norden，163.</p>
+<p>[1093]Einstein to Paul Ehrenfest,Apr.3，1932，AEA 10-227.</p>
+<p>[1094]Clark，542，citing Sir Roy Harrod.</p>
+<p>[1095]Flexner，383.</p>
+<p>[1096]Einstein to Abraham Flexner,July 30，1932；Batterson，149；Brian 1996，232.</p>
+<p>[1097]Elsa Einstein to Robett Millikan,June 22，1932，AEA 38-002.</p>
+<p>[1098]Robert Millikan to Abraham Flexner,July 25，1932，AEA 38-006；Flexner to Robert Millikan,July 30，1932，AEA 38-007；Batterson，114.</p>
+<p>[1099]Einstein Will Head School Here,the New York Times,Oct.11，1932，p.1</p>
+<p>[1100]Frank 1947，226.</p>
+<p>[1101]Women’s Patriot Corporation memo to the U.S.State Department,Nov.22，1932，contained in Einstein’s FBI file,section 1，available at foia.fbi.gov/foiaindex/einstein.htm.这件趣事在Jerome，6-11中有出色的叙述。</p>
+<p>[1102]重印于Einstein 1954，7.爱因斯坦与合众社的洛克纳的关系在Marianoff，137中有详细叙述。</p>
+<p>[1103]New York Times，Dec.4，1932.</p>
+<p>[1104]Einstein's Ultimatum Brings a Quick Visa,Consul Investigated Charge,and Women Made Complaint,all in New York Times,Dec，6，1932；Sayen Jerome，10.</p>
+<p>[1105]这是佛罗里达国际大学的施瓦茨（Richard Alan Schwartz）发现的，他对联邦调查局的爱因斯坦档案做了全新的研究。他得到的版本被修改了25%。凭借着信息自由法案，杰罗姆（Fred Jerome）能够获得更完整的版本，在了他的书中。施瓦茨这方面的文章包括：The F.B.I.and Dr.Einstein，The Na-tion，Sept.3，1983，168-173以及Dr.Einstein and the War Department,Isis（June 1989）：281-284。亦参见Dennis Overbye,New Details Emerge From the Einstein Files,New York Times, May 7，2002。</p>
+<p>[1106]Einstein Resumes Packing,New York Times,Dec，7，1932；Einstein Embarks,Jests About Quiz and Stimson Regrets Incident，New York Times，Dec，11，1932.</p>
+<p>[1107]Einstein（from Caputh）to Maurice Solovine,Nov.20，1932，AEA 21-218；Frank 1947，226；Pais 1982，318，450.弗兰克和派斯都叙述了爱因斯坦对爱尔莎说的关于卡普特预言性的话，两个人可能都从当事人那里听说了这则轶。派斯等人说，他们带了30件行李。爱尔莎在美国领事馆的质询之后告诉记者，她已经塞满了六个大行李箱，但她也许还没有装完，或仅仅指箱子，或者有意虚报了数目，以免激怒德国当局（或者是派斯说错了）。撒冷爱因斯坦档案馆的芭芭拉·沃尔夫认为，无论是她塞满30个大行李箱的故事，还是他们开卡普特时爱因斯坦让她“再好好看一眼”，都是虚构的（与笔者的私人通信）；</p>
+<p>[1108]Einstein Will Urge Amity with Germany，New York Times，Jan，8，1933.</p>
+<p>[1109]Nathan and Norden，208；Clark，552.</p>
+<p>[1110]Einstein’s Address on World Situation（text of speech）and Einstein Traces Slump to Machine，New York Times，Jan.24，1933.</p>
+<p>[1111]F?lsing，659.</p>
+<p>[1112]Einstein to Margarete Lebach,Feb.27，1933，AEA 50-834.</p>
+<p>[1113]Evelyn Seeley,interview with Einstein，New York World-Telegram，Mar.11，1933；Brian 1996，243.</p>
+<p>[1114]Marianoff，142-144.</p>
+<p>[1115]Michelmore，180，米歇尔莫尔从汉斯·阿尔伯特那里得到了许多材料，不过这句话可能有所夸张。</p>
+<p>[1116]Einstein,S tatement against the Hitler regime,Mar.22，1933，AEA 28-235.</p>
+<p>[1117]Einstein to the Prussian Academy,Mar.28，1933，AEA 36-55，</p>
+<p>[1118]Max Planck to Einstein,Mar.31，1933.</p>
+<p>[1119]Max Planck to Heinrich von Ficker,Mar.31，1933，引自F?lsing 663.</p>
+<p>[1120]Prussian Academy declaration,Apr.1，1933.这些通信重印于Ideas and Opinions，205-209.</p>
+<p>[1121]Einstein to Prussian Academy,Apr.5，1933.</p>
+<p>[1122]Frank 1947，232.</p>
+<p>[1123]Prussian Aacdemy to Einstein,Apr.7and 13，1933；Einstein to Prussian Academy,Apr 12，1933.</p>
+<p>[1124]Max Planck to Einstein,Mar.31，1933，AEA 19-389；Einstein to Max Planck,Apr.6，1933，AEA 19-392.</p>
+<p>[1125]Einstein to Max Born,May 30，1933，AEA 8-192；Max Born to Einstein,June 2，1933，AEA 8-193.</p>
+<p>[1126]Einstein to Fritz Haber,May 19，1933，AEA 12-378.关于对爱因斯坦与哈伯的关系以及最后这段插曲的概述，参见Stern，156-160。John Cornwall，Hitler’s Scientists（New York：Viking，2003），137-139也非常有用。</p>
+<p>[1127]Fritz Haber to Einstein,Aug，1，1933，AEA 385；Einstein to Haber,Aug. 8，1933，AEA 12-388.</p>
+<p>[1128]Einstein to Willem de Sitter,Apr.5，1933，AEA 20-575；Frank 1947，232；Clark，573.</p>
+<p>[1129]Vallentin，231.</p>
+<p>[1130]Frank 1947，240-242.</p>
+<p>[1131]Einstein to Maurice Solovine,Apr.23，1933，AEA 21-223.</p>
+<p>[1132]Einstein to Paul Langevin,May 5，1933，AEA 15-394.</p>
+<p>[1133]Einstein Will Go to Madrid，New York TimesApr.11，1933；Abraham Flexner to Einstein,Apr 13，1933，AEA 38-23；Pais 1982，493.</p>
+<p>[1134]Abraham Flexner to Einstein,Apr.26and28，1933，AEA 38-25，38-26.</p>
+<p>[1135]Einstein Lists Contracts；Princeton,Paris,Madrid,Oxford Lectures Are Only Engagements，New York Times，Aug，5，1933；Einstein to Frederich Linde-mann,May 1，1933，AEA 16-372.</p>
+<p>[1136]Hannoch Gutfreund,Albert Einstein and Hebrew University,in Renn 2005d，318.</p>
+<p>[1137]Einstein to Fritz Haber,Aug.9，1933，AEA 37-109；Einstein to Max Born,May 30，1933，AEA 8-192.</p>
+<p>[1138]Jewish Chronicle，Apr.8，1933；Chaim Weizmann to Einstein,Apr.3，1933，AEA33-425；Einstein to Paul Ehrenfest,June 14，1933，AEA10-255.</p>
+<p>[1139]Einstein to Herbert Samuel,Apr 15，1933，AEA 21-17；Einstein to Chaim Weizmann,June 9，1933，AEA 33-435.</p>
+<p>[1140]Weizmann Scores Einstein’s Stand,theNew York Times，June 30，1933.</p>
+<p>[1141]Albert Einstein Definitely Takes Post at Hebrew University,Jewish Tele-graphic Agency,July 3，1933；Abraham Flexner to Elsa Einstein,July 19，1933，AEA 33-033；Einstein Accepts Chair；Dr.Weizmann Announces He Has Made Peace with Hebrew University in Jerusalem,New York Times,July 4，1933.</p>
+<p>[1142]Einstein to the Rev.Johannes B.Th.Hugenholtz,July 1，1933，AEA 50-320.</p>
+<p>[1143]Nathan and Norden，225.</p>
+<p>[1144]王后的名字在许多书里都写作“Elizabeth”，但在她的雕像和布鲁塞尔的国家文物上刻的都是“Elisabeth”，大多数官方文献上写的也是“Elisabeth”。</p>
+<p>[1145]Einstein to Elsa Einstein,Nov.1，1930，uncatalogued new material provided to author.</p>
+<p>[1146]Einstein to King Albert I of Belgium,Nov.14，1933，in Nathan and Nor-den，230.</p>
+<p>[1147]Einstein to Alfred Nahon,July 20，1933，AEA 51-227.</p>
+<p>[1148]New York Times，Sept.10，1933.</p>
+<p>[1149]Einstein to E.Lagot,Aug.28，1933，AEA 50-477.</p>
+<p>[1150]Einstein to Lord Ponsonby,Aug.28，1933，AEA 51-400.</p>
+<p>[1151]Einstein to A.V.Frick,Sept.9，1933，AEA 36-567.</p>
+<p>[1152]Einstein to G.C.Heringa,Sept.11，1933，AEA 50-199.</p>
+<p>[1153]Einstein to P.Bernstein,Apr 5，1934，AEA 49-276.</p>
+<p>[1154]Romain Rolland,Sept.1933 diary entry,in Nathan and Norden，232.</p>
+<p>[1155]Michele Besso to Einstein,Sept.18，1932，AEA 7-130；Einstein to Michele Besso,Oct.21，1932，AEA 7-70.</p>
+<p>[1156]Einstein to Frederick Lindemann,May 9，1933，AEA 16-377.</p>
+<p>[1157]Einstein to Elsa Einstein,July 21，1933，AEA 143-250.</p>
+<p>[1158]Locker-Lampson speech,House of Commons,July 26，1933；Einstein a Briton Soon：Home Secretary’s Certificate Preferred to Palestine Citizenship，New York Times，July 29，1933；Marianoff，159.</p>
+<p>[1159]New York World Telegram，Sept.19，1933，in Nathan and Norden，234.</p>
+<p>[1160]Dr.Einstein Denies Communist Leanings，New York Times，Sep.16，1933；“Professor Einstein’s Political Views”，Times of London，Sept.16，1933，in Brian 1996，251.</p>
+<p>[1161]Einstein,Appreciation of Paul Ehrenfest,written in 1934 for a Leiden al-manac and reprinted in Einstein 1950a，236.</p>
+<p>[1162]Clark，600-605；Marianoff，160-163；Jacob Epstein，Let Thr Be Sculpture（London：Michael Joseph，1940），78.</p>
+<p>[1163]Dukas and Hoffmann，56.</p>
+<p>[1164]Einstein,Civilization and Science,Royal Albert Hall,Oct，3，1933；Times of London，Oct.4，1933；Calaprice，198；Clark，610-611.克拉克的版本要比稿本更忠实于实际的讲演。稿本两次提到了德国，而爱因斯坦出于外交考虑都没有提及。</p>
+<p>[1165]Abraham Flexner telegram to Einstein,Oct.1933，AEA 38-049；Flex-ner to Einstein,Oct.13，1933，AEA 38-050.</p>
+<p>[1166]Einstein Arrives；Pleads for Quiet/Whisked for Liner by Tug at Quarantine，New York Times，Oct.18，1933.</p>
+<p>[1167]Einstein Views Quarters,Nexv York Times，18，1933；Rev.John Lampe interview,in Clark，614；Einstein to Princeton，Time，Oct.30，1933.</p>
+<p>[1168]Brian 1996，251.</p>
+<p>[1169]Einstein Has Musicale，New York Times，Nov.10，1933.爱因斯坦为塞德尔画的草图现存于朱达·马格尼斯博物馆（Judah Magnes Museum），由爱因斯坦曾经反抗过的那位希伯来大学校长捐赠。</p>
+<p>[1170]Bucky，150.</p>
+<p>[1171]Thomas Torrance,Einstein and God,Center for Theological Inquiry,Prin-ceton,ctinquiry.org/publications/reflections_volume_1/torrance.htm.托兰斯（Torrance）说，这个故事是一位朋友讲给他听的。</p>
+<p>[1172]“不请客就捣蛋”：在万圣节玩的让人给糖果的游戏，威胁如果拒绝给糖果则会遭受恶作剧或捉弄。——译者注：</p>
+<p>[1173]Eleanor Drorbaugh interview with Jamie Sayen,Sayen，64，74.</p>
+<p>[1174]Sayen，69；Bucky，111；F?lsing，732.</p>
+<p>[1175]Had Pronounced Sense of Humor,New York Dec，22，1936.</p>
+<p>[1176]Brian 1996，265.</p>
+<p>[1177]Abraham Flexner to Einstein,Oct，13，1933，in Regis，34.</p>
+<p>[1178]Einstein,the Immortal,Shows Human Side，（Newark）Sunday Ledger，Nov.12，1933.</p>
+<p>[1179]Abraham Flexner to Elsa Einstein,Nov.14，1933，AEA 38-055.</p>
+<p>[1180]Abraham Flexner to Elsa Einstein,Nov.15，1933，AEA 38-059.弗莱克斯纳还在1933年11月14日给研究院的董事会成员马斯（Herbett Daas）写说：“天不得不跟爱因斯坦和他的妻子‘做工作’开始感到有些厌倦。他们并不了解美国。他们完全是小孩子，不服管束，很难听取忠告。您不知道我截获了多少宣传材料。”Batterson 152.</p>
+<p>[1181]Abraham Flexner to Einstein,Nov.15，1933，AEA 38-06！</p>
+<p>[1182]Fiddling for Friends,Time,Jan，29，1934；Einstein in Debut as Violinist Here，New York Times，Jan.18，1934.</p>
+<p>[1183]Stephen Wise to Judge Julian Mack,Oct.20，1933.</p>
+<p>[1184]Col.Marvin Mac Intyre report to the White House Social Bureau,Dec.7，1933，AEA 33-131；Abraham Flexner to Franklin Roosevelt,Nov.3，1933；Einstein to Eleanor Roosevelt,Nov.21，1933，AEA 33-129；Eleanor Roosevelt to Einstein,Dec.4，1933，AEA 33-130；Elsa Einstein to Eleanor Roosevelt,Jan 16，1934，AEA 33-132；Einstein to Queen Elisabeth of Belgium,Jan.25，1934，AEA 33-134；“Einstein Chats About Sea”，New York TimesJan.26，1934.</p>
+<p>[1185]Einstein to Board of Trustees of the IAS,Dec.1-31，1933.</p>
+<p>[1186]Johanna Fantova,Journal of conversations with Einstein,Jan.23，1954，in Calaprice，354.</p>
+<p>[1187]Einsteinto Max Born,Mar.22，1934；Erwin Schr?dinger to Frederick Lindemann,Mar.29，1934，Jan.22，1935.</p>
+<p>[1188]Einstein to Queen Elisabeth of Belgium,Nov.20，1933，AEA 32-369.这句话通常被译为“身材矮小的踩着高跷的小神”。爱因斯坦用的词“stelzbeinig”意为“长着僵直的腿”，就好像腿是木制的高跷。它与高度无关，而是让人想起孔雀的步态。</p>
+<p>[1189]Einstein,The Negro Question,Pageant,Jan.1946.在这篇文章中，他将美国人的一般民主社会倾向与他们对待黑人的方式相比较。我们将会看到，他认为后来的问题比1934年更严重。</p>
+<p>[1190]Bucky，45；Einstein Farewell，Tim e，Mar.14，1932.</p>
+<p>[1191]Vallentin，235.亦参加Elsa Einstein to Hertha Einstein,Feb.24，1934，AEA 37-693：“这个地方颇具魅力，与美国的其他地方完全不同……这里的一切都有英国风格——彻底的牛津风格。”</p>
+<p>[1192]Einstein Cancels Trip Abroad，New York Times，Apr 2，1934.</p>
+<p>[1193]Marianoff，178.另有资料报道说，伊尔莎的骨灰，至少是其中的一部分，被带到了凯泽尔挑选的一处荷兰墓地。</p>
+<p>[1194]整个故事源自1994年9月7日Denis Brian对布莱克伍德夫妇的儿子James的一次采访，在Brian1996，259-263中有详细记述。</p>
+<p>[1195]“长刀之夜”（Night of the Long Knives），指1934年6月30日夜，希特勒在德国授意谋杀了许多对手。——译者注</p>
+<p>[1196]同上。亦参见James Blackwood,Einstein inthe Rear-View Mirror，prin-ceton History，Nov.1997。</p>
+<p>[1197]Einstein Inventor of Camera Device，New York Times.Nov.27，1936.</p>
+<p>[1198]Bucky，5.布基的书有一部分内容是连续的对话，虽然有些章节实际上是出自爱因斯坦其他一些采访和著作。</p>
+<p>[1199]Bucky，16-21.</p>
+<p>[1200]New York Times，Aug.4，1935；Brian 1996，265，280.</p>
+<p>[1201]Vallentin，237.</p>
+<p>[1202]参见第二十二章 。</p>
+<p>[1203]Brian 1996，268.</p>
+<p>[1204]F?lsing，687；Brian 1996，279.</p>
+<p>[1205]Calaprice，251.</p>
+<p>[1206]Bucky，25.</p>
+<p>[1207]Clark，622.</p>
+<p>[1208]Pais 1982，454.</p>
+<p>[1209]Jon Blackwell,The Genius Next Door，The Trentoia，www.capit tury.com/1933.html；Seelig 1956a，193；Sayen，78；Brian 1996，330.</p>
+<p>[1210]Einstein to Barbara Lee Wilson,Jan.7，1943，AEA 42-606；Dukas and Hoffmann，8；Einstein Solves Problem That Baffled Boys，New York Times，June 11，1937.</p>
+<p>[1211]Einstein Gives Advice to a High School Boy,theNexv York Times，Apr.14，1935；Sayen，76.</p>
+<p>[1212]Elsa Einstein to Leon Watters,Dec.10，1935，AEA 52-210.</p>
+<p>[1213]Vallentin，238.</p>
+<p>[1214]Bucky，13.</p>
+<p>[1215]Einstein to Hans Albert Einstein,Jan.4，1937，AEA 75-926.</p>
+<p>[1216]Hoffmann 1972，231.</p>
+<p>[1217]Einstein,Lens-like Action of a Star by Deviation of Light in the Gravitational Field，Science（Dec.1936）；Einstein with Nathan Rosen,On Gravitational Waves，Journal of The Franklin Institute（Jan.1937）.这篇引力波论文最初投给了《物理评论》（Physical Review）。那里的编辑将它提交给一个评审委员会，他们发现了错误。爱因斯坦很愤怒，撤回了论文，让富兰克林学会发表了。接着，他意识到他完全错了（在匿名的评审委员间接告诉他之后），就在爱尔莎临死时，他和罗森做了多次修改。金内弗里克（Daniel Kinne-ick）发现了这个故事的详细情况，在Einstein versus the Physical Review，Physics Today（Sept，2005）中做了引人入胜的叙述。</p>
+<p>[1218]Einstein to Max Born,Feb.1937，in Born 2005，128.</p>
+<p>[1219]Einstein,The Causes ofthe Formation of Meanders in the Courses of Rivers and of the So-Called Baer’s Law,Jan.7，1926.</p>
+<p>[1220]Dr.Einstein Welcomes Son to America，New York Times，ct.13，1937.</p>
+<p>[1221]Bucky，107.</p>
+<p>[1222]Einstein to Mileva Mari，Dec，21，1937，AEA 75-938，</p>
+<p>[1223]Einstein to Frieda Einstein,Apr.11，1937，AEA 75-929，</p>
+<p>[1224]Robert Ettema and Cornelia F.Mutel,Hans Albert Einstein in South Caro-lina，Water Resources and Environmental History，June 27，2004；Einstein’S Son Asks Citizenship，New York Times，Dec.22，1938，他1938年12月21日在美国南加州格林威尔地方法院申请了国籍。一些传记说他当时住在北卡罗来纳州的格林斯博罗（Greensboro）这是不正确的；</p>
+<p>[1225]Einstein to Hans Albert and Frieda Einstein,Jan，1939；James Shannon,Einstein in Greenville，The Beat，Greenville,S.C.，Nov，17，2001.</p>
+<p>[1226]Highfield and Carter，242.</p>
+<p>[1227]Hitler Is“Greatest”In Princeton Poll：Freshmen Put Einstein Second and Chamberlain Third，New York Times，Nov.28，1939.</p>
+<p>[1228]Collier’s，Nov.26，1938；Einstein 1954，191.</p>
+<p>[1229]Sayen，344；Einstein Fiddles，Time，Feb.3，1941.《时代》周刊报道了为美国公谊服务会在普林斯顿举行的小型音乐会：“爱因斯坦证明，他能够富有感情地演奏出舒缓的旋律，优雅地发出颤音，有时还会展示出一些复杂的技巧。听众们热烈鼓掌。小提琴手爱因斯坦致以温和的微笑，带着四维的焦虑看了看表，加演了一首曲子，又看了一次表，离场了。”</p>
+<p>[1230]Jerome，77.</p>
+<p>[1231]Einstein to Isaac Don Levine,Dec.10，1934，AEA 50-928；Levine,Eyewitnessto History（New York：Hawthorne，1973），171.</p>
+<p>[1232]Sidney Hookto Einstein,Feb.22，1937，AEA 34-731；Einstein to Hook,Feb.23，1937，AEA 34-735.</p>
+<p>[1233]Sidney Hook,My Running Debate with Einstein，Commentary，July 1982，39</p>
+<p>[1234]Hoffmann 1972，190；Rigden，144；Lèon Rosenfeld,Niels Bohr in the Thirties,in Rozental 1967，127；N.P.Landsman,When Champions Meet：Rethin-king the Bohr-Einstein Debate，Studies in the History and Science of Modern Physics37（Mar.2006）：212.</p>
+<p>[1235]Einstein 1949b，85.</p>
+<p>[1236]爱因斯坦使用了两个相关的概念。“可分离性”（sepaability）意味着在空间中占据不同区域的不同粒子或系统具有独立的实在性；“定域性”中一个粒子或系统的作用不可能影响位于另一个空间部分的粒子或系统，除非有某种东西在它们之间传播，且这一过程须遵守光速限制。</p>
+<p>[1237]Einstein 1949b，85.</p>
+<p>[1238]Einstein to Max Born,Mar.3，1947，in Bom 2005，155（not in AEA）.</p>
+<p>[1239]Einstein to Erwin Schr?dinger,June 19，1935，AEA 22-47.</p>
+<p>[1240]New York Times，May 4 and 7，1935；David Mermin,My Life with Ein-stein，Physics Today（Jan.2005）.</p>
+<p>[1241]Albert Einstein,Boris Podolsky,and Nathan Rosen,Can Quantum-Me-chanical Description of Physical Reality Be Regarded as Complete?Physical ReviewMay 15，1935（received Mar 25，1935）.www.drchinese.com/David/EPR.pdf</p>
+<p>[1242]对该实验的另一种表述是，一位观察者测量其中一个粒子的位置，在“同一时刻”另一个观察者测量另一个粒子的动量，然后对他们的记录进行比较，就可以知晓两个粒子的位置和动量。参见Charles Sei），The Trneand the Absurd,in Brockman，71。</p>
+<p>[1243]Aczel 2002，117.</p>
+<p>[1244]Whitaker，229；Aczel 2002，118.</p>
+<p>[1245]Niels Bohr,Can Quantum-Mechanical Description of Physical Reality Be Regarded as Complete?Physical Review，Oct.15，1935（received July 13，1935）.</p>
+<p>[1246]Greene 2004，102.阿瑟·法因指出，玻尔对EPR的概括“更近乎于对EPR论文的讽刺而不是严肃的重构”。虽然由波多尔斯就的EPR的确谈到了确定“一在的元素”，但玻尔以及其他对爱因斯坦的阐释者给出的“实在性标准”并不符合爱因斯坦后来对EPR论文的解读。格林的书强调了“实在性标准”这一要素。参见Arthur Fine,The Einstein-Podolsky-Rosen Argu-ment in Quantum Theory，Stanford Encyclopedia of Philosophy，plato,Stanford.edu/entries/qt-epr/，and also Fine，The Shaky Game：Einstein,Realism,and the Quantum Theory，chapter 3；Mara Beller and Arthur Fine，“Bohr’s Response to EPR，”in Jann Faye and Henry Folse,eds,Niels Bohr and Contemporary Philoso-phy（Dordrecht：Kluwer Academic Publishers，1994），1-31。</p>
+<p>[1247]法因表明，波多尔斯基写的EPR论文以及玻尔等“获胜者”对它的描述并没有完全领会爱因斯坦本人对量子力学的批判。唐·霍华德（Don Howard）已经在法因工作的基础上强调了“可分离性”和“定域性”问题。参见Howard 1990b。</p>
+<p>[1248]Einstein to Erwin Schr?dinger,May 31，1928，AEA 22-22；Fine 18.</p>
+<p>[1249]Erwin Schr?dinger to Einstein,June 7，1935，AEA 22-45，and July 13，1935，AEA 22-48.</p>
+<p>[1250]Einstein to Erwin Schr?dinger,June 19，1935，AEA 22-47.</p>
+<p>[1251]Erwin Schr?dinger,The Present Situation in Quantum Mechanics,third in-stallment,Dec，13，1935，www.tu-harburg.de/rzt/rzt/it/QM/cat html.</p>
+<p>[1252]更加具体地说，薛定谔方程表明了对一个粒子或系统进行测量所可能得到的结果的概率随时间的变化率。</p>
+<p>[1253]Einstein to Erwin Schr?dinger,June 19，1935，AEA 22-47.</p>
+<p>[1254]感谢科皮和斯通对本节写作的帮助。</p>
+<p>[1255]Einstein to Erwin Schr?dinger,Aug.8，1935，AEA 22-49；Arthur Fine，“The Einstein-Podolsky-Rosen Argument in Quanturn Theory，”Stanford En-cyclopedia of Philosophy，plato.Stanford,edu/entries/qt-epr/，法因发现了爱因斯坦与薛定谔的一些通信。Fine,Chapter 3.</p>
+<p>[1256]Erwin Schr?dinger to Einstein,Aug.19，1935，AEA 22-51.</p>
+<p>[1257]Erwin Schr?dinger,The Present Situation in Quantum Mechanics,Nov.29，1935，www.tu-harburg.de/rzt/rzt/it/QM/cat.html.</p>
+<p>[1258]Einstein to Erwin Schr?dinger,Sept.4，1935，AEA 22-53.薛定谔的有发表，但薛定谔在他1935年8月19日给爱因斯坦的信中谈了他的论证。</p>
+<p>[1259]en.wikipedia.org/wiki/Schrodinger’s_cat.</p>
+<p>[1260]Einstein to Erwin Schr?dinger,Dec.22，1950，AEA 22-174.</p>
+<p>[1261]David Bohm and Basil Huey,Einstein and non-locality in the quantum theory,in Goldsmith et al，47.</p>
+<p>[1262]John Stewart Bell,On the Einstein-Podolsky-Rosen Paradox，Physics1，no.1（1964）.</p>
+<p>[1263]Bernstein 1991，20.</p>
+<p>[1264]关于对玻姆和贝尔所做分析的解释，参见Geene 2004，99-115；Bernstein 1991，76。</p>
+<p>[1265]Bernstein 1991，76，84.</p>
+<p>[1266]New York Times，Dec.27，2005.</p>
+<p>[1267]New Scientist，Jan.11，2006.</p>
+<p>[1268]Greene 2004，117.</p>
+<p>[1269]在对量子力学的退相干历史表述中，粗粒是指各个历史之间互不干扰。如果A和B是相互排斥的历史，那么A或B的概率就是A的概B的概率和。这些“退相干的”历史形成了一树状结构，其中每一选择在下一时刻又会分出不同选择，如此等等，以至无穷。这种理论不像哥本哈根那样强调测量。考虑一块包含着发射α粒子的放射性杂质的云母，每一射出的α粒子都会在云母中留下轨迹。这些轨迹是实在的，无论是物理学家或其他人看，是老鼠或蟑螂看，都是如此。重要的是，这些轨迹与α粒子的发射方向联，可以被用来测量它。发射前，所有方向的可能性都是平权的，都对历史的一支有贡献。感谢盖尔曼对本节写作的帮助。亦参见Gell-Mann，135-177；Murray Gell-Mann and James Hartle,Quantum Mechanics in the Light of Quantum Cosmology,in W.H.Zurek,ed.，Complexity,Entropy and the Physics of Infor-mation（Reading,Mass Addison-Wesley，1990），425-459，and Equivalent Sets of Histories and Multiple Quasiclassical Realms,May 1996，www.arxiv.org/abs/gr-qc/9404013。这种观点源自埃弗雷特1957年首先提出的多世界解释。</p>
+<p>[1270]爱因斯坦和实在论的文献引人入胜。本节的写作有赖于参考文献中列出的唐·霍华德、霍尔顿、米勒和东恩的研究成果。唐·霍华德指出，爱因斯坦从来不是真正的马赫主义者或科学实在论者，他的科学哲学多年来并没有发生太大变化。“在我看来，爱因斯坦从来不是一个热忱的‘马赫式的’实证主义者或科学实在论者，至少不是20世纪末哲学话语意义上的‘科学实在论者’。爱因斯坦期望科学理论能够有恰当的经验证明，但他并非实证主义着；他期望科学理论能够对物理实在做出解释，但他并非科学实在论者。而且他在这两方面的观点自始至终都没有发生什么变化。”Howard 2004.</p>
+<p>而霍尔顿则认为，“爱因斯坦的科学哲学从以感觉论和经验论为核心渐渐变成了以理性实在论为核心……对于一个科学家来说，如此彻底地改变其哲学信念是罕见的”（Holton 1973，219，245）。亦参见Anton Zeilinger,Einstein and Absolute Reality,in Brockman，123：“爱因斯坦并非只接受能够被观察证实的概念，而是认为存在着一种先观察和独立于观察的实在。”</p>
+<p>法因在《不可靠的游戏》（The Shaky Game）—书中全方位地探讨了这个问题。他提出了他所谓的“自然本体论态度”，它既非实在论，亦非反实在论，而是“介于两者之间”。关于爱因斯坦，他说：“我认为，爱因斯坦所谓的实在论有一个深刻的经验论内核，这使它成为一种更为名义上的‘实在论’。”Fine，130，108.</p>
+<p>[1271]Einstein to Jerome Rothstein May 22，1950，AEA 22-54.</p>
+<p>[1272]Einstein to Donald Mackay,Apr.26，1948，AEA 17-9.</p>
+<p>[1273]Einstein 1949b，11.</p>
+<p>[1274]Gerald Holton,Mach,Einstein and the Search for Reality,in Holton 1973，245.米勒不同意霍尔顿的某些解释。他强调，爱因斯坦的观点是，某种东西要想成为实在的，必须在原则上可以测量，即使并不真的去测量，他满足于用思想实验去“测量”某种东西。Miller 1981，186.</p>
+<p>[1275]Einstein 1949b，81.</p>
+<p>[1276]Einstein to Max Bom,comments on a paper,Mar.18，1948，in Bom 2005，161.</p>
+<p>[1277]Einstein,The Fundamentals of Theoretical Physics,Science,May 24，1940；Einstein 1954，334.</p>
+<p>[1278]例如，法因指出：“因果性和不依赖于观察者是爱因斯坦实在论的首要特征，而空间/时间表示则是重要但次要的特征。”Fine，103.</p>
+<p>[1279]Einstein,Physics,Philosophy and Scientific Progress，Journal of the Inter-national College of Surgeons14（1950），AEA 1-163；Fine，98.</p>
+<p>[1280]Einstein,Physics and Reality，Journal of the Franklin Institute（Mar，1936），in Einstein 1954，292.霍尔顿说，这句话更恰当的译法应为：“这个世界永远不可理解的事情是它的可理解性。”参见Holton，“w hat Precisely Is Think-ing?”in French，161。</p>
+<p>[1281]Einstein to Maurice Solovine,Mar.30，1952，in Solovine，131（not in AEA）.</p>
+<p>[1282]Einstein to Maurice Solovine,Jan.1，1951，in Solovine，119.</p>
+<p>[1283]Einstein to Max Bom,Sept.7，1944，in Bom 2005，146，and AEA 8-207.</p>
+<p>[1284]Bon 2005，69.他把爱因斯坦列为“无法从流行的哲学偏见中解放出来的保守的人”。</p>
+<p>[1285]Einstein to Maurice Solovine,Apr.10，1938，in Solovine，85.</p>
+<p>[1286]Einstein and Infeld，296.</p>
+<p>[1287]Einstein and Infeld，241.</p>
+<p>[1288]Bom 2005，118，122.</p>
+<p>[1289]Brian 1996，289.</p>
+<p>[1290]Hoffmann 1972，231.</p>
+<p>[1291]Regis，35.</p>
+<p>[1292]Leopold Infeld,Quest，（New York：Chelsea，1980），309.</p>
+<p>[1293]Brian 1996，303.</p>
+<p>[1294]Infeld,introductionto the 1960 editionof Einstein and Infeld；Infeld，112-114.</p>
+<p>[1295]Pais 1982，23.</p>
+<p>[1296]Vladimir Pavlovich Vizgin,Unified Field Theories in theFirst Third of the20th Century（Basel：Birkh?user，1994），218.Matthew19：6：“所以神所配合的，人不可分开。”</p>
+<p>[1297]斯芬克斯：古代希腊神话中带翼的狮身女怪，传说常叫过路行人猜谜，猜不出者即遭杀害。——译者注</p>
+<p>[1298]Einstein to Max von Laue,Mar.23，1934，AEA 16-101.</p>
+<p>[1299]Whitro w,x ii：“爱因斯坦也认为成功的机会非常渺茫，但必须尝试一下。他本人已经确立了名声，职位有了保证，所以担得起失败的危险。而一个正在建功立业的年轻人却经不起这样的风险，因为他很可能会为此而失去一个好的职业，所以爱因斯坦觉得他有义务做这件事。”</p>
+<p>[1300]Hoffmann 1972，227.</p>
+<p>[1301]Arthur I.Miller,A Thing of Beuaty，New Scients，Feb.4，20</p>
+<p>[1302]Einstein to Maurice Solovine,June 27，1938.亦参见Einstein to Maurice Solovine Dec.23，1938，AEA 21-236：“我偶然发现了一个绝妙的问题，我正在与两位年轻同事热情研究。它使我们有可能摧残我一直无法容忍的物理学的统计基础。这种对广义相对论的拓展具有相当的逻辑简单性。”</p>
+<p>[1303]William Laurence,Einstein in Vast New Theory Links Atoms and Stars in Unified System，New York Times，July 5，1935；William Laurence,Einstein Sees Key to Universe Near，New York Times，Mar.14，1939.</p>
+<p>[1304]Hoffmann 1972，227；Bernstein 1991，157.</p>
+<p>[1305]William Laurence,Einstein Baffled by Cosmos Ridd le,New York Times,May 16，1940.</p>
+<p>[1306]F?lsing，704.</p>
+<p>[1307]Pittsburgh Post-Gazette，Dec.29，1934.</p>
+<p>[1308]William Laurence,Einstein Sees Key to Universe Near，New York Times，Mar.14，1939.</p>
+<p>[1309]FBI interview with Einstein regarding Leò Szilard,Nov，1，1940，obtained by Gene Dannen under the Freedom of Information Act,www.dannen.com/einstein.html.具有讽剌意味的是，由于爱因斯坦本人已经被拒绝给予安全特许，联邦调查局与爱因斯坦进行了广泛而友好的会谈，以检验西拉德是否值得给予这种特许。亦参见Gene Dannen,The Einstein-Szilárd Refrigerators，Scientific American（Jan.1997）。</p>
+<p>[1310]Recollectionsof Chuck Rothman,son of David Rothman,www.sff.net/people/rothman/einstein.htm.</p>
+<p>[1311]Weart and Szilard1978，83-96；Brian 1996，316.</p>
+<p>[1312]Rhodes，304-308给出了权威的叙述。</p>
+<p>[1313]参见Kati Marton,The Great Escape：Nine Hugars Who Fldt and Changed the World（New York：Simon ＆ Schuster，2006）。</p>
+<p>[1314]Leó Szilàrd to Einstein,July 19，1939，AEA 76-532.</p>
+<p>[1315]—些流行的说法暗示，爱因斯坦仅仅在西拉德所撰写并带来的一封信上签了名。于是，泰勒1969年对作家克拉克说，爱因斯坦在西拉德和泰勒那天带来的一封信上签了名，“几乎未作评论”。参见Clark，673.然而，这与西拉德本人对那天的详细记述以及泰勒那天做的笔录相矛盾。笔录以及爱因斯坦用德语口述的新信重于Nathan and Norden，293。爱因斯坦口述的信的确基于西拉德那天带来的一草稿，但那是对爱因斯坦两周前口述的信的翻译。一些论述，包括爱因斯坦本人后来偶尔所做的评论，都试图将他所起的作用最小化，说他只是在别人写的信上签了字。但事实上，即使是西拉德推动和促成了那些讨论，爱因斯坦也完全参与了他独自签名的信的写作。</p>
+<p>[1316]Einstein to Franklin Roosevelt,Aug.2，1939.较长的信藏于纽约海德公园的富兰克林·罗斯福档案馆（AEA 33—143是一副本），较短的信藏于加州大学圣地亚哥分校的西拉德档案馆。</p>
+<p>[1317]Clark 676；Einstein to Leó Szilárd,Aug.2，1939，AEA39-465；Szilard to Einstein,Aug.9，1939，AEA 39-467；Leó Szilárd to Charles Lindbergh,Aug，14，1939，Szilard papers,University of California San Diego,box 12，folder 5.</p>
+<p>[1318]Charles Lindbergh,America and European Wars,speech,Sept.15，1939，www.charleslindbergh.com/pdf/9_15_39.pdf.</p>
+<p>[1319]Leó Szilárd to Einstein,Sept.27，1939，AEA39-471.林白后来不记得收到过西拉德的任何来信。</p>
+<p>[1320]Leó Szilárd to Einstein,Oct.3，1939，AEA 39-473.</p>
+<p>[1321]Moore，268.拿破仑的故事显然是萨克斯或别人断章取义的产物，因为富尔顿的确为拿破仑造过船，包括一种不成功的潜水艇；参见Kirkpatrick Sale，The Fire of His Genius（New York：Free Press，2001），68-73。</p>
+<p>[1322]1945年11月27日，萨克斯把这个故事讲给了美国参议院的一个原子能听证特别委员会。这在大多数原子弹史中都有叙述，包括Rhodes，313-314。</p>
+<p>[1323]Franklin Roosevelt to Einstein,Oct.19，1939，AEA 33-192.</p>
+<p>[1324]Einstein to Alexander Sachs,Mar.7，1940，AEA 39-475.</p>
+<p>[1325]Einstein to Lyman Briggs,Apr.25，1940，AEA 39-484.</p>
+<p>[1326]Sherman Miles to J.Edgar Hoover,July 30，1940，in the FBI files on Einstein,f oia.fbi.gov/einstein/einsteinla.pdf.关于这些文件的出色分析和背景参见Jerome。</p>
+<p>[1327]J.Ecgar Hoover to Sherman Miles,Aug，15，1940.</p>
+<p>[1328]Einstein to Henri Barbusse,June 1，1932，AEA 34-543.</p>
+<p>[1329]Jerome，28，295 n.6.迈尔斯的注释在国家档案馆的副本中，但不在联邦调查局的档案里。</p>
+<p>[1330]Jerome，40-42.</p>
+<p>[1331]Einstein,This Is My America,unpublished,summer 1944，AEA 72-758.</p>
+<p>[1332]Einstein to Take Test,New York Times,June 20，1940；Einstein Predicts Armed League，New York Times，June 23，1940.</p>
+<p>[1333]Einstein Is Sworn as Citizen of U.S，New York Times，Oct，2，1940.</p>
+<p>[1334]Einstein,This Is My America,unpublished,summer 1944，AEA 72-758，</p>
+<p>[1335]Frank Aydelotte to Vannevar Bush,Dec，19，1941；Clark，684.</p>
+<p>[1336]Vannevar Bush to Frank Aydelotte,Dec.30，1941.</p>
+<p>[1337]Pais 1982，12；George Gamow,Reminiscnece,in French，29；Folsing 715.</p>
+<p>[1338]Sayen，150；Pais 1982，147.这些手稿被堪萨斯城市人寿保险公司所购买，后来捐给了国会图书馆。</p>
+<p>[1339]Einstein to Niels Bohr,Dec.12，1944，AEA 8-95.</p>
+<p>[1340]Clark，698.</p>
+<p>[1341]Einstein to Otto Stem,Dec.26，1944，AEA 22-240；Clark，699-700</p>
+<p>[1342]Einstein to Franklin Roosevelt,Mar.25，1945，AEA 33-109.</p>
+<p>[1343]Sayen，151.</p>
+<p>[1344]Time，Ju lyl，1946.这封肖像画为杂志资深封面艺术家贝克（Ernest Hamlin Baker）所作。</p>
+<p>[1345]Newsweek，Mar.10，1947.</p>
+<p>[1346]Linus Pauling report of conversation,Nov，16，1954，in Calaprice 185.</p>
+<p>[1347]Brian 1996，345；Helen Dukas to Alice Kahler Aug.8，1945：“《纽约时报》的一位年轻记者很晚的时候来了……萨尔兹伯格也一直打电话希望能够发表一份声明。但是没有用。”亚瑟·奥克斯·萨尔兹伯格（Arthur Ochs Sulzberger）先生告诉我，他的父亲亚瑟·海斯·萨尔兹伯格和叔叔戴维当时在萨拉纳克湖避暑，结识了爱因斯坦。</p>
+<p>[1348]United Press interview,Sept. 14，1945，reprinted inNew York Times，Sept.15，1945.</p>
+<p>[1349]Einstein to J.Robert Oppenheimer（care of a post office box in Santa Fe near Los Alamos），Sept.29，1945，AEA 57-294；Oppenheimer to Einstein,Oct 10，1945，AEA 57-296.</p>
+<p>[1350]当他得知他认为过于胆怯的那篇声明并非奧本海默所写之后，他给田纳西州的科学家们（真正胆怯的是他们）写了一封信。在信中，他解释了他关于世界政府应当具有和不应当具有什么权力的想法。“世界政府的各成员国必须立即把他们的关税和移民立法权交给世界政府，”他说，“事实上，我认为世界政府的唯一职能应当是拥有军事垄断权。”Einstein tojohn Balderston and other Oak Ridge scientists,Dec，3，1945，AEA 56-493.</p>
+<p>[1351]重印于Nathan and Norden，347和Einstein 1954，118。亦参见Einstein,The Way Out,inOne World or None，Federation of Atomic Scientists，1946，www.fas.org/oneworld/index.html.这本重要的书考察了爱因斯坦、奥本海默、西拉德、维格纳和玻尔等当时多位科学家关于如何用世界联邦制来控制核武器的看法。</p>
+<p>[1352]爱因斯坦意识到没有永恒的原子弹的“秘密”可以保护。正如他后来说：“美国目前军事力量占优势，但我们肯定没有永恒的秘密。大自然告诉一群人的东西，它也会及时地告诉另一群人。”Einstein,The Real Problem Is in the Hearts of Men，New York Times Magazine，June 23，1946。</p>
+<p>[1353]Einstein,remarks at the Nobel Prize dinner,Hotel Astor,Dec，10，1945，in Einstein 1954，115.</p>
+<p>[1354]Einstein,ECAS fund-raising telegram,May 23，1946，与此相关的材料见于爱因斯坦档案的文件夹40-11。ECAS的历史和档案见于www,aip.org/history/ead/chicago_ecas/20010108_content,html#top。</p>
+<p>[1355]Einstein,ECAS letter,Jan.22，1947，AEA 40-606；Sayen，213.</p>
+<p>[1356]Newsweek，Mar.10，1947.</p>
+<p>[1357]路易斯·B.梅耶（1885-1957），生于俄国，1924年与他人共同创建美国米高梅电影公司，公司首脑直至1951年，因此成为好莱坞最有权力的人物之一。——译者注</p>
+<p>[1358]Richard Present to Einstein,Jan.30，1946，AEA 57-147.</p>
+<p>[1359]Einstein to Dr.J.J.Nickson,May 23，1946，AEA 57-150；Einstein to Louis B.Mayer,June 24，1946.AEA 57-152.</p>
+<p>[1360]Louis B.Mayer to Einstein,July 18，1946，AEA57-153；James Me Guinness to Louis B.Mayer,July 16，1946，AEA 57-154.</p>
+<p>[1361]Sam Marx to Einstein,July 1，1946，AEA 57-155；Einstein to Sam Marx,July 8，1946，AEA 57-156；Sam Marx to Einstein,July 16，1946，AEA 57-158.</p>
+<p>[1362]Einstein to Sam Marx,July 19，1946，AEA 57-162；Leó Szilárd tele-gram to Einstein,and Einstein note on reverse,July 27，1946，AEA 57-163，57-164.</p>
+<p>[1363]Bosley Crowther,Atomic Bomb Film Starts，New York Times，Feb.21，1947.</p>
+<p>[1364]William Golden to George Marshall,June 9，1947，Foreign Relations of the U.S.；Sayen，196.</p>
+<p>[1365]哈尔斯曼引用的爱因斯坦名言尔斯曼的妻子讲述，刊登在《时代》周刊1999年12月31日的世纪人物专号，封面就是哈尔斯曼拍摄的爱因斯坦照片。</p>
+<p>[1366]Einstein comment on the animated antiwar film，Where Will You Hide? May，1948，AEA 28-817.</p>
+<p>[1367]Einstein in terview with Alfred Werner，L iberal Judaism，Apr.——May 1949</p>
+<p>[1368]Norman Cousins,As 1960 Sees Us，Saturday Review，Aug，5，1950；Einstein to Norman Cousins,Aug.2，1950，AEA 49-453.（周刊实际上要比所注曰期提前一周出版。）</p>
+<p>[1369]Einstein talk（viaradio）to the Jewish Council for Russian War Relief,Oct.25，1942，AEA 28-571.亦参见Einstein unsent messag regarding the May-Johnson Bill,Jan.1946，Nathan and Norden，342；broadcast in terview,July 17，1947，in Nathan and Norden，418。</p>
+<p>[1370]Rank in Denies Eins tein A-B omb Role,United Press,Feb.14，1950.</p>
+<p>[1371]Einstein to Sidney Hook,Apr.3，1948，AEA 58-300；Sidney Hook,My Running Debate with Einstein,Commentary（July 1982）.</p>
+<p>[1372]Einstein to Sidney Hook,M ay 16，1950，AEA 59-1018.</p>
+<p>[1373]Dr.Einstein’s Mistaken Notions,inNew Times（Moscow），Nov，1947，in Nathan and Norden，443 and Einstein 1954，134.</p>
+<p>[1374]Einstein,Reply to the Russian Scientists，Bulletin of Atomic Scientists[the publication of the Emergency Committee that he chaired]，Feb.1948，in Einstein 1954，135；“Einstein Hits Soviet Scientistsfor Opposing World Government”，New York Times,Jan.30，1948.</p>
+<p>[1375]Einstein,Atomic War of Peace,part 2，Atlantic Monthly,Nov.1947.</p>
+<p>[1376]Einstein to Henry Usborne,Jan.9，1948，AEA 58-922.</p>
+<p>[1377]Einstein to James Allen,Dec.22，1949，AEA 57-620.</p>
+<p>[1378]纳坦在1960年与人合编的爱因斯坦政治著作选集《爱因斯坦论和平》（Einstein on Peace）就对这种看法起了促进作用。纳坦和杜卡斯同为爱因斯坦遗行人，他对早期出版的著作有巨大的影响。他是公开的社会主义者与和平主义者。他的选集很有价值，但如果查阅了整个爱因斯坦档案，就会发现他倾向于忽略那些爱因斯坦批评苏联或极端和平主义的材料。罗（David E.Rowe）和舒尔曼在2007年出版的爱因斯坦政治著作选集《爱因斯坦的政治世界》（Einstein’s Political Word）做了弥补。他们强调，爱因斯坦“并不打算放弃自由事业而主张一种严格的计划经济，特别是不会以基本自由为代价”。他们还强调了了爱因斯坦改变纯粹和平主义立场的现实性和实际性。</p>
+<p>[1379]Einstein to Arthur Squires and Cuthbert Daniel,Dec.15，1947，AEA 58-89.</p>
+<p>[1380]Einstein to Roy Kepler,Aug.8，1948，AEA 58-969.</p>
+<p>[1381]Einstein to John Dudzik,Mar.8，1948，AEA 58-108.亦参见Einstein to A.Amery,June12，1950，AEA 59-95：“无论我多么相信社会主义的必然性，它也解决不了国际安全问题。”</p>
+<p>[1382]“Poles Issue Message by Einstein；He Reveals Quite Different Text，”New York Times，Aug.29，948；Einstein to Julian Huxley,Sept.14，1948，AEA 58-700；Nathan and Norden，493.</p>
+<p>[1383]Einstein to A.J.Muste,Jan.30，1950，AEA 60-636.</p>
+<p>[1384]Today with Mrs.Roosevelt，NBC,Jan.12，1950，www.cine-holo-caust,de/cgi-bin/gdq?efw00fbw002802.gd；New York Post,Feb.13，1950.</p>
+<p>[1385]D,M.Ladd to J.Edgar Hoover,Feb.15，1950，and V.P.Keay to H,B.Fletcher,Feb.13，1950，both in Einstein’s FBI files,box l a,f oia.f bi.gov/foiaindex/einstein.htm.杰罗姆的书《爱因斯坦档案》（The Einstein File）做了分析。杰罗姆说，在选择爱因斯坦作为世纪人物时，《时代》周刊没有说他是社会主义者。“《时代》周刊的管理者似乎决定走到一定程度就适可而止，他们的文章没有提到爱因斯坦的社会主义信念。作为杂志当时的总编，我可以证明，这实际上是我们的，而不是政策决定的结果。”</p>
+<p>[1386]Gen.John Weckerling to J.Edgar Hoover,July 31，1950，Einstein FBI files,box 2a.</p>
+<p>[1387]参见f oia,fbi.gov/foiaindex/einstein,htm。罗默斯坦（Herb Romerstein）和布兰德尔（Eric Breindel）的《维诺那秘密》（The Venona Secrets，New York：Regney，2000）是一本抨击苏联间谍的书，他们根据在美国的苏联特工发送的“维诺那”把爱因斯坦列为亲苏团体的“主席”，但他们说，没有证据爱因秘密电报而行动。书中有一节叫“欺骗爱因斯坦”（第398页），它说总人希望把爱因斯坦列为各种亲苏团体的“荣誉主席”，但他们说，没有证据显示爱因斯坦曾经参加过共产主义会议，他所做的仅仅是以自己的名义支持一些有时充当共产国际“前线机构”的听起来好听的组织机构，比如“工人国际救济会”等。</p>
+<p>[1388]Marjorie Bishop,Our Neighbors on Eighth Street,and Maria Turbow Lam-pard,introduction,in Sergri Konenkov,The Uncommon Vision（New Brunswick,N.J.：Rutgers University Press，2000），52-54and192-195.</p>
+<p>[1389]Pavel Sudoplatov，Special Tasks，updated edition（Back Bay，1995），appendix 8，p.493；Jerome 260＆283；Sotheby’s catalogue,June 26，1988；Robin Pogrebin,Love Letters by Einstein at Auction，New York Times，June 1，1998.柯年科娃作为间谍的身份后来被其他材料所确证；</p>
+<p>[1390]Einstein to Margarita Konenkova,Nov.27，1945，and June 1，1946，un-cataloguecd.</p>
+<p>[1391]Einstein,Why Socialism?Monthly Review，May 1949，reprinted in Einstein 1954，151.</p>
+<p>[1392]Princeton Herald，Sept.25，1942，in Sayen，219.</p>
+<p>[1393]Einstein,The Negro Question,Pageanf,Jan.1946，in Einstein 1950a，132.</p>
+<p>[1394]Jerome，71；Jerome and Taylor，88-91；Einstein Is Honored by Lincoln University，New York Times，May 4，1946.</p>
+<p>[1395]Einstein,To the Heros of the Warsaw Ghetto，1944，in Einstein 1950a.</p>
+<p>[1396]Einstein to James Franck,Dec.6，1945，AEA 11-60；Dec.30，1945，AEA 11-64.</p>
+<p>[1397]Einstein to Verlag Vieweg,Mar.25，1947，AEA 42-172；Einstein to Otto Hahn,Jan.28，1949，AEA 12-72.</p>
+<p>[1398]Brian 1996，340；Milton Wexler to Einstein,Sept.17，1944，AEA 55-48；Roberto Einstein to Einstein,Nov.27，1944，AEA 55-49.</p>
+<p>[1399]Einstein to Clara Jacobson,May 7，1945，AEA 56-900.</p>
+<p>[1400]Sayen，219.</p>
+<p>[1401]Seelig 1956b，71.</p>
+<p>[1402]Pais 1982，473.</p>
+<p>[1403]参见Bird and Sherwin。</p>
+<p>[1404]J,Robert Oppenheimer to Frank Oppenheimer,Jan，11，1935，in Alice Smith and Charles Weiner,eds.，Robert Openhimr：Letters and Recolle（Cambridge,Mass.：Harvard University Press，1980），190.</p>
+<p>[1405]Sayen，225；J.Robert Oppenheimer,On Albert Einstein，New York Re-view of Books，Mar.17，1966.</p>
+<p>[1406]Jim Holt,Time Bandits，New Yorker，Feb.28，2005；Yourgrau 1999，2005；Goldstein.Yourgrau 2005，3讨论了不完备性、相对论和不确定性与时代精神的关系。霍尔特的了他们共有的看法。</p>
+<p>[1407]Goldstein，232 n.8说，可惜各种研究都没能发现哥德尔所看出的确切错误是什么。</p>
+<p>[1408]Kurt Godel，“Relativity and Idealistic Philosophy”，in Schilpp，558.</p>
+<p>[1409]Yourgrau 2005，116.</p>
+<p>[1410]Einstein,Reply to Criticisms,in Schilpp，687-688.</p>
+<p>[1411]亚哈，《圣经》中邪恶的以色列王，娶腓尼基公主耶洗别（Jezebel）为妻。——译者注</p>
+<p>[1412]以实玛利，《圣经》中亚伯拉罕和使女夏甲所生之子，在以撒出生后被弃。——译者注</p>
+<p>[1413]Einstein to Han Muehsam,June 15，1942，AEA 38-337.</p>
+<p>[1414]Hoffmann 1972，240.</p>
+<p>[1415]Einstein 1949b，33.</p>
+<p>[1416]Einsteinand Wolfgang Pauli,Non-Existence of Regular Solutions of Relativ-istic Field Equations，1943.</p>
+<p>[1417]Einstein and Valentine Bargmann,Bivector Fields，1944.他有时被称为“Valentin”，但他在美国签的名字是“Valentine”。</p>
+<p>[1418]Einstein to Erwin Schr?dinger,Jan.22，1946，AEA 22-93.</p>
+<p>[1419]Erwin Schr?dinger to Einstein,Feb.19，1946，AEA 22-94；Einstein to Erwin Schr?dinger,Apr 7，1946，AEA 22-103；Einstein to Erwin Schr?dinger,May 20，1946，AEA 22-106；Einstein,Generalized Theory of Gravitation，1948，with subsequent addenda.</p>
+<p>[1420]Einstein,TheMeaning of Relativity，1950 edition,appendix 2，revised again for the 1954 edition；William Laurence,New Theory Gives A Master Key to the Universe，New York Times，Dec，27，1949；William Laurence,Einstein Publishes His Master Theory；Long-Awaited Chapter to Relativity Vol.Is Product of 30 Years of Labor；Revised at Last Minute，New York Times，Feb.15，1950.</p>
+<p>[1421]Einstein to Maurice Solovine,Nov.25，1948，AEA 21-256；Mar.28，1949，AEA 21-260；Feb.12，1951，AEA 21-277.</p>
+<p>[1422]Tilman Sauer,Dimensions of Einstein's Unified Field Theory Program,courtesy of the author；Hoffmann 1972，239；绍尔正在研究爱因斯坦晚年在场论方面的工作，感谢他的帮助。</p>
+<p>[1423]Whitrow,xii.</p>
+<p>[1424]Niels Bohr,Discussion with Einstein,in Schilpp，199.</p>
+<p>[1425]Abraham Pais,in Rozental 1967，225；Clark，742.</p>
+<p>[1426]John Wheeler,Memoir,in French，21；John Wheeler,Mentor and Sound-ing Board,in Brockman，31；Einstein quoted in Johanna Fantova joumal,Kov.1953.在1952年给贝索的信中，爱因斯坦还是一如既往地倔强。他坚持说，对自然的完备描述应当能够描述实在或“决定论的实在状态”，而不仅仅是描述观察。“正统的量子理论家通常（基于实证主义的考虑）拒绝承认在状态的概念，于是就落到与善良的贝克莱主教类似的境地去了。”Einstein to Michele Beso,Sept.10，1952，AEA 7-412。一个月后他又说：“量子理论宣称：规律并不涉及事物本身，而只涉及我们通过感知的……对此我不能苟同。”Einstein to Michele Besso,Oct.8，1952，AEA 7-414.</p>
+<p>[1427]Einstein to Mileva Mari,Dec，22，1946，AEA 75-845，</p>
+<p>[1428]F?lsing 731；Highfield and Carter 253；Brian 1996，371；Einstein to Karl Zürcher,July 29，1947.</p>
+<p>[1429]Einstein to Hans Albert Einstein,Jan.21，1948，AEA 75-959.</p>
+<p>[1430]Einstein to Carl Seelig,Jan.4，1954，AEA 39-59；Folsing，731.</p>
+<p>[1431]动脉瘤是血管的扩张或膨胀，就像起水疱一样。腹部主动脉是连接心脏的大动脉之一，位于横膈膜与腹部之间。</p>
+<p>[1432]Sayen，221；Pais，1982，475.</p>
+<p>[1433]Sarasota Tribune，Mar.2，1949，AEA 30-1097；Bucky 131.杰里米·伯恩斯坦写道：“人只要跟杜卡斯女士待上5分钟，就能明白这种指控是多么愚不可及。”Bernstein 2001，109.</p>
+<p>[1434]Hans Albert Einstein interview,in Whitrow，22.</p>
+<p>[1435]“玛雅和保罗之间的矛盾正在加剧。他们应当离婚。保罗据说有了外遇，婚姻面临崩溃。不应当等待太久（就像我一样）……异族通婚没有任何好处（安娜说：哦！）。”Einstein to Michele Besso,Dec.12，1919。这里半开玩笑似的提到的安娜是指安娜·温特勒·贝索，即贝索的妻子、保罗·温特勒的妹妹。温特勒一家不是犹太人，贝索和爱因斯坦一家则是犹太人。</p>
+<p>[1436]Highfield and Carter，248.</p>
+<p>[1437]Einstein to Solovine,Nov.25，1948，AEA 21-256；Sayen，134.</p>
+<p>[1438]Einstein to Lina Kocherthaler,Ju ly 27，1951，AEA 38-303；Sayen，231.</p>
+<p>[1439]Einstein Repudiates Biography Written by His Ex-Son-in-Law，New York Times，Aug.5，1944；Frieda Bucky,You Have to Ask For giveness,Jewish（Quarterly（winter 19671968），AEA 37-513.</p>
+<p>[1440]Einstein Extolled by 300 Scientists,New York Times,Mar.20，1949；Sayen，227；F?lsing，735.</p>
+<p>[1441]Einstein to Queen Mother Elisabeth of Belgium,Jan.6，1951，AEA 32-400；Sayen，139.</p>
+<p>[1442]instein to Max Bom,Apr.12，1949，AEA8-223.</p>
+<p>[1443]此处“Maccabee”恐系“Maccabees”或“Maccabaeus”之误。马加比（Judas Maccabaeus，？ 前161），犹太游击队领导人，争取犹太人宗教信仰自由及政治独立，反抗叙利亚，重建犹太国，使犹太免于希腊化，后战死。——译者注</p>
+<p>[1444]3，000 Hear Einstein at Seder Service，New York Times，Apr 18，1938；Einstein,Our Debt to Zionism,in Einstein 1954，190.</p>
+<p>[1445]Einstein Condemns Rule in Palestine，New York Times，Jan.12，1946；Sayen，235-237；Stephen Wise to Einstein,Jan.14，1946，AEA 35-258；Ein-stein to Stephen Wise,Jan.14，1946，AEA 35-260.</p>
+<p>[1446]Einstein Statement Assails Begin Party，New York Times，Dec.3，1948；Einstein Is Assailed by Menachim Begin,New York Times,Dec，7，1948.</p>
+<p>[1447]Einstein to Hans Muehsam,Jan，22，1947，AEA 38-360，and Sept.24，1948，AEA 38-379.</p>
+<p>[1448]Einstein to Lina Kocherthaler,May 4，1948，AEA 38-302.</p>
+<p>[1449]EXikas interview in Sayen 245；Abba Eban to Einstein,Nov，17，1952，AEA 41-84；Einstein to Eban,Nov.18，1952，AEA 28-943.</p>
+<p>[1450]爱因斯坦在创建希伯来大学方面所付出的艰苦努力在Parzen 1974中有所叙述。关于他与布兰迪斯大学的关系，参见Abram Sacher,Brandeis Uvty（Waltham,Mass.：Brandeis University Press，1995），22。与他关系良好的一个地方是叶史瓦大学（Yeshiva University）。1952年，他被推选为在那里建造医学院的筹款运动的荣誉主席，第二年医学院以他的名字命名。感谢爱德华·伯恩斯（Edwad Bums）提供的信息。参见www.yu.edu/libraries/digital_library/einstein/panell O.html。</p>
+<p>[1451]Einstein toMarivnewspaper editor Azriel Carlebach,Nov.21，1952，AEA 41-93；Sayen，247；Nathan and Norden，574；Einstein to Joseph Scharl,Nov.24，1952，AEA 41-107.</p>
+<p>[1452]Yitzhak Navon,On Einstein and the Presidency of Israel,in Holton and El-kana，295.</p>
+<p>[1453]Einstein to Queen Mother Elizabeth of Belgium,Jan，6，1951，AEA 32-400.</p>
+<p>[1454]Einstein to Leopold Infeld,Oct.28，1952，AEA 14-173；Einstein to Russian students in Berlin,Apr 1，1952，AEA 59-218.</p>
+<p>[1455]Einstein to T.E.Naiton,Oct.9，1952，AEA 60-664.</p>
+<p>[1456]Einsteinto Judge Irving Kaufman,Dec.23，1952，AEA 41-547.</p>
+<p>[1457]Newark FBI Field Office to J.Ecgar Hoover,Apr.22，1953，Einstein FBI files,box 7.</p>
+<p>[1458]Einsteinto Harry Truman,with 15 lines of equations on the other side,Jan.11，1953，AEA41-551.</p>
+<p>[1459]New York Times,Jan.13，1953.</p>
+<p>[1460]Marian Rawles to Einstein,Jan.14，1953，AEA 41-629；Charles Wil-liams to Einstein,Jan.17，1953，AEA 41-651；Homer Greene to Einstein,Jan.15，1953，AEA 41-588；Joseph Heidt to Einstein,Jan.13，1953，AEA 41-589.</p>
+<p>[1461]Einstein to William Douglas,June 23，1953，AEA 41-576；William Douglas to Einstein,June 30，1953，AEA 41-577.</p>
+<p>[1462]Generosa Pope Jr.to Einstein,Jan.15，1953，AEA 41-625；Daniel James to Einstein,Jan.14，1953，AEA 41-614.</p>
+<p>[1463]Einstein to Danirl James,Jan.15，1953，AEA 60-696；New York Times，Jan.22，1953.</p>
+<p>[1464]Einstein,Acceptance of the Lord＆Taylor Award,May 4，1953，AEA 28-979.在给时任《普林斯顿日报》的学生编辑克鲁格（Dick Klugr）的一封信中，他写道：“只要一个人没有‘社会契约’，那么任何人都调查他的信念。如果不遵守这一原则，思想就不可能自由发展。”Einstein to Dick Kluger,Sept.17，1953，in Kluger’s possession.</p>
+<p>[1465]Einstein to William Frauenglass,May 16，1953，AEA 41-112；Refuse to Te stify Einstein Advises，New York Times，June 12，1953；Time，J u n e 22，1953.</p>
+<p>[1466]All of these editorials ran on June 13，1953，except the Chicago one,which ran on June 15.</p>
+<p>[1467]Sam Epkin to Einstein from,June 15，1953，AEA 41-409；Victor Lasky to Einstein,June 1953，AEA 41-441；George Stringfellow to Einstein,June 15，1953，AEA 41-470.</p>
+<p>[1468]New York Times，June 14，1953.</p>
+<p>[1469]Bertrand Russell to New York Times,June 26，1953；Einstein to Bertrand Russell,June 28，1953，AEA 33-195.</p>
+<p>[1470]Abraham Flexner to Einstein,June 12，1953，AEA 41-174；Shepherd Baum to Einstein,June 17，1953，AEA 41-202.</p>
+<p>[1471]Richard Frauenglass to Einstein,June 20，1953，AEA 41-181.</p>
+<p>[1472]Sarah Shadowitz,Albert Shadowitz，Globe and Mail（Toronto），May 26，2004.作者是沙多维茨的女儿。</p>
+<p>[1473]Sayen，273-276；Permanent Subcommittee on Investigations,Committee on Government Operations,Testimony of Albert Shadowitz,Dec，14，1953，and Report on the Proceedings Against Abert Shadowitz for Contempt of the Senate,July 16，1954；Albert Shadowitz to Einstein,Dec.14，1953，AEA 41-659；Einstein to Albert Shadowitz,Dec.15，1953，AEA 41-660.麦卡锡倒台后，1955年7月，沙多维茨于听取证词两年后被还以清白。</p>
+<p>[1474]Jerome and Taylor，120-121.</p>
+<p>[1475]Bird and Sherwin，133，495.</p>
+<p>[1476]Bird and Sherwin，495.</p>
+<p>[1477]James Reston,Dr.Oppenheimer Suspended by A.E.C,in Security Re-view，New York Times，Apr 13，1954.4月11日，星期天，约瑟夫·奥尔索普（Joseph Alsop）和斯图尔德·奥尔索普（Steward Alsop）曾经在其《纽约先驱论坛报》的专栏猜测，现在“顶尖物理学家”成了安全调查的对象，但并未提及奥本海默的。</p>
+<p>[1478]Pais 1982，11；Bird and Sherwin，502-504.</p>
+<p>[1479]Johanna Fantova’s journal,June 3，16，17，1954，in Calaprice，359.</p>
+<p>[1480]Einstein to Herbert Lehman,May 19，1954，AEA 6-236.</p>
+<p>[1481]Johanna Fantova’S journal,June 17，1954，in Calaprice，359.</p>
+<p>[1482]Einstein to Norman Thomas,Mar.10，1954，AEA 61-549；Einstein to W.Stern,Jan.14，1954，AEA 61-470.亦参见Einstein to Felix Arnold,Mar.19，1954，AEA 59-118：“目前的调查要比国内那几个共产主义者对我们社会造成的威胁大得多。”</p>
+<p>[1483]Johanna Fantova journal,Mar.4，1954，in Calaprice，356；Einstein to Queen Mother Elizabeth of Belgium,Mar.28，1954，AEA 32-410.</p>
+<p>[1484]Theodore White,U.S.Science，The Reporter Nov.11，1954.White后来撰写了The Making of the President系列丛书。</p>
+<p>[1485]Johanna Fantova Journal,Mar.19，1954，in Calaprice，356.</p>
+<p>[1486]Einstein eulogy for Rudolf Ladenbberg,Apr.1，1952，AEA 5-160.</p>
+<p>[1487]Einstein to Jakob Ehrat,May 12，1952，AEA 59-554；Einstein to Ernesta Marangoni,Oct.1，1952，AEA 60-406；Einstein to Queen Mother Eliza-beth of Belgium,Jan.12，1953，AEA 32-405.</p>
+<p>[1488]Einstein interview with Lili Foldes，The Etude，Jan，1947；Calaprice，150.关于爱因斯坦反复播放这张唱片的消息是一个认识晚年爱因斯坦的人告诉我的。</p>
+<p>[1489]Einsteinto Hans Muehsam,Mar.30，1954，AEA 38-434.</p>
+<p>[1490]Einsteinto Conrad Habicht and Maurice Solovine,Apr 3，1953，AEA 21-294；Einstein to Solovine,Feb.27，1955，AEA 21-306.</p>
+<p>[1491]Sayen，294.</p>
+<p>[1492]Einstein to Hans Albert Einstein,May 1，1954，AEA 75-918.</p>
+<p>[1493]Einstein to Nans Albert Einstein,unfinished letter,Dec，28，1954，courtesy of Bcb Cohn,purchased at Christie’s sale,Einstein Family Xorrespon Gence.</p>
+<p>[1494]Gertrude Samuels,Einstein,at 75，Is Still a Rebel，New York TimesMagazine,Mar.14，1954.</p>
+<p>[1495]Johanna Fantova journal，1954，in Calaprice，354-363，</p>
+<p>[1496]Wolfgang Pauti to Max Bom,Mar.3，1954，in Bom 2005，213.</p>
+<p>[1497]Einstein to Michele Besso,Aug.10，1954，AEA 7-420.</p>
+<p>[1498]Einstein to Louis de Broglie,Feb.8，1954，AEA 8-311.</p>
+<p>[1499]Einstein 1916，final appendix to the 1954 edition，178.</p>
+<p>[1500]Bertrand Russell to Einstein,Feb.11，1955，AEA 33-199；Einstein to Bertrand Russell,Feb.16，1955，AEA 33-200.</p>
+<p>[1501]Einstein to Niels Bohr,Mar.2，1955，AEA 33-204.</p>
+<p>[1502]Bertrand Russell,Manifesto by Scientists for Abolition of War,sent to Ein-stein on Apr.5，1955，AEA 33-209，and issued publicly July 9，1955.</p>
+<p>[1503]Einstein to Farmingdale Elementary School,Mar.26，1955，AEA 59-632；Alice Calaprice,e d,Dear Professor Einstein（New York：Prometheus，2002），219.</p>
+<p>[1504]Einstein to Vero and Bice Besso,Mar.21，1955，AEA 7-245.</p>
+<p>[1505]Eric Rogers,The Equivalence Principle Demonstrated,in French，131；I,Bernard Cohen，”An Interview with Einstein，”Scientific American（July 1955）.</p>
+<p>[1506]Whitrow，90；Einstein to Bertrand Russell,Apr.11，1955，AEA 33-212，</p>
+<p>[1507]Einstein to Zvi Lurie,Jan.5，1955，AEA 60-388；Abba Eban，An Autobiography（New York：Random House，1977），191；Nathan and Norden，640.</p>
+<p>[1508]Helen Dukas,Einstein’s Last Days,AEA 39-71；Calaprice，369；Pais 1982，477.</p>
+<p>[1509]Helen Dukas,Einstein’s Last Days,AEA 39-71；Helen Dukas to Abra-ham Pais,Apr.30，1955，Pais 1982，477.</p>
+<p>[1510]Michelmore，261.</p>
+<p>[1511]Nathan and Norden，640.</p>
+<p>[1512]Einstein,final calculations,AEA3-12.最后一页可见于www.al-berteinstein.info/db/View Image.do?Document ID=34430＆Page=12。</p>
+<p>[1513]Michelmore，262.由逻辑学家哥德尔等人做证的爱因斯坦的遗嘱规定，杜卡斯获得20000美元、他的大部分私人财产和书，以及她去世前（1982年）他的版税收入。汉斯·阿尔伯特只得到了10000美元，1973年，他在马萨诸塞州的伍兹霍尔（Woods Hole）作访问学者时去世，有一个儿子和一个女儿。爱因斯坦另一个儿子爱德华得到了15000美元，在苏黎世精神病院继续进行治疗，他死于1965年。他的继女玛戈特得到了20000美元和梅瑟街的房子（实际上已经在她名下），1986年在那里去世。杜卡斯和纳坦成为遗稿保管人，他们忠心耿耿地保护着爱因斯坦的名誉和书稿，以至于多年来，只要传记作家和爱因斯坦文集的编者试图出版任何触及他私人方面的内容都会碰钉子。</p>
+<p>[1514]Einstein the Revolutionist,New York Times,Apr.19，1955；Time，May2，1955.《普林斯顿日报号外的leadstory由《泰晤士报》未来的通讯记者R.W.“johnn”Apple执笔。</p>
+<p>[1515]有两本引人入胜的书专门讲述了这个不可思议的故事：一本是卡罗琳·亚伯拉罕（Carolyn Abraham）的《拥有天才》（Possessing Genius），它对爱因斯坦大脑的冒险之旅做了全面的叙述；另一本是米夏埃尔·帕特尼提（Michael Paterniti）的《运送阿尔伯特先生》（Driving Mr.Albert），它以轻松的笔调讲述了一次横跨美国的旅行，这辆租来的别克车的行李箱里装爱因斯坦的大脑。还有一些纪念文章，包括Steven Levy's My Search for Einstein's Brain，New Jersey Monthly，Aug，1978；Gina Maranto’s,The Bizarre Fate of Einstein S Brain,Discovrr,May 1985；Scott Mc Cartney,The Hidden Secrets of Einstein,s Brain are Still a Mystery，Wall Street Jornal，May 5，1994。不仅如此，爱因斯坦的眼科医师艾布拉姆斯当时恰好走到了解剖室，他取走了爱因斯坦的眼球，将其保存在新泽西的一个保险箱中。</p>
+<p>[1516]Abmham，22.这个女孩长大后，亚伯拉罕于2000年采访了她。</p>
+<p>[1517]Son Asked Study of Einstein,s Brain，New York Times，Apr.20，1955；Abraham，75.哈维表示，他将把大脑送到纽约的蒙特菲奥里（M ontefiore）医学中心进行研究。但是当那里的医生翘首企盼时，他却改变了想法，决定由自己保存。这一争论上了报纸。《芝加哥论坛报》的报道是：“Doctors Rowover Brain of Dr.Einstein”，Abraham 83，citingChicago Daily Tribune，Apr 20，1955。</p>
+<p>[1518]Levy 1978，亦参见www,echonyc,com/?steven/einstein.html。</p>
+<p>[1519]关于对这件事情的记述，参见Abraham，214-230。</p>
+<p>[1520]Bill Toland,Doctor Kept Einstein's Brain in Jar 43 Years；Seven Years Ago,He Got“Tired of the Responsibility”，Pittsburgh Post-Gazette，Apr.17，2005.</p>
+<p>[1521]Marian Diamond,On the Brain of a Scientist，Experimental Neurology88（1985）；www.newhorizons.org/neuro/diamond_einstein.htm.</p>
+<p>[1522]Sandra Witelson et al.，The Exceptional Brain of Albert Einstein，LancetJune 19，1999；Lawrence K.Altman,Key to Intellect May Lie in Folds of Einstein’s Brain，New York Times，June 18，1999；www.fhs.mcmaster.ca/psychiatryneuro-science/faculty/witelson/；Steven Pinker,His Brain Measured Up，New York TimesJune 24，1999.</p>
+<p>[1523]Einstein to Carl Seelig,Mar.11，1952，AEA 39-013.亦参见Bucky，29：“我并非比别人更有天赋。我只是比一般人更有好奇心，在找到问题的恰当解答之前不会放弃。”</p>
+<p>[1524]Seelig 1956a，70.</p>
+<p>[1525]Bom 1978，202.</p>
+<p>[1526]Einstein to William Miller,quoted in Life magazine,May 2，1955，in Calaprice，261.</p>
+<p>[1527]Hans Tanner,quoted in Seelig 1956a，103.</p>
+<p>[1528]André Maurois，Illusions（New York：Coumbia University P 1968），35，courtesy of Eric Motley.佩斯是1960年诺贝尔文学奖得主，原名玛丽·勒内·奥古斯特（Marie Rene Auguste）。</p>
+<p>[1529]Newton’sPrincipia，book 3；Einstein,On the Method of Theoretical Physics,the Herbert Spencer lecture,Oxford,June 10，1933，in Einstein 1954，274.</p>
+<p>[1530]Clark，649.</p>
+<p>[1531]Lee Smolin,Einstein’s Lonely Path,Discover（Sept，2004）.</p>
+<p>[1532]Einstein’s foreword to Galileo Galilei,DIalogue Concerning the Two Chief World Systems（Berkeley：University of California Press，2001），xv.</p>
+<p>[1533]Einstein,Freedom and Science,in Ruth Anshen,ed.，Freedom,I ts Meauing（New York：Harcourt,Brace，1940），92，reprinted in part in Einstein 1954，31.</p>
+<p>[1534]Einstein to Phyllis Wright,Jan.24，1936，AEA 52-337.</p>
+<p>[1535]Einstein to Herbett S.Goldstein,Apr.25，1929，AEA 33-272.关于对迈蒙尼德（M aimonides）和犹太思想中神恩的讨论，参见Marvin Fox，Interpreting Maimonides（Chicago：University of Chicago Press，1990），229-250。</p>
+<p>[1536]Banesh Hoffmann,in Harry Woolf,ed.，Some Strangeness in the Proportion（Saddle River,N.J.：Addison-Wesley，1980），476.</p>
+
+
+<p style='float:right;'>本页共1541段，155476个字符，222104 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
