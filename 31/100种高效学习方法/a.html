@@ -1,0 +1,610 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:40em;
+	line-height:1.6em;
+}
+P{
+	margin-top:6px;
+	margin-bottom:6px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+li{
+color:#990000;
+font-size:1.1em;
+line-height:1.6em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:150%;
+	margin-bottom:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+  <p><h3>100种高效学习方法</h3></p>
+<ol>
+<li>读得慢，长期下来读得少。</li>
+
+<p>这个跟记忆单词同样的道理，花5分钟深刻记忆1个单词，第二天又忘了。如果你5分钟能够快速扫过10个单词，按照遗忘率是70%，你记住了3个单词。</p>
+
+<p><img width="495" height="100" src="a_clip_image002.jpg" alt="http://5b0988e595225.cdn.sohucs.com/images/20190321/926f6d95dc7b4b0e8e7a428c53432854.png" /></p>
+
+<li>阅读中有30％～50％都是没用的。</li>
+
+<li>敲打节拍来避免大脑阅读出声，以刺激皮层，但不可依赖过多。</li>
+
+<li>情绪是可以操纵的，尽量往好的方向引导，行为才会改变。</li>
+
+<li>预习学会20％，上课学会50％，回顾学会100％，复习时应无新知识。</li>
+<p class="picsay">学习闭环 ↓</p>
+<p><img width="50%" src="a_clip_image003.jpg" alt="http://5b0988e595225.cdn.sohucs.com/images/20190321/b28c412a6b9d4be7859e113a2ccce9c9.jpeg" /></p>
+
+
+
+<li>请教别人问题，讲述得越清楚，得到的答案也就越透彻。</li>
+
+<p>不要问这种：“我数学基础差，该怎么办？” 因为这样的问题让人完全无从下手，你现在是几年级？数学成绩怎么样？哪一个知识板块比较弱导致成绩不好？</p>
+
+<p>在提问之前，先自己总结，往往你总结之后方向更加清晰，别人对你指导更有锦上添花的效果。</p>
+
+<p>这样的交流才是高效的，并且能够让老师更快地找到你的弱点在哪，还可能得到额外的指导。</p>
+
+<li>先背概念或例子，有些抽象概念是要一定积累才能理解的。</li>
+
+<li>跟同伴一起学，讨论能减少偏差。</li>
+
+<li>给大脑0.5～9小时来处理信息，再回顾才会有新收获，不要在难点上停留。</li>
+
+<li>锻炼左手，尝试用左手刷牙作为改变的开端。</li>
+
+<li>随身携带小本子，记录想法和灵感。</li>
+
+<li>把大事化为小步骤写在to-do  list上，会更有成就感，效率也更高。</li>
+
+<li>长时间学习后立即睡觉，大脑才能在睡眠中处理和加深知识。</li>
+
+<li>倾听微弱的声音能提高注意力，每天练习3分钟。</li>
+
+<li>新的单词用了7次才真正算自己的，一个新的知识点应用7遍才熟练。</li>
+
+<li>学会寻找情绪高昂的物质来驱动自己。</li>
+
+<li>利用空闲的等待时间来做事，随身携带小本子背点知识。</li>
+
+<li>每天做件不愿做的事。</li>
+
+<li>多敲打手指，刺激神经，延缓大脑衰老。</li>
+
+<li>四个约定</li>
+
+<p>① 勇敢清晰地表达自己的意愿。</p>
+
+<p>② 不对自己和他人过早下定论。</p>
+
+<p>③ 不要把事情私人化，这是他人的选择与你无关。</p>
+
+<p>④ 总是全力以赴，你最好的一面每段时间都不同。</p>
+
+<li>要学一本书，20％是书的观点，能延伸80％的知识是真正的学习。</li>
+
+<p>比如看《国家地理杂志》，你可以联系很多你在地理课上学到的知识点。相当于能把地理这个科目复习一遍。</p>
+
+<li>提前粗略自学2年后的知识，能让现在的学习轻松不少。</li>
+
+<li>灵感往往不是新的，它只是几个旧点子的合成品。</li>
+
+<li>紧张时肾会积尿，身体供水不足会导致大脑发挥失常，考试前喝点蔬菜汁或水果汁。</li>
+
+<li>学会腹式呼吸。</li>
+
+<li>养成记关键词的习惯。</li>
+
+<p>面对大篇幅的政治论点要背诵，要学会在一段文字中提取关键的要点进行记忆，这样回想知识时才能将记忆串起来。</p>
+
+<p>其实所有科目是一样的，不要求一字不漏记忆但需要抓住关键字采分点。</p>
+
+<li>多总结。每天总结今天学到的新内容，每周总结一次这周学的内容掌握了没有，每次考试总结自己哪些地方做好了，哪些地方还需要改进。</li>
+
+<p>先总结，再去找改进和提升的方法。</p>
+
+<li>学会做思维导图。</li>
+
+<li>从整体上记忆和理解。</li>
+
+<li>大脑有忘记痛苦的特征，学习时要保持良好心态。</li>
+
+<li>多说话，并提高话语的质量。</li>
+
+<li>带病用脑会对大脑造成损害。</li>
+
+<li>大部分人需要30分钟进入高效做事的状态。</li>
+
+<p>自习课前提前30分钟进入教室，考试前提前30分钟进入考场。</p>
+
+<li>利用吸引力法则</li>
+
+<p>思想是有频率的。吸引力法则就是：你关注什么，就会将什么吸引进你的生活。将你所希望的，在思想上转化成你已拥有的状态。</p>
+
+<p><strong>立</strong><strong>Flag</strong><strong>：</strong>即使重复你的目标，对其进行心理上的强调与强效。</p>
+
+<p><strong>视觉化：</strong>对你的目标进行画面想象，尽可能使之变得更真实。当你在想象你站在绝崖边上摇摇欲坠，你或许会真实地感到手脚发软、甚至出汗。这就是视觉化。视觉化是强效法则的最有效途径。</p>
+
+<p><strong>态度：</strong>改变生活，有时候只需要改变自己的生活态度，学会感恩，可以借实物作为感恩物，提醒自己。</p>
+
+<p><strong>冥想：</strong>放空思想，让自己心绪平静。</p>
+
+<p><strong>行动：</strong>吸引力法则并不是愿望提取机，为了实现梦想，你必须做出相应的行动。上面的方法是让你不断提醒自己坚持行动。</p>
+
+<li>学会速读：阅读就像骑自行车，骑到一定速度才能骑得好，骑得顺畅。</li>
+
+<li>高速大量地输送知识，俗称吞鲸式读书法，长时间集中注意力会让大脑更灵活。</li>
+
+<li>去“做”，绝不要期待任何“结果”。</li>
+
+<li>一时一事，花5分钟或10小时，一口气做完。</li>
+
+<li>优柔寡断严重浪费时间，特别在考试，不要纠结超过60秒。</li>
+
+<li>把一个任务分成小部分，安排不同时间完成，会有分心的危险。</li>
+
+<li>学习越努力，学习的能力就越强，休息就越有效果。</li>
+
+<li>每天规定自己至少有15分钟运动时间。</li>
+
+<li>勤于模仿，如状元学习方法，别人做事时不要躲得远远的，学会观察从而效仿。</li>
+
+<li>自我讲授，像老师教学一样把资料概述出来，疑点会变得清晰。</li>
+
+<li>每天学习更深一点，而不是更广一点。</li>
+
+<li>漩涡效应:错误往往会接二连三地犯，保持平稳心态。</li>
+
+<li>持续分析，反馈，突破。</li>
+
+<li>读书分类，读法也分类，如细读，浏览等。</li>
+
+<li>计划不要做太满，要给意外和懈怠留时间。</li>
+
+<li>不要问:“为什么我失败了？”，而应该问:“我做了什么？</li>
+
+<li>将不类似的事物联系起来思考。</li>
+
+<li>技能不是持久的，不练习，它每天都在退步。</li>
+
+<li>为每节课写个人日记，总结自己的表现，将疑虑写下来。</li>
+
+<li>晚上9点到早上3点是最好的休息时间。</li>
+
+<li>起床后做做数学题，能使大脑迅速清醒。</li>
+
+<li>容易走的路都是下坡路。</li>
+
+<li>把思考内容写下来，学习要时刻准备笔和纸。</li>
+
+<li>自己说话录音，倾听不足。</li>
+
+<li>每天做件没做过的事。</li>
+
+<li>想得复杂，概述简单。</li>
+
+<li>与潜意识交谈的最佳时间是睡醒后。</li>
+
+<li>留意细节，多回忆细节。</li>
+
+<li>做日程表，缩短学习时间让大脑产生压迫感来提高效率。</li>
+
+<p>① 要做的任务</p>
+
+<p>② 估算任务所需要的时间</p>
+
+<p>③ 用ABC按事情紧急程度排序</p>
+
+<p>④ 划掉完成事项</p>
+
+<p>⑤ 评估和检讨</p>
+
+<li>学习时间随着年龄增加会越来越少。</li>
+
+<li>把问题用另一个角度重复一遍。</li>
+
+<li>记单词时记不起来就看，不然大脑会“习惯性”忘记。意思是反复多次记忆大脑才会记忆深刻。</li>
+
+<li>物归原位，井井有条的生活不会让你被琐事困扰。</li>
+
+<li>加速形成概括力</li>
+
+<p>逻辑思维能力之一.概括是指摆脱具体内容，并且在各种对象、关系或运算的结构中，抽取出相似的、一般的和本质的东西的思维过程。无论在英语还是语文都有概括主旨题，这是很好的概括能力训练。</p>
+
+<li>闭眼在屋里走。</li>
+
+<li>用双重目标，最低目标和理想目标。</li>
+
+<li>思考弦外之音。</li>
+
+<li>牢固基础知识比一味做题有用。</li>
+
+<li>不熬夜，熬夜会使学习效率低下。</li>
+
+<li>每天喝水至少1500毫升，许多头痛都是缺水引起的。</li>
+
+<li>密集的学习同一学科内容，做大量相关的题能在短时间内对这门学科的框架有所掌握。</li>
+
+<li>正确估算做事时间：定下每个任务时估计完成时间，再对比实际完成时间，逐步提高效率。</li>
+
+<li>画效率/时间曲线表。</li>
+
+<p>找出自己一天的学习效率高峰期，把重要的任务安排这个时间段，纵坐标是自己效率，横坐标是时间。</p>
+
+<p><img width="100%" src="a_clip_image004.jpg" alt="http://5b0988e595225.cdn.sohucs.com/images/20190321/ffc975d40f054d148502eb456a7788e8.jpeg" /></p>
+
+<li>转移注意力是拒绝诱惑的根本。</li>
+
+<li>思考因果，关联，相对关系。这是对于理清知识框架，串联成知识网络很重要。</li>
+
+<li>反拖延技巧之一，做什么都要有一个理由。</li>
+
+<li>为每页笔记做出简要总结，方便日后复习抓住重点。</li>
+
+<li>阅读时区分知道和不知道的，避免浪费时间。</li>
+
+<li>记知识点比理解概念要简单，知识点记多了潜意识便会逐渐形成概念。</li>
+
+<li>想到就做，不要纠结拖延。</li>
+
+<li>遇到不懂得要立即弄明白，时间拖得越长就失去兴趣。</li>
+
+<li>用字母简写作笔记，加快速度。</li>
+
+<li>把重要的课程录下来或照下来。</li>
+
+<li>上课时端正坐姿，打开书本暗示潜意识保持开放状态。</li>
+
+<li>坚持，专注，重复。</li>
+
+<li>感受身体讯号，身体太累要及时休息。</li>
+
+<li>饮食健康，早有蛋白质晚有纤维。</li>
+
+<li>趁精神饱满先解决难题。</li>
+
+<li>每天花10分钟写随笔，不要停顿。</li>
+
+<li>去了解习惯体系。</li>
+
+<p><img width="50%" src="a_clip_image005.jpg" alt="http://5b0988e595225.cdn.sohucs.com/images/20190321/1d74bfcf0d6348fc94f0427f18285bf4.jpeg" /></p>
+
+<li>每学习90-120分钟需要休整，再全力以赴。</li>
+
+<li>微笑释放的化学物质对紧张和愤怒极有效。</li>
+
+<li>意志力＝精力＝可以强化。</li>
+
+<li>多问为什么。</li>
+
+<li>追求摸清规律和模式，做题要摸清套路。</li>
+
+<li>善用表格。表格能将杂乱的东西变得有条理，特别对于大段的概念性知识，整理成表格形式便于理解记忆。</li>
+
+<p>最后，贵在坚持，你一定会成为自己喜欢的模样。 </p>
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换
+\s*</p>
+
+<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+
+
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+\s*</p>\s*
+\s*<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+
+4 把第和章两个字去掉
+第(\S*)章
+------------------
+$1
+_____________________________________________________________________________________
+
+7 正则表达式参考：
+https://www.toutiao.com/i6370960744082571778/
+_____________________________________________________________________________________
+
+8
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+9 将标注序号更改为上标，红色，需一个个替换，英文html中有[1]
+(\[\d\])
+------------------
+<sup>$1</sup>
+_____________________________________________________________________________________
+10 替换章不是以1-9。?！…”“结尾的段落
+([^1-90。?！…”：？“章])</p>
+<p>
+------------------
+$1
+-->
+
+
