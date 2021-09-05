@@ -1,0 +1,336 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>王安忆的阅读体验</h3>
+
+<p><a href="http://culture.ifeng.com/c/89Cfa7i5bdV" title="">ref</a></p>
+<p>王安忆年轻时，最喜欢的俄国作家不是托尔斯泰、雨果，而是屠格涅夫。书也“不是白读的”，从此她对深爱的人们，绝不放下利他心。</p>
+<p>“读书就是这样，把喜欢的东西留下来，不喜欢的、看不懂的东西就放到一边，等待将来的日子去认识，好像反刍似的。”</p>
+<p>本文摘自王安忆新书《小说六讲》，内容为2015年她在香港城市大学公开课上的讲稿，原标题《文字里的生活》。</p>
+<h4>01 童话与悖论</h4>
+<p>我想先从我的阅读生活来与大家分享我的成长经历。我似乎回想不起我是怎么学习识字和阅读的，好像生来就会了，阅读对我来说很自然，睁开眼睛看世界的同时就看见了文字。我的生活似乎从来是分成两种，一种是在实际当中度过的，就是吃饭、睡觉、和父母相处、和小朋友一起玩耍；另一种生活则是在文字里，它给了我一个另外的空间。</p>
+<p>我初始的阅读，大都是童话和民间传说。有一个童话故事我至今仍记忆犹新。故事讲述一个勇士受到上天的指令，让他去捕捉一只玉鸟，于是登上冒险的征途。上天以很郑重的语气派遣他，他就以为这次出行会很困难，艰险重重。想不到一路顺风顺水，很快就到达了玉鸟所在的宫殿。宫殿的门敞开着，也无人看守。进到深处，玉鸟独自立着，丝毫没有反抗，顺从地让勇士捕捉在手。玉鸟对勇士说：“我可以跟你走，但有一个条件，就是我给你讲故事，你听了我的故事不能叹息，你一声叹息我就飞回去了。”于是，勇士就松开手，玉鸟立在他的肩头，往前走去。玉鸟讲了第一个故事，勇士忍不住发出叹息，玉鸟就飞回去了。勇士返身抓回玉鸟，再一次上路，玉鸟讲了第二个故事，勇士又叹息了。玉鸟飞回去，勇士回去抓，第三个故事开头……来回反复，一直到第九次，第九个故事，勇士没有叹息，方才成功捉到玉鸟完成上天的任务。我现在一点也想不起故事的具体内容，既想不起玉鸟让勇士叹息的故事，也想不起最后勇士不叹息的那个，可是它的结构却深印在我脑海。人的记忆很奇怪，像有一个强大的力量在选择，安排你记住什么，忘记什么。也许就是玉鸟故事中被我遗忘的内容的部分，从此变成一个逼迫，逼迫我不断地想象故事，使人叹息、叹息、叹息到不叹息的故事。人家的故事忘了，只有编自己的故事。</p>
+<p>还有德国的《格林童话》，其中一则故事，说的是一个力大无穷的傻子。有一天，他跑到邻国去，看见城门上贴着告示，因城堡出现怪物作祟，很多勇士信心满满地进去，不是落败而逃，就是被怪物吃掉，没有一个人成功征服怪兽。国王非常不安，于是发出公告，许诺说谁能征服怪物，夺回古堡，就把公主嫁给他。这种模式的故事有很多，包括意大利歌剧《图兰朵》和中国戏曲《西厢记》，只是结尾各不相同，《西厢记》是老太太毁约了。这则童话故事则很朴素，傻子斩杀怪物，天下太平，国王立刻兑现承诺，把公主嫁给他。公主对他也没什么大不满，并不觉得他傻，只有一样使公主纠结，就是他不懂得害怕，任何事情都不能使他怕得发抖。公主有一个很聪明的宫女，就像莺莺小姐的红娘，想了一个办法。就是在严冬寒冷的早上，凿开河上的冰，捞了一桶鱼，提到卧室，把傻子的被子掀起来，一股脑浇在他身上，傻子不禁浑身战栗，大叫道：“哎呀！我知道什么是发抖了！”从此他们就过着幸福的生活。</p>
+<p>小时候，只觉得故事有趣，后来想起来，这有趣里藏着许多隐喻：为什么公主把懂不懂得害怕作为一个人智商的标准，害怕和智慧有关系吗？过度诠释一下，又似乎有关系。中国人不是讲求敬畏天地吗？再有，如果这傻子是有智慧的人，懂得害怕，那么他就不可能征服怪物，娶到公主。这么一来，故事不是没有了吗？所以，他又必须是一个傻子。这是一个悖论，小说往往都是悖论。</p>
+<p>童话是很有意思的。意大利的卡尔维诺收集编撰过一部《意大利童话》，其中一个故事说的是野兔和狐狸。有一天，狐狸在树林看见兔子快乐地跳来跳去。狐狸问兔子为什么那么高兴，兔子回说它娶了一个老婆。狐狸恭喜兔子，兔子说不要恭喜它，因为它的老婆很凶悍。狐狸说，那你真可怜。兔子说不，也不要同情它，因为老婆很有钱，带给他一栋很大的房子。狐狸再道恭喜，兔子又说不要恭喜它，因为房子已经一把火烧掉了。狐狸说可惜可惜，兔子说也别觉得可惜，因为它那凶巴巴的老婆也一起烧掉了。</p>
+<p>我们<strong>写小说常常是这个样子。从起点开头，经过漫长的旅程走到终点，却发现是回到了原点，但是因为有了一个过程，这原点就不是那原点。</strong>所以我们又很像神话里那个推石头上山的西西弗斯，把石头推上去、落下来，再推上去、落下来……永远在重复做一个动作。但这一次和下一次不同，就是那句哲言：“人不会两次涉入同一条河流。”</p>
+<p>幼年时看童话故事，觉得很好看。它建设了一个奇异的世界，是在现实生活里不可能发生的。慢慢地，成年以后，我对童话的认识似乎递进着、常想常新，今天想是这个样子，明天想又有不同的感受。童话故事看似是孩子的阅读物，但其实，它的意味和形式，隐匿在几乎所有的文学作品里。阅读童话的经历实际上一直如影随形于我日后的文字生活。</p>
+<h4>02 校园小说</h4>
+<p>再长大一点，开始上学，对童话的热情转移到接近现实生活的阅读。对于一个学龄孩子来说，最恰当的读物莫过于“校园小说”。“校园小说”的模式来自苏联，把少年儿童的生活写得很严肃、高尚，因少年儿童是未来的英雄，被赋予实现人类理想的重任。例如说当时非常著名的苏联儿童文学小说家盖达尔，他的小说《铁木儿和他的队伍》里的铁木儿成为少先队员的学习模范，很多学校成立“铁木儿小队”，一种浪漫的激情充盈在我们的学校生活里。铁木儿系列的小说里，有一篇名叫《雪堡司令》，我至今还能记得。</p>
+<p>故事讲述街上有两队小孩，分属对立的两派力量，其中一派就是铁木儿。就像我刚才说小时候两条弄堂的小孩争斗打架，而小说将这种小孩子的罅隙政治化了，因而也变得严肃。铁木儿领导的一班小朋友很正义，不欺负弱者，做好人好事，而他的对手是一个特别调皮捣蛋的孩子，专门欺负小女孩。双方有一场战争，是争夺一座雪堡，即用积雪堆起来的堡垒，相持几日，胜负不决。有一天，铁木儿忽然带领队伍撤退，将雪堡让给“敌方”。原来，铁木儿从母亲口中得知，那个孩子的父亲在前线牺牲了。故事很动人，孩子们拥有着美好的品德，高尚的情操，并且抱负远大。</p>
+<p>分裂也是从阅读校园小说发生。我姐姐早我三年参加了少先队，我父亲当时还在军队，就给我姐姐寄来一本书作为她加入少先队的礼物。现在的礼物都是巧克力、游戏软件之类，那个时代的礼物也是严肃的。那是一本精装的书，书名已经记不清了，封面上是一个孩子的雕像，是关于一个苏联少年英雄的真实故事。他的名字叫莫洛佐夫，1918年出生，然后1932年他十四岁的时候，因举报他的富农祖父隐藏粮食被杀死。中国60年代的少年英雄刘文学，遭遇和他很相像，同是和侵吞集体财产的歹徒斗争，失去了生命。可是这个苏联小英雄莫洛佐夫和刘文学不同的地方在于，这个男孩子所揭发斗争的人是他祖父，最终，他死于祖父的手里。于是，这故事就变得更悲惨，令人非常难过。因为这是他的至亲，血缘和阶级的敌对关系，给英雄的事迹蒙上阴影。多年以后的今天才得知，原来这位少年是时代所塑造出来的人物，是由一桩家庭的悲剧演绎而成的。我不打算评价这个事件，我只是想说当时阅读的忧愁。</p>
+<p>其实这是一个先兆，预示着我逐渐分裂对文字世界的信赖。<strong>这本书让我觉得这世界的残酷，甚至比现实生活更不可依靠。</strong>很快，生活就进一步地加剧分裂的状况。1966年，“文革”发生，我早早结束所谓“学业”，到了农村。我身边携带的书，除方才说的农村小说集，还有一本长篇小说《艳阳天》，是当代中国作家浩然所著，写的是人民公社新农村的生活。小说里的农村景象光明开朗，前途美好，有阶级斗争，可是不像那个男孩的故事那么混淆阴沉，而是黑白敌我清晰，感情就不会受到严峻的拷问。有爱情，没有私欲，建立在公德和理想之上；有新旧观念的较量，总是进步的胜出。宣传画上拖拉机行驶在光芒四射的田野上的图景，在小说里演化成生动具体的人和事。</p>
+<p>这和我所在的农村，在气氛上不大一样。我们村庄上，有一个富农的家庭，男人已经死了，老婆带着一儿一女度日。这一家人都长得漂亮，高高的个子，五官端正。女孩子很苗条，她的外号也很妙，叫“铁嘴”。她很会说话，言辞犀利，男人都不是她的对手，几个来回就败下阵来。她不仅嘴厉害，干活也是一把好手。在我们那里，割麦子是用长柄镰刀，叫作“放大刀”。我在托尔斯泰的小说里读过用大刀割草的场面，工具和姿势都类似“放大刀”，干活的都是男性壮劳力。可是，每每地，这个“铁嘴”女孩子都能进入“放大刀”的行列，她从来不落人后。</p>
+<p>割麦的情景回想起来真有些戏剧化。我们的农民其实自有美学，割麦的季节里流行的装束：上身不穿衣服，光着膀子，肩上系一方白色的纱布，很彪悍也很俊美。在一列白披肩的队伍里，有一件花布衫，就是“铁嘴”。庄上人公认她是个人才，私下都为她惋惜，因为她的富农成分，一直没有寻到婆家。到我离开那个村庄的时候，她已经二十岁了。在农村，二十岁对于女孩，是个很可怕的年龄，很难有匹配的对象。她的弟弟也很秀美，同样娶不到媳妇。这一儿一女的婚事都是老大难。这是我在农村看到的阶级分野日常化地体现在个人命运上，和《艳阳天》里斗争的方式不同。书本里的世界固然美好，但却是简单的，它无法覆盖现实的复杂性，所以就变得脆弱。但阅读的经历，在我几乎成为信念，我并不因此而放弃，而是企图寻找出一个更有力量的文字里的世界。</p>
+<p>我在农村里独自度过十七岁的生日。生日时，母亲送我一本小说叫《勇敢》，是苏联女作家薇拉·凯特琳斯卡雅所著，写的是上世纪上半叶苏联开发远东、建设共青城的故事，感情很激昂，合乎社会主义史诗的创作原则。母亲送我这本书是希望我振作，对目前的生活唤起一点热情，不要颓唐下去。当然她也知道书本和现实的距离是非常大的，可是除此，还有什么别的路径呢？我们都是容易被书本激励的。</p>
+<p>这本书如果按照金克木先生的说法，就是“假”，但是小说确实写得很动人，这就是文字的能量吧！一群青年人在一片荒地上，从无到有建起一座城市是多么激动人心！乌托邦永远吸引着爱幻想的年轻人，但是成长会告诉我们，乌托邦的不可实现在于它的不合理和不人道。前面说过，那个少年英雄出生在一个伦理混乱的家庭，本来是个不幸的孩子，却被塑造成英雄。而《勇敢》所写的开发远东，正是在中国黑龙江边境，带有扩张的意图，结果也是失败的。在不断阅读和学习中，你会发现，在你非常投入、寄予很高理想的那个世界也是有谎言的。这是对我们提出的警告，警告我们，与虚假对立的不只是真实，还有诗。诗和真并列，当我们离开真实的时候，也许也与诗背道而驰了。</p>
+<p>所以在写小说时，你要清楚你在建设一个怎样的文字世界。我庆幸我一生总能得到一些启迪，总有人或事引领我，让我走到相对正确的道路，不让我失足。大量混杂的阅读中，你其实很容易走上歧途；但另一方面，所有这些，不论错的和对的，具有一种自行调节的功能，纳入你经验的生活中，潜移默化，建立起明辨是非的可能性。<strong>生活中的缺陷使我情愿与自己的生活保持距离，远一点，书本就提供了这个机会。</strong>它们和我的生活可能没有一点相似，但是在某种程度上又有联系。</p>
+<p>总的来说，我就是特别需要一个和我实际度过的世界不一样的空间。我不是要藏身逃避其中，而是它让我对我现实的遭遇有抵抗力。当然，它也许加剧我更不喜欢现实生活。要等到书本能帮助我度过这个分裂的时期，令我对正在经验的世界有一点喜欢，还需要很长的道路，还要经历更多生活，读更多的书。因为事实上，写小说的人如果不喜欢生活的话，是无法写小说的。小说和诗不一样，小说跟生活很接近，它是世俗的性格，是人间的天上。</p>
+<h4>03 爱情小说</h4>
+<p>让我再谈一下年轻时读的书。我常说我很喜欢托尔斯泰和雨果，但年轻时托尔斯泰并不是我最喜欢的作家，也不特别喜欢雨果。我最喜欢的是屠格涅夫，这个名字对你们年轻人来说可能很陌生，因为俄国文学不是今天的时尚。在我年轻时，我其实不能完全看明白他的小说。小说里俄国的政治背景，知识分子的苦闷，思想没有出路，那些更深刻的内容我不怎么了解，留在记忆里的印象是模糊的。读书就是这样，把喜欢的东西留下来，不喜欢的、看不懂的东西就放到一边，等待将来的日子去认识，好像反刍似的。于是，我就只看到爱情的部分。屠格涅夫的小说里总是有爱情，而且是不幸的爱情，年轻人多不喜欢一帆风顺的爱情，而是受爱情的悲剧吸引，年轻人总是伤感主义的。</p>
+<p>屠格涅夫的爱情故事都很伤心。在《初恋》里，一个年轻的男孩子爱上一个成年女性，爱得非常非常深。这份爱里，不仅有情欲，还有成长的渴望，希冀进入成年人的社会，和这个社会平等地对话。这个女人很美，很温柔，而且似乎也知道他的钟情，有一些微妙的回应。结果却是，她爱着他的父亲，一个成熟、经历过生活、有家室妻儿的男人。这不仅是单纯的失恋，而是一个失败的博弈，年龄、阅历、成熟度，和这一切有关的魅力的博弈。但是，还有一个更久远的博弈，这个博弈还未完，还未决出胜负，那就是未来的时间。他总有一天抵达父亲的年龄，父亲却永远回不到他的青春时代。所以，博弈的双方，父与子，都是痛楚的。屠格涅夫小说里有一个父与子的核心关系，他有一部长篇名字就叫《父与子》，可我注意不到，只看见爱情，因为自己也正处在蜕变的年龄，爱情对成长具有启蒙的意义。</p>
+<p>读屠格涅夫的小说真的不是白读的。慢慢地，我们就建立起一种道德美学，那些深情的爱人们，并没有放弃利他心。虽然爱情是自私的，但是知识分子的人性理想约束着他们，使他们保持对爱的更高尚理解，悲剧就是在这里发生。屠格涅夫所写的故事和我阅读时经历的生活完全不同，他笔下的人和事，于我的处境称得上奢侈，但为什么我能够从中得到慰藉和启发？可能是有一个秘密通道，可能是青春，可能是对爱情的向往，也可能是成长的需要。</p>
+<p>这大约可说是阅读生活的真谛，你和某一本书——不知是哪一本，会有一个秘密通道，就是这个秘密通道，令你在书中遇到知己，能和这本书邂逅，就是幸运。法国作家罗曼·罗兰共十卷的《约翰·克利斯朵夫》也是一部很好看的长篇小说。傅雷先生译的中文版，分成四本，“文化大革命”中，我们不知从什么地方得来第一本，里面包括前三卷。这前三卷，恰是人物从幼年到少年走向青年的成长过程，每一阶段都有一段爱情。对我们这些年轻的女性读者来说，非常令人激动满足。</p>
+<p>第一段的爱情是小狗小猫式的，女主角叫弥娜，是约翰·克利斯朵夫的钢琴课学生。他是一个穷孩子，有着音乐天赋，从小就承担起养家的重任。除了在宫廷乐队演奏，还要教钢琴帮补家用。弥娜的母亲，一个孀居的贵族夫人，很慷慨地聘用他做女儿弥娜的钢琴教师。弥娜是个任性的女孩，出身优越，吃穿不愁，妈妈又宠着她。起初她看不起克利斯朵夫，因为他生相粗鲁，穿着简陋，不讲卫生，仪态也缺乏教养，所以对他态度相当傲慢。克利斯朵夫是公认的神童，也不买她的账，师生关系就很紧张。可是有一天，发生一件事情，把形势整个地扭转了。这一天，小老师指责学生弹了一个错音，弥娜不承认，用手指着乐谱说就是这样的，克利斯朵夫凑近看乐谱，看见的却是少女花瓣儿般的小手，完全是无意识地，他在那手上吻了一下。这一个冒失的举动，把两个人都吓到了。争吵平息，琴课继续，但心情就此搅动起来。</p>
+<p>弥娜生活很简单，又没到进入社交圈的年龄，成天无事可做，难免胡思乱想。克利斯朵夫的这一吻，给了她新发现，原来她已经被这个男孩深深地爱上了。爱情遮住她的眼睛，再看克利斯朵夫，他的每一事每一物都变得可爱，钢琴弹得好，才华横溢，他的粗鲁只不过是男子气概的表现，他的破衣烂衫则是艺术家的风格，连他长相都变得英俊起来。克利斯朵夫呢，也以为自己其实早已经爱着弥娜，彼此的敌意不过是爱人之间常有的小别扭。于是，双双陷入情网。这一段爱情很快就被弥娜的母亲看在眼里。她是一个雍容大度的女性，她赏识克利斯朵夫的才华，但也明白他所属的阶层和她们不同，他和女儿之间只是孩子的游戏，一个不恰当的游戏。所以，就不要继续发展，而是及时收场，她带着弥娜离开了。</p>
+<p>之后，克利斯朵夫遇到萨皮纳，展开了第二段爱情。年轻人对爱情的想象是概念化的，所以萨皮纳的故事让我有一点不满意。第一，她比他年长，是结过一次婚带个孩子的小寡妇；第二，她出身不怎样，既不是公主，也不是灰姑娘，而是个老板娘，开一间针头线脑的小店，显然缺乏女主角的浪漫色彩。还好，他们爱情的发生比较有戏剧性。他跟着萨皮纳去乡村参加亲戚的婚宴，郊游和歌舞制造了一个民间的欢场，暗中萌生的情愫迅速滋长起来。</p>
+<p>因为大雨留宿小旅馆，他们隔着薄薄的墙，一举手把门推开就打破通道。两个人都知道墙那边站着对方，等待对方下手，可是都没有足够的勇气，最终蹉跎了时机。这个结局满足我们对爱情的悲剧想象，而当过后再读小说，方才理解，要使一个小孩变成一个大人，需要经过许多磨炼，和弥娜只是练手，仿佛过家家式地模仿成人关系；到了萨皮纳却是情欲露出水面，这不仅意味外部的生活在进展，更是内部——即身心发育成熟。</p>
+<p>第三段爱情更加使我不高兴了。阿达是个粗鄙的女性，在一间帽子店里做店员，这个就更世俗了。她和克利斯朵夫并没有经过任何精神上的交流。和弥娜有钢琴课，萨皮纳有船上的合唱，阿达虽然也是邂逅于郊游，同样进了乡村小旅馆，但却是刻意安排，目的明确，迅速地上了床。这对于我们的道德美学、禁欲教育，最重要的是，罗曼蒂克的爱情憧憬，都太庸俗、太暴露。最令人失望的是，克利斯朵夫对此非常满足。那时候，我们只有第一本，之后的三本不知道在哪里可以拿到。多年以后，阅读全书，原来还有安多纳德和葛拉齐亚在等着我们。这时候，我们的阅历和阅读，已经积累到可以更尽情地享受其中悲怆的诗意了。<strong>就仿佛，和书中人物克利斯朵夫共同成长起来。</strong></p>
+<p>现在再读这本书，我最喜欢的段落恰恰是我之前不耐烦、急切想跳过的段落。例如，克利斯朵夫进入反叛的阶段，无论生活、爱情，还是音乐，都看不见前途，看不见意义，他憎恨他的环境，甚而至于他的民族和国家。他到犹太人家庭中寻找异质文化，又投到法国女歌手怀抱，希望汲取新鲜的生机，他到民间爱乐者的群体里，试图回溯音乐的原始性，却总是以失望告终。最绝望的时候，因为一个意外，卷入治安事件，只得离开家乡，流亡法国。在仓促登上的火车上，他朝着巴黎的方向，喊道：“救救我吧，救救我的思想！”到了巴黎以后，他发现音乐就像一个大工场，遍地都是制造和弦的店铺，无处不在。可是他还是找不到真正的音乐，他的思想还是得不到拯救。他到文学里去寻找，到社交圈里、爱情里去寻找，依然不得要领。最后，他生病了，滞留在廉租的公寓顶楼里，身边是庸常的小市民，琐细的日常生活，却感觉到有一种艺术精神在悄悄接近。后来，他邂逅安多纳德的弟弟奥里维，他们七天七夜足不出户，谈论法国、德国、民族、人类、革命……</p>
+<p>这些章节在年轻时候被视作累赘，草草掠过，现在却觉得精彩极了！非常感谢傅雷先生，他翻译得那么好，真是一场文字的盛宴。据法国文学的专家说：“傅雷先生可说重写了这本书。在法国文学中，罗曼·罗兰和《约翰·克利斯朵夫》的影响远不如在中国，这应该归功于傅雷先生的再创作。”<strong>有时候，一本书，在你不同的阶段给予不同的营养，成为人生经验之一种。</strong></p>
+<p>《简· 爱》也是那时我喜欢读的一本书。我读《简·爱》是在“文革”的黯淡日子里，那故事远离现实，遥不可及，它发生在另一个世界里，幸和不幸都是有趣而且有意义的。当我读过许多书以后，再看《简·爱》，难免觉得简单了。爱和自尊，经过跌宕起伏的波折，最终保持圆满的结局，过于甜美，近似类型小说。但是，正因为此，它滋养了我枯乏的生活，缓解了我的苦闷。</p>
+<p><strong>阅读令我的生活变成两个世界—实际度过的生活和想象的生活，两者的关系我很难解释。它们好像是并行的，甚至互相抵触，但它们似乎又是有交集与和谐的，我站在书本里看实际的生活，同时，又在实际的生活里观看书本里的。它们之间相隔着距离，这距离开拓了我的视野。</strong></p>
+
+
+<p style='float:right;'>本页共38段，8448个字符，24335 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

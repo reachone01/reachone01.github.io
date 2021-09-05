@@ -1,0 +1,1473 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:40em;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.twoindent{
+	text-indent:-2em;
+	}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:5px;
+	margin-left:2em;
+	background-color:RGB(240,240,240);
+    color:blue;
+	margin-left:2em;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+pre{
+    margin-left:2em;
+	}
+a:visited, a:link{
+    color:blue;
+}
+a:visited{
+    color:#CC0000;
+}a:hover{
+    color:green;
+	}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+<p class="twoindent"><strong>微博和博客</strong><strong> </strong></p>
+
+<p><strong>更多资源，欢迎关注：</strong><strong> </strong></p>
+
+<p><strong>电子书微博：</strong><strong><a href="http://weibo.com/51ebook">http://weibo.com/51ebook</a></strong></p>
+
+<p><strong>电子书博客：</strong><strong><a href="http://kdsxs.blog.163.com/">http://kdsxs.blog.163.com</a></strong></p>
+
+
+
+<p><strong>在线萌宠动物乐园视频：</strong><strong><a href="http://i.youku.com/cuteanimal/">http://i.youku.com/cuteanimal/</a></strong></p>
+<p><strong>想用免费网盘或做网赚的到这里注册：</strong><strong> </strong></p>
+
+<p><strong>城通网盘</strong><strong>: </strong><strong><a href="http://www.ctfile.com/linker/7573155">http://www.ctfile.com/linker/7573155</a></strong><strong> </strong></p>
+  <p><strong>下载注意事项：进入下载页面后点击左下角的“免费下载”，然后关闭广告弹窗，再点击左下角的“普通下载”即可。 </strong></p>
+<p class="twoindent"><strong>1 投资理财类电子书</strong></p>
+
+<p class="twoindent">非理性繁荣 [第2版] (美 希勒 著, 李心丹 译, 人民大学出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/Ni7176073456">https://lapchih.ctfile.com/fs/Ni7176073456</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/ORD176073453">https://kdsebook.ctfile.com/fs/ORD176073453</a></p>
+<p class="twoindent">泡沫的秘密 (美 加伯 著, 陈小兰 译, 华夏出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/0cU176073378">https://kdsebook.ctfile.com/fs/0cU176073378</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/vxy176073372">https://lapchih.ctfile.com/fs/vxy176073372</a></p>
+<p class="twoindent">日赚500元 - 揭开网络赚钱的秘密 (董俊峰 著, 广东科技出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/AWU175428618">https://kdsebook.ctfile.com/fs/AWU175428618</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/5Is175428609">https://lapchih.ctfile.com/fs/5Is175428609</a></p>
+<p class="twoindent">雪球访谈：财税专家马靖昊聊如何识别财务顽疾</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/Ye3170106114">https://lapchih.ctfile.com/fs/Ye3170106114</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/HaY170106458">https://kdsebook.ctfile.com/fs/HaY170106458</a></p>
+<p class="twoindent">新兴市场投资教父马克·墨比尔斯的股票投资法则</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/VmP170106450">https://kdsebook.ctfile.com/fs/VmP170106450</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/Os6170106110">https://lapchih.ctfile.com/fs/Os6170106110</a></p>
+<p class="twoindent">交易心理分析 [中文版] (马克·道格拉斯 著, 刘真如 译, 电子工业出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/YgM170106446">https://kdsebook.ctfile.com/fs/YgM170106446</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/6LF170106106">https://lapchih.ctfile.com/fs/6LF170106106</a></p>
+<p class="twoindent">从零开始学炒股大全集 (吉林出版集团)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/Bud170106034">https://lapchih.ctfile.com/fs/Bud170106034</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/mec170106134">https://kdsebook.ctfile.com/fs/mec170106134</a></p>
+<p class="twoindent">投资最重要的事 (美 霍华德·马克斯 著, 李莉&amp;石继志 译, 中信出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/Gvy170080634">https://kdsebook.ctfile.com/fs/Gvy170080634</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/6r4170082854">https://lapchih.ctfile.com/fs/6r4170082854</a></p>
+<p class="twoindent">省钱王 省钱又体面1000招 (牛博士 著, 南方日报出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/tXX170097438">https://kdsebook.ctfile.com/fs/tXX170097438</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/na5170082822">https://lapchih.ctfile.com/fs/na5170082822</a></p>
+<p class="twoindent">100个可操作的网络赚钱方法 (陶秋丰 著, 云南科技出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/jDK170097294">https://kdsebook.ctfile.com/fs/jDK170097294</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/qML170095386">https://lapchih.ctfile.com/fs/qML170095386</a></p>
+<p class="twoindent"><strong>2 经济金融类 </strong></p>
+
+<p class="twoindent">大数据时代：生活、工作与思维的大变革 (维克托•迈尔•舍恩伯格 著, 周涛 译, 浙江人民出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/cBA176072895">https://lapchih.ctfile.com/fs/cBA176072895</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/5bB176072931">https://kdsebook.ctfile.com/fs/5bB176072931</a></p>
+<p class="twoindent">黑天鹅：如何应对不可预知的未来 (美 塔勒布著，万丹&amp;刘宁 译,中信出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/y8x176072280">https://kdsebook.ctfile.com/fs/y8x176072280</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/MHH176072991">https://lapchih.ctfile.com/fs/MHH176072991</a></p>
+<p class="twoindent">大败局2  (吴晓波 著, 浙江人民出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/xaZ176070012">https://lapchih.ctfile.com/fs/xaZ176070012</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/iV3176070075">https://kdsebook.ctfile.com/fs/iV3176070075</a></p>
+<p class="twoindent">大败局1  (吴晓波 著, 浙江人民出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/YfS176070072">https://kdsebook.ctfile.com/fs/YfS176070072</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/aKj176070003">https://lapchih.ctfile.com/fs/aKj176070003</a></p>
+<p class="twoindent">不确定的未来 - 如何将改革进行下去 (郑永年 著, 中信出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/xBP175416957">https://lapchih.ctfile.com/fs/xBP175416957</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/XKC175413272">https://kdsebook.ctfile.com/fs/XKC175413272</a></p>
+<p class="twoindent">看穿一切数字的统计学 (日 西内啓 著, 朱悦玮 译, 中信出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/fif172597850">https://kdsebook.ctfile.com/fs/fif172597850</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/UqX172597842">https://lapchih.ctfile.com/fs/UqX172597842</a></p>
+<p class="twoindent">下一个大事件 影响未来世界的八大趋势 (美 马修·伯罗斯 著, 晏奎 夏思洁 译, 中信出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/w8c172597558">https://lapchih.ctfile.com/fs/w8c172597558</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/adQ172597602">https://kdsebook.ctfile.com/fs/adQ172597602</a></p>
+<p class="twoindent">小明经济学 (贾慧 著, 时代出版传媒股份有限公司)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/Zqz172597550">https://kdsebook.ctfile.com/fs/Zqz172597550</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/uDl172597546">https://lapchih.ctfile.com/fs/uDl172597546</a></p>
+<p class="twoindent">一个证券分析师的醒悟 [PDF+MOBI 版] (张化桥 著, 中信出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/ys8172594978">https://lapchih.ctfile.com/fs/ys8172594978</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/xX8172594982">https://kdsebook.ctfile.com/fs/xX8172594982</a></p>
+<p class="twoindent">大衰退  (Richard Koo 辜朝明 著, 喻海翔 译, 东方出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/lGw172594410">https://kdsebook.ctfile.com/fs/lGw172594410</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/xqQ172594054">https://lapchih.ctfile.com/fs/xqQ172594054</a></p>
+<p class="twoindent">大国空巢  [简体版] (易富贤 著, 中国发展出版社)+ 大国空巢演讲PPT</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/tDo169946546">https://lapchih.ctfile.com/fs/tDo169946546</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/1cq170059674">https://kdsebook.ctfile.com/fs/1cq170059674</a></p>
+<p class="twoindent">为什么中国人勤劳而不富有 (陈志武 著, 中信出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/RxQ169831886">https://kdsebook.ctfile.com/fs/RxQ169831886</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/Inz169831486">https://lapchih.ctfile.com/fs/Inz169831486</a></p>
+<p class="twoindent">从来就没有救世主 (许小年 著, 上海三联书店)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/Tj7169822794">https://lapchih.ctfile.com/fs/Tj7169822794</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/xV0169822814">https://kdsebook.ctfile.com/fs/xV0169822814</a></p>
+<p class="twoindent">宅男盛女经济学(王泽基&amp;苏勇鹏 著, 中国人民大学出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/n80167340246">https://kdsebook.ctfile.com/fs/n80167340246</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/4il167337842">https://lapchih.ctfile.com/fs/4il167337842</a></p>
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/vOG165429072" target="_blank">影响中国的20位经济学家 (河南文艺出版社)</a></p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/vOG165429072">https://lapchih.ctfile.com/fs/vOG165429072</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/oJ0165429824">https://kdsebook.ctfile.com/fs/oJ0165429824</a></p>
+<p class="twoindent">红色资本-中国的非凡崛起与脆弱的金融基础 (卡尔·沃尔特&amp;弗雷泽·豪伊 著, 祝捷&amp;刘骏 译, 中国出版集团东方出版中心)</p>
+
+<p>下载地址1：<a href="http://kdsebook.ctfile.com/fs/VOz163902961">http://kdsebook.ctfile.com/fs/VOz163902961</a></p>
+
+<p>下载地址2：<a href="http://lapchih.ctfile.com/fs/V37163902883">http://lapchih.ctfile.com/fs/V37163902883</a></p>
+<p class="twoindent">骰子掷出的学问-概率 (项昭&amp;严虹 贵州人民出版社)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/BDv163810756">http://lapchih.ctfile.com/fs/BDv163810756</a></p>
+<p class="twoindent">牛奶可乐经济学 最妙趣横生的经济学课堂 (美 罗伯特·弗兰克著 闾佳译 中国人民大学出版社)</a></p>
+
+<p><a href="http://lapchih.ctfile.com/fs/x7H158602728">http://lapchih.ctfile.com/fs/x7H158602728</a></p>
+<p class="twoindent">影子里的中国 即将到来的社会危机与应对之策</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/6uX157813858">http://lapchih.ctfile.com/fs/6uX157813858</a></p>
+<p class="twoindent">公司的逻辑</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/s7x157683697">http://lapchih.ctfile.com/fs/s7x157683697</a></p>
+<p class="twoindent">经济为什么会崩溃：鱼、美元与经济学的故事（彼得·D·希夫，安德鲁·J·希夫）</p>
+
+<p><a href="http://lapchih.ctfile.com/flash/150913670/1463336739/7f8442">http://lapchih.ctfile.com/flash/150913670/1463336739/7f8442</a></p>
+<p class="twoindent">经济学原来这么有趣：颠覆传统教学的18堂经济课</a></p>
+
+<p><a href="http://lapchih.ctfile.com/fs/4I5150907187">http://lapchih.ctfile.com/fs/4I5150907187</a></p>
+<p class="twoindent">跟王亚伟学炒股 (纪永英).</a></p>
+
+<p><a href="http://lapchih.ctfile.com/fs/fIF150713087">http://lapchih.ctfile.com/fs/fIF150713087</a></p>
+<p class="twoindent">百度那些人和事 (丁西坡)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/0qF150379577">http://lapchih.ctfile.com/fs/0qF150379577</a></p>
+<p class="twoindent">Outliers 异类：不一样的成功启示录(中英双语版）</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/8mu150209510">http://lapchih.ctfile.com/fs/8mu150209510</a></p>
+<p class="twoindent">软实力 美国电影、流行乐、电视和快餐的全球统治</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/eq2150203378">http://lapchih.ctfile.com/fs/eq2150203378</a></p>
+<p class="twoindent"><strong>3 管理职场类</strong><strong> </strong></p>
+
+<p class="twoindent">故事策略 电影剧本必备的23个故事段落 (Eric Edson 著, 徐晶晶 译, 人民邮电出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/U5W172600050">https://kdsebook.ctfile.com/fs/U5W172600050</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/kGP172599746">https://lapchih.ctfile.com/fs/kGP172599746</a></p>
+<p class="twoindent">你为什么发微博博客朋友圈 - 让用户疯狂转发的5大动机.</a></p>
+
+<p>下载地址：<a href="https://lapchih.ctfile.com/fs/6sx171264174">https://lapchih.ctfile.com/fs/6sx171264174</a></p>
+<p class="twoindent">精进：如何成为一个很厉害的人 (采铜   著, 江苏凤凰文艺出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/GBV164942948">https://lapchih.ctfile.com/fs/GBV164942948</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/M6A164942912">https://kdsebook.ctfile.com/fs/M6A164942912</a></p>
+<p class="twoindent">把时间当作朋友 [2011第3版] (李笑来 著, 电子工业出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/qxI164817308">https://kdsebook.ctfile.com/fs/qxI164817308</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/gD8164815692">https://lapchih.ctfile.com/fs/gD8164815692</a></p>
+<p class="twoindent">做最好的自己 (李开复 著, 人民出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/xs0164814924">https://lapchih.ctfile.com/fs/xs0164814924</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/Dnh164814860">https://kdsebook.ctfile.com/fs/Dnh164814860</a></p>
+<p class="twoindent">拆掉思维里的墙 - 原来我还可以这样活 (古典 著, 中国书店)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/mcd164813996">https://kdsebook.ctfile.com/fs/mcd164813996</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/sNA164814948">https://lapchih.ctfile.com/fs/sNA164814948</a></p>
+<p class="twoindent">跟任何人都聊得来 (迈克克·贝克特尔 著, 陈芳芳 译,九州出版社) PDF&amp;EPUB版 </p>
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/ViI164768296">https://lapchih.ctfile.com/fs/ViI164768296</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/aCX164768264">https://kdsebook.ctfile.com/fs/aCX164768264</a></p>
+<p class="twoindent">精力管理  (吉姆·洛尔 著, 付涛 译, 中信出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/eJ3164764704">https://kdsebook.ctfile.com/fs/eJ3164764704</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/Kvn164759080">https://lapchih.ctfile.com/fs/Kvn164759080</a></p>
+<p class="twoindent">从0到1 (彼得·蒂尔&amp;布莱克·马斯特斯 著, 高玉芳译,  中信出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/hL9164754992">https://lapchih.ctfile.com/fs/hL9164754992</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/UPB164757808">https://kdsebook.ctfile.com/fs/UPB164757808</a></p>
+<p class="twoindent">向前一步  - 女性，工作及领导意志 (美 谢丽尔·桑德伯格 著, 颜筝 译, 中信出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/mRQ164550532">https://kdsebook.ctfile.com/fs/mRQ164550532</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/N24164549404">https://lapchih.ctfile.com/fs/N24164549404</a></p>
+<p class="twoindent">如何阅读一本书 (美 莫提默·艾德勒&amp;查尔斯·范多伦 著,郝明义&amp;朱衣 译,商务印书馆)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/EOr164549400">https://lapchih.ctfile.com/fs/EOr164549400</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/KOe164550500">https://kdsebook.ctfile.com/fs/KOe164550500</a></p>
+<p class="twoindent">番茄工作法图解：简单易行的时间管理方法(瑞典 Staffen Noteberg著,大胖译,人民邮电出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/PkZ164538888">https://kdsebook.ctfile.com/fs/PkZ164538888</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/U3M164540092">https://lapchih.ctfile.com/fs/U3M164540092</a></p>
+<p class="twoindent">番茄工作法 The Pomodoro Technique (Francesco Cirillo)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/IZe164540048">https://lapchih.ctfile.com/fs/IZe164540048</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/VdX164538804">https://kdsebook.ctfile.com/fs/VdX164538804</a></p>
+<p class="twoindent">这样读书就够了(赵周 中央广播电视大学出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/ik6164533896">https://kdsebook.ctfile.com/fs/ik6164533896</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/unZ164520904">https://lapchih.ctfile.com/fs/unZ164520904</a></p>
+<p class="twoindent">4点起床-最养生和高效的时间管理 (日 中岛孝志 印刷工业出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/oYf164383536">https://lapchih.ctfile.com/fs/oYf164383536</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/mku164383672">https://kdsebook.ctfile.com/fs/mku164383672</a></p>
+<p class="twoindent">时间管理  (美 杰弗里·迈耶 机械工业出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/CuQ164382208">https://kdsebook.ctfile.com/fs/CuQ164382208</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/gp4164382468">https://lapchih.ctfile.com/fs/gp4164382468</a></p>
+<p class="twoindent">你有哪些特别的生存法则 （1）</a></p>
+
+<p><a href="http://lapchih.ctfile.com/fs/WZm163974983">http://lapchih.ctfile.com/fs/WZm163974983</a></p>
+<p class="twoindent">宽带山论坛职场纪实小说：外资银行三部曲之一：外资银行那些事儿</a></p>
+
+<p><a href="http://lapchih.ctfile.com/fs/6rP163953422">http://lapchih.ctfile.com/fs/6rP163953422</a></p>
+<p class="twoindent">画出你的世界 思维导图实战手册 (曲智男 电子工业出版社)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/IKS162624977">http://lapchih.ctfile.com/fs/IKS162624977</a></p>
+<p class="twoindent">麦肯锡精英的48个工作习惯 (日 户塚隆将著 千太阳 译 中信出版集团 )</a></p>
+
+<p><a href="http://lapchih.ctfile.com/fs/1T2159381754">http://lapchih.ctfile.com/fs/1T2159381754</a></p>
+<p class="twoindent">玩赚你的网站-网站运营必备手册 (陈光锋 机械工业出版社)</a></p>
+
+<p><a href="http://lapchih.ctfile.com/fs/Cl8159234667">http://lapchih.ctfile.com/fs/Cl8159234667</a></p>
+<p class="twoindent">复制互联网 全球最值得模仿的500个网站 (朱印宏 兵器工业出版社)</p>
+
+<p><a href="http://portal.ctfile.com/info/R2i316787">http://portal.ctfile.com/info/R2i316787</a></p>
+<p class="twoindent">百万年薪做讲师 （李泽尧 广东经济出版社有限公司）</a></p>
+
+<p><a href="http://lapchih.ctfile.com/fs/SOf158244265">http://lapchih.ctfile.com/fs/SOf158244265</a></p>
+<p class="twoindent">公司会雇用你的44个秘密 (美  辛西亚 夏皮罗)</p>
+
+<p><a href="http://edu.ctfile.com/info/cAN98710">http://edu.ctfile.com/info/cAN98710</a></p>
+<p class="twoindent">别做正常的傻瓜 （奚恺元） 全新第2版</p>
+
+<p><a href="http://edu.ctfile.com/info/NXC96565">http://edu.ctfile.com/info/NXC96565</a></p>
+<p class="twoindent">练就职场功夫熊猫（申晨）</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/p4X150817784">http://lapchih.ctfile.com/fs/p4X150817784</a></p>
+<p class="twoindent">Critical Thinking Skills (Stella Cottrell)&nbsp;批判性思维技巧&nbsp;英文版</p>
+
+<p><a href="http://edu.ctfile.com/info/hdW98704">http://edu.ctfile.com/info/hdW98704</a></p>
+<p class="twoindent">Critical Thinking (Brooke Noel Moore &amp; Richard  Parker)</p>
+
+<p><a href="http://edu.ctfile.com/info/16y94912">http://edu.ctfile.com/info/16y94912</a></p>
+<p class="twoindent">批判性思维-带你走出思维的误区&nbsp;(布鲁克·诺埃尔·摩尔&nbsp;&amp;&nbsp;理查德·帕克)</p>
+
+<p><a href="http://edu.ctfile.com/info/kY894876">http://edu.ctfile.com/info/kY894876</a></p>
+<p class="twoindent">可笑的思维谬误：批判性思考与查错神经 (冀剑制)</p>
+
+<p><a href="http://edu.ctfile.com/info/UYm94066">http://edu.ctfile.com/info/UYm94066</a></p>
+<p class="twoindent">[中文版]超越感觉：批判性思考指南&nbsp;&nbsp;(美&nbsp;文森特)</p>
+
+<p><a href="http://edu.ctfile.com/info/sHg93562">http://edu.ctfile.com/info/sHg93562</a></p>
+<p class="twoindent">[英文版]批判性思考指南&nbsp;&nbsp;&nbsp;(美&nbsp;文森特) Beyond Feelings - A Guide to Critical Thinking</p>
+
+<p><a href="http://edu.ctfile.com/info/Yiq93484">http://edu.ctfile.com/info/Yiq93484</a></p>
+<p class="twoindent">卓有成效的管理者The Effective Executive 中英文双语版 (彼得·德鲁克)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/qKi150380576">http://lapchih.ctfile.com/fs/qKi150380576</a></p>
+<p class="twoindent"><strong>4 心理哲学类电子书</strong><strong> </strong></p>
+
+<p class="twoindent">怪诞心理学 (理查德·怀斯曼 著, 路本福译, 天津教育出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/G7z176076042">https://lapchih.ctfile.com/fs/G7z176076042</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/sQA176077326">https://kdsebook.ctfile.com/fs/sQA176077326</a></p>
+<p class="twoindent">选择的悖论：用心理学解读人的经济行为(巴里•施瓦茨 著, 梁嘉歆 译, 浙江人民出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/3RD176077359">https://kdsebook.ctfile.com/fs/3RD176077359</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/kor176076063">https://lapchih.ctfile.com/fs/kor176076063</a></p>
+<p class="twoindent">抑郁症的内观认知疗法 (Zindel V. Segal 著, 刘兴华 译, 世界图书出版公司)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/vC4175432719">https://lapchih.ctfile.com/fs/vC4175432719</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/Phn175432716">https://kdsebook.ctfile.com/fs/Phn175432716</a></p>
+<p class="twoindent">巨婴国 [PDF+MOBI+azw3版] (武志红 著, 浙江人民出版社)</a></p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/YXT174587469">https://kdsebook.ctfile.com/fs/YXT174587469</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/EYi174586989">https://lapchih.ctfile.com/fs/EYi174586989</a></p>
+<p class="twoindent">爱情数学 如何用数学找到真爱 (Hannah Fry 著, 汤珑 译, 中信出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/349172658826">https://lapchih.ctfile.com/fs/349172658826</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/u7x172660462">https://kdsebook.ctfile.com/fs/u7x172660462</a></p>
+<p class="twoindent">图解个性行为心理学 为什么你总是管不住自己 (艾晓 著, 中国纺织出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/w90172597774">https://kdsebook.ctfile.com/fs/w90172597774</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/VkN172597770">https://lapchih.ctfile.com/fs/VkN172597770</a></p>
+<p class="twoindent">你不知道的职场微心理 (贺建华 著, 万卷出版公司)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/0rK172597698">https://lapchih.ctfile.com/fs/0rK172597698</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/L4J172597706">https://kdsebook.ctfile.com/fs/L4J172597706</a></p>
+<p class="twoindent">魅力老子 豁达坦然100句 (刘家辉著 , 北京工业大学出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/epn172597682">https://kdsebook.ctfile.com/fs/epn172597682</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/hqn172597674">https://lapchih.ctfile.com/fs/hqn172597674</a></p>
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/CkI167526062" target="_blank">影响力 (美 罗伯特·西奥迪尼 著, 闾佳 译,万卷出版公司)</a></p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/CkI167526062">https://lapchih.ctfile.com/fs/CkI167526062</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/eDd167679726">https://kdsebook.ctfile.com/fs/eDd167679726</a></p>
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/YwL167526038" target="_blank">性吸引的奥秘 (陈才生 著, 北京师范大学出版社)</a></p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/otX167679674">https://kdsebook.ctfile.com/fs/otX167679674</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/YwL167526038">https://lapchih.ctfile.com/fs/YwL167526038</a> </p>
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/bld167526010" target="_blank">性格解析 (美 弗洛伦斯·妮蒂雅 著, 江雅苓 黄思泓 译, 经济日报出版社)</a></p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/bld167526010">https://lapchih.ctfile.com/fs/bld167526010</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/7OC167679646">https://kdsebook.ctfile.com/fs/7OC167679646</a></p>
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/mRA167526006" target="_blank">此生为何而来-开启人生至高能量的秘密 (美 迈克尔 雷, 贺璇 译, 现代出版社)</a></p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/fxB167679638">https://kdsebook.ctfile.com/fs/fxB167679638</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/mRA167526006">https://lapchih.ctfile.com/fs/mRA167526006</a></p>
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/yBx167526002" target="_blank">自觉和领悟之路-奉献给因患神经症而烦恼的人们(日 森田正马著, 复旦大学出版社)</a></p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/yBx167526002">https://lapchih.ctfile.com/fs/yBx167526002</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/9CB167679586">https://kdsebook.ctfile.com/fs/9CB167679586</a></p>
+<p class="twoindent">3分钟爱上心理学 (日 尾形佳晃 著, 张慧 译, 北京世界图书出版公司)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/CL5167039962">https://kdsebook.ctfile.com/fs/CL5167039962</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/LpM167040422">https://lapchih.ctfile.com/fs/LpM167040422</a></p>
+<p class="twoindent"><a href="https://kdsebook.ctfile.com/fs/iCj167039922" target="_blank">情商 - 为什么情商比智商更重要(丹尼尔·戈尔曼 著, 杨春晓 译, 中信出版社)</a></p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/zBm167040562">https://lapchih.ctfile.com/fs/zBm167040562</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/iCj167039922">https://kdsebook.ctfile.com/fs/iCj167039922</a></p>
+<p class="twoindent">魅力心理学：5秒钟让你征服任何人 (凯文•霍根&amp;玛丽•李•拉贝 著, 王林 译，金城出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/omD167039902">https://kdsebook.ctfile.com/fs/omD167039902</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/JQM167040530">https://lapchih.ctfile.com/fs/JQM167040530</a></p>
+<p class="twoindent"><a href="https://kdsebook.ctfile.com/fs/M8X167039838" target="_blank">改变，从心开始 - 学会情绪平衡的方法 (荷 罗伊·马丁纳 著, 胡因梦 译, 云南人民出版社)</a></p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/guw167040486">https://lapchih.ctfile.com/fs/guw167040486</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/M8X167039838">https://kdsebook.ctfile.com/fs/M8X167039838</a></p>
+<p class="twoindent"><a href="https://kdsebook.ctfile.com/fs/9nt167039774" target="_blank">笔迹心理学 (郑日昌 著, 辽海出版社)</a></p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/9nt167039774">https://kdsebook.ctfile.com/fs/9nt167039774</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/t9d167040450">https://lapchih.ctfile.com/fs/t9d167040450</a></p>
+<p class="twoindent"><a href="https://kdsebook.ctfile.com/fs/j0P167039762" target="_blank">爱情心理学 (烨子 著, 大众文艺出版社)</a></p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/SgZ167040438">https://lapchih.ctfile.com/fs/SgZ167040438</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/j0P167039762">https://kdsebook.ctfile.com/fs/j0P167039762</a></p>
+<p class="twoindent"><a href="https://kdsebook.ctfile.com/fs/eHT167039750" target="_blank">生命不再等待 (美 克丽丝滕·莫勒 著, 向兆铭 译, 中信出版社)</a></p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/eHT167039750">https://kdsebook.ctfile.com/fs/eHT167039750</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/HkW167040594">https://lapchih.ctfile.com/fs/HkW167040594</a></p>
+<p class="twoindent"><a href="https://kdsebook.ctfile.com/fs/frS167039674" target="_blank">意志的力量 - 每个人获得成功的源泉 (诺曼·文森特·皮尔 著, 宫照丽 译, 东方出版社)</a></p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/z2w167040614">https://lapchih.ctfile.com/fs/z2w167040614</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/frS167039674">https://kdsebook.ctfile.com/fs/frS167039674</a></p>
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/YvC166975450" target="_blank">你的感觉，我懂 - 与对方感同身受的能力与技巧 (亚瑟·乔拉米卡利&amp;凯瑟琳·柯茜 著, 朱宁 译)</a></p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/0ep166975586">https://kdsebook.ctfile.com/fs/0ep166975586</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/YvC166975450">https://lapchih.ctfile.com/fs/YvC166975450</a></p>
+<p class="twoindent">东洋冥想的心理学-从易经到禅(德 荣格 著,杨儒宾译,社会科学文献出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/lGN165730458">https://lapchih.ctfile.com/fs/lGN165730458</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/pdX165733962">https://kdsebook.ctfile.com/fs/pdX165733962</a></p>
+<p class="twoindent">偏离常轨的行为 解读人格障碍 (杨向东 著, 陕西科学技术出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/mLy164948668">https://kdsebook.ctfile.com/fs/mLy164948668</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/yo1164947732">https://lapchih.ctfile.com/fs/yo1164947732</a></p>
+<p class="twoindent">你的努力，终将成就无可替代的自己 (汤木 著, 百花洲文艺出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/rF8164815768">https://lapchih.ctfile.com/fs/rF8164815768</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/Gnm164817776">https://kdsebook.ctfile.com/fs/Gnm164817776</a></p>
+<p class="twoindent">一念之转-四句话改变你的人生 (拜伦·凯蒂 &amp; 史蒂芬·米切尔 著,周玲莹 译,华文出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/ddW164668112">https://kdsebook.ctfile.com/fs/ddW164668112</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/wtz164666192">https://lapchih.ctfile.com/fs/wtz164666192</a></p>
+<p class="twoindent">习惯的力量 (查尔斯·都希格 中信出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/WJz164326188">https://lapchih.ctfile.com/fs/WJz164326188</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/Mxr164328708">https://kdsebook.ctfile.com/fs/Mxr164328708</a></p>
+<p class="twoindent">重遇未知的自己：爱上生命中的不完美(张德芬 湖南文艺出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/T74164347028">https://lapchih.ctfile.com/fs/T74164347028</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/AXM164351736">https://kdsebook.ctfile.com/fs/AXM164351736</a></p>
+<p class="twoindent">遇见心想事成的自己(张德芬 湖南文艺出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/HEx164304336">https://kdsebook.ctfile.com/fs/HEx164304336</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/AgW164304244">https://lapchih.ctfile.com/fs/AgW164304244</a></p>
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/0HV164304232" target="_blank">活出全新的自己 (张德芬 上海锦绣文章出版社)</a></p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/0HV164304232">https://lapchih.ctfile.com/fs/0HV164304232</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/ao9164304340">https://kdsebook.ctfile.com/fs/ao9164304340</a></p>
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/40X164303708" target="_blank">遇见未知的自己 (张德芬 华夏出版社)</a></p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/CdC164304352">https://kdsebook.ctfile.com/fs/CdC164304352</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/40X164303708">https://lapchih.ctfile.com/fs/40X164303708</a></p>
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/G7E164301816" target="_blank">当下的力量 (埃克哈特·托利著 张德芬译 中信出版社)</a></p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/G7E164301816">https://lapchih.ctfile.com/fs/G7E164301816</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/PLb164301852">https://kdsebook.ctfile.com/fs/PLb164301852</a></p>
+<p class="twoindent">结婚前请双方交换15个问题的答案</p>
+
+<p>下载地址1：<a href="http://kdsebook.ctfile.com/fs/Vv0163901062">http://kdsebook.ctfile.com/fs/Vv0163901062</a></p>
+
+<p>下载地址2：<a href="http://lapchih.ctfile.com/fs/Xvg163901182">http://lapchih.ctfile.com/fs/Xvg163901182</a></p>
+<p class="twoindent"><a href="http://lapchih.ctfile.com/fs/fEJ163168447" target="_blank">职场和恋爱中的九型人格 (海伦·帕尔默 华夏出版社)</a></p>
+
+<p>下载地址1：<a href="http://kdsbeautyleg.ctfile.com/fs/a5n163205369">http://kdsbeautyleg.ctfile.com/fs/a5n163205369</a></p>
+
+<p>下载地址2：<a href="http://lapchih.ctfile.com/fs/fEJ163168447">http://lapchih.ctfile.com/fs/fEJ163168447</a></p>
+<p class="twoindent"><a href="http://lapchih.ctfile.com/fs/STs160153959" target="_blank">与自己和解 用禅的智慧治疗神经症 (包祖晓 华夏出版社).</a></p>
+
+<p><a href="http://lapchih.ctfile.com/fs/STs160153959">http://lapchih.ctfile.com/fs/STs160153959</a></p>
+<p class="twoindent">老子通解 (陆永品   中央编译出版社)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/TAY159382171">http://lapchih.ctfile.com/fs/TAY159382171</a></p>
+<p class="twoindent">说服力：说服他人的50个秘密 (美  罗伯特·西奥迪尼著 冯银银译 天津教育出版社)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/pLO159234541">http://lapchih.ctfile.com/fs/pLO159234541</a></p>
+<p class="twoindent">思考，快与慢 (丹尼尔·卡尼曼著 胡晓姣，李爱民，何梦莹译 中信出版社)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/krW159234205">http://lapchih.ctfile.com/fs/krW159234205</a></p>
+<p class="twoindent">The Purpose-driven Life (Rick Warren) [英文电子版+MP3有声书]&nbsp;</p>
+
+<p><a href="http://portal.ctfile.com/info/vib316775">http://portal.ctfile.com/info/vib316775</a></p>
+<p class="twoindent">心理医生不传之秘的观人术（麦加 百花洲文艺出版社）</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/gJ3158244202">http://lapchih.ctfile.com/fs/gJ3158244202</a></p>
+<p class="twoindent">如何控制自己的情绪 最有效的22个情绪管理定律 (美 奇普  康利)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/8m8157682569">http://lapchih.ctfile.com/fs/8m8157682569</a></p>
+<p class="twoindent"><a href="http://lapchih.ctfile.com/fs/oQt156059869" target="_blank">约会聊天的128个话题</a></p>
+
+<p><a href="http://lapchih.ctfile.com/fs/oQt156059869">http://lapchih.ctfile.com/fs/oQt156059869</a></p>
+<p class="twoindent">断舍离 (日 山下英子)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/oWz155287240">http://lapchih.ctfile.com/fs/oWz155287240</a></p>
+<p class="twoindent">情绪的惊人力量 (美 埃斯特 希克斯 &amp; 杰瑞 希克斯)</p>
+
+<p><a href="http://www.ctfile.com/info/j11263540">http://www.ctfile.com/info/j11263540</a></p>
+<p class="twoindent">亚偷情：危险的男女关系 (吴晓贇)</p>
+
+<p><a href="http://edu.ctfile.com/info/J1s113731">http://edu.ctfile.com/info/J1s113731</a></p>
+<p class="twoindent">爱与性的秘密 (徐兆寿)</p>
+
+<p><a href="http://edu.ctfile.com/info/WmG113626">http://edu.ctfile.com/info/WmG113626</a></p>
+<p class="twoindent">少有人走的路I (M·斯科特·派克)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/2Ld150788675">http://lapchih.ctfile.com/fs/2Ld150788675</a></p>
+<p class="twoindent">少有人走的路II (M·斯科特·派克)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/dZz150788726">http://lapchih.ctfile.com/fs/dZz150788726</a></p>
+<p class="twoindent">少有人走的路III (M·斯科特·派克)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/qZK150788732">http://lapchih.ctfile.com/fs/qZK150788732</a></p>
+<p class="twoindent">魔鬼约会学 (阮琦)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/6oh150787490">http://lapchih.ctfile.com/fs/6oh150787490</a></p>
+<p class="twoindent">魔鬼搭讪学 (阮琦)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/uqy150786074">http://lapchih.ctfile.com/fs/uqy150786074</a></p>
+<p class="twoindent">自控力 （凯利麦格尼格尔）</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/CM1150782933">http://lapchih.ctfile.com/fs/CM1150782933</a></p>
+<p class="twoindent">毅力：如何培养自律的习惯 （美 吉姆·兰德尔）</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/td0150754301">http://lapchih.ctfile.com/fs/td0150754301</a></p>
+<p class="twoindent">怪诞心理学 (英 理查德·怀斯曼)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/AfS150754079">http://lapchih.ctfile.com/fs/AfS150754079</a></p>
+<p class="twoindent">不为人知的故事：解读强迫症之谜(徐光兴)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/zXo150752390">http://lapchih.ctfile.com/fs/zXo150752390</a></p>
+<p class="twoindent">为什么男人爱说谎女人爱哭 (美)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/WvZ150720890">http://lapchih.ctfile.com/fs/WvZ150720890</a></p>
+<p class="twoindent">让感觉跟着跑 (托马斯 奥特曼)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/Y5J150681539">http://lapchih.ctfile.com/fs/Y5J150681539</a></p>
+<p class="twoindent">当男人与女人相遇：两性亲密关系的七大心理定律</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/Tig150377999">http://lapchih.ctfile.com/fs/Tig150377999</a></p>
+<p class="twoindent">滚床单心理学</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/HCZ150101117">http://lapchih.ctfile.com/fs/HCZ150101117</a></p>
+<p class="twoindent">乌合之众：大众心理研究</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/pow149953373">http://lapchih.ctfile.com/fs/pow149953373</a></p>
+<p class="twoindent">爱与性的实验报告</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/RFs149937224">http://lapchih.ctfile.com/fs/RFs149937224</a></p>
+<p class="twoindent">冷读术：瞬间赢得他人信任的实用社交战术</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/30V149934992">http://lapchih.ctfile.com/fs/30V149934992</a></p>
+<p class="twoindent">国际刑警教你的读心术、推理术、测谎术</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/HsG149934617">http://lapchih.ctfile.com/fs/HsG149934617</a></p>
+<p class="twoindent"><strong>5 健康养生类 </strong></p>
+
+<p class="twoindent">图解黄帝内经 经典图解畅销版 (江西科学技术出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/x3P172596622">https://lapchih.ctfile.com/fs/x3P172596622</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/BrL172596658">https://kdsebook.ctfile.com/fs/BrL172596658</a></p>
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/S1B167340642" target="_blank">这本书能让你永久戒烟(英 亚伦·卡尔, 聂传炎 译, 吉林文史出版社)</a></p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/4HF167343946">https://kdsebook.ctfile.com/fs/4HF167343946</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/S1B167340642">https://lapchih.ctfile.com/fs/S1B167340642</a></p>
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/48i167340646" target="_blank">这本书能让你戒烟 (英 亚伦·卡尔, 严冬冬 译, 吉林文史出版社)</a></p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/48i167340646">https://lapchih.ctfile.com/fs/48i167340646</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/cUI167343926">https://kdsebook.ctfile.com/fs/cUI167343926</a></p>
+<p class="twoindent">你的身体，是一切美好的开始  (卡梅隆·迪亚茨 &amp; 桑德拉·巴克，北京联合出版公司)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/tTl164456808">https://kdsebook.ctfile.com/fs/tTl164456808</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/9JP164451112">https://lapchih.ctfile.com/fs/9JP164451112</a></p>
+<p class="twoindent">爱爱安全须知 男女性生活常识全书 (李宏军 菁品文化事业有限公司)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/6Qg160193688">http://lapchih.ctfile.com/fs/6Qg160193688</a></p>
+<p class="twoindent"><a href="http://lapchih.ctfile.com/fs/Zxx159382591" target="_blank">轻断食 正在横扫全球的瘦身革命（英 莫斯利&amp;史宾赛著，谢佳真译）</a></p>
+
+<p><a href="http://lapchih.ctfile.com/fs/Zxx159382591">http://lapchih.ctfile.com/fs/Zxx159382591</a></p>
+<p class="twoindent"><a href="http://lapchih.ctfile.com/fs/jvF158022127" target="_blank">黄帝内经 十二时辰和二十四节气养生 （赵建新）</a></p>
+
+<p><a href="http://lapchih.ctfile.com/fs/jvF158022127">http://lapchih.ctfile.com/fs/jvF158022127</a></p>
+<p class="twoindent">从头到脚谈养生(张清)&nbsp;</p>
+
+<p><a href="http://www.ctfile.com/info/ceA281153">http://www.ctfile.com/info/ceA281153</a></p>
+<p class="twoindent">捏捏就能瘦 (莫雨平)</p>
+
+<p><a href="http://www.ctfile.com/info/Cck280136">http://www.ctfile.com/info/Cck280136</a></p>
+<p class="twoindent">气血的解析 (张劲翀)</p>
+
+<p><a href="http://edu.ctfile.com/info/LM6125584">http://edu.ctfile.com/info/LM6125584</a></p>
+<p class="twoindent">营养圣经 (英 帕特里克.霍尔福德)  [PDF+MOBI+EPUB版]&nbsp;</p>
+
+<p><a href="http://edu.ctfile.com/info/Ycf110914">http://edu.ctfile.com/info/Ycf110914</a></p>
+<p class="twoindent">水是最好的药I,II,III  3本合集(美 巴特曼)</p>
+
+<p><a href="http://edu.ctfile.com/info/Z2P105085">http://edu.ctfile.com/info/Z2P105085</a></p>
+<p class="twoindent">身体会问你的500个营养问题(英  帕特里克.霍尔福德)</p>
+
+<p><a href="http://edu.ctfile.com/info/aXn94600">http://edu.ctfile.com/info/aXn94600</a></p>
+<p class="twoindent">有病治病，无病防身 (赵一 王耀堂)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/aog150713789">http://lapchih.ctfile.com/fs/aog150713789</a></p>
+<p class="twoindent">增阳减阴求长生-人体阳气修复工程</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/De7150697559">http://lapchih.ctfile.com/fs/De7150697559</a></p>
+
+<p class="twoindent">少林延寿法 (德虔)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/LS0150679442">http://lapchih.ctfile.com/fs/LS0150679442</a></p>
+<p class="twoindent">不花钱的美容术 (宇佐美惠子著 刘杨译)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/HOa150675164">http://lapchih.ctfile.com/fs/HOa150675164</a></p>
+<p class="twoindent">不生病之真法(张家瑞)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/4CM150383987">http://lapchih.ctfile.com/fs/4CM150383987</a></p>
+<p class="twoindent">百岁医生教我的生机健康法 (松田麻美子)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/oKA150383003">http://lapchih.ctfile.com/fs/oKA150383003</a></p>
+<p class="twoindent">百岁医生教我的生机健康法2  (松田麻美子)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/dKx150679958">http://lapchih.ctfile.com/fs/dKx150679958</a></p>
+<p class="twoindent">做自己的颈椎医生</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/uQO150199379">http://lapchih.ctfile.com/fs/uQO150199379</a></p>
+<p class="twoindent">补肾壮阳道家秘法</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/Y1P150172847">http://lapchih.ctfile.com/fs/Y1P150172847</a></p>
+<p class="twoindent"><strong>语言学习类 </strong></p>
+
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/P9l167939806" target="_blank">上海话三月通</a>(文本+音频)</p>
+
+<p>下载地址：<a href="https://lapchih.ctfile.com/fs/P9l167939806">https://lapchih.ctfile.com/fs/P9l167939806</a></p>
+<p class="twoindent">学说上海话 (文本+音频)</p>
+
+<p>下载地址：<a href="https://lapchih.ctfile.com/fs/QA6167939306">https://lapchih.ctfile.com/fs/QA6167939306</a></p>
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/T56167939518" target="_blank">上海话900句</a>(文本+音频)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/ETe167939470">https://kdsebook.ctfile.com/fs/ETe167939470</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/T56167939518">https://lapchih.ctfile.com/fs/T56167939518</a></p>
+<p class="twoindent">英文短俚语 Short  English Slangs (钟爱德 广东科技出版社)</p>
+
+<p>下载地址1：<a href="http://kdsebook.ctfile.com/fs/QFN163785613">http://kdsebook.ctfile.com/fs/QFN163785613</a></p>
+
+<p>下载地址2：<a href="http://lapchih.ctfile.com/fs/FJJ163785661">http://lapchih.ctfile.com/fs/FJJ163785661</a></p>
+<p class="twoindent">TOEFL词汇词根 联想记忆[PDF+MP3]  (俞敏洪)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/xsG157680664">http://lapchih.ctfile.com/fs/xsG157680664</a></p>
+<p class="twoindent"><a href="http://home.ctfile.com/gotoShare.php?id=151467017" target="_blank">英语思维是这样炼成的(王乐平)</a></p>
+
+<p><a href="http://edu.ctfile.com/info/fjR133909">http://edu.ctfile.com/info/fjR133909</a></p>
+<p class="twoindent">中国人写英文文章最常范的错误总结 (Felicia Brittman) The Most Common Habbits from More Than 200 English Papers  by Graduate Chinese Engineering Students</p>
+
+<p><a href="http://edu.ctfile.com/info/b4R132382">http://edu.ctfile.com/info/b4R132382</a></p>
+<p class="twoindent">英汉比较与翻译(秦洪武)</p>
+
+<p><a href="http://edu.ctfile.com/info/1Ze131005">http://edu.ctfile.com/info/1Ze131005</a></p>
+<p class="twoindent">Principles and Practice in Second Language  Acquisition (Stephen Krashen)</p>
+
+<p><a href="http://edu.ctfile.com/info/3x9130975">http://edu.ctfile.com/info/3x9130975</a></p>
+<p class="twoindent">美国文化阅读教程 (宁洪)</p>
+
+<p><a href="http://edu.ctfile.com/info/LWk130825">http://edu.ctfile.com/info/LWk130825</a></p>
+<p class="twoindent">What's up：A  guide to American CollegeSpeak - Idioms and Slang for TOEFL Students 美国英语沟通高手 (Jamie Drucker)</p>
+
+<p><a href="http://down.ctfile.com/i/4e53cc/f/ADVeaQU2BTYBZAA6Dz5SMAFv">http://down.ctfile.com/i/4e53cc/f/ADVeaQU2BTYBZAA6Dz5SMAFv</a></p>
+<p class="twoindent">10年英语不白学 用这点英文玩转旅游口语 (金利).</p>
+
+<p><a href="http://down.ctfile.com/i/4e53cc/f/V2JfaFVmXm0DZg8yATZQP1M8">http://down.ctfile.com/i/4e53cc/f/V2JfaFVmXm0DZg8yATZQP1M8</a></p>
+<p class="twoindent">英语的原理：用美国人的思维学英语</p>
+
+<p><a href="http://edu.ctfile.com/info/Njp129838">http://edu.ctfile.com/info/Njp129838</a></p>
+<p class="twoindent">时尚英语 美国流行文化A to Z [English - the Real Deal] 1&amp;2合集 (刘彦)</p>
+
+<p><a href="http://edu.ctfile.com/info/mnh127276">http://edu.ctfile.com/info/mnh127276</a></p>
+<p class="twoindent">当代美国流行语 (吴青 郝杰)</p>
+
+<p><a href="http://edu.ctfile.com/info/BWM127144">http://edu.ctfile.com/info/BWM127144</a></p>
+<p class="twoindent">用老美的一天学英文 日常生活篇 (金利)</p>
+
+<p><a href="http://edu.ctfile.com/info/JRL126013">http://edu.ctfile.com/info/JRL126013</a></p>
+<p class="twoindent">The Spirit of the Chinese People&nbsp;中国人的精神(辜鸿铭)</p>
+
+<p><a href="http://edu.ctfile.com/info/exO111784">http://edu.ctfile.com/info/exO111784</a></p>
+<p class="twoindent">英语口语8000句(MP3+字幕+文本)</p>
+
+<p><a href="http://edu.ctfile.com/info/nCa105196">http://edu.ctfile.com/info/nCa105196</a></p>
+<p class="twoindent">10年英语不白学 用这点英文玩转职场英文(金利)</p>
+
+<p><a href="http://edu.ctfile.com/info/1FF102778">http://edu.ctfile.com/info/1FF102778</a></p>
+<p class="twoindent">TOEFL听力的弦外之音</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/XFH150795686">http://lapchih.ctfile.com/fs/XFH150795686</a></p>
+<p class="twoindent">考研英语不读胜读 (袁昊)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/IA5150339677">http://lapchih.ctfile.com/fs/IA5150339677</a></p>
+<p class="twoindent">商务英语常用术语释义 (兰磊)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/buT150328622">http://lapchih.ctfile.com/fs/buT150328622</a></p>
+<p class="twoindent">GMAT数学高分快速突破 (陈向东)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/LfN150328247">http://lapchih.ctfile.com/fs/LfN150328247</a></p>
+<p class="twoindent"><a href="http://kdsxs.blog.163.com/blog/static/26090703220164612433504/" target="_blank" title="阅读全文">GRE &amp; GMAT 数学难题精解 (钱永强)</a></p>
+
+<p><a href="http://lapchih.ctfile.com/fs/tzP150326771/">http://lapchih.ctfile.com/fs/tzP150326771/</a></p>
+<p class="twoindent">使用频率最高的英语短语296句</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/LRA149974562">http://lapchih.ctfile.com/fs/LRA149974562</a></p>
+<p class="twoindent">高级英文理解与表达教程 孙瑞禾</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/f3t150323411">http://lapchih.ctfile.com/fs/f3t150323411</a></p>
+<p class="twoindent"><strong>5 日常生活类 </strong></p>
+
+<p class="twoindent">二手房买卖技巧实战宝典（郑葳，翁优飞）</p>
+
+<p><a href="http://edu.ctfile.com/info/iz999271">http://edu.ctfile.com/info/iz999271</a></p>
+<p class="twoindent">你的猫正密谋干掉你</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/5t4150720248">http://lapchih.ctfile.com/fs/5t4150720248</a></p>
+<p class="twoindent">模特儿Pose图解100选&nbsp;&nbsp;</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/0Lq150096938/">http://lapchih.ctfile.com/fs/0Lq150096938/</a></p>
+<p class="twoindent"><strong>6 精品软件 </strong></p>
+
+<p class="twoindent">福昕PDF阅读器8.55领鲜版</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/kZq176069997">https://kdsebook.ctfile.com/fs/kZq176069997</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/0qS176060805">https://lapchih.ctfile.com/fs/0qS176060805</a></p>
+<p class="twoindent">福昕阅读器软件8.1版 &amp; 福昕PDF转Word软件 20170208</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/OG9176070045">https://kdsebook.ctfile.com/fs/OG9176070045</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/OI2176059608">https://lapchih.ctfile.com/fs/OI2176059608</a></p>
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/69T172503334" target="_blank">YouTube视频下载软件YouTubeDownloader破解版</a></p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/69T172503334">https://lapchih.ctfile.com/fs/69T172503334</a></p>
+
+<p>下载地址2：<a href="https://kdsbeautyleg.ctfile.com/fs/lZv172509950">https://kdsbeautyleg.ctfile.com/fs/lZv172509950</a></p>
+<p class="twoindent"><a href="https://kdsbeautyleg.ctfile.com/fs/rbd171269002">论坛群发大师软件</a></p>
+
+<p>下载地址1：<a href="https://kdsbeautyleg.ctfile.com/fs/rbd171269002">https://kdsbeautyleg.ctfile.com/fs/rbd171269002</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/agO171265126">https://lapchih.ctfile.com/fs/agO171265126</a></p>
+<p class="twoindent"><a href="https://kdsbeautyleg.ctfile.com/fs/WCR171268802">快手看片安卓版软件.</a></p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/D9C171265034">https://lapchih.ctfile.com/fs/D9C171265034</a></p>
+
+<p>下载地址2：<a href="https://kdsbeautyleg.ctfile.com/fs/WCR171268802">https://kdsbeautyleg.ctfile.com/fs/WCR171268802</a></p>
+<p class="twoindent">啄木鸟图片批量下载器 去更新破解版</p>
+
+<p>下载地址1：<a href="https://kdsbeautyleg.ctfile.com/fs/rmU167623602">https://kdsbeautyleg.ctfile.com/fs/rmU167623602</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/9M1167614746">https://lapchih.ctfile.com/fs/9M1167614746</a></p>
+<p class="twoindent">翻*墙*软*件 – 天行加速器VPN</p>
+
+<p>下载地址：<a href="https://lapchih.ctfile.com/fs/ivc165637676">https://lapchih.ctfile.com/fs/ivc165637676</a></p>
+<p class="twoindent">家人定位器v4.44 (支持Android 2.2+及更高版本，家人定位器是一款用于追踪家人位置的工具，界面做得很漂亮，提醒功能比较强大，连目标超速都可以收到警报，为了安全家长们用它可以时刻监控到孩子们的动态。)</p>
+
+<p>下载地址：<a href="http://lapchih.ctfile.com/fs/n06155963098">http://lapchih.ctfile.com/fs/n06155963098</a></p>
+<p class="twoindent">同声翻译超级版4.3最新破解版</p>
+
+<p>下载地址：<a href="http://lapchih.ctfile.com/fs/bkg155964082">http://lapchih.ctfile.com/fs/bkg155964082</a></p>
+<p class="twoindent">美图秀秀 [PC版+安卓版]</p>
+
+<p>下载地址：<a href="http://lapchih.ctfile.com/fs/MtZ156939070">http://lapchih.ctfile.com/fs/MtZ156939070</a></p>
+<p class="twoindent">美拍安卓版App</p>
+
+<p>下载地址：<a href="http://lapchih.ctfile.com/fs/UAV156942085">http://lapchih.ctfile.com/fs/UAV156942085</a></p>
+<p class="twoindent">BatchInpaint 2.2 中文破解版 - 最强专业图片批量去水印软件工具</p>
+
+<p>下载地址：<a href="http://lapchih.ctfile.com/fs/9Ph155373316">http://lapchih.ctfile.com/fs/9Ph155373316</a></p>
+<p class="twoindent">翻/墙/软件包[PC版+ 安卓版]</p>
+
+<p>下载地址：<a href="http://srcpan.com/fs/0db2anedu7rs3ki9897/">http://srcpan.com/fs/0db2anedu7rs3ki9897/</a></p>
+<p class="twoindent">自由门翻/墙/软件</p>
+
+<p>下载地址：<a href="https://lapchih.ctfile.com/fs/ytB176048214">https://lapchih.ctfile.com/fs/ytB176048214</a></p>
+<p class="twoindent"><strong>历史人文类</strong><strong> </strong></p>
+
+<p class="twoindent">如果这是宋史 (高天流云 著, 辽宁教育出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/4sI175420455">https://kdsebook.ctfile.com/fs/4sI175420455</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/q5E175420446">https://lapchih.ctfile.com/fs/q5E175420446</a></p>
+<p class="twoindent">李光耀观天下 (李光耀 著, 北京大学出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/UGL173035016">https://lapchih.ctfile.com/fs/UGL173035016</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/5IY173034492">https://kdsebook.ctfile.com/fs/5IY173034492</a></p>
+<p class="twoindent">中越战争秘录 (金辉&amp;张惠生&amp;张卫明 著, 时代文艺出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/HxU169813494">https://kdsebook.ctfile.com/fs/HxU169813494</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/1XM169813482">https://lapchih.ctfile.com/fs/1XM169813482</a></p>
+<p class="twoindent">M.Z.D.的心理分析(美 白鲁恂  著, 时代国际出版有限公司)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/fOu165644664">https://kdsebook.ctfile.com/fs/fOu165644664</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/uO2165643964">https://lapchih.ctfile.com/fs/uO2165643964</a></p>
+<p class="twoindent">我在中国的二十五年 (美 约翰·本杰明·鲍威尔 著, 刘志俊  译, 译林出版社)&nbsp;</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/1dF165429044">https://lapchih.ctfile.com/fs/1dF165429044</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/VCS165429792">https://kdsebook.ctfile.com/fs/VCS165429792</a></p>
+<p class="twoindent">万历十五年[增订纪念本] (黄仁宇 著, 中华书局)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/2ft169587354">https://kdsebook.ctfile.com/fs/2ft169587354</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/1Kw165131984">https://lapchih.ctfile.com/fs/1Kw165131984</a></p>
+
+<p>下载地址3：<a href="https://kdsebook.ctfile.com/fs/ECP165131872">https://kdsebook.ctfile.com/fs/ECP165131872</a></p>
+<p class="twoindent">我认识的鬼子兵 (方军)</p>
+
+<p>下载地址1：<a href="http://lapchih.ctfile.com/fs/wRO163785073">http://lapchih.ctfile.com/fs/wRO163785073</a></p>
+
+<p>下载地址2：<a href="http://kdsebook.ctfile.com/fs/jdb163785229">http://kdsebook.ctfile.com/fs/jdb163785229</a></p>
+<p class="twoindent"><a href="http://kdsebook.ctfile.com/fs/5Jj163774594" target="_blank">被掩盖的真相 - 七七事变的来龙去脉</a></p>
+
+<p><a href="http://kdsebook.ctfile.com/fs/5Jj163774594">http://kdsebook.ctfile.com/fs/5Jj163774594</a></p>
+<p class="twoindent"><a href="http://lapchih.ctfile.com/fs/YVE163630997" target="_blank">從甲午到七七：日本為什麼侵華 (馮學榮 香港中華書局</a>)</p>
+
+<p>下载地址1：<a href="http://kdsebook.ctfile.com/fs/Emm163635479">http://kdsebook.ctfile.com/fs/Emm163635479</a></p>
+
+<p>下载地址2：<a href="http://lapchih.ctfile.com/fs/YVE163630997">http://lapchih.ctfile.com/fs/YVE163630997</a></p>
+<p class="twoindent">不忍面对的真相 近代史的30个疑问 (冯学荣 九州出版社)</p>
+
+<p>下载地址1：<a href="http://kdsebook.ctfile.com/fs/UMp163635467">http://kdsebook.ctfile.com/fs/UMp163635467</a></p>
+
+<p>下载地址2：<a href="http://lapchih.ctfile.com/fs/y4p163630367">http://lapchih.ctfile.com/fs/y4p163630367</a></p>
+<p class="twoindent">历史其实很雷人 (冯学荣 团结出版社)</p>
+
+<p>下载地址1：<a href="http://lapchih.ctfile.com/fs/BML163630121">http://lapchih.ctfile.com/fs/BML163630121</a></p>
+
+<p>下载地址2：<a href="http://kdsebook.ctfile.com/fs/g4n163635482">http://kdsebook.ctfile.com/fs/g4n163635482</a></p>
+<p class="twoindent"><a href="http://lapchih.ctfile.com/fs/Tqs163629860" target="_blank">日本为什么侵华：从甲午战争到七七事变 ( 冯学荣 金城出版社)</a></p>
+
+<p>下载地址1：<a href="http://kdsebook.ctfile.com/fs/Jfv163635500">http://kdsebook.ctfile.com/fs/Jfv163635500</a></p>
+
+<p>下载地址2：<a href="http://lapchih.ctfile.com/fs/Tqs163629860">http://lapchih.ctfile.com/fs/Tqs163629860</a></p>
+<p class="twoindent">往事沧桑  (伍修权)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/MwQ150792461">http://lapchih.ctfile.com/fs/MwQ150792461</a></p>
+<p class="twoindent">张学良口述历史 (唐德刚)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/jt4150790739">http://lapchih.ctfile.com/fs/jt4150790739</a></p>
+<p class="twoindent">1938-1941重庆大轰炸 (易丹 钱滨)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/sWn150055517">http://lapchih.ctfile.com/fs/sWn150055517</a></p>
+<p class="twoindent">中国家训史 (徐少锦 陈延斌 陕西人民出版社)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/qvj162961246">http://lapchih.ctfile.com/fs/qvj162961246</a></p>
+<p class="twoindent">大转折1937：中日全面战争爆发始末</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/XHG149985809">http://lapchih.ctfile.com/fs/XHG149985809</a></p>
+<p class="twoindent">文明的冲突 Samuel Huntington</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/aMe149922338">http://lapchih.ctfile.com/fs/aMe149922338</a></p>
+<p class="twoindent">（晚清）中日战争1-12册 戚其章主编</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/CEp149773643">http://lapchih.ctfile.com/fs/CEp149773643</a></p>
+<p class="twoindent">中南海恩仇录(京夫子) [CHM+TXT版]</p>
+
+<p><a href="http://srcpan.com/fs/3k7d3s3e3b8o3o7k3/">http://srcpan.com/fs/3k7d3s3e3b8o3o7k3/</a></p>
+<p class="twoindent">晚年周恩来（高文谦）[APK+PDF版]</p>
+
+<p><a href="http://srcpan.com/fs/2k4d3s2e9b3odo1k0/">http://srcpan.com/fs/2k4d3s2e9b3odo1k0/</a></p>
+<p class="twoindent">道貌岸然的周恩来（高文谦）[APK+CHM版]</p>
+
+<p><a href="http://srcpan.com/fs/ckdscebofokd03e18/">http://srcpan.com/fs/ckdscebofokd03e18/</a></p>
+<p class="twoindent">毛泽东 鲜为人知的故事 (Mao: the Untold Story) [中英文PDF双语版]</p>
+
+<p><a href="http://srcpan.com/fs/akds6ebo5ok4a5dc8/">http://srcpan.com/fs/akds6ebo5ok4a5dc8/</a></p>
+<p class="twoindent">MZD私人医生回忆录（密码kds1024）</p>
+
+<p><a href="http://dix3.com/fs/7debbaan6d1u0r2ski3/">http://dix3.com/fs/7debbaan6d1u0r2ski3/</a></p>
+<p class="twoindent">毛泽东荒淫无道的糜烂生活 (沈容) [APK+TXT版]</p>
+
+<p><a href="http://srcpan.com/fs/4kd9seabo4okf0aa7/">http://srcpan.com/fs/4kd9seabo4okf0aa7/</a></p>
+<p class="twoindent">毛泽东和他的女人们(京夫子) [CHM+PDF+TXT版]</p>
+
+<p><a href="http://srcpan.com/fs/0kd5se4bo6ok30661/">http://srcpan.com/fs/0kd5se4bo6ok30661/</a></p>
+<p class="twoindent"><strong>7 佛教类 </strong></p>
+
+<p class="twoindent">金刚经 [PDF版和mobi版  带拼音注音]</p>
+
+<p><a href="http://edu.ctfile.com/info/Zai105424">http://edu.ctfile.com/info/Zai105424</a></p>
+<p class="twoindent">《药师琉璃光七佛本愿功德经》《药师琉璃光如来本愿功德经》</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/jdy150109520">http://lapchih.ctfile.com/fs/jdy150109520</a></p>
+<p class="twoindent">《寿命是自己一点一滴努力来的》</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/N6b150723083">http://lapchih.ctfile.com/fs/N6b150723083</a></p>
+<p class="twoindent">心上莲花次第开(微·莲花-第五版)</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/1A3150722513">http://lapchih.ctfile.com/fs/1A3150722513</a></p>
+<p class="twoindent">现代因果实录三合一<strong>（宣化上人弟子果卿居士著）</strong></p>
+
+<p><a href="http://lapchih.ctfile.com/fs/Xxm150110732">http://lapchih.ctfile.com/fs/Xxm150110732</a></p>
+<p class="twoindent">中国古代算命术（修订本）</p>
+
+<p><a href="http://lapchih.ctfile.com/fs/3BY150201542">http://lapchih.ctfile.com/fs/3BY150201542</a></p>
+<p class="twoindent"><strong>军事类视频</strong><strong> </strong></p>
+
+<p class="twoindent"><a href="https://lapchih.ctfile.com/fs/Oan170117190" target="_blank">阿帕奇武装直升机组装视频(2'10s)</a></p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/Oan170117190">https://lapchih.ctfile.com/fs/Oan170117190</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/RqM170118586">https://kdsebook.ctfile.com/fs/RqM170118586</a></p>
+<p class="twoindent"><strong>小说类电子书</strong><strong> </strong></p>
+
+<p class="twoindent">侯卫东官场笔记 全集 (小桥老树 著, 凤凰出版社 )</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/9YA174536152">https://lapchih.ctfile.com/fs/9YA174536152</a></p>
+
+<p>下载地址2： <a href="https://kdsebook.ctfile.com/fs/iHG174535700">https://kdsebook.ctfile.com/fs/iHG174535700</a></p>
+<p class="twoindent">驻京办主任 三部全集 (王晓方 著, 作家出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/upw174535216">https://kdsebook.ctfile.com/fs/upw174535216</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/J7f174535156">https://lapchih.ctfile.com/fs/J7f174535156</a></p>
+<p class="twoindent">少年巴比伦 (路内 著, 北京十月文艺出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/5uD165640812">https://lapchih.ctfile.com/fs/5uD165640812</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/5np165643784">https://kdsebook.ctfile.com/fs/5np165643784</a></p>
+<p class="twoindent">云中人（路内 著, 浙江文艺出版社）</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/GNm165643788">https://kdsebook.ctfile.com/fs/GNm165643788</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/MJP165640816">https://lapchih.ctfile.com/fs/MJP165640816</a></p>
+<p class="twoindent">追随她的旅程 (路内 著, 中信出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/K0g165640820">https://lapchih.ctfile.com/fs/K0g165640820</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/gmc165643792">https://kdsebook.ctfile.com/fs/gmc165643792</a></p>
+<p class="twoindent">花街往事  (路内 著)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/E8t165643780">https://kdsebook.ctfile.com/fs/E8t165643780</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/e70165640824">https://lapchih.ctfile.com/fs/e70165640824</a></p>
+<p class="twoindent"><strong>宠物类电子书</strong><strong> </strong></p>
+
+<p class="twoindent">最新犬美容护理手册 (池田昌宏 福山英也 著, 陈忠&amp;张静仪 译, 中华民国爱犬美容协会KCC)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/sdU171954126">https://lapchih.ctfile.com/fs/sdU171954126</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/uyH171954122">https://kdsebook.ctfile.com/fs/uyH171954122</a></p>
+<p class="twoindent">养猫指南  (英 布鲁斯·佛格 著, 易小琳&amp;宗会来&amp;张莉 译, 中国农业出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/HVq171953262">https://kdsebook.ctfile.com/fs/HVq171953262</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/Cms171953266">https://lapchih.ctfile.com/fs/Cms171953266</a></p>
+<p class="twoindent">养狗训狗与狗病防治</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/nwL171953122">https://lapchih.ctfile.com/fs/nwL171953122</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/qB8171953118">https://kdsebook.ctfile.com/fs/qB8171953118</a></p>
+<p class="twoindent">我给狗狗做衣服 (阿瑛 著, 湖南科技出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/oMV171951978">https://kdsebook.ctfile.com/fs/oMV171951978</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/YGd171953014">https://lapchih.ctfile.com/fs/YGd171953014</a></p>
+<p class="twoindent">完全图解狗的心理 教你成为睿智的主人 (林乐毅 著, 南海出版公司)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/klP171951034">https://lapchih.ctfile.com/fs/klP171951034</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/mpU171951022">https://kdsebook.ctfile.com/fs/mpU171951022</a></p>
+<p class="twoindent">世界名犬鉴赏与驯养 (吴边 著, 青岛出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/xSw171931618">https://kdsebook.ctfile.com/fs/xSw171931618</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/Haz171932562">https://lapchih.ctfile.com/fs/Haz171932562</a></p>
+<p class="twoindent">时尚宠物手工装 (青岛出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/7ON171927990">https://lapchih.ctfile.com/fs/7ON171927990</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/30y171927490">https://kdsebook.ctfile.com/fs/30y171927490</a></p>
+<p class="twoindent">牵犬师培训手册 日本最权威的训犬教科书 (日 森喜夫&amp;四下正雄&amp;川田子 著, 台湾广研印刷社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/qt0171923418">https://kdsebook.ctfile.com/fs/qt0171923418</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/9vl171922402">https://lapchih.ctfile.com/fs/9vl171922402</a></p>
+<p class="twoindent">流行爱犬服饰 (台湾日贩股份有限公司)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/OhB171902082">https://lapchih.ctfile.com/fs/OhB171902082</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/MIL171902590">https://kdsebook.ctfile.com/fs/MIL171902590</a></p>
+<p class="twoindent">军犬训练讲义 [1989版] (总后基指军犬训练队 著)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/ugx171888358">https://kdsebook.ctfile.com/fs/ugx171888358</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/yaZ171888354">https://lapchih.ctfile.com/fs/yaZ171888354</a></p>
+<p class="twoindent">狗宝宝的50种饰物制作 (美 鲍伯·尼达姆 著, 邹咏梅&amp;孙全志 译, 山东科学技术出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/mVd171881754">https://lapchih.ctfile.com/fs/mVd171881754</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/76U171881750">https://kdsebook.ctfile.com/fs/76U171881750</a></p>
+<p class="twoindent">二手衣做狗衣服 (内藤朗 著, 叶钰汶 译)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/7Jm171880694">https://kdsebook.ctfile.com/fs/7Jm171880694</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/2En171880698">https://lapchih.ctfile.com/fs/2En171880698</a></p>
+<p class="twoindent">宠物流行精品DIY (金永周 著, 林奕如 译, 大都会文化事业有限公司)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/Z06171880510">https://lapchih.ctfile.com/fs/Z06171880510</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/ssT171880506">https://kdsebook.ctfile.com/fs/ssT171880506</a></p>
+<p class="twoindent">宠物狗训练秘籍 为您的狗狗准备的86个挑战游戏 (亚瑟·J·哈格缇&amp;凯萝·李·本杰明 著, 云南人民出版社出版)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/V3i171879942">https://kdsebook.ctfile.com/fs/V3i171879942</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/EYR171879950">https://lapchih.ctfile.com/fs/EYR171879950</a></p>
+<p class="twoindent">宠物大联盟 纯种猫 (王巍 著, 湖南科学技术出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/qVN171879714">https://lapchih.ctfile.com/fs/qVN171879714</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/R9s171879710">https://kdsebook.ctfile.com/fs/R9s171879710</a></p>
+<p class="twoindent">RSPCA训犬指南  (英 布鲁斯·佛格 著, 王金文 译, 中国农业出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/1eB171879534">https://kdsebook.ctfile.com/fs/1eB171879534</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/HMN171879542">https://lapchih.ctfile.com/fs/HMN171879542</a></p>
+<p class="twoindent">27种爱犬生活用品DIY (DOG NEWS编辑部 著, 中国农业大学出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/cq0171876950">https://lapchih.ctfile.com/fs/cq0171876950</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/v4S171876938">https://kdsebook.ctfile.com/fs/v4S171876938</a></p>
+<p class="twoindent">10分钟轻松驯狗指南 - 奥巴马御用驯狗师训练秘笈 (美 潼恩 西尔维娅 著, 黄山书社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/2Wz171876414">https://kdsebook.ctfile.com/fs/2Wz171876414</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/Ze9171876410">https://lapchih.ctfile.com/fs/Ze9171876410</a></p>
+<p class="twoindent">3小时狗狗服装DIY (陈曦&amp;姜友勤 著, 上海科学技术出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/Yq9171875818">https://lapchih.ctfile.com/fs/Yq9171875818</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/L2z171875822">https://kdsebook.ctfile.com/fs/L2z171875822</a></p>
+<p class="twoindent">爱犬的服饰 (日 贵妇人编辑部 著, 王夕刚 译, 山东科学技术出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/Hoc171874746">https://kdsebook.ctfile.com/fs/Hoc171874746</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/QWF171874402">https://lapchih.ctfile.com/fs/QWF171874402</a></p>
+<p class="twoindent">宠物医生手册 第二版 (辽宁科学技术出版社)</p>
+
+<p>下载地址：<a href="https://lapchih.ctfile.com/fs/8Gv171874750">https://lapchih.ctfile.com/fs/8Gv171874750</a></p>
+<p class="twoindent">初次养狗万用百科 (彭永鹤 著)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/U51171850658">https://kdsebook.ctfile.com/fs/U51171850658</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/y9n171850922">https://lapchih.ctfile.com/fs/y9n171850922</a></p>
+<p class="twoindent">我和宠物们的约定 宠物摄影 [全新版] (光合网著, 浙江摄影出版社)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/PXJ171850534">https://kdsebook.ctfile.com/fs/PXJ171850534</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/W34171850974">https://lapchih.ctfile.com/fs/W34171850974</a></p>
+<p class="twoindent">宠物服装DIY  (胡溪 著, 中国纺织出版社)</p>
+
+<p>下载地址1：<a href="https://lapchih.ctfile.com/fs/2HK171850978">https://lapchih.ctfile.com/fs/2HK171850978</a></p>
+
+<p>下载地址2：<a href="https://kdsebook.ctfile.com/fs/pXv171849754">https://kdsebook.ctfile.com/fs/pXv171849754</a></p>
+<p class="twoindent">名犬 全世界300多种名犬的彩色图鉴 (英 阿尔德顿 著, 中国友谊出版公司)</p>
+
+<p>下载地址1：<a href="https://kdsebook.ctfile.com/fs/LbN171848194">https://kdsebook.ctfile.com/fs/LbN171848194</a></p>
+
+<p>下载地址2：<a href="https://lapchih.ctfile.com/fs/gX2171851094">https://lapchih.ctfile.com/fs/gX2171851094</a></p>
+<p class="twoindent"><strong>资源分类目录如下：</strong><strong> </strong></p>
+
+<p><strong>电子书资源</strong><strong> </strong></p>
+
+<p><strong><a href="http://lapchih.ctfile.com/u/7573155/15658156">http://lapchih.ctfile.com/u/7573155/15658156</a></strong></p>
+<p class="twoindent"><strong>软件资源</strong><strong> </strong></p>
+
+<p><strong><a href="http://lapchih.ctfile.com/u/7573155/15196812">http://lapchih.ctfile.com/u/7573155/15196812</a></strong></p>
+
+
+
+
+
+<p class="twoindent"><strong>萌宠视频</strong><strong> &amp; </strong><strong>截图</strong><strong> </strong></p>
+
+<p><strong><a href="http://lapchih.ctfile.com/u/7573155/18191867">http://lapchih.ctfile.com/u/7573155/18191867</a></strong></p>
+<p class="twoindent"><strong>微博和博客</strong><strong> </strong></p>
+
+<p><strong>更多资源，欢迎关注：</strong><strong> </strong></p>
+
+<p><strong>电子书微博：</strong><strong><a href="http://weibo.com/51ebook">http://weibo.com/51ebook</a></strong></p>
+
+<p><strong>电子书博客：</strong><strong><a href="http://kdsxs.blog.163.com/">http://kdsxs.blog.163.com</a></strong></p>
+
+
+
+<p><strong>在线萌宠动物乐园视频：</strong><strong><a href="http://i.youku.com/cuteanimal/">http://i.youku.com/cuteanimal/</a></strong></p>
+
+<p><strong>想用免费网盘或做网赚的到这里注册：</strong><strong> </strong></p>
+
+<p><strong>城通网盘</strong><strong>: </strong><strong><a href="http://www.ctfile.com/linker/7573155">http://www.ctfile.com/linker/7573155</a></strong><strong> </strong></p>
+  <p>&nbsp;</p>
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换
+\s*</p>
+
+<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+
+
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+\s*</p>\s*
+\s*<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+
+4 把第和章两个字去掉
+第(\S*)章
+------------------
+$1
+_____________________________________________________________________________________
+
+7 正则表达式参考：
+https://www.toutiao.com/i6370960744082571778/
+_____________________________________________________________________________________
+
+8
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+9 将标注序号更改为上标，红色，需一个个替换，英文html中有[1]
+(\[\d\])
+------------------
+<sup>$1</sup>
+_____________________________________________________________________________________
+10 替换章不是以1-9。?！…”“结尾的段落
+([^1-90。?！…”：？“章])</p>
+<p>
+------------------
+$1
+-->
+
+
