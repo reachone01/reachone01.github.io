@@ -1,0 +1,407 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿	
+<div class='layout'><p> 20 ‘I have no regrets'</p><p></p></div>	
+<div class='layout'><p>The little girl of Sui's who peed onto Ching-ling grew to be a cute toddler. Ching-ling gave her an English name, Yolanda, but called her ‘my little treasure'. Given that Ching-ling was by this time in her late sixties, people told the child to address her as ‘Grandmother', or ‘Taitai' (‘Ma'am'); but Ching-ling wanted to be called ‘Mother'. As if sensing what was on her mind, the clever child muttered to her ‘Mama-Taitai', which delighted Ching-ling and solved the problem. She promptly gave instructions that all children brought to visit her address her so. Behind closed doors with Yolanda, she referred to herself as Mama, and the child called her Mama.</p><p></p></div>	
+<div class='layout'><p>One day in 1961, the three-year-old Yolanda danced for Mama-Taitai. Ching-ling could hardly contain her pride, and showed her off to friends. Yolanda was invited to dance at a big celebration of Children's Day (1 June) that year, wearing a pretty Korean costume. When Ching-ling watched her on television (a television set was a rare luxury available only to a tiny group of the elite), she was enthralled. In particular, she felt that, incredibly, Yolanda looked like her. (Others thought so too.)</p><p></p></div>	
+<div class='layout'><p>Ching-ling had also unofficially adopted Yolanda's sister, Yong-jie, born in 1959. When the baby was five months old, a photo was taken of her. Ching-ling so loved the picture that she asked for it to be published on the cover of the official women's magazine, Women in China. (Her request was not granted.)</p><p></p></div>	
+<div class='layout'><p>The two little girls were in and out of her house, which was nothing short of paradise to them, as they lived in the basic and cramped staff quarters. Life was hard for their parents, the bodyguard and the factory worker, especially during the famine. The couple had many mouths to feed: after Yolanda and Yong-jie, they had two more children, a son and a daughter. It was not a happy family, either. There were frequent quarrels, and much yelling. Mrs Sui did not like Ching-ling's presence in her family, and in fits of frustration and rage, would smash bowls and plates, all precious items. Once she chased her husband to his boss's house and swore at the august Mme Sun, blaming her for the tension in the Sui household. Ching-ling was shaken and ordered accommodation to be found for the family at once. They soon moved out.</p><p></p></div>	
+<div class='layout'><p>In 1963, Sui suffered a stroke and was partially paralysed. Ching-ling wrote to an old friend: ‘The news made me very unhappy & up to now I have not gathered enough courage to visit him. I am afraid my emotion might cause him unhappiness & and make him worse. I have sent 2 of his children to the kindergarten where the influence is better than his home. The children are extremely clever. I visited them at the kindergarten upon my return & found them quite accustomed to their new routine & surroundings.' She would collect them and bring them to her home and they started to stay with her regularly.</p><p></p></div>	
+<div class='layout'><p>Although their mother resented this, she accepted that this was the best for her children. Yolanda and Yong-jie maintained their relationship with their parents, but spent much time with Mama-Taitai, who gave them otherwise unobtainable food and undreamed-of gorgeous clothes, including the softest fur coats made of baby lambs' wool, which thrilled them to bits. Ching-ling dressed their hair in the morning with colourful silk bows shaped like butterflies. She watched them play on her large lawn, sitting on a bench waiting for them to race into her arms. On the lawn were two big geese, and the girls, in her embrace, would feed them as they waddled over. Mama-Taitai taught the girls the etiquette of meeting VIPs and introduced them to visiting dignitaries. In one picture, a beaming Zhou En-lai took their hands and strolled in the garden with them.</p><p></p></div>	
+<div class='layout'><p>The girls completely occupied Ching-ling's life and engaged her attention. Yolanda later remarked that Ching-ling's previous devotion to her work may have been to fill the hollow inside her created by being deprived of motherhood.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>When the Cultural Revolution started in 1966, Red Sister could no longer ignore the reality outside her mansions. In this, Mao's biggest purge, President Liu Shao-qi was the prime target, because he had ambushed Mao and managed to slow down Mao's breakneck military industrialisation (thus halting the famine).* <a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a> Mao hated being thwarted and ensured Liu died a wretched death in prison. Mrs Liu was thrown into prison on the outlandish charge of being ‘a CIA and Nationalist spy'. Alleged Liu followers were condemned in the tens of millions all over China, with labels like ‘capitalist-roaders', ‘ox-devils and snake-demons', and other equally bizarre and deadly tags. Prime Minister Zhou En-lai hovered on the edge of survival by serving Mao slavishly.</p><p></p></div>	
+<div class='layout'><p>Ching-ling was spared, again thanks to her value as Mme Sun Yat-sen. Indeed, she headed a list of people singled out to be protected from the violence of the Red Guards, Mao's task force. Nasty things happened to her, but they were mere nuisance by comparison. Her parents' tomb in Shanghai was ransacked; but after she sent Zhou En-lai the pictures, it was restored – although the names of her brothers and sisters were chiselled off the tombstone. A new chief bodyguard made her life miserable, but after she complained to Mrs Zhou about him, he was removed. (The Maoist zealot was sacked in dramatic fashion. He was walking back to his own room in the grounds, humming a song composed to a quotation of Mao, when a subordinate saluted him and asked him to step into an office for some urgent consultation. No sooner did he walk in than two other guards leapt out from behind the doors and grabbed him by the arms, one removing the pistol from his belt at the same time. He was escorted out of the gate and rode away on his bicycle.)</p><p></p></div>	
+<div class='layout'><p>But Mao wanted everybody to be scared at least a little. So Red Guards were allowed to set up camp outside the crimson walls of Ching-ling's residence in Beijing (where she was told to remain and not to go to Shanghai). Their loudspeakers blasted blood-curdling slogans over her wall. They subjected their victims to violent ‘denunciation meetings' outside and cries of pain would sometimes reach her ears. She was terrified. There had been nothing like this in Stalin's purges or Chiang Kai-shek's white terror, or Mao's own previous political campaigns. Fearing that the Red Guards would be let into her house and torture her for possessing beautiful handbags, shoes and textiles, which were designated ‘bourgeois', she threw them into the stove. When she read a newspaper article that condemned keeping pets including pigeons and goldfish, she instantly put down the paper and told her staff to kill all her pigeons. Luckily for the birds, this matter was reported to Zhou En-lai, who gave an order to leave them alone. Once, Ching-ling impulsively described her fears to her old friend, the pro-Mao American journalist Anna Louise Strong. But as soon as she posted the letter, she was seized by a greater fear and rushed off a second letter telling Strong to destroy the first. Strong assured her: ‘on the same day that I received your second note I personally tore the first letter into small pieces and flushed it down the drain … Nothing of the correspondence remains.'</p><p></p></div>	
+<div class='layout'><p>Life became a daily bulletin of horrible news. Friends and relatives were tortured at denunciation meetings; they were thrown out of their homes, imprisoned, died violent deaths. A close friend and old associate, Jin Zhong-hua, until now a deputy mayor of Shanghai, was accused of being an ‘American spy' and was put through intense and brutal interrogations. His house was raided, and some eighty letters from Ching-ling were found. Ching-ling had asked him to destroy the letters, but he had treasured correspondence from her and had not done so. Although the letters contained nothing remotely offensive to the regime, the former deputy mayor was consumed by anxiety that they might for some unexpected or unfathomable reason have disastrous consequences for Ching-ling. The tension was too much to bear and he hanged himself in 1968.</p><p></p></div>	
+<div class='layout'><p>Virtually all Ching-ling's relatives were subject to appalling treatment, just for being related to the Soong family. A cousin on her mother's side, Ni Ji-zhen, was turned out of her house in Shanghai by Red Guards, and beaten and trampled on. In great pain and spitting blood, she appealed to Ching-ling for help. In one letter, dated 14 December 1966, she recounted in detail what she was going through and wrote: ‘I don't know how long I can go on with all this suffering and fear … I will try to live on (I hear that if you kill yourself you will be deemed a counter-revolutionary). I haven't broken any laws and I will not seek death … Would you please please write me a few words when you receive this letter so I know you've received it? That would give me some comfort.' After signing her name, the cousin added, ‘The daughter-in-law of the Gans committed suicide, with gas. Of the people I know, eight have done so.'</p><p></p></div>	
+<div class='layout'><p>Ching-ling, who was still under orders to live in Beijing, did receive the letter. She did not reply, but quietly asked an old subordinate in Shanghai to take some money to the homeless cousin. She said that ‘apart from being born into a bourgeois family, my cousin has never been involved in politics, and has never done anything bad. She has always done what she was told to do.' The subordinate was heard of no more and Ching-ling later learned that she had been thrown into one of the ad hoc prisons set up by virtually all organisations in China – probably for delivering her money. Red Sister had to stop trying to do anything to help her cousin. In May 1968, the much tortured and desperate cousin pressed the doorbell of Ching-ling's Shanghai mansion. She was told that Ching-ling was in Beijing and was turned away. The cousin crossed the street and went into a building opposite; there she leapt off the roof terrace and killed herself.</p><p></p></div>	
+<div class='layout'><p>The death haunted Red Sister, who felt that she was ‘partly responsible' for it, and often saw the cousin in her dreams. Finally, she could not bear the nightmares any more and unburdened herself to a long-time intimate friend, Cynthia, who as a child had been at her wedding to Sun Yat-sen. The letter was frank with anger and revulsion at the cruelty and atrocities all around. And she did not ask for the letter to be destroyed. Written in February 1971, this was the closest she came to protest against the Cultural Revolution. Red Sister was at her wits' end.</p><p></p></div>	
+<div class='layout'><p>In those hellish years, she was also forced to stop seeing her two adopted daughters. The old rumour about her relationship with their father, Sui, resurfaced, and this time insinuation was loud and official. Militants publicly accused her of giving Sui a large amount of gifts, including a camera – a big luxury at the time – and a collection of clothes. She had to try to clear herself by writing to the authorities in October 1969: ‘The truth is that his clothes were provided by the government when he went on several official visits abroad with me. I have not had one single item of clothing made for him. That camera is my gift to him.'</p><p></p></div>	
+<div class='layout'><p>As before, the authorities concluded that it was not a good idea to make an enemy out of Mme Sun. Ching-ling saw her adopted daughters for the first time in years at the beginning of 1970. Her heart swelled when the teenagers appeared. Gazing at them, she noticed how much they had grown. Yolanda was now taller than she was and her feet were so big she had to wear men's shoes. Ching-ling felt she loved them more than ever. It was now that they moved in with her definitively.</p><p></p></div>	
+<div class='layout'><p>The girls had had little education: schooling had been stopped, and children had only been going to their school buildings to denounce their teachers, or to fight each other in Red Guard factions, or just to fool about. Now Mao had decided to dissolve the Red Guards and pack them off to villages to work as peasants. This future was the only one available for the vast majority of the country's youth. Ching-ling was determined that it would not be for her ‘daughters'. She pulled strings to enrol them in the army, an alternative only available to the elite. In the army, Yolanda trained as a dancer, and Yong-jie worked in a hospital.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>In September 1971, a monumental event took place. Army chief Lin Biao, who was Mao's number two in the Cultural Revolution, died in a plane crash while fleeing China, having fallen out with Mao. Mao could no longer trust Lin's men who had been running the country for him, and was forced to reinstate some former officials he had purged, including Deng Xiao-ping, an old lieutenant who had declined to collaborate with him in his great purge. Things eased up palpably. In fact, in high circles, the Cultural Revolution began to be referred to as China's ‘holocaust'. In this new atmosphere, Ching-ling felt able to speak more freely. She wrote in June 1972 to a relative and trusted friend, ‘It was good I could open up my heart a bit to you last evening. A revolution does bring up some bad elements to the surface, but also, at the sacrifice of so many good lives! Capable cadres!' The underlining spoke volumes about the intensity of her feelings.</p><p></p></div>	
+<div class='layout'><p>In the following years, many of Ching-ling's friends were released from prison. Among them were her old friends Israel Epstein and his wife, who had been languishing in jail under false charges for five years. When the news of their release came, Ching-ling was thrilled. But she also felt the need to enquire, indirectly to the authorities, whether she could treat them in the same way as before.</p><p></p></div>	
+<div class='layout'><p>She started her parties again, at which the old friends who had been through so much and who had not seen each other for years chatted and laughed. Before the parties, she would carefully dab a little powder on her face and trace her eyebrows with a drawing pencil. There were still many things that infuriated her. A close friend was prevented from coming to a dinner she gave (she was told he was ill and could not come, and he was told she was ill and could not see him). Indignantly Red Sister wrote to him: ‘This is no way to treat an old party member, and one that has always been loyal to the party.' She had enormous trouble finding a maid who could pass the security vetting, which dictated that their family backgrounds had to be politically acceptable. One maid who had passed the vetting process was assigned to her, but she had bound feet and could hardly walk. Ching-ling was cross. ‘They said she came from a good family background. But must one be responsible for one's ancestors!'</p><p></p></div>	
+<div class='layout'><p>In January 1976, Zhou En-lai died of cancer, aged seventy-seven. Ching-ling grieved for him. Zhou had still been smoothing her life even when he had only a few months to live. On one occasion, Yolanda was beaten by a man who claimed that she had borrowed money from him and refused to pay it back. Ching-ling immediately put pen to paper and reported the man to the authorities. When Zhou heard about it, he ordered the man to be detained for a week and to write a letter of apology. When Ching-ling then had a fall, Zhou telephoned more than once to ask after her.</p><p></p></div>	
+<div class='layout'><p>On 9 September, Mao died. Ching-ling was in Shanghai at the time, and was informed by a long-distance call. Apparently, tears rolled down the face of the eighty-three-year-old. But she said nothing and did not discuss this event with anyone. Rather, she seemed to be preoccupied with suspicion that letters to her had been intercepted and blocked just after the death. A month later, Mao's four assistants closest to him in his last years, the ‘Gang of Four' headed by his wife Jiang Qing, were arrested. They were blamed for all the atrocities in the Cultural Revolution, which now ended officially. At this, Ching-ling began to come to life.</p><p></p></div>	
+<div class='layout'><p>For all her loathing of the Cultural Revolution, Red Sister was reluctant to blame Mao. To confront his responsibility would involve reflection on her own decisions, and might even lead to the thought that her whole life had been a mistake, and that she had chosen the wrong God. She was determined not to allow this to happen. ‘I made my choice and I have no regrets,' she told people close to her. The fall of Mme Mao, whom she never liked, gave her a convenient scapegoat, and restored her equilibrium.</p><p></p></div>	
+<div class='layout'><p>In fact, Jiang Qing originated no policies; as she herself said, ‘I was Chairman Mao's dog; whoever Chairman Mao asked me to bite, I bit.' She had been an actress in Shanghai in the 1930s before she went to Yenan with some other left-wing artists. There she caught Mao's eye and he married her in 1938, divorcing his (third) wife. Over the years, Mao noticed that she had a lot of venom and liked venting it. ‘Jiang Qing is as deadly poisonous as a scorpion,' he once observed to a family member, wiggling his little finger, like a scorpion's tail. He used her to spearhead the Cultural Revolution and got her to do much of his dirty work. Mao knew how much she was hated. Near the end of his life, he suffered an incurable disease and feared a coup; so he repeatedly sent a message to his opponents, ‘Leave me to die in my bed, and then do whatever you want with my wife and her Gang.'</p><p></p></div>	
+<div class='layout'><p>After Mme Mao was slung into prison, Red Sister was joyful. She exclaimed to a friend, ‘The party is too generous for such a wicked slut! Also, she demanded her wig back as the weather is unbearably cold!' During the trial of the Gang of Four in 1980, she wrote to Anna Wang that the worst thing Mme Mao did was to soil her husband's name by claiming that everything she did had been on his orders. ‘What a horrible woman!' Mao's vice chairman exclaimed. She felt able to go into raptures about Mao again, even in private communication: ‘To me, he was the wisest man I ever had the good fortune of meeting – his clear thinking and teaching … we must follow faithfully for they lead us from victory to victory.' This eulogy was followed by an afterthought: ‘(One thing that I wondered though, why? he never cut off his relations with [Jiang Qing] at one stroke, so as to prevent her from making troubles )' Red Sister seemed genuinely to think that the ‘holocaust' of China was all this unlikeable woman's doing.</p><p></p></div>	
+<div class='layout'><p>A new era began. Deng Xiao-ping took charge, and the country entered the phase of Reforms and Opening Up to the Outside World. This transformed the face of China. Deng laid down the line that the Communist Party and Mao must not be questioned. For Red Sister, this was the perfect line. She was now at peace and was ‘very relaxed', ‘very contented' in the last years of her life.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>Yolanda and Yong-jie added sunshine to Ching-ling's life in those years. She was in her eighties and very frail. Like her sister May-ling, she was permanently tormented by hives, and her skin was prone to being covered by blisters like strings of red cherries. Her health problems could have driven her to suicide, she once told a friend, if she had not been so tough. Having her adopted daughters around gave her diversion and laughter. She appreciated them and found them intelligent and fun. Indeed she doted on them and provided them with whatever privileges were available to the top circle.</p><p></p></div>	
+<div class='layout'><p>Towards the end of the Cultural Revolution, China allowed a small number of foreign visitors into the country. To cater for them, desirable goods were put on sale in the ‘Friendship Store' in the capital. At the time everyone in the country wore uniform-like blue jackets and baggy trousers. Yolanda and Yong-jie were mesmerised by all the beautiful new things. They badgered Ching-ling to get her foreign friends to buy goodies for them. Once it was nylon stockings, which they saw their friends wearing; another time it was hair curlers. (Women were not permitted to style their hair or use make-up.) They wanted to visit the fabulous store themselves. Ching-ling sympathised and indulged them. Several times she let them use her car to go shopping, which raised eyebrows. She bought pretty clothes and shoes for them, and a bicycle each. For Yolanda's fifteenth birthday, she asked a friend in Hong Kong to buy the girl a watch –a hugely expensive luxury, even though she specified that it should be ‘an ordinary worker's wristwatch … strong and not fancy'. Two years later, when Yolanda had to end her dancing career as the result of an injury and became a film actress, Ching-ling asked the friend to buy her another, more stylish watch, for her new job.</p><p></p></div>	
+<div class='layout'><p>By her own account, Yolanda was vain and a show-off in those days. She was unpopular, and provided much fodder for gossip among the Beijing elite. Israel Epstein, Ching-ling's authorised biographer, dismissed her with disdain in his book, calling her and her sister ‘the importunate girls'. A woman in Beijing went so far as to give the exalted Mme Sun a piece of her mind. Ching-ling wrote that the woman ‘upbraided me for not teaching [Yolanda] better manners, and it is true that I cannot control [the] haughty ways of Y'. The chorus of disapproval made Yolanda only more rebellious, and she would exaggerate her arrogance. In frustration, Ching-ling would tell her ‘Not to come back.' But Yolanda always returned, to the embrace of her Mama-Taitai.</p><p></p></div>	
+<div class='layout'><p>Before she was eighteen years old, in 1975, Yolanda had acquired a boyfriend. Ching-ling warned her to be careful but, when Yolanda refused to heed her advice, let her be. The relationship excited the girl's many adversaries, who spread lewdly embellished stories. Ching-ling was upset on behalf of her adopted daughter, and took it upon herself to set the record straight among her friends. In a letter to a friend, Ching-ling declared, ‘I love Yolanda. I know she is innocent, even though she has shortcomings.'</p><p></p></div>	
+<div class='layout'><p>After the death of Mao, the Chinese began to shed the puritanical straitjacket forced upon them. Yolanda, entering her twenties, enjoyed life frantically. She was perhaps the country's first good-time girl. She went out day and night, invited by visitors from abroad to fancy restaurants and clubs that were starting to bring colour to the drab capital. Fox Butterfield, the New York Times's first correspondent in Beijing since the Communist takeover, saw her in the Beijing Hotel in 1980: ‘She was dressed in a short, hip-hugging wool skirt, high brown-leather boots, and a bright-orange blouse. Yolanda was … slender, and very tall for a Chinese, about five feet eight. She had on heavy eye shadow and lipstick; not pretty, but haughty, striking, and sexy. She looked like a film star from Taiwan or Hong Kong.'</p><p></p></div>	
+<div class='layout'><p>At that year's ceremony of China's version of the Oscars, ‘Yolanda was outfitted in a red silk blouse and a long, embroidered red-print skirt, a dazzle of colour and style in a forest of baggy blue. She was also smoking a cigarette, something very few young Chinese women do in public. When a Canadian television crew also noticed her, she pulled a compact out of her handbag and checked to see if her nose was shiny. Inside the bag, I saw, was a pack of Marlboros; foreign cigarettes are not available in regular Chinese stores.'</p><p></p></div>	
+<div class='layout'><p>Ching-ling tolerated all this. She did not mind that Yolanda relished the Western lifestyle and was ‘dazzled by … talk of how grand life is in the US'. She and Yolanda even teased each other about ‘love', an unmentionable word in those years. One day, Yolanda caught Ching-ling gazing at a photo of the young Sun Yat-sen, and cried out, ‘Waw! Mr Sun was so handsome. If I were there, I would also be chasing him.' Ching-ling, face flushing with pride, said, ‘You are too late, I have got him! This man is mine. You won't be able to lay hands on him now.' Yolanda noticed that when Ching-ling talked about Sun, she behaved like a young girl in love. It seems that having become a ‘mother', with the wound of losing her child perhaps healed to some extent, Ching-ling rediscovered her love for her dead husband.</p><p></p></div>	
+<div class='layout'><p>Yolanda was courted by many men. Like a real mother, Ching-ling was anxious. The young woman seemed to be flaunting her sexuality: her sweater was too tight, for instance, and showed too much of her full breasts. Ching-ling would sigh with exasperation, ‘I hope somebody eligible will soon relieve me of this burden of watching over her like a mother hen! The frequent telephone calls back and forth give us all headaches. Perhaps she is responsible for my frequent attacks of hives.'</p><p></p></div>	
+<div class='layout'><p>In 1980, the film actress chose her future husband, a dashing fellow actor fourteen years her senior. Ching-ling had someone else in mind, and did not approve of the marriage, but she said nothing to oppose it. The only thing by way of a warning, which she said to Yolanda the day before the wedding, was: ‘One thing you must not tolerate for even a second: if he hits you, even just one slap, divorce him and come home straightaway.' Ching-ling gave a tea party to celebrate the wedding, for which she sent out a red invitation card with golden characters. At the party, Yolanda wore a white cheongsam and a veil, looking fabulous. Ching-ling's heart brimmed with a mix of emotions, and she left the room abruptly. When Yolanda came after her, she turned round and gripped the bride's arm, bursting into tears.</p><p></p></div>	
+<div class='layout'><p>After the wedding, for months Ching-ling felt unwell and had many check-ups. There was nothing particularly wrong with her health. She told Anna Wang ruefully, ‘Perhaps the psychological cause is bigger.' She continued to fuss over Yolanda, and helped the newly-weds acquire a hard-to-get small flat in one of the new tower blocks built in the early 1980s. For more than a decade, little accommodation had been built, while a generation had grown up and were getting married and having children. These new tower blocks were keenly fought over. They had been hastily built. The rooms were tiny, the floors were bare cement – to Ching-ling's consternation. The lift stopped operating at 9 p.m. and the couple's flat was on the eighteenth floor. When they worked night shifts and got home at 3 a.m., they had to start climbing the stairs. They had barely moved in when Ching-ling started planning to move them to a better flat.</p><p></p></div>	
+<div class='layout'><p>Mama-Taitai was equally protective about her other adopted daughter, Yong-jie, for whom she had secured a place in an army hospital. But then she found that the girl had no chance to study medicine, but was assigned a clerical job and spent her days copying documents. Ching-ling believed the job was a punishment which over the years had damaged Yong-jie's eyes. To friends she wrote, ‘Don't believe the malicious rumours spread by their [the two sisters'] enemies. I love them, and I am prepared to do everything I can not to let the element of envy destroy their future.' She pulled strings to get Yong-jie into the prestigious Beijing Foreign Language Institute to learn English. In 1979, Yong-jie won a scholarship and went to study in America. Ching-ling spent much money kitting her out. She sold her furs, which her mother had left her, and some valuable wines inherited from her father. Before Yong-jie even got to America, Ching-ling had begun to miss her and to plan ways to get her back for the summer holiday.</p><p></p></div>	
+<div class='layout'><p>Harold Isaacs, once a young activist working with Ching-ling in the early 1930s, revisited her in 1980. ‘There was much I had hoped to ask her about,' he wrote after the meeting; but ‘she was obviously going to talk now about what she wanted to talk to us about, and that was a little packet of pictures she had ready on the low table before her.' The pictures were those of Yolanda and Yong-jie. To Isaacs' surprise, the once renowned ‘Joan of Arc of China' started ‘a very parental conversation' with him. ‘I want to tell you about my family,' she said. She talked about Yolanda's wedding and how Yong-jie, back from America briefly, ably arranged the whole thing. ‘She spoke of Yoland[a] with the pain of maternal loss and of [Yong-jie] with high maternal pride,' Isaacs noted. He was asked to bring a package of magazines to Yong-jie, then at Trinity College in Hartford, Connecticut.</p><p></p></div>	
+<div class='layout'><p>Months later, in May 1981, Yolanda was shooting a film on the southern coast, when a telegram came for her to return to Beijing. She flew home at once and found Ching-ling drifting in and out of consciousness. Yolanda took Ching-ling's hand to her cheek, calling out ‘Mama-Taitai!' Ching-ling opened her eyes and stroked Yolanda's cheek, murmuring, ‘My child, my Little Treasure, you are back at last.' Yong-jie raced back from America.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>In the small hours of 15 May, after receiving reports that Ching-ling's life was in danger, the Chinese Communist Party decided to make her a member formally and openly. That Red Sister did not apply at this time did not matter. She had done so a quarter of a century before, in 1957. Mrs Liu Shao-qi, who had witnessed that occasion, and who had just survived Mao's prison (her husband, the late president, had not), was dispatched to Ching-ling's bedside. Mrs Liu said to her, ‘I remember you once asked to join the party. I wonder whether you still have the same wish?' Ching-ling nodded. Mrs Liu repeated her question three times, and each time Red Sister nodded affirmatively. So the formality was completed, and that afternoon, Deng Xiao-ping presided over an emergency politburo meeting which ‘unanimously decided to accept Soong Ching-ling as a member of the CCP'.</p><p></p></div>	
+<div class='layout'><p>The next day, 16 May, Ching-ling was given the title ‘Honorary President of the People's Republic of China'.</p><p></p></div>	
+<div class='layout'><p>As she lay dying, the Party invited her relatives to come and see her in Beijing. Top of the invitation list was Mme Chiang Kai-shek, who was urged to pay her dying sister a last visit. When Mrs Anna Chennault – the Chinese wife of the US pilot Claire Chennault, who had set up the ‘Flying Tigers' in the Second World War – delivered the message to May-ling, now living in New York, Little Sister refused to reply.</p><p></p></div>	
+<div class='layout'><p>Ching-ling died on 29 May 1981, aged eighty-eight. Beijing again invited anyone of ‘the family' to attend the funeral, offering to pay for all travel and other expenses. These gestures were met with a resounding silence from the Soongs, the Chiangs and the Kungs. The closest relatives who did come and were photographed at her bier were grandchildren of Sun Yat-sen by his first marriage.</p><p></p></div>	
+<div class='layout'><p>Yolanda and Yong-jie were not seen. Harold Isaacs, who had seen Ching-ling the year before and saw how she regarded them as her own daughters, was ‘astonished to discover that these two young women appeared in none of the photographs taken of family and friends at the funeral … I can only imagine how sad and painful this must have been for the two young women for whom, as she made plain to us when we saw her, she cared most in the world.' Indeed, the sisters wept very hard as they bid farewell to Ching-ling's body, the last in a long line, after the staff. Then they were led away. Their identity remained unmentionable for three decades. While Yolanda continued her acting career in Beijing, Yong-jie departed for America after the funeral and has not been heard of since.</p><p></p></div>	
+<div class='layout'><p>The official anonymity of Ching-ling's two adopted daughters was only in small part to do with the fact that their adoptions were informal. The main reason was that they did not fit in with the Party's agenda. The Party wanted to stress the blood bond of Ching-ling's extended family in its continuous efforts to bring Taiwan into its fold. The girls were, inconveniently, not members of that clan.</p><p></p></div>	
+<div class='layout'><p>Old age had actually rekindled Red Sister's affection for her natural family. She put her mother's portrait prominently on the wall in her home and brought guests to pay respects. She gave instructions to be buried by her parents' tombs because, she told people close to her, she wanted to keep apologising to her mother. ‘I acted badly towards her. I have been feeling so guilty.' Red Sister also felt bad about the way she had attacked her sisters in the past. In the 1930s, she had made harsh remarks to Edgar Snow about Big Sister's moneymaking skills, and Snow had published what she said. In 1975, it seems she was remorseful for having made those comments, and accused Snow of putting ‘offensive words about my elder sister' in her mouth. She insisted on Snow's widow taking them out of his book.</p><p></p></div>	
+<div class='layout'><p>In spite of all these feelings, Ching-ling had nevertheless got on with her own life and built her own family. Apart from her adopted daughters and close friends, whom she called ‘my sisters and brothers', a key member of her household was her housekeeper of over fifty years, Sister Yan-e, who devoted her whole life to her mistress. Ching-ling repaid her loyalty with loyalty. When Sister Yan-e was suffering from cancer and in great pain, Ching-ling was anguished. She paid for the best and most expensive treatment available and, when Sister Yan-e died (a few months before herself), gave instructions to bury her next to her own future tomb, in the Soong family burial ground. It was never Ching-ling's wish to enter Sun Yat-sen's grandiose mausoleum.</p><p></p></div>	
+<div class='layout'><p>Nor did Red Sister regard herself as belonging to the Party totally. For all her lifelong association with the Communists, she still saw herself as having a separate, private identity. She had carefully prepared her will (with no lawyers involved; there was then no such profession), bequeathing her personal possessions, things that she regarded as her own and not those of the state, to individuals she specified. This was a most unusual act for a Communist at the time – if they made a will at all, they usually gave everything to the Organisation. Ching-ling left members of her staff sums of money. One friend in Hong Kong, Ernest Tang, was particularly remembered. Over the years he had bought many things for her which she could not get in China (including watches for Yolanda). Although she had always thanked him profusely and sent him valuable gifts such as brandies and whiskies collected by her father and gold earrings from her mother, she felt she had not thanked him enough, and bequeathed her library to him in 1975, in a document headed ‘My Testament'. She posted the document to Ernest with a letter explaining that these books did not belong to the state but were her own collection since her student days, and that he could pack them in wooden cases and ship them home. For now, she told him, he should keep the will to himself. She was worried things might go wrong. Things did go wrong after she died. Ernest was by her side in her last days, but after her funeral, he was not allowed to return to Hong Kong and was kept in Beijing (‘staring at the ceiling [of his hotel] all day,' he would write). Eventually, under pressure, he made a statement, declaring that he wished ‘not to accept the books and to let the government decide what to do with them'.</p><p></p></div>	
+<div class='layout'><p>Yolanda and Yong-jie were the chief beneficiaries of the bequest of their Mama-Taitai. Treating them as her own daughters, she left them furniture, paintings, clothing and jewellery – and sums of money that were huge for the time. Yolanda was to receive 5,000 yuan and Yong-jie 10,000 yuan. They were simply told that they would not receive any of the things except the money and a few items of clothing as keepsakes.</p><p></p></div>	
+<div class='layout'><p>Although Ching-ling's dying wishes were largely ignored, she died a serene woman. Her mind was not at odds with her faith. Physically she was well looked after by devoted medical and domestic staff. Above all, she had found fulfilment as a mother.</p><p></p></div>	
+<div class='layout'><p>*<a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> For detail, see Jung Chang and Jon Halliday,?Mao, the Unknown Story, Chapter 44.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

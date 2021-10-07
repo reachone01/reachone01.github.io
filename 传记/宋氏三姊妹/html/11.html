@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+
+<div class='layout'><p> 11 Ching-ling in Exile: Moscow, Berlin, Shanghai</p><p></p></div>	
+<div class='layout'><p>While Little Sister was struggling to cope with the perils of her married life, Ching-ling, Red Sister, was living in self-imposed exile, first in Moscow.</p><p></p></div>	
+<div class='layout'><p>She went to Russia after Chiang Kai-shek broke with the Communists in April 1927. Her mother and sisters used every argument to stop her from going, and indeed tried to talk her out of her Red belief. May-ling came to Wuhan again with a letter from her mother. But Ching-ling remained the headstrong young woman who had run off to marry Sun Yat-sen twelve years before, and refused to listen. From Wuhan she went to Shanghai to wait for a ship to take her to Russia. There were more furious confrontations with her family. Finally, in the company of a group of comrades, and under the disguise of a poor woman, she clandestinely left Shanghai and boarded a Russian steamer for ‘the capital of the world proletariat'.</p><p></p></div>	
+<div class='layout'><p>Her thirty-two-year-old brother T.V. decided to side with Chiang Kai-shek. T.V. had been vacillating between the anti- and pro-Chiang camps. The journalist Vincent Sheean, who knew him at the time, said that he was unable to make up his mind between the horrors of capitalist imperialism and the horrors of Communist revolution … in China it was impossible to step out of doors without seeing evidence, on every hand, of the brutal and inhuman exploitation of human labour by both Chinese and foreigners. T.V. was too sensitive not to be moved by such spectacles. And yet he had an equally nervous dread of any genuine revolution; crowds frightened him, labour agitation and strikes made him ill, and the idea that the rich might ever be despoiled filled him with alarm.</p><p></p></div>	
+<div class='layout'><p>One day in Wuhan a mob squeezed up against his car, shouting menacing slogans and cracking one of the windows. This gave him a dislike for mass action for life – although it did not kill off his sympathy for the left.</p><p></p></div>	
+<div class='layout'><p>Like T.V., most of the Nationalists in Wuhan chose Chiang. The seemingly gigantic tide of the Soviet-style movement died down as suddenly as it had risen, its popularity turning out to be illusory. Ching-ling was devastated. She did not expect the revolution to crash so drastically and thoroughly. She loathed the man she held responsible, Chiang Kai-shek, and before her departure for Moscow, issued a statement condemning Chiang in the fiercest language.</p><p></p></div>	
+<div class='layout'><p>She arrived in Moscow on 6 September. Vincent Sheean came to call soon afterwards:</p><p></p></div>	
+<div class='layout'><p>The door at the end of the darkened reception room on the second floor of the Ministry of Finance opened, and in came a small, shy Chinese lady in a black silk dress. In one of her delicate, nervous hands she held a lace handkerchief … When she spoke her voice almost made me jump: it was so soft, so gentle, so unexpectedly sweet … I wondered who on earth she could be. Did Mme Sun Yat-sen have a daughter of whom I have never heard? It did not occur to me that this exquisite apparition, so fragile and timorous, could be the lady herself, the most celebrated woman revolutionary in the world.</p><p></p></div>	
+<div class='layout'><p>Enamoured of her and struck by ‘the contrast between her appearance and her destiny', Sheean became one of a small group of loyal friends around Ching-ling in Moscow. The Soviet government treated her royally as a guest of the state. Servants were assigned to look after her and normally unavailable apples and grapes from the Caucasus were delivered to her table. She was put up in the Metropol, the grandest hotel in town – and home to a large number of contented bedbugs. Borodin was also staying there. But the old friends avoided seeing each other: the days of merry get-togethers were over.</p><p></p></div>	
+<div class='layout'><p>A purge was looming. Stalin was locking horns with Trotsky in a power struggle, in which the catastrophe in China was a major issue. In the lead-up to Stalin gaining the upper hand, Ching-ling witnessed the last attempts to defy him by Trotsky and his supporters. On the anniversary of the October Revolution, she was invited to Red Square to watch the parade. It was one of those bitingly cold days of the famous Russian winter. She stood with the Soviet leaders on the old, original wooden mausoleum for Lenin, wearing thin leather-soled shoes inside rubber overshoes, frozen in the falling snow. She had not learned the trick of putting newspaper under her feet to keep them warm. Down the rostrum in the parade, some Chinese students unfurled banners with slogans hailing Trotsky. Afterwards, Ching-ling walked back to the Metropol off Red Square, and saw crowds listening to people speaking. The police surged out from an alley, dispersed the listeners, and took away the speakers. Trotsky and his fellow opponents of Stalin were trying to reach out to the Muscovites. A week later, Trotsky was expelled from the party before being exiled, first internally, then abroad; until finally, in 1940, he was killed in his villa in Mexico City by Stalin's assassin, using an ice axe.</p><p></p></div>	
+<div class='layout'><p>Anyone who had been in China or connected with the Chinese revolution was in a perilous situation – except Borodin who, as Stalin's man, was safe. Despite this, he still felt the need to distance himself from the Chinese, any Chinese, including Ching-ling. Others were not so lucky. The man who had made the initial deal with Sun Yat-sen four years before, Joffe, was loyal to Trotsky. He shot himself days after his friend's expulsion from the party, leaving at his bedside a letter addressed to Trotsky: ‘You have always been right politically … ' Karl Radek, the head of Sun Yat-sen University in Moscow, which had been set up to train Chinese revolutionaries, was expelled from the party together with Trotsky and exiled to Siberia. The new provost of the university mounted a purge among the students.</p><p></p></div>	
+<div class='layout'><p>Such an atmosphere was enough to frighten away most who had a choice. But Ching-ling was not faint-hearted, and chose to live a life of high risks. It was also true that, if one was not on the receiving end of the purges, life in wintry Moscow could be fascinating. Conversations were not about money or careers, or other mundane matters of a bourgeois society – full-time activists debated how to change the world, reorganise society and remould people like clay. And they did create waves around the world, even if they themselves could sometimes be submerged by them. Ching-ling was in a unique position that allowed her to ride the waves and enjoy the exhilaration with relatively little danger of going under: she was Mme Sun Yat-sen, widow of the dead Father of China, and as such she was untouchable – provided that she operated skilfully. She deftly avoided the Stalin–Trotsky rift and hid her sympathy for the latter. Students from Sun Yat-sen University eagerly sought her views, but after one speech in the early days of her exile, she declined to visit the campus ever again and kept a total silence. In this way she preserved herself and lingered in the Russian capital for eight months – and she loved her time there. Later when she returned to Moscow she wrote to a friend, ‘It is lovely to be back. Life is full of interest and activity here … I feel sorry to be leaving.'</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>As her life so depended on being Mme Sun, any danger of losing this status panicked her. While she was in Moscow, the New York Times and a few other papers ran a report alleging that she had married the Trinidadian Eugene Chen, ex–foreign minister of the Nationalist government: ‘according to an official Soviet dispatch, the couple will spend their honeymoon in China and start a new revolution … the Red International is said to have given a large check to finance the political activities of the bridal couple'. It made a point of mentioning that Eugene's previous wife had been ‘a woman of negro descent'. The article may have been short, but it had an ‘annihilating force' on Ching-ling, her friends saw, sending her into ‘a state of collapse', and she was bedridden for three weeks. She feared that the news item was part of a stratagem to cut her off from Sun's name.</p><p></p></div>	
+<div class='layout'><p>Another blast followed when Little Sister married Chiang Kai-shek, thus connecting Chiang to her late husband. The man who had robbed her of the victory of her revolution now promised to snatch from her the ownership of Sun's name. She would say to friends that the marriage was ‘opportunism on both sides, with no love involved'.</p><p></p></div>	
+<div class='layout'><p>To add to her distress, Stalin did not seem to think much of her. He only met her once, together with Eugene Chen, who was also in exile in Moscow. The meeting lasted just over an hour, during which Stalin hardly said a word, gazing inscrutably around the room and puffing on his pipe. When he did open his mouth, it was to tell her that she should return to China soon. He had sized up Ching-ling and concluded that she was not cut out to be a political leader. He declined to give her any backing of the kind that he had given her late husband. Ching-ling was told that the Comintern (Communist International), Moscow's arm that directed revolutions abroad, would give her instructions through ‘its messengers to China'.</p><p></p></div>	
+<div class='layout'><p>The Comintern held a special meeting to discuss Ching-ling's future role. Its proposal contained a number of points that began with ‘Use Soong Ching-ling … ' Red Sister would be used to blow Russia's trumpet, to entice over bigwigs in the Nationalist party, and to put pressure on Chiang to be more friendly with the Soviet Union. She could help the Chinese Communists in ways big and small.</p><p></p></div>	
+<div class='layout'><p>Ching-ling considered returning to Shanghai. She also wanted to see her mother. She had left her family acrimoniously and, when Mrs Soong wrote telling her to come home, Ching-ling had ignored her. She now longed to go back to Shanghai to explain to her mother and make up with her.</p><p></p></div>	
+<div class='layout'><p>While she was pondering what to do, in February 1928 a friend by the name of Deng Yan-da – a fellow left-wing Nationalist leader and the former chief of education at Whampoa – wrote from Berlin. He had also fled China and had been in Moscow, where he had talked to Ching-ling about forming a Third Party as an alternative to the Nationalists and the Communists. Now he pleaded with her to go to Berlin so they could resume their discussion.</p><p></p></div>	
+<div class='layout'><p>A little younger than Ching-ling, tall and broad-shouldered, Yan-da was an ‘exceptionally genuine, open and charming' man by consensus. He had great charisma. Even Mao felt his attraction, later reminiscing that Yan-da ‘was a very nice man, and I liked him very much'. (Mao never used such expressions, or such a tone, to describe anyone else.) People were drawn to Yan-da by his transparent warm-heartedness and consideration for others, and by his liveliness and sense of fun. And yet underneath one could sense ‘tremendous toughness and willpower'. The combination of these qualities was so rare and powerful that many young people looked up to him as their idol. He was often described as a ‘natural leader'.</p><p></p></div>	
+<div class='layout'><p>He impressed Stalin too, who talked with him one night from 8 p.m. to 2 a.m. Afterwards Stalin accompanied him to the outer gate of the Kremlin, which was a marked sign of respect. Stalin also thought Yan-da had leadership quality and proposed setting him up as the head of the CCP. Yan-da protested that he was not even a member – to which Stalin said, no matter, the Comintern could fix it. But Yan-da did not believe in Communism, which to him stood for ‘destruction' and ‘violent dictatorship', and would ‘make Chinese society poorer and more chaotic'. The Third Party he wanted to form would aim for ‘peaceful struggle', ‘construction' and ‘a quick establishment of a new orderly society'. It would also be ‘nationalist' and would not take orders from Moscow, unlike the CCP.</p><p></p></div>	
+<div class='layout'><p>These ideas – and to have said no to Stalin – made Yan-da fear for his life and he quickly got out of Moscow and went to Berlin. Stalin soon settled on Mao to lead the CCP.</p><p></p></div>	
+<div class='layout'><p>From Berlin, Yan-da wrote Ching-ling letters that exuded his passionate and affectionate personality. Could ‘Sister Ching-ling', his ‘dear comrade', please come and discuss matters relating to forming a Third Party – since he was unable to go to Moscow  Everything was ‘120%' and exclamation marks were frequent: ‘I must discuss with you in detail this matter which is 120% important'; ‘naturally all the programs, policies, slogans and organisational matters will be 120% specific'; ‘I long for you to feel 120% at peace and ease and to use your determination and courage to comfort your dear mother!'; ‘There are so many things I want to talk to you about in person; I wish I had wings so I could fly to you this minute!!!'</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>Ching-ling arrived in Berlin at the beginning of May 1928. This was the Golden Twenties, with explosive innovations in every field: literature, film, theatre, music, philosophy, architecture, design and fashion. People in the city were friendly, and, Ching-ling noted, one could live well there very cheaply. She rented an apartment, comfortable though by no means grand. Every day an assistant came to help her with household chores and paperwork. Lunch was generally in a small restaurant which served a set dish of meat and potatoes or rice and vegetables, costing one mark. Dinner was cooked at home. She lived as a private citizen under unobtrusive German government surveillance.</p><p></p></div>	
+<div class='layout'><p>A month later, Chiang Kai-shek successfully deposed the Beijing government and established his regime in Nanjing. The news ought to have been crushing for Ching-ling, and yet it hardly affected her mood, which was one of contentment and serenity. Another, simultaneous blow which might also have been devastating was that her mother seemed to have disowned her. In a letter dated June 1928, she wrote, ‘Dear Mother, I have written you so many letters but have no reply. This is another of the “refused” … '</p><p></p></div>	
+<div class='layout'><p>The envelope, addressed ‘Care of Mme Kung' and bearing Berlin and Shanghai postmarks, was returned from Shanghai in July – unopened. Mrs Soong was immensely distressed by her favourite daughter's embrace of Communism and decision to live as a Red exile – and wanted nothing to do with her. During this period of her anguish, Ei-ling and May-ling grew closer to her than ever, and Big Sister became the linchpin of the family.</p><p></p></div>	
+<div class='layout'><p>Despite her family's rejection, Ching-ling remained tranquil and content. She said later that she had never felt so at home as when she was in Berlin at this time; indeed she was more at ease there than she had ever been in Shanghai.</p><p></p></div>	
+<div class='layout'><p>What gave her this peace of mind, happiness and strength was undoubtedly the fact that Yan-da was with her. In Berlin they saw each other every day, talking for hours and taking long walks. He was her teacher in history, economics and philosophy, as well as the Chinese language. She was an eager pupil, excited by his intellect and personality.</p><p></p></div>	
+<div class='layout'><p>Both in their thirties, both of passionate temperament, spending so much time alone, planning action for the future of their country together and adoring each other – here were all the ingredients for a burgeoning love. Ching-ling was widowed and Yan-da was in a miserable arranged marriage that he had been struggling to end. In a letter to a friend from Berlin in late 1928, he said that although he cared about his wife, he had been living separately from her for years, and had only kept the marriage going for fear she might commit suicide if he left her. ‘I believe deeply that Chinese women – naturally including her – are living inside prisons enduring pains unendurable to others. We should be liberating them and helping them … This is why I oppose all “fashionable men” abandoning their wives to marry “fashionable women”. And this is why I have been enduring years of lifelessness.' After much agonising, he eventually wrote to his wife and ended their relationship. She was sad, but did not kill herself, and they maintained fond feelings for each other.</p><p></p></div>	
+<div class='layout'><p>The way Yan-da treated his wife was highly unusual, and in marked contrast to Sun Yat-sen's behaviour. That he should win Ching-ling's heart was the most natural thing. And yet their liaison could not flourish – because she must remain Mme Sun. If she, or Yan-da (who described her as ‘the symbol of the Chinese revolution'), wanted any political role, she had to bear that name. And in her kind of politics, the title was of overriding, life-and-death importance.</p><p></p></div>	
+<div class='layout'><p>Rumours that they were lovers spread quickly. So, it seems, they decided to stay away from each other. Ching-ling left Berlin in December 1928 and did not return until the following October. She went to Moscow, and then to China to attend Sun Yat-sen's entombment in June 1929. The gigantic mausoleum for Sun in Nanjing had finally been completed and his corpse was moved there to be buried in a grandiose ceremony. Just before she arrived back in Berlin, Yan-da went to Paris and London, where he conducted their discussions about forming the Third Party by correspondence. In the end Ching-ling declined to be part of the Third Party, as it was condemned by Moscow. But she also refused Moscow's order to denounce it.</p><p></p></div>	
+<div class='layout'><p>In 1930, Yan-da returned clandestinely to China to organise the Third Party. Before he set off, he went to Berlin to say goodbye to Ching-ling. Although danger and death hovered over him – he told her that these could be their last days together – they had a wonderful time. It seems that they went to the cinema to see the film The Blue Angel, a tragicomic love story starring Marlene Dietrich in which she sings her signature song ‘Falling in Love Again'. More than two decades later, Red Sister asked her German friend Anna Wang to buy the record of the song for her, telling her it had a very special meaning for her.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>Sun Yat-sen's entombment in 1929 had been staged by Chiang Kai-shek. It was the Generalissimo's show and Ching-ling's presence only seemed to add to her glory. Red Sister felt that she was being used, and boycotted many functions, but her absence was greeted with indifference. As Chiang was effectively turning himself into Sun's heir, she lived in virtual seclusion in her Shanghai house in the French Concession.</p><p></p></div>	
+<div class='layout'><p>Her hoped-for reconciliation with her mother did not happen. After two years of separation, she felt more alienated than ever. Her family was now at the core of Chiang's regime. Ei-ling's husband H.H. Kung was the minister of industry and commerce, and T.V. was the finance minister. Mrs Soong was referred to as ‘the Mother-in-law of the Country'. (When she died in 1931, her coffin was draped with the Nationalist flag, and the funeral cortege included a full military parade.) The family saw little of Ching-ling. The French Concession police, who kept tight surveillance on her, recorded few visits from her mother and sisters.</p><p></p></div>	
+<div class='layout'><p>Frustrated and furious, Ching-ling wanted to lash out. At this moment, Soviet Russia invaded Manchuria in a dispute over the Russian-built Chinese Eastern Railway. While Nationalist fervour ran high, Ching-ling openly parroted Moscow's line and blamed the invasion on Chiang's government. On 1 August 1929, a Comintern front organisation in Berlin published a piece by her which attacked Chiang in unprecedentedly strong language: ‘Never has the treacherous character of the counter-revolutionary Kuomintang [Nationalist] leaders been so shamelessly exposed'; they had ‘degenerated into imperialist tools and attempted to provoke war with Russia'. No Chinese newspapers dared or wanted to publish it, but it was printed in leaflets and thrown from the roofs of high-rises in the centre of Shanghai.</p><p></p></div>	
+<div class='layout'><p>Chiang Kai-shek was incensed and, in a rare move, wrote a stinging reply. He wanted to break completely with Red Sister. Ei-ling counselled restraint, arguing on political as well as personal grounds. Chiang took her advice and did not send the letter (although he did have it framed).</p><p></p></div>	
+<div class='layout'><p>Red Sister's political position had been well-known. Now as she openly sided with Russia against her own country, she became extremely unpopular. She felt the tension and told a friend that she wished to be in a country where there were no Chinese. The whole family were united in criticising her. Emotional strain drove her back to Berlin in October.</p><p></p></div>	
+<div class='layout'><p>Her stay in Berlin this time was a very different experience from before. Yan-da was not there to comfort and support her, though they did have their wonderful few days together when he came to say farewell. The German Communists looked after her, sending a housekeeper and arranging for luminaries to befriend her, including the playwright Bertolt Brecht. But the Golden Twenties were over. Unemployment rose alarmingly; beggars knocked on her door six or seven times a day; theft was rife. Jobless actors wandered the streets and violinists played outside cafés in snow and frost for a few Reichspfennig. Like her German friends, she was full of apprehension that the Nazis were gaining momentum, and wrote in a letter in February 1931 that a Nazi win was ‘unavoidable in the near future'. In this environment, her commitment to Communism strengthened.</p><p></p></div>	
+<div class='layout'><p>In April, she received a telegram from her family saying that her mother was gravely ill. Still furious with them, she did not go home. She would never see her mother again. In July, Mrs Soong died. Neither of her sisters wrote; clearly they were angry with her for not returning to visit their dying mother. Ei-ling's husband telegrammed, and a few days later T.V. cabled, telling her ‘Please come back at once.' Mrs Soong was to be buried in Shanghai in a public ceremony, and it would not look good if she did not attend. Ching-ling set off home, with a Chinese assistant who was an undercover Communist. Their first stop was Moscow, where Ching-ling stayed for a day and held a secret meeting with Soviet leaders. When the train entered China, she was given a stately reception and provided with a special train. A government official, who was a relative, came to the border to escort her southbound. He described to Ching-ling her mother's illness and death. At last it sank in that she had come too late, and she cried the entire night. When she saw the house where her mother had died, she sobbed uncontrollably. And she wept throughout the funeral.</p><p></p></div>	
+<div class='layout'><p>But with the pressure of her mother's disapproval lifted, Red Sister settled back in Shanghai, leaving her voluntary exile in Europe and entering self-imposed exile in her home city.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>The day before her mother's funeral, Yan-da, who had now organised an underground Third Party in China, was arrested. He and Ching-ling had not had the chance to meet up. Of all Chiang's opponents, who at the time included Sun Yat-sen's son Fo, Yan-da was the biggest threat to the Generalissimo. Not only did he have charisma and leadership qualities, he also had a well thought-out political programme, which Chiang lacked. He had travelled in Europe and Asia to study how different countries were run and had produced a detailed policy agenda, at the core of which was the alleviation of the peasants' poverty. The biggest headache for Chiang, though, was Yan-da's influence in the military, where he had legions of admirers. Chiang ordered that Yan-da be executed in secret in Nanjing on 29 November 1931.</p><p></p></div>	
+<div class='layout'><p>The news leaked out. Hoping against hope that this was just a rumour, Ching-ling went to Chiang in Nanjing to plead for Yan-da's release. This was the only time she appealed to her brother-in-law in person for anything. She was at her most amiable to the Generalissimo, saying: ‘I've come to mediate your differences with Deng Yan-da. Send for him and we can discuss everything.' Chiang was silent for a while before muttering, ‘It's too late … ' Ching-ling exploded, screaming, ‘You butcher!' The Generalissimo hurriedly left the room. Ching-ling departed for Shanghai in a state of despair. She penned a tirade against the Nationalist party and, for the first time, publicly called for its ‘downfall'. Also for the first time, she openly hinted that she might switch her allegiance to the Communists. The article drew much attention. It took up two pages in the New York Times, and the caption under a wistful picture of her read: ‘I Speak for Revolutionary China'. Its Chinese translation was published in an influential Shanghai newspaper, the Shen-bao. For this and other acts of defiance against the Generalissimo, the managing director of the newspaper, Shi Liang-cai, would be assassinated.</p><p></p></div>	
+<div class='layout'><p>It was in the aftermath of the death of Yan-da that Ching-ling approached the secret Comintern representative in Shanghai and requested to join the Communist Party. She was already working for the Communists: the Comintern was using her as planned, so there was no need for her to become a party member. Indeed, if she joined she would have to subject herself to the orders and disciplines of the Communist organisation, and would run much higher personal risks – both vis-à-vis Chiang and in inner-party struggles, which she had witnessed first-hand.</p><p></p></div>	
+<div class='layout'><p>But Red Sister was determined. All she was thinking of was how to get Chiang. She told the Comintern representative that she was ‘willing to give it all', and that she ‘understood profoundly' the implications of clandestine work in Shanghai. The representative hesitated, and she insisted. In the end, her wish was granted. Afterwards, the Comintern thought this was ‘a big mistake': ‘once she became a party member, she would lose her unique value'. It kept her membership a secret.</p><p></p></div>	
+<div class='layout'><p>It became one of the best-kept secrets in modern Chinese history and was not revealed until the 1980s, after she had died, by Liao Cheng-zhi, son of Liao Zhong-kai, the assassinated old faithful aide of Sun's. Liao junior was an underground Communist himself. One day in May 1933, he recalled, Ching-ling came to his house. With some pretext, she deftly sent his mother, who was her own best friend, out of the room and talked to him alone. Her opening words were, ‘I am here on behalf of the Supreme Party.' ‘The Supreme Party ' he stared at her in astonishment. ‘The Comintern,' she clarified. He nearly cried out in disbelief. ‘Calm down,' she said. ‘I have just two questions for you. First, can our clandestine network continue to function in Shanghai? Second, I want a list of the names of the traitors you know.' She told him he had ten minutes to write down the names and, taking a cigarette out of her purse and lighting it, she got up and walked into his mother's room. Ten minutes later, she emerged and Liao handed her the list. She opened her purse again for another cigarette, picked a little tobacco out of it, nimbly rolled the list into a very thin tube, and pushed it into the cigarette. Then she left. Liao wrote in his reminiscences, ‘Although nearly 50 years have passed. I remember totally clearly every minute of that brief meeting of less than half an hour.' Ching-ling had even received training as a secret agent.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>In the years to come, Red Sister stood as the most prominent dissident openly challenging Chiang's regime, right under its nose in Shanghai. She gave whatever help the Chinese Communists asked for: transferring large sums of money to the CCP, or finding the right escorts to take their emissaries to Moscow. When their radio links with Moscow were cut off, she transmitted their messages through her own secret wireless. One particular service she performed was to arrange for the American journalist Edgar Snow to interview Mao and his colleagues in the Red area. The result was the international bestseller Red Star Over China, which introduced Mao to the West as a highly likeable man.</p><p></p></div>	
+<div class='layout'><p>Ching-ling formed a front organisation in Shanghai for the Comintern: the China League for Civil Rights. It consisted of a group of like-minded radicals, foreign and Chinese, who were her friends in her seclusion. They held long meetings in her sitting room and shared earnest discussions over her dinners. The young activists adored her. One, Harold Isaacs, wrote in later life:</p><p></p></div>	
+<div class='layout'><p>I was smitten hard by this beautiful great lady, as who could not have been, it seemed to me then, and seems so to me now … I was twenty-one … and enormously impressionable; she was about forty and enormously impressive as a woman and as a person. For her beauty, her courage, her queenly espousal of just cause, I came to love her like a young knight pure in heart. In return she bestowed on me an ever correct yet warmly personal affection. Make what one might of that now, that is how it was.</p><p></p></div>	
+<div class='layout'><p>She was a thorn in Chiang's side. Chiang's intelligence agents sent her bullets in the post to try and scare her into silence. An intimate friend Yang Xing-fo, chief executive of her League for Civil Rights, was shot dead near her house in a car, together with the driver, and Yang's fifteen-year-old son narrowly escaped. A ‘car accident' for her was discussed, even rehearsed. But the Generalissimo ultimately vetoed it. Of all the considerations, his wife's reaction, backed by Big Sister, was paramount. In spite of everything, May-ling remained deeply attached to her sister as well as fiercely committed to the Soong family. Ching-ling had taken her to America when she was nine, and she had many sweet memories of Ching-ling's loving care towards her. Little Sister had missed rice and Ching-ling had devised a way to cook it in her room. She put it in a flask filled with boiling water, it slowly cooked overnight, and they ate it the following day. May-ling would absolutely not allow her sister to be harmed, however annoyed she might be with her. The first lady even felt a respect for the way Red Sister ‘stood alone', defying the world.</p><p></p></div>	
+<div class='layout'><p>May-ling also sympathised with her sister's unremitting hatred for Chiang because he had killed Deng Yan-da, the man she knew Ching-ling cared for deeply. In particular, many people said that Chiang had had Yan-da cruelly tortured before having him shot. The Generalissimo assured his wife that there had been no torture, and May-ling believed him. But she could not convince her sister, who absolutely refused to trust Chiang. May-ling wanted the world to know that her husband was not a torturer. Towards the end of her life, she made a point of stating that Chiang had not had Yan-da tortured before having him shot.</p><p></p></div>	
+<div class='layout'><p>Thanks to the protection of May-ling – and Big Sister – Ching-ling lived through her internal exile unscathed.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

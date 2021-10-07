@@ -1,0 +1,536 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+
+
+<div class='layout'><p> PART I The Road to the Republic (1866–1911)</p><p></p></div>	
+
+<div class='layout'><p> 1 The Rise of the Father of China</p><p></p></div>	
+
+<div class='layout'><p>On 4 July 1894, Hawaii declared itself a republic after the reigning queen, Lili'uokalani, had been deposed the previous year. This event in the Pacific Ocean 6,000 miles from the Chinese coast had an impact that no one could have foreseen: it helped shape China today. A twenty-seven-year-old Chinese radical, Sun Yat-sen, landed on the archipelago, and stepped into a world where the word "republic" was on everyone's lips. The royalists were plotting to restore Lili'uokalani while the republican troops were getting ready to crush them. The atmosphere was feverish. The young man, who was hatching a plot against the monarch of his own country, lit upon the idea that China, too, could become a republic.</p><p></p></div>	
+
+<div class='layout'><p>This was a novel concept. Monarchy was the only political system the Chinese knew. At the time the country was ruled by the Manchu dynasty. The Manchus were not indigenous Chinese, but had conquered the land in the mid-seventeenth century. As they made up no more than one per cent of the population, they were considered minority foreign rulers and were never short of opposition from native Han rebels. Sun was one of them. The rebels usually called for the restoration of the pre-Manchu Han dynasty, the Ming (1368–1644). But this prospect was problematic. The Ming dynasty had become a rotten old tree that had been uprooted by a peasant uprising, before the Manchus took advantage of the chaos, invaded, and finished it off altogether. People were not keen to go back to the Ming. No one had a precise plan for the future. Thanks to events in Hawaii, Sun Yat-sen conceived a clear and forward-looking vision for China: a republic. That November, in sun-soaked Honolulu, he set up a political organisation called the Xing-zhong-hui ('Revive China Society'). The founding meeting was held at the home of a local Chinese bank manager, in a two-storey wooden house with large verandahs, shaded by latticed screens and tropical bushes. Each of the more than twenty members put his left hand on the Bible, in the Hawaiian style, and, raising his right hand, read out the oath written by Sun: "Drive out the Manchus… and form a republic.'</p><p></p></div>	
+
+<div class='layout'><p>The combination of the two objectives proved to be a stroke of genius. It gave republicanism popular appeal. In less than two decades, in 1911 the Manchu dynasty was toppled and China became a republic of which Sun became known as "the Father".</p><p></p></div>	
+
+<div class='layout'><p>The idea of a republic would have come to others sooner or later. Thanks to Hawaii, Sun Yat-sen latched on to it first. Sun's ambitious character, and the lengths he would go to in order to achieve his goals, were therefore critical in determining the course of republican China.</p><p></p></div>	
+
+<div class='layout'><p>—</p><p></p></div>	
+
+<div class='layout'><p>Sun Yat-sen, a dark-skinned, short man of well-proportioned and pleasant features, was born on China's south coast close to Hong Kong and Macau, the British and Portuguese colonies. The capital of the province was Canton, a hundred kilometres to the north, and Sun was Cantonese. His native seaside village, cradled by wooded low hills, had a picturesque name: Cuiheng ('Emerald Broadway'). But its soil was largely sandy clay unsuited to agriculture, and life was one of abject poverty. He was born on 12 November 1866, in a mud hut some ten metres by four, which he shared with his parents, Mr and Mrs Sun Da-cheng, his paternal grandmother, a twelve-year-old brother and a three-year-old sister. When he grew and took up more sleeping space, the older children had to spend the nights with relatives. The family ate sweet potatoes and rarely touched the more desirable rice. The men seldom wore shoes. Hoping that their newborn baby would have better luck in life, Mr and Mrs Sun named him Di-xiang, the Image of the North God, the celestial patron of the region.</p><p></p></div>	
+
+<div class='layout'><p>At the age of four, the future iconoclast voiced his first objection to cherished traditions. His mother was in the process of binding the feet of his sister Miao-xi, then about seven. Foot-binding had been practised on Han Chinese women for a millennium. It involved breaking a baby girl's four smaller toes on each foot, and bending them under the sole to produce a foot shaped like a lily petal. A long piece of cloth was then used to wrap the feet tightly to stop the broken bones from healing and the feet from growing. Peasant girls tended to be subjected to this torture at an older age than upper-class toddlers, whose feet were usually bound when they were two or three so the crippled feet would remain tiny. Peasant women had to work, so the girls" feet were allowed to grow into a larger size. When Sun's mother, who herself had bound feet and was still suffering from the pain, started to mutilate her daughter, Sun saw his sister tossing about desperately grasping at something to alleviate the agony, and he pleaded with his mother to stop. Mrs Sun wept and told him that if his sister did not have a pair of lily-like feet when she grew up, she would be treated as an outcast and "not a Chinese woman", and would "reproach us". Sun went on badgering his mother, and eventually she relented – only to take the girl to a specialist foot-binder in the village.</p><p></p></div>	
+
+<div class='layout'><p>When he was five, his seventeen-year-old brother Ah Mi embarked on a journey of forty days to Hawaii to try to make a better living. The then independent kingdom under overwhelming American influence wanted to boost agriculture and welcomed Chinese farmers. Ah Mi worked hard, first as a farmhand, then starting his own businesses. He made good money, and sent much of it home. The family's lives improved drastically. A new house was built. Sun went to the village school at the age of nine. But he hated having to memorise Confucian classics almost as much as he loathed working in the fields. Later he told friends that ever since he could do such a thing as "thinking", he was obsessed with the thought of escaping the life he was living. At last, in 1879 his brother sent for him, and Sun journeyed to Hawaii. From the moment he landed, the twelve-year-old fell in love with his new home. The harbour of Honolulu, with magnificent European-style buildings, struck him as "a wonder-house". The streets, clean and orderly, were heaven compared to his dirty and ramshackle village.</p><p></p></div>	
+
+<div class='layout'><p>Ah Mi had intended for Sun to help him out in his businesses. But when Sun showed no interest in doing so, Ah Mi enrolled him in schools in Honolulu, firstly the Iolani College founded by missionaries of the Church of England for local and immigrant boys. Its curriculum was modelled on that of an English public school and its teachers were mostly Anglo-Saxons. Sun did well there and upon graduation three years later in 1882, he came second in the English grammar test. A proud Ah Mi gave a big party to celebrate. The prize from the school was a book on Chinese culture and history. The school did not want its pupils to forget their roots. Indeed it did not try to anglicise Sun; the child kept the distinctive hairstyle obligatory for Chinese men under the Manchus: a long queue on the back of the head. Sun adored the school: the uniform, the discipline and, in particular, the military drills – marching up and down thrilled him.</p><p></p></div>	
+
+<div class='layout'><p>He went on to the highest educational institution on the archipelago, the American mission school Oahu College in Honolulu. (The most famous alumnus of the college, now known as Punahou School, is Barack Obama, who graduated almost a hundred years later in 1979.) Fees were high: one silver dollar a week, the price of a goat weighing over a hundred pounds. This was no small burden on Ah Mi, whose life was not easy. He had just bought land on the island of Maui, hoping to grow sugar cane. But his plantation was in the mountains, about 4,000 feet above sea level, brushed by the hem of the clouds; it was steep and rocky, with sparse clumps of weeds holding on tenaciously to the much eroded soil. Growing sugar cane was not possible, nor could cattle or sheep graze. Only goats would survive, and goats were Ah Mi's major assets. He made a sacrifice for his brother.</p><p></p></div>	
+
+<div class='layout'><p>Down the mountains, Oahu was paradise for Sun. There were stone mansions to have lessons in, avenues of coconut trees to wander along, and well-tended lawns to play on. There was a fountain, overhung with ferns, where every day at lunchtime fellow female students would chatter and laugh while eating packed lunches. The girls were American, pretty, confident and vivacious. The teachers were mostly young women, including the headmistress and her deputy. The latter was rather publicly courted by a male teacher.</p><p></p></div>	
+
+<div class='layout'><p>All this was a world apart from Sun's native Cantonese village and its women. The impact on the sixteen-year-old was immense. Throughout his life, Sun would desire women like the ones in his school, unlike many Chinese men who preferred their spouses to be the traditional type: obedient and self-effacing.</p><p></p></div>	
+
+<div class='layout'><p>The company of these young women, who were all Christians (as were his male friends), may well have motivated Sun to join the church so that he could be in their community. But when he mentioned his desire to his brother, Ah Mi was upset. The North God was sacred for him. After heated rows, Ah Mi bought his headstrong brother a one-way ticket back to China, wasting the prepaid school fees.</p><p></p></div>	
+
+<div class='layout'><p>An absence of four years made the homecoming only more unbearable. As soon as he arrived in summer 1883, Sun itched to leave. He quickly found a way. The most important place in the village was its temple, within which sat the North God, a heavily painted and gilded clay statue. The god clasped a sword, with his thumb pointing up to the sky, indicating divine power. On either side stood smaller secondary female figures, goddesses of the sea and fertility. Worshipping the North God was a way of life for people in this region.</p><p></p></div>	
+
+<div class='layout'><p>One day, Sun drew a few friends aside and told them that he was going to the temple to "wipe out some of this superstition by despoiling the very god". Luke Chan, one of the boys, recalled that they were all shocked by Sun's idea, but also excited. They went in the middle of the day when the temple was empty; there was only a guard dozing against a wall. Leaving Luke and another boy to keep an eye on the guard, Sun entered the temple with a friend, Lu, an aspiring artist with wistful eyes and expressive full lips. Lu went only as far as scraping off some paint from the cheeks of one goddess; but Sun unhurriedly opened a pocketknife and cut off the thumb of the North God that pointed to heaven. When his other friends came in and saw the severed thumb, they were aghast. Luke later wrote that this was "a tremendous step" for a peasant boy from a small village.</p><p></p></div>	
+
+<div class='layout'><p>The temple guard woke up and the alarm was raised. While the other boys fled home, Sun nonchalantly let himself be seen and recognised as the ringleader. Incredulous consternation spread over Cuiheng. Furious elders berated Da-cheng for what his son had done and told him that Sun must be banished, otherwise the North God would not be appeased and could bring disaster to them all. With his bewildered father struggling to apologise, and reaching deep into his pocket to pay for the repair of the statue, Sun left home.</p><p></p></div>	
+
+<div class='layout'><p>Luke noticed that Sun "was perfectly cool and collected when he left the village in disgrace". It struck him that Sun had probably "planned and executed the move" in order to get away. Later, knowing Sun better, Luke came to the conclusion that Sun "never did anything without first weighing both cause and effect against the final result". From a young age, Sun had emerged as quite a strategist.</p><p></p></div>	
+
+<div class='layout'><p>Having come home that summer, in the autumn Sun left for Hong Kong. The British colony, originally a cluster of small fishing villages at the foot of undulating hills, was now a spectacular metropolis. Its seafront reminded Sun of Honolulu, only grander. There the clever rebel made a beeline for the Diocesan Boys" School and Orphanage, run by the Anglican Church, where he knew he could find shelter – and he did, on the floor above the classrooms in a church house.</p><p></p></div>	
+
+<div class='layout'><p>His parents, anxious for reconciliation, proposed that he marry the daughter of a friend from a neighbouring village. Like many, they thought that marriage and raising children would make their son settle down and behave responsibly. Sun agreed, and went home to marry his parents" choice the following year – after he had registered at the Central School in Hong Kong, which seems to have been his condition.</p><p></p></div>	
+
+<div class='layout'><p>The seventeen-year-old bridegroom entered an arranged marriage that actually suited him well. His bride Mu-zhen, a year younger than him, was gentle and literate as well as beautiful. She was sweet-natured and not someone who would ever make a scene. After they were married, she stayed at home to look after his parents and the household, hobbling on a pair of bound feet, whereas Sun took off, only two weeks after the wedding. From now on, he would pop back occasionally, but otherwise led a separate life and acquired a string of mistresses.</p><p></p></div>	
+
+<div class='layout'><p>Shortly after the marriage, in 1884 Sun had himself baptised in Hong Kong by Dr charles R. Hager, an American missionary who lived on the floor above him. For his baptism, Sun changed his name from "the Image of the North God" to Yat-sen, meaning "a new man each day". Sun did not genuinely believe in God, and friends observed that he rarely went to church. (Later he would ridicule the faith.) But Christian missions gave him a way out of his old life and offered him a valuable community. When Ah Mi, upset by the baptism, briefly stopped his school fees, the church came to his rescue and offered him a place in an Anglo-American missionary medical school in Canton, on the mainland across the sea and up the Pearl River.</p><p></p></div>	
+
+<div class='layout'><p>Canton was a maze of unpaved narrow alleys where pedestrians jostled and sedan chairs swayed, sometimes preceded by road-clearers shouting at the tops of their voices. Competing for street space were also rows of vendors, some selling snakes and cats for food. Dirty, with sweaty and smelly crowds, Canton was not a place where Sun wanted to live. He soon made up with Ah Mi, returned to Hong Kong and enrolled in the newly opened Hong Kong College of Medicine for Chinese. Ah Mi was easily persuaded to fund him to pursue this most sensible career. A few months later, their father died; Ah Mi, in grief and feeling he must look after his kid brother, doubled the allowance. Sun was able to live five very comfortable years in a city he loved.</p><p></p></div>	
+
+<div class='layout'><p>He graduated in summer 1892, but could not find a job. His diploma was not recognised in Hong Kong: the school's curriculum, in these initial years, did not fully comply with British standards. The neighbouring Portuguese colony Macau would not accept his diploma either. After sticking it out there for a year, he had to move to Canton, where the certificate was not an issue. But Sun still had no wish to live and practise in that city. It was now, with all hope, however half-hearted, of a medical career in his chosen cities extinguished, that Sun Yat-sen seriously took up the vocation of a revolutionary.</p><p></p></div>	
+
+<div class='layout'><p>—</p><p></p></div>	
+
+<div class='layout'><p>Sun's experience overseas had made him despise his own country, and he blamed all the problems on the Manchu rule. For a number of years, he and a few like-minded friends had talked about how much they loathed the Manchus, from the long queues trailing behind their heads, to the historical grievance of the Manchu conquest. Over tea and noodles, they dreamed about toppling the Manchu throne. Among his friends were Lu, his past co-despoiler of the village gods, and a new kindred spirit, Cheng, chief of the secret society the Triad in Canton. These two young men could not look more different: Lu had a gentle face, while Cheng very much looked the part of a gangster, with a dark gaze, heavily hooded eyes, and clenched teeth behind pulled-down lips. The friends might have seemed a bunch of unknowns, but their ambitions were big: they wanted nothing less than to end the Manchu dynasty and rule China themselves. They were undaunted by the fact that facing them was a giant state.</p><p></p></div>	
+
+<div class='layout'><p>Their aspiration and daring were not unique. China had a long history of rebellions by ordinary men who made it to the throne. The Taiping Rebellion – the biggest peasant uprising in Chinese history – had originated in the region where Sun was born. The head of the rebellion, Hong Xiu-quan, hailed from a village not far from Sun's, and he had marched his army all the way to near Beijing, occupying large swathes of China and nearly overturning the Manchu throne. Hong had even established his own rival state. After his defeat, just before Sun's birth, his soldiers scattered, and one of them returned home to Sun's village. The old soldier used to sit under a giant ficus tree and tell stories about the battles he had fought. As a child, Sun was mesmerised. Now he expressed admiration for the Taiping leader and said he wished Hong had succeeded. When people jokingly told him he should be "the Second Hong", he took the remark to heart and thought that he could indeed be just that.</p><p></p></div>	
+
+<div class='layout'><p>Soon he spotted an opportunity. In 1894, Japan started a war against China and won spectacularly the following year. At the time, the Celestial Empire was run by the twenty-three-year-old Emperor Guangxu, who was a weakling and totally incapable of conducting the country's first modern war.*<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a> The mounting bad news brought a smile to Sun's face. "We must not miss this opportunity of a lifetime," he said to his friends. A plan was made. They would start a revolt in Canton and occupy the city; after this, which they termed the "Canton Uprising", they would go on to seize other parts of China. Triad chief Cheng offered a suggestion that made the whole venture possible: they could use gangsters like his Triad "brothers" as fighters. There were many large gangs in the country, and some members could be bought. Sun saw that he had a real chance.</p><p></p></div>	
+
+<div class='layout'><p>This massive undertaking was extremely expensive. Huge sums were needed to pay for the gangsters as well as weapons. It was in order to raise funds that Sun travelled back to Hawaii in 1894 – and found the inspiration for the future after the Manchus: a republic.</p><p></p></div>	
+
+<div class='layout'><p>The Hawaiian Chinese donated thousands of US dollars. Sun planned to go to America to raise more. At this juncture, a letter came from a friend in Shanghai. It urged him to return at once to start a revolution. China was suffering appalling defeats at the hands of the Japanese, and the Manchu regime was proving to be utterly incompetent and unpopular. Sun set sail straightaway.</p><p></p></div>	
+
+<div class='layout'><p>The man who wrote the letter and helped trigger the republican revolution was Soong charlie, a thirty-three-year-old former preacher for the American Southern Methodist Church and now a wealthy businessman in Shanghai. He had met Sun earlier that year when Sun briefly visited the city, and Lu, who after defacing the village gods had come to live in Shanghai, introduced them. The three of them talked politics deep into the night. charlie shared Sun's anti-Manchu sentiments and admired Sun for being prepared to take action, unlike most people who just complained. Although Sun was unknown at the time, he already gave off an understated and yet powerful sense of belief in himself, in what he was doing, and that he would succeed. This total self-confidence attracted quite a few followers like charlie, who would help fund him generously.</p><p></p></div>	
+
+<div class='layout'><p>charlie was the father of the three Soong sisters. At this time, his eldest daughter, Ei-ling, was five, and the youngest May-ling was not yet born. The middle daughter Ching-ling, who would eventually marry Sun – in spite of charlie's furious opposition – was a one-year-old baby.</p><p></p></div>	
+
+<div class='layout'><p>—</p><p></p></div>	
+
+<div class='layout'><p>As soon as they returned from Hawaii on Soong charlie's advice at the beginning of 1895, Sun Yat-sen and his friends started preparation for their uprising. A Hong Kong bank manager called Yeung came on board with his organisation, a book club. Usually sporting a three-piece suit with a flamboyant pocket square, Yeung enjoyed good connections with the colony's business community. He brought with him potential support from local newspapers in both English and Chinese, and promised to recruit coolies, rather than gangsters. The book club had far more members than Sun's associates, and many of them were wary of Sun. One wrote in his diary on 5 May 1895: "Sun Yat-sen appears to be a rash and reckless fellow. He would risk his life to make a name for "himself"." And on 23 June: "Sun wishes everyone to listen to him. This is impossible." Another remarked "I will have nothing to do with Sun.'</p><p></p></div>	
+
+<div class='layout'><p>So when the two groups came together to elect the "president" for their new regime, Yeung won the vote. Sun was furious: the uprising was his idea – and he must be the president. Triad chief Cheng was angry too, and told Sun, "Let me deal with Yeung. I am going to bump him off. I just have to kill him." A listener cautioned, "If you kill him, you create a murder case in Hong Kong, and we won't be able to go ahead with our revolt." Sun agreed to let Yeung be called the president for the time being, until Canton was taken. Bloody power struggles were already in the offing before the republican revolution had even started. Equally striking was the clarity of Sun's ambition from the beginning – to be the president of China – for which he was willing to spill blood.</p><p></p></div>	
+
+<div class='layout'><p>For now the comrades put their differences aside, and set the date of action for the ninth day of the ninth lunar month, traditionally the day for attending ancestral tombs. Many families had burial grounds in Canton and large numbers would converge there on the day. This would provide the rebels with cover to enter the city.</p><p></p></div>	
+
+<div class='layout'><p>The government in Beijing had been warned about the plot, by its officials in the countries where Sun had been covertly raising funds and buying arms among overseas Chinese. It had alerted the Canton governor, who had also been warned by his own informants. He did not arrest Sun, but tightened security in general and had Sun watched quietly and closely.</p><p></p></div>	
+
+<div class='layout'><p>Sun smelt danger. Then there was a last-minute complication: the coolies recruited by Yeung in Hong Kong could not arrive in time and Yeung asked that the action be postponed by two days. Sun decided to abort the whole plan. On the morning of the scheduled uprising, he called it off, and Cheng paid and dispersed the gangsters who had gathered. Cheng fled on the evening ferry to Hong Kong; Sun had a hunch that soldiers would be staking out the harbour and took a different route.</p><p></p></div>	
+
+<div class='layout'><p>That evening, the local pastor who was a friend of Sun's gave a large banquet for his son's wedding. To pick a day traditionally reserved for tomb sweeping for a wedding was odd, as the Chinese would regard this as inauspicious. It is possible that the minister threw the banquet to provide concealment for Sun. Sun went to the banquet, where he lost himself in the crowd and slipped out to the Pearl River. A small boat was waiting. It took him downriver, travelling through tributaries unfamiliar even to the boatman. Sun directed the way: clearly he had studied the route. He first went to Macau, where he laid low for a couple of days before surfacing in Hong Kong. Sun did not wish to be known to be the first to bolt.</p><p></p></div>	
+
+<div class='layout'><p>His friend Lu was not with him when he decided to abort the revolt, and did not flee in time. He was arrested and beheaded. Also executed when they and their recruits landed in Canton were several ringleaders from Hong Kong. Many coolies were arrested. Sun had long gone by this time. Hong Kong newspapers blasted him for abandoning his comrades to their fate. Possibly there was nothing he could do to help them without endangering himself. Still, his own well-planned flight showed a shrewd man exceptionally good at self-preservation.</p><p></p></div>	
+
+<div class='layout'><p>Back in Hong Kong, Sun sought advice from Dr James Cantlie, his teacher at the medical college, with whom he had formed a bond. The doctor, who had kindly eyes and a typically Victorian bushy beard, was an energetic enthusiast who loved teaching and a frustrated radical with a keen adventurous spirit. He was deeply opposed to the Manchu rule in China and, in his own country, a fervent Scottish nationalist. A friend wrote of him: "The most remarkable of all his uncommon qualities was his full-blooded nationalism." While a medical student in London, he had taken to wearing a kilt in everyday life, which was exceptional at the time. Cantlie would save his ex-pupil's life and help to launch his political career.</p><p></p></div>	
+
+<div class='layout'><p>Now, full of sympathy, Cantlie sent Sun to a lawyer who advised him to leave the island at once. Beijing was requesting the extradition of Sun and his co-conspirators. Sun (and Cheng) took the first steamer out of Hong Kong for Japan. There, Sun found that the Japanese government was considering extraditing him, and he had to get out. To disguise himself, Sun cut off his queue (which he disliked anyway), grew a moustache and wore a western suit. Looking like a modern Japanese man, he left for Hawaii.</p><p></p></div>	
+
+<div class='layout'><p>A wanted list was circulated with Sun's name on top. The award for his capture was a thousand silver dollars. It was with this price on his head that Sun Yat-sen began his life as a political exile.</p><p></p></div>	
+
+<div class='layout'><p>—</p><p></p></div>	
+
+<div class='layout'><p>In Hawaii, Sun tried to raise enough money to have another go. This time, he was distinctly unsuccessful. People either abhorred the violence of his action, or were frightened of being associated with him. When he opened his mouth, they covered their ears and fled. But Sun was immune to embarrassment, just as he was unfazed by danger. He merely looked beyond Hawaii, and took off for the American continent in June 1896. Travelling from the west coast to the east, he sought out Chinese communities and preached revolution to them, before asking them to donate. Everywhere he went, however, whether San Francisco or New York, Chinatowns shunned him. As he would later say, his fellow countrymen treated him "like a poisonous snake, or a venomous scorpion'; only a few Christians would talk to him. After a futile few months, he crossed the Atlantic to Britain.</p><p></p></div>	
+
+<div class='layout'><p>Beijing monitored his movements. The Chinese Legation in London hired Slater's Detective Association to tail him. On 1 October, Henry Slater, the manager, filed the first report: "In accordance with your instructions we despatched one of our representatives to Liverpool for the purpose of placing under observation a man named Sin Wun [a name of Sun's] who was a passenger on board the SS Majestic of the White Star Company and beg to report that a Chinaman answering the party's description was seen to disembark from the said ship at 12 o'clock noon – yesterday, at the Prince's Landing Stage, Liverpool.'</p><p></p></div>	
+
+<div class='layout'><p>The detective agency then recorded in great detail Sun's trip to London: the train he intended to catch but missed, the train he took, how he collected his luggage from the parcels office at St Pancras Station and then "proceeded in Cab No. 12616" to a hotel.</p><p></p></div>	
+
+<div class='layout'><p>The next day Sun called on Dr Cantlie at his home, 46 Devonshire Street in central London. Cantlie had returned from Hong Kong in February that year. Before leaving, a friend of Sun's had come and "told me that Sun wanted to see me, and that he was then at Honolulu", according to Cantlie's later testimony to the British authorities. Cantlie made a gigantic detour and travelled to Hawaii to see his former pupil. The doctor was indeed a kindred spirit.</p><p></p></div>	
+
+<div class='layout'><p>Cantlie helped Sun get lodgings in Holborn. During his stay, Sun visited the Cantlies often; he had no other friends – and there was little else he liked to do. The detectives reported a typical day: he "walked into Oxford Street looking in the shop windows… and then entered the Express Dairy Co.'s establishment in Holborn where he had lunch after which he returned to No. 8 Gray's Inn Place, time being 1.45 p.m. At 6.45 p.m. he again came out and walked to a restaurant in Holborn where he remained three quarters of an hour subsequently returning to No. 8 Gray's Inn Place, time being 8.30 p.m. after which he was not again seen.'</p><p></p></div>	
+
+<div class='layout'><p>The agency remarked after a week: "Observation has been renewed each day but nothing of importance has transpired – the gentleman in question being only seen to take walks along the principal thoroughfares looking about him." The Chinese Legation had asked the agency to pay specific attention to Sun's Chinese visitors. Slaters reported: "he has not been seen to meet any of his countrymen". After a few more days, the detectives all but stopped watching him.</p><p></p></div>	
+
+<div class='layout'><p>Soon it was the anniversary of the aborted Canton Uprising. If he did not want his venture to fade into oblivion, he had to do something. An idea occurred to Sun. The Chinese Legation was at 49 Portland Place and, when he walked to Dr Cantlie's after getting off the bus at Oxford Circus, he passed in front of its door every time. It was a three-minute walk from the Legation to the doctor's home. Because of this extraordinary coincidence, one day Dr Cantlie said to him, "Well, I suppose you are not going to the Chinese Legation." Sun "laughed", according to the doctor's testimony later, and said, "I don't think so." Mrs Cantlie said, "You had better not go there; they will ship you off to China, and you will lose your head.'</p><p></p></div>	
+
+<div class='layout'><p>Although they laughed about the idea, Sun's mind was ticking. He could go into the Legation, theoretically Chinese territory, and provoke an incident through, say, engaging the officials in an argument, even a fight, ending with him being kicked out into the London street. This would be the worst that could happen to him, he reckoned. But he could make a scene, which would draw attention. It might even be news. Of course it would be risky, but Sun was nothing if not audacious. His life consisted of taking calculated risks. He did some research, and came to the conclusion: "This is England. The Chinese minister cannot charge me as a criminal. Even if they detain me, there is nothing they can do to me. The Chinese minister has no judicial right, and there is no extradition agreement between China and Britain." That he might be smuggled from central London to China seemed improbable and Sun ruled it out. He also dismissed the thought that he might be murdered inside the Legation. It would have been far easier for the Chinese government to hire an assassin to bump him off in an unknown hotel room. The Legation was a town house opening onto a central London street, and most employees there were local British, including the housekeeper, the butler, the footman and the porter. They could hardly be expected to be party to his murder. What was more, it was a Scot, Sir Halliday Macartney, who was running the Legation at the time, as the Chinese minister, Gong, was sick. Sun found out about this from Dr Cantlie. The doctor knew Sir Halliday's role; he even knew where his fellow Scot lived.</p><p></p></div>	
+
+<div class='layout'><p>That a British man was the boss inside the Legation building was reassuring when Sun contemplated his walk-in. A Brit would know British laws and could not possibly harm him fatally.</p><p></p></div>	
+
+<div class='layout'><p>Sun sounded out Dr Patrick Manson, who was the first dean of his college in Hong Kong. A top-class scientist whose achievements would earn him the epithet "the Father of Tropical Medicine", the doctor disapproved of Sun's action in Canton and told Sun to "stop that sort of thing". Manson later stated to the British authorities that Sun "spoke about going to the Chinese Legation here, and I told him it was not advisable. He said he would take my advice and not go.'</p><p></p></div>	
+
+<div class='layout'><p>But Sun went, on Saturday 10 October 1896, around the time of the first anniversary of his failed Canton Uprising. He entered the building and asked whether there were any fellow Cantonese there. A Cantonese interpreter, Tang, chatted to him. They agreed that Sun would return the next day, and that they would go together to the port to meet some Cantonese merchants. After Sun was gone, Tang thought about their conversation, and felt convinced that he had been talking to none other than Sun Yat-sen, the man most wanted by the Manchu authorities. Tang reported to Minister Gong.</p><p></p></div>	
+
+<div class='layout'><p>Sun had not given much consideration to the minister. A bureaucrat, Gong was in fact deeply ambitious, though not very smart. Only thinking of the possible reward for capturing this enemy of the throne, he took over the case with alacrity and made all decisions personally, in spite of his feeble physical condition (he would die within months). He gave orders to detain Sun, while informing Beijing by cable that since Sun was a wanted criminal and the Legation was Chinese territory, "naturally he should be detained".</p><p></p></div>	
+
+<div class='layout'><p>On Sunday morning, Sir Halliday directed the servants, including the English porter George Cole, to clear and clean a room on the third floor at the back of the house for Sun's detention. When Sun turned up, Tang pretended to show him round the house and led him to the room, where Sir Halliday ushered Sun inside. The Scot, with his imposing height, then announced to the "diminutive" Sun (as he would be described by London journalists) that he knew Sun was a major criminal by Chinese law. "Now that you are here, please stay for a day and a night, and wait till we get a reply" from Beijing. He then left the room and shut the door, telling Cole to "see that that man does not escape". Cole took turns with other servants to sit outside the room.</p><p></p></div>	
+
+<div class='layout'><p>Sun had not anticipated this. He had wanted to be thrown out, not shut in. When he heard Tang ordering Cole to put another lock on the door, and then listened to the sound of the lock being fixed, his anxiety mounted. That night, he slept little.</p><p></p></div>	
+
+<div class='layout'><p>Minister Gong cabled Beijing to report, in satisfaction, that he had captured Sun, and asked Beijing what to do next. He was used to simply following instructions. But Beijing did not know what to do. Britain had already refused to arrest and extradite Sun. The Chinese Foreign Office asked the minister to sort it out himself: "How do you propose to ship him to Canton, in a way that England does not obstruct the move and that he will arrive  Please consult lawyers carefully and work out a scheme before making any move." Beijing was clearly apprehensive at the turn of events, and even annoyed with Gong: "We really hope you will exercise complete caution and cover all angles.'</p><p></p></div>	
+
+<div class='layout'><p>Minister Gong had to ask Sir Halliday to find a solution. The Scot approached a friend who owned a shipping company, the Glen Line of Steamers, to sound out the possibility of chartering a ship to transport a "lunatic" across the ocean. The company asked for ￡7,000 for a 2,000-ton cargo ship. Minister Gong cabled Beijing for authorisation, telling Beijing that if it rejected the option, he would have to release Sun. The Chinese Foreign Office did not reply. It clearly felt that to smuggle Sun from central London back to China was unworkable. But it did not want to reject the plan, since this would amount to giving orders to set Sun free. It did not want to bear the responsibility. There was silence from Beijing.</p><p></p></div>	
+
+<div class='layout'><p>With no authorisation to pay the ￡7,000, Minister Gong could not pursue the Glen Line idea. Nor did he let Sun go. He did not want to bear the responsibility either. And so Sun was kept in his de facto prison.</p><p></p></div>	
+
+<div class='layout'><p>Inside his cell, Sun took precautions against poisoning. His medical training now came in handy; he lived on bread and bottled milk and raw eggs. One day Tang the interpreter turned up and told him about the Glen Line plan, and this really scared him. He pleaded with Tang to "beg" the minister, and through him, the throne, to spare his life, promising that he "would never be involved in any rebellion again".</p><p></p></div>	
+
+<div class='layout'><p>His priority was to try and get a message to Dr Cantlie. He gave several notes to George Cole, beseeching him to take them to the doctor, and promising him a large reward. Cole handed the notes to Sir Halliday, who had told him that Sun was "a madman". Sensing that his notes had not arrived at their destination, Sun told Cole he wanted some fresh air, and Cole opened his window. There were bars on the window and Sun could not get through, but the gap between the bars was wide enough for him to put a hand out. He flung a note onto the roof of the neighbouring house, having wrapped coins in it to make it sufficiently heavy. A Chinese servant saw it, and Cole climbed over to pick up the note, which he again gave to Sir Halliday. The Scot told his servant to nail the window shut.</p><p></p></div>	
+
+<div class='layout'><p>Eventually, Sun persuaded Cole that he was not a madman, but rather the equivalent of an opposition-party leader, "and because I am the leader of that party, they have caught me here. They mean to bind and gag me, and they will get me on board a vessel and send me to China." These words touched the porter, and he consulted the housekeeper, Mrs Howe, about whether he should help Sun. Howe replied, "If I were you, George, I should." Before Cole carried Sun's message to Dr Cantlie, this compassionate woman had acted herself. She wrote an anonymous letter and pushed it through the doctor's door. It read: "There is a friend of yours imprisoned in the Chinese Legation here, since last Sunday. They intend sending him out to China, where it is certain they will hang him. It is very sad for the poor man, and unless something is done at once he will be taken away… I dare not sign my name, but this is the truth, so believe what I say.'</p><p></p></div>	
+
+<div class='layout'><p>When Dr Cantlie heard the doorbell and found the letter, it was after 11 p.m. on Saturday 17 October. Sun had been locked up for a week. The doctor started a rescue campaign at once. He went straight to Sir Halliday's house, but there was nobody in. The doctor then took a hansom to Marylebone police station and then to Scotland Yard. He had difficulty getting anyone to believe his story. The inspector on duty at Scotland Yard thought he might be a drunk or a lunatic and told him to go home. Dr Cantlie spent the rest of the night in the street outside the Legation, in case there was any attempt to spirit Sun away.</p><p></p></div>	
+
+<div class='layout'><p>Mrs Cantlie wrote in her diary that Sunday was "a day of hopes and fears. Hamish [Dr Cantlie] went first thing to see Judge A… then Mr H… but got no satisfaction about doing something for Sun Yat Sen. Came home from church, and Hamish went to see Manson and see if he could find Sir Halliday MacCartney [sic]. Manson took our side and was wroth against the Legation. A man (Cole) who turned out to be Sun's warder arrived and brought two small cards beseeching us to rescue him.'</p><p></p></div>	
+
+<div class='layout'><p>On the back of one card Sun had written "I was kidnapped into the Chinese Legation on Sunday, and shall be smuggled out from England to China for death Pray rescue me quick!" These words had been written with a pencil first and then traced out with a pen. On the front, above his printed name, "Dr Y. S. Sun", Sun had written Cantlie's name and address, and below added "Please take care of the messenger for me at present, he is very poor and will lost [sic] his work by doing for me.'</p><p></p></div>	
+
+<div class='layout'><p>On the second card was a more urgent plea, written only in pen: "A ship is already charter [sic] by the C. L. for the service to take me to China and I shall be locked up all the way without communication to anybody. O! Woe to me!'</p><p></p></div>	
+
+<div class='layout'><p>With these cards, and together with Dr Manson, Cantlie went to Scotland Yard for the second time, and after that, to the Foreign Office. A member of the clerical staff at the Foreign Office immediately took up the matter and began to deal with it. The doctors went to the Legation to make it aware that the British authorities knew about the case. The Legation sensed that the game was up. Minister Gong urgently cabled Beijing, asking whether he should release Sun before trouble with the British government started. Again he received no reply. Still nobody wanted to be the one to say "Release him." Sun remained locked up in the Legation.</p><p></p></div>	
+
+<div class='layout'><p>While the mandarins buried their heads in the sand, willing the trouble to go away, communications shuttled between the British Foreign Office, the Home Office and Scotland Yard – and Lord Salisbury, who was both the foreign secretary and prime minister. With his consent, policemen were posted outside the Legation, ready to spring on anyone who might try to smuggle Sun out of the building. Orders were given for all ships heading for China to be placed under surveillance. Meanwhile, Cole was interviewed. And the two highly respected doctors Cantlie and Manson swore affidavits. On the basis of this information, on Thursday 22 October, eleven days after Sun was detained, Lord Salisbury wrote to the Chinese Legation: "The detention of this man against his will in the Chinese Legation was, in the opinion of HMG, an infraction of English law which is not covered by, and is an abuse of, the diplomatic privilege accorded to a foreign representative. I have, therefore, the honour to request that Sun Yat Sen may be at once released.'</p><p></p></div>	
+
+<div class='layout'><p>Sir Halliday was summoned to the Foreign Office to hear Lord Salisbury's request. He complied, arranging for Sun to be delivered up at the Legation at 4:30 p.m. the next day. At that time on 23 October, Chief Inspector F. Jarvis and a Foreign Office official went to the Legation to collect Sun, accompanied by a joyous Dr Cantlie.*<a name="p2" id="p2"></a><a href="#pl2" title=""><sup>2</sup></a></p><p></p></div>	
+
+<div class='layout'><p>When he was led downstairs to join Dr Cantlie, Sun was seen to be "in good health and…  excellent spirits". He was then delighted to find himself pursued by a large posse of reporters. Dr Cantlie had alerted the press. A big crowd had gathered outside the Legation, with photographers, sketchers and indignant onlookers, and they showered him with questions. In the days that followed, newspapers as far away as America and Australia, not to mention Japan, Hong Kong and Shanghai, were talking about him in elaborate details, with the eye-catching word "kidnap" prominent in the headlines.</p><p></p></div>	
+
+<div class='layout'><p>Sir Halliday wrote to The Times to explain that Sun had walked into the Legation of his own free will. But it made no difference. For the British, as Lord Salisbury pointed out, what mattered was that "having come inside… he was kept a close prisoner". Sun adamantly denied that he had walked into the building freely, claiming that he had had no idea it was the Legation. He chose his words carefully, though, stating that he was "accosted… and compelled to enter". At a later inquiry by the British government, Sun was even more careful and stressed that "there was no real violence used; it was done in a friendly manner". A violent kidnap would have necessitated a criminal investigation, in which case he would have to describe the process under oath, and the truth might have come out.</p><p></p></div>	
+
+<div class='layout'><p>But he did not need to be so circumspect when it came to writing a book. With a great deal of help from Dr Cantlie, he rushed out a book with the snappy title Kidnapped in London. It was an instant bestseller and was translated into several languages. Sun was now well known, although his name generated ambivalent reactions. After their initial goodwill towards the victim, the British public cooled. They were averse to violent revolutions. Friends of the Cantlies would refer to Sun mockingly as "that troublesome friend of yours". The couple remained Sun's almost sole European supporters.</p><p></p></div>	
+
+<div class='layout'><p>But what matterd to Sun was that his story reached Chinese radicals and that he became famous among them. They sought him out, and eagerly received him. When he at last left London in July 1897, heading for the Far East via Canada, the private detective who shadowed him noted that he had a busy schedule and that when he talked to Chinese audiences, "they were very attentive to him and his conversation". People opened their wallets as well. In Vancouver, Sun was able to swap his second-class ticket for a first-class cabin, paying the difference of a hundred Canadian dollars, and he "was attired in a stylish sack suit which he has not been previously seen to wear". From then on, as he told his childhood friend Luke Chan, laughing in obvious delight, "I get what I want wherever I go." Luke remarked, "It was quite true… he could travel from one end of the world to the other merely on his name. There was always transportation available, a house and food ready to his hand, funds when he asked for them… and even motor cars and boats were obtainable if needed." Walking into a kidnap in London established Sun as the only Chinese revolutionary with an international profile.</p><p></p></div>	
+
+<div class='layout'><p>—</p><p></p></div>	
+
+<div class='layout'><p>With this newly acquired fame, Sun Yat-sen looked for a base near China from which he could launch more revolts. Japan, which had once threatened to deport him, now let him stay, and provided him with living expenses and police protection.</p><p></p></div>	
+
+<div class='layout'><p>In the year 1900, the xenophobic and anti-Christian society of peasants known as the Boxers were wreaking havoc in north China. Regarding the steps that the Manchu government took to suppress them as insufficient, an allied army of eight powers, including Japan, America and Britain, invaded Beijing. The court was driven out of the capital and fled into exile in Xian, an ancient capital in north-west China. For a moment, the Manchu throne looked wobbly. Sun proposed to the Japanese government that he would mobilise gangsters to seize some southern provinces and set up a "republic" with its sponsorship. To start with, he suggested, he would organise a Triad revolt on the south-east coast across the sea from Taiwan, which had been under Japanese occupation since the 1894–5 war; Japan could use the "disturbance" as an excuse to invade mainland China from Taiwan.</p><p></p></div>	
+
+<div class='layout'><p>After much deliberation, Tokyo rejected the plan. Sun decided to create a fait accompli and told his friend Cheng, the Triad chief, to go ahead with the revolt on the coast, and he himself took off to Taiwan, where the Japanese governor was itching to invade. In early October, Cheng started the revolt on the south-east coast with a few hundred men. They pushed on to Amoy, a big port. But Tokyo issued a stiff order forbidding the governor of Taiwan to do anything, and he had to refrain from sending over troops or ammunition. The revolt collapsed. Taiwan expelled Sun. (Months later, Cheng died suddenly in Hong Kong after a meal. The coroner's verdict was a stroke. But suspicion of poisoning persisted.)</p><p></p></div>	
+
+<div class='layout'><p>Sun went back to Japan, where he now felt unwelcome. He tried to find another, friendlier base near China, but met repeated setbacks. Thailand, British Hong Kong and French Vietnam all rejected him. Foreign governments chose to work with Empress Dowager Cixi, who was now in power. While Sun was agitating for violent revolution from outside, under her, China was undergoing a non-violent revolution from within. A former imperial concubine, this extraordinary woman had seized power through a palace coup after her husband's death in 1861, whereupon she had begun to bring the medieval country into the modern age. Great achievements had been made. In 1889 she had to retire when her adopted son, Emperor Guangxu, came of age and took over; but after the catastrophic war with Japan in 1895, she regained power, and restarted reforms in 1898.*<a name="p3" id="p3"></a><a href="#pl3" title=""><sup>3</sup></a> Although they were temporarily halted as the result of first an assassination plot against her involving Emperor Guangxu, and then the Boxer mayhem, she pushed them to new heights once the maelstroms were over. In the first decade of the twentieth century, she introduced a series of fundamental changes. These included a brand-new educational system, a free press, and women's emancipation, beginning not least with an edict against foot-binding in 1902. The country was to become a constitutional monarchy with an elected parliament. This enlightenment proceeded at the speed of "a thousand li [i.e. 500 km] a day", as Sun himself observed. Dr charles Hager, who had baptised Sun, bumped into him in Los Angeles in 1904, and argued with him that "the reforms which he formerly advocated were being adopted" by the Manchu throne, and that China could renew itself under the monarchy. Sun simply said "the Manchus must be ousted".</p><p></p></div>	
+
+<div class='layout'><p>In that decade, Sun's agenda – drive out the Manchus and form a republic – gained popularity among the Chinese. Thousands of students had by now come to study in Japan, and many espoused republicanism. When he landed in Yokohama after his travels in summer 1905, people flocked to him like pilgrims. He was escorted to Tokyo, where he was due to speak to a large packed hall. The crowd spilled into the streets, craning their necks to try to catch a glimpse of the visionary. When he arrived in a starched white suit, the applause was thunderous. Once he started speaking, the hall fell totally silent.</p><p></p></div>	
+
+<div class='layout'><p>Sun was soon able to form an organisation in Tokyo, the Tong-meng-hui ('United League'). The Revive China Society, which he had founded in Hawaii, had petered out. The new organisation did not fare well either. Sun's colleagues accused him of appropriating donations for himself – and of being "dictatorial". Sun was not good at working with colleagues. His style was to make decisions himself, give orders, and expect to be obeyed.</p><p></p></div>	
+
+<div class='layout'><p>On 15 November 1908, the empress dowager died. As the New York Times observed: "As soon as she passed away, China at once felt the lack of a strong leader… China has no leadership and is going to pieces fast." The most powerful tidal wave was republicanism. The Manchus were foreigners and foreign rule was doomed. So, although Sun's organisation was not functioning, committed republicans continued to work by themselves, chipping away at the monarchy.</p><p></p></div>	
+
+<div class='layout'><p>—</p><p></p></div>	
+
+<div class='layout'><p>Three years after Cixi's death, on 11 October 1911 an anti-Manchu mutiny involving a couple of thousand soldiers broke out in Wuhan, a city on the Yangtze River in central China. This time, the rebels were no gangsters but government troops under the influence of republicanism. Sun was travelling in America at this time, and did not lead the mutiny. Army chief Li Yuan-hong, a stocky and unassuming man much loved by the soldiers and the local population (who called him "the Buddha'), rose to the occasion and took leadership. He was the first man of high position and esteem to join the revolutionaries, and this made a huge difference to the republican cause.</p><p></p></div>	
+
+<div class='layout'><p>Soon Li was joined by Huang Xing, the second-most influential man among the republicans. Heavy-built and rough-looking, Huang was a fearless fighter. That spring he had just led an impactful, albeit failed, revolt in Canton, in which he had lost two fingers. Now he led the resistance to the counter-attacks of the government army, and held the city for long enough to ignite republican uprisings and mutinies in other provinces.</p><p></p></div>	
+
+<div class='layout'><p>Sun Yat-sen did not rush back. For well over two months he continued to travel in America and Europe, and then lingered in South East Asia. He needed to be sure that the republicans would win, so that he could return without the threat of execution. His travels were also a publicity tour. With the help of local Chinese students, he told the newspapers – or arranged for them to be informed – that the uprisings were under his orders, and that once a republic was founded, he would be its first president. He had a "manifesto" issued in the name of "President Sun". Interviews with him were carried in newspapers in China, which further raised his profile there.</p><p></p></div>	
+
+<div class='layout'><p>To explain his long absence to the revolutionaries, Sun cabled Huang that he was staying in the West to seek diplomatic support, which he said was the key to their success. He also claimed, through the press, that he was raising "gigantic sums of money". Several banks, he strongly hinted, promised to fund the republicans to the tune of tens of millions of dollars once he, Sun, was made president. Sun did try to see people who were in a position to give him endorsement or money, and while in London checked into the Savoy, one of the most expensive hotels, using its letterhead liberally. But he got nowhere. His world had been almost exclusively Chinatowns, and he had no access to the Western establishments.</p><p></p></div>	
+
+<div class='layout'><p>On 18 December 1911, the Manchu court started peace talks with the republicans in the face of uprisings all over China. The revolutionaries were definitely winning. They set about forming an interim government to deal with the negotiations, and nominated Huang Xing to be the head. Huang accepted. As soon as he learned the news, Sun Yat-sen hastened for China and arrived in Shanghai on the 25th. He could delay no longer. He had to see in the birth of the republic, which had been his vision, and whose flame he had kept alight for nearly two decades. And he had to be there to stake his claim for what he saw as his rightful position: president of the Chinese republic.</p><p></p></div>	
+
+<div class='layout'><p>*<a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> The emperor had many phobias, one being the fear of thunder. When there was a thunderstorm, eunuchs would gather and shout as loudly as they could, in the vain hope of drowning out the sound of the thunder.</p><p></p></div>	
+
+<div class='layout'><p>*<a name="pl2" id="pl2"></a><a href="#p2" title=""><sup>2</sup></a> After Sun was released, the mandarins in Beijing sprang to life and sent a telegram to the Legation endorsing hiring a ship to transport him to China, adding details such as that Sun must be shackled and meticulously guarded. The telegram was backdated to when Sun was still in incarceration. Clearly, it was created for the sake of a paper trail for the eyes of the throne. Minister Gong, for his part, told Beijing he had already chartered a steamer and was about to ship Sun to China when the British government intervened.</p><p></p></div>	
+
+<div class='layout'><p>*<a name="pl3" id="pl3"></a><a href="#p3" title=""><sup>3</sup></a> The reforms of 1898 are usually credited to Emperor Guangxu and other men, with Empress Dowager Cixi cast as an anti-reform villain. This was not the case. For the records that show the truth, see Jung Chang, Empress Dowager Cixi: The Concubine Who Launched Modern China, Chapter 19.</p><p></p></div>﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿	
+	
+<div class='layout'><p> 17 Little Sister's Triumph and Misery</p><p></p></div>	
+<div class='layout'><p>In October 1942, Wendell Willkie, the 1940 Republican presidential nominee, came to Chongqing as Roosevelt's personal representative. To date, he was the most important visitor to the wartime capital and was taken to the front. He liked what he saw and was particularly taken with May-ling. With a flurry of compliments he invited her to America for a goodwill tour. She had ‘brains, persuasiveness and moral force … wit and charm, a generous and understanding heart, a gracious and a beautiful manner and appearance, and a burning conviction … Madame would be the perfect ambassador.' On the eve of his departure, Willkie asked May-ling to fly with him to Washington ‘tomorrow'. (There is no evidence they had an affair, as some have claimed.)</p><p></p></div>	
+<div class='layout'><p>This ardour, coming from somebody close to the White House, made up May-ling's mind to visit the United States. The idea had been mooted since the early stage of the war. She had hesitated, not out of fear of lack of attention, but of too much attention from the Americans. She told Emma Mills: ‘I visualize what would happen. All the friends I have, all the thousands of people who have written letters and contributed money, and the hundreds of thousands of curious people, to say nothing of the thousands of newspaper men and people of importance who would want either to speak to me or me to speak to them, would overwhelm me within the first few hours of my arrival.' She was afraid she might not be able to cope well (she had been working flat out and felt she had ‘no reserve left') and would let down the American people as well as her country. As she told Emma, she was ‘afraid of the sympathy and the goodwill of Americans'. If Emma did not think this was how the Americans would act, May-ling said, ‘Emma, you do not know your own people.'</p><p></p></div>	
+<div class='layout'><p>May-ling had foreseen an extremely warm welcome – but its intensity far exceeded even her expectation. Her words to Emma had been written in 1939 – before Pearl Harbor. Since then, American sympathy for China had skyrocketed. This poor and mysterious country had been fighting Japan, a fearsome evil enemy, for the past four and a half years, alone. May-ling was the representative of that heroic nation. She was a beautiful woman – and she was American in all but her face – a face of ‘ivory satin skin' at that. The reception was stupendous. When she arrived in Washington DC to start her official visit in February 1943, she was met at the train station by Mrs Roosevelt herself, who took her arm and brought her to meet the president, who was waiting in a White House car outside the station. May-ling spoke to a rally of 17,000 in Madison Square Garden in New York, to 30,000 in the Hollywood Bowl in LA, and was greeted by wildly excited crowds from city to city. When she addressed Congress – a big honour – on 18 February, just the sight of her, dressed in the traditional, alluring cheongsam, looking petite and delicate, amidst all those big men under the magnificent ceiling, was awe-inspiring. And her speech, in impeccable American English, moved many a powerful man to tears. The standing ovation lasted four minutes.</p><p></p></div>	
+<div class='layout'><p>For May-ling, all this did not come without a great deal of effort. A perfectionist, she exhausted herself writing and rewriting her speeches. At some events, she was so drained she nearly fainted. When her husband watched a newsreel of her in Chinatown, New York, he was worried that she looked ill and was struggling to cope. She had been in poor health before her trip, with hypertension and stomach trouble that was suspected to be cancer (it was not). To have her ailments fixed before the official visit – and to indulge herself a little – she had come to America three months before and checked into the Presbyterian Hospital of New York. She was able to look her best in front of the American public, won their goodwill and got the American government to redouble its aid. The trip was a triumph.</p><p></p></div>	
+<div class='layout'><p>There were criticisms, some from the White House staff. She had brought her own silk sheets and had them changed once a day, or twice if she took a nap. Actually, this was largely due to the hives that had been tormenting her, which improved when she had fresh sheets. The Americans who came into contact with her group were also put out by the bad manners of her nephew David and niece Jeanette, whom she brought as her assistants. Emma, for instance, described David as ‘gross' and Jeanette ‘weird'. The White House staff found them imperious, and the Secret Service detail was irked by their rude demands. But they were devoted to their aunt and looked after her as nobody else could. May-ling relied on them.</p><p></p></div>	
+<div class='layout'><p>Stepping out of the train in Washington for her official visit, May-ling had David by her side. He appeared in many press photos – in spite of the fact that he was not a government official. Nor was he the dashing nephew an aunt might want to show off, portly and distinctly unprepossessing as he was. Still, he was introduced as her ‘secretary', and signed his name on telegrams thanking people like the governor general of Canada who had hosted her. For her nephew to sign such communications rather than herself was against protocol and impolite, and much upset Chinese diplomats. But May-ling ignored their objections. She doted on her favourite nephew and niece, and also wanted to please Ei-ling, to whom she felt deeply in debt. Big Sister was paying a large part of her bills for the trip while under attack for being corrupt. As David was also under fire, giving him prominent exposure was May-ling's way of demonstrating her support for Big Sister and her family.</p><p></p></div>	
+<div class='layout'><p>The American trip was not only a great success for China – May-ling herself had a fabulous time in the country where she felt most at home. She was there for eight months and did not return to Chongqing until July 1943 – in spite of her husband's repeated entreaties to come home.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>The Generalissimo had been writing to tell her that he missed her: how sad he had felt when she had boarded the plane to depart and how lonely he had felt on both Western and Chinese New Years? The day May-ling returned, Chiang came home and saw her lying on the bed (with a stiff neck), her two sisters and his two sons all present. He said he felt joy at this rare family scene. After the others had gone, May-ling related to him what she had achieved during her trip, and his happiness was complete.</p><p></p></div>	
+<div class='layout'><p>But gloom soon marred the reunion. Gossip had reached the first lady that while she was in America, the Generalissimo had been seeing other women, especially his ex-wife, Jennie, who had settled in Chongqing. People vouched that they had often seen Jennie in the swimming pool of the Army University, with Chiang sitting by the pool, watching. May-ling stormed off to Big Sister's. It took her several months to come round and accept Chiang's insistence that the story was unfounded. What was true was Chiang's self-confessed battle against his hankering for sex while he was separated from his wife.</p><p></p></div>	
+<div class='layout'><p>May-ling's bitter mood persisted, and she succumbed to a series of illnesses from dysentery to iritis, which caused pain and sensitivity to light. Her hives also got worse in the damp fog of Chongqing. Scarlet patches puffed up her face as well as her body. During fitful nights she tried to suppress the urge to scratch, snatching only moments of sleep and relief.</p><p></p></div>	
+<div class='layout'><p>She was in a bad way when she had to accompany her husband to Cairo for a conference with President Roosevelt and Prime Minister Winston Churchill, set for 22–26 November 1943. The Cairo Conference would not only make decisions about the war and post-war Asia, it would visibly put Chiang on a level with the heads of America and Britain. It fell on May-ling to carry out negotiations on her husband's behalf, as well as interpreting and socialising for him, as he didn't speak English. On the plane to Cairo, her face looked more swollen than ever, and the itchiness allowed her little sleep. She seemed to be on the verge of collapse and Chiang was anxious. Miraculously, luck and willpower combined to reduce the swelling before the plane landed. Still, her doctor had to dilate the pupils of her eyes. As she later wrote to her friend Emma, she ‘had a particularly thin time' in Cairo.</p><p></p></div>	
+<div class='layout'><p>Being the only woman amongst a large gathering of high-powered men, she attracted much attention. General Sir Alan Brooke, in his famously ‘indiscreet, malicious and true' diaries, described her as: ‘Not good-looking, with a flat Mongolian face with high cheekbones and a flat, turned up nose with two long circular nostrils looking like two dark holes leading into her head.' But the general credited her with ‘great charm and gracefulness, every small movement of hers arrested and pleased the eye'. In the official photographs, she was seen chatting gracefully with Roosevelt and Churchill, elegant in a dark-coloured cheongsam, a white jacket and shoes decorated with pretty bows. She looked completely at ease, showing no trace of physical strain. The continuous itchiness only caused her to arrange and rearrange her feet a little more frequently than usual as she sat through long meetings. This movement, revealing her shapely legs, was interpreted by some as being done deliberately to distract the men from her husband's poor performance. Brooke wrote, ‘This caused a rustle among those attending the conference, and I even thought I heard a suppressed neigh come from a group of some of the younger members!'</p><p></p></div>	
+<div class='layout'><p>Future British prime minister Anthony Eden, in Cairo as Churchill's lieutenant, took away a pleasant impression of her: ‘Madame surprised me. She was friendly, a trifle queenly perhaps … but an industrious and earnest interpreter and neither sprightly nor touchy as I had been led to expect.' Eden found the Generalissimo impressive. ‘He would be difficult to place in any category and does not look a warrior. He has a constant smile, but his eyes don't smile so readily and they fix you with a penetrating unswerving look … His strength is that of the steel blade … I liked them both, Chiang particularly, and I should like to know them better.'</p><p></p></div>	
+<div class='layout'><p>Together the Chiangs achieved much. The Cairo Declaration is considered ‘a triumph for Chiang Kai-shek'. Indeed it spelt out that ‘all the territories Japan has stolen from the Chinese, including Manchuria, Formosa [Taiwan], and the Pescadores, shall be restored to the Republic of China'. This had been on Chiang's wish list, which he had given to May-ling to take to President Roosevelt when she visited America.</p><p></p></div>	
+<div class='layout'><p>On the last day of the conference, Chiang wrote in his diary:</p><p></p></div>	
+<div class='layout'><p>This morning my wife went to see Roosevelt about economic matters and returned at 11 to talk to Hopkins [Harry, Roosevelt's confidant]. Until he left in the evening, for 10 hours she had practically not a minute of relaxation and was totally focused on everything under discussion. Her every word was said with the fullest concentration. At 10 o'clock at night, I could see that she was utterly exhausted. With her bad eye trouble and the ever-present itchiness, that she could work like this is really something. Truly no average person can be like her.</p><p></p></div>	
+<div class='layout'><p>One evening Winston Churchill came over, and Chiang saw his wife laughing and talking animatedly with him. Later he asked her what they had been talking about; she told him that Churchill had said to her, ‘You must think of me as the worst possible old man, am I right?' (This, if said, was probably a reference to Churchill's response to Chiang's demand to return Hong Kong: ‘Over my dead body.') May-ling, according to her husband's diary, told the great British prime minister, ‘You must ask yourself whether you are a bad man.' Churchill was said to have replied, ‘I am not evil.' Chiang concluded that his wife had thoroughly chastised Churchill. Whether or not this version of the conversation was accurate, May-ling had earned Chiang a great deal of face, and he was proud of her.</p><p></p></div>	
+<div class='layout'><p>Returning from Cairo in excitement, Chiang took his wife to picnics in the wintry hills around Chongqing. ‘What joy,' he wrote on New Year's Eve 1943.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>May-ling was not so cheerful. Her hives got worse. In Cairo she had consulted Churchill's physician, Dr Moran, about it, and he had told her that there was nothing wrong with her and that ‘you will only get better when the strain of your life is relaxed'. But life only became more stressful. An immediate and major problem was her husband's relationship with the most important American in Chongqing, General Stilwell, who held him responsible for the disasters on the battlefield. He reported to Washington that ‘The Chinese soldier is excellent material, wasted and betrayed by stupid leadership.' Nicknamed ‘Vinegar Joe' for his quick temper,*<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a> Stilwell had many rows with Chiang, and openly refused to take the Generalissimo's command.</p><p></p></div>	
+<div class='layout'><p>May-ling, together with Big Sister, tried to patch up the relationship; they got nowhere. Stilwell's deep-rooted antipathy towards Chiang's regime could not be charmed away. Vinegar Joe did not have much empathy with the two women anyway, and preferred Red Sister.</p><p></p></div>	
+<div class='layout'><p>A crisis point was reached in April 1944, when the Japanese launched a major offensive code-named ICHIGO, which linked up occupied north China with the occupied south. Chiang Kai-shek's troops, including some of his best, collapsed like a house of cards. The Americans were once again dismayed by the fact that Chiang did not seem to have any ‘plan or capacity to hamper Japanese movement'. Distaste for the Generalissimo reached new heights. President Roosevelt, feeling ‘the case of China is so desperate' that ‘radical and properly applied remedies' must be ‘immediately effected', wrote to Chiang on 6 July, telling him bluntly to hand over military command to Stilwell. Roosevelt demanded that Stilwell be placed ‘in command of all Chinese and American forces and that you charge him with full responsibility and authority for the coordination and direction of the operations required to stem the tide of the enemy's advances'. The Generalissimo would not concede to this, even if, as he stated, it meant a split with America.</p><p></p></div>	
+<div class='layout'><p>There was nothing May-ling could do. She was besieged by nightmares all pointing to an ominous future and longed to get away. She decided to leave China on the grounds of ill health. This was seen by insiders as ‘an attempt to get away'. Mindful of what people would say, Chiang refused to let her go. May-ling was desperate, and when the US vice president Henry Wallace came to China, she approached a member of his mission and begged him to ask Wallace to bring up the issue of her health with her husband. She even pulled down her stockings to show the red patches of hives on her legs.</p><p></p></div>	
+<div class='layout'><p>At last Chiang allowed May-ling to leave and she flew to Rio de Janeiro in early July with Ei-ling, niece Jeanette and nephew David. Just before her departure, she told her husband tearfully that she was worried that they might never see each other again. She promised that she loved him, that she would never forget him for a moment, and that he must never doubt her love. He wrote in his diary that he was so sad that he couldn't think of anything to say.</p><p></p></div>	
+<div class='layout'><p>Chiang gave a farewell party for her, at which he made a bizarre speech. In front of more than seventy Chinese and foreign dignitaries and journalists, he vowed that he had never been unfaithful to May-ling. To explain himself publicly was embarrassing, but the couple judged it to be necessary. Rumours about Chiang's alleged infidelities had grown louder and more lurid, entertaining everyone in the City of Fog at teas and suppers. May-ling's departure on yet another trip, with no set return date, would seem to confirm that their marriage was over if they did not issue a denial. May-ling also made a speech at the party, declaring her total trust in her husband.</p><p></p></div>	
+<div class='layout'><p>When the trip was announced, May-ling's destination roused interest and suspicion. While some kindly suggested that the first lady was going to Rio to seek treatment for her skin trouble from a renowned doctor, many, including future US president Harry S. Truman, believed that the Soong family had stolen American aid money and invested it in real estate in Brazil. No proof has surfaced to justify either claim. It may well be that the sisters chose Rio because the city was the most pleasant and glamorous place to be at the time. To go to America would have been unwise: Little Sister's image there had taken a knock. Instead of the American press lavishing superlatives on her as they had done only a year before, they now focused rather unsympathetically on ‘her priceless sable coat and muff, adorned with diamonds and jade worth a king's ransom'.</p><p></p></div>	
+<div class='layout'><p>May-ling was in Rio for two months before she went to New York, where she stayed in the Kungs' mansion and kept a low profile. She told Emma that she felt she was ‘suffering the tortures of the damned'. As time went by she started to enjoy life again and had great fun. She spent much time with Emma, talking ‘girl talk'. After one dinner, they drove to Broadway to see a film, accompanied by two Secret Service men, entering through an exit door. They visited the Bronx Zoo incognito, to see the pandas that May-ling had given to New York in appreciation of its support for China's war. She feasted on ice-cream sodas, which she confessed she had sorely missed. One source of pleasure was acquiring a Packard limousine (most likely paid for by Big Sister), which she drove round New York. Secret Service men taught her how to drive, and sat next to her.</p><p></p></div>	
+<div class='layout'><p>China's first lady was away from her country and its war for over a year. Chiang remained devoted to her. He wrote to her frequently, asking after her health, telling her, almost pathetically, how much he missed her – on her birthday, on their wedding anniversary, on Christmas Day, and on every other conceivable occasion, not least the anniversary of her departure for Rio. He begged her to come home soon. She replied with her usual list of sicknesses.</p><p></p></div>	
+<div class='layout'><p>Chiang was dependent on May-ling not because he needed her to keep a good relationship with America. During her long absence, that relationship actually took a turn for the better. President Roosevelt recalled Stilwell in October 1944. His successor, General Albert C. Wedemeyer, and the new ambassador Patrick J. Hurley both got on well with the Generalissimo and were supportive of him.</p><p></p></div>	
+<div class='layout'><p>On 12 April 1945, President Roosevelt died of a massive cerebral haemorrhage. May-ling drove to his New York estate, Hyde Park, to visit Eleanor. The next president, Harry S. Truman, continued to support the Generalissimo and gave him a personal plane, an elegantly and comfortably equipped silver C-47. Chiang named the plane May-ling – even though it did not bring back his wife.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>May-ling was particularly angry with her husband at this time because of how he was treating Big Sister's husband. H.H. Kung had come to America on official business as vice premier and finance minister in mid-1944 and had stayed on, claiming that he needed medical treatment in the US. In spring 1945, a corruption scandal erupted involving bonds worth more than $10 million. H.H. was accused of pocketing over $3 million. The Nationalist rank and file seethed with rage, and Chiang was forced to order an investigation. He sent H.H. a string of cables, each more insistent than the last, telling him to get back to China to answer questions. H.H. was compelled to return in July. He was fired and had to hand back some of the money he had misappropriated.</p><p></p></div>	
+<div class='layout'><p>Chiang made his other brother-in-law T.V. Soong the next prime minister. This soured the relationship between T.V. and the Kungs. From then on, H.H. lost no opportunity to denigrate T.V.; and Ei-ling only half made up with her brother late in their lives.</p><p></p></div>	
+<div class='layout'><p>Ei-ling was furious with Chiang for what seemed to her to be shabby treatment of her husband and, by extension, herself. Behind closed doors she talked emotionally to Little Sister. Emma noticed the mood in the house. Like most Americans associated with China, she felt an aversion for the Kungs and wrote in her journal that her friend was too much ‘under the influence of Mrs Kung. I wish she had almost anyone else with her.' May-ling took her sister's side entirely and stopped answering Chiang's telegrams. To Emma, she hardly ever mentioned him.</p><p></p></div>	
+<div class='layout'><p>On 6 and 9 August 1945, the United States dropped atomic bombs on Hiroshima and Nagasaki. On the 8th, the Soviet Union declared war on Japan. On the 10th, Japan announced its intention to surrender, sparking celebrations around the world. May-ling was in New York and did not race back to China to share the moment of victory with her husband. She drove to Times Square where she got stuck in a huge boisterous throng, and watched the crowds roaring with joy, waving American flags. She identified with this place and had no wish to go back to China. Given the choice, she would much prefer to stay in New York with Big Sister.</p><p></p></div>	
+<div class='layout'><p>*<a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> About his own temper, Stilwell told a story against himself. A Chinese merchant bowed and greeted him: ‘Good day, Missionary.' ‘Why do you address me as “Missionary”?' he asked with a terrible scowl. ‘Because you look like one,' the man replied, before elaborating, ‘because of your calm benign expression, sir.'</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

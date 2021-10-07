@@ -1,0 +1,388 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿	
+	
+<div class='layout'><p> 14 ‘A woman protects a man'</p><p></p></div>	
+<div class='layout'><p>In October 1936, the three major Red Army forces, with tens of thousands of men, all completed their Long March and converged in their new ‘home' in north-west China. Again, Chiang asked Moscow to give back his son. May-ling spoke to the new Chinese ambassador to the Soviet Union, telling him to press the matter hard. But there was no sign of Ching-kuo. The Generalissimo decided to put pressure on Stalin and ordered the Nationalist army surrounding the Reds to relaunch his ‘extermination campaign'. The Reds were now in deadly trouble. They were on the Yellow Earth Plateau, where the loess, the most highly erodible terrain on earth, created a barren landscape. Here, it was impossible for a large army to survive, let alone build a base.</p><p></p></div>	
+<div class='layout'><p>But the chief of the local Nationalist army declined to carry out Chiang's orders. He had his own agenda. This was Zhang Xue-liang, the Young Marshal, former warlord of Manchuria. When the Japanese invaded the region in 1931, he had retreated into China proper, taking with him 200,000 troops. Chiang stationed him and his troops in the province of Shaanxi, whose capital, Xian, was some 300 kilometres to the south of the Reds.</p><p></p></div>	
+<div class='layout'><p>Zhang's American pilot, Royal Leonard, gave this description of him: ‘here was the president of a Rotary Club: rotund, prosperous, with an easy, affable manner … We were friends in five minutes.' He had a reputation for being a playboy, who ‘does nothing with his troops. Just flies around in his private plane.' Known as the Flying Palace, this luxury Boeing may well have been bought with Chiang's multimillion-dollar bribe (for helping Chiang defeat his party rivals in 1930). The Young Marshal often piloted it himself for fun, his long robe tucked up around his knees and his cap awry. But this frivolous image masked a man of boundless ambition and gambler-like daring. Like so many other provincial potentates, he did not think much of Chiang's ability and believed he could do a better job. He aspired to supplant the Generalissimo, and the arrival of the CCP gave him a golden opportunity. Anyone who wanted to be the ‘king' knew that Stalin was the kingmaker, and the route to Stalin's favour was through the CCP. The Young Marshal got in touch with the Reds, provided them with desperately needed food and clothing, and began to plot with them against Chiang. Moscow encouraged these machinations, in order to get the Young Marshal to keep helping the Red Army. Mao went a step further and spurred him on to get rid of Chiang. The Young Marshal was led to believe that Moscow would back him to replace Chiang. Under this illusion he hatched a plan to stage a coup - with the expectation that once that happened, Moscow would announce its support for him.</p><p></p></div>	
+<div class='layout'><p>The Young Marshal lured Chiang to Xian by telling the Generalissimo that the troops would not obey his order to wage war against the Reds in Shaanxi because they wanted to fight Japan instead in their homeland, Manchuria, and he asked Chiang to come to Xian to persuade them himself. The Generalissimo duly went at the beginning of December 1936.</p><p></p></div>	
+<div class='layout'><p>At dawn on 12 December, Chiang had just finished his routine exercises and was getting dressed when he heard gunfire. Some 400 of the Young Marshal's men were attacking his quarters. Many of Chiang's guards were killed, including his chief of security. Chiang managed to escape into the hills behind and hid in a crevasse, clad only in his nightshirt in the bitter cold, with no shoes or socks. He was lucky to be alive, but he was captured by a search unit. The Young Marshal publicly declared that he had taken the action because he wanted to force Chiang to fight the Japanese. He wired Nanjing his demands, the first being ‘reorganisation of the Nanjing government'. He assumed that the CCP and Moscow would propose him to head the new government, as Mao had led him to believe.</p><p></p></div>	
+<div class='layout'><p>-</p><p></p></div>	
+<div class='layout'><p>Vice Premier H.H. Kung was in Shanghai when he heard the news of Chiang's arrest. He went at once to inform his sister-in-law. To May-ling, this was ‘like a thunderclap out of a clear sky'. They went back to the Kungs' house to discuss with Ei-ling what to do. The only non-family member there was William Donald, Sun Yat-sen's old Australian adviser now serving May-ling. He had previously worked for the Young Marshal and had helped the playboy kick his opium addiction. Among the many remarkable qualities that enabled him to move through the powerhouses of China were Donald's sound judgement, and his ability to level with the powerful without angering them. The fact that he had made a point of not learning Chinese was, paradoxically, seen as an advantage, as this made it unlikely he would intrigue with Chiang's colleagues. May-ling asked Donald to hurry to Xian to find out what had happened. It was obvious to him that she did not trust a Chinese for the mission.</p><p></p></div>	
+<div class='layout'><p>May-ling, Big Sister, H.H. Kung and Donald took the overnight train to Nanjing, arriving in the capital at seven in the morning. The four of them were having breakfast when the minister of war, General Ho Ying-ching, came to report the outcome of an emergency top-level meeting during the night. The participants in the meeting had not waited for Vice Premier Kung because he had been such a negligible figure in decision-making in Chiang's one-man dictatorship. In the name of the Nanjing government, the meeting had publicly condemned the Young Marshal and sacked him from all posts, promising severe punishment. They threatened war against Xian. May-ling was hugely upset. War against Xian would effectively mean dropping bombs on her husband. His safety was her absolute priority. That the top officials had made the decision to attack and announced it before H.H. Kung and she had arrived in Nanjing only added to her fury and roused her worst suspicions. She told Donald to go to Xian to see the Generalissimo first. General Ho, who disliked Donald on account of his influence with the Chiangs, objected to him going. May-ling brushed his protest aside, and gave Donald a letter to carry to her husband, telling the Generalissimo to take care and to let her know the lie of the land.</p><p></p></div>	
+<div class='layout'><p>May-ling tried to compose herself. She did not want to be ‘regarded as a woman who could not be expected to be reasonable in such a situation', but she was boiling with rage at the top officials in Nanjing. She was convinced that her husband's many foes were using the crisis to have him killed, and insisted on flying to Xian to persuade the Young Marshal to release Chiang. The Nanjing leaders regarded her confidence in her own powers of persuasion as fantasy.</p><p></p></div>	
+<div class='layout'><p>In fact, the Young Marshal did not need to be convinced to release Chiang. Two days after the Generalissimo's capture, he realised that he had made a catastrophic mistake - and he was already planning to release Chiang, and even to go to Nanjing with him. On that day, 14 December, Moscow used the harshest language to condemn his actions, accusing him of helping the Japanese, and emphatically endorsed the Generalissimo. Moscow had realised that Chinese public opinion showed an almost universal support for Chiang. People were aware that Chiang's troops were at this very moment putting up stiff resistance against Japan's encroachment in Suiyuan, north China. They saw that the Generalissimo was a staunch opponent of Japan and that his demise would only facilitate Japanese conquest. Nobody thought that the Young Marshal could step into his shoes.</p><p></p></div>	
+<div class='layout'><p>H.H. Kung, now the acting prime minister, contacted influential people across the country inviting their help - and most of them reacted positively. One of the few who did not cooperate was Red Sister Ching-ling. When H.H. called on her for support, she told him that she was delighted that Chiang had been caught, that the Young Marshal's actions were entirely right, and that ‘I would have done the same thing if I had been in his place. Only I would have gone farther!' But she did not express these sentiments publicly: Moscow would have been furious.</p><p></p></div>	
+<div class='layout'><p>H.H. sent a message to Stalin that ‘word was around' that the CCP was involved in the coup, and that ‘if Mr Chiang's life were endangered, the anger of the nation would extend from the CCP to the Soviet Union.' This, he strongly implied, could lead to the country joining hands with Japan against Russia. Stalin escalated the condemnation of the Young Marshal and ordered the CCP to help secure Chiang's release.</p><p></p></div>	
+<div class='layout'><p>It could not be clearer to the former warlord that the game was definitely up. Moscow had denounced him. Mao had tricked him. He had to find a way to save his own skin. His only option was to stay with Chiang Kai-shek. But the Nanjing government was sure to have him shot. Not only had he staged a coup, he had killed many Nationalist officials (and soldiers) in the process, including high officials. Their families and colleagues would all be calling for his blood. His only hope was that the Generalissimo would spare him if he was released. But knowing how stubborn Chiang was, the Young Marshal could not count on Chiang to agree to a deal, and even if Chiang did agree, he could not count on the Generalissimo to keep his end of the bargain. The only person who could do a deal on Chiang's behalf and make Chiang honour the deal was May-ling. And the Young Marshal felt he could trust her. The two had genuinely got on well, both speaking English. More importantly, he knew that she was straightforward and fair, and that if he did a deal with her she would not double-cross him. Her Christian faith also meant that she would be inclined to forgive him, if he presented himself as a repentant sinner.</p><p></p></div>	
+<div class='layout'><p>From 14 December, the Young Marshal sent May-ling a string of messages through Donald, beseeching her to come to Xian. He said he had only tried to pressure Chiang to fight the Japanese, and that he had realised what he had done was wrong, although it was ‘with good motives'. He vowed that he had no intention of harming her husband - in fact he wanted to release him and go to Nanjing with him. But first of all please could she come so they could sort things out together.</p><p></p></div>	
+<div class='layout'><p>Nanjing found the Young Marshal's words bizarre and untrustworthy, and refused to let May-ling risk her life by going to him. The ex-warlord was told just to set Chiang free, or face war. But May-ling's powerful instinct told her that he did intend to set her husband free, and that somehow she needed to be there to make this happen. The officials in Nanjing remained unconvinced: it could be a trap; she would be walking into a lynch mob and still would not be able to save her husband. But May-ling insisted, and Nanjing finally gave in. On 22 December, Little Sister boarded a plane heading for Xian.</p><p></p></div>	
+<div class='layout'><p>-</p><p></p></div>	
+<div class='layout'><p>Donald had come back to escort her there. In the plane, he pointed out Xian to her. Gazing at this square walled city in the embrace of snow-covered mountains, May-ling was overwhelmed with emotions. When they approached the opening of the valley leading to the city, she handed Donald her revolver before disembarking, and made him promise that ‘if troops got out of control and seized me', he would shoot her ‘without hesitation'.</p><p></p></div>	
+<div class='layout'><p>When Chiang saw his wife walking into his room, it was his turn to be overcome with emotion. ‘You have walked into a tiger's lair,' he burst out, in tears. He then told his wife that he had opened the Bible that morning, and he had been drawn to these words: ‘The Lord has created a new thing on the earth: a woman protects a man.' May-ling thought that these words conveyed a double message: that she was coming, and that ‘All is right.' May-ling's words came from a Robert Browning poem: ‘God's in His heaven - / All's right with the world'. This gave her great hope and she comforted her husband with her optimism. Seeing that he was ‘lying there injured and helpless, the shadow of his former self', she felt ‘an uncontrollable wave of resentment against those responsible for his plight'. As he was ‘agitated and upset', she opened the Bible and read Psalms to him until he calmed down and drifted off to sleep.</p><p></p></div>	
+<div class='layout'><p>The Young Marshal did a deal with May-ling and T.V., who had come to Xian a day before her. The former warlord claimed that he had only seized Chiang on a moment of impulse, ‘we tried to do something which we thought was for the good of the country. But the Generalissimo would not discuss anything with us … I know I have done wrong, and I am not trying to justify myself or this action.' He tried to flatter May-ling, saying: ‘You know I have always had great faith in you, and my associates all admire you. When they went through the Generalissimo's papers after he was detained, they found two letters from you to the Generalissimo which caused them to hold you in even greater respect.' Her words ‘moved us', he claimed, before producing the clinching argument, ‘especially when you wrote that it was by God's grace that more mistakes were not made than had been made, and that you felt you should pray more for divine guidance'.</p><p></p></div>	
+<div class='layout'><p>With his safety promised, the Young Marshal was ready to set his prisoner free. There was just one last hurdle to cross. The Communists demanded that Chiang talk to its emissary in Xian, the later famed diplomat Zhou En-lai, who had been in the city for some days. Chiang categorically refused to see Zhou, even though the Young Marshal told him that without the meeting he could not leave. The guards and the troops around had been thoroughly infiltrated by the Reds. For the Generalissimo to see Zhou would be like, in modern-day terms, the US president meeting the representative of a notorious terrorist group. But on Christmas Day, Zhou did walk into Chiang's bedroom. He brought with him a message fresh from Moscow: Ching-kuo, Chiang's son, would come home. Moscow knew that this was the one thing for which Chiang would compromise.</p><p></p></div>	
+<div class='layout'><p>The Chiang-Zhou meeting was brief: the Generalissimo merely asked Zhou to ‘come to Nanjing for direct negotiations'. But these words changed the status of the CCP. From this moment on, it stopped being officially regarded as a bandit organisation to be exterminated, and was treated instead as a legitimate and significant political party. Negotiation duly ensued, which led to the two parties forming a ‘united front' as equal partners when the war against Japan started, within months. During the war, Chiang gave the CCP all sorts of concessions, which enabled the Red Army to grow enormously, so that after the war it was in a position to turn on Chiang and beat him. Chiang's desperation to get Ching-kuo back had led to him fatally underestimating what Stalin and Mao combined could do. The Generalissimo paid a huge price for his son. But he got Ching-kuo out of Stalin's clutches. The hostage was released and left Russia for home with his family in March 1937, having survived his twelve-year ordeal, including hard labour in the gulag.</p><p></p></div>	
+<div class='layout'><p>-</p><p></p></div>	
+<div class='layout'><p>On Christmas Day 1936, after the meeting with Zhou, the Chiangs hurried away with the Young Marshal, flown by his pilot Royal Leonard. They had to spend the night in the city of Luoyang. Leonard recorded the moment when his passengers disembarked:</p><p></p></div>	
+<div class='layout'><p>As I landed the narrow, sand-swept field was filled with students and soldiers running towards us. When they saw Madame step out of the door they halted in a spray of dust and came to attention. They saluted as she set foot on the ground, and two of the officers came forward to assist her. The Young Marshal followed her. As he stepped to the ground four soldiers pointed their rifles at him.</p><p></p></div>	
+<div class='layout'><p>‘Should we kill him?' said one of the soldiers.</p><p></p></div>	
+<div class='layout'><p>‘No!' said the Madame emphatically. ‘Let him alone!'</p><p></p></div>	
+<div class='layout'><p>She put her arm around him, and the Young Marshal put his arm around her … After Madame's command he was treated like a guest of honor.</p><p></p></div>	
+<div class='layout'><p>When they returned to Nanjing, the Young Marshal turned his charm on Ei-ling, who he knew had great influence on the Generalissimo. He had already formed a good relationship with her, addressing her as Big Sister and ‘confessing' to her that she commanded his ‘greatest respect'. He had even proposed a marital alliance between their children. ‘Please forgive me,' he now implored Ei-ling; and she was softened. She said later, ‘I wanted to - well, to punish him for what he'd done, and yet he was so sorry.'</p><p></p></div>	
+<div class='layout'><p>In the end, the Young Marshal's only punishment was a comfortable house arrest, under which he was also protected. Over half a century later, after the deaths of both Chiang and his son, he was freed and moved to Hawaii, where he died in his bed in 2001, aged one hundred.</p><p></p></div>	
+<div class='layout'><p>Chiang's popularity reached its peak after this personal ordeal. At the Luoyang airfield, when he was carried out of the plane, Leonard saw that ‘those who came to greet him went wild with excitement. They threw their hats into the air … Some of them had tears in their eyes.' When his car drove into Nanjing, spontaneous crowds lined the streets to cheer him. Fireworks crackled all night. The Chinese wanted Chiang to lead the fight against Japan. From now on, plotters against the Generalissimo significantly dwindled in number and action.</p><p></p></div>	
+<div class='layout'><p>This nationalist passion also helped Chiang overcome a strong undercurrent of resentment among his colleagues against himself and his straight-talking wife.</p><p></p></div>	
+<div class='layout'><p>After returning to Nanjing, May-ling was still seething with indignation against Nanjing leaders for threatening war against Xian when her husband was there. She wrote an account of the event, in which her hostility was directed squarely at them, with not a bad word about the Young Marshal or the Communists. The picture she painted gave the impression that Chiang's colleagues were the villains responsible for his misfortune. Their action had been ‘precipitous' and ‘intolerable', and there had been an ‘unhealthy obsession on the part of leading military officers'. The credit for Chiang's release belonged to her - and she said as much. Not only did she make a detailed inventory of the Young Marshal's flattery of her, which boiled down to saying that he had freed Chiang due to his admiration for her, she did not hesitate to offer her own conclusion: ‘Mr Donald had laid the foundations, T.V. had built the walls, and it would be I who would have to put on the roof.'</p><p></p></div>	
+<div class='layout'><p>The Generalissimo had his wife's article published in a booklet together with his own account of Xian, thus giving her accusations against his colleagues his stamp of approval. In one go, the couple managed to hurt and enrage virtually all of Chiang's team outside the Soong family. People tolerated May-ling: after all, she was the wife whose priority was her husband's safety, and she had no malice. But they found Chiang's behaviour unforgivable. As the leader of their party and the country, he ought to know that Nanjing's hard stance towards the Young Marshal was the only response possible from the government. Close associates like Chen Li-fu fumed for decades to come. The biggest loss for Chiang was the alienation of Dai Ji-tao, Chiang's old ‘buddy', whose illegitimate son Chiang had adopted as his younger son, Wei-go. Dai had provided Chiang with much valuable frank advice over the years. This time, as he had been a major advocate for the hard stance, he bore the brunt of May-ling's ire. Sensing the Generalissimo's suspicion, Dai, like others, clammed up. Chiang Kai-shek, who had had very few dependable friends and advisers, ended up with even fewer. Loyalty, already scarce, became scarcer. Once the Japanese threat was removed, many colleagues would betray him.</p><p></p></div>	
+<div class='layout'><p>But May-ling was right to feel that the crisis had been resolved thanks to her. Indeed, if she had not gone to Xian, the Young Marshal would not have been reassured about his safety under Chiang, and would not have released him. A war between Nanjing and Xian would have resulted and Chiang would almost certainly have been killed, if not by Nanjing's bombs then by the Young Marshal - who had considered this scenario - and by the Reds. (Zhou En-lai had brought to Xian a team of professionals from the Communist security apparatus, to ‘assist' the Young Marshal to kill Chiang.) China would have sunk into chaotic civil war, which for Japanese invaders would have been an undreamed-of opportunity. May-ling, it could be said, saved her country as well as her husband.</p><p></p></div>	
+
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

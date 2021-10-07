@@ -1,0 +1,646 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>27 Bibliography</p><p></p></div>	
+<div class='layout'><p>Alanbrooke, Viscount (Alan Brooke),?War Diaries 1939–1945, Weidenfeld & Nicolson, London, 2002</p><p></p></div>	
+<div class='layout'><p>Alsop, Joseph W.,?I've Seen the Best of It: Memoirs, W. W. Norton & Company, New York, 1992</p><p></p></div>	
+<div class='layout'><p>Ao Guang-xu, ‘Lun sun zhongshan zai 1924 nian xiabannian de shishifeifei' (‘On the Rights and Wrongs of Sun Yat-sen in the Second Half of 1924'), in?Modern History Studies, Beijing, 1995</p><p></p></div>	
+<div class='layout'><p>Archives of Ming and Qing dynasties ed.,?Qingmo choubei lixian dangan shiliao?(Archive Documents on the Preparations to Establish a Constitutional Monarchy), Zhonghua shuju, Beijing, 1979</p><p></p></div>	
+<div class='layout'><p>Association of Chinese Historians ed.,?Xinhai geming?(The 1911 Revolution), Shanghai renmin chubanshe and Shanghai shudian chubanshe, Shanghai, 1956</p><p></p></div>	
+<div class='layout'><p>AVPRF (Archives of Foreign Policy of the Ministry of Foreign Affairs of the Russian Federation), Moscow</p><p></p></div>	
+<div class='layout'><p>Beal, John Robinson,?Marshall in China, Doubleday, Toronto and New York, 1970</p><p></p></div>	
+<div class='layout'><p>Bergère, Marie-Claire,?Sun Yat-sen, Stanford University Press, Stanford, CA, 1994</p><p></p></div>	
+<div class='layout'><p>Bickers, R. and Jackson, I. eds.,?Treaty Ports in Modern China: Law, Land and Power, Routledge, London, 2016</p><p></p></div>	
+<div class='layout'><p>Boulger, Demetrius C.,?The Life of Sir Halliday Macartney, KCMG, Cambridge University Press, online publication, 2011</p><p></p></div>	
+<div class='layout'><p>Burke, James,?My Father in China, Michael Joseph Ltd, London, 1945</p><p></p></div>	
+<div class='layout'><p>Butterfield, Fox,?China: Alive in the Bitter Sea, Hodder & Stoughton, London, 1982</p><p></p></div>	
+<div class='layout'><p>Cantlie, James and Sheridan, Charles Jones,?Sun Yat-sen and the Awakening of China, Fleming H. Revell, New York, 1912</p><p></p></div>	
+<div class='layout'><p>Cantlie, Neil and Seaver, George,?Sir James Cantlie: A Romance in Medicine, John Murray, London, 1939</p><p></p></div>	
+<div class='layout'><p>Central Archives ed.,?Zhongguo gongchandang guanyu xian shibian dangan shiliao xuanbian?(A Selection of CCP Archives Documents on the Xian Incident), Zhongguo dangan chubanshe, Beijing, 1997</p><p></p></div>	
+<div class='layout'><p>Chan, Luke and Taylor, Betty Tebbetts,?Sun Yat-sen – As I Knew Him, publisher and place of publication unknown, 1955</p><p></p></div>	
+<div class='layout'><p>Chang, David Cheng, ‘Democracy Is in Its Details: The 1909 Provincial Assembly Elections and the Print Media', in Sherman Cochran and Paul Pickowicz eds.,?China on the Margins, Cornell East Asia Program, Ithaca, NY, 2010</p><p></p></div>	
+<div class='layout'><p>Chang, Jung,?Empress Dowager Cixi: The Concubine Who Launched Modern China, Random House, London and New York, 2013</p><p></p></div>	
+<div class='layout'><p>Chang, Jung,?Wild Swans: Three Daughters of China, Simon & Schuster; HarperCollins; London and New York, 1991</p><p></p></div>	
+<div class='layout'><p>Chang, Jung and Halliday, Jon,?Mao: The Unknown Story, Random House, London and New York, 2005</p><p></p></div>	
+<div class='layout'><p>Charles Jones Soong Reference Collection, Duke University Libraries, Durham, NC</p><p></p></div>	
+<div class='layout'><p>Charlie Soong at Trinity College, Duke University Libraries,?http://blogs.library.duke.edu/rubenstein/2014/05/22/charlie-soong-at-trinity-college/</p><p></p></div>	
+<div class='layout'><p>Ch'en Chieh-ju,?Chen jieru huiyilu?(The Memoirs of Ch'en Chieh-ju), Zhongguo youyi chubabgongsi, Beijing, 1993</p><p></p></div>	
+<div class='layout'><p>Ch'en Chieh-ju (Eastman, Lloyd E. ed.),?Chiang Kai-shek's Secret Past: The Memoir of His Second Wife, Ch'en Chieh-ju, Westview Press, Boulder, CO, 1993</p><p></p></div>	
+<div class='layout'><p>Chen Jiong-ming (Chen Ding-yan ed.),?Chen jingcun?(jiongming)?xiansheng nianpu?(Chen Jiong-ming Chronology), Li Ao chubanshe, Taipei, 1995</p><p></p></div>	
+<div class='layout'><p>Chen Li-fu,?The Reminiscences of Chen Li-fu, Columbia University Archives, New York</p><p></p></div>	
+<div class='layout'><p>Chen Li-fu,?The Storm Clouds Clear Over China: The Memoir of Ch'en Li-Fu, Hoover Institution Press, Stanford, CA, 1994</p><p></p></div>	
+<div class='layout'><p>Chen Li-wen ed.,?Jiang zhongzhen de xinyang jiqing?(Chiang Kai-shek's Faith), Zhongzheng jiniantang, Taipei, 2005</p><p></p></div>	
+<div class='layout'><p>Chen Li-wen ed.,?Jiangfuren soong meiling nushi xingyi koushu fangtanlu?(Interviews of the Staff of Soong May-ling, Madame Chiang Kai-shek), Academia Historica and National Sun Yat-sen Memorial, Taipei, 2014</p><p></p></div>	
+<div class='layout'><p>Chen Peng Jen,?Sun zhongshan xiansheng yu riben youren?(Mr Sun Yat-sen and Japanese Friends), Shuiniu tushu chuban shiye youxian gongsi, Taipei, 1990</p><p></p></div>	
+<div class='layout'><p>Chen Qi-mei (Mo Yong-ming and Fan Ran eds.),?Chen yingshi jinian?(A Chronology of Chen Qi-mei), Nanjing daxue chubanshe, Nanjing, 1991</p><p></p></div>	
+<div class='layout'><p>Chen Shao-bai,?Chen shaobai zishu?(The Reminiscences of Chen Shao-bai), Renmin ribao chubanshe, Beijing, 2011</p><p></p></div>	
+<div class='layout'><p>Chen, Percy,?China Called Me, Little, Brown, Boston, MA, 1979</p><p></p></div>	
+<div class='layout'><p>Chennault, Anna,?The Education of Anna, Times Books, New York, 1980</p><p></p></div>	
+<div class='layout'><p>Chennault, Claire Lee,?Way of a Fighter, G. P. Putnam's Sons, New York, 1949</p><p></p></div>	
+<div class='layout'><p>Chiang Ching-kuo, ‘My Days in Soviet Russia' (1937), in Cline, Ray S.,?Chiang Ching-kuo Remembered,?US Global Strategy Council, Washington DC, 1989</p><p></p></div>	
+<div class='layout'><p>Chiang Ching-kuo,?Jiang jingguo huiyilu?(Chiang Ching-kuo Memoirs), Dongfang chubanshe, Beijing, 2011</p><p></p></div>	
+<div class='layout'><p>Chiang Ching-kuo (Zhou Mei-hua and Xiao Li-ju eds.),?Jiang jingguo shuxinji: yu song meiling wanglai handian?(Chiang Ching-kuo's Correspondence with Madame Chiang Kai-shek), Academia Historica, Taipei, 2009</p><p></p></div>	
+<div class='layout'><p>Chiang Kai-shek Diaries, Hoover Institution Archives, Stanford University</p><p></p></div>	
+<div class='layout'><p>Chiang Kai-shek: Family Correspondence, Academia Historica, Taipei, Taiwan</p><p></p></div>	
+<div class='layout'><p>Chiang Kai-shek,?Soviet Russia in China: A Summing-up at Seventy,?Farrar, Straus & Cudahy, New York, 1957</p><p></p></div>	
+<div class='layout'><p>Chiang Kai-shek (Chin Hsiao-i ed.),?Zongtong jianggong dashi changbian chugao?(Draft of a Long Chronological Record of President Chiang Kai-shek), Taipei, 1978, courtesy of the editor</p><p></p></div>	
+<div class='layout'><p>Chiang Kai-shek (The Second Historical Archives of China ed.),?Jiang jieshi nianpu chugao?(A Draft Chronology of Chiang Kai-shek), Dangan chubanshe, Beijing, 1992</p><p></p></div>	
+<div class='layout'><p>Chinese Peasants' and Workers' Democratic Party Central Committee ed.,?Deng yanda?(Deng Yan-da), Wenshi ziliao chubanshe, Beijing, 1985</p><p></p></div>	
+<div class='layout'><p>Chow Lien-hwa,?Zhou lianhua mushi fangtanlu?(Interviews with Pastor Chow Lien-hwa), Academia Historica, Taipei, 2012</p><p></p></div>	
+<div class='layout'><p>Chung Kun Ai,?My Seventy-Nine Years in Hawaii, 1879–1958, Cosmorama Pictorial Publisher, Hong Kong, 1960</p><p></p></div>	
+<div class='layout'><p>Clark, Elmer T.,?The Chiangs of China, Abingdon-Cokesbury Press, New York and Nashville, TN, 1943</p><p></p></div>	
+<div class='layout'><p>Cline, Ray S.,?Chiang Ching-kuo Remembered,?US Global Strategy Council, Washington DC, 1989</p><p></p></div>	
+<div class='layout'><p>CPPCC (Chinese People's Political Consultative Conference) Canton Committee, Historical Documents Studies Committee ed.,?Guangzhou wenshi ziliao?(Canton Historical Documents) Guangzhou, 1950s</p><p></p></div>	
+<div class='layout'><p>CPPCC (Chinese People's Political Consultative Conference) National Committee, Historical Documents Studies Committee ed.,?Bansheng fengyulu: jia yibin huiyilu?(Memoir of Jia Yi-bin), Zhongguo wenshi chubanshe, Beijing, 2011</p><p></p></div>	
+<div class='layout'><p>CPPCC (Chinese People's Political Consultative Conference) National Committee, Historical Documents Studies Committee ed.,?Xinhai geming huiyilu?(Memories of the 1911 Revolution), Wenshi ziliao chubanshe, Beijing, 1981</p><p></p></div>	
+<div class='layout'><p>CPPCC (Chinese People's Political Consultative Conference) National Committee, Historical Documents Studies Committee ed.,?Heping laoren shao lizi?(Man of Peace Shao Li-zi), Wenshi ziliao chubanshe, Beijing, 1985</p><p></p></div>	
+<div class='layout'><p>CPPCC (Chinese People's Political Consultative Conference) National Committee, Historical Documents and Studies Office and the Museum of the Chinese Revolution eds.,?Sun zhongshan xiansheng huace?(Dr Sun Yat-sen: A Photo Album), Zhongguo wenshi chubanshe, Beijing, 1986a</p><p></p></div>	
+<div class='layout'><p>CPPCC (Chinese People's Political Consultative Conference) Shanghai Committee, Historical Documents Studies Committee ed.,?Jiu shanghai de bang hui?(Secret Societies of Old Shanghai), Shanghai renmin chubanshe, Shanghai, 1986b</p><p></p></div>	
+<div class='layout'><p>CPPCC (Chinese People's Political Consultative Conference) Zhejiang Committee, Historical Documents Studies Committee ed.,?Jiang jieshi jiashi?(Chiang Kai-shek's Family History), Zhejiang renmin chubanshe, Hangzhou, 1994</p><p></p></div>	
+<div class='layout'><p>CPPCC (Chinese People's Political Consultative Conference) Zhejiang Committee, Historical Documents Studies Committee ed.,?Chen Yingshi?(Chen Qi-mei), Zhejiang renmin chubanshe, Hangzhou, 1987</p><p></p></div>	
+<div class='layout'><p>Daily News, Perth</p><p></p></div>	
+<div class='layout'><p>DeLong, Thomas A.,?Madame Chiang Kai-shek and Miss Emma Mills, McFarland & Company, Inc., Jefferson, NC and London, 2007</p><p></p></div>	
+<div class='layout'><p>Deng Mu-han, ‘Yiwei Guangzhou geming shimoji (The Full Story of the 1895 Canton Revolution)', in?Xinhai geming shiliao xuanji?(Selected Historical Documents on the 1911 Revolution), vol. 1, Hunan renmin chubanshe, 1981</p><p></p></div>	
+<div class='layout'><p>Deng Yan-da (Mei Ri-xin and Deng Yan-chao eds.),?Deng yanda wenji xinbian?(A New Edition of the Works of Deng Yan-da), Guangdong renmin chubanshe, Guangzhou, 2000</p><p></p></div>	
+<div class='layout'><p>Dik?tter, Frank,?The Age of Openness: China before Mao, University of California Press, Berkeley and Los Angeles, 2008</p><p></p></div>	
+<div class='layout'><p>Ding Zhong-jiang,?Beiyang junfa shihua?(A History of the Beiyang Warlords), Zhongguo youyi chuban gongsi, Beijing, 1992</p><p></p></div>	
+<div class='layout'><p>Duan Qi-rui (Liu Chun-zi and Yin Xiang-fei eds.),?Minguo zongtong zixu: Duan Qi-rui?(Presidents of the Republic of China on Themselves: Duan Qi-rui), Jiangsu fenghuang wenyi chubanshe, Nanjing, 2014</p><p></p></div>	
+<div class='layout'><p>Duli Pinglun?(Independent Commentary), Beijing</p><p></p></div>	
+<div class='layout'><p>DVP?(Foreign Policy Documents), Russian Ministry of Foreign Affairs, Moscow</p><p></p></div>	
+<div class='layout'><p>Eden, Anthony,?The Eden Memoirs: The Reckoning, Cassell, London, 1965</p><p></p></div>	
+<div class='layout'><p>Epstein, Israel,?Woman in World History: Life and Times of Soong Ching Ling, New World Press, Beijing, 1993</p><p></p></div>	
+<div class='layout'><p>Far Eastern Affairs?(Journal of the Institute for Far Eastern Studies), Russian Academy of Sciences, Moscow</p><p></p></div>	
+<div class='layout'><p>Fenby, Jonathan,?Generalissimo: Chiang Kai-shek and the China He Lost, The Free Press, London, 2003</p><p></p></div>	
+<div class='layout'><p>Feng Yu-xiang,?Wode shenghuo?(My Life), Zhongguo qingnian chubanshe, Beijing, 2015</p><p></p></div>	
+<div class='layout'><p>Feng Zi-you,?Feng ziyou huiyilu?(Memoirs of Feng Zi-you), Dongfang chubanshe, Beijing, 2011</p><p></p></div>	
+<div class='layout'><p>Fifth Avenue United Methodist Church Archives: Charles Jones Soong, Wilmington, NC</p><p></p></div>	
+<div class='layout'><p>FRUS?(Foreign Relations of the United States), 1944, vol. VI,?China, Washington DC, 1967</p><p></p></div>	
+<div class='layout'><p>Gascoyne-Cecil, Lord William,?Changing China, James Nisbet & Co. Ltd, London, 1910</p><p></p></div>	
+<div class='layout'><p>George W. and Clara Sargent Shepherd papers, Bentley Historical Library, University of Michigan,?http://quod.lib.umich.edu/b/bhlead/umich-bhl-2014151?view=text</p><p></p></div>	
+<div class='layout'><p>Gu Li-juan and Yuan Xiang-fu,?Zhonghua minguo guohuishi?(A History of the Parliament of Republic of China), Zhonghua shuju, Beijing, 2012</p><p></p></div>	
+<div class='layout'><p>Gunther, John,?Inside Asia, Hamish Hamilton, London, 1939</p><p></p></div>	
+<div class='layout'><p>Guo Song-tao,?Lundun yu bali riji?(Diaries of London and Paris), Yuelu shushe, Changsha, 1984</p><p></p></div>	
+<div class='layout'><p>Haag, E. A.,?Charlie Soong: North Carolina's Link to the Fall of the Last Emperor of China, Jaan Publishing, Greenboro, NC, 2015</p><p></p></div>	
+<div class='layout'><p>Hager, Charles R., ‘Doctor Sun Yat-sen: Some Personal Reminiscences', in Sharman, Lyon,?Sun Yat-sen: His Life and Its Meaning, Stanford University Press, Stanford, CA, 1934</p><p></p></div>	
+<div class='layout'><p>Hahn, Emily,?Chiang Kai-shek, Doubleday & Company, Inc., New York, 1955</p><p></p></div>	
+<div class='layout'><p>Hahn, Emily,?China to Me, Open Road Integrated Media, Inc., New York, 2014a</p><p></p></div>	
+<div class='layout'><p>Hahn, Emily,?The Soong Sisters, Open Road Integrated Media, Inc., New York, 2014b</p><p></p></div>	
+<div class='layout'><p>Han Li-guan and Chen Li-ping,?Qinding yaofan hua kezhi chuanqi?(The Extraordinary Story of Hua Ke-zhi), Jiangsu renmin chubanshe, Nanjing, 1998</p><p></p></div>	
+<div class='layout'><p>Han Su-yin,?Eldest Son: Zhou Enlai and the Making of Modern China, 1898–1976,?Jonathan Cape, London, 1994</p><p></p></div>	
+<div class='layout'><p>Hawaii's Queen, Liliuokalani,?Hawaii's Story, Mutual Publishing, Honolulu, 1990</p><p></p></div>	
+<div class='layout'><p>He Da-zhang,?Song qingling wangshi?(Soong Ching-ling's Past Life), Renmin wenxue chubanshe, Beijing, 2011</p><p></p></div>	
+<div class='layout'><p>Heinzig, Dieter, ‘The Soviet Union and Communist China, 1945–1950',?Far Eastern Affairs, 4, 1996</p><p></p></div>	
+<div class='layout'><p>Hemingway, Ernest,?By-Line: Selected Articles and Dispatches of Four Decades, Grafton Books, London, 1989</p><p></p></div>	
+<div class='layout'><p>Hsu Chieh-lin,?Sun wen: zuihou baituo ribenren de kongzhi?(Sun Yat-sen and Japan: the Real History), Wenyingtang chubanshe, Taipei, 2011</p><p></p></div>	
+<div class='layout'><p>Hsu Shih-chang (Jin Hong-kui ed.),?Minguo zongtong zixu: xu shichang?(Presidents of the Republic of China on Themselves: Hsu Shih Chang), Jiangsu fenghuang wenyi chubanshe, Nanjing, 2014</p><p></p></div>	
+<div class='layout'><p>Hu Han-min,?Hu Hanmin Huiyilu?(The Memoirs of Hu Han-min), Dongfang chubanshe, Beijing, 2013</p><p></p></div>	
+<div class='layout'><p>Hu Han-min,?Hu hanmin zizhuan?(The Autobiography of Hu Han-min), Zhuanji wenxue chubanshe, Taipei, 1987</p><p></p></div>	
+<div class='layout'><p>Hu Lan-xi,?Hu lanxi huiyilu?(The Memoir of Hu Lan-xin), Sichuan renmin chubanshe, Chengdu, 1995</p><p></p></div>	
+<div class='layout'><p>Hu Shih,?Hu shi wenji?(The Works of Hu Shih), Beijing daxue chubanshe, Beijing, 1998</p><p></p></div>	
+<div class='layout'><p>Hu Zi-dan, ‘He zhou lianhua mushi de wuci jianmian' (‘Five Meetings with Pastor Chow Lien-hwa'),?https://2011greenisland.wordpress.com/2012/11/20/</p><p></p></div>	
+<div class='layout'><p>Hua Ping, ‘Cong song qingling gei jin zhonghua de xin shuoqi' (‘Starting from Soong Ching-ling's letters to Jin Zhong-hua'), https://big5.termitespest.com/article/e0e4effc-4b40-4e22-aaa0-bb7402cded08_2.htm [inactive]</p><p></p></div>	
+<div class='layout'><p>Hua Shang Daily, Hong Kong</p><p></p></div>	
+<div class='layout'><p>Huanqiu Renwu?(Global Personalities), Beijing</p><p></p></div>	
+<div class='layout'><p>Huang Ke-wu et al.,?Jiang zhongzheng zongtong shicong renyuan fangwen jilu?(Records of Interviews with President Chiang Kai-shek's Staff), Zhongyang yanjiuyuan jindaishi yanjiusuo, Taipei, 2013</p><p></p></div>	
+<div class='layout'><p>Huang San-de,?Hongmen genmingshi?(A Revolutionary History of Hangmen), publisher unknown, 1936</p><p></p></div>	
+<div class='layout'><p>Huang Xing (Mao Zhu-qing ed.),?Huang xing nianpu changbian?(A Full Chronology of Huang Xing), Zhonghua shuju, Beijing, 1991</p><p></p></div>	
+<div class='layout'><p>Huang Xiu-rong et al. eds.,?Gongchan guoji, liangong?(bu)?yu zhongguo guomin geming yundong: 1920–1925, Beijing tushuguan chubanshe, Beijing, 1997</p><p></p></div>	
+<div class='layout'><p>Huang Xiu-rong et al. eds.,?Gongchan guoji, liangong?(bu)?yu zhongguo geming wenxian ziliao xuanji: 1917–1925, Beijing tushuguan chubanshe, Beijing, 1997</p><p></p></div>	
+<div class='layout'><p>Huang Xiu-rong et al. eds.,?Gongchan guoji, liangong?(bu)?yu zhongguo guomin geming yundong: 1926–1927, vol. 1, Beijing tushuguan chubanshe, Beijing, 1998</p><p></p></div>	
+<div class='layout'><p>Huang Zi-jin and Pan Guang-zhe,?Jiang jieshi yu xiandai zhongguo de xingsuo?(Chiang Kai-shek and the Formation of Modern China),?Zhongyang yanjiuyuan jindaishi yanjiusuo,?Taipei, 2013</p><p></p></div>	
+<div class='layout'><p>I Fu-en,?Wode huiyi?(My Memories), Liqing wenjiao jijinhui, Taipei, 2000</p><p></p></div>	
+<div class='layout'><p>International Security, the Belfer Center for Science and International Affairs at Harvard University ed., MIT Press, Cambridge, MA, 1976</p><p></p></div>	
+<div class='layout'><p>Isaacs, Harold,?Re-Encounters in China, M.E. Sharpe, Armonk, NY and London, 1985</p><p></p></div>	
+<div class='layout'><p>Ishikawa, Yoshihiro, ‘Guanyu sun zhongshan zhi suliande yishu' (‘On Sun Yat-sen's Deathbed Letter to the Soviet Union'),?http://jds.cssn.cn/webpic/web/jdsww/UploadFiles/upload/201011041311408553.pdf</p><p></p></div>	
+<div class='layout'><p>Jiang Ting-fu,?Jiang tingfu huiyilu?(The Memoirs of Jiang Ting-fu), Zhuanji wenxue chubanshe, Taipei, 1984</p><p></p></div>	
+<div class='layout'><p>Koo, Juliana Young (Mrs V.K. Wellington), with Genevieve Young,?My Story, courtesy of the authors</p><p></p></div>	
+<div class='layout'><p>Koo (Madame Wellington Koo),?No Feast Lasts Forever,?Quadrangle/The New York Times Book Co., New York, 1975</p><p></p></div>	
+<div class='layout'><p>Koo, V.K. Wellington,?Gu weijun huiyilu?(The Memoirs of Wellington Koo), Zhonghua shuju, Beijing, 2013</p><p></p></div>	
+<div class='layout'><p>Koo, V.K. Wellington,?The Reminiscences of Wellington Koo, Columbia University Archives, New York</p><p></p></div>	
+<div class='layout'><p>Koo, V.K. Wellington, Wellington Koo Papers, Columbia University Archives, New York</p><p></p></div>	
+<div class='layout'><p>Kriukov, Mikhail, ‘Once again about Sun Yatsen's North-west Plan',?Far Eastern Affairs, 5, 9 January 2000</p><p></p></div>	
+<div class='layout'><p>K'ung Hsiang-hsi,?The Reminiscences of K'ung Hsiang-hsi, Columbia University Archives, New York</p><p></p></div>	
+<div class='layout'><p>Kuo Tai-chun and Lin Hsiao-ting,?T.V. Soong in Modern Chinese History, Hoover Institution Press, Stanford, CA, 2006</p><p></p></div>	
+<div class='layout'><p>Lattimore, Owen,?China Memoirs, University of Tokyo Press, Toronto, 1991</p><p></p></div>	
+<div class='layout'><p>Leonard, Royal,?I Flew for China: Chiang Kai-shek's Personal Pilot, Doubleday, Doran, Garden City, 1942</p><p></p></div>	
+<div class='layout'><p>Li Gong-zhong,?Zhongshanling: yige xiandai zhengzhi fuhaode dansheng?(Sun Yat-sen's Mausoleum: the Making of a Political Symbol in Modern China), Shehui kexue wenxian chubanshe, Beijing, 2009</p><p></p></div>	
+<div class='layout'><p>Li Guo-qi, ‘Deguo danganzhong youguan zhongguo canjia diyici shijie dazhande jixiang jizai' (‘A Few Documents about China's Participation of the First World War in the German Archives'), in?Zhongguo xiandaishi zhuanti yanjiu baogao?(Reports on Special Subjects in the Studies of Modern Chinese History), vol. 4</p><p></p></div>	
+<div class='layout'><p>Li Jin-zhou ed.,?Xian shibian qinliji?(Personal Experiences of the Xian Incident), Zhuanji wenxue chubanshe, Taipei, 1982</p><p></p></div>	
+<div class='layout'><p>Li, Laura Tyson,?Madame Chiang Kai-shek: China's Eternal First Lady,?Grove Press, New York, 2006</p><p></p></div>	
+<div class='layout'><p>Li Tsung-jen and Tong Te-Kong,?Li zongren huiyilu?(The Memoirs of Li Tsung-jen), Li Ao chubanshe, Taipei, 1995</p><p></p></div>	
+<div class='layout'><p>Li Yuan-hong (Zhang Bei ed.),?Minguo zongtong zixu: Li yuanhong?(Presidents of the Republic of China on Themselves: Li Yuan-hong), Jiangsu fenghuang wenyi chubanshe, Nanjing, 2014</p><p></p></div>	
+<div class='layout'><p>Li Yun, ‘Sui song qingling zouguo sanshinian' (‘Thirty Years with Soong Ching-ling')' in?Yanhuang chunqiu?(Annals of the Chinese People), 2002, issue 3</p><p></p></div>	
+<div class='layout'><p>Life?magazine</p><p></p></div>	
+<div class='layout'><p>Lin Hsiao-ting,?Taihai lengzhan jiemi dangan?(The Cold War between Taiwan and China: The Declassified Documents), Sanlian shudian, Hong Kong, 2015</p><p></p></div>	
+<div class='layout'><p>Lin Hsiao-ting and Wu Jing-ping eds.,?Song ziwen yu waiguo renshi wanglai handiangao?(T.V. Soong: Important Wartime Correspondences, 1940–1942), Fudan University Press, Shanghai, 2009</p><p></p></div>	
+<div class='layout'><p>Lin Ke-guang et al.,?Jindai jinghua shiji?(Historical Sites and Stories in Beijing), Zhongguo renmin daxue chubanshe, Beijing, 1985</p><p></p></div>	
+<div class='layout'><p>Linebarger, Paul,?Sun Yat-sen and the Chinese Republic, The Century Co., New York and London, 1925</p><p></p></div>	
+<div class='layout'><p>Liu Ban-nong et al.,?Sai jinhua benshi?(The Extraordinary Story of Sai Jinhua), Yuelu shushe, Changsha, 1985</p><p></p></div>	
+<div class='layout'><p>Liu Jia-quan,?Song qingling liuwang haiwai suiyue?(Soong Ching-ling's Exile Years),?Zhongyang wenxian chubanshe, Beijing, 1994</p><p></p></div>	
+<div class='layout'><p>Lo Hui-Min,?The Correspondence of G. E. Morrison 1895–1912, Cambridge University Press, Cambridge, 1976</p><p></p></div>	
+<div class='layout'><p>Lo Hui-Min,?The Correspondence of G. E. Morrison 1912–1920,?Cambridge University Press, Cambridge, 1978</p><p></p></div>	
+<div class='layout'><p>Lou Wen-yuan,?Wenyuan wenji?(Collected Writings of Lou Wen-yuan), Hanya zixun, Taipei, 2008</p><p></p></div>	
+<div class='layout'><p>Lu Fang-shang ed.,?Jiang jieshide qinqing, aiqing yu youqing?(The Family Relationship, Love and Friendship of Chiang Kai-shek), Shibao wenhua chubanshe, Taipei, 2011</p><p></p></div>	
+<div class='layout'><p>Luo Jia-lun,?Zhongshan xiansheng lundun beinan shiliao kaoding?(A Study of Sun Yat-sen's Misfortune in London), Shangwu yinshuguan, Shanghai, 1930</p><p></p></div>	
+<div class='layout'><p>Luo Jiu-fang and Luo Jiu-rong eds.,?Luo jialun xiansheng wencun buyi?(Supplementary Writings of Luo Jia-lun, Zhongyang yanjiuyuan jindaishi yanjiusuo, Taipei, 2009</p><p></p></div>	
+<div class='layout'><p>Manson-Bahr, Philip,?Patrick Manson,?Thomas Nelson & Sons Ltd, London, 1962</p><p></p></div>	
+<div class='layout'><p>Manson-Bahr, Philip H. and Alcock, A.,?The Life and Works of Sir Patrick Manson, Cassell & Company, London, 1927</p><p></p></div>	
+<div class='layout'><p>McCormack, Gavan,?Chang Tso-lin in North-east China 1911–1928,?Stanford University Press, Stanford, CA, 1977</p><p></p></div>	
+<div class='layout'><p>Mei Ri-xin and Deng Yan-chao eds.,?Huiyi deng yanda?(Remembering Deng Yan-da), Guangdong renmin chubanshe, Guangzhou, 1999</p><p></p></div>	
+<div class='layout'><p>Melby, John F.,?The Mandate of Heaven, Chatto & Windus, London, 1969</p><p></p></div>	
+<div class='layout'><p>Microfilm publication M329, Records of the Department of State Relating to Internal Affairs of China, 1910–1929, National Archives, Washington DC</p><p></p></div>	
+<div class='layout'><p>Miller, Merle,?Plain Speaking: an Oral Biography of Harry S. Truman, Berkley Publishing Corporation, New York, 1974</p><p></p></div>	
+<div class='layout'><p>Mitter, Rana,?A Bitter Revolution: China's Struggle with the Modern World, Oxford University Press, Oxford, 2005</p><p></p></div>	
+<div class='layout'><p>Miyazaki, Toˉten,?Gongqi taotian lun sun zhongshan yu huang xing?(Toˉten Miyazaki on Sun Yat-sen and Huang Xing), Chen Peng Jen, tr., Zhengzhong shuju, Taipei, 1977</p><p></p></div>	
+<div class='layout'><p>Miyazaki, Toˉten,?Sanshisan nian zhimeng?(My Thirty-Three Year's Dream), Chen Peng Jen tr., Shuiniu chubanshe, Taipei, 1989</p><p></p></div>	
+<div class='layout'><p>Moran, Lord,?Winston Churchill: The Struggle for Survival 1940–1965, Sphere Books Ltd, London, 1968</p><p></p></div>	
+<div class='layout'><p>Munholland, J. Kim, ‘The French Connection that Failed: France and Sun Yat-sen, 1900–1908',?Journal of Asian Studies, vol. 32, issue 1, November 1972</p><p></p></div>	
+<div class='layout'><p>Nanjing Archives and Sun Yat-sen Mausoleum Administration eds.,?Zhongshanling dangan shiliao xuanbian?(Selected Archive Documents of the Sun Yat-sen Mausoleum), Jiangsu guji chubanshe, Nanjing, 1986</p><p></p></div>	
+<div class='layout'><p>New York Times</p><p></p></div>	
+<div class='layout'><p>Newspapers.com</p><p></p></div>	
+<div class='layout'><p>North China Herald, Shanghai</p><p></p></div>	
+<div class='layout'><p>Oursler, Fulton,?Behold This Dreamer!, Little, Brown & Company, Boston, MA, 1964</p><p></p></div>	
+<div class='layout'><p>Pakula, Hannah,?The Last Empress, Simon & Schuster Paperbacks, New York, 2009</p><p></p></div>	
+<div class='layout'><p>Papers of Emma DeLong Mills, MSS.2, Wellesley College Archives, Wellesley, MA</p><p></p></div>	
+<div class='layout'><p>Papers of 3rd Marquess of Salisbury, Hatfield House Archives/3M/B24</p><p></p></div>	
+<div class='layout'><p>Paul T. K., Lin Papers, Hong Kong University of Science and Technology Archives, Hong Kong</p><p></p></div>	
+<div class='layout'><p>People's Daily, Beijing</p><p></p></div>	
+<div class='layout'><p>People's University ed., ‘Gongchan zhuyi xiaozu he dangde yida ziliao huibian' (‘A Collection of Documents and Interviews on the Early Communist Groups and the Party's First Congress'), unpublished, Beijing, 1979</p><p></p></div>	
+<div class='layout'><p>Public Security Ministry Archives ed.,?Zai jiang jieshi shenbian banian?(Eight Years by the Side of Chiang Kai-shek), Qunzhong chubanshe, Beijing, 1997</p><p></p></div>	
+<div class='layout'><p>Qi Gao-ru,?Jiang jinguode yisheng?(The Life of Chiang Ching-kuo), Zhuanji wenxue chubanshe, Taipei, 1991</p><p></p></div>	
+<div class='layout'><p>Qian Gang and Geng Qing-guo eds.,?Ershi shiji zhongguo zhongzai bailu?(Mammoth Disasters of Twentieth-Century China), Shanghai renmin chubanshe, Shanghai, 1999</p><p></p></div>	
+<div class='layout'><p>Qian Yong-he,?Qian yonghe huiyilu?(The Memoir of Qian Yong-he), Dongfang chubanshe, Beijing, 2011</p><p></p></div>	
+<div class='layout'><p>Qiu Jie, ‘Guangzhou shangtuan yu shangtuan shibian', in?Lishi yanjiu?(History Studies), 2, 2002, Beijing</p><p></p></div>	
+<div class='layout'><p>Qiu Zheng-quan and Du Chun-he eds.,?Xinhai gemming shiliao xuanji?(Selected Historical Documents of the 1911 Revolution), Hunan renmin chubanshe, Changsha, 1981</p><p></p></div>	
+<div class='layout'><p>Rosholt, Malcolm, ‘The Shoe Box Letters from China, 1913–1967',?Wisconsin Magazine of History, vol. 73, no. 2, 1989–90</p><p></p></div>	
+<div class='layout'><p>Schell, Orville and Delury, John,?Wealth and Power: China's Long March to the Twenty-First Century,?Random House Trade Paperbacks, New York, 2014</p><p></p></div>	
+<div class='layout'><p>Schiffrin, Harold Z.,?Sun Yat-sen and the Origins of the Chinese Revolution, University of California Press, Berkeley, Los Angeles and London, 1970</p><p></p></div>	
+<div class='layout'><p>Seagrave, Sterling,?The Soong Dynasty, Corgi Books, London, 1996</p><p></p></div>	
+<div class='layout'><p>Selle, Earl Albert,?Donald of China,?Harper, New York and London, 1948</p><p></p></div>	
+<div class='layout'><p>Shang Ming-xuan and Tang Bao-lin,?Song qingling zhuan?(A Biography of Soong Ching-ling), Xiyuan chubanshe, Beijing, 2013</p><p></p></div>	
+<div class='layout'><p>Shang Ming-xuan et al. eds.,?Sun Zhongshan shengping shiye zhuiyilu?(Memories of Sun Yat-sen's Life and Career), Renmin chubanshe, Beijing, 1986</p><p></p></div>	
+<div class='layout'><p>Shanghai Managing Committee of the Historical Objects of Sun Yat-sen and Soong Ching-ling ed.,?Sun zhongshan song chingling wenxian yu yanjiu?(Sun Yat-sen and Soong Ching-ling: Archives and Research), Shanghai shudian chubanshe, Shanghai, 2009</p><p></p></div>	
+<div class='layout'><p>Shanghai Managing Committee of the Historical Objects of Sun Yat-sen and Soong Ching-ling, and Shanghai Association for Soong Ching-ling Studies eds.,?Song Yaoru shengping dangan wenxian huibian?(A Collection of Archives Documents on the Life of Soong Charlie), Dongfang chuban zhongxin, Shanghai, 2013a</p><p></p></div>	
+<div class='layout'><p>Shanghai Managing Committee of the Historical Objects of Sun Yat-sen and Soong Ching-ling, and Shanghai Association for Soong Ching-ling Studies eds.,?Huiyi song qingling?(Memories of Soong Ching-ling), Dongfang chuban zhongxin, Shanghai, 2013b</p><p></p></div>	
+<div class='layout'><p>Sharman, Lyon,?Sun Yat-sen: His Life and Its Meaning, Stanford University Press, Stanford, CA, 1934</p><p></p></div>	
+<div class='layout'><p>Shaw Yu-ming,?Cisheng buyu: wode taiwan, meiguo, dalu suiyue?(My Years in Taiwan, America and the Mainland), Lianjing chuba, Taipei, 2013</p><p></p></div>	
+<div class='layout'><p>Sheean, Vincent,?Personal History, Citadel Press, NJ, 1986</p><p></p></div>	
+<div class='layout'><p>Shen, Inyeening,?Jinling yiwang?(My Years in Nanjing), Shenyupei pub., Taipei, 2016</p><p></p></div>	
+<div class='layout'><p>Shen Yun-long et al.,?Fu bingchang xiansheng fangwen jilu?(Records of Interviews with Fu Bing-chang), Zhongyang yanjiuyuan jindaishi yanjiusuo, Taipei, 1993</p><p></p></div>	
+<div class='layout'><p>Shen Zui, Wo zhe sanshinian?(These Thirty Years of My Life), Beijing shiyue wenyi chubanshe, Beijing, 1991</p><p></p></div>	
+<div class='layout'><p>Sheng Yong-hua et al. eds.,?Sun zhongshan yu aomen?(Sun Yat-sen and Macau), Wenwu chubanshe, Beijing, 1991</p><p></p></div>	
+<div class='layout'><p>Shiji?(The Century), Beijing</p><p></p></div>	
+<div class='layout'><p>Shong Wen,?Xiong wan xiangsheng fangwen jilu?(The Reminiscences of Dr Shong Wen), with Chen San-jing and Li Yu-qing, zhongyang yanjiuyuan jindaishi yanjiusuo, Taipei, 1998</p><p></p></div>	
+<div class='layout'><p>Shou Chong-yi ed.,?Kong xiangxi qiren qishi?(Reminiscences about H. H. Kung), Zhongguo wenshi chubanshe, Beijing, 1987</p><p></p></div>	
+<div class='layout'><p>Smith, Sebie Biggs,?The Reminiscences of Sebie Biggs Smith, Columbia University Archives, New York</p><p></p></div>	
+<div class='layout'><p>Snow, Edgar,?Journey to the Beginning, Vintage, New York, 1972</p><p></p></div>	
+<div class='layout'><p>Song Jiao-ren (Chen Xu-lu ed.),?Song Jiaoren ji?(Collected Writings of Song Jiao-ren), Zhonghua shuju, Beijing, 2011</p><p></p></div>	
+<div class='layout'><p>Song Jiao-ren (Liu Yang-yang ed.),?Song jiaoren riji?(The Diary of Song Jiao-ren), Zhonghua shuju, Beijing, 2014</p><p></p></div>	
+<div class='layout'><p>Song Yong-yi, ‘Did Soong Ching-ling Oppose Mao's Anti-rightist Campaign?',?https://www.aboluowang.com/2017/0904/988392.html</p><p></p></div>	
+<div class='layout'><p>Soong Ching-ling,?Song qingling xuanji?(Selected Works of Soong Ching-ling), Renmin chubanshe, Beijing, 1992</p><p></p></div>	
+<div class='layout'><p>Soong Ching-ling,?The Struggle for New China, Foreign Language Press, Beijing, 1952</p><p></p></div>	
+<div class='layout'><p>Soong Ching-ling (China Welfare ed.),?Song qingling zhi chen hansheng shuxin?(Letters from Soong Ching-ling to Chen Han-sheng), Dongfang chuban zhongxin, Shanghai, 2013</p><p></p></div>	
+<div class='layout'><p>Soong Ching-ling (Shang Ming-xuan et al. eds.),?Song qingling nianpu changbian?(A Full Chronology of Soong Ching Ling), Shehui kexue chubanshe, Beijing, 2003, 2009</p><p></p></div>	
+<div class='layout'><p>Soong Ching-ling (Shanghai Soong Ching-ling Memorial Residence ed.),?Song qingling laiwang shuxin xuanji?(A Selection of Correspondences of Soong Ching-ling), Shanghai renmin chubanshe, Shanghai, 1995</p><p></p></div>	
+<div class='layout'><p>Soong Ching-ling (Soong Ching-ling Foundation and China Welfare eds.),?Song qingling shuxinji?(Collected Correspondences of Soong Ching-ling), Renmin chubanshe, Beijing, 1999</p><p></p></div>	
+<div class='layout'><p>Soong Ching-ling (Soong Ching-ling Foundation et al. eds.),?Song qingling shuxinji?(xubian) (A Sequel to the Collected Correspondences of Soong Ching-ling), Renmin chubanshe, Beijing, 2004</p><p></p></div>	
+<div class='layout'><p>Soong Ching-ling Memorial Committee ed.,?Song qingling jinianji?(Commemorating Soong Ching-ling), Renmin chubanshe, Beijing, 1982</p><p></p></div>	
+<div class='layout'><p>Soong May-ling (Madame Chiang Kai-shek), ‘What Religion Means to Me',?The Forum, March 1934</p><p></p></div>	
+<div class='layout'><p>Soong May-ling (Madame Chiang Kai-shek), ‘Fighting Communists in China',?The Forum, February 1935a</p><p></p></div>	
+<div class='layout'><p>Soong May-ling (Madame Chiang Kai-shek), ‘New Life in China',?The Forum, June 1935b</p><p></p></div>	
+<div class='layout'><p>Soong May-ling (Madame Chiang Kai-shek),?China in Peace and War, Hurst & Blackett, London, 1940</p><p></p></div>	
+<div class='layout'><p>Soong May-ling (Madame Chiang Kai-shek),?Conversations with Borodin, Free Chinese Centre, place of publication unknown, 1977</p><p></p></div>	
+<div class='layout'><p>Soong May-ling (Madame Chiang Kai-shek),?The Sure Victory, Fleming H. Revell Company, Westwood, NJ, 1955</p><p></p></div>	
+<div class='layout'><p>Soong May-ling and Chiang Kai-shek,?A Fortnight in Sian: A Coup d'e?tat, China Pub. Co., Shanghai, 1937</p><p></p></div>	
+<div class='layout'><p>Spooner, Paul B., ‘Song Ailing and China's Revolutionary Elite',?Academia.edu</p><p></p></div>	
+<div class='layout'><p>Sui Yong-qing and Zhang Lu-ya, ‘Song qingling de xingfu he yihan' (‘Soong Ching-ling's Happiness and Regrets'), in?Wenshi cankao?(History Reference), 4, 2011</p><p></p></div>	
+<div class='layout'><p>Suleski, Ronald,?Civil Government in Warlord China: Tradition, Modernization and Manchuria, Peter Lang Publishing, New York, 2002</p><p></p></div>	
+<div class='layout'><p>Sun Hui-fen,?Wode zufu sun zhongshan?(My Grandfather Sun Yat-sen), Nanjing daxue chubanshe, Nanjing, 2011</p><p></p></div>	
+<div class='layout'><p>Sun Yat-sen,?Collected Works of Sun Yat-sen, Full Text Retrieval System, National Dr Sun Yat-sen Memorial Hall & Sun Yat-sen Studies Database eds.,?http://sunology.culture.tw/cgi-bin/gs32/s1gsweb.cgi/ccd=0YAcvF/search</p><p></p></div>	
+<div class='layout'><p>Sun Yat-sen,?Kidnapped in London, The China Society, London, 1969</p><p></p></div>	
+<div class='layout'><p>Sun Yat-sen (Chen Xu-lu and Hao Sheng-chao eds.),?Sun zhongshan jiwaiji?(A Supplement to the Collected Works of Sun Yat-sen), Shanghai renmin chubanshe, Shanghai, 1990</p><p></p></div>	
+<div class='layout'><p>Sun Yat-sen (Chen Xi-qi et al. eds.),?Sun zhongshan nianpu changbian?(A Full Chronology of Sun Yat-sen), Zhonghua shuju, Beijing, 2003</p><p></p></div>	
+<div class='layout'><p>Sun, Victor,?Sun Mei, My Great-Grandfather, Guangdong renmin chubanshe, Guangzhou, 2011</p><p></p></div>	
+<div class='layout'><p>Sun zhongshan soong chingling yanjiu dongtai?(News in the Studies of Sun Yat-sen and Soong Ching-ling), periodical, Shanghai</p><p></p></div>	
+<div class='layout'><p>Sydney Morning Herald</p><p></p></div>	
+<div class='layout'><p>Tang, Earnest,?Yongbu piaoshide jiyi?(Everlasting Memories: The Friendship Between My Family and Soong Ching-ling), Dongfang chubanshe, Shanghai, 2013</p><p></p></div>	
+<div class='layout'><p>Tang Qi-hua,?Bali hehui yu zhongguo waijiao?(Paris Peace Conference and China Diplomacy), Shehui kexue wenxian chubanshe, Beijing, 2014</p><p></p></div>	
+<div class='layout'><p>Tang Qi-hua,?Beiyang xiuyue shi?(Treaty Revision Campaign of the Beijing Government, 1912–1928), Shehui kexue wenxian chubanshe, Beijing, 2010</p><p></p></div>	
+<div class='layout'><p>Tang Jia-xuan ed.,?Zhongguo waijiao cidian?(Dictionary of Chinese Diplomacy), Shijie zhishi chubanshe, Beijing, 2000</p><p></p></div>	
+<div class='layout'><p>Tang Rui-xiang,?Sun zongshan yu haijun hufa yanjiu?(Research on Sun Yat-sen and the Navy in Defending the Constitution 1917–1923), Xueyuan chubanshe, Beijing, 2006</p><p></p></div>	
+<div class='layout'><p>Tang Xiong,?Song qingling he tade baojian yisheng?(Soong Ching-ling and Her Physicians), Hualing chubanshe, Beijing, 2014</p><p></p></div>	
+<div class='layout'><p>Tang Xiong,?Song qingling yu tade weishizhang?(Soong Ching-ling and Her Chief Bodyguard), Qunzhong chubanshe, Beijing, 2006</p><p></p></div>	
+<div class='layout'><p>Taylor, Jay,?The Generalissimo: Chiang Kai-shek and the Struggle for Modern China, Harvard University Press, Cambridge, MA, 2011</p><p></p></div>	
+<div class='layout'><p>Taylor, Jay,?The Generalissimo's Son: Chiang Ching-kuo and the Revolutions in China and Taiwan, Harvard University Press, Cambridge, MA, 2000</p><p></p></div>	
+<div class='layout'><p>Time?magazine</p><p></p></div>	
+<div class='layout'><p>Topping, Seymour,?Journey Between Two Chinas,?Harper & Row, New York, Evanston, San Francisco, London, 1972</p><p></p></div>	
+<div class='layout'><p>Tse, Tsan Tai,?The Chinese Republic: Secret History of the Revolution, South China Morning Post, Hong Kong, 1924</p><p></p></div>	
+<div class='layout'><p>Tuchman, Barbara W.,?Stilwell and the American Experience in China, The Macmillan Company, New York, 1971</p><p></p></div>	
+<div class='layout'><p>Tung, William L.,?Gu weijun yu zhongguo zhanshi waijiao?(Wellington Koo and China's Diplomacy during the War), Zhuanji wenxue chubanshe, Taipei, 1978</p><p></p></div>	
+<div class='layout'><p>T.V. Soong Papers, Hoover Institution Archives, Stanford University</p><p></p></div>	
+<div class='layout'><p>Waldron, Arthur,?From War to Nationalism: China's Turning Point, 1924–1925, Cambridge University Press, Cambridge, New York and Melbourne, 1995</p><p></p></div>	
+<div class='layout'><p>Wall Street Journal</p><p></p></div>	
+<div class='layout'><p>Wang Da-lu and Liu Qing-yun,?Huang qixiang zhuan?(A Biography of Huang Qi-xiang), Zhongguo wenshi chubanshe, Beijing, 1994</p><p></p></div>	
+<div class='layout'><p>Wang Jian and Chen Xian-chun, ‘An Analysis of the Changes of Sino-German Relationship during WWI', in?Silin?(History), 1993</p><p></p></div>	
+<div class='layout'><p>Wang Jing-wei (Cai De-jin and Wang Sheng eds.),?Wang jingwei shengping jishi?(A Record of the Life of Wang Jing-wei), Zhongguo wenshi chubanshe, Beijing, 1993</p><p></p></div>	
+<div class='layout'><p>Wen Fei ed.,?Wo suo zhidaode wu peifu?(The Wu Pei-fu I Know), Zhongguo wenshi chubanshe, Beijing, 2004</p><p></p></div>	
+<div class='layout'><p>Wen Fei ed.,?Wo suo zhidaode zhang zuolin?(The Zhang Zuo-lin I Know), Zhongguo wenshi chubanshe, Beijing, 2004</p><p></p></div>	
+<div class='layout'><p>Wen Xiao-hong, ‘1924nian guangdong “shangtuan shibian” zaitan' (‘A Further Study of the Canton Merchants' Corps Incident in 1924'), in?Zhejiang Social Science, 3, 2001</p><p></p></div>	
+<div class='layout'><p>Weng Yuan (with Wang Feng),?Wozai jiang jieshi fuzi shenbian sishisan nian?(I was with Chiang Kai-shek and His Son for Forty-Three Years), Huawen chubanshe, Beijing, 2003</p><p></p></div>	
+<div class='layout'><p>Wesleyan College Archives and Special Collections: Soong Sisters, Macon, GA</p><p></p></div>	
+<div class='layout'><p>West Australian</p><p></p></div>	
+<div class='layout'><p>Wilbur, C. Martin,?Sun Yat-sen: Frustrated Patriot, Columbia University Press, New York, 1976</p><p></p></div>	
+<div class='layout'><p>Wong, J. Y., Sanshisui qian de sun zhongshan?(Sun Yat-sen Before Thirty), Zhonghua shuju, Hong Kong, 2012</p><p></p></div>	
+<div class='layout'><p>Wong, J. Y.,?Sun yixian lundun mengnan zhenxiang?(The Real Story of Sun Yat-sen's Misfortune in London), Lianjing chuban shiye gongsi, Taipei, 1998</p><p></p></div>	
+<div class='layout'><p>Wong, J. Y.,?Sun yixian zai lundun: 1896–1897?(Sun Yat-sen in London: 1896–1897), Lianjing chuban shiye gongsi, Taipei, 2006</p><p></p></div>	
+<div class='layout'><p>Wong, J. Y.,?Zhongshan xiansheng yu yingguo?(Sun Yat-sen and Great Britain), Xuesheng shuju, Taipei, 2005</p><p></p></div>	
+<div class='layout'><p>World Outlook Journal</p><p></p></div>	
+<div class='layout'><p>Wu Chang-yi ed.,?Bashisantian huangdi meng?(An Emperor Dream that Lasted Eighty-three Days), Wenshi ziliao chubanshe, Beijing, 1985</p><p></p></div>	
+<div class='layout'><p>Wu Jing-ping and Kuo Tai-chun,?Song ziwen yu tade shidai?(T.V. Soong: His Life and Times), Fudan University Press, Shanghai, 2008a</p><p></p></div>	
+<div class='layout'><p>Wu Jing-ping and Kuo Tai-chun,?Song ziwen zhumei shiqi dianbao xuan?(Selected Telegrams between Chiang Kai-shek and T.V. Soong, 1940–1943), Fudan University Press, Shanghai, 2008b</p><p></p></div>	
+<div class='layout'><p>Wu Xiang-xiang,?Chen guofu de yisheng?(A Life of Chen Guo-fu), Zhuanji wenxue chubanshe, Taipei, 1980</p><p></p></div>	
+<div class='layout'><p>Wu Xiang-xiang,?Song jiaoren zhuan?(A Biography of Song Jiao-ren), Zhongguo dabaike quanshu chubanshe, Beijing, 2009</p><p></p></div>	
+<div class='layout'><p>Wu Xiang-xiang,?Sun yixian zhuan?(A Biography of Sun Yat-sen), Zhuanji wenxue chubanshe, Taipei, 1969</p><p></p></div>	
+<div class='layout'><p>Wu Kuo-Cheng,?Cong shanghai shizhang dao ‘taiwan shengzhuxi': wu guozhen koushu huiyi?(The Reminiscences of Wu Kuo-cheng), Shanghai renmin chubanshe, Shanghai, 2015</p><p></p></div>	
+<div class='layout'><p>Xiao Jian-dong, ‘“Yizhan” shiqi zhongguo duide xuanzhande lishi zhenxiang' (‘The Historical Truth about China's Declaration of War against Germany during WWI'),?Journal of Wuhan University of Technology: Social Science Edition, Vol. 21, 1, 2008</p><p></p></div>	
+<div class='layout'><p>Xu Feng-hua, ‘The Party Member outside the Party – A New Discussion about the Relationship between Soong Ching-ling and Both the Nationalists and the Communists', History at China Welfare,?http://www.cwi.org.cn/zh/zgflhhsg/content.aspx?id=8487</p><p></p></div>	
+<div class='layout'><p>Xu Xue-er et al. eds.,?Song jiaoren xuean?(The Murder of Song Jiao-ren), Yuelu shushe, Changsha, 1986</p><p></p></div>	
+<div class='layout'><p>Yan Hui-qing,?Yan huiqing zizhuan?(The Autobiography of Yan Hui-ching), Zhuanji wenxue chubanshe, Taipei, 1989</p><p></p></div>	
+<div class='layout'><p>Yang Kui-song, ‘Song qingling heshi jiaru gongchandang' (‘When Did Soong Ching-ling Join the Communist Party'),?Sun zhongshan soong chingling yanjiu dongtai?(News in the Studies of Sun Yat-sen and Soong Ching-ling), 4, 2003</p><p></p></div>	
+<div class='layout'><p>Yang Kui-song,?Yang kuisong zhuzuoji: geming?(Collected Works of Yang Kui-song: Revolution), Guangxi shifan daxue chubanshe, Guilin, 2012</p><p></p></div>	
+<div class='layout'><p>Yang Tian-shi,?Jiangshi midang yu jiang jieshi zhenxiang?(The Secret Archives of Chiang Kai-shek and the Truth about Him), Shehui kexue wenxian chubanshe, Beijing, 2002</p><p></p></div>	
+<div class='layout'><p>Yang Tian-shi,?Jindai zhongguo shishi gouchen: haiwai fangshilu?(Discoveries Overseas about Modern Chinese Historical Events), Shehui kexue wenxian chubanshe, Beijing, 1998</p><p></p></div>	
+<div class='layout'><p>Yang Tian-shi,?Wanqing shishi?(Miscellaneous Historical Events of Late Qing), Zhongguo renmin daxue chubanshe, Beijing, 2007</p><p></p></div>	
+<div class='layout'><p>Yang Tian-shi,?Zhaoxun zhenzhengde jiang jieshi?(In Search of the Real Chiang Kai-shek), vol. 1, Shanxi renmin chubanshe, Taiyuan; vol. 2, Huawen chubanshe, Beijing, 2008</p><p></p></div>	
+<div class='layout'><p>Yang Tian-shi,?Zhaoxun zhenzhengde jiang jieshi?(In Search of the Real Chiang Kai-shek), II, Huawen chubanshe, Beijing, 2010</p><p></p></div>	
+<div class='layout'><p>Yang Tian-shi,?Zhaoxun zhenzhengde jiang jieshi: huanyuan 13ge lishi zhenxiang?(In Search of the Real Chiang Kai-shek: The Truth of 13 Historical Events), Jiuzhou chubanshe, Beijing, 2014</p><p></p></div>	
+<div class='layout'><p>Yanhuang chunqiu?(Annals of the Chinese People), Beijing</p><p></p></div>	
+<div class='layout'><p>Ye Bang-zong,?Jiang jieshi shiweizhang huiyilu?(Memoirs of Chiang Kai-shek's Chief Bodyguard), Tuanjie chubanshe, Beijing, 2012</p><p></p></div>	
+<div class='layout'><p>Yi Zhu-xian,?Hu shi zhuan?(A Biography of Hu Shih), Hubei renmin chubanshe, Wuhan, 1987</p><p></p></div>	
+<div class='layout'><p>Yu Xin-chun and Wang Zhen-suo eds.,?Sun zhongshan zairi huodong milu: riben waiwusheng dangan?(The Secret Records of Sun Yat-sen in Japan: Archives from the Japanese Foreign Ministry), Nankai daxue chubanshe, Tianjin, 1990</p><p></p></div>	
+<div class='layout'><p>Yuan Wei-shi,?Zuotiande zhongguo,?Zhejiang daxue chubanshe, Hangzhou, 2012</p><p></p></div>	
+<div class='layout'><p>Zhang Bo-feng and Li Zong-yi eds.,?Beiyang junfa?(The Northern Warlords), Wuhan chubanshe, Wuhan, 1991</p><p></p></div>	
+<div class='layout'><p>Zhang Hai-lin,?Duanfang yu qingmo xinzheng?(Duanfang and the New System in the Late Qing), Nanjing daxue chubanshe, Nanjing, 2007</p><p></p></div>	
+<div class='layout'><p>Zhang Kai-yuan et al. eds.,?Xinhai gemingshi congkan?(Periodical of the History of the 1911 Revolution), Zhonghua shuju, Beijing</p><p></p></div>	
+<div class='layout'><p>Zhang Peng-yuan, ‘Cong minchu guohui xuanju kan zhengzhi canyu' (‘Political Participation Seen through Parliamentary Elections in the First Years of the Republic of China'),?Bulletin of Historical Research, Taiwan Normal University, Taipei, 1979</p><p></p></div>	
+<div class='layout'><p>Zhang Peng-yuan,?Cong minquan dao weiquan?(From People's Power to Autocrat's Power), Zhongyang yanjiuyuan jindaishi yanjiusuo, Taipei, 2016</p><p></p></div>	
+<div class='layout'><p>Zhang Peng-yuan,?Zhongguo minzhu zhengzhi de kunjing: 1909–1949 wanqing yilai lijie yihui xuanju shulun?(Democratic Politics in China: A Study of Parliamentary Elections since the Late Qing, 1909–1949), Shanghai Sanlian shudian, Shanghai, 2013</p><p></p></div>	
+<div class='layout'><p>Zhang Tai-yan,?Zhang taiyan xiansheng ziding nianpu?(Mr Zhang Tai-yan's Self-written Chronology), Shanghai shudian, Shanghai, 1986</p><p></p></div>	
+<div class='layout'><p>Zhang Xue-liang (Zhang You-kun and Qian Jin eds.),?Zhang xueliang nianpu?(A Chronological Record of Zhang Xue-liang), Shehui kexue wenxian chubanshe, Beijing, 1996</p><p></p></div>	
+<div class='layout'><p>Zhang Yao-jie,?Shui moushale song jiaoren?(Who Murdered Song Jiao-ren), Tuanjie chubanshe, Beijing, 2012</p><p></p></div>	
+<div class='layout'><p>Zhang Zhu-hong, ‘Meiguo guanyu Sun zhongshan he xinhai geming de yanjiu' (‘Studies on Sun Yat-sen and the 1911 Revolution in the United States'),?http://jds.cssn.cn/ztyj/wqzzs/201605/t20160506_3323423.shtml</p><p></p></div>	
+<div class='layout'><p>Zheng Hui-xin,?Dudang yueshi: minguo zhengshi yu jiazu liyi?(From the Archives and Studies: The Politics of the Republic of China and Family Interests), Zhonghua shuju, Beijing, 2014</p><p></p></div>	
+<div class='layout'><p>Zheng Peng-nian,?Song qingling he tade zhushou jin zhonghua?(Soong Ching-ling and her Assistant Jin Zhong-hua), Xinhua chubanshe, Beijing, 2001</p><p></p></div>	
+<div class='layout'><p>Zhong Bo-yi and Deng Jia-yan,?Zhong boyi deng jiayan koushu zizhuan?(The Reminiscences of Zhong Bo-yi and Deng Jia-yan), Zhongguo dabaike quanshu chubanshe, Beijing, 2009</p><p></p></div>	
+<div class='layout'><p>Zhou En-lai (CCP Central Documents Studies and Central Archives eds.),?Jianguo yilai zhou enlai wengao,?(Writings of Zhou En-lai since the Founding of Communist China), Zhongyang wenxian chubanshe, Beijing, 2008</p><p></p></div>	
+<div class='layout'><p>Zhou Hong-tao (with Wang Shi-chun),?Jianggong yu wo: jianzheng zhonghua minguo guanjian bianju?(Mr Chiang Kai-shek and Me: Witnessing Key Moments of Change in the Republic of China), Tianxia yuanjian, Taipei, 2003</p><p></p></div>	
+<div class='layout'><p>Zhou Zhi-ping, ‘Zhangchi zai ziyou yu weiquan zhijian: hu shi, lin yutang yu jiang jieshi (Between Liberty and Authoritarian Rule: Hu Shih, Lin Yu-tang and Chiang Kai-shek)',?http://www.cuhk.edu.hk/ics/21c/media/articles/c146-201406005.pdf</p><p></p></div>	
+<div class='layout'><p>Zhu Zong-zhen and Yang Guang-hui eds.,?Minchu zhengzheng yu erci geming?(Political Struggles at the Beginning of the Republic and the Second Revolution), Shanghai renmin chubanshe, Shanghai, 1983</p><p></p></div>	
+<div class='layout'><p>Zou Lu,?Zou lu huiyilu?(Memoirs of Zou Lu), Dongfang chubanshe, Beijing, 2010</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

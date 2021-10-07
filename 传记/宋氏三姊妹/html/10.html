@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿
+<div class='layout'><p> 10 Married to a Beleaguered Dictator</p><p></p></div>	
+<div class='layout'><p>Discord between May-ling and her husband started early. By the end of December 1927, the month they were married, the newly-weds had already had a flaming row, in Shanghai. Chiang came home during the day and found that May-ling was out. He was used to women who were always on standby waiting for him. He was annoyed. When May-ling came home and offered no apologies, he flew into a rage. She was astonished and fought back. He found her unbearably ‘arrogant', and took to bed to nurse some unspecified ‘illness'. She ignored him and stormed off to the Soong house, letting it be known that she, too, was ill. In the end, Chiang climbed down. He came to May-ling in the evening – ‘in spite of my own illness'. May-ling told him she was ‘sick of losing her freedom', and proceeded to advise Chiang that he should improve his character. They made up. That night, he was too shaken to sleep, feeling his ‘heart shivering and flesh jumping'.</p><p></p></div>	
+<div class='layout'><p>Chiang Kai-shek had married a tigerishly strong-willed and independent woman. For the first time in a relationship, it was he who had to say sorry. During the sleepless night, he realised he had no choice but to accommodate May-ling. He needed her in many ways, not least for her connection with Sun Yat-sen, whose heir he claimed to be. But Chiang also found that he ‘rather agreed with her', and that he should change his ways. The next morning, rather than rising at dawn as he usually did, he stayed in bed and made lingering and amorous love to her until ten.</p><p></p></div>	
+<div class='layout'><p>May-ling was quick to respond in a conciliatory manner. She was feeling greatly excited at being Mme Chiang, and thought, as she recalled later, ‘Here was my opportunity. With my husband, I would work ceaselessly to make China strong.'</p><p></p></div>	
+<div class='layout'><p>May-ling believed that Chiang's victory would end internal strife and bring peace to the country. She resolved to help him win and be a good first lady. She put away her Western clothes and adopted the traditional silk cheongsam. With embroidered flowers, and the skirt slit on both sides halfway to the knee, it became her ‘uniform'. She wore her hair in the Chinese women's style of the day, straight and with a neat fringe. When her brother T.V., who had become Chiang's finance minister, wanted to resign, she persuaded him to stay. While Chiang was at the front of the Northern Expedition, she bought medicine for wounded soldiers, procured large quantities of clothes and bedding, and secured Red Cross doctors and nurses. She delivered his message to Western consuls, assuring them that the Nationalist army would protect their colleagues in the war zones. She was like Chiang's special representative, performing tasks that others could not. Chiang wrote in his diary that half of his victory was due to his wife. Equally importantly, May-ling introduced humanitarian practices into Chiang's army, and was, all in all, a civilising influence on the Generalissimo. It was she who founded a school for the children of dead soldiers and officers, a first in Chinese wars. She devoted herself to them over the years, and they remained her ‘children' to the end of her life.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>Chiang Kai-shek defeated the Beijing government and entered the Northern Capital on 3 July 1928. The Nationalist regime was established, its capital Nanjing. The Generalissimo made himself the chairman.</p><p></p></div>	
+<div class='layout'><p>An epoch of seeking democracy in China was over. This period, 1913–28, is often described negatively in history books as a period of ‘warlords fighting'. In fact, the longest and most significant wars throughout those years, even if intermittent, were not waged by the warlords but by Sun Yat-sen, followed by Chiang Kai-shek. The wars between the warlords were much shorter and more limited, causing much less upheaval; life went on as usual for civilians, as long as they were not caught in the crossfire. Above all, the warlord rifts ended with renewed efforts to strive for parliamentary democracy. Chiang's last target, Marshal Wu Pei-fu, for instance, was well known for his commitment to democracy, and his final act before exiting the political arena was to pay the fares home for the hundreds of members of parliament who had stayed in Beijing in the hope that he might win and the parliament could be reconvened. Chiang's victory ended China's journey along this course and set the country on the path of unapologetic dictatorship.</p><p></p></div>	
+<div class='layout'><p>And yet, even though Chiang embraced dictatorship and inherited some of the Leninist ‘methods of struggle' – Soviet-style organisation, propaganda and control mechanisms – as Borodin put it, he rejected Communism, and did not go on to build a totalitarian state, unlike Mao, who later overthrew him. The Generalissimo's regime kept many of the country's freedoms. Although May-ling did not make policy, her influence was very much present in the dictator's more humane decisions.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>Chiang's biggest problem was legitimacy. His predecessors in the republic had all been elected, however problematic some of the elections might have been. Chiang's conquest did not win the hearts and minds of the population and he was not seen as the liberator. When his army had marched down Beijing streets, they were greeted with ‘thunderous silence' by expressionless onlookers, noted one observer. The Beijing leaders, on the whole, enjoyed a far better reputation than him. Nor did his victory convince people of his military genius. Many believed that Beijing was defeated by Soviet military might rather than by him. The fact that Chiang had broken the Russian hold on his party was only grudgingly appreciated. Other Nationalists had been acting against Moscow's control while Chiang was ostensibly pro-Russian. To these men, the Generalissimo was an opportunist.</p><p></p></div>	
+<div class='layout'><p>Chiang claimed to be the heir of the Father of China, and promoted Sun to divine status. At his own wedding, an enormous portrait of Sun hung on the platform, flanked by the flag of the Nationalist party and that of the country he was about to rule. The flag of China was basically a duplication of the party flag on a red background, symbolising Sun's vision that his party would dominate the nation. Everybody – the newly-weds and their over 1,000 guests – bowed three times to Sun's portrait, introducing a ritual that would become ubiquitous in ceremonies across China.</p><p></p></div>	
+<div class='layout'><p>As a matter of fact, Sun was far from godlike in the Generalissimo's private thoughts. Once with May-ling and Big Sister, he talked about how Sun's Russia policy would have led to a Communist takeover of his party and country, and would have doomed both – had he, Chiang, not saved the situation by stratagem. But for political reasons, he needed Sun's deification.</p><p></p></div>	
+<div class='layout'><p>He also needed an ideology from Sun for his regime. Sun had produced a sort of ideology: the Three Principles of the People (san-min-zhu-yi). This was an imitation of Lincoln's ‘government of the people, by the people, for the people'. Roughly, the principles were nationalism, the people as the masters, and the welfare of the people. They were as vague and mercurial as Sun's real-life beliefs. Talking about them to camera for a three-minute English newsreel, Chiang, his interpreter and May-ling gave different definitions. The first lady was meant to talk about how Sun's principles had liberated Chinese women. This was something so intangible that she had to memorise her lines by rote. As a result, having talked fluently about women's role in China as she saw it, she got stuck when it came to Sun's supposedly great contribution; she could not remember what she had to say. Haltingly she stumbled on: ‘Dr Sun has given women economic … and … economic … and … ', and she ground to a halt. Giggling embarrassedly but sweetly, she turned to her husband, who had been looking on with palpable anxiety and who now whispered in her ear. She completed the sentence: ‘ … has given women economic and political independence.'</p><p></p></div>	
+<div class='layout'><p>Nevertheless, that the ‘ideology' was vague and open to interpretation did not matter in the grand scheme of things. It was benign and worthy. The problems started when Chiang aimed for precision and announced that the political system under him would be ‘political tutelage' (xun-zheng), which was the not very euphemistic name Sun had given to his brand of dictatorship. The word xun brings to mind the image of a superior lecturing inferiors. Sun had said this was how the people of China should be treated by him and the Nationalists. The Chinese were slave material and unfit to be the masters of the country; ‘so we revolutionaries must teach them', ‘lecture them', ‘using methods of force if necessary'. A propaganda poster illustrated Sun's words: China was pictured as a toddler being pulled to a higher state of existence by Sun. This was a drastic departure from Chinese culture, which frowns on openly holding ordinary people in contempt.</p><p></p></div>	
+<div class='layout'><p>The Generalissimo dictated that no one was allowed to be irreverent about Sun. In organisations like schools and offices, people were made to gather once a week to commemorate Sun. They had to stand in silence for three minutes, read Sun's deathbed Testament, and be lectured by their bosses. All this was alien and off-putting to the population. They had never had to do this under the emperors. And for nearly two decades, they had been living in a form of civil society with a multi-party political system, a reasonably fair legal system and a free press. They had been able to criticise the Beijing government publicly without fear of retribution. In 1929, a number of prominent liberals spoke out in a collection of essays called On Human Rights. Hu Shih, the leading liberal of the day, wrote that his fellow countrymen had already been through a ‘liberation of the mind', but now ‘the collaboration of the Communists and the Nationalists has created a situation of absolute dictatorship and our freedoms of thought and speech are being lost. Today we may disparage God, but may not criticise Sun Yat-sen. We don't have to go to Sunday church services, but we have to attend the weekly [Sun] Commemorative Service and read the Sun Yat-sen Testament.' ‘The freedom we want to establish is the freedom to criticise the Nationalist party and to criticise Sun Yat-sen. Even the Almighty can be criticised, why can't the Nationalists and Sun Yat-sen ' And, ‘The Nationalist government is deeply unpopular, partly because its political system fell far short of people's expectations, and partly because its corpse-like ideology failed to attract the sympathy of the thinking people.' These publications were confiscated and burnt; Hu Shih was forced to resign his job as the chancellor of a university.</p><p></p></div>	
+<div class='layout'><p>Things could be worse, Hu Shih observed. Anyone could lose their freedom and property on charges of being ‘a reactionary', ‘a counter-revolutionary' or ‘a Communist suspect'. There was not much respect for private property. Wellington Koo, once prime minister of the Beijing government, had a splendid mansion in Beijing, bought by his wife's father, a rich overseas Chinese businessman. The Koos loved the house. During Sun Yat-sen's final trip to Beijing, it was lent to him and he died there. After their victory the Nationalists simply took over the house and turned it into a shrine for Sun – to the gut-wrenching distress of the Koo family. They were also dismayed that the new masters proceeded to cover the original colour of the house, a beautiful old Beijing red, with a coat of gloomy grey-blue, to show this was a sad place.*<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a></p><p></p></div>	
+<div class='layout'><p>Chiang regarded what belonged to the country as his own. He created a major bank, the Farmers' Bank, with funds from state taxation. When he wrote his will (in 1934), he put the assets of the bank under the heading ‘family matters', below the item telling his sons that they must regard May-ling as their real mother.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>As a dictator, the Generalissimo could boast enemies in all directions. Province potentates from east, west, north and south were rebelling against him. So were a large number of his Nationalist colleagues from the left, right and centre. They had one thing in common: they refused to recognise Chiang's authority. Some took to extreme measures. Assassinations, which had been rare under the Manchu dynasty, were the de rigueur way of solving problems by the republicans, Sun and Chiang both being old hands. Now the sword was dangling over the Generalissimo – and May-ling.</p><p></p></div>	
+<div class='layout'><p>One night in August 1929 in her Shanghai home, May-ling was woken by a nightmare. As she wrote later, an eerie, ghostly figure appeared in her dream, a man with ‘a coarse and brutal face' and ‘an expression of evil intent'. ‘He lifted his hands and in each was a revolver.' She screamed, and Chiang sprang from his bed and ran to her side. She said there might be thieves downstairs. Chiang went out of their bedroom and called for the guard. Two answered, and he went back to bed reassured, though thinking that it was a bit odd two men responded as only one was supposed to be on duty.</p><p></p></div>	
+<div class='layout'><p>A few days later, the two guards tiptoed into the bedroom and were about to pull the trigger when Chiang turned and coughed loudly. Startled, they crept out. Meanwhile, the guard who was not supposed to be on duty had roused the suspicion of the taxi driver who had brought him to the residence. The taxi driver noticed that the man was trying to conceal his military uniform with a slouch hat and a raincoat, and found the way he was greeted at the gate fishy. The driver called the police, who came to the house at once. The guards were taken away. They had been two of Chiang's oldest and most trusted bodyguards; and yet they had accepted the commission of one group of Chiang's numerous enemies.</p><p></p></div>	
+<div class='layout'><p>As a result of these assassination attempts, May-ling suffered a miscarriage. She was ‘unbearably disraught', and ‘in extreme agony', Chiang wrote in his diary. Chiang stayed by her side for seventeen days, leaving his work unattended, which was unusual for him. After the miscarriage, she was told she could never conceive again. Like her sister Mme Sun, Mme Chiang would have no children of her own.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>May-ling was in a state of constant fright and suffering from extreme nervous tension. In yet another nightmare, she saw a stone in the middle of a stream, with blood flowing all round it. As Chiang Kai-shek's name contains the word for ‘stone' (shek), for days she was expecting something terrible to happen. As it turned out, what did happen was that the neighbouring province, Anhui, broke from Chiang and shelled the capital, Nanjing.</p><p></p></div>	
+<div class='layout'><p>But Little Sister stood by her man, in spite of the dangers and her reservations about his ways. In 1930, some prominent Nationalist generals and politicians (including the man who had written Sun's deathbed Testament, Wang Jing-wei) banded together and formed a rival government in Beijing. Chiang waged a war against them. Known as the Big War of Central China, it lasted for months. During that time, May-ling was in almost daily cable communication with her husband and showed him much love and support. Worried that Chiang, at the front, might not eat well, she offered to send her cook to him. When the weather became extremely hot, she enquired anxiously how he was coping. Fearing that he might be lonely, she sent her youngest brother T.A. to bring him letters and presents. She was again Chiang's most dependable logistics manager. One consignment she arranged contained 300,000 tins of meat, bamboo shoots and sweets, 150,000 hand towels and large quantities of medicine for the troops, which she chartered a special railway carriage to deliver. When T.V. became fed up with Chiang's endless demands for vast sums of money and tendered his resignation as finance minister, she again talked him round.</p><p></p></div>	
+<div class='layout'><p>Some of the money went through her hands personally and quietly. The strongman in Manchuria was now Zhang Xue-liang, the Young Marshal, son of Old Marshal Zhang Zuo-lin.*2<a name="p2" id="p2"></a><a href="#pl2" title=""><sup>2</sup></a> In this conflict the Young Marshal decided to lend Chiang a hand – for a price. After secret negotiations, a colossal payment in the region of $15 million was agreed upon. The sum was so large that it had to be drawn over several years, during which the Young Marshal made occasional trips to Shanghai and Nanjing to collect the instalments. On 18 September 1930 May-ling wired $1 million to the Young Marshal, with a promise to send the remaining $4 million of the first instalment in the following days. That day, the young warlord sent troops south from Manchuria to form a pincer attack with Chiang against the rebels. This doomed the rebel army.</p><p></p></div>	
+<div class='layout'><p>In this period, May-ling stayed with Ei-ling and their mother. While Mrs Soong gave her moral support, Big Sister provided her with detailed advice. Chiang was immensely grateful to both women, and asked after them practically daily. As always he was deferential to Ei-ling, never failing to address her respectfully as Big Sister, even though he was older than her. When he was told Mrs Soong was ill, he wanted to know every detail and told May-ling to convey his pledge: ‘please rest reassured that your son-in-law is carefully following your teaching and behaving responsibly'.</p><p></p></div>	
+<div class='layout'><p>As a gesture of gratitude to Mrs Soong and Big Sister, after the war was over Chiang was baptised on 23 October 1930, in a ceremony that took place at the Soong home in Shanghai. From then on, he was increasingly influenced by Christianity.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>The war was over but those opposing the Generalissimo had not finished. They shifted their base to Canton and set up another rival government the following year, 1931. One of the members was Fo, Sun Yat-sen's son. In Nanjing, Sun's old associates remained deeply and openly contemptuous of Chiang. Chiang put some of them in prison, but he had to pretend that he only kept them locked up in order to listen to their advice.</p><p></p></div>	
+<div class='layout'><p>Chiang felt he was besieged by ill will as he had been in his youth, and raged against practically everyone around him. His diaries are littered with remarks like: ‘there is no genuine friendship or kindness or love under heaven, the relationship between mother and son is the only exception'; ‘I can't stop feeling rage and anger … most people are false friends … and selfish ones … I want to cut myself away from all of them'; ‘People's hearts are all devious and ugly. Those who fear me are my enemies; those who love me are also my enemies, as they only want to use me for themselves … My wife is the only person who loves me and supports me sincerely'; ‘It is the nature of human beings that nobody treats others in good faith, except one's parents, wife and children.'</p><p></p></div>	
+<div class='layout'><p>Beset by these grim thoughts, the Generalissimo remained a loner and a one-man band. To him ‘China has too few talents. If you give people responsibility, they just fail'; ‘Of all the people I employ, in all the organizations, almost not a single one's work is to my satisfaction'; ‘Apart from my wife, not a single other person can share a little responsibility or a little work with me'; ‘I have to deal with everything myself, domestic or foreign policies … civil or military matters.' Indeed, at key moments when China needed international support such as the lead-up to the Japanese invasion in 1931, he had no ambassadors in Western countries.</p><p></p></div>	
+<div class='layout'><p>Chiang's small inner circle mostly consisted of the extended Soong family. In his own family, he had always loathed his half-brother: ‘How I detest him and feel disgusted towards him.' He also scorned his sister. One day he dropped in to see her with May-ling and saw her guests playing cards noisily. Chiang ‘felt ashamed' and feared his ‘beloved' would despise him for his relations.</p><p></p></div>	
+<div class='layout'><p>His strong emotional relationship with his mentor Godfather Chen gave him another ‘family'. Chen's two nephews, Guo-fu and Li-fu, founded and ran his intelligence system. But even they did not have his full trust. The Generalissimo was suspicious and worried that they might become too powerful, and created another intelligence agency to limit their influence.</p><p></p></div>	
+<div class='layout'><p>Only the Soong family enjoyed Chiang's total confidence. They could be relied on not to cheat him, and he depended on them to manage the lifeline of his regime: money. He created an authority for China's major banks – the United Office of the Four Banks – and made Ei-ling's husband, H.H. Kung, the overlord. Mainly for H.H., who was his most obedient servant, and also for his other brother-in-law, T.V., Chiang reserved the very top posts: finance minister, foreign minister, prime minister. H.H. stayed on in the last post for well over a decade, near the end of Chiang's regime.*<a name="p3" id="p3"></a><a href="#pl3" title=""><sup>3</sup></a></p><p></p></div>	
+<div class='layout'><p>The person Chiang heeded most was Big Sister Ei-ling. Her ideas on political and financial affairs, told to Chiang either by herself or through May-ling or H.H., always had the Generalissimo's ear. Her husband's prolonged occupation of top posts was largely due to Chiang's reliance on Ei-ling.</p><p></p></div>	
+<div class='layout'><p>Outside the tiny family circle, the Generalissimo trusted or listened to few people. There were no proper debates among the top echelon. Meetings were a cheerless affair, at which Chiang would assume a pose of aloofness and harangue his subordinates and colleagues. The more civilised members of his audience found it hard to bear and only refrained from fighting back out of fear. The less cultured followed his lead and treated their own underlings similarly badly, generating resentment down the line.</p><p></p></div>	
+<div class='layout'><p>Under such a boss, few officials cared to contribute to policymaking. Even his senior officials seldom offered suggestions. Ei-ling, who exerted most influence on him, was smart, but she did not have the mind of a political leader. And she had a fatal lack of empathy with the common people. As a result, Chiang's regime failed to present an agenda that would enthuse or give hope to the general population. The absence of inspiring policies was so keenly felt that Hu Shih, the leading liberal, called on Chiang to ‘do the minimum of the minimum and learn from the autocratic emperors: issue some degrees from time to time asking the population to make outspoken suggestions!'</p><p></p></div>	
+<div class='layout'><p>For Chiang this was water off a duck's back. Even worse, he gave the impression that he actually held the population in contempt. The Chinese, he said in public, ‘have no shame, no morals'; they were ‘lazy, indifferent, corrupt, decadent, arrogant, luxury-loving, incapable of enduring hardship, unable to keep discipline, [had] no respect for law, no sense of shame, no idea what morality is'; ‘Most of them are half-dead-half-alive, neither-dead-nor-alive … “walking corpses”.'</p><p></p></div>	
+<div class='layout'><p>Lifting the population out of poverty was not on his agenda – a catastrophic failure he regretted too late, when he was being driven out of mainland China. There had been a proposal to reduce the rent peasants had to pay to landowners, but it was only tried out in a couple of provinces and was abandoned when it met with tough resistance. The Communists were keen to take advantage, and claimed that their goal was to give people a better life. The Reds' influence grew, as did their territory. With Moscow's backing, they formed a ‘Soviet republic' in 1931 in south-east China, a rich part of the country not far from Shanghai. At its height, this breakaway state controlled a total area of 150,000 square kilometres and a population of over 10 million. A major threat to Chiang grew right under his nose.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>Confronted with a multitude of horrendous problems, May-ling lost her initial optimism about achieving great things as Mme Chiang. She later wrote in 1934: ‘During the last seven years I have suffered much. I have gone through deep waters because of the chaotic conditions in China.' In addition to the ceaseless internal strife, there were other disasters: a drought in Shaanxi in the north-west in 1929 resulted in a famine that killed hundreds of thousands; prolonged storms in the north-east in 1930 made millions homeless; and in 1931, 400,000 died from floods in the Yangtze valley and other regions; Japan was aggressively flexing its muscles on the border. ‘All these things have made me see my own inadequacy … To try to do anything for the country seemed like trying to put out a great conflagration with a cup of water … I was plunged into dark despair. A terrible depression settled on me.'</p><p></p></div>	
+<div class='layout'><p>Her darkest hour came when Mrs Soong died of bowel cancer on 23 July 1931. May-ling had cared for her through her long illness and stayed with her during her last days in Qingdao, a seaside resort where they had gone to escape Shanghai's stifling summer heat. Little Sister was inconsolable. She said that her mother's death ‘was a terrible blow to all her children, but it hit me perhaps even harder than the rest, for I was her youngest daughter and had leaned on her more heavily than I realized.' She remembered particularly a moment shortly before Mrs Soong's death: ‘One day while talking to her, a thought which I considered quite bright occurred to me. “Mother, you're so powerful in prayer, why don't you pray to God to destroy Japan in an earthquake so that she can no longer harm China?”' She remembered her mother ‘turned her face away' and refused, telling May-ling that even suggesting the idea was unworthy of her. This point of view influenced May-ling throughout her life and made her admire her mother even more intensely. When Mrs Soong died, she felt lost: ‘Mother was no longer there to pray me through my personal as well as other troubles. I had a lifetime to face without her. What was I to do?'</p><p></p></div>	
+<div class='layout'><p>On the day of her mother's death, May-ling's brother T.V. narrowly escaped an assassination attempt by a group of young left-wing Nationalists. Their target was actually Chiang Kai-shek, but they picked T.V., Chiang's ‘money man', as a rehearsal. They had studied T.V.'s movements and knew he regularly came to Shanghai from Nanjing, the capital, on the night express on Thursdays for long weekends. On this particular Thursday, they waited for him at Shanghai North Station. Wearing a smart suit and a white topee, and over six feet tall, T.V. cut a conspicuously dapper figure. As he made his way through the crowd, followed by his secretary and bodyguard, the men shouted ‘Down with the Soong dynasty!' and started firing. Bullets ricocheted off the walls and through the windows. T.V.'s secretary, walking next to him, was killed. One eyewitness, a stallholder close to the scene, told the newspapers afterwards that the assassins ‘were wearing Sun Yat-sen costumes of a greenish grey'. (This outfit, later called the ‘Mao suit', was an adaptation of the Japanese cadet uniform and was first worn by Sun. At the time of the shooting, civil servants of the Nationalist government were required to wear it.)</p><p></p></div>	
+<div class='layout'><p>After the shooting started, two bombs were detonated. According to the eyewitness, this ‘caused much white smoke so that you could hardly see Mr Soong. I hid under my counter.' Taking advantage of the smoke, T.V. leaped behind a pillar, simultaneously drawing his revolver. One of the railway police on duty rushed over and told him, ‘Throw your hat away, Mr Minister. Stoop down so that they can't see you so well and follow me. I will take you to safety.' T.V. groped through the fog of smoke, avoiding the bodies on the ground, and followed the policeman to a boardroom upstairs. Seeing that he went to the upper floor instead of an exit, the assassins gave up the pursuit. After more exchanges of fire with his bodyguard, they dropped their weapons and disappeared into the station crowd, who were fleeing in all directions, screaming. They got away – to plot against their real target, the Generalissimo.</p><p></p></div>	
+<div class='layout'><p>Before this group had even got home, other gunmen fired at Chiang in a park. They missed, and Chiang was unharmed. Not wishing to make May-ling more distraught, Chiang cabled her to say that the news was only a rumour. May-ling knew it was not and was in anguish. Repeated assassination attempts haunted her for life; in her old age, she could not sleep peacefully without a trusted security man in the next room.</p><p></p></div>	
+<div class='layout'><p>To top all these calamities came a national catastrophe: in September 1931, Japan invaded Manchuria and occupied this enormous and rich part of China. May-ling, as she recalled, slid into ‘the depths of despair'.</p><p></p></div>	
+<div class='layout'><p>*<a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> Chiang later employed Koo, an outstanding and cautious diplomat. Decades later, when he spoke about this episode for the oral history project of Columbia University, New York, a flustered Koo abruptly halted the taped interview and told the interviewer to switch off the recorder, ‘This is to be closed. It casts a reflection on the Kuomintang.' Then he changed the subject. Clearly he decided that it was wiser to pull his punches.</p><p></p></div>	
+<div class='layout'><p>*<a name="pl2" id="pl2"></a><a href="#p2" title=""><sup>2</sup></a> The Old Marshal was briefly in charge of the Beijing government in June 1927, at the last stage of Chiang Kai-shek's Northern Expedition. The Japanese offered to help him stop the advance of Chiang, in exchange for substantial rights in Manchuria. The Old Marshal told them in so many words: ‘I do not sell out the country.' The Japanese planted dynamite on a railway bridge, killing him in his train on 4 June 1928. His death helped secure Chiang's victory over the Beijing government.</p><p></p></div>	
+<div class='layout'><p>*<a name="pl3" id="pl3"></a><a href="#p3" title=""><sup>3</sup></a> In the Confucius clan chronicle of the 1930 edition, H.H. Kung was listed as a descendant of Confucius, with whom he shared the same surname. As he was in power then and supervised the writing of the chronicle, some questioned the validity of the claim. Ching-ling referred to him sarcastically as ‘the Sage'.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

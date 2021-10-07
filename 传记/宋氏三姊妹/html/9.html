@@ -1,0 +1,392 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+
+<div class='layout'><p> 9 May-ling Meets the Generalissimo</p><p></p></div>	
+<div class='layout'><p>Chiang Kai-shek, known as the Generalissimo, was born in a hilly town called Xikou in Zhejiang province near Shanghai in 1887. His family could not have been more dissimilar from May-ling's. His father, a small-town salt merchant, died when he was eight, and his widowed mother struggled to bring up him and his sister. Chiang's childhood was soaked in his mother's tears: over the death in infancy of her youngest son, over the lack of help from relatives in raising her young family on her own, over people's apparent indifference when floods threatened to destroy their house, over a failed lawsuit about a legacy – and over many other misfortunes. The grief-stricken woman roused a fierce attachment in her son – to the extent that as a teenager, he was distraught whenever he had to leave home, and his mother had to drive him out of the door with stern words, even striking him with a cane.</p><p></p></div>	
+<div class='layout'><p>When he was fourteen, in keeping with tradition his mother arranged a marriage for him, with a girl five years his senior named Fu-mei. On the wedding night after the ceremony, the newly-weds went into Mrs Chiang's bedroom to present tea to her. She lay in bed with her back to them, weeping and refusing to accept the tea. Chiang knelt in front of the bed and cried his heart out, one of the three bitterest cries in his life, he later recalled. Neither mother nor son had pity for the bride, who got off to such a bad start. The marriage was punctuated by rows, during which Chiang, in violent fits, beat his wife. Sometimes he dragged her down flights of stairs by her hair.</p><p></p></div>	
+<div class='layout'><p>Mrs Chiang had no kind words to say about her daughter-in-law, but she would not allow them to divorce. Chiang took a concubine, Zhi-cheng, who fared little better as his passion quickly turned to loathing, partly as a result of his mother's constant complaints about her. In 1921, when he was thirty-four, his mother died. (Chiang was bereft, and mourned her throughout the rest of his life. He put up pagodas in many beauty spots to commemorate her, and turned a whole hill into her mausoleum.) Her death released Fu-mei from the unhappy marriage, as Chiang divorced her. Chiang gathered together close relatives, including Fu-mei's brother, and asked for their consent. They gave it readily. Chiang married another woman, Jennie, after whom he had been lusting for several years since she was thirteen. Chiang regarded her as a concubine, although she was addressed publicly as Mrs Chiang.</p><p></p></div>	
+<div class='layout'><p>Even by his own admission, Chiang had always been something of a lecherous lout. When he was young he frequented whorehouses and picked drunken fights. Neighbours avoided him and relatives were ashamed of him, regarding him as a disgrace to the family. Deeply affected by the ill feelings towards him from all quarters, Chiang was determined to make a success of himself and chose a military career. In 1907, the Ministry of the Army under the Manchu government gave him a scholarship to study in Japan to be an officer cadet. There he met Godfather Chen and followed him into the Green Gang – and the ranks of the republicans. When the republican revolution broke out in 1911, Chiang returned to China to take part. His most notable act was that at the behest of the Godfather, he assassinated Tao Cheng-zhang, opponent of Sun Yat-sen, and helped Sun secure his position as the interim president. As Chiang sensed, this brought him to the favourable attention of Sun.</p><p></p></div>	
+<div class='layout'><p>After Godfather Chen was gunned down in 1916, Chiang, mourning his mentor and resenting the way Sun had treated Chen, kept his distance from Sun, and although Sun repeatedly solicited his assistance, Chiang did not respond, despite the fact that he did not have a proper job (at the time he was working unsuccessfully as a stockbroker). He also did not get on with the people around Sun. His foul temper was legendary – he would hit rickshaw men, servants, guards and subordinates, and shower verbal abuse on his colleagues. (He was sensible enough, though, to confine his rage towards his superiors to his diary.) Such behaviour was universally abhorred.</p><p></p></div>	
+<div class='layout'><p>Chiang kept open the option of serving Sun. After Sun was driven out of Canton in June 1922, the gunboat he was on was mutinous, and he was desperate. On learning about Sun's plight, Chiang raced to him, proving that he was a dependable friend. Sun was so relieved at the sight of Chiang that he burst into tears and found himself incapable of uttering a sound for quite a few moments.</p><p></p></div>	
+<div class='layout'><p>Chiang escorted Sun to Shanghai in August. That month Sun clinched his deal with Moscow, and Russia's full sponsorship, including founding an army, was soon confirmed. Sun's future looked promising. Chiang made up his mind to throw in his lot with Sun, after Sun assured him that he would be made the chief of the army. As a prelude, he was appointed to head a military delegation to Russia in 1923.</p><p></p></div>	
+<div class='layout'><p>Chiang was a sharp observer and a man with his own principles. During the trip, he was repulsed by the Soviet practice of ‘class struggle' and horrified by Red Russia's attempt to turn China communist. He decided he did not want to collaborate. He considered leaving Sun and held off reporting to Canton after he came back to China, in spite of Sun's repeated summonses. Finally, Chiang spelt out his thoughts to Sun's close aide Liao Zhong-kai, who was corresponding with him on Sun's behalf: ‘In my observation, the Russian party has no sincerity whatsoever towards us … Its only goal in China is to bring the Chinese Communist Party to power, and it has no intention for the CCP to cooperate with our party in the long term … Russia's policy concerning China is to make Manchuria, Mongolia, the Muslim area and Tibet all parts of the Soviet Union; it quite possibly covets China proper as well … The so-called internationalism and world revolution are nothing but different names of Kaiser-style imperialism.'</p><p></p></div>	
+<div class='layout'><p>In his reply, Liao did not address Chiang's views about Russia, but pressed him more urgently to hurry to Canton, telling him that his delay was causing Sun a great deal of pain. The message seemed clear: despite Chiang's opposition to Russia, Sun still wanted him, perhaps even more so. Chiang went to Canton and had a secret talk with Sun (the content of which has never been revealed). Undoubtedly, Chiang was reassured that Sun did not disagree with him. Sun, it would seem, was only trying to use the Russians. Chiang stayed in Canton and, in 1924 when the Whampoa Academy was set up there by the Russians to train officers for Sun, he was appointed its head. Sun meant for the anti-Soviet Chiang to control his army.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>Over the next three years, Chiang concealed his views and used the Russians to build up the Nationalist army. All the while, he honed the skills of a consummate schemer and waited for the day when he could break from Moscow's hold over his party. Equally successfully, he hid his own political acumen, presenting himself as an apolitical soldier. There was a strong anti-Russian faction in the Nationalist party, but Chiang steered clear of it. Borodin, naturally, was checking on him. The Chinese Communists reported that ‘Chiang is an ordinary soldier; he has no political ideas at all.' And Liao, the recipient of Chiang's letter that revealed his real thoughts, told Borodin that Chiang was very sympathetic to Russia and was full of enthusiasm after his visit to the Soviet Union.*<a name="p…" id="p…"></a><a href="#pl…" title=""><sup>1</sup></a> As a result, the Russians trusted Chiang. (Liao was assassinated in Canton in August 1925. Who did it remains a mystery. His widow believed that Chiang was responsible. Whether or not this was the case, the man who knew Chiang's true colours held his tongue forever.)</p><p></p></div>	
+<div class='layout'><p>Borodin was taken in, he confessed later. Chiang ‘seemed so amenable, so obedient, so modest'. He told Moscow that Chiang was ‘completely trustworthy'. Russia poured money and expertise into Whampoa, along with arms including cannons and airplanes. In one shipload, weapons worth 4 million rubles were dispatched.</p><p></p></div>	
+<div class='layout'><p>In January 1926, Moscow virtually hijacked the Nationalist party at its second congress, which produced a leadership dominated by CCP members and pro-Russia Nationalists. Red Sister Ching-ling became one of the leaders: a member of the Central Executive Committee. (Mao was an ‘alternate member' of the Committee.) As his party was now almost totally in the hands of the Russians, Chiang judged that the time had come for him to act. First, he moved to get his foes to lower their guard further. He made a request to go to Russia ‘to study how to make revolution'. He even put this request in his diary. (Chiang kept a diary for fifty-seven years and was always aware that it could be read by those who wanted to find out about him.) He also wrote an ostensibly private letter which he knew the Russians would read, all but declaring himself a Communist. Having laid this smokescreen, Chiang pounced in a surprise attack on 20 March. Using a pretext, he arrested dozens of Communists and disarmed the guard of the Soviet advisers, who themselves were placed under surveillance. In one stroke, Chiang had torn control of the Nationalist army away from the Russians.</p><p></p></div>	
+<div class='layout'><p>Having accomplished this quasi-coup, Chiang managed to lead the Russians into misreading him. They thought what he had done was the outburst of a proud Chinese general offended by bossy Russian advisers trying to force a strange Soviet system onto his army. They decided that the best thing to do was to mollify Chiang – and so withdrew his chief Russian advisers. The Russians were still convinced that ‘Chiang Kai-shek can work with us, and will work with us', although they were also getting prepared to ‘eliminate this general' at some stage. Above all, Chiang made them believe that Borodin, who was not in Canton at the time, could sort out everything, as the Soviet representative exercised ‘truly extraordinary personal influence' over him. The Russians had no inkling that the coup had been premeditated and was part of Chiang's stratagem. As a result, far from being punished, Chiang was promoted to commander-in-chief of the Nationalist army.</p><p></p></div>	
+<div class='layout'><p>Wang Jing-wei, head of the Nationalist party, had had to stand by and watch Chiang getting away with it all. He feared for his life, went into hiding and soon fled abroad. And so Chiang, the quintessential schemer, rose to become the most powerful man in the Nationalist party.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>One woman quietly took note of this dramatic turn of events, and saw its potential significance. Ei-ling had a keen political sense, ‘very much keener than I, a really brilliant woman', said Little Sister. Big Sister was passionately anti-Communist, and had been opposed to Sun's Soviet policy. After Sun died, she and her husband had insisted on a Christian funeral to counter Sun's Bolshevik image. Ei-ling saw that Chiang had kicked out a host of Soviet military advisers, and sensed that the new commander-in-chief was changing the Nationalist party. She was delighted. Her sister Ching-ling and brother T.V. were both in the Nationalist government, with T.V. being the minister of finance. (T.V. managed to calm down the resentment of the locals by doing away with extortionate taxes – thanks to the vast input of Russian money, as well as his abilities.) Big Sister loathed seeing her siblings working under Moscow's command. Chiang Kai-shek's action kindled her hope and her enthusiasm.</p><p></p></div>	
+<div class='layout'><p>It then occurred to her that the young commander-in-chief could be a candidate as a husband for Little Sister, who had by now exhausted the eligible pool in Shanghai. Although there was a ‘Mrs Chiang', to Ei-ling who was determined to find a husband for Little Sister, she was only a concubine, not a proper wife, and could be pushed out of the way with relative ease. To find out more about Chiang, Ei-ling took Little Sister to Canton in June 1926. The subtropical city was in the grip of an intense heatwave. But the sisters had a purpose. They stayed in the house of the manager of Standard Oil, who was in New York on vacation. It was a detached, two-storey white villa shaded by cedar trees and a tropical garden. On 30 June, Ei-ling gave a dinner for Chiang. Jennie, the then Mrs Chiang, was also invited, and instinctively felt that the dinner would change her life.</p><p></p></div>	
+<div class='layout'><p>Chiang was tremendously excited by the invitation. He told Jennie, ‘I have position, but I lack prestige,' and it was extremely important ‘to get closer to the Soong family'. According to Jennie, ‘He spoke as he walked up and down the room in great excitement. His throat seemed contracted with tenseness. “An invitation!” he repeated to himself. “ … at last, after all this time, you and I have a chance to dine with this great personage.”' Chiang meant Ei-ling, who was considered a grande dame in Shanghai society. ‘It is really too wonderful to be true,' he told Jennie, who wrote that ‘He strutted the floor like a peacock and refused to sit down. He seldom behaved in this agitated manner.'</p><p></p></div>	
+<div class='layout'><p>Jennie arrived earlier than her husband, who was delayed by work. It was a small dinner for just six, the other two guests being Mrs Liao Zhong-kai whose husband had been assassinated a few months before, for which she privately suspected Chiang, and the Trinidadian Eugene Chen, foreign minister of the Canton government. There had been much speculation about a possible match between Eugene and May-ling, but ‘judging by their behavior toward one another in the drawing room, the rumor probably was unfounded', Jennie concluded. Indeed, May-ling could not stand Eugene. In a letter to Emma, she had said he ‘was at one of the dinners and sat beside me. He is very clever, and brilliant, but horribly egoistic and vain. He has such horrible shrugs of shoulders which almost drove me wild! He is coming to call on me this week: and I hope I won't be rude.'</p><p></p></div>	
+<div class='layout'><p>Jennie, young and innocent, came from an average family and did not have a cosmopolitan upbringing. She eyed the two sisters not without jealousy. Both wore chic bright silk cheongsams; their hair, styled in the 1920s fashion, was sculpted into waves and pulled back into a chignon at the base of the neck. They looked like figures stepping out of a Shanghai fashion magazine.</p><p></p></div>	
+<div class='layout'><p>The heat and humidity were wearing everybody down. With three electric fans going at full blast, May-ling still kept fanning herself with a large, carved-ivory silk fan, and Ei-ling ‘patted the perspiration from her forehead with her lace handkerchief'. While Little Sister complained about it being ‘so sticky and utterly miserable' and was looking forward to going ‘back to Shanghai on the Empress of Japan next week', Big Sister questioned Jennie closely about her husband. ‘Kai-shek is well known for his horrid temper. Doesn't he ever scold you? … No? Then you must be patience personified … According to Dr Sun, Kai-shek flairs up at the slightest provocation. Is that so? … Tell us about the first wife … And what about the second wife? … What is she like?' The questions might sound tactless. But Jennie was regarded as too simple a young girl to need tact – and Ei-ling was not known for her subtlety.</p><p></p></div>	
+<div class='layout'><p>Chiang Kai-shek arrived and was seated between the sisters. The dinner party provided Big Sister with much information about the new commander-in-chief. More importantly, May-ling seemed rather taken with him. He had a soldierly bearing, and his thin brown face looked sensitive and alert. Little Sister was charmed by his conversation, so different from the usual chatter in her Shanghai circle. At the end of the dinner, she gave him her address in Shanghai.</p><p></p></div>	
+<div class='layout'><p>Chiang registered May-ling's interest in him and was ecstatic. His relationship with Jennie had been based more on sex than deep love, and he would not hesitate to drop her. Now it seemed he had a chance to link his name to Sun Yat-sen – not to mention to make a ‘grande alliance' with a beautiful and sophisticated lady, to whom Jennie, in his view, could not hold a candle. This piece of good luck came at a propitious time for him as he was on the threshold of fulfilling his political ambition. Chiang was about to launch the Northern Expedition, his military campaign against the Beijing government, and he was confident he could win and establish his own regime. A woman like May-ling by his side would add a great deal of lustre to the future ruler of China. She could also help him make friends with Western powers, as he was preparing to ditch the Soviets.</p><p></p></div>	
+<div class='layout'><p>Before May-ling left for Shanghai, Chiang wrote in his diary that he was already missing her. Soon after she left, Chiang sent messengers to Big Sister Ei-ling and older brother T.V. (whom he also knew) to express his amorous intentions. T.V. was against Chiang's proposal. But Big Sister overruled him. Ei-ling decided that the new most powerful man of the Nationalist party was certainly worth considering. But for now, she was non-committal.</p><p></p></div>	
+<div class='layout'><p>Chiang was still wrapped in his pro-Russian camouflage and sending out conflicting messages. Ei-ling could not be absolutely sure what he really stood for. Any inclination towards the Reds would not do. In addition, Big Sister and her husband H.H. Kung never identified with Sun Yat-sen's Canton, a breakaway regime Sun had set up to rival Beijing purely because he wanted to be president. The Beijing government was democratically elected and internationally recognised, and it commanded the Kungs' allegiance. When Sun had originally declared himself the grand president of China in 1921 in Canton, Little Sister had happened to be there staying with the Suns, and she had hoped to attend the inauguration. But Ei-ling and their mother had sent three urgent telegrams ordering her not to do so but to return to Shanghai at once. A younger brother was dispatched to Canton and ‘literally dragged me home', May-ling told Emma.</p><p></p></div>	
+<div class='layout'><p>H.H. had always felt ‘like a fish out of water' in Canton and had declined job offers from Sun, telling Sun that he was ‘for national unity'. He remained an admirer of Beijing's leaders. Of Marshal Wu Pei-fu, he said: ‘he was really a good man. He was patriotic and he had principles.' President Hsu Shih-chang had got on with the Kungs well and invited them to the president's receptions, and he had consulted H.H. on matters of state. Much of the Kungs' life was spent in Beijing. After entertaining Chiang, Ei-ling returned to the capital, not Shanghai, sending her children to the American School there.</p><p></p></div>	
+<div class='layout'><p>Now the Nationalist army might defeat the Beijing government. The pragmatic Big Sister had to accept this reality. But she also wanted to see how Chiang treated the Beijing leaders. Chiang rightly surmised that Big Sister's reservation had to do with politics. He put his pursuit of May-ling on hold and waited until his true colours – and his abilities – could be seen.</p><p></p></div>	
+<div class='layout'><p>In the meantime, he led a successful Northern Expedition against Beijing and took a series of provinces. In November, the New York Times devoted a full-page article to Chiang, under the headline: ‘New Strong Man Holds Half of China'. On 21 March 1927, Chiang's army seized Shanghai. In April, he publicly broke with the Communists and Russian control, issuing a wanted list that was headed by Borodin (and included Mao). Borodin fled back to Russia through the Gobi Desert. Sleeping in the desert in a tent one night, he ruminated about his mistake of trusting Chiang. The Generalissimo gave orders to suppress Communist-led rebellions. It became clear that the Communists, not Beijing, were his real enemy. The Shanghai business community and Western residents, who had been living in panic fearing mob rule and lynchings, breathed a long sigh of relief. They began to feel favourably disposed towards Chiang, appreciating, even admiring, what he was doing. It was only now, when he had shown his real political position, established his credentials and become an object of admiration among May-ling's friends, that Chiang resumed his courtship of Little Sister.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>Though endowed with great intelligence, Little Sister initially had rather vague political views compared to her two older sisters. This changed in the winter of 1926–7, before Chiang Kai-shek broke from the Communists in April 1927. Chiang's army had taken Wuhan, the strategic city on the Yangtze River, and the Canton government had moved there. Red Sister, a Nationalist leader, and T.V., the finance minister, were in this temporary Nationalist capital. May-ling went to visit them together with her mother and Big Sister and stayed for three months. They saw a ‘Red' city. One obvious sign was the gigantic wall posters everywhere, showing scenes like Chinese masses pushing bayonets into fat and ugly foreign capitalists cowering on the ground, drawing blood. Other inescapable signs were: frequent strikes, mass rallies and demonstrations, and the conduct of students and trade unionists which, as the eyewitness and left-wing journalist Vincent Sheean observed, suggested ‘a highly organized social revolutionary movement that might, at any moment, seize the machinery of production and proclaim the dictatorship of the proletariat'. The ‘froth of the brew' was the many foreign revolutionaries crowding the streets, as delegations from Europe, America and other parts of Asia came to see Red Wuhan and be inspired.</p><p></p></div>	
+<div class='layout'><p>In Red Wuhan, Red Sister lived the most active and radical phase of her life, endorsing the violence rampant in and around the city. But May-ling was appalled by what she saw, as were her mother and Big Sister. Outside her window, ‘Never a week passed when there was no demonstration of thousands upon thousands of Communist union-controlled workers shouting slogans of down with such and such a person, some tradition or mores, or some imperialist country … For hours on end one could hear the deafening shouting of thousands reach a crescendo as each unit marched past … The cacophony of noise made by bugles, drums, gongs and brass cymbals was drowning.' She abhorred ‘indiscriminate arrests, public lashings, illegal searches and seizures, kangaroo courts and executions'. She was outraged: people were ‘tortured and killed because they dared to dispraise the Communists' and were terrorised by the ‘“open trials” of landlords, officials and even of their kith and kin such as their mothers'.</p><p></p></div>	
+<div class='layout'><p>Borodin, the architect of the Soviet-style ‘red terror', was in Wuhan before he fled back to Moscow across the Gobi. May-ling asked him how he could justify all this. Borodin was apparently keen on May-ling. A servant had spotted a piece of paper in his bedroom, from his blotter, on which he had written over and over ‘Mayling, darling. Darling Mayling'. Out to dazzle her, hoping even to convert her, he put on his full thinker-orator mannerisms and delivered long monologues to her. He would pace to and fro in T.V.'s living room, ponderously or swiftly as the mood of his arguments dictated; every now and then he would lift a clenched fist and suspend it in the air as a punctuation mark, before bringing it down and slamming it into the palm of his left hand for emphasis. Little Sister only felt that ‘my nature and instinct, in effect my whole being, and my convictions were revulsed [sic] and repelled by what Mr Borodin propounded'.</p><p></p></div>	
+<div class='layout'><p>Returning to Shanghai in April May-ling totally agreed to Chiang Kai-shek's move to expel the Reds from the Nationalists. With encouragement from Big Sister, she was ready to join her life with Chiang's. In May, when the commander-in-chief wrote and sent her his photo, she responded positively. They started to see a lot of each other, talking deep into the night, going out to the country where they ate in small, atmospheric restaurants, and taking midnight rides by car. They were in love, perhaps not head over heels, but as two mature adults with shared views, who knew what they wanted in life and were delighted that they could find fulfilment in each other. As the spouse of the future leader of China, May-ling felt she could at last do things that would make a difference with her boundless energy.</p><p></p></div>	
+<div class='layout'><p>Chiang had already been divorced from his wife Fu-mei. He now made arrangements for his two concubines, who had no alternative but to consent to leave him. He undertook to support them for life. Jennie was put on a ship to America. On board, she was spotted ‘fashionably gowned', but crying. Chiang placed a notice for three days in the main Shanghai paper to state that he was unattached.</p><p></p></div>	
+<div class='layout'><p>On 27 September 1927, May-ling and Chiang Kai-shek were engaged at Big Sister's house, where they had their engagement photograph taken. The next day, Chiang went to meet May-ling's mother, who was in Japan at the time. Mrs Soong had clearly delegated the whole matter to E-ling. Still, she wanted to have a look at her future son-in-law. She was pleased by how the commander-in-chief looked and behaved and gave him her consent to his face. Chiang was elated. As soon as he returned to his lodging, he took up a large brush and wrote four giant characters: ‘Conquering in one sweep a thousand armies' (heng-sao-qian-jun).</p><p></p></div>	
+<div class='layout'><p>Mrs Soong came back to Shanghai to supervise the preparation of the wedding, which took place on 1 December 1927. That day, the bridegroom published an article in the Nationalist newspaper expressing his joy, while the bride told friends she felt ‘dazed'. After a Christian ceremony at her home, more than 1,000 people attended their civil wedding at the Majestic Hotel, a splendid chateau-like edifice set in a large garden. It was the best venue in town, and ‘anybody who was anybody was present', May-ling wrote to Emma excitedly. ‘It was the biggest wedding Shanghai ever saw!' The press reported every detail. One paper described her European-style wedding gown: ‘The bride looked very charming in a beautiful gown of silver and white georgette, draped slightly at one side and caught with a spray of orange blossom. She wore also a little wreath of orange buds over her veil of beautiful rare lace made long and flowing to form a second train to that of white charmeuse embroidered in silver which fell from her shoulders. She wore silver shoes and stockings and carried a bouquet of pale pink carnations and fern fronds.' As pure white was the colour of mourning in China, May-ling introduced a lot of silver into her outfit.</p><p></p></div>	
+<div class='layout'><p>After the wedding, Chiang had long talks with Big Sister – rather than his wife – about the current situation and what he planned to do. Ei-ling's sympathy with the Beijing government undoubtedly influenced Chiang's stance towards it. After he defeated it, Chiang showed respect and good will towards its officials and continued to employ many of them. He referred to former prime minister Duan Qi-rui as his ‘mentor', and praised Duan for his ‘undeniable great contribution' to the country. He arranged a state funeral of enormous scale for warlord Wu Pei-fu.</p><p></p></div>	
+<div class='layout'><p>Big Sister was now acting like an adviser to Chiang. And she felt she ought to keep the newly-wed on his toes. One day, he went out riding with May-ling for a whole afternoon. That evening, when he called on Ei-ling, she told him off for indulging in pleasure and not taking his political responsibility seriously. Chiang was hurt and wrote in his diary that Big Sister underestimated him and failed to appreciate his soaring potential. He resolved to prove himself to her. From now on, as people close to them testify, Ei-ling would exercise a bigger influence than anyone else on the Generalissimo.</p><p></p></div>	
+<div class='layout'><p>*<a name="pl…" id="pl…"></a><a href="#p…" title=""><sup>1</sup></a> Liao had given this false information to the Russians before he received Chiang's letter; but he did not correct it afterwards.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

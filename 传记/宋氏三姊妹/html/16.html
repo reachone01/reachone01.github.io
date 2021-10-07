@@ -1,0 +1,397 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿	
+	
+<div class='layout'><p> 16 Red Sister's Frustration</p><p></p></div>	
+<div class='layout'><p>Before the fall of Hong Kong to the Japanese in 1941, the British colony of Hong Kong was the favoured destination for those who did not want to stay in China and who had the means to get out. Ching-ling, who loathed living in Chongqing, Chiang Kai-shek's wartime capital, made her home there after she evacuated Shanghai. Mme Sun's decision to seek safety and comfort outside her country while it was fighting a brutal war raised eyebrows – many expected the torchbearer of the Father of China to be a bomb-defying heroine. The Japanese press sneered too. But Ching-ling was perfectly at peace with herself. To her, the decision was about not living in the same city as Chiang.</p><p></p></div>	
+<div class='layout'><p>Ching-ling's revulsion towards the Generalissimo had not lessened in intensity over the years. When the war began in 1937, out of patriotism, and because Moscow issued a stiff order to cooperate with Chiang, Red Sister was briefly nice to her brother-in-law. But her compliments were barbed: ‘It is a matter for congratulation that General Chiang Kai-shek has stopped further civil warfare.' Anyone who knew her was aware that her distaste for Chiang remained.</p><p></p></div>	
+<div class='layout'><p>In Hong Kong, she was busy with her own war relief work. She set up a China Defense League to give publicity to the Communists, fundraise for them, and buy and transport supplies to their bases. It was a small outfit, a group of volunteers with two or three paid staff each drawing a basic living wage. Its impact in material terms was negligible, but it gave Ching-ling her own organisation. She attended to all details, signing the receipts for all donations, however small, and writing to thank the donors personally. Ching-ling was contented with her modest set-up. This struck Major Evans Carlson of the US Marines, assistant naval attaché in China, who wrote that she had ‘a peace of mind, an utter self-assurance which lacked egotism'. Indeed she did not seek power for herself, and nor was she deluded about her own limited abilities.</p><p></p></div>	
+<div class='layout'><p>Inside the organisation she generated an atmosphere of camaraderie. Israel Epstein, a volunteer who became a lifelong friend and her biographer, described his experience: ‘With co-workers, high or low, she was warm and democratic, making all feel equal and at ease. The league's weekly meetings, in our cramped Hong Kong headquarters at 21 Seymour Road, was intimate and informal, amid work-piled desks and, often, mounts of supplies stacked for sorting on the floor. We were of different nationalities, positions and ages. I was 23 and the youngest. Soong Ching Ling, presiding, never lectured.'</p><p></p></div>	
+<div class='layout'><p>The staff liked her sense of humour. One day she was told that the British politician Sir Stafford Cripps (later a member of Churchill's War Cabinet) was in Hong Kong and would like to meet her. She invited him to dinner at her home. A small banquet was prepared. Just before the distinguished guest was scheduled to arrive, she learned that he was a vegetarian. The cook had to start all over again. Then the additional information was delivered that he was a raw-food vegetarian. At this Ching-ling threw up her hands and declared, ‘We'll just have to turn him out on the lawn to graze!'</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>In February 1940, May-ling flew to Hong Kong to have a cauterisation for a bad sinus problem. She stayed with Ei-ling in her ocean-facing mansion. Touched by her fragility, Ching-ling also moved in, and for over a month the three sisters spent every day together, something they had not done for many years. The wartime united front allowed them to set aside momentarily their political differences and indulge their fondness for each other.</p><p></p></div>	
+<div class='layout'><p>Ching-ling had in the past criticised Ei-ling's methods of accumulating wealth and had told the journalist Edgar Snow, ‘She's very clever, Ei-ling. She never gambles. She buys and sells only when she gets advance information … about changes in government fiscal policy … America may be able to afford rich men, but China cannot. It is impossible to amass a fortune here except through criminal dishonesty and misuse of political power backed by military force.' But now, she was wallowing in the affection lavished on her by Big Sister and chose not to be critical of her. She also had kind words to say about May-ling. Edgar Snow, who was in Hong Kong at this time, noticed that she ‘somewhat changed her mind' about May-ling's marriage. Before, she had told him it was ‘opportunism on both sides, with no love involved'. Now she said, ‘It wasn't love in the beginning, but I think it is now. Mei-ling is sincerely in love with Chiang and he with her. Without Mei-ling he might have been much worse.'</p><p></p></div>	
+<div class='layout'><p>One night that month, the sisters went out to the hottest nightspot in town, a dinner-dance restaurant at the Hong Kong Hotel. This was perhaps the only time they ever did anything like this. Such places were deemed not quite suitable. Like royals, the sisters confined their socialising to formal functions or private parties. But this evening, dressed up in splendid cheongsams, they sat with their backs to the wall and watched the glamorous or wicked Hong Kongers gliding past. Ching-ling, in black, wore an amused look. She actually loved dancing, particularly waltzes, but her status had long prevented her from stepping onto a dance floor. Dancers stole glances at them to check it really was the three sisters, speculating in whispers about what political message was embedded in the meal.</p><p></p></div>	
+<div class='layout'><p>Emily Hahn came to the restaurant with an RAF officer. Ei-ling had tipped off her biographer about the dinner. Although she normally did not seek the limelight and preferred to stay in the background, Big Sister knew how to send a signal. The message was that the ‘united front' was solid. Meanwhile, the sisters were at last able to have a good time with a free conscience.</p><p></p></div>	
+<div class='layout'><p>Unity was indeed in crisis right now. The number two in the Nationalist government, Wang Jing-wei, who had written Sun Yat-sen's will, had defected to Japanese-occupied territory and was about to set up a puppet government as an alternative to Chongqing. Wang was a long-term rival to the Generalissimo. In 1935, at the opening of a Nationalist congress, when the VIPs gathered to have a press photo taken, Wang was shot by a gunman and badly injured. The gunman had actually intended to kill Chiang Kai-shek, whose seat was in the middle of the front row. But the Generalissimo's powerful sixth sense alerted him and he decided at the last minute not to appear for the photo. The assassin emptied his pistol at Wang, the next highest official, before being fatally wounded himself. Everyone suspected Chiang, finding his eleventh-hour change of mind otherwise inexplicable. Chiang did his best to persuade people it was not his doing by conducting a vigorous investigation. Still, a cloud of doubts lingered.</p><p></p></div>	
+<div class='layout'><p>Wang was pessimistic about the war. He also blamed Chiang for the defeats, saying that the loss of Shanghai and other major cities and huge swathes of land in an abysmally short time was the result of Chiang's ‘corrupt and dark … one-man dictatorship'. Wang saw Chiang as someone who harboured perennial suspicion of rivals and treated them unfairly. This view was shared by many. Joseph Stilwell, the US military attaché, noted from Chongqing in 1938 that Chiang ‘wanted to keep all his subordinates in the dark because he didn't trust them … The same old mistrust kept him from making his army efficient.'</p><p></p></div>	
+<div class='layout'><p>Wang felt China could only be preserved by seeking ‘peace' with the Japanese. At the end of 1938, he sneaked out of Chongqing for Shanghai, via Hanoi, surviving more assassination attempts by Chiang's agents. (His bullet wounds ultimately led to his premature death six years later.) A puppet regime headed by him was established in Japanese-controlled Nanjing in March 1940.</p><p></p></div>	
+<div class='layout'><p>Wang had been Sun Yat-sen's original successor, and Sun had trumpeted ‘Great-Asianism', which was the current slogan of the occupying Japanese. This helped Wang's claim that he was Sun's authentic heir – and posed an unprecedented challenge to the Generalissimo. To assert his own legitimacy, Chiang Kai-shek formally bestowed on Sun the title ‘Father of China' (although the logic was somewhat bizarre, as all Sun had done vis-à-vis Japan was encouraging its aggressive ambition towards China rather than rejecting it).</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>The day Wang was sworn in in Nanjing, Ching-ling made an impromptu decision to go to Chongqing and show solidarity with the Generalissimo. Little Sister had suggested the trip and Big Sister evinced great enthusiasm; Red Sister wanted to please them, as well as to tell the world that the widow of Sun was opposed to Wang's regime. The three sisters flew to the wartime capital the next day.</p><p></p></div>	
+<div class='layout'><p>Red Sister was greeted like a queen, a goddess and a film star all rolled into one. The headline of the influential Ta Kung Pao read: ‘Welcome, Madame Sun'. Another newspaper gushed about her black cheongsam and grey-blue flat-heeled shoes which, it declared, showed off her illuminating elegance and beauty. It was said that ‘tens of thousands of women thirst to gaze and marvel at Madame Sun's magnificent bearing'. In the following six weeks the sisters led a whirlwind tour visiting bombsites, relief projects, and homes for war orphans. They looked happy together when they reminisced about the old days. Emily Hahn, who followed them, observed, ‘I grew sentimental when they giggled and chaffed, thinking of their lives long ago, in the school town in Georgia.' Ching-ling joined Ei-ling in expressing amazement at how much Little Sister had done and how she had kept going in the past three years and was ‘not already dead and buried'. May-ling and Ching-ling fulsomely praised Big Sister's charitable work. Reporters, photographers and a film crew accompanied them, recording the historic moments.</p><p></p></div>	
+<div class='layout'><p>But Ching-ling meticulously maintained her distance from the Generalissimo and took care not even to smile when he was nearby. In one rather typical photograph she was next to a beaming Chiang with her lips tightly pinched, looking guarded. At a tea party, Chiang stood like a flag pole by her side for well over ten minutes, clearly willing her to turn round and talk to him so the guests could see how amicable they were. But Ching-ling remained resolutely turned away. To her close German friend Anna Wang, who was in Chongqing at the time, she said she felt she was being used by Chiang and was itching to get back to Hong Kong.</p><p></p></div>	
+<div class='layout'><p>Meanwhile, the united front between the Communists and the Nationalists was slowly crumbling. Chiang had assigned the Red Army to fight a guerrilla war behind Japanese lines. Also operating in these areas were Nationalist forces. The idea that these guerrillas might unite against a common enemy proved illusory. They were busy fighting each other in increasingly large battles, with the Reds more often emerging as the winner. Some months after Ching-ling returned to Hong Kong, in January 1941 there was an ugly clash along the Yangtze River. The facade of the united front all but collapsed.</p><p></p></div>	
+<div class='layout'><p>Ching-ling longed to use the opportunity to launch a stinging attack on Chiang, partly to vent her frustration at having been used by Chiang through her trip to Chongqing. But she was only able to send a public telegram to the Generalissimo telling him to ‘stop suppressing the Communists'. Moscow would not allow her to do more than that, least of all to condemn Chiang by name. Her frustration deepened in November, the tenth anniversary of Deng Yan-da's death. The murder of the man she had loved hopelessly and intensely remained the key to her unrelenting hatred of the Generalissimo. But she could only hint at her bête noire obliquely in her article commemorating Yan-da. Perhaps thanks to this restraint, her article had no rancour or Communist-style jargon, unlike her other public statements. It had uncommonly personal expressions. Yan-da, under her pen, was ‘the last beautiful flower to grace our revolution'.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>On 7 December 1941, the Japanese attacked Pearl Harbor, and then bombed Hong Kong. As the planes roared menacingly overhead, Ching-ling hurriedly climbed up a bamboo ladder over an old wall to the garden of the house next door, where there was an air-raid shelter. The blitz, she wrote to T.V. afterwards, ‘made me extremely nervous. I was quite ill the first week.' Not forgetting her sense of self-mockery, she added: ‘My hair comes out by handfuls – soon I shall be bald, I fear.'</p><p></p></div>	
+<div class='layout'><p>T.V. was sympathetic to Ching-ling and her cause, and had lent his name to her Defense League as the president. Chiang had been furious and cabled him several times demanding that he withdraw. T.V. had stalled with various excuses until an ultimatum came. He resigned from Ching-ling's organisation, but his affection for Red Sister had not dimmed. Nor had Ching-ling's for him.</p><p></p></div>	
+<div class='layout'><p>On the day Hong Kong was bombed, T.V. was in the United States as Chiang's personal representative to President Roosevelt. He cabled May-ling: ‘Urgent. To Madame Chiang: Hong Kong perilous. Would it be possible to send a plane at night to try to get Second Sister out of danger? Please reply.'</p><p></p></div>	
+<div class='layout'><p>Chongqing dispatched a plane, but Ching-ling stubbornly refused to leave. She would rather stay in Japanese-occupied Hong Kong than live in the same city as her loathed brother-in-law. Ei-ling, who was also in Hong Kong, tried and failed to talk Ching-ling round and, at her wits' end, said that in that case she herself would not leave Hong Kong either. Ching-ling yielded at the last minute. She had made no preparations for the evacuation and her maid grabbed a few old clothes in the darkness of the blackout before they raced to the airport. At dawn on the 10th, just before the Japanese took over, the sisters flew to Chongqing.</p><p></p></div>	
+<div class='layout'><p>The reception in the wartime capital was very different from a year before. It was downright hostile, which took Ching-ling by surprise. She wrote to T.V. with indignation, ‘the Ta Kung Pao welcomed us by pri[n]ting a libellous editorial accusing us of bringing tons of baggages [sic], seven milk-fed foreign poodles and a retinue of servants', when in fact, ‘I could not even bring along my documents and other priceless articles, let alone my dogs and clothes … For one who writes everyday, I was without even a pen … I wanted to answer the editorial … but was told to hold a dignified silence.'</p><p></p></div>	
+<div class='layout'><p>In fact Ching-ling was entirely left out of the criticisms. Big Sister took all the bullets – together with her husband H.H. Kung, who was not even on the plane. Students in several cities took to the streets to demonstrate (uncommon during the war) against the couple. The charges included: ‘When Hong Kong was falling, the government sent a plane to bring over officials; but it brought back only Mme Kung together with 7 foreign dogs and 42 suitcases.'? The demonstrators shouted ‘Down with H.H. Kung who used the plane to transport foreign poodles! … Execute H.H. Kung!'</p><p></p></div>	
+<div class='layout'><p>However well she knew that the accusation was untrue and that it hurt Ei-ling, Ching-ling said nothing to help her sister. The saint-like prestige she enjoyed among the students would be in jeopardy if she stuck her neck out, so she kept quiet.</p><p></p></div>	
+<div class='layout'><p>She maintained a similar silence when she began her Chongqing life staying with Ei-ling, in the Kungs' mansion sporting tall red pillars and large windows overlooking a river. There she was said to be kept a prisoner by her wicked sister. Zhou En-lai, the Communist representative in Chongqing, reported to Mao in Yenan that Ching-ling was ‘unable to receive visitors; moreover, using the excuse that there is a housing shortage, [the Kungs] are making her share her room with someone, who is there really to keep her under watch'. In fact Ching-ling occupied a whole floor and could see whoever she liked. As she told her brother T.V., ‘The sisters are so kind to me.' But publicly she acquiesced with the rumour.</p><p></p></div>	
+<div class='layout'><p>Ei-ling did not ask her sister to speak up. Indeed, she made things easier for Red Sister by telling her that she did ‘not care about correcting rumors'.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>Soon Ching-ling moved into her own place in Chongqing. She saw her sisters, but avoided functions where Chiang might be.</p><p></p></div>	
+<div class='layout'><p>Life was hard compared to Hong Kong. Her staff shopped in the market, which was subject to the scarcity and hyper-inflated price of such basics as onions, sugar and even salt. There was no place to buy stockings or shoes, and an ordinary cheongsam which in pre-war Shanghai had cost just eight yuan was selling for over 1,000. Months went by without her tasting her favourite drink, coffee, and after an official reception, her most cherished memory was of having potato salad and watermelon there. Friends gave her presents like a tin of sardines, or a few apples, or stockings. In summer, she sat in her bathtub filled with cold water.</p><p></p></div>	
+<div class='layout'><p>She was surrounded by her usual small circle of young, loyal and left-wing friends, Chinese and foreign, much like when she was in Hong Kong. As her circle was so small, there was much mystique about her. She became something of a ‘tourist attraction', and many who were visiting the city sought an audience with her. More often than not, she declined.</p><p></p></div>	
+<div class='layout'><p>Her League continued its work, and her primary interest at this time was in getting American aid to Communist-controlled areas. To this end she made friends with American officials and journalists and never missed a chance to denounce the Generalissimo. She told them that Chiang was ‘nothing but a dictator', and even claimed that there was ‘close contact between the puppet officials and the [Chongqing] administration'. They noticed her ‘deep resentment', and that she ‘was very outspoken in her criticism of the Generalissimo'. Many were sympathetic. But to her immense frustration, she had to ask for her remarks to be kept ‘in strict confidence'.</p><p></p></div>	
+<div class='layout'><p>General Joseph Stilwell, at the time chief of staff to the Supreme Commander China Theater (i.e. to Chiang), did not see eye to eye with Chiang, but thought Red Sister was wonderful. Stilwell had served in China on and off since the 1920s, and knew the country well. He was a man of the people. A sketch he wrote about his travels in China gives a glimpse of his personality. At a country food stall, he saw the cook dish out noodles into ‘a bowl which has just been used by a previous customer and which he cleans by wiping with a dark object like a piece of garage waste. He wipes a pair of chopsticks on his trousers, puts them in the bowl, hands it to a serving boy who presents it with a flourish to the customer.' Stilwell was not disgusted, unlike many a Westerner; he made his request to clean his bowl and chopsticks in his own way. He asked for a bowl of boiling water, which he pretended he was about to empty on the cook's head. This brought a round of laughter. With this joke, he was ‘accepted by all present as a great fellow with a keen sense of humor and thereafter can do as he likes, even to scraping the chopsticks with a penknife before using them.'</p><p></p></div>	
+<div class='layout'><p>Stilwell wrote of Ching-ling in his diary: ‘Madame Sun is the most simpatico of the three women, and probably the deepest. She is most responsive and likeable, quiet and poised but misses nothing.' When he was recalled by Roosevelt and went to say goodbye to her, she, as he wrote in his diary, ‘cried and was generally broken up … Itching to go to the US to tell FDR the fact [about Chiang] … Wants me to tell FDR the real character of CKS [Chiang Kai-shek]. “He is a paper tiger.” … “Why doesn't the US put him in his place.”'</p><p></p></div>	
+<div class='layout'><p>Other Americans thought differently about Red Sister. The US diplomat John Melby wrote in his diary after a meeting with her: ‘The famous charm was there, but she seems to me basically a cold, hard, ruthless woman who knows what she wants and how to get it.'</p><p></p></div>	
+<div class='layout'><p>She also could not compete with Little Sister, China's wartime first lady, for glamour and status. In 1943, May-ling made a triumphant tour of the United States, and this stirred up quite a bit of jealousy in Red Sister. In a letter to a friend, Ching-ling allowed herself to be acidic while trying to be restrained and fair:</p><p></p></div>	
+<div class='layout'><p>May-ling looks so Fifth Avenue and behaves so ‘400'*<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a> that we have found she has undergone a great physical change … Whatever one may say, she has given widest publicity to China's cause and as she herself remarked to a gathering of admiring throng, ‘I have shown the Americans that China is not made up entirely of coolies and laundrymen!' I suppose China must be grateful for that … The crew of her plane related what a lot of trunks she brought in, and the amount of tinned food, etc. But I haven't seen a single can of baked beans or … pair of shoes. I am told that she has no room for them so my shoes will be brought on ‘the next plane'. Hooray! … after the war, I suppose.</p><p></p></div>	
+<div class='layout'><p>May-ling's present to her was a small plastic mirror, something that was unobtainable in Chongqing. But she longed for nylon stockings. One evening, after slapping a mosquito on her ankle, she said to her guest with a smile, ‘No stockings, you see. I'm breaking the rules of the New Life Movement, but I can't get nylons from America the way my little sister, the Empress, does.'</p><p></p></div>	
+<div class='layout'><p>In 1944, her sisters went to Brazil and Ching-ling went to the airport to see them off. She was much impressed by the plane they had chartered: ‘I never saw such a huge plane. It was like a Pullman car [i.e. the luxurious train carriage].' To American friends she said disapprovingly that her sisters had ‘run out' on China's war, something she would not do herself.</p><p></p></div>	
+<div class='layout'><p>Ching-ling kept her sarcasm towards her sisters strictly private and took great care to maintain a congenial appearance in public. Her close friend Anna Wang commented: ‘She had no illusions about the role of the “Soong dynasty” – detested Chiang Kai-shek's dictatorialness, was well aware of Mme Kung's speculations and Mme Chiang's appetite for luxuries. With good friends, she would make acerbic remarks about these matters. But amazing political skill and self-control, learned over many years, prevented her from proclaiming her views too early.' Indeed Ching-ling waited, in frustration as well as determination, for the war against Japan to end, for the war by the Communists against the Generalissimo to start, and for the Chiang regime to be thoroughly destroyed, even if this meant disaster for her family and her sisters.</p><p></p></div>	
+<div class='layout'><p>*<a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> A famous list of New York society during the late nineteenth century.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

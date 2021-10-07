@@ -1,0 +1,409 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p> 7 ‘I wish to follow the example of my friend Lenin'</p><p></p></div>	
+<div class='layout'><p>It was after Sun was driven out of Canton in summer 1922 that Russia started to play a big part in the lives of both him and Madame Sun.</p><p></p></div>	
+<div class='layout'><p>He had established contact with the new Bolshevik state by cabling Lenin in 1918. This time, having escaped onto the gunboat in June, he sent a messenger to see Moscow's men in Shanghai, scribbling a few lines on a page torn from a student's exercise book. The note was addressed to Chicherin, People's Commissar for Foreign Affairs, ending with ‘Best regards' to Lenin. Sun wrote it in English: ‘I suffer a grave crisis brought about by [Officer Ch'en], the man who owes me absolutely everything.' Russia responded with alacrity. It needed him, right at this moment. It was negotiating the establishment of diplomatic relations with Beijing, and there was a sticking point: Mongolia. This vast land was Chinese territory but occupied by Russian troops. The Beijing government rebuffed Russia's attempt to annex it, and demanded instead that Moscow withdrew its troops. Moscow could now play the Sun card.</p><p></p></div>	
+<div class='layout'><p>Russia's negotiator, Adolf Joffe, sent a Dutch Communist known by the pseudonym ‘Maring' to talk to Sun in Shanghai. After their meeting on 25 August, Sun wrote to Joffe to say that he agreed that the ‘Soviet army should stay' in Mongolia. Moreover, he suggested, the Russian army should take the ‘historical route' of invasion and seize Beijing. Joffe reported to Moscow that Sun's advice to Moscow was that they should first ‘occupy Xinjiang and organize an army for him there'; and then ‘he himself would go to Xinjiang, where he would establish any political system agreeable, even a Soviet system.' To help the Russians make up their minds, Sun informed them that in Xinjiang ‘there are only 4,000 Chinese troops, so there cannot be any resistance'. As a further enticement, he reminded the Russians that the province was ‘rich in mineral resources', which they could extract. Sun's price for the whole scheme was ‘2 million Mexican dollars maximum (the equivalent of roughly 2 million gold roubles).'</p><p></p></div>	
+<div class='layout'><p>Moscow found Sun very useful and became committed to him – especially as the Chinese government refused its demand to annex Mongolia. Joffe, having failed his diplomatic mission in the capital, came to Shanghai and clinched a deal with Sun, with a declaration on 26 January 1923. Joffe's reports were discussed among Soviet leaders, including Lenin, Trotsky and Stalin. Sun Yat-sen ‘is our man' (italics in original), Joffe told his bosses. ‘Isn't all this worth 2 million gold roubles?'</p><p></p></div>	
+<div class='layout'><p>A Soviet Politburo meeting approved giving Sun 2 million gold roubles annually. This was Sun's second huge foreign sponsorship, after the 1917 German cash. But with this sponsor, it was not a one-off sum. Moscow decided to back Sun comprehensively and for the conceivable future.</p><p></p></div>	
+<div class='layout'><p>With this guaranteed vast income, Sun persuaded army chiefs of neighbouring provinces who coveted Canton to invade the city. Officer Ch'en, who had no stomach for a war that could wreck Canton, resigned and left. In triumph, the future Father of China returned to Canton in February to set up yet another breakaway government. And this time, his prospects were more promising than ever before.</p><p></p></div>	
+<div class='layout'><p>At Stalin's nomination, Mikhail Borodin – a Belarusian and veteran Soviet agitator who had done clandestine work in America, Britain and Mexico – was appointed Sun's political adviser. Tall, with what May-ling (who met him later) described as ‘a leonine head, with a shock of neatly coiffed, long, slightly wavy dark brown mane that came down to the nape of his neck', Borodin cut an impressive figure. He spoke ‘in a resonantly deep, clear, unhurried, baritone voice', and ‘gave the impression of great control and personal magnetism'. When he arrived in Canton, Sun gave him a rapturous welcome. As Borodin wrote to Moscow, Sun ‘fixed his gaze at me for several seconds without a blink', and ‘asked every detail about Lenin, enquiring about Lenin's health like a doctor'.</p><p></p></div>	
+<div class='layout'><p>An outstanding organiser, Borodin taught Sun the Leninist way to fulfil his dream. He reorganised the Nationalist party on the Bolshevik model, and masterminded a Soviet-style first party congress in Canton in January 1924. Moscow bankrolled and trained an army for Sun, and established the Whampoa, a military academy, on a pretty island in the Pearl River some ten kilometres from Canton.</p><p></p></div>	
+<div class='layout'><p>Although they had committed to Sun, the Russians knew that he was not a believer in Communism, and that he could not be relied on not to double-cross them. Moscow ordered members of the Chinese Communist Party (CCP) – a minuscule group it had founded in 1920, and had also been funding – to join the Nationalist party and help steer it in accordance with Moscow's orders. Among the Communists who joined the Nationalists was Mao Ze-dong, whose political career would take off inside the Nationalist party before he became the leader of the CCP.</p><p></p></div>	
+<div class='layout'><p>The future of China, the ideology, who the bedfellows were – none of these now mattered to Sun. As he said in an interview with Fletcher S. Brockman, an old American acquaintance, ‘I do not care what they are if they are willing to back me against Peking [Beijing].'</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>The Beijing government, which Sun was soliciting the backing of all sorts of foreign powers to overthrow, had been consistently working to protect China's interests. Having taken back Japanese-occupied Shangdong in 1922, it compelled Russia to recognise Mongolia as part of China in 1924 (establishing diplomatic relations with Moscow only after this). It was, above all, the only democratically elected government in the history of China. Elections, however imperfect, were held, and a parliament functioned. Yuan Shi-kai's sabotage, and various other setbacks, did not change the democratic nature of the country. The most famous scandal involved the overambitious Cao Kun, who bought votes from some members of parliament and had himself elected president in 1923. But hundreds of other members, as well as public opinion, furiously denounced him and he remained in office for barely a year. Under the Beijing government, free speech, including a free press, thrived. So did competing political parties. An independent legal system was working. Private enterprise flourished. And a host of literary and artistic giants flowered. Creativity was at a height unsurpassed to this day. The modern Chinese language was born, ensuring that average men and women could read and write.*<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a>
+ President Hsu Shih-chang, who himself was a noted classics scholar, was instrumental in promoting the modern language, signing a law that obliged all primary schools to give emphasis to its teaching. Women's liberation, which had started with Empress Dowager Cixi (heralded by her edict against foot-binding in 1902), gathered stunning pace. Within a couple of generations, women went from being prisoners in their own homes to appearing in public linking arms with men; and from being kept largely illiterate to enjoying equal educational opportunity. The Soong sisters were the first generation of women to have benefited from the reforms: Ching-ling went to America on a government scholarship and was escorted to America, with other scholarship students and May-ling, by a government delegation. When the sisters returned to China, in the new republic, their Westernised style was not at all unusual.</p><p></p></div>	
+<div class='layout'><p>In this period, tolerance of dissent was extraordinarily high: Sun Yat-sen, leading a breakaway government, went on being treated with genteel courtesy. The control exercised by the central government was relaxed and loose, and the provinces had more autonomy than before. As provincial chiefs grew powerful and assertive, some of them took to arms to settle disputes with their neighbours. A few resorted to wars to try to gain influence over Beijing. They were later termed ‘warlords'. Sun was not considered a warlord, even though he owned an army and occupied Canton. The warlords all recognised the elected Beijing government. Conflicts between them were reported in great detail in the press, giving the impression that the country was in utter confusion and chaos. In fact, the fighting was sporadic and small-scale, and most outbursts lasted no more than a few days. The style of fighting seemed half-hearted to Western observers. The soldiers, in grey uniforms, marched to the field of battle, waited, and then let off a few haphazard shots. Occasionally, cannons roared, but they rarely hit their targets. Fatalities were low. Some armies hired coolies to carry coffins, to reassure the soldiers that, if killed, they would be properly buried (which was of paramount importance to the Chinese). The troops also brought with them, amongst other essentials, tiny teapots and wax paper umbrellas. At the first drop of rain, fighting stopped and the umbrellas were opened, turning the battlegrounds into fields of colourful mushrooms. These were the kind of troops that would have to face the Soviet-trained military force that Sun Yat-sen was building.</p><p></p></div>	
+<div class='layout'><p>The warlord ‘kings' and kingmakers in Beijing could not compete with Sun, either, for single-mindedness in the pursuit of power and for total disregard for scruples. The most prominent of them was Marshal Wu Pei-fu, a fine-boned, poetry-loving ex-scholar, whose army was stationed in north China, including the areas around Beijing. For years he was thought to be ‘the strongman of China', and his portrait adorned the cover of Time magazine in September 1924. Life magazine remarked, ‘If an old-style warlord could have united China then, Wu would have done it. He was the only one who was personally fearless and incorruptible, who never offered or accepted a bribe. A little, brown-eyed, mild-mannered man, he had absolutely no personal ambition.'</p><p></p></div>	
+<div class='layout'><p>Indeed, Wu categorically rejected proposals to nominate him as president, for fear that this would make his effort at uniting the country seem self-seeking. The marshal had a good name and held it dear. He took no concubines, lived simply, and his troops were disciplined. The West respected him, regarding him as ‘China's honest warlord' and ‘a democrat'. The Chinese liked him for his legendary patriotism: although he was no xenophobe and was courteous when dealing with foreigners, he would on principle not seek asylum in the foreign-administered Settlements in cities like Shanghai, even if his life was threatened, because the Settlements had been forced on China after the Opium War in the nineteenth century.*<a name="p2" id="p2"></a><a href="#pl2" title=""><sup>2</sup></a> Marshal Wu's cherished principles tied his hands when he faced Sun's war. The Beijing government lacked funds; but enlisting foreign help in a civil war was anathema to him. The Russians had wooed him; he rebuffed them because of their designs on Mongolia and their ideology. The Japanese courted him and offered to help him defeat Sun; he rejected them too because he knew there were strings attached.</p><p></p></div>	
+<div class='layout'><p>Sun Yat-sen did not have any of the marshal's qualms. Embracing Russian money and arms and taking their orders, he was busy building up a military machine in Canton – one that would eventually defeat Marshal Wu and overthrow the Beijing government.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>Ching-ling was at all Sun's meetings with Moscow's men, and came under the influence of Borodin. The Belarusian and his wife Fanny had spent time in America, where they had learned to speak English with a Midwest accent. Ching-ling felt at home with them, and was close to them. As the little group had English as their common language, Sun joked that ‘the language of the colonialists … proved to be an excellent means of transmitting the experience of Russian revolutionaries to Chinese comrades'.</p><p></p></div>	
+<div class='layout'><p>Ching-ling had been interested in politics from her school days; now she was in the thick of the action. She loved it. Leninism cast a spell on her and brought out her fierce, steely side. She became a committed Leninist and a believer – Red Sister – unlike her husband, who was actually more interested in using the Russians for his own ends.</p><p></p></div>	
+<div class='layout'><p>In 1924, the merchants of Canton revolted against Sun. His war had been putting a heavy burden on them and they felt they were being bled dry. A series of strikes by shop owners culminated in a general strike in August. Sun made up his mind to use force to suppress the strikers, who had their own armed squad and enjoyed the sympathy of the army units brought over by Sun. Ching-ling wrote to Borodin on 13 October, ‘Dr Sun has decided to act at once … [Sun's troops] need more training in street fights, so Dr Sun hopes you will get your experts to give them some training in this respect … The object of this fight is to crush the traitorous army and the rebellion's merchant volunteers.' Using Leninist language, she told Borodin, ‘the people in Canton are hostile towards us', therefore ‘only fear and a reign of terror' could save Canton.</p><p></p></div>	
+<div class='layout'><p>At the time, Soviet-trained cadets were being turned out by the Whampoa Academy. They were instrumental in wiping out the armed merchants, confiscating their shops, goods and houses. The shop owners who were not involved were ordered to open for business at once or face execution. In this crackdown, hundreds died and thousands of houses were burnt. It was widely condemned; but it secured Sun's base.</p><p></p></div>	
+<div class='layout'><p>More good news came for Sun – this time from Beijing. On 23 October, a coup ousted President Cao Kun, who had already been discredited and much weakened from vote-buying. The leader of the coup was the man dubbed ‘Christian General', Feng Yu-xiang, who legendarily baptised his troops en masse with a fire hose. A receiver of huge Soviet arms supplies like Sun, he invited Sun to Beijing to ‘preside over the country'. The dream Sun Yat-sen had been pursuing all those years seemed to be within reach. Sun replied at once that he was coming.</p><p></p></div>	
+<div class='layout'><p>Borodin, Moscow's enforcer, laid down the rules. Before leaving Canton, Sun must issue a manifesto with slogans like ‘Down with the imperialists!' (i.e. the Western powers) and condemn the West publicly wherever he went, not least in the capital. Sun had to go to Beijing as Moscow's protégé.</p><p></p></div>	
+<div class='layout'><p>Sun duly issued such a manifesto. Mouthing Kremlin slogans, he left Canton on 13 November and reached Shanghai on the 17th, accompanied by Borodin. From there it was forty hours by train to Tianjin, the main port and business centre of north China, on the doorstep of the capital. In a matter of days his dream could be fulfilled. But Sun paused – and made a detour to Japan for thirteen days.</p><p></p></div>	
+<div class='layout'><p>Sun had been calculating. Borodin had made sure that he stuck firmly to the ‘anti-imperialist' rhetoric. Sun had been speaking exceptionally sharply against the West, especially in Shanghai, where he threatened to abolish the Settlements as soon as he came to power (in spite of the fact that all his life, whenever he was in Shanghai he had stayed in and operated from the Settlements so as to be protected by Western laws). Soviet-style rallies had greeted him, chanting anti-West slogans. It was clear that he was making enemies of all the Western powers and tying himself to Russia alone.</p><p></p></div>	
+<div class='layout'><p>The spectre of Communism scared the general public, including most of the Nationalists. Sun Yat-sen being seen as Moscow's man would be sure to alienate them as well as the foreigners. If Sun continued to be under Borodin's control, it was doubtful whether he could assume the presidency (however hard the Moscow-funded Christian General Feng might be promoting him). And even if he did make it, he might not occupy the position for long. But going against Borodin's wishes was unthinkable. With the Russians bankrolling him and arming and commanding his army, Sun was totally beholden. His only alternative was to find another powerful patron. Sun's thoughts swung back to Japan.</p><p></p></div>	
+<div class='layout'><p>Borodin saw through Sun and could have vetoed the detour, as he told the Kremlin. But he decided to let Sun go. He was confident that Sun was too committed to Russia to get anywhere with Japan; the trip would only finish off Sun's illusions and solidify his commitment to Moscow. Indeed, the Japanese government rejected Sun's express wish to visit Tokyo and to meet officials. A senior Japanese diplomat told Sun's envoy that Japan would help Sun only if he abandoned his Soviet line. Sun returned from Japan empty-handed. He was dejected and ‘extremely reluctant to talk about his trip', Borodin reported to Moscow.</p><p></p></div>	
+<div class='layout'><p>Sun landed in Tianjin, and stayed in the city's Settlement, which looked like a European city and was policed by turbaned Sikhs from British India. It was now well over forty days since the coup by Christian General Feng. While Sun was absent, the general showed that he was incapable of managing the situation and was sidelined by the prestigious former prime minister Duan Qi-rui, who had turned down hefty German bribes and ensured that China sided with the Allies in the First World War. Duan formed a caretaker government. Borodin noticed the gloom with which Sun greeted the news. Duan was a much admired man, and commanded respect from people of different walks of life, including Sun's brother-in-law and Big Sister's husband H.H. Kung, who observed that Duan was ‘a good man' and ‘tried his best' for the country. Duan and other major players were still respectful to Sun, referring to him as the founder of the republic. Repeatedly they invited him to Beijing for a unity conference, to produce a new government. There was still hope for Sun to become president.</p><p></p></div>	
+<div class='layout'><p>But Sun knew he had an insurmountable hurdle. To be endorsed by power players and public opinion, as well as by Western allies of China, Sun had to distance himself from Moscow. This was something he was unable to do. With virtual control of Sun's army and about 1,000 agents in Canton, and with Borodin and his men surrounding Sun, Moscow was, in Borodin's words, the master of Old Man Sun.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>Upon arriving in Tianjin on 4 December 1924, Sun had a meeting that he had much anticipated with one of the most important players, Zhang Zuo-lin, the strongman of Manchuria known as ‘the Old Marshal'. Starting first as a common soldier, then a bandit, and rising to be the chief of this gigantic and much-coveted region, the Old Marshal was a most impressive man, with an astute, pragmatic and yet imaginative mind (once he commissioned thinkers to invent a political ideology for him). He had made a spectacular success of Manchuria, and was now a kingmaker of China. He told Sun that he could endorse him, but only if Sun broke from Moscow. This was a big blow, and Sun collapsed. Vomiting violently, he writhed with pain in the liver area, sweating so much that two large towels were soaked. The next morning, the pain did not subside, and he had to miss the welcome rally that had been carefully organised many weeks before, to which he had so much looked forward. The doctors' diagnosis, which Borodin presented to Moscow, made clear Sun was suffering from grave liver disease. Sun's illness became public and many said that his days were numbered.</p><p></p></div>	
+<div class='layout'><p>While Sun was bedridden and suffering acute daily pain, on 10 December Ching-ling wrote to her American friend Allie Sleep an entirely cheerful and chatty letter:</p><p></p></div>	
+<div class='layout'><p>Dearest Allie,</p><p></p></div>	
+<div class='layout'><p>Since writing you last I have been traveling from one end of the country to the other. I was so happy on my arrival here to read your letter … It is really a pleasure to read that your health has improved so wonderfully that you have gained in weight.</p><p></p></div>	
+<div class='layout'><p>Evidently, Ching-ling was not insensitive to health issues. But her husband's intense suffering seemed to have no effect on her. She referred to him, but only in terms of the adulation he had received and the good time she had had as a result:</p><p></p></div>	
+<div class='layout'><p>We received a wonderful reception in Japan and in Tianjin. Over 10,000 were at the pier to meet my husband with banners and cheers. We are living now in an old monarchist's house which the government has fixed up for our residence. It is a lovely place, full of interesting things. Everything is new and beautiful, for 20,000 dollars was spent in decorating the place. I am wondering how it'd feel to live in one of the palaces at Peking! However, I am sure I should be spoiled and humble … </p><p></p></div>	
+<div class='layout'><p>Day before yesterday I was the guest of honor at ex-President Li Yuan-hung's house, for my husband too was there to attend. The dinner was given in the ballroom of his private theater, a magnificent building which cost him 800,000 dollars. During the dinner an orchestra of fifty velvet-uniformed men played. For the first time in my life, I ate with gold knives, forks & spoons which the ex-president informed me were especially ordered from England. Exotic flowers and fruits were in gold vases & stands.</p><p></p></div>	
+<div class='layout'><p>So she went on with other details of a lunch that must have been an ordeal for Sun: that morning, the pain had been so unbearable that he had to stay away from the grand welcome rally. Throughout this period, when Sun was in tremendous pain, Ching-ling appeared to be oblivious to his agony. She described to Allie her ‘delight' and ‘pleasant surprise' when some old friends visited her: ‘my how we chatted in that hour of visit'. One friend ‘made a special trip from another city to call on me. I have learned so many things about my father, what smart & witty things he said when he was a boy, how he played tricks on the teachers at Nashville, Tennessee, what arguments he made to mortify this professor who taught philosophy.' She informed Allie, ‘We are all going to Peking in a week's time. Great preparations are being made to welcome my husband. Over 150,000 men will make a welcome demonstration.'</p><p></p></div>	
+<div class='layout'><p>Sun was moved to Beijing on the last day of 1924, partly for treatment. Doctors in Tianjin had pronounced his condition incurable. In the capital, a surgeon operated on him and found advanced liver cancer. All his comrades were devastated. So was Ching-ling. Perhaps only now did it sink in that Sun was dying. This was the man she had once loved so much that she was willing to die for him, but he had let her down. Now her feelings for him was bound to be complicated. In his final days before he died in March 1925, she was seen weeping and fussing over him devotedly. But their last conversation, recorded by Sun's manservant Lee Yung, who was present, suggests that Sun was well aware that Ching-ling had little love left for him. Seeing her in tears, he said, ‘Darling, don't be sad. Whatever I have will be yours.' He thought Ching-ling was in distress because she feared he might not leave her anything. On hearing this, Ching-ling's lips quivered, and she stamped her foot on the floor. Sobbing wildly, she said, ‘I don't love any of the things. I only love you.' Sun replied, ‘That is hard to say.' Ching-ling wept uncontrollably. Before he died, Sun called out ‘Darling'. And when he breathed his last, Ching-ling cried until she fainted. Afterwards, she tenderly closed Sun's eyelids.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>When she had realised that Sun was dying, Ching-ling informed her sisters in Shanghai and they set off at once for Beijing. The railway line that linked the two cities was not operating at the time, as the result of bandit troubles (one group had hijacked a train and taken more than a hundred foreign and Chinese hostages). To go by ship via Tianjin was impossible as the port at the northern city was iced up. But the sisters were determined to come, and embarked on a journey over 1,000 miles long not knowing exactly how or even whether they would get there. The trip involved changes between many forms of transport, without food or heating in the carriages in the depth of a winter so harsh that water froze in the pipes. They had never experienced this level of hardship in their lives. Finally, though, they made it to Beijing and stumbled out of the station, exhausted and frozen.</p><p></p></div>	
+<div class='layout'><p>Ching-ling needed them and other members of her family around for moral support, and to protect her interests. Borodin's deputy and Sun's heir apparent, Wang Jing-wei, was a man she did not trust and called a ‘snake'. Wang overtook other old associates of Sun's partly thanks to his republican credentials. With soft and appealing feminine looks, he had actually started his career as a notable assassin and had spent time in a Manchu prison under a sentence of life imprisonment, for trying to assassinate the last emperor's father. He was also smart and approachable. But the clincher was that Borodin gave him his blessing. A committee with Borodin as the ultimate decision-maker prepared a ‘Testament' for Sun when his terminal illness was diagnosed. Wang wrote it.</p><p></p></div>	
+<div class='layout'><p>In addition to the political Testament, Wang wrote another, private, will for Sun. It left all Sun's possessions to Ching-ling. Sun's children were there, and they raised no objection. They had never benefited from their father, and were not about to quibble over inheritance. (Ching-ling appreciated the spirit of generosity of the Sun family and maintained a close and affectionate relationship with them for the rest of her life.)</p><p></p></div>	
+<div class='layout'><p>On 24 February 1925, Wang read out the two documents to Sun in the presence of four of Sun's relatives – his son Fo, daughter Wan, and brothers-in-law T.V. Soong and H.H. Kung – and, tentatively, he asked Sun to sign them. Sun nodded agreement to the contents, though he declined to sign, telling Wang to ‘come back in a few days'. He still hoped he might recover.</p><p></p></div>	
+<div class='layout'><p>The Testament reaffirmed the Borodin-directed policies. Sun Yat-sen, dying yet still lucid, registered this when it was presented to him and said to Wang, ‘You've made it so explicit; this is dangerous. My political enemies are waiting for me to die to soften you up. That you are so uncompromising and firm is bound to bring you danger.' At this Wang replied, ‘We are not afraid of danger. We will follow our declared objectives.' Sun nodded, ‘I approve.'</p><p></p></div>	
+<div class='layout'><p>Borodin noted Sun's commitment to Soviet Russia, and went one step further by having his English-language secretary, Eugene Chen, write in Sun's name a ‘Deathbed Letter to the Soviet Government'. Eugene, born a British subject in Trinidad of mixed Cantonese and African ancestry, spoke no Chinese; but this did not prevent him from being appointed the foreign minister of Sun's government. He had been trained as a barrister in London, and had been much wounded by the racism of the day. Those offended sensibilities had found an outlet in the revolution. The Chinese translation of the letter was alien to a Chinese – the long and convoluted sentences (the golden rule in Chinese writing was brevity), the foreign vocabulary, the quintessential Soviet style. Even its title was a mouthful: ‘To the Central Executive Committee of the Union of Soviet Socialist Republics'. And its ending went far beyond what even Sun would have said: ‘In bidding farewell to you, dear comrades, I wish to express the fervent hope that the day may soon dawn when the USSR will greet, as a friend and ally, a strong and independent China and that the two allies may together advance to victory in the great struggle for the liberation of the oppressed peoples of the world.' It could have come straight out of a Moscow dossier.</p><p></p></div>	
+<div class='layout'><p>On 11 March, when it looked likely that Sun could die at any time, more witnesses gathered around his bed. Ching-ling supported Sun's right hand and guided it to sign the Testament and the private will. Then T.V. Soong, American-educated, read out the letter to Moscow in English, and Sun signed it, also in English. How much Sun took in the content of the long letter was unclear. But there was no doubt he grasped and endorsed the gist. He died the following morning, 12 March 1925, at the age of fifty-eight.</p><p></p></div>	
+<div class='layout'><p>Ei-ling and her husband H.H. did not like Communism, and tried hard to prevent their brother-in-law from being seen as a Communist. They persuaded Ching-ling to hold a Christian service for him in the hospital chapel – ‘to prove that he was not a Bolshevik', Ching-ling said wryly.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>Sun was not a Bolshevik. He just needed the Russians in death, as he had in life. Only they could immortalise him the way he desired. They would not only put his party in power but also teach the Nationalists how to build his personality cult. Sun had told the party through Ching-ling: ‘I wish to follow the example of my friend Lenin, to have my body embalmed and placed in the same kind of casket.'</p><p></p></div>	
+<div class='layout'><p>Lenin had died the previous year. His embalmed body had been put in a specially made transparent crystal coffin in a mausoleum. Hundreds of thousands of people were said to have filed through and paid respects to him in a matter of weeks. A huge personality cult swept through Russia, and Lenin was elevated to divine status. His portraits, posters and busts were obligatory in all public places, from offices to classrooms, streets to parks, always signalling to the people that he was their omnipotent saviour.</p><p></p></div>	
+<div class='layout'><p>Sun had decided that this was what he would like to have in death. Indeed, after he died, the Russians made a Lenin-style coffin for him. The only snag was that it was deemed unusable. The glass top was apparently unsuitable for the heat of a Nanjing summer. Sun's body was not laid out for display like Lenin's.</p><p></p></div>	
+<div class='layout'><p>But the other parts of his wishes were amply fulfilled. The Nationalists began a Lenin-style cult straightaway. The title ‘the Father of China' was used for the first time. In the ensuing years, especially when the Nationalists conquered China in 1928 and needed Sun's name to claim legitimacy, the Cult of Sun reached fantastic dimensions. Statues of him were erected in cities and towns; his every word, however banal, was treated as gospel, and no one was allowed to say anything irreverent about him. Soviet-taught Nationalist propagandists called Sun ‘the liberator of the Chinese nation', ‘the greatest man in the 5,000-year history of China' and, even, ‘the saviour of all oppressed nations'. These words were later appropriated by Mao for his cult.</p><p></p></div>	
+<div class='layout'><p>The biggest symbol of the cult was the Sun Yat-sen Mausoleum. Before he died, Sun had specified that his resting place must be ‘on the Purple Gold Mountain in Nanjing, because Nanjing was the founding place of the interim government'. This was the only government in which he enjoyed the title of ‘interim president', even if only for forty days. The Purple Gold Mountain was also where the founding emperor of the last Han dynasty, the Ming, was buried. Sun Yat-sen, who had harboured a competitiveness with this emperor, Zhu Yuan-zhang, had stressed that his own tomb must be next to the emperor's, but a great deal grander and taller, and in such a position that ‘no one else can build a tomb at a higher place'.</p><p></p></div>	
+<div class='layout'><p>The Ming tomb occupies an area of 1.7 million square metres and is already one of the largest for Chinese emperors. Sun's, built by the Nationalists, is 90 metres taller, with 392 steps, and covers over 30 million square metres, encompassing a large part of Purple Gold Mountain. To make room for it, villages were destroyed and many thousands of residents were forced to sell their land and houses to the government. The locals petitioned in desperation: they ‘lost the roofs over their heads, became homeless and had to sleep rough; some even committed suicide because they would rather perish with their homes.' Each of the announcements for the continuous expansion of the site ‘threw hundreds, even thousands, of people who were about to lose their homes into utter panic, as if they were about to lose their parents. They begged Heaven and Earth, and had nowhere else to turn.' The petitioners argued that their misfortune seemed to contradict what is still known as Sun's motto: ‘Everything under the heaven is for the people' (tian-xia-wei-gong). Nationalist officials merely told them: ‘You must make it the goal of your life to sacrifice everything you have' for the Father of China.</p><p></p></div>	
+<div class='layout'><p>*<a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> The artistic achievements of this period are later attributed to ‘the May Fourth Movement'. In fact, they had little to do with the nationalistic demonstration that took place on 4 May 1919.</p><p></p></div>	
+<div class='layout'><p>*<a name="pl2" id="pl2"></a><a href="#p2" title=""><sup>2</sup></a> Later in 1939, in Japanese-occupied Beijing, he rebuffed Japan's approaches for collaboration and died of what was widely believed to be poisoning by the Japanese.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

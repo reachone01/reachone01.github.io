@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+
+<div class='layout'><p> 5 The Marriages of Ei-ling and Ching-ling</p><p></p></div>	
+<div class='layout'><p>Charlie was now forced to prolong his stay in Japan: it had become unsafe for him to go back to Shanghai as a result of his association with Sun. He missed Shanghai, his home and his friends dreadfully. One day he saw Mrs Roberts, his American missionary friend and neighbour, at Tokyo railway station. He was so excited that he put his arms around her and embraced her most affectionately (opposite sexes embracing in public was unusual in Japan then). When her train pulled out, she recalled, he stood waving 'with his eyes full of tears, and never have I hated more to leave anyone'.</p><p></p></div>	
+<div class='layout'><p>Charlie spent much time at the local YMCA. There he met a young man he liked very much. H.H. Kung was a conscientious, good-natured and mild-mannered widower a few years older than Ei-ling. He came from Shanxi province in north-west China where his family was wealthy enough to afford a comfortable living. The large family house, in traditional Chinese style, had solid and elegant black roof tiles and latticed windows overlooking multiple courtyards. H.H. shared Ei-ling's educational background, having attended an American mission school and colleges in America. He was a graduate of Oberlin College and had a master's degree from Yale (both in chemistry). Above all, he was a devout Christian, baptised at the age of twelve after a mission doctor cured him of a tumour. In Tokyo, Oberlin paid him a salary to work at the YMCA.</p><p></p></div>	
+<div class='layout'><p>Charlie invited H.H. for dinner, where he met Ei-ling and they soon fell for each other. In old age he said in his memoir, 'We often walked in the park. My wife loves poetry. She majored in English literature in college … This was really love!'</p><p></p></div>	
+<div class='layout'><p>Ei-ling had developed reservations about Sun's behaviour, not only personal but also political. She and H.H. shared a strong dislike for Sun's war against President Yuan. Because Sun used the murder of Song Jiao-ren as the pretext to start the war, H.H., who was an admirer of Song, challenged Sun to produce proof of Yuan's guilt. Sun admitted that he had no proof, only suspicion. H.H. was disgusted. In his memoir, he said that he felt what Sun did was in the interest of Japan rather than China: some 'Japanese groups wanted to help Dr Sun in order to create turmoil in China. The Young Officers Group wanted to grab hold of China. They tried to help Dr Sun in order to divide China … I felt that the Japanese were trying to make use of Dr Sun.' He 'warned' Sun 'of the danger of being used by the Japanese', and gave Sun a piece of his mind: 'I thought that the only thing was for Yuan Shi-kai and Dr Sun to cooperate so that China could be united and not divided.' H.H. was also averse to Sun's dictatorial ways. After Sun returned to Japan from his failed war, he wanted to cast aside the Nationalist party as it was reluctant to support his war, and set about forming a new party, Zhonghua-geming-dang (‘Chinese Revolution Party'). Sun demanded that members of the new party must swear absolute obedience to him personally. H.H. was appalled, and stayed away from Sun's circle. A friend wrote that H.H. 'never identified himself with the revolutionaries, though offers had been made to him'. In fact he 'despise[d]' them, and 'loyally supported the [Yuan] government … at the sacrifice of personal popularity with some of the Chinese students'. Ei-ling agreed with H.H. and steered herself, tactfully but unambiguously, away from Sun.</p><p></p></div>	
+<div class='layout'><p>The couple decided to get married and lead their own life. In September 1914, their wedding took place in Yokohama, in a small church on a hill, attended by relatives and close friends. Sun was not there. Ei-ling remembered well the details of the day: her wedding outfit, a jacket and skirt, was pale pink satin and embroidered in a design of deeper pink plum blossoms. Her hair was decorated with matching fresh flowers. After a wedding breakfast at the Soongs' house, the newly-weds drove off to begin their honeymoon, Ei-ling in an apple-green satin dress embroidered with little golden birds. The weather was changeable that day, but whenever they were outside the rain gave way to bright sunshine, and Ei-ling's outfit and hair were not spoiled. She and her bridegroom both thought the timely spells of sunshine were 'very happy omens'.</p><p></p></div>	
+<div class='layout'><p>They returned to H.H.'s birthplace in Shanxi to set up home. H.H. worked as the headmaster of the local mission school and she taught there. Soon he went into business and with her help became very rich.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>Sun made his displeasure about the marriage known, but he was far from heart-broken – a younger and prettier woman had appeared on the scene to replace Ei-ling: her sister Ching-ling, fresh from Wesleyan College, Macon, Georgia, who had arrived the year before at the end of August 1913. Unlike the circumspect Ei-ling, the younger sister was passionate and impulsive. And she was a beauty with porcelain skin. She took over as Sun's English-language assistant. It seems that Ei-ling kept quiet about Sun's attempts to court her. It was in her character to be reticent about such matters.</p><p></p></div>	
+<div class='layout'><p>When Ching-ling was at Wesleyan between 1908 and 1913, her contemporaries remembered 'her special tailored coat-suit' and 'her room, which always had the odor of Oriental perfume'. She was 'more quiet, even, than her elder sister', and was 'so very timid and “reserved”'. But there was another side to her. A fellow student recalled: 'I remember the excitement with which [Ching]-ling received the news that China had become a republic. I was interested because of the animation she showed. She had always seemed quiet and reserved and I was surprised to see her show so much life.' Not only life, but political passion. In her room, she had hung up the national flag of China under the Manchu throne, the Yellow Dragon. Then, her room-mate saw her climb 'on a chair to pull down the Chinese dragon from the wall when her father sent her the new flag of the Republic', and heard Ching-ling's 'dramatic exclamation as she threw the old banner on the floor and stamped on it. “Down with the Dragon! Up with the flag of the Republic!”'</p><p></p></div>	
+<div class='layout'><p>Sun Yat-sen was her hero. En route to meet him – and join her father – in Japan, she wrote to one of her teachers, 'I am taking a box of California fruits to Dr Sun from his admirers here, and I am also the proud bearer of a private letter to him.' Because of her family's association with Sun, the twenty-year-old was feted by Sun's admirers. Ching-ling, who had a penchant for mocking self-importance, wrote to a teacher, Margaret Hall, 'I … went from dinners to theaters till I got used to high living … I was an “honored guest” at the Chinese Students' Reception … When I came on board I found my cabin decorated with flowers and deluged with papers, magazines and fruits. I felt very important indeed.'</p><p></p></div>	
+<div class='layout'><p>Secretly the young woman modelled herself on Joan of Arc, and identified with heroines who fought for a 'cause' and embraced self-sacrifice. In a photograph taken around this time she has a defiant expression, as if fighting some immense injustice. When she met Sun, his political career was at its lowest ebb since the founding of the republic. His battle against Yuan had just failed, and he was living in a small bare room like a student's bedsit, subsisting on small donations from Japanese sponsors. All this, which might have put off other women, inspired a stronger love for him. To her, Sun's misfortune was injustice itself, and he was making sacrifices for the new republic. This thought moved her. 'He was made of stern stuff,' she said with tender-hearted awe. She longed to devote herself to him and share the burden of the trials in his life. Ching-ling fell in love.</p><p></p></div>	
+<div class='layout'><p>Life with Sun was also glamorous and fun. Though an enemy of the president of China, Sun, as the former – and first – interim president, was much sought after socially. Ching-ling was invited to many functions and outings with him and had an exciting time. One of her letters to an American friend, Allie Sleep, described staying at a famous hot-spring resort – 'the most magnificent hotel in the world' – and mixing in glittering company: 'let me … tell you about someone who I'm crazy for you to marry. He is the ambassador from Austria & the most good-looking bachelor in the world. All the embassy people were there.'</p><p></p></div>	
+<div class='layout'><p>In another beauty spot, 'We saw a miniature fruit garden. It was great. There were all sorts of dwarf trees – apples, pears, pomegranates, persimmon trees. Life is so intensely interesting now. If you love pretty things, you must come and visit the East soon. I shall chaperone you and shut my eyes when you must pick the forbidden fruits.'</p><p></p></div>	
+<div class='layout'><p>She found that she and Sun had much in common. Though baptised, Sun was never a genuine believer. Ching-ling had been sceptical about missionaries since childhood, and was inclined to view them with a mocking eye. Enthusing about a dancing party with a Hawaiian band on board the ship to Japan, she added: 'even the missionaries join in – oh! only as spectators of course'. She would share jokes with Sun about the church. 'When I told him how in school in America, where on Sundays we were all driven to churches, I used to hide myself in the closet behind the clothes, and come out to write letters home when the girls and matrons had all left, he laughed heartily and said, “So we will both go to hell.”'</p><p></p></div>	
+<div class='layout'><p>Sun felt blessed by this burgeoning relationship. He was smitten. Once, Ching-ling was away in Shanghai visiting her mother. Sun got an emissary to find a place to which he could send her love letters that her mother must not see. Waiting for replies from her, he lost appetite and sleep – his landlady easily diagnosed that he was lovesick. He confided in her: 'I just can't get Ching-ling out of my head. Since I met her, I feel I encountered love for the first time in my life. I now know the sweetness and bitterness of being in love.'</p><p></p></div>	
+<div class='layout'><p>Perhaps the surest sign of Sun Yat-sen being in love was that the man who thought of himself as 'the saviour of China', 'the only great and noble leader' who 'must be obeyed unconditionally', started to feel insecure about the relationship and feared Ching-ling's rejection. The young woman could tell and enjoyed teasing him, announcing that she was departing for America imminently, when in fact she had no such plans. Leaving for Shanghai on one trip she claimed that she was going to get married there and that the next time he saw her she would be with a husband. When there was talk that President Yuan wanted to make himself emperor, Ching-ling told Sun that she planned to marry Yuan and 'be an empress', or an imperial concubine. This sent Sun into a frenzy and he wrote to her father, asking him to clarify whether it was true. Charlie was baffled and replied that 'I am inclined to think it is a joke rather than anything else', 'it is a baby talk of her', 'do not believe such novel talk of a young girl who likes to make fun of herself'. Charlie, it seems, failed to see that a girl would only make such a joke with the man who she knew was hopelessly in love with her. Then, he returned to Shanghai, after he was reassured that it was 'perfectly safe' for him to do so. Alone with Sun in Japan, Ching-ling's love for him blossomed.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>In summer 1915, Ching-ling came to Shanghai to ask her parents for permission to marry Sun. They were shocked by the news and refused to give their consent. The arguments against were many, not least the obvious age gap. He was forty-eight; she was barely in her twenties. There were many good Christian young men for her to marry, they pointed out. A Yung and a Dan had been coming to the house often. Why not one of them, or someone else? Charlie could not have forgotten the car accident in Tokyo, and Sun's cold refusal to go and see his badly injured wife. The man might be an ardent revolutionary, but he would not make a good husband. The most emotional objection, though, was that Sun already had a wife and children. If he were to divorce his wife, this would show 'his faithlessness to the wife who had shared his trials, and whose children are older' than Ching-ling. If he would not divorce his wife, Ching-ling would be a concubine, which would not only bring shame to herself and her family but also violate Christian principles. In an earlier letter to Sun (as a result of Ching-ling teasing Sun and claiming she had plans to marry Yuan Shi-kai as a concubine), Charlie had stated that 'we are a Christian family and no daughter of ours will become anybody's concubine, be he a king, an emperor or a president of the greatest on earth'. Ching-ling herself 'detests even to talk with [a] concubine', her father had added. She would not speak to a 'No. 2' who was in their company. Big Sister Ei-ling also tried to talk her out of the idea, which infuriated Ching-ling. Amid one heated confrontation, Ching-ling fainted. She was carried upstairs to her bedroom, and the door was locked from the outside. During the following weeks, there were many exhausting scenes.</p><p></p></div>	
+<div class='layout'><p>While Ching-ling was struggling against her family in Shanghai, Sun's wife arrived in Japan in September at his invitation to discuss a divorce. Mu-zhen was in grief as Sun's brother Ah Mi, who had been supporting her family all those years, had died earlier that year, aged sixty-one. She had lost the man who really cared for her and her children. Having just been dealt this blow, she accepted her faithless husband's announcement with indifference. She returned home to Macau, where she lived for another four decades. She and Sun never saw each other again.</p><p></p></div>	
+<div class='layout'><p>There was no way, though, to seal their de facto divorce with a definitive document. They had been married in the traditional way, which did not provide for an honourable divorce for the woman. A divorce document was usually 'a letter to discard the wife' (xiu-shu). Sun did not wish to humiliate Mu-zhen in this manner.</p><p></p></div>	
+<div class='layout'><p>He sent an envoy to Shanghai to bring Ching-ling to Japan, claiming that he was now divorced legally. In the early hours of one autumn night, the lovestruck young woman sneaked out of her family home and boarded a ship for Japan. According to the surveillance records of the Japanese government, Sun met her at Tokyo station on 25 October 1915, and they were married the next day. The ceremony was conducted by a Wada Mizu at his home, during which the couple signed three copies of a 'marriage contract' prepared by Wada in Japanese. Ching-ling, who spoke no Japanese, believed that Wada was a 'famous lawyer', and that the 'contract' had been registered with the Tokyo government and was legally binding. As a matter of fact, Wada Mizu was no lawyer – he was the owner of a small trading company – and the Tokyo government did not register marriages of foreigners. The 'marriage contract' was just a piece of paper Wada had produced and then signed as a 'witness', and it had no legal effect. The whole thing was a show for the benefit of the twenty-one-year-old, who was mission-school educated, and to whom a legal marriage was essential.</p><p></p></div>	
+<div class='layout'><p>Sun invited none of his friends to the ceremony except one most faithful and dependable man, Liao Zhong-kai, who acted as the second 'witness'. Liao brought his eleven-year-old daughter Cynthia, who translated for the bride.</p><p></p></div>	
+<div class='layout'><p>After the signing, Wada gave the newly-weds a quick supper. All three then left in the car that had brought Sun. It first dropped Wada at a geisha restaurant; Wada would enjoy his real dinner there. Then the car took the Suns home. It was no longer like a student's digs, but a 'little cozy house hidden among red maples', which Ching-ling loved. She said the wedding was 'the simplest possible', but 'we both hate ceremony and the like'.</p><p></p></div>	
+<div class='layout'><p>The day after the wedding, her parents appeared on their doorstep. Ching-ling had left them a letter when she sneaked out of the house, and they had taken the next ship to Japan. Years later, Ching-ling wrote to her friend and biographer Israel Epstein (whom she called Eppy) about how they desperately 'tried to persuade me to leave my husband and return home … My mother wept and my father who was ill with liver disease pleaded … He even went to the Japanese government to appeal … saying that I was under age and had been forced into marriage! Naturally, the Japan gov't couldn't intervene. Although full of pity for my parents – I cried bitterly also – I refused to leave my husband. Well, Eppy, altho' this transpired over half a century ago I still feel as if it happened a few months ago.'</p><p></p></div>	
+<div class='layout'><p>The fact that Charlie went to the Japanese government to denounce Sun shows the extent of his distress. He had believed Sun to be 'noble' and someone who would never 'practice deception on … friends'. Now his idol let him down badly. He confided to his old missionary friend Bill Burke, 'Bill, I was never so hurt in my life.' Charlie never forgave Sun. Ei-ling and her husband observed that his break with Sun 'has been complete … and the old friendship has become an enmity'.</p><p></p></div>	
+<div class='layout'><p>The news of the marriage went public. The missionaries regarded Ching-ling as having eloped and wanted Charlie to bring her back. Sun's comrades declined to recognise her as the leader's wife, calling her not 'Mrs Sun' but 'Miss Soong'.</p><p></p></div>	
+<div class='layout'><p>Ching-ling disregarded all this and lived in the firm belief of the righteousness of their union. She was wrapped up in her own happiness, as she wrote to her friend Allie a few weeks later:</p><p></p></div>	
+<div class='layout'><p>I am so absent-minded these days, that I am in doubt whether or not I mailed your letter. To be doubly sure I am scribbling a few lines to say that I am quite concerned [sic, contented] & happy & feel glad that I was brave enough to overcome my fears and doubts & decided to marry.</p><p></p></div>	
+<div class='layout'><p>I feel settled down and have such a domestic feeling about me. I am so busy helping my husband with his work, answering his correspondence and taking charge of all cablegrams & deciphering them into Chinese. And I hope some day that all my labors & sacrifices will be repaid by seeing China freed from the bondage of a tyrant and a monarchist and stand as a Republic, in the best sense of the word.</p><p></p></div>	
+<div class='layout'><p>Talking about making 'sacrifices' for the marriage suggests that deep down Ching-ling knew that her marriage was irregular. She accepted this, telling herself that her action was for the greater good. Their marriage was real in all but a formal sense. Sun kept his vows and remained faithful; and Ching-ling was ready to give her life for him.</p><p></p></div>	
+<div class='layout'><p>—</p><p></p></div>	
+<div class='layout'><p>Meanwhile, President Yuan, popular and securely in office, started to yearn for something more. He had always hankered for the crown, and in 1915, announced that he was returning China to monarchy, with himself as the emperor. The aspiring monarch, however, was anxious about his own lack of legitimacy. In the Forbidden City, there was a carved dragon suspended from the ceiling over the throne, holding a large silver ball between its teeth. People believed that the ball would drop on anyone who sat on the throne if they did not belong there. Yuan was so troubled that the ball might crush him that he had the seat moved away from the carved dragon. Public opinion, which had been highly vocal for more than a decade, came out in force against turning back the clock. So did his colleagues and army chiefs. Republicanism was clearly there to stay. Eighty-three days after announcing his intention to become emperor, on 22 March 1916 Yuan called off the whole enterprise. He never made it to the throne.*<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a></p><p></p></div>	
+<div class='layout'><p>Yuan's unsuccessful bid to become emperor wrecked his reputation, and Sun Yat-sen was eager to exploit Yuan's vulnerability. Sun's worry was that Yuan might resign as president, in which case, as the constitution stipulated, Vice President Li Yuan-hong would automatically succeed and Sun would be deprived of a discredited and weak target. Li, the much-liked army chief who had helped lead the 1911 revolution, had emerged as an able and popular statesman. If Yuan were to resign, Sun would have no grounds to replace Li. It was critical that his men must act to overthrow Yuan at once. From Japan, Sun sent urgent cables to his followers in China, ordering them to create havoc immediately. He placed high hopes especially on Godfather Chen, and instructed him to organise uprisings in Shanghai right away.</p><p></p></div>	
+<div class='layout'><p>Chen, in Shanghai clandestinely, was unable to do so. As well as the Beijing government, the Settlement authorities were after him. They were fed up with him for turning Shanghai into a battleground – in addition to making the city a paradise for gangsters. During the republican revolution in 1911–12, when the Godfather controlled the city, he had protected the gangs rather than suppress them, unlike many other republican provincial chiefs who turned on their former comrades. Gangsters had converged on Shanghai and flourished there.</p><p></p></div>	
+<div class='layout'><p>Now the gangs themselves turned their backs on him. Chen had gone beyond the gangsters' normal trade and got involved in politics – and emerged on the losing side. He was no longer a powerful godfather but only a failed revolutionary. Not only was he unable to bring off successful disturbances, he was unable to raise any funds. When he had been the boss of Shanghai, he had extracted huge sums from banks and businesses by intimidation. When the Shanghai manager of the Bank of China argued that he could not simply hand over the bank's money, the Godfather had had him arrested and the bank paid up. Now he could only dream of such easy solutions. He had no means to pay for revolts or mutinies, or as many assassinations as he would have liked. Indeed President Yuan had picked up his weapon and proved a far more desirable patron for hit men.</p><p></p></div>	
+<div class='layout'><p>As Chen made little headway and produced only a string of failures, Sun Yat-sen grew impatient and scornful. He was furious that he now had to fund the Godfather, rather than the other way round. He sneaked into Shanghai to take personal charge, which was quite uncharacteristic and showed how much of a hurry he was in. Yuan might resign any minute, as he was under tremendous pressure to do so. Sun told off the Godfather in deeply wounding words when they met, leaving Chen dejected. Poor health had already been tormenting him, to the point that he had given up caring whether he lived or died. To people around him, he looked 'withered and spiritless like a skeleton'. Although on the wanted list, he was still strolling down the streets of Shanghai on his own, without a bodyguard. The fact was that he could not afford one. Then, almost casually, he walked into a fatal trap.</p><p></p></div>	
+<div class='layout'><p>A fellow revolutionary who had secretly turned informer one day brought him a 'business deal' with a 'mining company'. The deal promised to add substantially to Sun's coffer, and Chen agreed to a meeting. On 18 May 1916, he went to a house that he often used to meet with the 'company representatives', and was alone in the sitting room with five of them. There he was shot in the head and killed, aged thirty-eight. He had no security men with him. The assassins had been let into the house without being searched for weapons. All this seems extraordinarily careless, particularly as he knew – and Sun knew – that the 'mining company' was a sham. Chen seems to have thought that if he was lucky, he would get the money for Sun; if not, he might as well die.</p><p></p></div>	
+<div class='layout'><p>After he was shot dead, the owner of the house wanted his corpse removed at once. There had been a few comrades in another room, but nobody was willing to do the job. The later Generalissimo Chiang Kai-shek, who had killed a political rival of Sun's at the order of Chen, worshipped the Godfather as a mentor and loved him as a brother. He raced over and brought Chen's body to his own house, where he set up a mourning shrine. Few turned up to pay their respects. Sun Yat-sen, his own life in danger, did not come. The once fearsome Godfather had died a lonely man. His body was kept in storage, as his family could not afford a proper burial. Chiang Kai-shek was aggrieved. He wrote a bitter eulogy, much of it a cascade of loathing directed at Chen's 'friends'. Without mentioning Sun's name, he hinted that Sun had treated the man who had played an irreplaceable role in advancing his career shabbily, and that this had played a role in Chen's death.</p><p></p></div>	
+<div class='layout'><p>When the news of the assassination of Godfather Chen reached Japan, Ching-ling jumped onto the next ship and raced over to Shanghai to be with her husband. She was worried sick and felt convinced that he would only be safe if she was there. She arrived early the next morning. When she walked down the gangway through the dispersing mist, Sun's familiar figure could be seen waiting on shore. It was most unusual for Sun to meet a ship – he was the 'Big Busy Man', as Ching-ling had fondly nicknamed him. And it was particularly risky for him at this moment. It seems that Sun was touched by Ching-ling's love and wanted to show his appreciation. She was moved by his gesture, and was also immensely relieved to see that he was unharmed.</p><p></p></div>	
+<div class='layout'><p>Eighteen days after her arrival President Yuan died of uraemia, without resigning from office, at the age of fifty-six. Vice President Li succeeded him automatically. Sun had lost his discredited target. He suspended the war he had started, and contemplated how to deal with Li. For Ching-ling, her husband would now be safe. She felt very happy.</p><p></p></div>	
+<div class='layout'><p>*<a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> In July 1917, there was another attempt at restoring the monarchy, by General Zhang Xun, who, remained loyal to the Manchu throne. He and his troops kept the Manchu-style hair, the queue, and Zhang was nicknamed the 'Queue General'. His army entered Beijing and put Pu Yi, the last emperor, on the throne in the Forbidden City. But there was scant support for the restoration. Even the courtiers summoned to the palace to draft imperial decrees felt 'too irritated and upset to swallow' the royal lunch. Newspaper boys peddling the decrees cried, 'Buy antique! Antique for six coppers! This will be a piece of antique in a few days!' The charade lasted only twelve days.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>
