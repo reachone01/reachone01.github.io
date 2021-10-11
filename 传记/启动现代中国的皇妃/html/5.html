@@ -1,0 +1,403 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p> PART TWO Reigning Behind Her Son's Throne</p><p></p></div>	
+<div class='layout'><p> (1861–1875)</p><p></p></div>	
+<div class='layout'><p>5 First Step on the Long Road to Modernity</p><p></p></div>	
+<div class='layout'><p>(1861–9)</p><p></p></div>	
+<div class='layout'><p>THE signs of a new era were immediately apparent. Prince Gong now headed the Grand Council and the half-dozen new Grand Councillors were intelligent and sensible men like him. To Frederick Bruce, the first British minister to reside in Beijing, these were ‘statesmen who understand our character and motives sufficiently to place confidence in us', and who ‘are satisfied of our moderation, as well as of our strength'. He regarded the change of leadership as ‘the most favourable incident that has hitherto taken place in the course of our relations with China'.</p><p></p></div>	
+<div class='layout'><p>Indeed, through Prince Gong's reports, and the fact that the British-French troops had withdrawn from Beijing, Cixi had come to the conclusion that amicable relations with the West were possible, and she began to strive for such a relationship. She asked the most fundamental and clear-eyed questions: Are foreign trade and an open-door policy such bad things for China? Can we not benefit from them? Can we not use them to solve our own problems? This fresh way of looking at things heralded the Cixi era. She was pulling China out of the dead end into which it had been rammed by Emperor Xianfeng's all-consuming hatred and by the closed-door policy of 100 years. She was setting the country on a new course: opening it up to the outside world.</p><p></p></div>	
+<div class='layout'><p>This Herculean process was presided over by Cixi, together with Empress Zhen, from the harem. They got up between five and six in the morning, sometimes even at four – which was always a struggle for Cixi – to be ready at the audience hall by seven o'clock. They would be splendidly dressed, in phoenix-patterned formal robes, pearl-studded shoes and bejewelled, gate-tower-shaped coiffure. In the hall they sat side by side, behind a yellow silk screen, through which they discussed business with the Grand Councillors. The Councillors would have been waiting for some time in their deliberately simple offices, with plain tables and chairs covered in cloth. When the meetings were over, the two women gave audiences to officials from around the empire. The child emperor, Tongzhi, now sat on a small throne in front of the screen facing the officials, while the women remained vaguely visible behind him. To attend these audiences, officials got up soon after midnight to travel to the Forbidden City, the rumbling of their mule-carts and the clatter of the mules' feet almost the only sounds in the deserted streets of Beijing. Throughout the audiences they prostrated themselves, their eyes cast down.</p><p></p></div>	
+<div class='layout'><p>Cixi was the one who usually asked the questions. She was good at projecting authority. While in the harem, as many observed, she was vivacious and fond of laughing; but the moment a eunuch came to announce, on his knees, that her sedan-chair was ready to take her to the audience hall, she would switch off her smiles and assume a daunting air. Even with the screen separating them, the officials could feel her commanding presence – and she could assess their personality. Many who had audiences with her described how Cixi seemed to be able ‘to read our thoughts', and that ‘at a glance' she seemed able to ‘see through the character of every one that appears before her'. Empress Zhen was quiet and retiring, willingly playing second fiddle.</p><p></p></div>	
+<div class='layout'><p>After the audiences, back in their quarters, the women changed into less formal and more comfortable clothes, taking off some of the jewels that made their headdresses very heavy. They took the day's reports out of a yellow box and, using court conventions which they quickly picked up, they folded one corner of a page, or dented it with a finger nail, to indicate ‘Report registered', ‘Do as recommended', and so on. A lot of the daily work consisted of pure administration, such as approving official appointments. Empress Zhen dealt with these on her own, and most documents of this nature were stamped by her seal only. Policy was Cixi's domain. For two decades the two women were to work in perfect harmony, until Empress Zhen's death in 1881. The fact that they remained lifelong friends as well as political partners was a most remarkable feat – ‘almost if not entirely unique in history', commented an American missionary.</p><p></p></div>	
+<div class='layout'><p>It is commonly claimed that Prince Gong made all the decisions for Cixi, who, as a ‘semi-illiterate' woman, was limited in knowledge and experience. The massive documented exchanges between them, and between Cixi and the officials, point to the contrary: that Prince Gong and all others in fact reported to Cixi, who was the decision-maker. She would, of course, always consult Prince Gong, and sometimes initiate debates among the top echelon. Her orders were then given verbally to the Grand Council, and the Councillors or their secretaries would write them up as decrees. Having approved them, she and Empress Zhen would stamp them with the seals. Following Qing rules, Grand Councillors (Prince Gong included) were prohibited from adding or changing anything in a decree.</p><p></p></div>	
+<div class='layout'><p>As a check to its policies, the dynasty had the traditional institutionalised watchdog, the Censors, yu-shi, who were the official ‘criticisers'. In addition to these, Cixi encouraged critical comments from other officials, starting a trend that led to the involvement of the literati in state affairs, a sharp break from the tradition that discouraged their political participation. These informal ‘opposers' became a substantial force in the land and acquired a collective name, qing-liu, or ‘clear stream', signifying that they were above self-interest. Their targets included Cixi herself. Over the years, members of the government would complain that these attacks hindered their work, but Cixi never tried to silence them. Instinctively she seems to have known that a government needs dissenting voices. Among those voices she spotted outstanding people and promoted them to high office. One such man was Zhang Zhidong, who became one of the most eminent reformers. Cixi took care not to go against majority opinion, but the final decision was always hers.</p><p></p></div>	
+<div class='layout'><p>Running the empire needed more language skills and more knowledge of the classics than Cixi possessed. So she studied with educated eunuchs. Her lessons were like bedtime readings and took place before her after-lunch siesta or at night. She would sit cross-legged on her bed, with a book of poetry or one of the classics in her hand. The eunuchs would sit on cushions on the floor at a low table. They would go through the texts with her, and she would read after them. The lesson would go on until she fell asleep.</p><p></p></div>	
+<div class='layout'><p>Under Cixi, China entered a long period of peace with the West. The British government, for instance, noted that ‘China is now prepared to enter into intimate relations with foreigners instead of … endeavouring to prevent all intercourse whatever with them'. And ‘since the policy of China is to encourage commerce with the nations of the world, it would be suicidal on our part not to endeavour to assist the enlightened Government of China …' Britain and other powers therefore adopted a ‘co-operative policy'. ‘Our present course,' said Lord Palmerston, now British Prime Minister, ‘was to strengthen the Chinese empire, to augment its revenues, and to enable it to provide itself with a better navy and army.'</p><p></p></div>	
+<div class='layout'><p>Prince Gong, leading China's first Foreign Office as well as the Grand Council, got on well with Western diplomats. He was a charming man. The Mitford grandfather, Algernon Freeman-Mitford, observed that he was ‘full of jokes and fun', even appearing to ‘have a flippant manner': ‘My single eyeglass was a real boon to the Prince. Whenever he was getting the worst of an argument, and was at a loss for an answer, he would stop short, throw up his hands in amazement, and pointing at me cry out, “A single eyeglass! Marvellous!” By thus creating a diversion at my expense he gave himself time to consider his reply.'</p><p></p></div>	
+<div class='layout'><p>The immediate benefit that Cixi gained from this new friendly relationship was the help of the Western powers in defeating the Taiping. At the time, in 1861, these peasant rebels had been waging ferocious battles in the heartland of China for a decade, and were holding large swathes of the country's richest land along the Yangtze River, together with some of the wealthiest cities, including Nanjing, their capital, next door to Shanghai. Because the rebels claimed to be Christians, Westerners had at first been rather sympathetic towards them. But disillusion eventually set in, when it became all too clear that the Taiping had little in common with Christians. Their leader, Hong Xiuquan, for a long time imposed total sexual abstinence on ordinary members and decreed the death penalty for those who broke the ban, even if they were husbands and wives; but he officially bestowed up to eleven wives on each of his chiefs and took eighty-eight consorts for himself. He wrote more than 400 crude ‘poems' telling the women how to serve him – the Sun, as he called himself. And this was not the worst thing, as hordes of peasant rebels indulged in cruel and wanton slaughter of the innocent, burning villages and towns wherever they went. The area they devastated was as large as all Western and Central Europe combined. The English-language North China Herald came to the conclusion that the ‘whole history' of the Taiping ‘has been a succession of acts of bloodshed, rapine, and disorganisation; and [its] progress from the south to the north, and now in the east of this unhappy land, has been invariably attended by desolation, famine, and pestilence'. The rebels were not friendly to Western Christians, either: they turned down their request to leave Shanghai alone, and instead tried to seize the city, jeopardising Westerners' own business and security.</p><p></p></div>	
+<div class='layout'><p>Some powers had offered help to fight the Taiping while Emperor Xianfeng was still alive. But he detested them as much as he did the Taiping themselves. Shortly after he died, the matter was raised again, and Cixi was enthusiastic. To those who suspected that Westerners were up to no good and might well occupy the land they took from the rebels, she reasoned: ‘Since the treaties were signed, Britain and France have kept their word and withdrawn. It is in their interest to help us.' She was cautious, though, and declined to employ Western troops, taking note of the counsel of Thomas Wade, Secretary to the British Legation, that foreign troops on Chinese soil were not a good idea for China.<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a> That Wade should give advice with China's interest in mind was not lost on Cixi. She chose to have Western officers arming, training and leading local men, under overall Chinese command.</p><p></p></div>	
+<div class='layout'><p>With her encouragement, Frederick Townsend Ward, a thirty-year-old American from Salem, Massachusetts, a tough adventurer and soldier of fortune with leadership qualities, organised an army of several thousand Chinese, with Western training and Western officers. Ward and his army won many battles, of which Cixi learned in glowing reports. She publicly conferred on him prominent honours, and named his force the ‘Ever-victorious Army'. It was unheard-of that imperial decrees ‘frankly and explicitly recognised' the merits of a foreigner, and Westerners saw this as ‘a significant indication of the change in the Chinese attitude'.</p><p></p></div>	
+<div class='layout'><p>Ward was fatally wounded in a battle in 1862 and Cixi ordered a temple built to commemorate him. Charles Gordon, an English officer, assumed the command of the Ever-victorious Army. Gordon felt strongly that ‘the rebellion ought to be put down.' He wrote, ‘Words cannot express the horrors these people suffer from the rebels, or the utter desert they have made of this rich province. It is all very well to talk of non-intervention; and I am not particularly sensitive, nor are our soldiers generally so; but certainly we are all impressed with the utter misery and wetchedness of these poor people.' Like Ward, Gordon had a penchant for bravado and would go into action armed only with a rattan cane. A hero to his men, he would become the famed ‘Chinese Gordon' and played a key – and, some say, indispensable – role in defeating the Taiping and rescuing the Qing dynasty.</p><p></p></div>	
+<div class='layout'><p>Although she had no direct contact herself with the Western warriors and envoys, Cixi was quick to learn about the West and to grasp ideas from the massive and detailed reports she received from Prince Gong and other officials who dealt with them. In one case, an imperial decree had thanked ‘the English and French' for shelling Taiping troops. The French envoy complained, pointing out that only the French were involved, not the English. Cixi told her diplomats: ‘You may say this is foreigners being petty-minded, but you must also see that they are being exact. In the future when you make a report, do not deviate an iota from the facts.' She had put her finger on a superannuated Chinese tendency to be imprecise.</p><p></p></div>	
+<div class='layout'><p>One piece of information that made an impression on her was that individual Chinese lives mattered to the Westerners. This was often reported by Li Hongzhang, who was the commander of Ward and Gordon. With his manicured goatee and narrowed eyes that had seen a great deal, Li, who was an earl, was the classic Confucian gentleman, but he was to evolve into the most renowned of all China's reformers. At this early stage, through daily dealings with Westerners, he was already learning from them, when most of his colleagues still regarded them as aliens. Towards the end of 1863, Earl Li and Gordon laid siege to the city of Suzhou, famed for its silks and gardens and canals (some called it China's Venice), and strategically situated near Nanjing, capital of the Taiping. They persuaded eight defending Taiping chiefs to surrender the city, promising them safety and high office in return. In his camp outside the city gate, Earl Li gave a banquet for the chiefs, to which Gordon was not invited. Halfway through the drinking, eight officers came in, each carrying a mandarin's hat of honour, with a red button on top and a peacock feather sticking up. The officers moved on their knees to the chiefs and offered the hats to them. All at the banquet got to their feet and watched. The chiefs stood up, untied the yellow headscarves they were wearing and were about to take the hats and put them on when, in a split second, eight swords were drawn, and the eight heads were held by their hair in the grip of the officers. Earl Li, who had absented himself from the banquet just before the officers entered, in order not to be present at the killing, had the chiefs killed to prevent potential treachery, as had happened before. Afterwards, his army raced into Suzhou and massacred tens of thousands of Taiping troops who thought they were safe.</p><p></p></div>	
+<div class='layout'><p>Gordon, who had given the murdered chiefs his word and personally guaranteed their lives, was filled with a righteous wrath and resigned his command of the Ever-victorious Army. Though he could, reluctantly, see Earl Li's point of view, he felt that as an English officer and Christian gentleman he had to disassociate his name from this act of ‘Asiatic barbarity'.</p><p></p></div>	
+<div class='layout'><p>Earl Li reported the strong reaction of Gordon to Cixi, as well as the outcry against the killings from the Western diplomats and merchants. Cixi did not comment on the matter, but she could not have failed to view the Westerners with a certain admiration. Confucian ideals also abhorred the killing of the innocent and of those who surrendered. And yet here were the imperial forces committing massacres and behaving no better than the despised Taiping – with the striking exception of the Ever-victorious Army. (Earl Li wrote to a colleague that Gordon's men ‘can defeat the bandits but will not kill as many as possible, so my army has to be around to assist them'.) Cixi and her circle of officials were shedding the notion that Westerners were ‘barbarians'. In fact, from this time on she seems to have developed a little defensiveness about her own country and its customs.</p><p></p></div>	
+<div class='layout'><p>Gordon started to work with Earl Li to disband the Ever-victorious Army. This came as a relief to Cixi. She had been thinking about what to do with the Army once the war was over, as this invincible fighting force only followed Gordon and did not take orders from Beijing. In her letter to Prince Gong, Cixi said: ‘If Gordon makes proper arrangements to disband the Army, and send the foreign officers home, then it proves that he is truly being good to us, and has been working for our benefit throughout.' Before his departure, Cixi publicly praised the Englishman in glowing language and offered him liberal rewards, including 10,000 taels of silver. Gordon declined the money on the grounds that he was not a mercenary, but an officer. Cixi asked Prince Gong, somewhat nonplussed: ‘Is this really what he is thinking? Isn't it the case that foreigners only want money?' Earl Li and other officials were deputed to find out what would satisfy Gordon. At Earl Li's recommendation, Cixi awarded him a singular honour: a mandarin jacket in the royal yellow colour, of a kind that only the emperor was allowed to wear. Gordon had given Cixi much food for thought about Westerners.<a name="p2" id="p2"></a><a href="#pl2" title=""><sup>2</sup></a></p><p></p></div>	
+<div class='layout'><p>To defeat the Taiping, Cixi promoted Han personages in an unprecedented way: Earl Li for one, and also Zeng Zuofan, whom she made a marquis. It was Marquis Zeng's army that finally recaptured Nanjing in July 1864. This marked the end of the Taiping, the biggest peasant rebellion in Chinese history, which had caused the deaths of some twenty million people in fifteen years of war. Its leader, Hong Xiuquan, died of illness before the fall of Nanjing, and Hong's son and successor was caught and put to ‘death by a thousand cuts', as prescribed by the Qing laws, even though he was aged only fourteen. Other captured Taiping chiefs were also subject to this form of execution. Reports of these bloody deaths, carried by newspapers like the North China Herald, complete with graphic photographs, horrified Westerners. Thomas Wade, now the British chargé d'affaires, wrote to Prince Gong to suggest that now that the rebellion had been destroyed, China should abolish this savage form of punishment. It was ‘too cruel and deeply upsetting' to people in the West, Wade said, adding that its abolition would win the empire much goodwill and political advantage. His appeal was rejected by Prince Gong, who told Wade that this punishment was rarely used and that it was needed to scare off would-be rebels who might otherwise destroy countless lives. ‘Without this punishment, I am afraid people in China would have nothing to fear … and before long, there would be more and more criminals, and it would be hard to ensure peace and stability.' The prince was plainly admitting that even death penalties such as decapitation would not deter rebels, and the empire could not survive without this cruellest of sanctions. Cixi did not contradict Prince Gong, but neither did she add a personal note, as Emperor Qianlong had done in 1774 when he wrote in his own hand about a rebel leader, Wang Lun: the man must be put to death by ‘a thousand cuts, which must leave the skin of his body looking like fish scales', and his family members ‘must all be beheaded, everyone of them, men, women, the old, the young'.</p><p></p></div>	
+<div class='layout'><p>The humane side of Western culture was, to the Chinese, amazingly in tune with their own ideal, ren, or benevolence, which, according to Confucius, was the ultimate goal for all rulers. Prince Gong praised Wade for ‘having the spirit of ren', although he lamented that this ideal could not be applied in China just yet.</p><p></p></div>	
+<div class='layout'><p>With the end of the Taiping, other rebellions were also put down one after another. Within a few years of seizing power, Cixi had restored peace. This gave her indisputable authority in the eyes of the elite – and minimised opposition to her forthcoming policies to revive the country, which was in a dire state.<a name="p3" id="p3"></a><a href="#pl3" title=""><sup>3</sup></a> The wars had cost more than 300 million taels of silver. The streets of Beijing teemed with beggars; some were women who, normally hidden from public view, accosted passers-by, wearing little more than rags. And yet, with Cixi's leadership, China would make a stunning recovery in less than a decade and would begin to enjoy a degree of prosperity. One thing that helped crucially was a large new source of income: Customs revenues from the growing trade with the West, as a result of Cixi's open-door policy.</p><p></p></div>	
+<div class='layout'><p>Cixi had noted the immense potential of international trade, whose centre was now Shanghai, where the Yangtze River, having originated in the Himalayas and having crossed the middle of China, flows into the sea. Within months after her coup, by the beginning of 1862, she had told Prince Gong: ‘Shanghai is but a remote corner, and is imperilled [threatened by the Taiping] like piled-up eggs. And yet, thanks to the congregation of foreign and Chinese merchants, it has been a rich source for maintaining the army. I hear that in the past two months, it has collected 800,000 taels in import duty alone.' ‘We must do our best to preserve this place,' she said. Shanghai showed her that opening up to the West presented a tremendous opportunity for her empire, and she seized it. In 1863, more than 6,800 cargo ships visited Shanghai, a giant leap from the annual 1,000 or so under her late husband.</p><p></p></div>	
+<div class='layout'><p>The expansion of foreign trade obliged China to have an efficient – and uncorrupt – Customs service. At Prince Gong's recommendation, Cixi appointed a twenty-eight-year-old Ulsterman from County Armagh, Robert Hart, to be Inspector General of Chinese Maritime Customs, where Hart had already been working. Within a year of the appointment, she had given Hart an honour.</p><p></p></div>	
+<div class='layout'><p>Born in the same year as she was, 1835, and educated at Queen's College in Belfast, Hart had come to China first as a bright, earnest and innocent nineteen-year-old interpreter-to-be in the British consular service. An outstanding linguist, he had also come with an armful of prizes in logic, Latin, English literature, history, metaphysics, natural history, jurisprudence and physical geography. His diaries show him to be a devout Christian, concerned with what was moral and just – and that he felt a deep sympathy for the Chinese. One entry shortly after his arrival in Hong Kong described an evening stroll to the waterfront with a Mr Stace: ‘He rather surprised me by the way in wh[ich] he treated the Chinese – pitching their goods into the water and touching them up with his cane because they wd not row out from the Quay when he entered the Boat. Then it was supper time with them; and this Hour being sacred with them, they wd not work until supper was finished.'</p><p></p></div>	
+<div class='layout'><p>A decade of work in China established Hart as a fair and remarkably able man, with a talent to mediate and to find acceptable compromises. He knew his strengths and was self-assured. On the morning that the official dispatch arrived announcing his appointment, he did not open it at once and recorded with more than a hint of self-satisfaction:</p><p></p></div>	
+<div class='layout'><p>I ate my breakfast in my usual way, and then, as usual, read my morning chapter and prayed … The despatch opened: first a very cordial letter from Sir F. Bruce begging me to accept the Inspectorateship, and assuring me of the support of the foreign ministers; 2nd a long letter…; 3rd a long Chinese letter…; 4th. a despatch from the [Chinese Foreign Office], appointing me to be Inspector General, &c. &c. &c…</p><p></p></div>	
+<div class='layout'><p>Under Hart, Chinese Customs was transformed from an antiquated set-up, anarchical and prone to corruption, into a well-regulated modern organisation, which contributed enormously to China's economy. In five years, up to mid-1865, it delivered to Beijing duties of well over 32 million taels. The indemnities to Britain and France were paid out of the Customs revenue and were completely paid off by mid-1866, with minimal pain for the country at large.</p><p></p></div>	
+<div class='layout'><p>With the new wealth, Cixi began to import food on a large scale. China had long been unable to produce enough food to feed its population, and the dynasty had always banned the export of grain. Systematic, duty-free imports were recorded by the Customs from 1867. That year the import of rice, the staple food, was worth 1.1 million taels. Food-sourcing and purchasing became a major job of the Customs under Hart, and the employee assigned to the job was honoured by Cixi.</p><p></p></div>	
+<div class='layout'><p>Employing Hart and a large number of other foreigners caused resentment in the civil service. It was a courageous move.</p><p></p></div>	
+<div class='layout'><p>The motto of Cixi's government was ‘Make China Strong' – zi-qiang. Hart wanted to show Beijing how to achieve this through modernisation. His aim, as he put in his diary, was: ‘to open the country to access of whatever Christian civilization has added to the comforts or well being, materially or morally, of man …' He wanted ‘progress' for China. And progress in those days meant modern mining, telegraph and telephone, and above all the railway. In October 1865, Hart presented a memorandum to Prince Gong, offering his advice.</p><p></p></div>	
+<div class='layout'><p>In his eagerness ‘to get a fresh start out of the old dame' – China – Hart admonished and threatened. ‘Of all countries in the world, none is weaker than China,' he asserted, blaming the country's military defeats on its rulers' ‘inferior intelligence'. He wrote ominously that if China did not follow his advice, Western powers ‘may have to start a war to force it'. These words reflected a common attitude among Westerners, who felt ‘they know better what China wants, than China does itself', and they ought to ‘take her by the throat' and ‘enforce progress'.</p><p></p></div>	
+<div class='layout'><p>Prince Gong did not pass on Hart's memorandum to Cixi for months. This uncharacteristic delay was most likely because he feared that the empress dowager might be so enraged that she would fire Hart, thus killing the goose that was laying the golden eggs. Although Cixi encouraged sharp criticisms and blunt advice from her officials, no one had shown such arrogance or used blatant threats. Prince Gong could not be sure how she would react. He decided to send Hart out of the country, so that if the empress dowager decided to sack him, at least the order would not be carried out straight away, and there would be time to persuade her to change her mind. It was then that Hart was offered a home leave to Europe, which he had been requesting for some time.</p><p></p></div>	
+<div class='layout'><p>Hart departed at the end of March 1866 and his memorandum was presented to Cixi on 1 April, together with another piece of advice by the British chargé d'affaires Thomas Wade, which raised more or less the same issues, and in more or less the same tone – designed to ‘frighten them', according to Hart. Having presented these documents, Prince Gong felt apprehensive. When the British attaché Freeman-Mitford came to see him to press ‘Railroad, telegraphs' and ‘all the old stories that have been trotted out a hundred times', he noticed that the prince ‘was very nervous and fidgety. He twisted, doubled, and dodged like a hare.'</p><p></p></div>	
+<div class='layout'><p>Prince Gong had underestimated Cixi. She read the memos carefully, and then sent them out to ten top officials who headed foreign affairs, trade and the provinces, inviting their opinions. In her cover letter there was no anger or any ill feeling towards Hart or Wade – unlike Prince Gong's own report, in which bitterness flared up here and there. She had taken Western arrogance in her stride, declining to allow it to cloud her judgement. Instead she looked for potential benefits in the proposals. Hart ‘makes some good points', she found, ‘in his evaluation of Chinese government, military, finance, and in his suggestions about adopting Western methods of mining, ship-building, arms production and military training … As for the matters to do with foreign relations, such as sending ambassadors to other countries, these are things we should be doing anyway.' She did not address the matter of the threatening language and tone, simply evoking her government's motto: ‘Make China Strong is the only way to ensure that foreign countries will not start a conflict against us … or look down on us.' Perhaps she was also able to put the offence into perspective, knowing only too well that the Chinese talked about foreigners in a no less offensive manner. Nevertheless, Prince Gong warned Western envoys to watch their language. They obliged, and omitted offending expressions from subsequent correspondence.<a name="p4" id="p4"></a><a href="#pl4" title=""><sup>4</sup></a></p><p></p></div>	
+<div class='layout'><p>A few senior mandarins fumed against Hart, but the empress dowager never turned against him. Hart was honest, and ran the Customs efficiently and with great probity, which was a singular achievement in a country where corruption was endemic. That was enough for her. Never small-minded, she would invariably focus on the bigger picture and soon she would award Hart another honour for his service. Hart headed China's Customs for as long as her life and reign. For a foreigner to be in charge of a major fiscal channel for nearly half a century was an extraordinary phenomenon, and shows an astonishing lack of prejudice or suspicion on Cixi's part, as well as the shrewdness of her judgement. It was not blind faith. She was in no doubt that Hart's ultimate loyalty lay with his own country, Britain. A diplomat of hers reported to her that he had quizzed Hart on where his loyalty would lie, if there were a clash between China and Britain, and that Hart had replied: ‘I am British.' And yet she had faith that Hart would be fair to China – and she strove to avoid presenting him with any conflict of interest. Few of the top echelon objected to Hart, which was also extraordinary. However anti-West some officials might be, they trusted their country's Customs to a Westerner. Hart did not let them down. He contributed not only significantly to China's financial well-being, but also to its general relationship with the outside world. He became somebody to whom Prince Gong turned for all sorts of services to do with the West. And the empress dowager learned about Western civilisation through dealing with him, even if the contact was indirect.</p><p></p></div>	
+<div class='layout'><p>The modernisation projects proposed by Hart were, however, rejected by all those Cixi consulted. Even the most reform-minded man, whom Westerners came to regard highly, Earl Li, was vehemently against them, summing up their ‘incalculable damages' thus: ‘they deface our landscape, invade our fields and villages, spoil our feng-shui [geomancy], and ruin the livelihood of our people.' No one could think of any good that these expensive engineering projects would do, and Western representatives were unable to produce persuasive arguments in their favour. Prince Gong informed Cixi that Westerners had ‘not said anything specific about how exactly these are going to be good for China'.</p><p></p></div>	
+<div class='layout'><p>Instead, there seemed to be plenty of advantages for the West. China was near to paying off the war indemnities and had a huge trade surplus. It could afford these enterprises. Having set foot in the interior, Westerners found the place to be rich in unexploited natural resources. The British naval officer Henry Noel Shore noted that ‘the coal-fields have been estimated by competent authorities at 419,000 square miles, or more than twenty times greater than those of Europe, while minerals, but especially iron ore of excellent quality, are said to abound in every province'. And mining required telegraphs and railways.</p><p></p></div>	
+<div class='layout'><p>Among the many objections raised was that Westerners would have access to China's underground treasures and might seek to control them. Railways could carry Western troops into the heartland, if they wished to invade. Millions of people in the travel and communications business – the cart-drivers, goods-bearers, messengers, innkeepers and so on – would lose their jobs. No one seemed to regard a reduction in back-breaking labour as especially desirable, or foresee the creation of new forms of employment. The roaring noise and black smoke produced by machines were seen as a particular horror as they were deemed to interfere with nature – and, worst of all, disturb the dead souls in the numerous private ancestral tombs that defined the landscape of China.</p><p></p></div>	
+<div class='layout'><p>In those days, in China, each extended family had its own burial lot. These grounds were sacred to the population. As Freeman-Mitford observed, ‘in this place, the fairest spots are chosen for burying the dead'. Indeed, people believed that the tombs were their final destination where, after they died, they joined their deceased nearest and dearest. This comforting thought removed the fear of dying. The most deadly blow one could deal to one's enemy was to destroy his ancestral tomb, so that he and all his family would become homeless ghosts after death, condemned to eternal loneliness and misery.</p><p></p></div>	
+<div class='layout'><p>Like most of her contemporaries, Cixi associated ancestral tombs with profound religious sentiment. Faith was essential in her life, and the only thing that frightened her was the wrath of Heaven – the mystical and formless being that was the equivalent of God to the Chinese of her day. Believing in Heaven was to them not incompatible with having faith in Buddhism or Taoism. Chinese religious feelings were not as well defined as those in the Christian world. To have more than one religious belief was common. Indeed at grand ceremonies, such as an extravagant funeral, which might last well over a month, prayers were said by both Buddhist and Taoist priests as well as the lamas of Tibetan Buddhism, alternating every few days. In this tradition, Cixi was both a devout Buddhist and a devotee to Taoist doctrine. Her most revered Bodhisattva was Guanyin, the Goddess of Mercy, the only female god in Buddhism, who was a Taoist Immortal as well. She frequently prayed in her personal chapels to a statue of Guanyin, with her palms together in front of her chest. The chapels were also her private sanctuaries where she went to be alone, to clear her mind before making critical decisions. As a Buddhist, she followed the ritual of setting captured creatures free. For her birthday, she would buy many birds – latterly as many as 10,000, according to her court ladies – and on the day, choosing the most auspicious hour, she would climb to the top of a hill and open the cages carried by the eunuchs one after another, watching the birds fly away.</p><p></p></div>	
+<div class='layout'><p>It was mainly on account of the ancestral tombs that Cixi's government rejected the machine-age projects. The spirits of the dead simply must not be disturbed. Prince Gong told the foreign envoys that if this refusal meant war, then so be it. Cixi treated the threat of war seriously and issued a severely worded edict ordering provincial chiefs to resolve swiftly any outstanding disputes involving Westerners, so that no one had any pretext to start a war. Her government did its best to stick to the treaties. As Hart acknowledged, ‘I do not know of any infraction of treaties.' After more futile lobbying, Western companies gave up. China's industrial age was delayed.</p><p></p></div>	
+<div class='layout'><p>However, it was to creep in through another door. Cixi's court was united in favour of building a modern army and arms industry. Foreign officers were engaged to train troops, and engineers employed to teach the manufacture of weaponry. Technology and equipment were bought. In 1866, the building of a modern fleet started in earnest. Its chief foreign supervisor was a Frenchman, Prosper Giquel, who had first arrived in China serving in the British-French invading forces, and had stayed on. He had helped defeat the Taiping by leading a Franco-Chinese force named the Ever-triumphant Army, echoing the Anglo-Chinese Ever-victorious Army, before working in the Customs under Robert Hart. Cixi had faith in Giquel and authorised whatever money the enterprise required. There were many doubters who mistrusted a former French officer of an invading army, and others who were horrified by the astronomical cost. But Cixi was instinctively unsuspicious. She told her officials that Giquel and other foreigners ‘must be treated extra well'. ‘This fleet-building project is really fundamental to our goal to Make China Strong,' she declared excitedly.</p><p></p></div>	
+<div class='layout'><p>In the space of just a few years, nine steamships were built, of a quality that apparently could hold its own against Western ships. No bottles of champagne were cracked open when they were launched; only solemn ceremonies offering apologies to the Celestial Queen, and the Gods of Rivers and of Soil, all of whom the steamers were about to distress. When the first ship sailed resplendently into the harbour of Tianjin in 1869, crowds of Chinese and foreign inhabitants gathered to witness the spectacle, and those who were involved in its building wiped away proud tears. For his services Giquel was richly rewarded with, among other things, a mandarin jacket in the royal yellow colour.</p><p></p></div>	
+<div class='layout'><p>By the end of the first decade of her rule, Cixi had not only revived a war-torn country, but had also founded a modern navy and begun building a modern army and arms industry, with state-of-the-art equipment. Although full-scale industrialisation did not take off immediately in this ancient land, which had its own strong and deep-rooted traditions and religious sentiments, modern enterprises were appearing one by one: coal- and iron-ore mining, iron-mills building and machine manufacturing. Modern education was introduced to train the engineers, technicians, officers and crew. Railways and telegraphs were waiting just beyond the horizon. Medieval China had taken its first step towards modernisation under the empress dowager.</p><p></p></div>	
+<div class='layout'><p><a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> Wade was a pre-eminent sinologist, who pioneered the romanisation system for the Chinese language, later known as the Wade–Giles, a system that for much of the twentieth century was the tool for a non-native speaker to learn Chinese, and was an invaluable aid for the Chinese themselves to learn their own language. This author's name, Jung Chang, is spelt according to the Wade–Giles system.</p><p></p></div>	
+<div class='layout'><p><a name="pl2" id="pl2"></a><a href="#p2" title=""><sup>2</sup></a> A statue of Gordon was erected in Trafalgar Square, London, and was later moved to the Victoria Embankment. Winston Churchill spoke in Parliament in 1948 in favour of the statue's return to its original location, calling Gordon ‘a model of a Christian hero', and saying that ‘very many cherished ideals are associated with his name'.</p><p></p></div>	
+<div class='layout'><p><a name="pl3" id="pl3"></a><a href="#p3" title=""><sup>3</sup></a> In the places not despoiled or occupied by the rebels, the recovery was instant. Already in the mid-1860s, observed the English attaché, Freeman-Mitford, ‘The prosperity of Canton is evident, and very striking.'</p><p></p></div>	
+<div class='layout'><p><a name="pl4" id="pl4"></a><a href="#p4" title=""><sup>4</sup></a> Hart had at first been oblivious to the offence his memo had caused and, thinking he could force Cixi's government into industrialisation, had burst out into a ‘Hurrah!' in his diary after submitting it. Then he registered his hosts' reserve after he had done another round of lobbying at the Foreign Office, selling telegraphs and railways. He wrote in his diary that the Chinese ‘might think I was in foreign & not in Chinese pay', and he told them ‘I shd. not again refer to the matters about which I had spoken …'</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

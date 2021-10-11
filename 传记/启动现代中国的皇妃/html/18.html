@@ -1,0 +1,388 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>18 The Scramble for China</p><p></p></div>	
+<div class='layout'><p>(1895–8)</p><p></p></div>	
+<div class='layout'><p>AFTER the catastrophic war was over, Cixi returned to retirement. On 30 June 1895, a retinue formally accompanied her out of the Forbidden City to the Sea Palace, before she eventually moved back to the Summer Palace. With eunuchs in colourful costumes designed for special occasions, and court musicians playing trumpets, Prince Gong and the other grandees knelt on a stone path facing south, and banged their heads on the ground three times when Cixi's sedan-chair passed. Henceforth, whenever she visited the Forbidden City, there were elaborate rituals involving all the officials inside the palace wearing ceremonial robes. Such rituals highlighted the fact that she was not running the state.</p><p></p></div>	
+<div class='layout'><p>Yet this new period of retirement was different from before. Since the Pearl affair, Cixi had been given sight of all key documents, and this continued. Her adopted son consulted her far more nowadays, and there was a marked increase in his visits to the Summer Palace. The young emperor and the Grand Councillors realised that signing the ruinous treaty against the wishes of the empress dowager was tantamount to ‘drinking poison to quench thirst'. It had brought the empire anything but genuine peace. Viceroy Zhang, who had petitioned feverishly against signing the treaty and been ignored, now pointed out that the treaty only enriched Japan and whetted its appetite, and that it would be sure to seek to conquer a drastically enfeebled China at a future stage. In addition, the European powers were now all too aware how weak the empire was and would make endless demands backed up by the threat of war, knowing that China was unable to call their bluff.</p><p></p></div>	
+<div class='layout'><p>Indeed, as far as the European powers were concerned, China was now exposed as a paper tiger. Hitherto they had regarded her with a certain respect, partly on account of her size. Now they knew the giant was ‘filled with wind', to quote Charles Denby, and ‘the Chinese bubble had burst'. They learned that ‘she could not fight, and were prepared on the slightest pretence to seize her territory'. While the kinder-hearted excused her (‘China is not a warlike nation – her antecedents, her civilization, her idiosyncrasies, all make for peace, and it's a pity that the rough world should disturb it …' wrote Robert Hart), the general attitude was undisguised contempt. Grand Tutor Weng noted: ‘When the envoys of Western countries come to the Foreign Office, they no longer behave in a courteous manner; they shout abuse at the drop of a hat.' Witnessing one visit to the Foreign Office by some Westerners, a Chinese official felt his ‘blood vessels were bursting from outrage'.</p><p></p></div>	
+<div class='layout'><p>Emperor Guangxu felt defensive. It was noticed that he did not make a full public statement about the war, but only wrote to top officials, asking for their understanding – and telling them not to speak about the matter again, thus vetoing a post-mortem. The emperor offered no reflections on the lessons to be learned, or on specific plans for the future – apart from the platitude that they must do ‘the two big things: train the army and find more money to fund it'. He was troubled, and tried to deflect responsibility in the most childish way, telling some officials that two of the Grand Councillors had ‘forced me to ratify' the treaty. The main scapegoat was Earl Li. But rather than blaming him for the actual damage he had done – misleading the throne about the strength of China's defence before the war and mishandling the war when it broke out – the emperor went along with the widespread rumour that Earl Li had signed the treaty without his authorisation. At his first post-war audience with the earl, His Majesty berated Earl Li for handing over 200 million taels of silver, plus Taiwan and all the rest, when he himself had actually charged the earl to do so. The earl, who had just recovered from a pistol wound sustained in an assassination attempt while he was negotiating in Japan, could do nothing but bang his head on the floor again and again, saying: ‘Yes, yes, Your Majesty, it is all my fault.' This charade was acted out in front of the Grand Councillors, all of whom were aware of the truth.</p><p></p></div>	
+<div class='layout'><p>If a Chinese monarch were to receive the loyalty of his officials, he had to be seen to be fair. Cixi had a knack of being just with her officials. Her rewards and punishments were generally thought to be apportioned fairly. This was key to the fierce loyalty she commanded, from those who disagreed with her as well as those who agreed. But Emperor Guangxu had none of her skills. During the war he had gravely mistreated Admiral Ting, which partially contributed to the sorry surrender of the Northern Fleet with its ten gunboats. An embittered Earl Li thought that the emperor did ‘not even look like a monarch', and said so to his trusted subordinates. It became known even to officials outside the earl's camp that he wished for a change at court: that he wished Cixi to be in charge.</p><p></p></div>	
+<div class='layout'><p>Cixi did not chide her adopted son or the Grand Councillors with an ‘I told you so'. Rather, she decided that at such a moment the best thing to do was be gracious to the men. Indeed they were overcome with gratitude. Prince Gong had been the prime advocate for the signing of the treaty. But Cixi uttered not a word of reproach. Instead she invited him to stay in the Summer Palace, attending to such details as the furnishing of his quarters and the kind of food served to him. The prince was so grateful that he struggled from his sickbed to go to Cixi as soon as she asked for him, disregarding his son's entreaty that, given his condition, he should stay at home and rest and not subject himself to kneeling and other forms of demanding court etiquette. On one occasion, noted Grand Tutor Weng, Prince Gong was in the Summer Palace when the emperor arrived, but he did not come to greet His Majesty until a full day later, which seemed very like insolence to the tutor. Cixi was now a sort of mistress of the court. The grandees were at her beck and call, rushing to the Summer Palace when summoned and, if she so wished, staying on, accompanying her on her outings – which was most unusual. Sometimes they failed to turn up for the daily audience in the Forbidden City.</p><p></p></div>	
+<div class='layout'><p>If Emperor Guangxu felt resentment, he did not show it. Instead he became more submissive to his Papa Dearest. This touched Cixi, who described him as ‘an extremely nice person'. Cixi's feelings towards her adopted son acquired a new tenderness during the war, as she knew the weight of the burden on him and his limitations. Grand Tutor Weng saw that when the emperor fell ill, Cixi was gentle and kind to him, visiting his sickbed daily, and showing a degree of lovingness that he had never seen. To a Viceroy she said simply: ‘I really love the emperor.' Now she spent more time with him, showing him round her Summer Palace and the beauty spots nearby. She reinstated the titles of Imperial Concubine Pearl and her sister, Jade. People noticed that mother and son got on really well during this period.</p><p></p></div>	
+<div class='layout'><p>Cixi wanted no one around to disrupt their relationship. It was now that the emperor's friends who had urged him to shun her were cleared out of the court. Officials were warned that ‘anyone doing this again will not get off so lightly, and will be punished severely'. The emperor's study was closed down altogether, so there was nowhere he could listen to secret whispers.</p><p></p></div>	
+<div class='layout'><p>With Emperor Guangxu so compliant, Cixi took it upon herself to deal with what she regarded as the most pressing matter: the threat of Japan. Heavyweight strategists like Viceroy Zhang had strongly argued an alliance with Russia, China's northern neighbour and the only European power that was directly affected by Japan's rise. Cixi was conscious that Russia also had territorial designs on China: it had carved off a huge chunk in 1860, and tried again two decades later over Ili in Xinjiang, on which occasion Cixi had forced it to back off. But after spending months weighing up the pros and cons, she decided that seeking an alliance with Russia was still preferable to doing nothing and waiting for Japan to attack again. At the beginning of 1896, China began to try to secure a Russian commitment to fight on its side if the country was invaded by Japan. The Grand Council decamped and followed the empress dowager to the Summer Palace, setting up a temporary office in bungalows outside its eastern gate. Prince Gong moved into a mansion next door. No one cared where the emperor was.</p><p></p></div>	
+<div class='layout'><p>Through the Chinese minister in St Petersburg, Cixi knew what China could offer Russia in return. The Trans-Siberian Railway that would connect Moscow and European Russia with the Russian Far East faced the choice of two routes before arriving at its terminus, the port of Vladivostok on the Pacific. If it stayed on Russian soil it would have to travel in a long arc, over difficult terrain, 500 kilometres longer than a straight line through northern Manchuria. The Russians wanted to build a shortcut through Chinese territory. After debate in the top circle, Cixi made up her mind to grant Russia its wish to construct the line, which later became known as the Chinese Eastern Railway (or the ‘Siberian Railway'). The line actually made considerable economic sense to China. Linking Asia with Europe by land, it would be a money-spinner, as the huge volume of goods passing through could be taxed by Beijing. Since Russia offered to build it, its construction would be of minimal cost to China and, to ensure the empire would reap the benefits, Beijing put up part of the initial capital (five million taels), and became a shareholder (one-third), making the railway a joint venture. If ever the relationship with Russia soured, the railway was on Chinese land, and China could, theoretically, do what she liked with it. And all this was on top of a guaranteed powerful military ally in the event of a Japanese assault.</p><p></p></div>	
+<div class='layout'><p>The drawback, so far as anyone could predict, was a dramatic increase in Russian influence in Manchuria, bringing unforeseen consequences. Cixi knew that Beijing had to be ‘on guard against future perils', but shielding the empire against Japan overrode all such considerations.</p><p></p></div>	
+<div class='layout'><p>Once decided on this approach, Earl Li was sent to Moscow to negotiate the pact. Cixi had turned against the earl for his role in the war with Japan, and was only employing him out of expediency – he was an unrivalled negotiator. It so happened that the coronation of Tsar Nicholas II would take place in May 1896, so the earl went as China's Minister Extraordinary for the coronation, while the real purpose of his trip was kept secret. When it became known that he would be visiting Russia, invitations arrived from other countries: Britain, France, Germany and the US. This was the very first trip abroad by a top-level dignitary – no less than ‘China's leading statesman' in Western eyes. In order not to alienate these powers, and to conceal the real purpose of the trip, Earl Li toured the four other countries as well. The tour generated much fanfare, but little substance.<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a></p><p></p></div>	
+<div class='layout'><p>The Russo-Chinese Secret Treaty was concluded successfully and signed on 3 June, days after the coronation of Tsar Nicholas II. Its opening line stated explicitly that Russia would use all its available armed forces to aid China, should it be invaded by Japan.</p><p></p></div>	
+<div class='layout'><p>Earl Li was full of excitement when he was given the job. He took it as an indication that the empress dowager had forgiven him, and was willing to work with him again, now that she seemed to be very much in charge. And the earl was confident in his own abilities. Before departure, at a bon voyage banquet in a marquee, a high wind coated the dishes with dust. But the earl ate heartily, talking and laughing in high spirits. Told that the God of Wind had come to pay homage to him – and that after his grand tour he would return to the centre of state affairs and achieve even greater things – the earl smiled, nodded and basked in the flattery.</p><p></p></div>	
+<div class='layout'><p>During the trip the earl was feted by the heads of the states he visited and hailed as the ‘Bismarck of the East'. The New York Times carried this description of him: ‘He walks and sits with his massive head inclined forward on his breast, recalling Browning's picture of Napoleon – “the prone brow oppressive with his mind.” ' But as soon as he set foot on Chinese soil again in late 1896, Earl Li realised that everything was not all right. He was made to wait for more than two weeks in Tianjin (where he disembarked), before being summoned to Beijing. In the capital he was given a mere half-hour audience with Emperor Guangxu, whose attention was almost exclusively given to the diamond-studded medal that Germany had presented to His Majesty. When the earl attempted to describe the strength of the West and the urgent need for China to reform, the young monarch told him to ‘discuss these matters with Prince Gong and see what you can do'. As the earl did not have high expectations of the emperor in any case, he was not unduly disappointed. It was the next interview, with the empress dowager on the same day, that left him ‘feeling really frightened'. Whatever Cixi said to the earl, of which there appears to be no record, it was certainly chilling, for the earl sank into a despondent torpor after the meeting. He was staying in a temple near her Summer Palace, and distractedly he wandered into the nearby ruins of the Old Summer Palace. Knowing who he was, eunuchs guarding the royal ruins allowed him entry. The earl's mind, as he himself wrote, continued to be ‘in turmoil the whole night'. The next morning he tendered his resignation from all posts.</p><p></p></div>	
+<div class='layout'><p>A curt imperial one-liner ignored his resignation, but implicitly made clear that he had been sacked, by announcing his new job: ‘to work in the Foreign Office' – no longer as its overlord, but as an ordinary official. His two previous key posts, Imperial Commissioner for North China and Viceroy of Zhili, had already been transferred to somebody else and were not returned to him. The earl was allowed only to keep the title of Chief Administrator of the empire, which was largely honorific. As if this was not punishment enough, another edict publicly censured him for ‘trespassing into a royal estate' and fined him a year's salary. These crushing blows were inflicted by the empress dowager, who wanted to punish the earl for his responsibility for China's ruin – although she was unable to spell this out publicly, as it was impossible to expose the precise nature of the earl's culpability without exposing that of the emperor. However, she left the complacent earl in no doubt that their close political relationship was over. And for the glory he had just enjoyed abroad, he would receive double punishment (hence fining him for ‘trespassing' in addition to dismissing him). Later on, when Cixi returned to full power, and seemed to need a capable man by her side, the earl attempted to have himself reinstated. Cixi let him know that he deserved only further suffering, by sending the seventy-five-year-old on a hardship journey along the frozen Yellow River ‘to conduct a geological study and propose ways to control flood'.</p><p></p></div>	
+<div class='layout'><p>Thus Cixi ended her decades-long political partnership with Earl Li, an outstanding but gravely flawed statesman. With this, and the sense of relief that peace for the empire was secured for the foreseeable future by the pact with Russia, Cixi effectively turned her back on state affairs. The emotional roller-coaster during the war, with all its anxieties and frustrations and anguish, had exhausted her. She was shattered to see the fruits of her labour, over several decades, vanish. At sixty, she seems to have lost heart for a new beginning. The empress dowager was no longer her former self – she who had been so dynamic, presiding over debates, issuing decrees and launching policy innovations. She no longer seemed to care. After all, her adopted son was in charge. She could exercise control over one or two critical matters, but she could not interfere in daily affairs. Emperor Guangxu was in his usual state of inertia and cluelessness as far as reforms were concerned. When Viceroy Zhang presented a proposal for restarting modernisation, the emperor merely mouthed some clichés and did nothing. The railway programme, at least, did get restarted, including the Beijing–Wuhan Railway, which had been launched by Cixi, but shelved by the emperor. Now everyone recognised the railways' vital importance, even Grand Tutor Weng.</p><p></p></div>	
+<div class='layout'><p>At this time, the budding Chinese bourgeoisie, rooted in shipping, mining and trade, and not affected by the war, was still active. Electricity had reached inland provinces like Hunan, where ‘whole towns are bright with electric lights', an eye-witness exclaimed. Entrepreneurs were developing new ideas. Sheng Xuanhuai, the business pioneer who was entrusted with the building of the Beijing–Wuhan Railway, was calling for the founding of a state bank. If this idea had been put to her in the earlier years, Cixi would have adopted it eagerly. But now she appeared indifferent, and Emperor Guangxu told Sheng to form a bank himself through private investment. Foreign observers who had had high hopes of China carrying out reforms after Earl Li's tour of the West were disappointed. They saw that in more than two years since the end of the war, the country ‘had done nothing to reform her administration or to reorganise her forces' and had learned no lesson from the defeat.</p><p></p></div>	
+<div class='layout'><p>Cixi's multitude of interests outside politics made it easier for her to let go. And she concentrated on pursuing pleasure. On the occasion of the Moon Festival in 1896, which fell on 21 September, after the secret pact with Russia was wrapped up, she invited court grandees to the Summer Palace to celebrate. They were met at the Villa of the Jade Balustrade, the Yu-lan-tang, which sat right on the edge of the lake, with a panoramic view. It was the residence of the emperor, but Cixi acted as host. As Grand Tutor Weng recorded, she declared that the villa was ‘full of light and air, better than the Forbidden City', and she was ‘all praise and solicitude' for the grandees of their ‘hard work' in concluding the Russian pact. Enquiring after a Grand Councillor who had been ill, she offered medical advice, telling Weng to warn him that he ‘could take ginseng, but only with care'. State business was not discussed. The grandees were told to enjoy themselves. When night descended, a full moon rose in a rain-washed, now cloudless sky, magnificent over the Kunming Lake. Grand Tutor Weng drank with a few friends and enunciated poems. As the moon declined in size and brilliance, they wallowed in melancholy.</p><p></p></div>	
+<div class='layout'><p>On that day there was no music. Emperor Guangxu's biological mother – Cixi's sister – had died on 18 June, and a 100-day mourning period was still in force, with the usual ban on all music. Three days later, when mourning came to an end, and Cixi and the emperor had discharged their final duties, the first notes were struck in a novel fashion. At dusk, decorated boats carried the grandees into the middle of the lake, where they stopped, gently swaying with the ripples sparkling under the moon. At a signal, all around the boats, red lanterns in the shape of lotus flowers lit up – powered by electricity – and a brilliantly illuminated platform floated silently into their midst. Opera was then performed on it, with modern lighting, the first ever witnessed by the grandees. This was followed by a firework display, dazzling against the dark silhouette of the nearby hill. Cixi was showing off her staging of the spectacle, disregarding the rising chill of the night on the water. Grand Tutor Weng, impressed though he was by the extravaganza, could not wait for it to finish, whereupon he rushed away to wrap himself up in a big padded coat.</p><p></p></div>	
+<div class='layout'><p>The greater the joys the Summer Palace gave her, the more heartache Cixi felt. If that vast sum had not been given to Japan by those gutless men, how much she could have done to restore the Old Summer Palace! How much more beauty and splendour she could have created! And how many more modernisation projects could have been realised! As she restrained herself from berating the men, she was consumed by fury. One day, an irrepressible desire to lash out seems to have taken hold of her and she told the Ministry of Revenue, headed by Grand Tutor Weng, that she planned to start restoring the Old Summer Palace, and that she wished them to pass over to her all the tax collected from domestically grown opium. Large tracts of land had been used to grow this drug since its legalisation in 1860, and the revenue derived from it was sizeable.</p><p></p></div>	
+<div class='layout'><p>The demand was insane, not only because it came at a time when the empire was crushed by colossal debts, but also because she was asking for the construction of a pleasure palace to be put on the state budget. She had made no such demand when she built her Summer Palace. In fact she had given a specific public assurance that it would not be funded by the state. Any public money she had used had been effectively stolen. Now, it was as if she were taunting the grandees: ‘You had the money to give to the Japanese; I might as well have some for my use. It is you who have bankrupted the country and you have no right to deny me!' And, indeed, the grandees had forfeited the moral right to oppose her demand. Grand Tutor Weng sheepishly set out to explore ways to fulfil her wishes.</p><p></p></div>	
+<div class='layout'><p>It took the Grand Tutor a year to arrive at a solution, such was his reluctance. In early summer 1897, he reported that he had consulted Robert Hart, and Hart reckoned that the output of domestically produced opium was substantially under-reported, and that taxation on the opium could be as much as twenty million taels per annum – considerably more than the state was receiving. Weng proposed to collect opium tax on the basis of Hart's estimated output, and hand over 30 per cent to Cixi ‘for the building of royal palaces'. This would give her six million taels annually – an incredible sum. Cixi embraced the report with alacrity.</p><p></p></div>	
+<div class='layout'><p>Opposition was immediately voiced: not by any grandee, but by Li Bingheng, the governor of Shandong, the coastal province southeast of Beijing. He argued that the new estimate of opium output was far too high, and that in the case of Shandong, taxation on that basis would be ten times what it currently was. ‘Even exploitation to the limit may not be enough,' he wrote. As it was, in order to produce funds to help pay foreign debts, people in the provinces were already carrying an unbearable burden. Anything extra would be impossible, and could drive the people to rebellion. He urged the court to reject the report from the Ministry of Revenue, to ‘abandon the desire to seek pleasure' and ‘not to ruin our people'.</p><p></p></div>	
+<div class='layout'><p>When she saw the argument, Cixi knew at once that she must forgo her dream. As she withdrew her request, the emperor referred the governor's petition to the Ministry of Revenue for reconsideration, and the ministry readily revoked what it called ‘the scheme of the Inspector General'. No one in the government wanted his name to be associated with the scheme, and Robert Hart was thus made a convenient ‘scapegoat'. Governor Bingheng, the plan's outspoken opponent, was promoted to Viceroy. The ruins of the Old Summer Palace remained ruins.</p><p></p></div>	
+<div class='layout'><p>Cixi's pleasure-seeking period was in any case brief. Her nightmare scenario, articulated so eloquently by Viceroy Zhang in opposing the signing of the Treaty of Shimonoseki, materialised in late 1897. European powers, contemptuous and aggressive now towards China, began clamouring to grab a piece of the empire. Germany demanded Jiaozhou Bay in Shandong province, with its port Qingdao, as a naval station, claiming that it deserved this reward for helping force Japan to withdraw from the Liaodong Peninsula. As Beijing repeatedly rebuffed the demand, Kaiser Wilhelm II decided to use ‘a little force'. German warships cruised up and down the coast, seeking what the Kaiser called ‘a desired opportunity and pretext', which was soon found. On 1 November, two German missionaries were murdered in a village in Shandong. As Governor Bingheng acted at once to hunt down the criminals, the Kaiser was rejoicing: ‘So the Chinese have at last given us the grounds and the “incident” which [the Germans] so long desired.' A German fleet, already prepared for action, arrived at Qingdao and gave the Chinese garrison forty-eight hours to vacate the port.</p><p></p></div>	
+<div class='layout'><p>As soon as he received the ultimatum, Emperor Guangxu, fearing an invasion, acted like a scared rabbit and fired off a telegram ‘absolutely forbidding' Governor Bingheng to resist by force, which the outraged governor had proposed to do. In a further telegram, the emperor declared: ‘No matter how thuggishly the enemy behaves, the court will absolutely not resort to war.' According to Grand Tutor Weng, ‘His Majesty forcefully insisted on two words: “No fighting [bu-zhan].” ' Only after these exchanges was Cixi informed, when the reports and edicts were carried in person by Prince Gong to the Summer Palace. On his return to the Forbidden City the prince, much relieved, told the Grand Council that she had ‘accepted them'. The German demands were met more or less in full, with Prince Gong counselling ‘yes to all', in order to get the German soldiers who had occupied the port out of the country. The Germans had made their demands in brutally blunt language: ‘If you don't concede, we will start a war.' One of the demands concerned Governor Bingheng: he must ‘be cashiered and dismissed from the public service'. The governor, who had been promoted after speaking out against Cixi's plan to rebuild the Old Summer Palace, was now forced out of office by the Germans. This personal experience turned him into a dedicated West-hater, and he would soon become a wholehearted promoter of the xenophobic Boxers. When the Boxer movement led to an invasion by Western armies, he volunteered to lead an armed force to fight them, and committed suicide when defeated.</p><p></p></div>	
+<div class='layout'><p>Germany acquired the strategic port of Qingdao<a name="p2" id="p2"></a><a href="#pl2" title=""><sup>2</sup></a> and its bay ‘by way of lease, provisionally for ninety-nine years'. The convention was signed in Beijing on 6 March 1898 by Earl Li and Grand Tutor Weng. The earl was by now a professional scapegoat, trotted out to sign anything that would give the signatory a bad name. The Grand Tutor had been appointed to the Foreign Office at the insistence of Prince Gong, who wanted the man full of verbal bravado to have his share of blame for signing treaties that amounted to ‘selling out the country'. The Grand Tutor noted that when the German representative requested the signature of Prince Gong, the prince merely pointed at the tutor. He felt bitterly ashamed for his part in giving away Qingdao to the ‘stinking beasts', torturing himself with the thought that he would now ‘go down in history as a criminal'.</p><p></p></div>	
+<div class='layout'><p>Although Cixi had played no part in recent events, but had simply accepted a fait accompli, her behaviour was remarkably consoling. Weng gratefully recorded that when the Grand Council upbraided themselves for doing a poor job, ‘the Empress Dowager comforted us with kind words, and said that she understood completely our difficulties'. She only expressed grief at the fact that China was reduced to such a sorry state.</p><p></p></div>	
+<div class='layout'><p>Things were tumbling from bad to worse. After the Germans came the Russians. Within a week of the German dash for Qingdao, Russian warships arrived at Port Arthur, on the tip of the Liaodong Peninsula. Russia had been one of the powers that had forced Japan out of the peninsula – only to demand the port for itself now. ‘If Germany occupies Qingdao, Russia must have Port Arthur,' said the Russians. Count Witte, Russia's negotiator of the secret deal with China the year before, regarded his country's conduct as ‘the height of treachery and faithlessness'. Still he did what he could to achieve its object. When Beijing resisted the demand and Russia threatened war, Witte advised bribing the Chinese negotiators, Earl Li and Sir Chang Yinhuan, a suave diplomat. (Sir Yinhuan had been China's representative to Queen Victoria's Diamond Jubilee the previous year, and was knighted on the occasion, thus becoming the first Chinese official to be given a British knighthood.) According to Russian documents, they were offered half a million taels each, and both accepted. The Russians had also wanted to bribe Grand Tutor Weng, but the traditionalist gentleman refused to attend any secret meetings with them.</p><p></p></div>	
+<div class='layout'><p>The earl received his half-million in person and ‘expressed satisfaction' the day after he signed away Port Arthur – albeit ‘only' on a twenty-five-year lease – on 27 March 1898. Actually, whether he took the money or not would not have made the slightest difference. Beijing's verbal resistance would have collapsed if Russia stepped up its threat of war, a war that Emperor Guangxu wanted to avoid at all costs. At court, the grandees could do nothing but weep together; ‘what a pathetic sight,' lamented Weng. The earl also knew that he was the designated scapegoat. In an audience a few days before the signing, the emperor was already putting all the blame on him as he berated the earl: ‘Now we have this trouble with Russia. What happened to that secret treaty of yours last year ' There was nothing the earl could say or do, except prostrate himself, panting. Eventually, when the emperor motioned for him to leave, he was unable to rise and had to be pulled up, after which he struggled to steady himself to catch his breath, before staggering out. After such treatment, perhaps the earl felt he deserved the money. His general frame of mind can be gleaned from his words to Sir Yinhuan when the latter complained of being made a signatory and having his reputation destroyed: ‘It's not just you and I who are about to be destroyed. We [the whole empire] are all going down together.' For the moment Sir Yinhuan took just 10,600 taels, telling the Russians that he was already under a barrage of denunciations for bribe-taking. He had to wait, he said, for the storm to die down.</p><p></p></div>	
+<div class='layout'><p>Cixi was not consulted about signing away Port Arthur. When Earl Li had asked the emperor: ‘Has Your Majesty talked to the Empress Dowager about this ' he replied that he had not. He also told Grand Tutor Weng that he had not even mentioned the business to Cixi, because she was already ‘despondent with grief'. The Grand Tutor could ‘imagine how much bottled-up anger and bitterness' the empress dowager was feeling. Clearly, Emperor Guangxu was afraid about being made to feel guilty again, even if only by Cixi's looks rather than her words. In any case, there would have been no point in telling her: as far as he was concerned, there was no alternative to leasing out Port Arthur.</p><p></p></div>	
+<div class='layout'><p>Emperor Guangxu tried to avoid any act that might trigger Cixi's suppressed rage for his disastrous handling of the war with Japan, which had led to all these crises. Censor Weijun, who had made false accusations against her in order to keep her away from decision-making in the war, and who had been sent to the frontier, had served his term and was about to return to Beijing. When this came to the emperor's notice, Grand Tutor Weng recorded that he ‘thought hard for a long time, and gave orders that the man stay where he was for another couple of years', adding, ‘His Majesty really has the man's interests at heart.' Emperor Guangxu was concerned that if the Censor were to come back, he might well become a lightning conductor for the empress dowager's fury.</p><p></p></div>	
+<div class='layout'><p>Following in the footsteps of Germany and Russia, Britain and France were keen not to miss out. Britain leased the former headquarters of the Northern Fleet, Weihaiwei, on the easternmost tip of the Shandong Peninsula – on the opposite coast from the Russian-leased Port Arthur. The British lease was to run as long as the Russian one: twenty-five years. The two countries were playing the Great Game, vying for power and influence in the East. Britain also added the Kowloon Peninsula and the New Territory to its Hong Kong colony – for a period of ninety-nine years. For the same length of time France leased Guangzhouwan, a small enclave on the south coast, as an outlier of French Indochina. Fujian province, across the sea from Taiwan, now a Japanese colony, became a Japanese sphere of influence. Thus by mid-1898 the strategic positions on the Chinese coast were more or less all in the hands of foreign powers, who could, if it suited them, do what they wished with China.</p><p></p></div>	
+<div class='layout'><p><a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> The only publicly announced objective that had any substance was to persuade Western powers to accept a higher customs tariff. Although the powers generally agreed that this was fair, no action followed and the tariff remained unchanged for the time being.</p><p></p></div>	
+<div class='layout'><p><a name="pl2" id="pl2"></a><a href="#p2" title=""><sup>2</sup></a> Hence the Qingdao beer of today, first made by German brewers.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

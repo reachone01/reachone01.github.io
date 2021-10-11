@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>4 The Coup that Changed China</p><p></p></div>	
+<div class='layout'><p>1861</p><p></p></div>	
+<div class='layout'><p>THOUGH her son succeeded to the throne, Cixi had no political power. In fact, as a concubine, she was not even the new emperor's official mother. That was the role of Empress Zhen, who immediately assumed the title of dowager empress – huang-tai-hou (interchangeable with empress dowager). No title was given to Cixi. Nor was she with her son when he was conducted by a Regent to bid goodbye to his late father, acting out a ritual in which he held a gold cup containing liquor over his head, then emptied it on the ground, before placing the cup on a gold-cornered table in front of the bier. Cixi belonged to the unnamed ‘others' in court records, who, ‘headed by the dowager empress', namely Empress Zhen, performed a similar ritual.</p><p></p></div>	
+<div class='layout'><p>Cixi needed the title of a dowager empress. Only then would she acquire the status of the mother of the emperor. Without it she was a mere concubine. A clash with Empress Zhen seemed inevitable, and the two women had an emotional row for the first time in their relationship. But they soon found a solution. Court records were trawled and it was discovered that there had been a similar case. Almost exactly 200 years previously, when Emperor Kangxi succeeded to the throne in 1662, his mother had also been a concubine, but had been given the title of dowager empress, so there had been two dowager empresses simultaneously. With this precedent, the Board of Regents awarded Cixi the title. The friendship of the two women was unscathed, and they were referred to as the Two Dowager Empresses. In order to distinguish between them, they decided on different honorific names. Empress Zhen took ‘Ci'an', which means ‘kindly and serene',<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a> and Cixi, hitherto called Imperial Concubine Yi, took Cixi, meaning ‘kindly and joyous'. It was from now on that she became known as Empress Dowager Cixi.</p><p></p></div>	
+<div class='layout'><p>The two women did more than resolve a major problem, they went on to form a political alliance and launch a coup. Cixi was twenty-five years old and Empress Zhen a year younger. Facing them were eight powerful men in control of the state machine. The women were well aware of the risk they were taking. A coup was treason, and if it failed the punishment would be the most painful ling-chi, death by a thousand cuts. But they were willing to take the risk. Not only were they determined to save their son and the dynasty, but they also rejected the prescribed life of imperial widows – essentially living out their future years as virtual prisoners in the harem. Choosing to change their own destiny as well as that of the empire, the two women plotted, often with their heads together leaning over a large glazed earthenware water tank, pretending to be appraising their reflections or just talking girls' talk.</p><p></p></div>	
+<div class='layout'><p>Cixi devised an ingenious plan. She had noticed a loophole in her late husband's deathbed arrangements. The Qing emperors demonstrated their authority by writing in crimson ink. For nearly 200 years, beginning with Emperor Kangxi as a young adult, these crimson-inked instructions had always been written strictly by the hand of the emperor. Now, however, the monarch was a child and could not hold the brush. When the decrees were issued by the Board of Regents in the child's name, there was nothing to show authority. There was the official seal, but it was only used on very formal occasions, and not on everyday communications. This deficiency was pointed out to the Board after it issued the first batch of decrees. It was told, then, that the late emperor had given one informal seal to the child, which was kept by Cixi, and another similar seal to Empress Zhen. It was suggested to the Board that these seals could be stamped on the decrees as the equivalent of the crimson-ink writing, to authenticate them. It was undoubtedly one or both of the women who pointed out the deficiency and made the suggestion. Such informal seals, numbering in the thousands in the Qing court, were not political items, but objects of art commissioned by the emperors for their pleasure, which they sometimes stamped on their paintings and books – or gave as presents in the privacy of the harem.</p><p></p></div>	
+<div class='layout'><p>The Board of Regents accepted the solution and announced that all future edicts would be stamped with the seals. They made the announcement as a postscript on a decree that had already been written and was about to be issued – a sign that the idea had only just been put to them, that they had approved it and had hurriedly put it into practice. The postscript also stated that they were issuing the current edict without the seals, as there was no time to stamp it. Clearly they had not known about the existence of the seals until then and had to have them fetched from the harem.<a name="p2" id="p2"></a><a href="#pl2" title=""><sup>2</sup></a> A formal proclamation followed, making the use of the two seals obligatory on all edicts: one at the beginning and the other at the end.</p><p></p></div>	
+<div class='layout'><p>The authority of the seals was thus established, an accomplishment that would be vital in the forthcoming coup. It is possible that the seal allegedly given to the child and kept by Cixi was actually a present to Cixi herself, which she attributed to the child emperor, to give it more weight. The Board of Regents readily agreed to the use of the seals because they regarded them as mere rubber stamps. The women had given them the illusion that ‘all is in harmony, and all is fine', and ‘everything is following old rules  … ' The Regents felt ‘very pleased' about the compliance of the Two Dowager Empresses and had no idea what was in their minds.</p><p></p></div>	
+<div class='layout'><p>Next the women tried to secure Prince Gong as an ally. The prince was the foremost nobleman in the land and was held in high esteem. There was a consensus among top officials and generals that he should have been made the Regent. Whereas the appointed Board had only brought disaster to the empire, the prince had succeeded in getting the allied troops out of Beijing and in restoring peace. The army and the Praetorian Guards listened to him. It was also clear to Cixi that the prince, too, wanted a different approach to foreign policy.</p><p></p></div>	
+<div class='layout'><p>Prince Gong was in Beijing at this moment. He had stayed on after concluding the treaties the year before, on the express order of Emperor Xianfeng. When he had begged to come to the Hunting Lodge to visit his half-brother, who had fallen ill, Emperor Xianfeng had replied: ‘If we saw each other, we could not avoid recalling the past, and that would only make us feel sad, and would really not be good for my health … I therefore order you not to come.' On his deathbed, the emperor had again sent instructions specifically telling Prince Gong to remain in the capital. He had not wanted the prince around because he had intended to exclude him from the Board of Regents – for the same reason as their father had kept the prince off the throne. Prince Gong was no hardline hater of the West; he was pliable towards Westerners, as the signing of the treaties had proven. The prince felt no bitterness for any of Emperor Xianfeng's decisions, however apparently unfair they had been. He had a reputation for being honourable. Ever since his half-brother had ascended the throne, he had shown no resentment – only a complete absence of personal ambition. He had composed eulogies to his half-brother, as befitted a prince to an emperor, and had written poetic lines on his brother's paintings, which was something done between close friends. The prince's character had won him the trust of his half-brother. Emperor Xianfeng had left him alone in the capital to deal with the Europeans, who he knew preferred the prince to him and were entertaining plans to put Prince Gong on the throne in his place. Prince Gong's impeccable record of loyalty, his lack of interest in supreme power and in intrigue were also important factors to Cixi as she prepared to make herself his boss.</p><p></p></div>	
+<div class='layout'><p>So, within days of her husband's death, Cixi quietly extracted an edict out of the Regents allowing Prince Gong to visit the Hunting Lodge to bid his late half-brother farewell – in spite of the late emperor's order. Not to allow the prince to come would simply be unseemly.</p><p></p></div>	
+<div class='layout'><p>When Prince Gong arrived, he threw himself to the floor in front of the bier and cried out in floods of tears. An eye-witness observed that ‘no one had shown so much grief as he did'. Those present in the hall were moved and started sobbing themselves. After this show of sorrow, a eunuch came with a message from Cixi and Empress Zhen, summoning the prince to the harem. Some grandees were against the meeting, pointing out that tradition dictated that brothers and sisters-in-law should be kept apart, especially when the sister-in-law had just lost her husband – even if there was the obligatory screen to separate them. But the Two Dowager Empresses insisted, sending more eunuchs to deliver their request. Prince Gong, always anxious to behave correctly, asked the Regents to go in with him. But the two women sent out a firm ‘No'. He went in alone, and did not re-emerge for two hours.</p><p></p></div>	
+<div class='layout'><p>This was a very long audience, much longer than any the Regents had been given. But it rang no alarm bells with them. They believed Prince Gong's explanation that he had to spend a great deal of time trying to persuade the women to return to Beijing as soon as possible, and to reassure them that there would be no danger from the foreigners. The Regents had total confidence in Prince Gong's probity, and had been lulled by the two women into a relaxed and complacent frame of mind.</p><p></p></div>	
+<div class='layout'><p>Knowing how prudent the prince was, Cixi, it seems, did not broach the idea of a coup at this first meeting. Overturning the late emperor's solemn will was not something he would readily contemplate. What the conversation seems to have achieved was an acceptance from Prince Gong that the empire should not be left entirely in the hands of the Board of Regents, who, after all, had such a woeful track record. On this basis, the prince agreed to get someone in his camp to petition for the Two Dowager Empresses to take part in decision-making, and for ‘one or two close princes of the blood to be selected to assist with state affairs'. The petition would not mention Prince Gong by name. He clearly wanted to avoid the impression that he coveted power, even though he had solid ground to stake a claim.</p><p></p></div>	
+<div class='layout'><p>This idea was secretly conveyed to Prince Gong's camp in Beijing, and a relatively junior subordinate was designated to write the petition. Prince Gong feared that the Board of Regents might detect the link with him when they saw the petition, so he left the Hunting Lodge before it arrived. On the eve of his departure for Beijing, he saw Cixi and Empress Zhen again. And this time the discussion was inescapably about what should be done if the Regents turned down the proposal.</p><p></p></div>	
+<div class='layout'><p>It seems that Prince Gong agreed that force could be used to oust the Regents – but only as a last resort, and only after some unpardonable act on their part had been exposed, so that the coup would appear legitimate. The prince cared very much about his honour. What his role would be after the coup was still not decided, which suggests that Prince Gong thought it unlikely that the coup would happen soon, if at all.</p><p></p></div>	
+<div class='layout'><p>Nothing would have happened, if there had been no further initiative from Cixi. As expected, the Regents rejected the petition unequivocally, on the grounds that the late emperor's will could not be altered, plus the cast-iron rule that women must be kept away from politics. Cixi now had to make the Regents do something inexcusable so that Prince Gong would agree to oust them. She and Empress Zhen set out to provoke an offence. Cradling the child emperor, they summoned the Regents and engaged them in a heated confrontation about the petition. The men grew angry and replied contemptuously that, as Regents, they did not have to answer to the two women. As they roared, the child became scared and cried and wet his pants. After a prolonged row, Cixi gave the impression that she bowed to their verdict. The petition was publicly rejected in the name of the child emperor.</p><p></p></div>	
+<div class='layout'><p>Cixi had engineered a major offence by the Regents – that they dared to shout and behave disrespectfully in front of the emperor and had frightened him. Citing this event, she drafted by hand an edict in her son's name condemning the Regents. Her writing betrayed her lack of formal education. The text was littered with solecisms and inelegant sentences and was dotted with the wrong characters – errors that were all too easy to commit. Cixi knew her own shortcomings and wrote at the end of her draft edict: ‘Please could the 7th brother revise it for me.'</p><p></p></div>	
+<div class='layout'><p>The seventh brother was Prince Chun, the man who had married Cixi's younger sister, thanks to her manoeuvring. Now twenty years old, he had been through a rigorous classical education since the age of five and was able to write ‘magnificent compositions and beautiful sentences', according to Grand Tutor Weng, who would become a tutor to two emperors and whose own scholarship was indisputable. A diligent pupil, the prince had imbibed the classics deep into the night and had, by his own account, clung to his teachers' words as if ‘to sunshine in winter', and had followed their teaching in the same manner as ‘sticking to an established path on the edge of a precipice, not daring to deviate by half a step'. This was a man who needed a guide, and Cixi was fulfilling the role.</p><p></p></div>	
+<div class='layout'><p>Prince Chun had been devastated by the empire's defeat at the hands of the Westerners, the burning of the Old Summer Palace and the death of his half-brother. Before the court's flight from Beijing, he had pleaded with the emperor not to abandon the capital, and begged to be allowed to lead troops against the invaders. His entreaties had been refused by his half-brother, who did not want to send him to a certain death. Frustrated, the hot-blooded prince blamed his half-brother's advisers for mishandling events and longed to get rid of them. He was the first person after Empress Zhen whom Cixi took into her confidence about the coup.</p><p></p></div>	
+<div class='layout'><p>Cixi's draft edict was delivered to Prince Chun by a eunuch she trusted. The next day he replied with a revised text, which ended by announcing the dismissal of the Regents. His wife, Cixi's sister, carried the revised edict to Cixi, and it was then stitched into the lining of Empress Zhen's robe. In his covering letter, Prince Chun pledged total support for Cixi. That she was about to act, he said, was ‘indeed the good fortune of our country', and he would stand by her, ‘come what may'.</p><p></p></div>	
+<div class='layout'><p>Prince Chun's words reflected the prevailing sentiment among the princes, generals and officials. Cixi knew her action would be popular. With this conviction and the two seals representing the monarchical authority, she felt she could secure Prince Gong's commitment. As he was in the capital, Cixi's plan was to join him there ahead of the Regents, to coordinate with him and capture the men when they arrived. So Prince Chun steered the Regents into agreeing that the child emperor should take a shortcut back to Beijing and not go with the late emperor's enormous coffin, which would have to follow the main roads and move slowly, as it was carried by dozens of men and accompanied by the whole court. All accepted that the child must be spared this long and exhausting journey.</p><p></p></div>	
+<div class='layout'><p>On an auspicious date two months after Emperor Xianfeng's death, the grand procession bearing his coffin set off from the Hunting Lodge. For the course of their journey, bridges had been repaired, roads levelled and broadened and covered with yellow soil as was required for all royal routes. Before the coffin was lifted, the child emperor knelt by its side in an act of farewell. He was scheduled to perform the same ritual to greet its arrival at a gate in the Forbidden City ten days later. Half the Regents travelled with the coffin, watched over by Prince Chun. The other half went with the child emperor, who, in strict accordance with court rules, sat with Empress Zhen in a sedan-chair with black curtains as a sign of mourning. Cixi was in another black-curtained sedan-chair. Travelling with all speed, they covered the distance to Beijing in six days, four days ahead of the coffin. As soon as she arrived at the outskirts of the capital, Cixi asked for Prince Gong and presented him with the coup edict, stamped with the two seals, one at the beginning and the other at the end. Prince Gong was now convinced, and felt able to convince others, that ousting the Regents was on the order of the new emperor.</p><p></p></div>	
+<div class='layout'><p>He proposed a few changes to the coup edict, deleting his own name, which had been singled out for praise for bringing peace to the empire. The word referring to foreigners as ‘foreign barbarians' was replaced with a neutral word meaning ‘foreign countries' – wai-guo. The prince then set about getting ready the force needed for the coup.</p><p></p></div>	
+<div class='layout'><p>On the last day of the ninth lunar month of 1861, while the coffin of Emperor Xianfeng was progressing towards the capital at a stately pace, Cixi ignited the fuse of her coup. She told Prince Gong to bring his associates to her and Empress Zhen, and when they arrived she had the coup edict declared to them. In a winsome show of grief, the Two Dowager Empresses denounced the Regents for bullying them and the child emperor. All present showed great indignation. In the middle of the denunciation, the Regents who had been travelling with Cixi rushed into the palace and shouted outside the hall that the women had broken a cardinal rule by calling the male officials into the harem. Cixi, looking mightily incensed, ordered a second edict written and stamped there and then: for the arrest of the Regents, on the grounds that they were trying to prevent the emperor from seeing his officials, which was a major crime.</p><p></p></div>	
+<div class='layout'><p>The original edict had only ordered the Regents' dismissal from their positions. Now Prince Gong took the new decree and went to arrest the Regents who had been shouting. They bellowed: ‘We are the ones who write decrees! Yours can't be proper since we did not write them!' But the two magic seals silenced them. Guards brought by the prince dragged them away.</p><p></p></div>	
+<div class='layout'><p>Armed with yet another stamped decree, Prince Chun arrested those Regents who had been travelling with the coffin. He went in person for Sushun, their de facto leader. When the prince broke into the house where Sushun was staying the night, he found Sushun, a large man, in bed with two concubines. Sushun roared ‘like a leopard', refusing to accept the ‘arrest warrant'. This display of defiance to an imperial decree, and the fact that he had apparently indulged in sex when escorting the late emperor's coffin, gave Cixi grounds to have him executed. Sushun had been the only man on the Board who had had some idea of Cixi's intelligence, and he had wanted her killed. But having no inkling of her ambition and ability, he had allowed the others to persuade him to abandon his plan. On the way to the execution ground he howled with regret that he had underestimated ‘this mere woman'.</p><p></p></div>	
+<div class='layout'><p>The meting out of punishments followed a prescribed procedure. First Prince Gong headed a panel of princes and officials to ascribe precise crimes to each of the Regents and to propose appropriate punishments, in accordance with the penal codes. In order to topple the Regents, they had to be guilty of treason. But the offences that had been cited did not justify this charge. On the fifth day, as the deliberations ground to a halt, the two women intervened with a smoking gun: the eight men, they claimed, had forged their late husband's will. So grave was this new charge – and so improbable – that the men on the panel were hesitant to cite it, in case they were thought to be fabricating evidence. The two women then took full responsibility by allowing the panel to announce that the information had come from them. This enabled Prince Gong and the panel to condemn the eight Regents for treason. The three main offenders were sentenced to death by a thousand cuts. In a calculated demonstration of magnanimity, Cixi greatly reduced the sentences, executing only Sushun, and by the much less painful decapitation.</p><p></p></div>	
+<div class='layout'><p>Sushun's execution was greeted with cheering by the many who hated him. As the chief examiner for the Imperial Examinations, which selected officials, he had been extremely hard-hearted towards the literati candidates who had travelled to the capital, through considerable hardship, from every corner of the empire. He had treated them ‘like slaves', commented Grand Tutor Weng, a fellow examiner. A sort of ‘anti-corruption' zealot, Sushun had dished out disproportional punishments for minor offences, while he himself was more corrupt than most. He accused a subordinate of his, Junglu, of ‘embezzling' and nearly had him beheaded. But according to Junglu, Sushun persecuted him because he had declined to give him his collection of choice snuff bottles and a first-rate horse. On the morning of Sushun's execution, Junglu rose early to be at the front of the crowds to see his enemy's head roll. Afterwards he went straight to a bar and got drunk. Junglu became a lifelong devotee of Cixi – a devotion that later gave rise to a rumour that they had been lovers.</p><p></p></div>	
+<div class='layout'><p>Cixi ordered the other two main figures among the Regents, Prince Zheng and Prince Yee, to take their own lives, sending each a long white silk scarf with which to hang himself. This not-infrequently-used imperial order was called, rather poetically, ci-bo, ‘bestowing silk'. It was considered a favour, as far as a death sentence was concerned: it would be suicide, not execution, and it could be carried out in private. The rest of the disgraced Regents were simply dismissed (one being sent to the frontier). Prompt edicts announced that no one else would be incriminated, and the papers confiscated from Sushun's house were swiftly burned, unread, in front of the Grand Council.</p><p></p></div>	
+<div class='layout'><p>So, two months after her husband died, the twenty-five-year-old Cixi completed her coup with just three deaths, no bloodshed otherwise and no upheaval. The British envoy in Beijing, Frederick Bruce, was amazed: ‘It is certainly singular that men, long in power, disposing of the funds of the state and of its patronage, should have fallen without a shot of resistance, and without a voice or hand raised in their defence.' This showed just how popular Cixi's coup was. As Bruce wrote to London, ‘As far as I am able to ascertain, public opinion seems unanimous in condemning Su-shun [Sushun] and his colleagues, and in approving the punishments awarded to them.' Not only did the coup reflect people's wishes, but it had ‘certainly been managed with great ability', causing no more ‘confusion' than ‘a change of ministry'. Word got out that it was Cixi who had brought off the coup, and she gained tremendous esteem. The Viceroy in Canton, ‘in great spirits', praised her to the British consul, who reported his words to London: ‘the Empress Mother is a woman of mind [sic] and strong will', the coup was ‘well done' and ‘there will be hopes now'. The famed military chief and later major reformer, Zeng Guofan, wrote in his diary when he learned the details of the coup from friends: ‘I am bowled over by the Empress Dowager's wise, decisive action, which even great monarchs in the past were not able to achieve. I am much stirred by admiration and awe.'</p><p></p></div>	
+<div class='layout'><p>Prince Gong was no less impressed. His camp called for her, not the prince, to take charge of the country – an idea that undoubtedly originated with him. Even though this was unprecedented in the Qing dynasty, these senior officials argued, precedents could be found in other dynasties going back more than 1,700 years. They produced a list of dowager empresses who had supervised their young sons. Omitted from the list, though, was Wu Zetian (AD 624–705), the only woman in Chinese history who had explicitly declared herself the ‘Emperor' and ran the country in her own right – for which she had been much condemned. The support for Cixi was based on the understanding that her political role was transitional, pending her son's coming of age.</p><p></p></div>	
+<div class='layout'><p>Cixi had considered making Prince Gong the Regent, but now she had a change of heart. She herself had pulled off the coup, with the prince very much the subordinate, and her self-confidence had soared. In the end, she gave him the title of Grand Adviser – yi-zheng-wang – which made clear that she was the boss. Prince Gong was showered with rare honours, which he insisted on declining, even bursting into tears. He may have sincerely felt undeserving. He would continue to serve Cixi and their common cause faithfully.</p><p></p></div>	
+<div class='layout'><p>On the ninth day of the tenth moon 1861, the eve of Cixi's twenty-sixth birthday, it was proclaimed to the whole empire, in the name of the new emperor, that ‘from now on, all state matters will be decided personally by the Two Dowager Empresses, who will give orders to the Grand Adviser and the Grand Councillors for them to carry out. The decrees will still be issued in the name of the emperor.' Cixi had become the real ruler of China. At the same time, she felt obliged to declare that it was not her wish, nor that of Empress Zhen, to rule. They were only bowing to the entreaties of the princes and ministers, who had implored them to do their duty in these difficult times. She begged the population to appreciate their dilemma, and promised that the young emperor would take over as soon as he entered adulthood.</p><p></p></div>	
+<div class='layout'><p>The day before her birthday, overcast and with a drizzle hanging in the air, was the coronation day of her son, Zaichun, who was now crowned Emperor Tongzhi. This regnal name meant ‘Order and prosperity', the Confucian ideal of what a good government should bring to society'.<a name="p3" id="p3"></a><a href="#pl3" title=""><sup>3</sup></a> At seven o'clock in the morning, the child was taken to the biggest hall in the Forbidden City, the Hall of Supreme Harmony, Tai-he. In a yellow brocade robe embroidered with golden dragons riding on colourful clouds, he was placed on a golden lacquered throne, which was adorned with nine splendidly gilded dragons. More dragons were carved on the screen behind, the pillars around and on the ceiling, where a coiled dragon at the centre had a large silver ball suspended from between its teeth. The idea was that the ball would fall on anyone who sat on the throne, if he did not have the mandate to be monarch. Everybody believed it. Cixi herself never sat on the throne.<a name="p4" id="p4"></a><a href="#pl4" title=""><sup>4</sup></a></p><p></p></div>	
+<div class='layout'><p>In front of the throne was a rectangular table, gilded and draped with yellow brocades of the auspicious-cloud pattern, standing on a yellow rug. On the table lay a rolled-up scroll, one that bore the imperial proclamation for the new reign. Written bilingually in Chinese and Manchu, the yellow scroll was several metres long and stamped with the new emperor's large official seal. To shroud it with mystery and solemnity, clouds of incense spread from four bronze burners, each on a tall stand. The hall was dark and mysterious, in contrast to the shiny white marble terraces outside, which, in three stately tiers, were made more magnificent by carved balustrades and sweeping stairs. Down below, in front, was a paved expanse of more than 30,000 square metres, now filled with senior officials and officers, who had gathered before dawn, lining up in orderly and hierarchical fashion. Under brilliantly coloured banners and canopies, accompanied by the solemn music of bells and drums, they repeatedly went down on their knees and prostrated themselves before the new emperor.</p><p></p></div>	
+<div class='layout'><p>When the ceremony was over, a procession escorted the scroll out of the Forbidden City to the Tiananmen Gate to the south. On top of the Gate, the scroll was opened and read out, first in Manchu and then in Chinese, to the gathered officials at the foot of the outer wall, all of whom were on their knees. When the declaration and the ritual of repeated prostration were over, the scroll was placed in the beak of a gold phoenix, slowly lowered on a rope along the outer wall and installed in a shrine, which was escorted away by a guard of honour. At the Ministry of Rites the proclamation was copied on special royal paper and delivered to the provinces, where it was read out to the officials, level by level, down to the grass roots. Notices were posted in towns and word spread to the villages. Along the routes that the copies were taken, all officials and ordinary people prostrated themselves.</p><p></p></div>	
+<div class='layout'><p>Cixi was not at the coronation. The majestic main part of the Forbidden City was out of bounds to her – because she was a woman. She still could not set foot in it, even though she was now the de facto ruler. In fact, when her sedan-chair went within sight of it, she had to close the curtain and show humility by not looking at it. Virtually all decrees were issued in the name of her son, as Cixi had no mandate to rule. It was with this crippling handicap that she proceeded to change China.</p><p></p></div>	
+<div class='layout'><p><a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> In order not to confuse readers, this book will continue to refer to Dowager Empress Ci'an as Empress Zhen.</p><p></p></div>	
+<div class='layout'><p><a name="pl2" id="pl2"></a><a href="#p2" title=""><sup>2</sup></a> It is a common assumption that Emperor Xianfeng had intended Empress Zhen and Cixi to use the seals as a counterbalance to the Board of Regents. There is no evidence for this. In fact, he left power only to the eight men. It is also improbable that he should have intended the two women to have political power.</p><p></p></div>	
+<div class='layout'><p><a name="pl3" id="pl3"></a><a href="#p3" title=""><sup>3</sup></a> It is commonly assumed that this regnal name referred to the ‘joint rule' of the Two Dowager Empresses, as the word Tongzhi can mean ‘joint rule' in modern Chinese. This is wrong. Their ‘joint rule' was a temporary arrangement for which they felt obliged to apologise. It could not have been solemnised by being designated the name of the reign. The regnal name in fact comes from the Confucian teaching: ‘There are many ways of being a good government, and they can all be summarised as order and prosperity; there are many ways of being an evil government, and they can all be summarised as chaos and mayhem.'</p><p></p></div>	
+<div class='layout'><p><a name="pl4" id="pl4"></a><a href="#p4" title=""><sup>4</sup></a> Decades later, in 1915, when General Yuan Shikai made himself the new emperor, he had the throne moved back and away from the ball, apparently fearing that the ball might fall on him.</p><p></p></div>	
+
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

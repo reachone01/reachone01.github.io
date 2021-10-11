@@ -1,0 +1,388 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p> PART FIVE To the Front of the Stage</p><p></p></div>	
+<div class='layout'><p>(1898–1901)</p><p></p></div>	
+<div class='layout'><p>19 The Reforms of 1898</p><p></p></div>	
+<div class='layout'><p>(1898)</p><p></p></div>	
+<div class='layout'><p>H.B. MORSE, pre-eminent contemporary historian of China, remarked, ‘In the world's history no country, with so vast an extent of territory and so large a population, under one government, as China – no country with a tithe of its area or population – had ever been subjected to such a series of humiliations, or to so many proofs of the low esteem in which it was held, as China had been subjected to in the six months from November, 1897, to May, 1898 …' The need for reform was obvious. The empire might not otherwise survive for long. One petition after another was delivered to the Forbidden City. Even Emperor Guangxu was shaken out of his passivity and felt an ‘urgent need' to do something.</p><p></p></div>	
+<div class='layout'><p>Aged twenty-six, and having little knowledge of the real world, the emperor had no idea where to begin. Perhaps, like young people the world over, his instinct was to ditch restrictive forms of etiquette. In May 1898, Prince Heinrich of Germany paid a visit to his court. The brother of the Kaiser, the prince had in fact come as the admiral of a fleet reinforcing the German assault on Qingdao; but by the time he arrived, ‘friendly relations' had already been restored, thanks to Beijing succumbing easily. The German minister negotiating his reception by the emperor asked for Prince Heinrich to be permitted to sit during the audience. This was unprecedented, as no one except Cixi sat in his presence. But Emperor Guangxu was more than willing to accommodate him. He even went further and volunteered to stand up while the German prince bowed to him, and to shake the prince's hand before inviting him to be seated. Grand Tutor Weng found this and some other violations of court protocol undignified and especially painful in light of the recent German outrage. He argued emotionally with His Majesty, but Emperor Guangxu did not share his tutor's agony and lost his temper with the old man. In the end, Cixi told off her adopted son: stop fighting over trifles when we have suffered such a disaster! She herself wanted to meet Prince Heinrich – this would be the first time she saw, and was seen by, a Western man – and she was unequivocal that the German prince had to stand before her. She had her way, and Emperor Guangxu had his. He even went to see the prince himself and personally brought a medal to award him. When the prince announced that he was presenting Emperor Guangxu with a medal on behalf of his royal brother, Guangxu went to extraordinary lengths to have one made for the Kaiser in return.</p><p></p></div>	
+<div class='layout'><p>The young monarch had become fascinated by medals – just as he had fallen for European watches and clocks. He spent an inordinate amount of effort supervising the medal for the Kaiser, tirelessly discussing the colour, the size, the jewels, the craftsmanship, and innumerable other minute details with the Foreign Office and the project manager. The colour – gold, royal yellow or golden-red – was the subject of many a conference, and of much fretting. Then there was the question of what sort of pearl should be set on the medal. The emperor wanted a large one, and was disappointed that it would not fit. When he agreed to a smaller size, it turned out that no pearl of that size was of the finest quality. More discussions ensued before the right pearl and other design details were settled. The emperor himself took to wearing the medals given to him by foreign monarchs and on a whim awarded one each to Earl Li and Sir Yinhuan – although the earl was in disgrace and both were being bombarded with accusations of taking bribes. The emperor had seen medals being worn by Western diplomats.</p><p></p></div>	
+<div class='layout'><p>While His Majesty's reformist initiatives extended no further, the grandees were at a total loss. When he asked them what to do, according to Grand Tutor Weng, ‘Prince Gong was silent – and then said it must start with the administration. I said quite a few words, but the other Grand Councillors were all silent.' Prince Gong soon died, on 29 May 1898. On his deathbed he had nothing but tears for the shattered empire.</p><p></p></div>	
+<div class='layout'><p>With the survival of his dynasty at stake, Emperor Guangxu turned to Cixi. Sir Yinhuan, who was very close to the emperor at the time, observed (and told the Japanese): ‘The roller-coaster of events in the past few years has shaken the emperor very much and made him understand the need for reform … The Empress Dowager always likes reformers. So, given that the emperor has changed, and has come round to the idea of reform, he is becoming closer to the Empress Dowager. This inevitably increases her power.'</p><p></p></div>	
+<div class='layout'><p>Emperor Guangxu now positively sought Cixi's guidance and she responded with affectionate enthusiasm. His office forwarded proposals about reforms to her, and she studied them, looking for ideas. Residing in the Forbidden City, he would travel in a sedan-chair for three hours each way to the Summer Palace every few days to consult her, and from time to time she would visit him in the Forbidden City. Altogether they spent more than two-thirds of their time together, when they would discuss state affairs. He was the pupil, and she was the teacher. It was after one such trip by the emperor to the Summer Palace that, upon returning to the Forbidden City, he announced a decree from Cixi to the Grand Council. Grand Tutor Weng recorded the moment in his diary entry of 11 June 1898:</p><p></p></div>	
+<div class='layout'><p>Today His Majesty relays a decree from the Empress Dowager [shang-feng-ci-yu]: what Censor Yang Shenxiu and Learning Companion Xu Zhijing said in the past few days is absolutely right. The fundamental policy of our state has not been made clear to all. From now on, we should comprehensively adopt Western ways. Make an unequivocal and unambiguous public announcement, etc.…The Empress Dowager is utterly determined. I ventured my view to His Majesty that of course Western ways should be adopted, but it is more important not to abandon our own sages' teachings in ethics and philosophy. Then I withdrew and drafted the imperial edict.</p><p></p></div>	
+<div class='layout'><p>The subsequent edict, the ‘Announcement of the Fundamental Policy of the State', drafted by Grand Tutor Weng according to Cixi's instructions, relayed by Emperor Guangxu and issued on that day, launched an historical movement, the Reforms of 1898. History books celebrate it as a milestone in Chinese history, but invariably credit it to Emperor Guangxu and condemn Cixi as an ultra-conservative opponent. The plain fact is that it was she who initiated the Reforms.</p><p></p></div>	
+<div class='layout'><p>Drafting the Announcement was Grand Tutor Weng's last political act. Within days he was dismissed from the court by his pupil, Emperor Guangxu.</p><p></p></div>	
+<div class='layout'><p>Breaking with the old man came at considerable personal cost to the emperor, as the Grand Tutor had been a father figure to him since his childhood: indeed, he had been closer to the tutor than to anyone else. The young monarch had relied on the older man for advice in all matters, especially during the war with Japan. After that disaster, as misfortune begot misfortune, the tutor's lustre dulled in his pupil's eyes. Then the relationship became intolerable as the emperor opted for reform while Weng stuck in the past. There had been many emotional disagreements. It was all too obvious that in a reformist court there was no place for the Grand Tutor, even though he was an outstanding scholar and calligrapher, and was upright and loyal. Emperor Guangxu wrote in his hand in crimson ink an edict ordering Weng to retire to his home. The old tutor was devastated and was heartbroken when the emperor refused to see him to say goodbye. Weng hurried to a gate inside the Forbidden City, which he had heard the emperor was about to pass through, in the hope of catching a glimpse of him. When the young man's sedan-chair went by, the elderly tutor prostrated himself, touching his forehead on the stone pavement. He later wrote: ‘His Majesty turned round and gazed at me without a word. I felt as if I was in a nightmare.'</p><p></p></div>	
+<div class='layout'><p>The decision undoubtedly had Cixi's approval. She had tried to reduce the emperor's dependency on Weng in state policy, but had had to tread gingerly, mindful of their intimacy. Now she could not but feel relieved and pleased. But she remained solicitous towards Weng. The day after the dismissal happened to be the occasion when the empress dowager routinely bestowed her summer gifts on the Grand Councillors. Weng declined his, saying to the eunuch bearing the special silk that he was no longer a Grand Councillor. Through the eunuch Cixi insisted, and he finally accepted it without writing a letter of thanks. His former colleagues thanked her on his behalf.</p><p></p></div>	
+<div class='layout'><p>For the first time in their lives, Cixi and her adopted son collaborated remarkably well. From the palaces came a cascade of reformist decrees. Although issued in the emperor's name, all the decrees had Cixi's endorsement. They were based on proposals from officials throughout China. Top of the list for change was the educational system, which was central to producing the ruling elite. By focusing narrowly on esoteric Confucian classics, it left them ill equipped for the modern age, as well as ensuring that more than 99 per cent of the population remained illiterate. As the astute American missionary W. A. P. Martin remarked, ‘The future of China depends on' its reform. As the system was the foundation of the state, its replacement by a Western one was nothing short of a seismic shift.</p><p></p></div>	
+<div class='layout'><p>As a first step, the most arcane subjects in the Imperial Examinations were abolished, to be substituted the following year by tests in current affairs and economics. Emperor Guangxu edited the edict in his own hand, showing how keenly he felt about it. Western-style primary and secondary schools and universities, which taught Western-style natural and social sciences, were to be established across China. Their sites, funding, staff and teaching materials were carefully considered and planned. Beijing University was founded to lead the way.</p><p></p></div>	
+<div class='layout'><p>Many of the projects either took up or developed Cixi's earlier modernising efforts. These included sending students abroad to study. It was announced that Their Majesties were going to take the train to Tianjin in the autumn to inspect the army, which had been receiving modern training. This was a symbolic gesture intended to demonstrate the importance they placed on railways and on up-to-date defence. The newer schemes embraced modern agricultural methods, Western-style commerce, new publications and technological innovations, for which patent regulations were being written. One precise and brand-new idea that would have far-reaching implications seems certain to have come from Cixi (she directed her loyal follower Junglu to carry it out): importing machines to process raw materials and turn them into manufactured goods for export. As an example, camel hair and lambswool, two traditional export items from north China, were to be made into fine textiles and blankets to increase their value. The prospect of expanding exports had been the clincher that had persuaded Cixi to build a railway network in the first place.</p><p></p></div>	
+<div class='layout'><p>Their working relationship went smoothly for more than two months and the modernising zeal of the court was felt across the country. Support for it among the officials was estimated at ‘six or seven out of ten, while those who stubbornly clung to the old ways are no more than one or two out of ten'. Some decrees were implemented at once, including the establishment of Beijing University. But before most could be carried out, a dramatic event forced the reform to an abrupt halt – an event brought on by a wily and unconventional man, Kang Youwei, nicknamed Wild Fox Kang.</p><p></p></div>	
+<div class='layout'><p>A forty-year-old Cantonese from a family of officials, Kang grew up in an open port, Nanhai, where there was a strong Western presence. He acquired many reformist ideas, and was keen to put them into practice. He was a man of supreme self-confidence. In his manuscript, tellingly entitled ‘The History of Me', he declared that he was already showing signs of greatness by the age of five. At twenty, one day as he was sitting alone he suddenly saw that ‘the heaven and the earth and everything else became one with me, and this entity sent out spectacular rays of light. I knew I was the Sage, and I smiled joyfully.' The Sage was Confucius, of whom he believed he was the reincarnation. For some time he had tried to reach the throne so that his views would be known and acted on; indeed, he wished to direct the throne. As he was a very junior official, he met with many frustrations, but none deterred him.</p><p></p></div>	
+<div class='layout'><p>Continuing to cultivate people of influence, Kang made a crucial friend who changed his fortunes: Sir Yinhuan, who was a fellow Cantonese and the principal official in the Foreign Office, and who had been taken on by the emperor as his confidant, in spite of accusations of bribe-taking. On 24 January 1898, through his machinations, Kang was interviewed by five of the empire's top grandees. Immediately after the interview he wrote a letter to the emperor, which Sir Yinhuan delivered. Thus the Wild Fox was introduced to the very highest circle and the throne.</p><p></p></div>	
+<div class='layout'><p>Kang followed up by presenting other writings, which were all forwarded to Emperor Guangxu by Sir Yinhuan. The emperor sent them straight on to Cixi, not reading all of them himself. Cixi read the papers carefully and was impressed. She kept a pamphlet on the transformation of Japan and drew her adopted son's attention to it. Cixi had discovered a remarkable reformer with fresh ideas, who was also eloquent and fearless in expressing them. Soon she detected the same inspired thinking in the petitions of two officials, Censor Shenxiu and Learning Companion Xu – the two men she referred to in the decree that launched the Reforms on 11 June. Unbeknownst to her, these petitions had both been ghost-written by Kang. Evidently, Kang and Cixi were thinking very much alike.</p><p></p></div>	
+<div class='layout'><p>As Learning Companion Xu was cited in the imperial decree, Kang ghosted another petition for him, which urged the emperor to install Kang ‘as a close adviser on all new policies'. The ventriloquist then did the same for Kang's most-noted associate, a brilliant essayist called Liang Qichao. With Cixi's blessing, Emperor Guangxu gave Kang an audience in the Summer Palace on 16 June; the Wild Fox thus became one of the first very junior people interviewed by the emperor for a high-up position. Afterwards Kang was offered a post as a staff member in the Foreign Office, but he did not take up the job. Privately, he dismissed the offer as a ‘humiliation' and ‘ludicrous in the extreme'. He was intent on being by the emperor's side, making decisions for His Majesty. To this end he had, since the beginning of the year, advocated forming a kind of ‘Advisory Board' to the throne that would be vested with some executive power.</p><p></p></div>	
+<div class='layout'><p>Of all his ideas, this in fact seems to have been the one that really struck a chord with Cixi. There was no such body in the court, as the Qing dynasty explicitly ordained that the emperor alone should make all decisions: the Grand Council could advise, but could go no further. Kang thus identified a fundamental defect in the dynastic system – one that Lord Macartney had recognised 100 years earlier after visiting the eighty-year-old Emperor Qianlong. Macartney asked a prescient question: ‘Who is the Atlas destined by him to bear this load of empire when he dies ' On ‘whoever [sic] shoulders it may fall', he remarked, the shoulders had better be of superhuman strength. The Chinese empire was like a ‘first-rate Man of War, which a fortunate succession of able and vigilant officers has contrived to keep afloat for these hundred and fifty years past … But whenever an insufficient man happens to have command on deck, adieu to the discipline and safety of the ship … she may drift some time as a wreck, and will then be dashed to pieces on the shore …' Emperor Guangxu was that ‘insufficient' captain and needed some first-class minds to help him. Cixi knew this all too well. In fact, she was to observe that Britain was a world power not so much due to Queen Victoria herself, but to ‘the able men of parliament' who collectively made decisions.</p><p></p></div>	
+<div class='layout'><p>Cixi invited a number of top officials to debate the idea of an Advisory Board. They were against it. She told them to reconsider – to ‘give the matter serious thought and detailed discussions', warning that ‘no lip service is permitted'. After months of toing and froing, the consensus was still negative. The objection lay in an insurmountable problem: who should sit on the Board and share power with the emperor? There was no selection procedure and the fear was that ‘evil' people could worm their way onto the Board through crooked ways like banding together to promote each other clandestinely, in which case the dynasty could well fall into their hands. Wild Fox Kang was foremost in the minds of the doubters. Word had gone round that Kang was paying for others to petition on his behalf – an accusation that was almost certainly true. A petition by Learning Companion Xu for Kang reportedly cost him 4,000 taels, and other petitioners were paid 300 taels a month as retainers. People in the capital were scandalised and called the Wild Fox ‘shameless'. They also speculated about the source of his money, as his family was not wealthy. The emperor's old reformist tutor, Sun Jianai, argued that the Advisory Board could only succeed with a Western-style ‘election' that subjected the candidates' characters to public scrutiny. As an ‘election' was so absolutely unthinkable at the time, the idea of an Advisory Board was abandoned at the end of July.</p><p></p></div>	
+<div class='layout'><p>In spite of all the unpleasant things said about the Wild Fox, and despite the fact that she herself was on guard against him, Cixi remained appreciative of Kang as a reformist and gave him key assignments. A decree told him to go and start the first modern government newspaper in Shanghai to publicise the new policies. He would also be responsible for drafting a press law based on Western models. Some of his friends regarded these occupations as ideal for him. It was very much Cixi's style to send a disaffected man out of the capital, to where he could not cause any harm, but still let him play a role, even an important one. She believed in creating as few enemies as possible. But Kang declined to leave. Nothing less than the throne would satisfy him. His right-hand man, Liang, was also not content with his assignment – which was to supervise new textbooks for the whole empire – even though it was an extraordinary promotion, given that he had never held any official post. Kang lingered in Beijing and, with Liang's assistance, plotted his next move.</p><p></p></div>	
+<div class='layout'><p>He stayed with Sir Yinhuan, who was the key man in his plotting. The closest man to the emperor since the departure of Grand Tutor Weng, Sir Yinhuan was able to tell Kang a great deal about His Majesty. The young monarch was fragile and weak. His nerves had been overstretched by his relentless workload, made worse by his obsessive habit of correcting the wrong characters and bad grammar in the innumerable reports that passed over his desk. Sir Yinhuan was also aware of the emperor's latent bitterness against his Papa Dearest. In addition to past animosities, in 1896 Cixi had initiated the Russo-Chinese Secret Treaty in the aftermath of the war with Japan, when Emperor Guangxu could not hold his head up in the court. She had made all the decisions, with no one even bothering to go through the motion of referring matters to him. This event had made the young man not only resent Cixi, but also hate Russia – quite unlike his feelings of indifference towards Germany or any other power. The Wild Fox was thus able to work on the emperor by pressing on these vulnerable spots, in writings that were delivered to the monarch by Sir Yinhuan clandestinely, bypassing the Grand Council and Cixi. In one key pamphlet, ‘On the Destruction of Poland', Russia was cast as the bogeyman, ‘the country of bloodthirsty beasts, which makes it its business to swallow up other countries'. Liberally stretching Polish history to produce a parable, Kang wrote that Poland had ‘a wise and able king determined to carry out reform', but his efforts were ‘obstructed by aristocrats and high officials', and so he missed ‘a propitious moment to make the country strong'. Then, the Wild Fox claimed, ‘Russian troops arrived … and the country perished in less than seven years.' The king himself ‘went through the most cruel and most atrocious fate rarely encountered in history'. Kang declared that China was about to become another Poland as a result of ‘the grandees blocking the Advisory Board' and that ‘Russian troops will come once the Siberian Railway is completed in a few years'. The Wild Fox's reference to the Siberian Railway, a key part of the Secret Treaty, was designed to cause maximum upset to Emperor Guangxu.</p><p></p></div>	
+<div class='layout'><p>This ominous and alarming fable was in the emperor's hands just after 13 August, his twenty-seventh birthday. He read it deep into the night, drops from the red candles seeping into the pages. His already-poor sleep became even more disturbed, and his brittle nerves snapped. As his medical records show, doctors started visiting him almost daily from the 19th. In this condition, between sobs, he ordered 2,000 taels of silver delivered to Kang as a token of his appreciation. Kang wrote a thank-you letter on the 29th, which was no ordinary missive of gratitude. Secretly handed to the emperor, it was exceptionally long: it retold the Polish horror story and emphasised that the only way to avoid the fate of Poland was to install the Advisory Board at once. It also heaped flattery on Emperor Guangxu that went far beyond the norm. It described the emperor as ‘the wisest ever in history', with ‘penetrating eyes sending off rays like the sun and the moon', and with abilities ‘sublime and unparalleled even compared with the greatest emperors of all time'. It was ‘the injustice of a thousand years' that China's troubles should be laid at his door. They had only happened because the emperor had not had the opportunity to exercise his ‘supreme wisdom and mighty bravery, and his awesome thunderbolt-like force'. The emperor's potential had been obstructed by the ‘old officials'. And the problem of all problems was that he had not had the right people at his side. All His Majesty needed was to rectify that and he would achieve greatness.</p><p></p></div>	
+<div class='layout'><p>Nobody had ever said such things to Emperor Guangxu. The court had its formula of florid praise for the throne, but did not encourage extravagant compliments. A good emperor was supposed to embrace criticism and steer clear of flatterers. Moreover, Emperor Guangxu had always been made to feel inadequate, especially in comparison with his Papa Dearest. Suddenly he found someone who appeared fully to appreciate him. The impact of Kang's flattery on the insecure young man cannot be exaggerated. It hugely boosted his self-esteem. His sense of guilt since the war with Japan was expunged and the inferiority complex was much assuaged. Nothing, after all, had been his fault. The ‘old officials' were the ones to blame. What was more, with Kang by his side, there was no limit to what he could achieve. It was thus that Emperor Guangxu fell under the spell of the Wild Fox, whom he had met only once. He immediately ordered all Kang's petitions to be collected into booklets for his personal study, and named the collection ‘the Petitions of the Hero'.</p><p></p></div>	
+<div class='layout'><p>As well as the long, flattering letter, Kang wrote separately, urging the emperor to dismiss his old officials and make new appointments. The emperor was so fired up that he instantly put pen to paper and sacked a host of officials, closing down a large number of offices. The decree, edited in his own hand, itched to ‘get rid of the whole lot'. It appears not to have occurred to the emperor that, although many of these officials may have been incompetent, they were lowly clerks and administrators merely carrying out orders given by him.</p><p></p></div>	
+<div class='layout'><p>When Cixi received the abolition edict before it was issued, she was alarmed. To accommodate her adopted son, however, she only restored a few crucial offices, such as the one in charge of shipping grain from south China to the north, and otherwise let it pass. To his face she forcefully objected to the wholesale dismissals, telling him it could lead to the ‘loss of goodwill and support [shi-ren-xin]' for the Reforms, and could even cost him his throne. Indeed, as the edict suddenly deprived thousands of officials of their livelihood in the capital alone, administrators throughout the empire looked on appalled and fearful.</p><p></p></div>	
+<div class='layout'><p>Knowing Cixi's disapproval, the emperor issued further edicts without showing them to her first, thus breaking the code of their working relationship. On 4 September, after Cixi had just left the Forbidden City for the Summer Palace, he sacked the minister and five other top officials from the Ministry of Rites in one wrathful crimson-inked edict. His anger seemed disproportionate to the offence: that the ministry had delayed passing on to him a proposal from a clerk named Wang Zhao. But the clerk was a friend of Kang. The emperor promoted him. He also appointed a new minister – another of Kang's friends, who had written to the throne in praise of the Wild Fox. The new vice-ministers included yet more of Kang's friends, such as Learning Companion Xu. Emperor Guangxu intended this to be the model for other ministries and offices. The next day he made four low-ranking men secretaries in the Grand Council, and two of them were also Kang's friends, each of whom he had met for no more than a few moments. But he regarded them and other such appointees as ‘bright and brave men', in contrast to all those ‘stupid and useless' old officials.</p><p></p></div>	
+<div class='layout'><p>Cixi was only sent the emperor's edicts for information, after they were made public. When she next saw her adopted son, she told him that the sackings in the Ministry of Rites were unreasonable, and she refused to endorse some new appointees, including Learning Companion Xu, whom she now knew to be a member of the Wild Fox's clique. She then quietly made arrangements to ensure that edicts drafted by the new secretaries were shown to her first. Otherwise she did nothing regarding Guangxu's actions.</p><p></p></div>	
+<div class='layout'><p>Now that Emperor Guangxu had established the precedent of firing and hiring on his own, the Wild Fox organised his cronies in a concerted petition campaign calling on the emperor to establish the Advisory Board – which he would lead. One of the four new secretaries who did not belong to Kang's coterie wrote in a private letter on 13 September: ‘Every day, they are talking about the Advisory Board, and the emperor is being pushed towards it. Kang and Liang have not got the positions they want, and I am afraid the situation will become turbulent …' Indeed, on the same day Emperor Guangxu finally made up his mind to set up what was effectively the Kang Board. When the Wild Fox learned about it, he went at once to his small group of friends, his face beaming with delight. He told them that the Board would have ten members, who would have to be officially recommended to the throne. Then he handed out a list of ten men to those who were entitled to write to the throne direct, telling them each to recommend a few from the list. These included Kang himself, his brother Guangren, his right-hand man Liang, two sons of Learning Companion Xu and other cronies. And so the names of this cabal went forward to Emperor Guangxu.</p><p></p></div>	
+<div class='layout'><p>On 14 September the emperor took the list to the Summer Palace. Cixi refused to authorise it and, in her forceful way, made it utterly clear that her decision was non-negotiable. The following day an anguished Emperor Guangxu summoned one of the four new secretaries and gave him a letter asking the new appointees whom the emperor referred to as his ‘comrades' to find a way to form the Kang Board without antagonising his Royal Father. The secretary to whom he gave the letter, Yang Rui, was actually not a member of Kang's clique and did not even approve of what Kang was doing. But His Majesty was rather woolly about the different allegiances among the new appointees suddenly flooding the court, regarding them all as one progressive force.</p><p></p></div>	
+<div class='layout'><p>The Wild Fox learned the contents of the letter and may have read it. The next thing he saw was a public edict from Emperor Guangxu, making an oddly personal plea for Kang to leave Beijing and go to Shanghai to take up his newspaper post. Thus the Wild Fox knew that his leap to the top had been blocked by the empress dowager. Cixi had never stood in the way of Kang's reformist policies – indeed, she agreed with them. She had actually been the first to appreciate Kang's talents and promote him. But she refused to hand over power to him.</p><p></p></div>	
+<div class='layout'><p>Given that the Qing regime had brought such disasters to the country, the case for an alternative government was unanswerable. Whether Kang would have made a better leader is open to debate. But one thing is certain: he did not have a political programme to turn China into a parliamentary democracy, as is often claimed. He never advocated this; on the contrary, he argued in one of his articles that democracy, while good for the West, did not suit China. He wrote, ‘An emperor is like the father of a family, and the people are like children. The Chinese people are all like toddlers and infants. May I ask how the family of a dozen babies can function if the parents don't have the exclusive right to make decisions, but instead let all the toddlers and infants make their own decisions …I can tell you that in China, only the emperor must rule.'</p><p></p></div>	
+<div class='layout'><p>Wild Fox Kang wanted to be the emperor, and had been trying to create a mandate for himself. First, he claimed that he was the reincarnation of Confucius. The assertion had indeed attracted attention, and even Westerners had heard him spoken of as ‘the modern Sage' and ‘the second Confucius'. Next, with his small but vocal band of disciples, Kang attempted to establish that Confucius had actually been crowned King of China, replacing the emperor of the time. To propagate the idea, they started a newspaper that used a ‘Confucian Calendar', in which the year of Confucius's birth was Year One. As this strategy directly threatened Emperor Guangxu, the Wild Fox abandoned it when he began to ingratiate himself with the emperor. The moment he realised that the emperor was falling under his spell, Kang most anxiously explained to the monarch in one of his clandestine letters that he had been misunderstood and that he had never held the view that Confucius had been crowned king. Kang was eager to expunge any idea that he coveted the throne. With Emperor Guangxu seduced, Kang could fulfil his dream by first becoming the puppeteer behind the throne. This route was now blocked by Cixi with a will of iron, and the only way for the Wild Fox to achieve his goal was to remove her by force.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

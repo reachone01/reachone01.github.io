@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>12 Defender of the Empire</p><p></p></div>	
+<div class='layout'><p>(1875–89)</p><p></p></div>	
+<div class='layout'><p>EVER since his son had been taken away and made emperor in 1875, Prince Chun's character had been changing. He had, for the first time, begun to fear his sister-in-law. The devastation of losing his only son had opened his eyes to a side of the empress dowager that he had not previously registered: that she possessed a deadly sting, even though she rarely used it. When he had backed the execution of Little An in 1869 and when, against her orders, he had spearheaded riots against missionaries in Tianjin in 1870, he had had no fear of retribution. Now he realised that she had not forgotten, or forgiven, what he had done: five years on, her revenge was served cold. The shock bewildered him. In a letter to Cixi after his son had been snatched away, he described how he had ‘lost consciousness' when he heard her announcement, and had gone home ‘trembling all over in the flesh and the heart, as if in a trance or a drunken stupor'. He collapsed, and took to bed ‘in a vegetative state'. His former cockiness gone, he apologised for his past wrongs (without spelling them out), roundly castigating himself and begging her for mercy. ‘You have seen right through me,' he wrote. ‘Please grant me an undeserved favour' – to spare his life, ‘the life of a dumb and useless idiot'.</p><p></p></div>	
+<div class='layout'><p>Then he saw that Cixi did not destroy him when she could, but was rather kind to him; the prince was overcome with gratitude. Fear turned to awe. He spent much of his time in reflection and adopted the motto ‘Step back and think how to make up for past wrongs' (tui-si-bu-guo), which was carved onto a plaque over the door to his study. His mansion was full of reminders of the sentiment, from the calligraphy in the scrolls on his walls, to the inscription engraved on an ivory paperweight on his desk. He came to recognise that his previous hostility to Cixi's approach to the West was ‘prejudiced'; and he became one of her keenest supporters.</p><p></p></div>	
+<div class='layout'><p>The prince's metamorphosis was also due to other, perhaps more important, causes. He came to be impressed by what Cixi had achieved for the empire – such as recapturing Xinjiang, a huge territory in Central Asia the size of Britain, France, Germany and Italy combined. The contemporary historian H. B. Morse remarked at the beginning of the twentieth century, ‘This possession has been held by China for over two thousand years; held firmly when the central administration was strong, held laxly when the central power was relaxed, and let go in times of confusion … it has frequently broken away, only to be again subjected to Chinese rule.' The latest fracture came in the early 1860s, on the heels of the Taiping rebellion. Much of the breakaway land was controlled by a Muslim leader, Yakub Beg, described as ‘a soldier of fortune' by Charles Denby, later American envoy to China. Cixi was determined to bring Xinjiang back under Beijing's control. This decision was made against the advice of Earl Li, who proposed letting the region go and allowing it to become one of the empire's vassal states, ‘like Vietnam and Korea'.</p><p></p></div>	
+<div class='layout'><p>The vassal states were small independent countries around China, which administered their own affairs, but recognised the overlordship of the Chinese emperor by periodically presenting tribute and by getting Chinese endorsement for each new ruler. Apart from Vietnam and Korea, the other vassal states included Nepal, Burma, Laos and the Liuqiu (Ryukyu) Islands. Earl Li counselled that Xinjiang be allowed to join their ranks. To the earl, Xinjiang was ‘several thousand li of barren land', was ‘not worth' recovering and, even if conquered, ‘it could not be kept for long, as its neighbours all had designs on it: Russia to the north, Turkey, Persia and other Muslim countries to the west, and British India close to the south …' Recovering Xinjiang, said the earl, would involve a large army trekking a long way in the desert and fighting a protracted war that was ‘beyond the means' of the empire. This had been the view of the late Marquis Zeng, a considerable strategist, and it was now also the view of Prince Chun himself.</p><p></p></div>	
+<div class='layout'><p>But Cixi refused to let go of Xinjiang, and as soon as she returned to power in 1875 she dispatched General Zuo Zongtang to win it back. The expedition was a matter of urgency for her: Russia had occupied a key area in the region, Ili, for the past four years and, unless China acted now, Russian ownership would become a fait accompli.</p><p></p></div>	
+<div class='layout'><p>In order to finance the expedition, Cixi squeezed money out of the provinces and authorised General Zuo to borrow five million taels from foreign banks. Following Zuo's journey through his detailed reports, she was at pains to meet his constant requests, mostly for funds. General Zuo, a rugged warrior now in his sixties, had a coffin carried with him as he embarked on the expedition into the desert – to signal his determination to fight for as long as it took. His campaign was successful and excruciatingly brutal. By the beginning of 1878 he had re-conquered most of Xinjiang. Mercy was not in his vocabulary and massacres were commonplace. In accordance with the Qing penal codes, the captured sons and grandsons of Yakub Beg (who had died) were castrated, before being given away as slaves. Westerners were horrified; but even moderate Chinese diplomats were insistent that such punishment was warranted, and they berated Westerners for ‘minding other people's businesses'.</p><p></p></div>	
+<div class='layout'><p>Cixi endorsed Zuo – and his methods. After reasserting Beijing's grip on Xinjiang, she took Zuo's advice and gradually made it a province, instead of allowing it autonomy. Troops were stationed there; they opened up virgin land to sustain themselves when not suppressing rebellions.</p><p></p></div>	
+<div class='layout'><p>Cixi sent Chonghou to St Petersburg to negotiate for the return of Ili. Chonghou, an affable man, was the official who had tried to protect Westerners during the Tianjin massacre in 1870. He was not a tough negotiator, and after months of talks he signed an agreement that obliged China to cede a large hunk of Xinjiang to Russia in exchange for Ili. There was uproar in Beijing about the deal, and a council of grandees sentenced him to ‘imprisonment awaiting execution', with Cixi's authorisation. Western envoys expressed strong disapproval: it was, they said, unworthy of ‘China's new diplomacy' that a diplomat should be ‘condemned to death by decapitation … charged, not with treason, but with failure'. Queen Victoria even addressed a personal appeal for clemency ‘to the great empress dowager of China'. Cixi took the point and released Chonghou.</p><p></p></div>	
+<div class='layout'><p>But she refused to recognise the treaty. Russia threatened war and moved 90,000 troops to the disputed territory. Chinese Gordon, the Englishman who had helped defeat the Taiping rebels, gave this advice: ‘If you will make war, burn suburbs of Peking, remove the archives and emperor from Peking … and fight … for five years … If you want peace, then give up Ili in toto…' Neither of these extreme scenarios appealed to Cixi. War was out of the question, as China could ill afford it, while Russia might rather welcome it, in order to grab more land. But peace must not come at the cost of losing territory, either Ili or the land that Chonghou had signed away. Cixi gave every impression that China was ‘ready for war – as ready as her rival', but dispatched a new representative, Marquis Zeng Jr, to Russia to renegotiate. She gave him detailed instructions, and the most important was the bottom line: if he was unable to get back all the territory in dispute, then he should settle for the pre-Chonghou status quo and leave Ili in Russian hands for the time being, while maintaining China's claim to it. The marquis went to the talks equipped with a marked-up Chonghou treaty making clear which items were absolutely unacceptable and which were negotiable. Throughout, he kept in telegram contact with Cixi.</p><p></p></div>	
+<div class='layout'><p>A clear and precise strategy, as well as detailed preparations, paid off. China recovered most of the territory Chonghou had ceded, as well as Ili. The new treaty, a compromise,<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a> was hailed by Western observers as a ‘diplomatic triumph'. Lord Dufferin, then British ambassador to St Petersburg, remarked: ‘China has compelled Russia to do what she has never done before, disgorge territory that she had once absorbed.' For his country's first victory in modern diplomacy, Marquis Zeng Jr received numerous plaudits. But the pivotal role was played by Cixi.</p><p></p></div>	
+<div class='layout'><p>At the height of the crisis, facing the prospect of war and loss of territory, Cixi collapsed under intense nervous strain. For days on end she could not sleep, felt depleted of energy and coughed blood. In line with tradition, the court sent out a request in July 1880 asking provincial chiefs to recommend doctors to help the royal physicians, and ‘to have them escorted to Beijing in steamers so they arrive quickly'. A Dr Xue from Zhejiang province described his first session with Cixi. It began with his obligatory prostration before her, and her telling him to stand up and come to her bedside. She sat cross-legged inside the yellow silk curtains that fell around the bed. One of her lower arms was outside the curtain, resting on a little pillow on top of a small side-table. A plain handkerchief covered it, leaving only the part where the doctor could feel the pulse, a crucial diagnostic procedure. On his knees, Dr Xue pressed his fingers to the wrist. He diagnosed ‘exceeding distress and anxiety' and informed the empress dowager that she would be all right soon, so long as she refrained from racking her brains. To this Cixi replied: ‘I know, but it's just impossible to do.' Eventually she recovered, much helped by Marquis Zeng Jr's optimistic reports.</p><p></p></div>	
+<div class='layout'><p>During the dispute, Prince Chun was involved. Having ensured his resignation from all posts, Cixi made a point of including him in the decision-making process, telling those who objected that the prince had ‘begged to be excused, knocking his head on the ground over and over', and that it was she who had insisted on his participation. Cixi intended to win over the prince by letting him observe how she dealt with state matters. So the prince saw that Cixi was committed to the interests of the empire and defended it vigorously and ably. He was struck by her steeliness in launching the Xinjiang campaign and in facing down Russia, as well as by her ability to compromise and direct negotiations. By comparison, he who had bragged about ‘revenge' against foreigners had no inkling of what to do when faced with real foreign threats. All this convinced the prince that he was serving a mistress who was a great asset to the empire, and he submitted himself as her humble servant.</p><p></p></div>	
+<div class='layout'><p>Perhaps the event that most impressed Prince Chun and turned him definitively into Cixi's ‘slave' was her handling of the war with France in 1884–5. France had started a military campaign in 1859 to colonise Vietnam, China's neighbour and a vassal state. As France annexed the south and was advancing north, the Qing government took no action – not least because the Vietnamese did not ask for help (which a vassal state was entitled to do). The only times Cixi sent troops into Vietnam were to round up Chinese bandits there, at the request of the Vietnamese. As soon as the jobs were done, the troops were pulled back.</p><p></p></div>	
+<div class='layout'><p>By now, it seems, Cixi had formed a well-considered policy regarding the boundary of the empire. She was determined to preserve the territory that it regarded as its own, but was ready to let go of the vassal states, if and when she was forced to do so. A pragmatic woman, she knew that there were now stronger European forces and her empire was not in a position to keep the vassal states. So while she dispatched a large army to regain Xinjiang and made all efforts to hold on to Taiwan, she did no more than issue verbal protests when a vassal state, the Liuqiu (Ryukyu) Islands, was annexed by Japan by the end of the 1870s. Similarly, her action with regard to Vietnam was limited to securing the border, rather than retaining Vietnam. In August 1883, Vietnam was forced to become a protectorate of France. The French Prime Minister, Jules Ferry, aspired to acquire a colonial empire and initiated imperial adventures in countries as diverse as Tunis, Congo, Niger and Madagascar, as well as Indochina. And now French forces were moving steadily towards Vietnam's border with China.</p><p></p></div>	
+<div class='layout'><p>Cixi began to prepare for war. Court and amateur astrologers saw signs of major battles coming, from the abnormally flaming sky that lasted for days, to the angle of a shooting comet. Cixi was a believer in astrology. To her, comets were warnings from Heaven. In the past, when comets appeared in the sky, she had reflected on what she might have done wrong and issued edicts soliciting comments on whether incompetent officials had been employed or the poverty of the population had been neglected. Now she was filled with apprehension. With a heavy cold that lasted for months, she coughed incessantly during her audiences. When officials tried to comfort her, she said: ‘I can't but worry in this situation when I see those celestial signs.'</p><p></p></div>	
+<div class='layout'><p>With the French pressing against the border, Cixi sent troops into Tonkin, the northernmost region of Vietnam, adjoining the Chinese provinces of Guangxi and Yunnan. The latter was particularly rich in mineral resources desirable to the French. Cixi's intention was to keep part of Tonkin as a buffer, if possible, but, if not, only to defend the border. From December to April the following year, 1884, Chinese troops fought French forces in this area and suffered repeated defeats. It looked as though the French might even penetrate into China itself.</p><p></p></div>	
+<div class='layout'><p>Prince Gong, head of the Grand Council, was an appeaser by inclination. Fatalistic about winning a war with a Western power, he took no active part in helping Cixi conduct the fighting. According to Grand Tutor Weng's diary, the prince talked ‘vaguely and offered no ideas'. ‘He went on and on to the Empress Dowager for an extraordinary amount of time, all about nothing.' Sometimes he was listless; at other times he failed to turn up at his office. The fact that he had been in poor health did not help. Prince Gong had been suffering serious illnesses in the last few years, passing blood at times, and Cixi had given him long leaves. His energy had been sapped and his judgement blunted. And yet he did not offer to resign, and it was difficult for Cixi to dismiss him because of his status, and because he had been working with her since the very beginning. But she had been seething for some time.</p><p></p></div>	
+<div class='layout'><p>The last straw came on 30 March 1884, when, right in the middle of a series of devastating defeats at the hands of the French, the prince insisted on discussing with Cixi her forthcoming fiftieth birthday<a name="p2" id="p2"></a><a href="#pl2" title=""><sup>2</sup></a> in the autumn, in particular the arrangements for presenting the gifts. Prostrating himself before her, the prince talked for an hour and a half. An irate Cixi told him off: ‘With the border situation like this, you are talking about birthday presents! It shouldn't be on the agenda at such a time; why are you bothering me with this business?' But the prince went on unabashed, kneeling for so long that he had difficulty standing up when he was finished. Grand Tutor Weng, who witnessed the scene, recorded it in his diary, with open contempt for the prince. The next day Prince Gong returned and resumed his blather, ‘begging the Empress Dowager to be so kind as to accept birthday presents'. Cixi ‘reproached him in words that showed a heavy heart', and yet her words seemed to make no impression. The Grand Tutor felt that he had to ‘go above my station' and give the prince a piece of his mind. He told him to heed the empress dowager, and ‘don't dwell any longer on trivialities'. In his diary, the Grand Tutor wrote scornfully: ‘This highest nobleman has such low intelligence!'</p><p></p></div>	
+<div class='layout'><p>Cixi made up her mind to dismiss Prince Gong. This was no small undertaking. By now he had been entrenched as the head of the Grand Council for a quarter of a century and was the most powerful person in the empire, after Cixi herself. She had to go about it with the utmost caution. With a suitable pretext, she sent Prince Gong out of Beijing for a few days and, while he was away, she summoned Prince Chun and made preparations, rather as if she was planning a coup. As soon as Prince Gong returned, on 8 April, Cixi threw him the crimson-inked decree that announced his dismissal and that of the entire Grand Council. With this surprise strike, the empress dowager parted with her political partner of more than two decades, the man who had stood by her side almost daily, sharing the challenges of reform with her. Perhaps because of the manner of his dismissal – more suited to a foe than to a close friend who had shown nothing but devotion and comradeship for her for so long – Cixi felt awkward and did not see the prince again for ten years. Prince Gong tried to reassure her that he held no grudge against her and quite understood that she had to take precautions. He begged to see her, even if only as one of the well-wishers on her birthdays, but she refused all entreaties.</p><p></p></div>	
+<div class='layout'><p>Cixi appointed a new Grand Council and put Prince Chun in charge. As the emperor's biological father, he could not be the formal head and so he conducted business from home. This transfer of power from one brother to another did not cause friction between the two princes. On the contrary, the brothers, who had formerly been at loggerheads because of their different attitudes towards the West, now became much closer. Prince Chun, who had changed fundamentally, frequently visited his disgraced half-brother. They had a bond: their shared adoration of their sister-in-law. They wrote poems to each other, and a recurring theme in Prince Gong's was that he found it ‘hard to look back at all those bygone years'. The prince was expressing his nostalgia for the days of his collaboration with Cixi; he was also hoping to convey to her, via Prince Chun, that he cherished the memories and would always remain loyal to her.</p><p></p></div>	
+<div class='layout'><p>Prince Chun had as little idea as his brother about how to resolve the crisis with France, but he executed Cixi's orders efficiently and unwaveringly. Westerners thought he was an uncompromising hawk, unlike Prince Gong. The replacement of Prince Gong with Chun was interpreted as an indication of Cixi's determination to pursue the path of war. Indeed she was resolved to fight a ‘protracted war against the enemy' (yu-di jiu-chi), until the French, a long way from home, were exhausted and sought to end the conflict themselves.</p><p></p></div>	
+<div class='layout'><p>Her real goal was peace, for which she was willing to let Vietnam go if necessary, provided its loss secured a commitment from France to respect the border with China. She appointed Earl Li as her chief negotiator. The earl was now her diplomatic ace as well as chief adviser. Vastly superior to Prince Gong, he worked with her in perfect harmony. They often thought alike and enjoyed a tacit understanding. Earl Li was at this time officially ‘in mourning' for his deceased mother, which required him not to work for twenty-seven months. But Cixi told him to cut the period short, citing ancient sages who had specifically exempted those with military duties. During the negotiations, telegrams shuttled back and forth between them. They knew that France was deeply engaged in the scramble for Africa and had no wish for a prolonged war with China. Peace was achievable, and the earl was able to clinch a deal in Tianjin with Commandant Fournier, whom he already knew as a friend. The Li–Fournier convention embodied the minimum terms that Cixi was willing to settle for: France promised never to cross the southern boundaries of China and guaranteed to prevent anyone else from doing so; in return, China acquiesced to France taking control of Vietnam. Fournier had informed the earl that the French Foreign Ministry had asked for a war indemnity on the grounds that public opinion at home called for it. Cixi told Earl Li that the demand was ‘totally unjust, totally unreasonable, and transparently against international convention'. The earl rejected the demand, and Fournier did not insist. When the draft agreement was sent to Cixi, she cabled back on 9 May 1884: ‘Have read it carefully. None of the items does damage to the fundamental interest of our country. Endorsed.' The convention was signed on the 11th.</p><p></p></div>	
+<div class='layout'><p>Cixi began to withdraw troops from Vietnam – cautiously, as she learned that Paris was unhappy about having not extracted any money, and that gunboats were on their way. On 12 July, France produced an ultimatum for a gigantic indemnity of 250 million francs, claiming that China had broken the agreement by starting an armed clash, which, in fact, was an accident and was judged by Western observers to have been ‘an honest misunderstanding'. Cixi was incensed. Eye-witnesses were struck by her unusual severity in the audience, when she spat out her prohibition on anyone speaking in favour of negotiations over the indemnity. At the time, nearly everyone involved in this conflict, including Earl Li, was resigned to giving in to some extent to the French extortion, in order to avoid a war. But Cixi was firm: not a sou to the French. When her diplomats took it upon themselves to make an offer, suggesting a much lower sum, she reprimanded them sharply. Facing the prospect of war, she first sought mediation by America and, when France refused mediation, she gritted her teeth and proclaimed that ‘war is unavoidable'. She told an official, Shi Nianzu, in an audience: ‘When it comes to China's relationship with foreign countries, it is of course better to have peace. But before we can have real peace China must be ready to fight. If we give in to every demand, then the more we seek peace, the less likely we are going to get it.'</p><p></p></div>	
+<div class='layout'><p>France initiated the Sino-French War on 5 August 1884, first attacking Taiwan, then annihilating the Chinese fleet at Fuzhou on the southeast coast, and blowing up the Fuzhou Navy Yard – which had been built under the direction of the Frenchman Prosper Giquel. On 26 August, in an outrage-filled treatise, Cixi declared that China was at war with France. A modern touch was added to the ancient warring rhetoric: foreign nationals were to be protected, including French citizens. When she learned that coastal officials were putting up posters calling on the Chinese inhabitants of the South Sea islands to poison the food supplied to stranded French ships, she immediately stopped them with an edict and reprimanded the officials in question, adding that overseas Chinese should stay out of the military conflict.</p><p></p></div>	
+<div class='layout'><p>In the following months her army scored some victories and suffered many more defeats. But in late March 1885, they won a major battle at the Zhennan Pass on the border and, as a consequence, the French retreated from the strategically important city of Lang Son. Jules Ferry's government fell; his successor, Charles de Freycinet, promptly settled for peace. A treaty was signed on 9 June in Tianjin by Earl Li and the French minister Jules Paten tre. This treaty was the same in essence as the Li–Fournier convention a year earlier. The French were back at square one, having failed to extract one single franc out of China. For the Chinese, the cost was heavy, but the fight was a tremendous morale-booster, which, in the words of Grand Tutor Weng, had ‘swept away the country's meek acceptance that it was weak'.</p><p></p></div>	
+<div class='layout'><p>Not only did Cixi demonstrate that she was capable of fighting a major war, but she had the acumen to stop it at the right moment. After the border victories, her commanders at the front had been eager to fight on. Even the usually sensible Viceroy Zhang Zhidong advocated keeping Lang Son and some other Vietnamese territory on the border as a buffer zone. Cixi sent them a succession of urgent and non-negotiable orders, telling them emphatically to cease fire and withdraw their troops. She told them that they could ‘not be certain that there were going to be further victories; and even if there were, Vietnam doesn't belong to us in the end'. She knew that the Vietnamese had a long history of resisting Chinese domination (the Chinese name for the pass on the border, Zhennan, actually means ‘Suppressing Vietnam') and that this time some Vietnamese were actively helping the French. Meanwhile, the French were blockading Taiwan and looked set to attack it if the war went on, in which case China might lose Taiwan. Her cables were written in the severest possible language, and they chastened the Viceroy and others, who obeyed. Later on, with hindsight, Prince Chun wrote: ‘If it had not been for the Empress Dowager's farsightedness and decisiveness to settle for peace with France, we would have been embroiled in endless perilous wars, and would have seen our coffers emptied and our defence enfeebled. It does not bear imagining what might have happened.'<a name="p3" id="p3"></a><a href="#pl3" title=""><sup>3</sup></a></p><p></p></div>	
+<div class='layout'><p>Cixi's handling of the conflict won the empire respect. Robert Hart proclaimed, ‘I don't think any one will say that China comes badly out of the year's trials …' At the banquet that followed the signing of the peace treaty, the French signatory Paten tre enthused:</p><p></p></div>	
+<div class='layout'><p>I have every confidence that the diplomatic agreement we have just signed will do more than just put an end to our past disputes and – I hope – speedily efface them from our memory. By creating new links between France and China … the Treaty of 9 June will indubitably help to entrench and develop between the Chinese Empire and foreign countries that community of interests which has always most effectively cemented friendships between peoples.</p><p></p></div>	
+<div class='layout'><p>Earl Li replied in kind: ‘From now on, the friendship between our two countries will shine as brightly as the morning sun when it emerges from the gloom of night.'</p><p></p></div>	
+<div class='layout'><p>After the war with France, Cixi focused on rebuilding and updating the navy, writing decrees in crimson ink to stress the significance of the enterprise. (She rarely wrote in crimson ink, the symbol of the authority of the monarch.) More gunboats were bought from Europe and crews trained by Western instructors. In spring 1886, she sent Prince Chun to inspect the newly equipped Northern Fleet off the coast opposite the Dagu Forts. The prince took with him Cixi's head eunuch, Lee Lianying, who was known to be extremely close to her. Standing by the side of the prince, carrying his water-pipe, Lianying became an eye-catching figure in the prince's entourage.</p><p></p></div>	
+<div class='layout'><p>The prince brought him for a purpose. Seventeen years earlier, Little An, Lianying's predecessor, had been sent by Cixi to Suzhou to buy wedding robes for her son. Little An had been beheaded for leaving the capital, and Prince Chun had been the prime mover. Now the prince was making a gesture of repentance towards Cixi for the horrible wrong he had done. By inviting her current favourite eunuch to journey out of Beijing, to board a modern ship and sail out to sea, the prince was offering Cixi a belated, but sure-to-be-appreciated, apology.</p><p></p></div>	
+<div class='layout'><p>Prince Chun made this extraordinary gesture because he really wanted to show Cixi his appreciation for her defence of the empire. During this period she completed treaties with European powers and extracted commitments from them to respect China's borders, which were formally drawn up at this time and largely remain in place to this day. The treaties included one with Russia (1881), with France (about the border with Vietnam, 1885) and with Britain (regarding Burma, 1886, and Sikkim, 1888). It is chiefly thanks to her that during those years, while the European powers were sweeping across the globe, gobbling up ancient kingdoms and carving up old continents, China was left alone.</p><p></p></div>	
+<div class='layout'><p>At the beginning of 1889, at the height of her achievements, the empress dowager announced that she was going to retire and cede power to her seventeen-year-old adopted son. Under her reign China's annual revenue had doubled. Before she came to power, it had been around forty million taels, even at the most prosperous times under Qianlong the Magnificent. Now it stood at nearly eighty-eight million, of which as much as one-third came from Customs duties – the result of her open-door policy. Before returning to the harem she issued an honours list, thanking about 100 officials, living and dead, for their services. The second on her list was Robert Hart, Inspector General of Customs, for building up a well-organised and efficient fiscal institution, free of corruption, which had ‘produced very considerable and ever increasing revenues for China'. Customs revenue helped save millions of lives. In the previous year, 1888, when the country was struck by floods, earthquakes and other natural disasters, it could afford to spend ten million taels of silver to buy rice to feed the population. The honour she conferred on Hart was the Ancestral Rank of the First Class of the First Order for Three Generations – the highest distinction because the title was bestowed on his ancestors for three generations, not his descendants. Hart wrote to a friend, ‘from the Chinese, nothing could be more honourable; in any case it is extremely satisfactory to myself that the Empress Dowager should do this before retiring …'</p><p></p></div>	
+<div class='layout'><p>One of Cixi's decrees thanked all foreign envoys for their help in forging amicable relationships between their own countries and China. She ordered the Foreign Office to select an auspicious day on which to give a grand banquet for the envoys and to present each envoy with a ru-yi, a good-wish sceptre made mostly of jade, as well as silks and brocades, which she personally selected. The banquet, which was held on 7 March 1889 and at which Western diplomats heaped praise on her, marked a high point of her reign.</p><p></p></div>	
+<div class='layout'><p>One guest who spoke spontaneously that day was Charles Denby, the American minister to Beijing from 1885 to 1898. He later wrote of Cixi's ‘splendid reputation' among Westerners at this time, and of her many achievements. Along with ending internal strife and maintaining the integrity of the empire:</p><p></p></div>	
+<div class='layout'><p>a fine navy was created, and the army was somewhat improved. The electric telegraph covered the land. Arsenals and shipyards were located at Foochow [Fuzhou], Shanghai, Canton, Taku [Dagu], and Port Arthur. Western methods of mining were introduced, and two lines of railway were built. Steamers plied on all the principal rivers. The study of mathematics was revived, and the physical sciences were introduced into the competitive examinations. Absolute tolerance of religious faith existed, and the missionaries could locate anywhere in China … During the time covered by the rule of the empress many schools and colleges were established in China by our own countrymen…</p><p></p></div>	
+<div class='layout'><p>Furthermore, Cixi's reign was the most tolerant in Qing history; people were no longer killed for what they said or wrote, as they had been under previous emperors. To alleviate poverty, she initiated large-scale food import and each year spent hundreds of thousands, even millions, of taels to buy food to feed the population. As Denby observed, ‘To her own people, up to this period in her career, she was kind and merciful, and to foreigners she was just.' Foreign relations were fundamentally improved, and the relationship between China and the US stayed ‘tranquil and satisfactory'. Most importantly, the American minister pointed out: ‘It may be said with emphasis that the empress dowager has been the first of her race to apprehend the problem of the relation of China to the outside world, and to make use of this relation to strengthen her dynasty and to promote material progress.' Indeed, Cixi had ended China's self-imposed isolation and had brought it into the international community – and she had done so in order to benefit her country. ‘At that time,' Denby summed up, ‘she was universally esteemed by foreigners, and revered by her own people, and was regarded as being one of the greatest characters in history … Under her rule for a quarter of a century China made immense progress.'</p><p></p></div>	
+<div class='layout'><p>The embryo of a modern China had taken shape. Its creator was Cixi. As Denby stressed, ‘It will not be denied by any one that the improvement and progress above sketched are mainly due to the will and power of the empress regent.' With this impressive legacy, Cixi handed over the reins of the empire to her adopted son, Emperor Guangxu.</p><p></p></div>	
+<div class='layout'><p><a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> China paid Russia for keeping Ili out of rebel hands and allowing trade to continue. This payment was not a war indemnity, although Chinese history books use the same term, pei-kuan, and treat them as though they were the same.</p><p></p></div>	
+<div class='layout'><p><a name="pl2" id="pl2"></a><a href="#p2" title=""><sup>2</sup></a> According to the Chinese system.</p><p></p></div>	
+<div class='layout'><p><a name="pl3" id="pl3"></a><a href="#p3" title=""><sup>3</sup></a> Cixi is still criticised by some today for ending the Sino-French War after China won these battles. Her critics seem to suggest that China should have held on to Vietnam, a sovereign country.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

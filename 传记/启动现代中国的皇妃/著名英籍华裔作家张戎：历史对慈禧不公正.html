@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>著名英籍华裔作家张戎：历史对慈禧不公正</h3>
+
+<p><a href="http://www.merryhouston.com/topic_detail.asp?id=11984" title="">ref</a></p>
+<p>编者按——近日，全球著名的畅销书作者、现居伦敦的英籍华裔作家<a href="http://www.jungchang.net/" title="">张戎（Jung Chang）</a>在休斯敦的亚洲协会德州中心举行了一场小型的新书推介会，向读者介绍她的新书《慈禧太后：启动现代中国的皇妃》(Empress Dowager Cixi: The Concubine Who Launched Modern China)并分享了她对慈禧这个已有“定论”的历史人物的新的看法。这次活动是以对话的形式展开的，由莱斯大学历史系的讲师赵沈允(Anne S Chao)博士主持。魅力Houston网根据这场英文对话的录音，翻译、整理、编辑出了以下内容（只是当时演讲的部分内容，对提问的内容有大量简化）。</p>
+<p> </p>
+<p> </p>
+<p>张戎：四川宜宾人，1978年到英国公费留学，在约克大学取得博士学位，是中华人民共和国建国后首位获英国大学博士学位的中国公民。她1991年出版了自传性质的小说《野天鹅：三代中国女人的故事》（Wild Swans），2005年出版了与丈夫Jon Halliday合著的《毛泽东：鲜为人知的故事》(Mao: The Unknown Story)，两书在全球的销量超过了1500万本。</p>
+<p>赵沈允：2009年在莱斯大学获得中国现代史博士( Modern Chinese History)学位，主要关注陈独秀的社会网络，也对社会网络的数字分析和华人的美国移民史（如早期移民休斯敦的华人）饶有兴趣，她也是HAAA（Houston Asian American Archive)的一位co-investigator。</p>
+<p>赵：许多历史学家的看法是慈禧是位没受过许多教育，有权力，但却是一位阻碍中国现代化的主谋。</p>
+<p>张：毫无疑问，慈禧热爱权力，我是说，如果放在今天，她或许会当个政治家。热爱权力本身没什么错。只要你不利用权力满足私欲，令一个国家陷入灾难。当慈禧权力在握时，她所做的第一件事就是用从国际贸易中挣的钱购买粮食，填饱中国老百姓的肚子。要知道中国在很长一段时间里，无法用自己的粮食养活全部人口，这是农民问题的根源。慈禧耗费上百万银两，购买粮食，这一点和毛完全相反。众所周知，毛出口粮食以换取技术。我认为慈禧懂得也善于利用权术，她是一个conscientious的统治者，我的意思是一个改革家，但没有把保守派赶尽杀绝。比如我们刚看到的这幅图片上的翁同龢，他是一位保守派，军机处成员，还是慈禧儿子和侄子的老师。慈禧始终团结各种力量进行改革，不过这个过程在有些人看来实在是太慢了。说到激进和耐心，我认为她始终试图在维新过程中避免流血冲突，要知道维新规模并不小。她有效统治中国达37年，看看这些年中国都发生了什么？只要是19世纪出现的现代产品都被引进到了中国，她甚至还想引进投票制。如果她不死的话，她有可能实现这一切。</p>
+<p>赵：现代中国史的学生总是将中国与日本进行比较，我们总想知道为什么日本现代化取得了成功，而没有在中国发生。您对此的看法是什么？</p>
+<p>张：我不是“为什么日本更好”这个问题的专家。我觉得非常简单的事实是：中国拥有世界上三分之一的人口，超过四亿人进行的改革并不是容易的事情，日本只有两千万人口，这是完全不一样的状况。在1894年甲午战争之前，中国海军强于日本海军，中国将领强于日本将领。甲午战争之后，日本从中国攫取了四倍于国民收入的赔款，中国被榨干了。更不用提日本所采取的各种改革措施。从甲午战争开始，日本腾飞，中国衰落，人们至今谴责慈禧太后。事实上，她是一个修补者，而历史上的悲剧人物光绪皇帝需要对此负责。他或许的确是个悲剧，但不是什么英雄，他将这场战争引向灾难。这场战争是他的错，也是整个体系的错，正是这个体系将这份重担压在这样一个孱弱的肩膀之上。但这不是慈禧的错。正如我刚才所说，因为她和光绪皇帝关系不好，所以光绪皇帝想把她踢出决议层，在战争期间，她插不上什么话。就是在这种情况下，中国在日本手里遭遇到了惨败，日本在谈判中要台湾，要两亿两白银。慈禧说，不行，撤回和平特使，战斗，战斗到最后。慈禧是紫禁城中唯一坚决主战、要求战斗到最后的人。光绪皇帝和他的人担心日本打到首都，清朝覆灭，因此签署了丧权辱国的条约。他们把中国的财富都送给了日本，然后所有的人都开始谴责慈禧。当我接触到这些档案时，我认为历史对这个女人并不公平。</p>
+<p>赵：您能谈一谈您所采纳的资料来源吗？</p>
+<p>张：资料来源都是公开的，这是写书的过程中特别棒的一件事。我的丈夫写毛的时候花了12年的时间，因为在中国资料来源不公开，在俄罗斯部分公开，我们要一点一点地发掘。被称为中国第一国家档案馆的故宫档案馆拥有1200万份文件，1970年代后学者们便可以使用这些文件，可以对其进行编辑、编写、复印、出版，甚至数字化。由于很多文件都进行了数字化处理，我可以舒舒服服的坐着，在屏幕前接触所有资料。多亏了这些学者的努力，我才能够得以找到浩若烟海的资料，而不是依靠任何道听途说、谣言与传奇。中国学者给了我巨大的能量，我对他们感激不尽。我在写书中有很多问题，他们总是能够回答我的问题。他们中的很多人由于能够接触到这些档案，知道历史迟早重新评价慈禧。</p>
+<p>赵：在您研究慈禧写书的过程中，您对她的看法有变化吗？</p>
+<p>张：我曾经一点都不了解慈禧。我生长在共产党统治下的中国，接受的当然是那种洗脑教育，慈禧是顽固的保守分子，非常残忍。但这些没有成为我的想法，我并不持这种观点。如我所说，第一件让我感到震撼的事情就是她所从事的粮食贸易，这与她的顽固保守分子的形象有所矛盾。随着我对毛了解越多，我就越意识到毛生活在一个多么开明的社会。他是一个年轻的农民，却可以轻而易举地在学院得到奖学金，要是愿意，他还可以出国。当然了，他不愿意。他可以就任何问题在优秀的自由报纸上发表文章，不管是1922年的华盛顿会议，还是十月革命。他可以和他的女朋友四处旅行，入住旅社。这种自由是在我所成长时的中国，做梦都想不到的。我上了互联网后，发现现在还有那么多关于慈禧的陈旧宣传，我认识到我有些新的发现要告诉大家。历史遍布重重迷雾，谎言弥漫，而我有些新的发现，这正是我写关于慈禧的书的原因所在。</p>
+<p>赵：您能描述一下您成为一位作家的历程么？</p>
+<p>张：说来话长，在我还是一个孩子的时候，我就想成为一个作家。在我成长的过程中，中国的五十年代、六十年代以及七十年代，你根本不可能成为一个作家，因为作家都在受到迫害，甚至写作本身都是一件危险的事情。我在1968年16岁生日的时候写了第一首关于我自己的诗歌。我躺在床上，一字一句推敲我的诗，门开始砰砰作响，红卫兵冲进了我们的公寓，我飞快地冲进厕所，把诗撕碎，冲进马桶。这是我第一次创作。在接下来的几年里，我是农民、是钢铁工人、是电工，当我在电线杆顶上检查输电线路时，总是有一只无形的笔就在我的脑子里写个不停。毛去世之后，中国人开始接触西方世界。但当我到了英国之后，我丧失了成为一个作家的愿望。因为我简直来到了火星，我利用生活中的每一分钟汲取四周全新的东西。我开始了无数个生平第一次。我跑去英式酒馆，我们中国人管这个叫做酒吧，好像里面都是些下流的裸体女人（听众大笑）。我对这个事情非常好奇，所以找一天去酒馆，推开门一看，没有这种东西么，大家坐在那里喝着啤酒，我好失望。我的生活里充满了这种令人激动的时刻。在中国教英语的都是些从来没见过外国人的老师。我们整天就学些问候语，那时候中国人相互问候的方式就是，“吃饭了么？”、“上哪去？”我第一次去伦敦，没事就问人去哪、吃了么。你看，生活如此令人兴奋，我根本想不起来写作，直到1988年我的母亲来陪着我。她第一次告诉我关于她的故事，我的祖父的故事，我的父亲的故事，以及她和我父亲的关系等。一旦我母亲开始讲述，她就停不下来。她陪了我6个月，每天都在讲。当她离开的时候，留下了60个小时的录音。我听她的唠唠叨叨，觉得，对于那些已经发生过的事情，我必须得写点什么。我发现自己是多么想成为一个作家。于是，在我的母亲离开之后，我开始了写作。</p>
+<p> </p>
+<p> </p>
+<p>有一位台湾的读者专程从家里拿来了一本被翻得很旧的、1992年台湾翻译出版的张戎的第一部作品《鸿》（左），她表示很高兴张戎能在这本她小时读过的书籍上签名，而当张戎在休斯敦看到此书时也颇感意外。</p>
+
+<p> </p>
+<p>相关链接：</p>
+<p>《纽约时报》  张戎：慈禧之后中国再无女强人</p>
+
+
+<p style='float:right;'>本页共27段，3786个字符，10089 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

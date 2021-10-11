@@ -1,0 +1,388 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>6 Virgin Journeys to the West</p><p></p></div>	
+<div class='layout'><p>(1861–71)</p><p></p></div>	
+<div class='layout'><p>ON the road to modernity Cixi had a kindred spirit, close adviser and dependable administrator in Prince Gong. Her decisions were formulated with the help of the prince, who then implemented them. Between them, the yellow silk screen barely existed.</p><p></p></div>	
+<div class='layout'><p>Without such a man outside the confines of the harem, Cixi could not have ruled effectively. She showed the prince her appreciation by awarding him unparalleled honours – and, crucially, exempting him from having to prostrate before her. An imperial edict issued just after her coup, in the name of her son, specifically granted the privilege of not kneeling and kowtowing in everyday meetings to Prince Gong, together with Prince Chun and three other uncles of the child emperor. Prince Gong was the main beneficiary, as he saw Cixi every day. It eventually struck her that she really must withdraw this favour. Without the rigid etiquette, she realised, Prince Gong was too relaxed with her and was treating her in the patronising way he tended to treat all women, especially as she was young – still in her twenties. His behaviour irritated and angered her for some time, until one day in 1865 she exploded and in tremendous agitation fired him. She wrote a decree by hand, accusing him of ‘having too high an opinion of himself', ‘strutting about and giving himself airs' and, simply, being ‘full of rubbish'. This was one of the few decrees Cixi wrote in her own hand. Her writing was still poor, and her text was littered with solecisms. That she threw caution to the winds and exposed her vulnerability – her lack of scholarship, which mattered so much to the elite – shows how furious she was.</p><p></p></div>	
+<div class='layout'><p>Like most rocky moments in solid relationships, the storm passed. The grandees mediated. Cixi calmed down. Prince Gong apologised, prostrating at her feet (which remained behind the yellow silk screen), weeping and promising to reform his manners. Having made her point, Cixi rescinded her decree and restored Prince Gong to his former posts. She did, however, take away his title, Grand Adviser, although his role continued as before. She also told him to be deferential in court and stop behaving arrogantly. From now on Prince Gong, tamed, took care to humble himself, and to kneel and kowtow in her presence. This episode served as a warning to other grandees around her that Cixi was not to be patronised. She was the master. They all prostrated before her.</p><p></p></div>	
+<div class='layout'><p>Her working relationship with Prince Gong remained close. In fact, they grew closer as they were thrown together as ‘comrades' facing conservative opposition to their efforts to bring the empire into the modern age.</p><p></p></div>	
+<div class='layout'><p>One major episode concerned the first modern educational institution, Tongwen College, the School of Combined Learning. It was set up in 1862, soon after Cixi's reign began, to train interpreters. At the time, it met with relatively little resistance – after all, China had to deal with foreigners. The school was housed in a picturesque mansion where, amidst date trees and groves of lilac and winter jasmine, a little bell tower announced class hours. Then in 1865, when, on Prince Gong's advice, Cixi decided to turn it into a fully fledged college teaching sciences, the opposition became frenzied. For two thousand years only the classics had been regarded as a fit subject for education. Cixi defended her decision by saying that the College only intended ‘to borrow Western methods to verify Chinese ideas', and would ‘not replace the teachings of our sacred sages'. But this did not assuage the officials who had risen to their present positions through imbibing Confucian classics, and they attacked the Foreign Office and Prince Gong as ‘stooges of foreign devils'. Graffiti abusing the prince were pasted on city walls.</p><p></p></div>	
+<div class='layout'><p>One source of outrage was that, in this college, foreigners would be made ‘teachers'. By tradition, a teacher was a most revered figure, a mentor for life, who imparted wisdom as well as knowledge, and who must be respected like a parent. (The murder of a teacher was classified as parricide, which, like treason, was punishable by death of a thousand cuts.) Emperors and princes set up shrines in their homes to honour their deceased tutors. The most vocal opponent on this issue was a highly esteemed Mongol scholar, Woren, a tutor of Cixi's child, Emperor Tongzhi. He wrote to Cixi arguing that Westerners must not be accorded this exalted status, as they were enemies who had ‘invaded our country, threatened our dynasty, burned our palaces, and killed our people'. And he reasoned: ‘Today we are learning their secrets in order to fight them in future wars, and how can we trust them not to play evil tricks through fake teaching?'</p><p></p></div>	
+<div class='layout'><p>While rebuking the abusive dissenters with strong words, Cixi was gentle with Woren, merely bidding him to find Chinese teachers to teach sciences. This put the Mongol tutor on the spot, and he had to concede that he had no one to nominate. Cixi told him to keep trying and come up with a solution to the country's problems. The tutor, who had been selected to teach the emperor on account of his deep-rooted Confucian principles, was convinced of his own arguments, but felt helpless and distraught in the face of reality. One day he burst into sobs while giving a lesson to the nine-year-old child emperor, who, having never seen the elderly teacher cry, was frightened and disconcerted. A few days later, the old man passed out while trying to mount a horse. He was ill and asked to resign. Cixi declined to accept his resignation, but gave him permanent sick leave. Woren left behind many sympathisers at the court, including his fellow tutor, Grand Tutor Weng, also a hater of the West. Weng had wept when the Old Summer Palace was burned down and called the Westerners in Beijing ‘dirty animals' and ‘wolves and jackals'.</p><p></p></div>	
+<div class='layout'><p>Cixi pushed ahead in spite of tenacious opposition, and appointed a senior official, Hsü Chi-she, to head the college, announcing that Hsü had ‘high prestige' and was ‘a good model' for the students. Hsü's distinction, in the empress dowager's eyes, came from his book, the first comprehensive description of the world by a Chinese. Although he had never been abroad, Hsü had accomplished this major work with the help of an American missionary, David Abeel, with whom he had made friends while working on the southern coast in the 1840s. In the book, he placed China as just one country among many on Earth, contradicting the notion that China was the Middle Kingdom and the centre of the world. America seems to be the country he admired most, and he said of George Washington, ‘Ah, what a hero!' Hsü wrote that after Washington fought victorious wars over a vast territory and people wanted to make him king, he ‘did not ascend the throne, nor pass his position to his descendants. Instead, he created the system by which a person became the head of the country through election.' ‘Washington was an extraordinary man!' he exclaimed.<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a> Hsü was most impressed by the fact that America ‘has no royalty or nobles … In this brand new state, public affairs are decided by the people. What a wonder!' To Hsü, America came closest to the Confucian ideal that ‘everything under Heaven is for the people' (tian-xia-wei-gong), and was the place most similar to China's Three Great Ancient Dynasties, under the emperors Shun, Yao and Yu more than 4,000 years earlier. Under these dynasties, the Chinese believed, their country was a flourishing and kind place, where the emperors were voted into office on merit, and lived like everyone else. These dynasties were in fact mythical. But people imagined they were real, and quite a few Chinese who came into contact with the West expressed astonishment that China's legendary ancient practice appeared to be alive beyond the ocean. The British justice system was ‘just like the one in our Three Great Ancient Dynasties,' one observed.</p><p></p></div>	
+<div class='layout'><p>When Hsü's book was published back in 1848 under Cixi's late father-in-law, Emperor Daoguang, officials had been scandalised. They had accused him of ‘inflating the status of foreign barbarians' and heaped invective on him. He had been dismissed from his job. Now, in 1865, his book reached Cixi, and she plucked him out of disgraced semi-retirement at his home on the Yellow River and promoted him to a key post in the Foreign Office. Hsü's appointment was seen by Westerners in Beijing as yet another sign of ‘the beginning of a new era'.</p><p></p></div>	
+<div class='layout'><p>In the next few years Hsü suffered continuous insults from other officials. He begged to retire, citing poor health, and eventually Cixi had to let him go. (He died in 1873.) After Hsü's retirement, Cixi appointed an American missionary, W. A. P. Martin, to head Tongwen College, at the recommendation of Robert Hart. As a foreigner, Martin was spared peer-group ostracism. But for Cixi, to put a Westerner at the helm of a Chinese educational institution was ground-breaking and extremely bold. The American was chosen because he had introduced Western legal concepts to China through his translation of Henry Wheaton's Elements of International Law, which was published with a subvention of 500 taels of silver from the Foreign Office, authorised by Cixi. He stayed in this post for decades, and trained many diplomats and other major figures. This Western-style college became a model for a new educational system in the empire.</p><p></p></div>	
+<div class='layout'><p>To open people's eyes to the outside world, Cixi began to send travellers overseas. In spring 1866, when Hart was going on home leave, Prince Gong selected several students from Tongwen College to travel with him and tour Europe. A sixty-three-year-old Manchu named Binchun was assigned to lead the small group of young men. Sporting a scholarly goatee, he became, as he proudly wrote of himself, ‘the first person to be sent to the West from China'.</p><p></p></div>	
+<div class='layout'><p>Binchun was a clerk in the Customs office. For such a path-blazing mission, his rank was incredibly low, and his age far too advanced. The problem was that all who had been approached (whose rank could be no higher than Hart's, in order to be in his entourage) declined to accept the job. Binchun was the only man who volunteered. Many alarmists warned him that going to a foreign land would be like offering himself as prey ‘to tigers and wolves in human form', and that he could be kept a hostage or possibly chopped into pieces. But Binchun had a strong sense of curiosity and was remarkably free of prejudice. He had learned enough about the outside world from his Western friends, one of whom was W. A. P. Martin, to know that the scary tales were baseless. In a poem he described how books from his foreign friends had broadened his horizon, so that he was no longer like the infamous frog that sat at the bottom of a well declaring that the sky was as big as the patch it could see.</p><p></p></div>	
+<div class='layout'><p>Binchun travelled to eleven countries, visiting cities and palaces, museums and operas, factories and shipyards, hospitals and zoos, and met people from monarchs to the average man and woman. Queen Victoria noted down her audience with him in her diary on 6 June 1866: ‘Received the Chinese Envoys, who are here without credentials. The head man is a Mandarin of 1st Class. They looked just like the wooden and painted figures one sees.' Binchun, whose status had been vastly inflated for this meeting, wrote in his own diary that Queen Victoria asked him what he thought of Britain and that he replied, ‘The buildings and appliances are ingeniously constructed and made, and better than those in China. As for the way state affairs are run, there are very many advantages here.' To which Queen Victoria said she hoped that his tour would enhance the amicable relations between the two countries.</p><p></p></div>	
+<div class='layout'><p>At a ball given by the Prince of Wales, Binchun was dazzled by the dancing, which, being non-existent in China, he described in some detail with obvious yearning. When the Prince of Wales asked for his impression of London, he said frankly that as the very first Chinese envoy abroad, he had the good fortune to be the first to know there was such splendour across the ocean.</p><p></p></div>	
+<div class='layout'><p>He marvelled at the illuminated cities at night, and was amazed by the trains, which he rode on forty-two times. ‘The sensation is like flying through the air,' he wrote, and he brought back home a working model of a train. He registered that machines could improve people's lives. In Holland, the use of water pumps to create fertile fields made him reflect: ‘if these are used on peasants' land in China, we don't have to worry about drought or water-logging any more'. He liked European political systems and recorded with admiration his visit to the Houses of Parliament in London. ‘I went to the great chamber of the parliament, which has a high vault and is grand and awe-inspiring. There, 600 people who have been elected from all parts of the country gather to discuss public affairs. (Different views are freely debated, and only when a consensus is reached will a decision be taken and implemented. Neither the monarch nor the prime minister can impose his will on decisions.)'</p><p></p></div>	
+<div class='layout'><p>This inquisitive man was bowled over by everything he saw – even the fireworks, which had been invented in his own country. But while in China they remained firecrackers on the ground, here they were fired into the sky and produced ravishing explosions. Even his reservations were prefaced by praise: ‘Westerners love being clean, and their bathrooms and toilets are immaculately washed. The only thing is that they throw newspapers and magazines into the faeces after they read them, and sometimes they use these to wipe the dirt. They don't seem to respect and treasure things that have writings on them.' Respecting the written word was a Confucian teaching.</p><p></p></div>	
+<div class='layout'><p>Not least was Binchun smitten by European women and the fact that they could mingle with men, and dance with men, wearing gorgeous clothes. This kind of male–female relationship seemed to appeal to him. The way Western men treated their women particularly impressed him. On board a steamer, he noticed that ‘the women walked arm-in-arm with men upon the deck, or rested on rattan couches while their husbands waited upon them like servants' – which was quite the opposite of how things were done in China, but which showed a kind of domestic intimacy that was attractive to him. He made a point of saying that in Europe women could be crowned monarchs just like men, one great example being Queen Victoria. About the queen, Binchun wrote admiringly: ‘She was 18 when she succeeded to the throne, and everybody in her country sings in praise of her wisdom.'</p><p></p></div>	
+<div class='layout'><p>Binchun's diaries, with their rhapsodic superlatives about the West, were delivered to Prince Gong upon his return to China, and the prince had them copied and presented to Cixi. This was the first eye-witness account that Cixi read of the outside world by one of her own officials, and it was bound to affect her deeply. In particular, the treatment of women in the West could not fail to attract her. While Western women could be monarchs in their own right, Cixi had to rule from behind her son's throne. She could not see her officials without a screen, and even with the screen she was still unable to receive foreign envoys, who had been requesting an audience to present their credentials. When she sought opinions from the grandees on this matter, their response had been cast-iron and uniform: the audience could not be granted while the emperor was a child; the envoys would have to wait until he formally assumed power. That she might receive the envoys was out of the question, so unthinkable that most officials did not address that possibility. It was impossible for Cixi not to be favourably disposed towards Western ways.</p><p></p></div>	
+<div class='layout'><p>So her response after reading Binchun's diary was to promote him to a post in the Foreign Office and make him ‘Director of Western Studies' at Tongwen College in early 1867, when Hsü, the admirer of Washington, was head of the college. The two men had been kindred spirits, and Hsü had given Binchun a copy of his world geography to take on his journey, during which Binchun had confirmed that Hsü was indeed right that China was not the centre of the world! Hsü wrote a preface to Binchun's diary when it was published, with Cixi's endorsement.</p><p></p></div>	
+<div class='layout'><p>Just like Hsü, Binchun was attacked by the conservative grandees. Grand Tutor Weng mentioned him in his diary with loathing and contempt, calling him a ‘volunteer to be a slave to the devils', aghast that he should ‘refer to barbarian chieftains as monarchs'. It is unclear whether the pain Binchun endured for his broad-mindedness played any role in the deterioration of his health, which led to his death in 1871.</p><p></p></div>	
+<div class='layout'><p>Sending ambassadors to Western countries had always been Cixi's intention. But no suitable men could be found to fill the posts, as no official spoke a foreign language or knew anything about foreign lands. In 1867, Anson Burlingame, US minister to Beijing, was leaving his post for home, and Prince Gong suggested that Burlingame be appointed Ambassador Extraordinary to Europe and America. In his recommendation, Prince Gong told Cixi that Burlingame was a ‘fair and conciliatory' man, who had ‘the interests of China at heart', and that he was ‘always willing to help China solve its problems'. He could be trusted, just like the Briton, Robert Hart, with whom ‘we have no barriers of communication'. America, the prince added, was also ‘the most peaceful and unaggressive' country among the powers as far as China was concerned. Showing considerable imagination, Cixi approved the suggestion immediately and made Burlingame China's first ambassador to the West, providing him with official credentials and seals. Burlingame's brief was to present the new China to the world and explain its new foreign policy, to ‘argue against and stop anything that is damaging to China's interests, and agree to anything that is beneficial'. He would have two young Chinese deputies, Zhigang and Sun Jiagu, and they should be consulted on all issues. Important decisions must be referred back to Beijing. In order that Britain and France would not feel put out, one diplomat from each country was invited to be a secretary to the mission.</p><p></p></div>	
+<div class='layout'><p>The conservatives were annoyed. In his diary, Grand Tutor Weng contemptuously called Burlingame ‘a foreign barbarian chieftain [yi-qiu]'. The foreign community was impressed by the idea – ‘singular and unexpected,' wrote the English-language North China Herald. The paper could not believe that the ‘Chinese mind' was capable of such an inspired initiative, and attributed it to ‘Mr Hart's brain'. In fact, Hart was only told about it after it was conceived, and although he expressed support, his subsequent remarks were lukewarm and sceptical, if not downright critical. Perhaps he who was thought of as ‘Mr China' was somewhat jealous.</p><p></p></div>	
+<div class='layout'><p>The Burlingame mission travelled across America and Europe, attracting much attention wherever it went. It was received by the heads of all the states it visited, among them President Andrew Johnson in America; Queen Victoria in Britain; Napoleon III, Emperor of France; Bismarck in Prussia and Tsar Nicolas I of Russia. Queen Victoria wrote in her diary on 20 November 1868: ‘to receive the Chinese ambassador, the 1st who has ever come here, but he is an American in European dress, a Mr Burlingham [sic]. His colleagues are however 2 real Chinese, – the 2 secretaries being English and French.'</p><p></p></div>	
+<div class='layout'><p>Cixi could not have chosen a more suitable spokesman than Anson Burlingame. Born in New Berlin, New York, in 1820, Burlingame had been appointed by President Abraham Lincoln as his first minister to China in 1861. Fair-minded, with gentle manners, Burlingame believed in the equality of nations and never looked down on the Chinese. He would represent China to Western audiences most eloquently.</p><p></p></div>	
+<div class='layout'><p>He was already known for his oratorical powers. After Harvard University Law School, he had entered the Massachusetts Legislature as a Senator, and then went into the Congress in Washington DC. There, in 1856, he delivered a powerful verbal thrashing of a fervid advocate of slavery, Congressman Preston Brooks, who had just savagely beaten up Senator Charles Sumner, an abolitionist, with a wooden cane. Burlingame was challenged to a duel by Brooks, and he accepted, naming the rifle as his weapon of choice, and Navy Island, above Niagara Falls, as the place for the meeting. The duel did not take place only because Brooks refused the conditions.</p><p></p></div>	
+<div class='layout'><p>In Beijing, Burlingame was instrumental in getting Western countries to adopt the ‘cooperative policy' and to substitute fair diplomacy for the doctrine of force. During the trip, his passionate speeches on behalf of China can be glimpsed from the following address to ‘the citizens of New York' on 23 June 1868. This was how he introduced his mission: China ‘now itself seeks the West … and confronts you with its representatives here tonight … she has come forth to meet you …' To loud cheers, he told his audience what Cixi's government had achieved, and how remarkable the achievements were:</p><p></p></div>	
+<div class='layout'><p>I aver, that there is no spot on this earth where there has been greater progress made within the past few years than in the empire of China. [Cheers.] She has expanded her trade, she has reformed her revenue system, she is changing her military and naval organisations, she has built or established a great school, where modern science and the foreign languages are to be taught. [Cheers.] She has done this under every adverse circumstance. She has done this after a great war, lasting through thirteen years, a war out of which she comes with no national debt. [Long continued applause and laughter.] You must remember how dense is her population. You must remember how difficult it is to introduce radical changes in such a country as that. The introduction of your own steamers threw out of employment a hundred thousand junk-men. The introduction of several hundred foreigners into the civil service embittered, of course, the ancient native employees. The establishment of a school was formidably resisted by a party led by one of the greatest men of the empire. Yet, in defiance of all these, in spite of all these, the present enlightened government of China has advanced steadily along the path of progress [cheers]…</p><p></p></div>	
+<div class='layout'><p>Trade, Burlingame informed his audience, ‘has, in my own days in China, risen from $82,000,000 to $300,000,000' – more than $4.5 billion in today's currency. These changes were truly impressive, Burlingame reminded politicians and the public, because they involved ‘a third of the human race'. Challenging those who advocated ‘coercing China' into quick industrialisation, he pointed out that the idea was ‘born of their own interests and of their own caprice'. He condemned those who ‘tell you that the present dynasty must fall, and that the whole structure of Chinese civilization must be overthrown …'</p><p></p></div>	
+<div class='layout'><p>Burlingame did more than present the case for China. On behalf of the country, he signed an ‘equal treaty' with America in 1868, different from any of the ‘unequal' treaties signed between China and Western countries after the Opium War. It especially protected Chinese immigrants to America by giving them the status ‘enjoyed by the citizens or subjects of the most favoured nation', and actively tried to stop the trade in slave labourers from China to South America, which was going on at this time.<a name="p2" id="p2"></a><a href="#pl2" title=""><sup>2</sup></a> In a 6,000-word article, Burlingame's friend and admirer Mark Twain vividly described the difference the treaty would make to the Chinese living in America: ‘It affords me infinite satisfaction to call particular attention to this Consul clause, and think of the howl that will go up from the cooks, the railroad graders, and the cobble-stone artists of California, when they read it. They can never beat and bang and set the dogs on the Chinamen any more.' Before the treaty, the Chinese had no legal protection, as Mark Twain observed: ‘I have seen Chinamen abused and maltreated in all the mean, cowardly ways possible to the invention of a degraded nature, but I never saw a policeman interfere in the matter and I never saw a Chinaman righted in a court of justice for wrongs thus done him.' Now, the Chinese became voters, and politicians could no longer ignore them. Twain wrote with relish, ‘For at one sweep, all the crippling, intolerant, and unconstitutional laws framed by California against Chinamen pass away, and “discover” (in stage parlance) 20,000 prospective Hong Kong and Suchow voters and office-holders!' The Burlingame Treaty was ratified by Beijing the following year.</p><p></p></div>	
+<div class='layout'><p>Burlingame's deputy, Zhigang, admired him for being ‘open, understanding, fair' and for working ‘with such dedication' to the country he was now representing. When things were not going as well as he wished, Burlingame was given to ‘inconsolable despondency and frustration'. In Russia, China's neighbour with whom a border thousands of kilometres long boded potential trouble, the sense of responsibility seemed especially to weigh on him. Mental and physical exhaustion – for he had been on the road for two years – took their toll and Burlingame fell ill the day after his audience with the tsar, in the depths of a Russian winter. He died in St Petersburg in early 1870. Cixi had been kept informed about his tour, and she honoured and rewarded Burlingame with real feeling – before ordering Zhigang to take over, stressing that ‘it is of utmost importance' that the mission continue.</p><p></p></div>	
+<div class='layout'><p>Before he left Beijing at the beginning of 1868, Zhigang had been summoned to an audience with the empress dowager, who was seated behind the yellow silk screen, while Emperor Tongzhi, then eleven years old, sat on a throne in front of the screen. Zhigang went down on his knees as soon as he crossed the threshold and, taking off his mandarin hat and placing it on his left with the feather pointing towards the throne, as required by etiquette, he recited the prescribed greetings to the emperor, in the Manchu language (he was a Manchu himself), before touching his head on the ground. Then he straightened up, put his hat back on, stood up, moved forward and to the right, to a cushion closer to the throne, where he knelt again and waited for Cixi's questions. Cixi asked him about the route of the journey, to which Zhigang provided a list of the countries he was travelling to and through. It was clear that she had a good idea of the geography of the world – and was well informed about Western customs: she told Zhigang to get his entourage to watch their manners, and ‘don't let them make a fool of themselves and be laughed at by foreigners'. Showing full awareness of the ostracism that her diplomats suffered at home, she said supportively to Zhigang, ‘Working in foreign affairs, you have to be prepared to take all those snide remarks people make about you.' At this the young man answered: ‘Even Prince Gong is subject to such things and he does not shy away. We small people can only do our utmost in our jobs.'</p><p></p></div>	
+<div class='layout'><p>Zhigang was a diligent official, and his diary of the trip read very differently from that of the earlier traveller, Binchun. Rather than brimming with effusive enthusiasm for the West, his view was more detached. Some things would not work in China, he believed. Autopsies, for instance, horrified him, although he accepted that they served an important purpose. He felt that the children of the deceased could not possibly consent to their elders being cut up. Among the things he frowned upon were pleasurable pursuits in which men and women took part together, such as dancing, playing on the beach, swimming in the sea, skating on ice and going to the theatre. The Chinese valued sense, he claimed, the Europeans sensuality. He was averse to Christianity, which he thought was a good doctrine, but was hypocritical: ‘Westerners preach the “love of God” and “love of man”, and they seem really to believe it. And yet they wage wars with gunboats and cannons to conquer people by force, as well as imposing opium, a poison worse than plague, on the Chinese – all for profit.' ‘It looks as though the love of God is less real than the love of profit,' he wrote.</p><p></p></div>	
+<div class='layout'><p>And yet Zhigang also recorded that in London, at Madame Tussaud's, he was surprised to see a stately life-size wax figure of Commissioner Lin, the anti-opium crusader whose destruction of opium had led to the Opium War with Britain. Here Lin was, together with his favourite consort, dressed in resplendent costumes, standing majestically in what was effectively the Hall of Fame in London. Madame Tussaud's had commissioned the figures from a Cantonese artist and imported them at enormous expense. So it was far from the case that all British Christians were in thrall to ‘the love of profit' or in favour of the opium trade. Other positive impressions ranged from the courtesy and hospitality of the kings and queens who entertained the mission, to the kindness and friendliness of fellow park strollers. Visiting George Washington's tomb, Zhigang was struck by its simplicity and paid homage to this ‘very great man'. After witnessing a vote-rigging scandal in France, he ruminated that elections gave opportunities to immoral self-promoters. But Zhigang showed that he was on the whole an admirer of the Western political system. He described how the American Congress worked and commented, ‘with this system, people's wishes can be expressed at the highest level and so the society is run fairly'. Of the countries he visited, America seemed to him the most sincere in wishing to be friendly with China, not least because its immense size and rich resources meant that it had no reason to covet anything from China. France he disapproved of, for imposing heavy taxation on its people in order to keep a large army for overseas wars. The young official was in favour of industrialisation. Writing in some detail about scientific inventions and modern enterprises, he evinced particular enthusiasm for the telegraph, regarding it as something that did not intrude on nature like the other projects (the machines involved were hardly visible), and could almost be part of nature. All in all, the mandarin concluded, ‘If we are able to do what they are doing, there is no question we, too, can be rich and strong!'</p><p></p></div>	
+<div class='layout'><p>Zhigang and his Chinese companions returned to China at the end of 1870, having travelled to eleven countries in nearly three years. Their diaries and reports were presented to Cixi. And yet no action followed on from the massive amount of knowledge gained or the goodwill generated. The only move was to send groups of young teenagers to America for education. But this project, whose objective was to produce future pillars of society who really knew the West and Western practices, had been in the pipeline for some time. Earl Li, who had been promoting this programme, was anxious that a comprehensive agenda should be set. He was then the Viceroy of Zhili, with his office in Tianjin, near the capital. In 1872 he asked to come to Beijing to see the empress dowager. But Cixi told him not to come. She had been in a most vulnerable position since late 1869, when some murderous events had occurred, leaving her struggling to survive and unable to launch major initiatives. Moreover, her son was about to take over, and her retirement to the harem was imminent. Zhigang lamented, ‘Unexpectedly, the situation changed. Alas! There is nothing I can do but wring my hands.'</p><p></p></div>	
+<div class='layout'><p><a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> Hsü's words about Washington are engraved on a Memorial Stone in the Washington Memorial Monument, in Washington DC.</p><p></p></div>	
+<div class='layout'><p><a name="pl2" id="pl2"></a><a href="#p2" title=""><sup>2</sup></a> Article V: ‘The United States of America and the Emperor of China cordially recognize the inherent and inalienable right of man to change his home and allegiance, and also the mutual advantage of the free migration and emigration of their citizens and subjects respectively from the one country to the other, for purposes of curiosity, of trade, or as permanent residents. The high contracting parties, therefore, join in reprobating any other than an entirely voluntary emigration for these purposes. They consequently agree to pass laws making it a penal offence for a citizen of the United States or Chinese subjects to take Chinese subjects either to the United States or to any other foreign country, or for a Chinese subject or citizen of the United States to take citizens of the United States to China or to any other foreign country, without their free and voluntary consent respectively.'</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

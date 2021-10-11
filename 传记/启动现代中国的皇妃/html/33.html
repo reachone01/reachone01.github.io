@@ -1,0 +1,718 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<div class='layout'><p>33 Notes</p><p></p></div>	
+<div class='layout'><p>Chapter 1 Concubine to an Emperor (1835–56)</p><p></p></div>	
+<div class='layout'><p>1 ‘the woman of the Nala family': First Historical Archives of China (ed.) 1998, vol. 4, no. 164; Wang Daocheng 1984, p. 213; Yu Bingkun et al., p. 56; footnote: Professor Wang argued convincingly that Lan was not Cixi's maiden name: Wang Daocheng 1984, pp. 216–18. Also: Yehenala Genzheng & Hao Xiaohui 2007, p. 13</p><p></p></div>	
+<div class='layout'><p>2 Cixi's family: Wang Daocheng 1984, pp. 195–208; Huizheng: Yu Bingkun et al., pp. 7–43</p><p></p></div>	
+<div class='layout'><p>3 Manchu translated into Chinese: Weng Tonghe 2006, vol. 1, p. 148; Jin Liang 1998, p. 161; Daoguang against extravagance: Xin Xiuming, p. 1; Forbidden City Publishing House (ed.), p. 39; the state coffer incident: Yu Bingkun et al., pp. 13–31; Yehenala Genzheng & Hao Xiaohui 2007, pp. 17–18</p><p></p></div>	
+<div class='layout'><p>4 ‘Limping Dragon': Xin Xiuming, p. 2; consort selection: Wang Daocheng 1984; Yu Bingkun et al.; Shan Shiyuan 1990, pp. 1–23; Wang Shuqing, 1980, no. 1; Li Guorong, pp. 216–19; Maugham mused: Maugham, p. 2</p><p></p></div>	
+<div class='layout'><p>5 ‘After ten hours': Freeman-Mitford, pp. 151–2</p><p></p></div>	
+<div class='layout'><p>6 ‘a high nose': Carl, p. 19</p><p></p></div>	
+<div class='layout'><p>7 ‘I don't know why': Xin Xiuming, p. 14</p><p></p></div>	
+<div class='layout'><p>8 For food: Wang Shuqing, 1983, no. 3; Wang Daocheng 1984; Xianfeng sex life: Wang Daocheng 1984, p. 196; Mao Haijian 2006, p. 148; cf. Forbidden City Publishing (ed.), pp. 22–3; Li Guorong, pp. 260–1; Tang Yinian, pp. 23–4; footnote: Jin Liang 1933, p. 27</p><p></p></div>	
+<div class='layout'><p>9 Xianfeng wept: Mao Haijian 2006, p. 75</p><p></p></div>	
+<div class='layout'><p>10 Imperial Apology: Qing History Institute, Renmin University (ed.), vol. 9, p. 69; silver reserve etc.: Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, pp. 1–80; Mao Haijian 2006, p. 106; admonitions: Palace Museum (ed.) 2002, vol. 10, p. 276; her father: Yu Bingkun et al., pp. 14–22</p><p></p></div>	
+<div class='layout'><p>11 ‘crafty': Woqiu Zhongzi, p. 2; ‘exterminated': Yun Yuding, vol. 2, p. 782; Empress Zhen mediated: Xue Fucheng 1983, p. 25; ‘Younger Sister': Xin Xiuming, p. 10; named Yi: First Historical Archives of China (ed.) 1998, vol. 4, no. 164; Ding Ruqin, p. 229</p><p></p></div>	
+<div class='layout'><p>Chapter 2 From the Opium War to the Burning of the Old Summer Palace (1839–60)</p><p></p></div>	
+<div class='layout'><p>1 palace file: Yu Bingkun et al., pp. 63–70</p><p></p></div>	
+<div class='layout'><p>2 second son: First Historical Archives of China (ed.) 1998, vol. 11, no. 1856; sister marries Prince Chun: Pujia, Pujie et al., p. 209; Headland … noted: Headland, p. 264; cf. Carl, p. 82</p><p></p></div>	
+<div class='layout'><p>3 wet nurse: Yu Bingkun et al., pp. 67–8; Tong Yue and Lü Jihong, pp. 15–16</p><p></p></div>	
+<div class='layout'><p>4 Macartney visit: Macartney's diaries in Helen H. Robbins; First Historical Archives of China (ed.) 2001, pp. 130–6; Rockhill, p. 31; 1.1 million taels: Li Guorong, p. 338</p><p></p></div>	
+<div class='layout'><p>5 fifty years of good weather: Kangxi to his sons and officials, in Forbidden City Publishing (ed.), p. 239; population explosion: Jiang Tao 1993, pp. 30–4; Li Zhiting, pp. 475–7</p><p></p></div>	
+<div class='layout'><p>6 ‘tell the fishes': Association of Chinese Historians (ed.), The Opium War, vol. 2, pp. 107–8; Daoguang approved Lin's letter: Qing Government (ed.), Daoguang, pp. 492–504</p><p></p></div>	
+<div class='layout'><p>7 Gladstone speech: Hansard, 8 April 1840; footnote 2: Ridley, p. 259; Hansard, 4 August 1843</p><p></p></div>	
+<div class='layout'><p>8 Wu Tingfang wrote: Wu Tingfang, pp. 246–7</p><p></p></div>	
+<div class='layout'><p>9 Daoguang agony: Qing Government (ed.), Daoguang, pp. 4746, 4807; Palace Museum (ed.) 2002, vol. 9, p. 8; Daoguang writing will: Archives of Ming and Qing Dynasties (ed.) 1979, vol. 4, pp. 273–8; First Historical Archives of China (ed.) 2001, p. 150</p><p></p></div>	
+<div class='layout'><p>10 Qiying denounced, ordered to commit suicide: Mao Haijian 2006, pp. 44–6; Association of Chinese Historians (ed.), The Second Opium War, vol. 3, pp. 449–50</p><p></p></div>	
+<div class='layout'><p>11 ‘I am so awed': First Historical Archives of China & History Department of Fujian Normal University (eds), vol. 1, p. 44; ‘ships of war': Morse, vol. 1, p. 417; ‘pistol at the throat': Morse, vol. 1, p. 573</p><p></p></div>	
+<div class='layout'><p>12 Xianfeng exchanges with officials: Association of Chinese Historians (ed.), The Second Opium War, vols 3 & 4, passim. The English translation of the emperor's endorsement in Parkes Papers 28/10, Department of Manuscripts and University Archives, Cambridge University Library, Cambridge.; Wolseley commented: Wolseley, pp. 16, 57, 92–3, 113.</p><p></p></div>	
+<div class='layout'><p>13 a bounty: Association of Chinese Historians (ed.), The Second Opium War, vol. 5, p. 92; kao-niu: Lin Keguang et al., p. 150; court exchanges over Parkes: Association of Chinese Historians (ed.), The Second Opium War, vol. 5, pp. 64, 67–8, 80, 94–5, 101–3, 111</p><p></p></div>	
+<div class='layout'><p>14 ‘tied their feet': Grant, pp. 133–4; ‘My dearest': Hurd, p. 234; Grant wrote: Grant, p. 203</p><p></p></div>	
+<div class='layout'><p>15 Montauban wrote: Morse, vol. 1, p. 606; ‘Indiscriminate plunder': Wolseley, pp. 224–7; ‘What a terrible scene': Swinhoe, p. 305</p><p></p></div>	
+<div class='layout'><p>16 ‘One room only': Grant, p. 129; ‘Lootie': Royal Archives, Windsor, PPTO/PP/QV/MAIN/1861/7469; Millar, pp. 130–1; French refused: Morse, vol. 1, p. 611; ‘On 18th October': Grant, pp. 204–5</p><p></p></div>	
+<div class='layout'><p>17 ‘ruined nothings': Wolseley, p. 280; Gordon wrote home: Boulger, p. 31; Victor Hugo wrote: UNESCO Courier, November 1985</p><p></p></div>	
+<div class='layout'><p>18 Backhouse forgery: Bland & Backhouse, pp. 14–29; Trevor-Roper; Association of Chinese Historians (ed.), The Second Opium War, vol. 2, pp. 66–9</p><p></p></div>	
+<div class='layout'><p>Chapter 3 Emperor Xianfeng Dies (1860–61)</p><p></p></div>	
+<div class='layout'><p>1 ‘what phrenologists would describe': Thomson, p. 252</p><p></p></div>	
+<div class='layout'><p>2 ‘returned him a proud': Grant, p. 209; ‘Both of the national': Wolseley, p. 295; Elgin friendly letter: Association of Chinese Historians (ed.), The Second Opium War, vol. 5, p. 264; Xianfeng to Prince Gong: Association of Chinese Historians (ed.), The Second Opium War, vol. 5, pp. 225–6, 264; One diarist: Association of Chinese Historians (ed.), The Second Opium War, vol. 2, p. 42; Ignatieff to Gong, Gong to Xianfeng: Association of Chinese Historians (ed.), The Second Opium War, vol. 5, pp. 235, 246, 261; vol. 4, p. 463</p><p></p></div>	
+<div class='layout'><p>3 ‘With this treaty': Ignatieff, pp. 44–5; Xianfeng refused to receive credentials: Association of Chinese Historians (ed.), The Second Opium War, vol. 5, pp. 239, 260–1, 269–70</p><p></p></div>	
+<div class='layout'><p>4 operas in last days: Ding Ruqin, pp. 221–7; Li Guoliang, p. 95; Xianfeng death: Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, pp. 82–3; Anon., p. 13; Wu Xiangxiang, pp. 49–55; First Historical Archives of China (ed.) 1998, vol. 11, nos 877, 881</p><p></p></div>	
+<div class='layout'><p>Chapter 4 The Coup that Changed China (1861)</p><p></p></div>	
+<div class='layout'><p>1 unnamed ‘others': Wu Xiangxiang, p. 56; emotional row: Anon., p. 13</p><p></p></div>	
+<div class='layout'><p>2 two women plotted: Xue Fucheng 1983, p. 25</p><p></p></div>	
+<div class='layout'><p>3 seals established: First Historical Archives of China (ed.) 1998, vol. 11, nos 886–91; Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, p. 85; ‘all is in harmony': Anon., pp. 13–14; ‘If we saw': First Historical Archives of China (ed.) 1998, vol. 11, nos 338, 882</p><p></p></div>	
+<div class='layout'><p>4 Allowing Gong to visit: Weng Tonghe 2006, vol. 1, p. 131; ‘no one had shown': Anon., p. 8; Gong first meeting with Cixi: Xue Fucheng 1983, p. 19; Anon., pp. 8–9</p><p></p></div>	
+<div class='layout'><p>5 ‘one or two': Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, pp. 91–2; Cradling the child emperor: Wu Xiangxiang, p. 62</p><p></p></div>	
+<div class='layout'><p>6 ‘Please could the 7th brother': First Historical Archives of China (ed.) 2001, p. 176; Prince Chun as pupil: Lin Keguang et al., p. 441; Pan Xiangmin 2006, no. 2; Chun pleaded with the emperor: Qing Government (ed.),Tongzhi, pp. 5940, 7286; Chun's reply: First Historical Archives of China (ed.) 2001, p. 176; Li Ciming, p. 539</p><p></p></div>	
+<div class='layout'><p>7 the coup: Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, pp. 96–118; Weng Tonghe 2006, vol. 1, pp. 143–7; Xue Fucheng 1983, p. 21; Sato, p. 177</p><p></p></div>	
+<div class='layout'><p>8 Sushun hated: Xue Fucheng 1983, pp. 17, 23; Weng Tonghe 2006, vol. 1, p. 54; vol. 5, p. 2889; Chen Kuilong, p. 96; Aisin-Gioro Puyi, p. 11; no one else incriminated: First Historical Archives of China (ed.) 1998, vol. 11, no. 1533; Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, pp. 120, 139; Bruce wrote: Bruce to Earl Russell, 12 November 1861, F.O. 17/356, National Archives, London</p><p></p></div>	
+<div class='layout'><p>9 ‘the Empress Mother': Robertson to the British Foreign Office, 30 November 1861, F.O. 17/360, National Archives, London; ‘I am bowled over': Zeng Guofan, vol. 1, p. 690; had considered making Gong Regent: original letter to Prince Chun, First Historical Archives of China (ed.), 2001, p. 176; Gong title and reaction: Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, pp. 106, 119–21; ‘from now on': Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, p. 123; obliged to declare: Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, p. 137</p><p></p></div>	
+<div class='layout'><p>10 footnote 2: Lin Keguang et al., p. 16</p><p></p></div>	
+<div class='layout'><p>11 close the curtain: Shan Shiyuan 1997, pp. 452–3</p><p></p></div>	
+<div class='layout'><p>Chapter 4 The Coup that Changed China (1861)</p><p></p></div>	
+<div class='layout'><p>1 unnamed ‘others': Wu Xiangxiang, p. 56; emotional row: Anon., p. 13</p><p></p></div>	
+<div class='layout'><p>2 two women plotted: Xue Fucheng 1983, p. 25</p><p></p></div>	
+<div class='layout'><p>3 seals established: First Historical Archives of China (ed.) 1998, vol. 11, nos 886–91; Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, p. 85; ‘all is in harmony': Anon., pp. 13–14; ‘If we saw': First Historical Archives of China (ed.) 1998, vol. 11, nos 338, 882</p><p></p></div>	
+<div class='layout'><p>4 Allowing Gong to visit: Weng Tonghe 2006, vol. 1, p. 131; ‘no one had shown': Anon., p. 8; Gong first meeting with Cixi: Xue Fucheng 1983, p. 19; Anon., pp. 8–9</p><p></p></div>	
+<div class='layout'><p>5 ‘one or two': Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, pp. 91–2; Cradling the child emperor: Wu Xiangxiang, p. 62</p><p></p></div>	
+<div class='layout'><p>6 ‘Please could the 7th brother': First Historical Archives of China (ed.) 2001, p. 176; Prince Chun as pupil: Lin Keguang et al., p. 441; Pan Xiangmin 2006, no. 2; Chun pleaded with the emperor: Qing Government (ed.),Tongzhi, pp. 5940, 7286; Chun's reply: First Historical Archives of China (ed.) 2001, p. 176; Li Ciming, p. 539</p><p></p></div>	
+<div class='layout'><p>7 the coup: Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, pp. 96–118; Weng Tonghe 2006, vol. 1, pp. 143–7; Xue Fucheng 1983, p. 21; Sato, p. 177</p><p></p></div>	
+<div class='layout'><p>8 Sushun hated: Xue Fucheng 1983, pp. 17, 23; Weng Tonghe 2006, vol. 1, p. 54; vol. 5, p. 2889; Chen Kuilong, p. 96; Aisin-Gioro Puyi, p. 11; no one else incriminated: First Historical Archives of China (ed.) 1998, vol. 11, no. 1533; Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, pp. 120, 139; Bruce wrote: Bruce to Earl Russell, 12 November 1861, F.O. 17/356, National Archives, London</p><p></p></div>	
+<div class='layout'><p>9 ‘the Empress Mother': Robertson to the British Foreign Office, 30 November 1861, F.O. 17/360, National Archives, London; ‘I am bowled over': Zeng Guofan, vol. 1, p. 690; had considered making Gong Regent: original letter to Prince Chun, First Historical Archives of China (ed.), 2001, p. 176; Gong title and reaction: Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, pp. 106, 119–21; ‘from now on': Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, p. 123; obliged to declare: Archives of Ming and Qing Dynasties (ed.) 1979, vol. 1, p. 137</p><p></p></div>	
+<div class='layout'><p>10 footnote 2: Lin Keguang et al., p. 16</p><p></p></div>	
+<div class='layout'><p>11 close the curtain: Shan Shiyuan 1997, pp. 452–3</p><p></p></div>	
+<div class='layout'><p>Chapter 6 Virgin Journeys to the West (1861–71)</p><p></p></div>	
+<div class='layout'><p>1 granted no kneeling: First Historical Archives of China (ed.) 1998, vol. 11, no. 1349; ‘having too high': Wu Xiangxiang, p. 10</p><p></p></div>	
+<div class='layout'><p>2 Grand Adviser title taken away: First Historical Archives of China (ed.) 1998, vol. 15, nos. 293, 378; ‘to borrow Western methods': Association of Chinese Historians (ed.), The Movement to Learn from the West, vol. 2, p. 30; ‘stooges of': Weng Tonghe 2006, vol. 1, pp. 519, 521</p><p></p></div>	
+<div class='layout'><p>3 Cixi-Woren: Qing Government (ed.), Tongzhi, pp. 4557–616; Weng Tonghe 2006, vol. 1, pp. 527–44; Weng against the West: Weng Tonghe 2006, vol. 1, pp. 78, 93, 429; Kong Xiangji 2008, pp. 29–32; Cixi on Hsü: Qing Government (ed.), Tongzhi, pp. 4523–5; Weng Tonghe 2006, vol. 1, p. 515</p><p></p></div>	
+<div class='layout'><p>4 ‘just like the one': Zhang Deyi, p. 520; Hsü Chi-she, on America; ‘inflating the status': Gu Hongming, p. 54; Cixi appoints Hsü: Qing Government (ed.), Tongzhi, p. 3503; Shan Shiyuan 1990, pp. 68–9; Association of Chinese Historians (ed.), The Movement to Learn from the West, vol. 2, p. 28; Freeman-Mitford, pp. 181–2; appoints Martin: Qing Government (ed.), Tongzhi, pp. 2701–4</p><p></p></div>	
+<div class='layout'><p>5 Binchun's travels: All quotes in Binchun; Queen Victoria noted: Royal Archives, Windsor, VIC/MAIN/QVJ/1866</p><p></p></div>	
+<div class='layout'><p>6 Binchun diaries to Cixi: Qing Government (ed.), Tongzhi, pp. 4443–5</p><p></p></div>	
+<div class='layout'><p>7 Binchun promotion: Hart, Journals, 1863–1866, p. 360; Weng Tonghe 2006, vol. 2, p. 684; Weng mentioned him: Kong Xiangji 2008, p. 31; Weng Tonghe 2006, vol. 2, p. 684; Gong to Cixi on Burlingame: Qing Government (ed.), Tongzhi, pp. 4899–917</p><p></p></div>	
+<div class='layout'><p>8 The conservatives: Weng Tonghe 2006, vol. 1, p. 568; ‘Mr Hart's brain': Morse: vol. 2, pp. 188–9; In fact, Hart: Morse: vol. 2, pp. 190, 194, 203; Queen Victoria diary: Royal Archives, Windsor, VIC/MAIN/QVJ/1868</p><p></p></div>	
+<div class='layout'><p>9 ‘the citizens of New York': Burlingame speech in Schrecker; in Shore, p. 408–9</p><p></p></div>	
+<div class='layout'><p>10 ‘It affords me': Schrecker</p><p></p></div>	
+<div class='layout'><p>11 ‘it is of utmost importance': Qing Government (ed.), Tongzhi, p. 6640; Zhigang, p. 361; Zhigang quotes and audience: Zhigang, pp. 244–380</p><p></p></div>	
+<div class='layout'><p>12 Madame Tussaud's commission: 1845 edition of Madame Tussaud's catalogue, in Arthur, p. 11; diaries presented to Cixi: Li Hongzhang, vol. 4, pp. 363–5</p><p></p></div>	
+<div class='layout'><p>13 Cixi told Li not to come: Li Hongzhang, vol. 5, p. 183; ‘Unexpectedly': Association of Chinese Historians (ed.), The Movement to Learn from the West, vol. 8, p. 270</p><p></p></div>	
+<div class='layout'><p>Chapter 7 Love Doomed (1869)</p><p></p></div>	
+<div class='layout'><p>1 Emperors against eunuchs: Li Guorong, p. 184</p><p></p></div>	
+<div class='layout'><p>2 ‘indulgence in seeking pleasures': Weng Tonghe 2005, vol. 1, p. 1; Weng Tonghe 2006, vol. 2, p. 703; ‘depressing' place: Carl, p. 203; Weng comments: Weng Tonghe 2006, vol. 2, pp. 705, 711</p><p></p></div>	
+<div class='layout'><p>3 Prince Chun insistent on execution: Xue Fucheng 2004, vol. 1, p. 42; Xue Fucheng 1983, p. 83; ‘Can he be spared': Xue Fucheng 2004, vol. 1, p. 42; ‘must not be allowed': First Historical Archives of China (ed.) 1998, vol. 19, no. 526; corpse exposed for days: Woqiu Zhongzi, p. 52; Xue Fucheng 1897; An's belongings: First Historical Archives of China (ed.) 1998, vol. 19, no. 548; Tang Yinian, p. 153</p><p></p></div>	
+<div class='layout'><p>4 friend of An strangulated: First Historical Archives of China (ed.) 1998, vol. 19, no. 632; Woqiu Zhongzi, p. 52; Yuan Xieming; ‘taking out her anger': Xue Fucheng 2004, vol. 1, p. 43; women allowed to be seen: Ding Baozhen, vol. 2, pp. 801–2; First Historical Archives of China (ed.) 1998, vol. 19, no. 631; ‘a boom': Xue Fucheng 1897; Cixi collapsed: Weng Tonghe 2006, vol. 2, pp. 721–30</p><p></p></div>	
+<div class='layout'><p>5 operas put on daily: Ding Ruqin, pp. 231–2</p><p></p></div>	
+<div class='layout'><p>Chapter 8 A Vendetta against the West (1869–71)</p><p></p></div>	
+<div class='layout'><p>1 Chun memorandum: Qing Government (ed.), Tongzhi, pp. 5927–41; Weng Tonghe 2006, vol. 2, p. 671</p><p></p></div>	
+<div class='layout'><p>2 ‘Even if we do not': Zeng Jize, p. 334; grandees' reaction: Qing Government (ed.),Tongzhi, pp. 5941–50; ‘If it were otherwise': Freeman-Mitford, pp. xii–xiii</p><p></p></div>	
+<div class='layout'><p>3 Isabella Bird observed: Bird, p. 257; ‘swearing that the charge': Freeman-Mitford, pp. xlii–xliii</p><p></p></div>	
+<div class='layout'><p>4 ‘Stories of child eating': Bird, p. 346; 1870 Tianjin riot: Daily communications, including Cixi's detailed instructions, in First Historical Archives of China & History Department of Fujian Normal University (eds), vol. 1, pp. 775ff.; Weng Tonghe 2006, vol. 2, pp. 776ff.; Morse, vol. 2, p. 246.</p><p></p></div>	
+<div class='layout'><p>5 ‘deal with them fairly': First Historical Archives of China & History Department of Fujian Normal University (eds), vol. 1, pp. 778–9; First Historical Archives of China (ed.) 1998, vol. 11, no. 1538</p><p></p></div>	
+<div class='layout'><p>6 Chun held sway: Weng Tonghe 2006, vol. 2, pp. 784–5; screen removed: Weng Tonghe 2006, vol. 2, p. 784</p><p></p></div>	
+<div class='layout'><p>7 Ma Xinyi: Weng Tonghe 2006, vol. 2, p. 793; First Historical Archives of China & History Department of Fujian Normal University (eds), vol. 1, pp. 814–17; ‘excessive executions': Li Hongzhang, vol. 4, p. 76</p><p></p></div>	
+<div class='layout'><p>8 Chun to Cixi: Qing Government (ed.), Tongzhi, pp. 7285–336; Wu Xiangxiang, vol. 1, pp. 121–7; Weng Tonghe 2006, vol. 2, p. 824</p><p></p></div>	
+<div class='layout'><p>Chapter 9 Life and Death of Emperor Tongzhi (1861–75)</p><p></p></div>	
+<div class='layout'><p>1 Tongzhi starts schooling: First Historical Archives of China (ed.) 1998, vol. 11, no. 343; his education and life: Weng Tonghe 2006, vol. 2, passim.</p><p></p></div>	
+<div class='layout'><p>2 Cixi–son relationship: Weng Tonghe 2006, vol. 2, pp. 839, 849–50, 862, 882, 1068; Yu Bingkun et al., p. 240; Wang Qingqi: Wu Xiangxiang, vol. 1, pp. 218–25; Weng Tonghe 2006, vol. 2, pp. 1067, 1073; Gao Shu, p. 156</p><p></p></div>	
+<div class='layout'><p>3 Miss Alute: Xue Fucheng 1983, pp. 26–7</p><p></p></div>	
+<div class='layout'><p>4 the bride's route and procession: Simpson, Chapter XV; Morse, vol. 2, pp. 265–6</p><p></p></div>	
+<div class='layout'><p>5 Foreign legations: Morse, vol. 2, p. 266; the wedding: Zhang Shiyun</p><p></p></div>	
+<div class='layout'><p>6 No. 2 consort: Zhang Shiyun; After the wedding: Xue Fucheng 1983, pp. 26–7; seals no longer used: Yu Bingkun et al., p. 116; ‘not be lazy': Weng Tonghe 2006, vol. 2, p. 849; Tongzhi's rule: Wu Xiangxiang, vol. 1, pp. 214–25; Qing Government (ed.), Tongzhi, passim; arguments over kowtow: Qing Government (ed.), Tongzhi, pp. 8226–353</p><p></p></div>	
+<div class='layout'><p>7 Cixi had already made her decision: Qing Government (ed.), Tongzhi, pp. 8287–8; Weng troubled: Weng Tonghe 2006, vol. 2, pp. 983–4</p><p></p></div>	
+<div class='layout'><p>8 Over Old Summer Palace: Wu Xiangxiang, vol. 1, pp. 206–25; Chun: Tongzhi duty to avenge father: Qing Government (ed.), Tongzhi, pp. 8527–32; Tongzhi against opposition: Weng Tonghe 2006, vol. 2, pp. 1059, 1062; Wu Xiangxiang, vol. 1, pp. 208–9, 219–26; Wu Rulun, vol. 1, p. 314; Cixi intervenes: Weng Tonghe 2005, vol. 1, p. 2; Tonghe 2006, vol. 2, p. 1063; Wu Rulun, vol. 1, p. 314</p><p></p></div>	
+<div class='layout'><p>9 Tongzhi's medical records, his illness: Tongzhi jinyaobu, in Archives of Ming and Qing Dynasties (ed.) 1979, vol. 7, pp. 265–92; Weng Tonghe 2006, vol. 2, pp. 1073–86</p><p></p></div>	
+<div class='layout'><p>10 Cixi stands in for son: Weng Tonghe 2006, vol. 2, pp. 1076–7; Weng Tonghe 2005, vol. 1, p. 3; Wang Qingqi banished: First Historical Archives of China (ed.) 1998, vol. 24, no. 1119; Weng Tonghe 2006, vol. 2, p. 1089</p><p></p></div>	
+<div class='layout'><p>11 Grand Princess died: Weng Tonghe 2006, vol. 2, pp. 1092–3; Miss Alute's death: Xin Xiuming, p. 26; Xue Fucheng 1983, p. 27; family deaths: First Historical Archives of China (ed.) 2003, vol. 3, pp. 891–2; Qing History Institute, Renmin University (ed.), vol. 12, p. 226; Yun Yuding, vol. 2, p. 789</p><p></p></div>	
+<div class='layout'><p>12 burying her son: Weng Tonghe 2006, vol. 3, pp. 1096–112; Li Yin, pp. 238–52; Qu Chunhai, pp. 39–40, 79–81</p><p></p></div>	
+<div class='layout'><p>13 ‘You have a good heart': Carl, p. 243</p><p></p></div>	
+<div class='layout'><p>Chapter 10 A Three-year-old is Made Emperor (1875)</p><p></p></div>	
+<div class='layout'><p>1 Cixi after son died: Weng Tonghe 2006, vol. 2, pp. 1086–7; Chen Kuilong, p. 100</p><p></p></div>	
+<div class='layout'><p>2 Chun terrified: Weng Tonghe 2006, vol. 2, p. 1087; only son at the time: Aisin-Gioro Puyi, p. 29; ‘he lay in a corner': Chen Kuilong, p. 100; Junglu: Chen Kuilong, p. 100</p><p></p></div>	
+<div class='layout'><p>3 Guangxu into palace: Weng Tonghe 2006, vol. 2, p. 1087; Zhu Shoupeng, vol. 1, p. 2; Chun resignation: Weng Tonghe 2006, vol. 2, pp. 1088–9; Zhu Shoupeng, vol. 1, p. 3</p><p></p></div>	
+<div class='layout'><p>4 Chun's more personal tragedy: Aisin-Gioro Puyi, pp. 29–30; Cixi favours and Chun grateful: Pujia, Pujie et al., pp. 209–14; Zhu Shoupeng (ed.), vol. 2, p. 1470; Zhu Jiajin, 1982, no. 4; 10,000 taels: Chen Kuilong, p. 197, cf. pp. 120–1</p><p></p></div>	
+<div class='layout'><p>5 newspapers available to the court: Qing Government (ed.), Tongzhi, pp. 4549–56</p><p></p></div>	
+<div class='layout'><p>Chapter 11 Modernisation Accelerates (1875–89)</p><p></p></div>	
+<div class='layout'><p>1 Earl Li meetings: Li Hongzhang, vol. 31, p. 166; US President Grant: Packard, p. 711; ‘Physically he was': Richard, p. 298; ‘synonymous': Carl, p. 256; ‘From now on': Zhu Shoupeng (ed.), vol. 1, p. 336</p><p></p></div>	
+<div class='layout'><p>2 Guo minister to London: Tang Jiaxuan (ed.), p. 780; Guo Songtao, passim; ‘perverse': Kong Xiangji 2008, p. 32; Guo's three audiences with Cixi: Guo Songtao, pp. 2–21; ‘a good man': Zeng Jize, p. 335</p><p></p></div>	
+<div class='layout'><p>3 Hung Jun: Liu Bannong et al., pp. 11–14, 71–2; ‘no foot-dragging': First Historical Archives of China (ed.), 1996, nos 1020, 1021; officials to travel: Wang Xiaoqiu & Yang Jiguo, pp. 1–34</p><p></p></div>	
+<div class='layout'><p>4 commission to Cuba report: Cuba Commission, p. 3; ‘You must find ways': Li Hongzhang, vol. 6, pp. 327–8; banned slave trade: Tang Jiaxuan (ed.), pp. 75, 277, 439; Chen Lanbin: Cuba Commission, p. 5; Zhu Shoupeng (ed.), vol. 1, p. 85</p><p></p></div>	
+<div class='layout'><p>5 ‘biggest permanent threat': Li Hongzhang, vol. 4, pp. 216–17; build up the navy: Zhu Shoupeng (ed.), vol. 1, p. 74; vol. 2, p. 1977; Wang Daocheng 1994, no. 4; endorsing first national flag: First Historical Archives of China (ed.), 1996, vol. 14, no. 848; Zhang Xia et al. (eds), pp. 470–505; Palace Museum (ed.) 2002, vol. 11, pp. 16–17; ‘China proudly took': Morse, vol. 2, p. 393; ‘he must bear in mind': Morse, vol. 2, Appendix D</p><p></p></div>	
+<div class='layout'><p>6 ‘Great Dragons': Palace Museum (ed.) 2002, vol. 12, p. 379; ‘China's weakness': Mi Rucheng (ed.), vol. 1, p. 78, cf. p. 7; installation of telegraph: Association of Chinese Historians (ed.), The Movement to Learn from the West, vol. 6, p. 325ff.; Sheng Xuanhuai, vol. 1, p. 107; modern coal-mining: Association of Chinese Historians (ed.), The Movement to Learn from the West, vol. 1, pp. 153–5; vol. 7, pp. 20, 23–4, 26, 103, 128, 138, passim; Sun Yutang (ed.), vol. 1, no. 2, pp. 612–47; electricity: Huang Xi, pp. 33–4; Huang Xing, 2009, vol. 38, no. 3</p><p></p></div>	
+<div class='layout'><p>7 Beijing's first tram: Huang Xi, p. 35; replacing outdated currency: Weng Tonghe 2006, vol. 4, p. 2032; Association of Chinese Historians (ed.), The Movement to Learn from the West, vol. 7, p. 540; ‘We would have to borrow': Li Hongzhang, vol. 9, p. 259</p><p></p></div>	
+<div class='layout'><p>8 the Wusong line: Mi Rucheng (ed.), vol. 1, p. 39ff.; Sun Yutang (ed.), vol. 1, no. 2, p. 612; railway in the Sea Palace: Association of Chinese Historians (ed.), The Movement to Learn from the West, vol. 6, pp. 221–2; Yang Naiji; Carl, p. 290; Weng Tonghe 2006, vol. 5, p. 2561; Yu Bingkun et al., p. 173</p><p></p></div>	
+<div class='layout'><p>9 ‘a giant in intellect': Martin 2005, p. 219; trade deficit: Zhu Shoupeng (ed.), vol. 3, p. 2556; Viceroy Zhang proposal: Zhang Zhidong, vol. 1, pp. 661–7</p><p></p></div>	
+<div class='layout'><p>10 Cixi deliberation: Zhang Zhidong, vol. 1, p. 667; ‘This project has magnificent': Association of Chinese Historians (ed.), The Movement to Learn from the West, vol. 6, p. 262; ‘Textile making': First Historical Archives of China (ed.) 2005, vol. 1, p. 74</p><p></p></div>	
+<div class='layout'><p>Chapter 12 Defender of the Empire (1875–89)</p><p></p></div>	
+<div class='layout'><p>1 ‘lost consciousness': Zhu Shoupeng (ed.), vol. 1, p. 3; Chun change: Pujia, Pujie et al., pp. 210–14; Aisin-Gioro Puyi, pp. 7–8; Association of Chinese Historians (ed.), The Movement to Learn from the West, vol. 6, p. 186</p><p></p></div>	
+<div class='layout'><p>2 Morse remarked: Morse, vol. 2, pp. 328–9; ‘a soldier of fortune': Denby, vol. 1, p. 242; Earl Li's view: Qing Government (ed.), Tongzhi, pp. 9136–8; Marquis Zeng: Qing Government (ed.), Tongzhi, p. 9137; Chun's view: Association of Chinese Historians (ed.), The Movement to Learn from the West, vol. 1, p. 116</p><p></p></div>	
+<div class='layout'><p>3 ‘minding other people's business': Zeng Jize, p. 382; Cixi endorsing Zuo: Zhu Shoupeng (ed.), vol. 1, pp. 804, 917–19; vol. 2, p. 1838; ‘China's new diplomacy' and Queen Victoria: Morse, vol. 2, p. 333; Gordon advice: Morse, vol. 2, pp. 334–5</p><p></p></div>	
+<div class='layout'><p>4 ‘ready for war': Morse, vol. 2, p. 338; Cixi conducting negotiations: Zeng Jize, pp. 41–7; Zhu Shoupeng (ed.), vol. 1, pp. 855–6, 870, 896–7; ‘diplomatic triumph': Morse, vol. 2, p. 338; Lord Dufferin: Morse, vol. 2, p. 339; Cixi illness: Zhu Shoupeng (ed.), vol. 1, p. 936; Xue Baotian, pp. 50–116</p><p></p></div>	
+<div class='layout'><p>5 ‘begged to be excused': Zhu Shoupeng (ed.), vol. 2, pp. 1679–82; Cixi approach to Vietnam: Zhu Shoupeng (ed.), vol. 1, p. 1213; vol. 2, pp. 1399–400, 1685–6, 1729–30, passim; Zhang Zhenkun, vol. 1, pp. 30–1, 44–5, 54–5</p><p></p></div>	
+<div class='layout'><p>6 ‘I can't but worry': Weng Tonghe 2006, vol. 4, pp. 1787–8; Prince Gong: Weng Tonghe 2006, vol. 4, pp. 1732, 1737, 1775–7, 1787, 1790, 1811–15; 30 March 1884: Weng Tonghe 2006, vol. 4, p. 1816</p><p></p></div>	
+<div class='layout'><p>7 dismissing Gong: Weng Tonghe 2006, vol. 4, pp. 1817–18; He Gangde, p. 9</p><p></p></div>	
+<div class='layout'><p>8 ‘hard to look back': Dong Shouyi, pp. 433–40; ‘protracted war': Li Hongzhang, vol. 10, pp. 331–3; ‘totally unjust': Zhu Shoupeng (ed.), vol. 2, p. 1699</p><p></p></div>	
+<div class='layout'><p>9 ‘Have read it': Li Hongzhang, vol. 21, p. 150; Cixi withdrew troops: Zhu Shoupeng (ed.), vol. 2, pp. 1744–5; France demands indemnity: Morse, vol. 2, p. 355; Li Hongzhang, vol. 21, p. 181; not a sou: Li Hongzhang, vol. 21, p. 199; Kong Xiangji 2001, pp. 344–8; ‘war is unavoidable': Zhu Shoupeng (ed.), vol. 2, pp. 1766–7; ‘When it comes to': Kong Xiangji 2001, p. 329; overseas Chinese: Zhu Shoupeng (ed.), vol. 2, pp. 1804–5</p><p></p></div>	
+<div class='layout'><p>10 ‘swept away': Kong Xiangji 2001, p. 348; Cixi orders ceasefire: Zhang Zhidong, vol. 3, pp. 1917–22; Zhu Shoupeng (ed.), vol. 2, pp. 1912–14; Vietnamese helping French: Zhu Shoupeng (ed.), vol. 2, pp. 1729–30; Li Hongzhang, vol. 10, p. 418; Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 60; ‘If it had not been': Kong Xiangji 2001, p. 352</p><p></p></div>	
+<div class='layout'><p>11 Paten tre and Earl Li: http://history.cultural-china.com/en/34History6627.html; Cixi writes in crimson ink: First Historical Archives of China (ed.) 1995, vol. 64, pp. 818, 821, 823, 840</p><p></p></div>	
+<div class='layout'><p>12 annual revenue had doubled: Shen Xuefeng; ten million taels: Li Wenzhi (ed.), p. 773; Hart's honour: Zhu Shoupeng (ed.), vol. 3, p. 2570; Hart, Letters, 1868–1907, vol. 1, pp. 737–8; the banquet: Kong Xiangji & Murata Yujiro 2004, pp. 48–58; Charles Denby: Denby, vol. 1, pp. 241–8</p><p></p></div>	
+<div class='layout'><p>Chapter 13 Guangxu Alienated from Cixi (1875–94)</p><p></p></div>	
+<div class='layout'><p>1 ‘I send you out': Carl, pp. 192–3</p><p></p></div>	
+<div class='layout'><p>2 Empress Zhen's strokes: Weng Tonghe 2006, vol. 1, p. 259; vol. 2, p. 735; vol. 3, p. 1555; see the historian Xu Che's investigation, in Xu Che, pp. 345–7; mourning ban: Zhu Shoupeng (ed.), vol. 1, pp. 1065, 1244; vol. 2, p. 1450; Hart, Letters, 1868–1907, vol. 1, p. 371; Weng Tonghe 2006, vol. 4, p. 1751; Ding Ruqin, p. 242</p><p></p></div>	
+<div class='layout'><p>3 Guangxu's first lesson: Weng Tonghe 2006, vol. 3, p. 1191</p><p></p></div>	
+<div class='layout'><p>4 ‘sitting, standing': Weng Tonghe 2006, vol. 3, p. 1266; ‘I have been missing you': Weng Tonghe 2006, vol. 3, p. 1327; Guangxu's education: Weng Tonghe 2006, vols 3 & 4 passim; First Historical Archives of China (ed.) 2005, vol. 1, pp. 69–75; report from a governor: from the First Historical Archives of China, Beijing, archive number: 04-01-14-0080-001; First Historical Archives of China (ed.) 1995, vol. 1, p. 73</p><p></p></div>	
+<div class='layout'><p>5 ‘don't begrudge them expenses': from the First Historical Archives of China, Beijing, archive number: 04-01-12-0528-062; essays and poems: Society of Manchu Studies (ed.), pp. 178–201</p><p></p></div>	
+<div class='layout'><p>6 wooden horse: Society of Manchu Studies (ed.), p. 195; enterprising Dane: Headland, p. 116; stutter: He Gangde, p. 16; thunder: Xin Xiuming, p. 31; Weng Tonghe 2006, vol. 5, p. 2452</p><p></p></div>	
+<div class='layout'><p>7 Cixi postpones retirement: Zhu Shoupeng (ed.), vol. 2, pp. 2119–27; Weng Tonghe 2006, vol. 4, pp. 2028–31; Earl Li and Prince Chun: Li Hongzhang, vol. 34, pp. 42, 47, 50; Weng reaction: Weng Tonghe 2006, vol. 4, pp. 2030–1; Guangxu reaction: Weng Tonghe 2006, vol. 4, pp. 2029–31, 2089–92, 2103; Lin Keguang et al., p. 27; health deteriorated: Zhu Jinfu & Zhou Wenquan 1982, no. 3; Weng Tonghe 2006, vol. 4, pp. 2068, 2125; First Historical Archives of China (ed.) 2005, vol. 1, pp. 75–6</p><p></p></div>	
+<div class='layout'><p>8 ‘duty to the ancestors': Weng Tonghe 2006, vol. 4, p. 2103; smashed glass and Cixi reaction: Weng Tonghe 2006, vol. 4, pp. 2201–2, 2211–2; Lin Keguang et al., p. 39; ‘in a fury': Weng Tonghe 2006, vol. 5, p. 2503; cf. Headland, p. 202</p><p></p></div>	
+<div class='layout'><p>9 ‘reserved' as empress: Yehenala Genzheng & Hao Xiaohui 2008, p. 4; Weng Tonghe 2006, vol. 4, p. 2231; Duke Guixiang figure of scorn: Pujia, Pujie et al., p. 94; Xin Xiuming, p. 85; Yehenala Genzheng & Hao Xiaohui 2007, pp. 164, 170–4; Jin Yi & Shen Yiling, pp. 295–8</p><p></p></div>	
+<div class='layout'><p>10 5.5 million taels: Weng Tonghe 2006, vol. 4, p. 2255; Weng Tonghe 2005, vol. 2, p. 1051; The grand banquet: Weng Tonghe 2006, vol. 4, p. 2261; how Guangxu treats Longyu: Rongling, p. 21; Headland, p. 202</p><p></p></div>	
+<div class='layout'><p>11 Pearl: Pujia, Pujie et al., p. 187; Xin Xiuming, p. 23; French doctor: Franzini; Weng in Shanghai: Weng Tonghe 2005, vol. 2, p. 1052; Weng on church orphanage: Weng Tonghe 2006, vol. 4, p. 2311</p><p></p></div>	
+<div class='layout'><p>12 Heaven's warning: Weng Tonghe 2006, vol. 4, p. 2249; Cixi's meeting with the pair: Weng Tonghe 2006, vol. 4, p. 2256; shelved the railway: Association of Chinese Historians (ed.), The Movement to Learn from the West, vol. 6, pp. 274–6; Li Hongzhang, vol. 34, p. 634; currency reform ditched: Association of Chinese Historians (ed.), The Movement to Learn from the West, vol. 7, pp. 548ff.; Weng Tonghe 2006, vol. 4, p. 2032; ordered Guangxu to learn English: Weng Tonghe 2005, vol. 2, p. 1056; Li Hongzhang, vol. 35, p. 324; Weng's dismay: Weng Tonghe 2006, vol. 5, pp. 2481, 2484; speech problem: Seagrave, p. 175; He Gangde, p. 16</p><p></p></div>	
+<div class='layout'><p>13 ‘period of slumber': Morse, vol. 2, p. 394; ‘Audience went': Hart, Letters, 1868–1907, vol. 2, p. 837; ‘The foreign barbarian': Weng Tonghe 2006, vol. 5, p. 2428</p><p></p></div>	
+<div class='layout'><p>14 ‘Railroads': Seagrave, p. 175</p><p></p></div>	
+<div class='layout'><p>Chapter 14 The Summer Palace (1886–94)</p><p></p></div>	
+<div class='layout'><p>1 ultimate ambition: Xin Xiuming, pp. 47–8; ‘strike': Yu Bingkun et al., pp. 158–68</p><p></p></div>	
+<div class='layout'><p>2 ‘all in the empire': First Historical Archives of China (ed.), 1996, no. 80; Zhu Shoupeng (ed.), vol. 3, pp. 2414–15; abandoned visiting Wutai: He Gangde, p. 17; told grandees: Weng Tonghe 2006, vol. 4, p. 2060; Summer Palace cost: Wang Daocheng 1994, no. 4; Ye Zhiru & Tang Yinian, pp. 1027–31; cf. Xin Xiuming, p. 47</p><p></p></div>	
+<div class='layout'><p>3 some three million taels: Association of Chinese Historians (ed.), The Movement to Learn from the West, vol. 3, p. 141; Wang Daocheng 1994, no. 4; Ye Zhiru & Tang Yinian, pp. 1029–30</p><p></p></div>	
+<div class='layout'><p>4 ‘the latest models': Li Hongzhang, vol. 35, p. 213; ‘never seen such': Weng Tonghe 2006, vol. 5, pp. 2879–80</p><p></p></div>	
+<div class='layout'><p>Chapter 15 In Retirement and in Leisure (1889–94)</p><p></p></div>	
+<div class='layout'><p>1 the Statutes: First Historical Archives of China (ed.), 1996, vol. 14, no. 1164; cf. Mao Haijian 2005, p. 11; reject an official's petition: First Historical Archives of China (ed.), 1996, vol. 15, no. 85; first list sent to Cixi: Junjichu suishou dengjidang (Files of Documents that Passed through the Grand Council), 5 March 1889 ff.</p><p></p></div>	
+<div class='layout'><p>2 stepped in over the railway: First Historical Archives of China (ed.), 1996, vol. 15, no. 813; Zhu Shoupeng (ed.), vol. 3, p. 2646; Weng against it: Zhu Shoupeng (ed.), vol. 3, p. 2552; Weng Tonghe 2006, vol. 4, p. 2323; Guangxu shelved it: Association of Chinese Historians (ed.), The Movement to Learn from the West, vol. 6, p. 274–6; Li Hongzhang, vol. 34, p. 634; met with Grand Council: Weng Tonghe 2006, vol. 5, p. 2353; Li Hongzhang, vol. 35, p. 324; tension with Guangxu: Weng Tonghe 2006, vol. 5, pp. 2353, 2446; move into Summer Palace: Weng Tonghe 2006, vol. 5, p. 2447; ‘After my retirement': to Liu Kunyi, in Association of Chinese Historians (ed.), The Reforms of 1898, vol. 4, p. 301; Xin Xiuming, pp. 18, 21</p><p></p></div>	
+<div class='layout'><p>3 ‘In person': Carl, p. 125; eunuchs recalled: Pujia, Pujie et al., pp. 189–90</p><p></p></div>	
+<div class='layout'><p>4 Censors wrote to reprimand: Zhu Shoupeng (ed.), vol. 2, pp. 2149, 2151; Weng Tonghe 2006, vol. 4, p. 2049</p><p></p></div>	
+<div class='layout'><p>5 Longyu: Carl, p. 43; Rongling, p. 22; Jin Yi & Shen Yiling, p. 150</p><p></p></div>	
+<div class='layout'><p>6 jet-black toupee: Xin Xiuming, p. 13; daily routine: Der Ling 2004; Rongling; Jin Yi & Shen Yiling; Xin Xiuming; Carl; Headland; Yehenala Genzheng & Hao Xiaohui 2007</p><p></p></div>	
+<div class='layout'><p>7 ‘Old Buddha': Jin Liang 1998, p. 163; Headland, p. 85; taking human milk: Xin Xiuming, p. 41; Forbidden City Publishing (ed.), pp. 200–2; Carl, p. 48</p><p></p></div>	
+<div class='layout'><p>8 daily allocation of food: Kong Xiangji 1998, p. 110; seldom drank: Carl, p. 190; Rongling, p. 19; ‘when Her Majesty awakes': Carl, pp. 23–4</p><p></p></div>	
+<div class='layout'><p>9 hot-air balloon: Li Hongzhang, vol. 35, pp. 502–3</p><p></p></div>	
+<div class='layout'><p>10 ‘clothes, shoes': Der Ling 2004, p. 26; ‘as if entranced': Jin Yi & Shen Yiling, p. 165; Der Ling 2004, p. 128</p><p></p></div>	
+<div class='layout'><p>11 ‘flower mountain': Gao Shu, p. 176; Carl, p. 40; collection of gourds: Rongling, p. 15; Xin Xiuming, p. 3; Carl, p. 115; cooked food herself: Der Ling 2004, p. 95; giant marquees: Carl, p. 60, Conger, pp. 261–2; Jin Yi & Shen Yiling, pp. 146–7</p><p></p></div>	
+<div class='layout'><p>12 ‘She had a long': Carl, p. 140; dog-breeders considered: Hubbard, p. 220; against ‘sleeve-dog': Carl, pp. 53–5</p><p></p></div>	
+<div class='layout'><p>13 ‘the liveliest interest': Carl, p. 173; visiting collection in church: Yu Bingkun et al., p.172; First Historical Archives of China (ed.) 2005, vol. 2, pp. 920–1; invented a dice game: Der Ling 2004, pp. 76–7; against gambling: Rongling, p. 32</p><p></p></div>	
+<div class='layout'><p>14 hated foot-binding: Carl, p. 48; Headland, pp. 88, 233; watched village performers: Xin Xiuming, p. 71; Gao Shu, p. 157</p><p></p></div>	
+<div class='layout'><p>15 The Monkey King: Rongling, p. 9; tips to performers: Ding Ruqin, pp. 255–7</p><p></p></div>	
+<div class='layout'><p>16 The Warriors of the Yang Family: Ding Ruqin, pp. 267–8; Zao Yang; Xin Xiuming, p. 38; ‘The most vicious': Forbidden City Publishing (ed.), p. 377</p><p></p></div>	
+<div class='layout'><p>17 Lady Miao scroll: Yu Bingkun et al., p. 157</p><p></p></div>	
+<div class='layout'><p>Chapter 16 War with Japan (1894)</p><p></p></div>	
+<div class='layout'><p>1 On Japan in 1882: Li Hongzhang, vol. 10, pp. 74–6, 277; First Historical Archives of China (ed.) 1995, vol. 64, p. 821</p><p></p></div>	
+<div class='layout'><p>2 on Japan in 1884: Li Hongzhang, vol. 10, pp. 640–1, 684; ‘speedy and satisfactory': Li Hongzhang, vol. 11, p. 60; Hart wrote: Hart, Letters, 1868–1907, vol. 1, p. 592; Cixi guideline for navy: Li Hongzhang, vol. 12, p. 531; First Historical Archives of China (ed.) 1995, vol. 65, pp. 33, 45; stopped buying warships: Li Hongzhang, vol. 15, p. 335; ‘We have had lakes': Hart, Letters, 1868–1907, vol. 1, p. 803; footnote: Li Hongzhang, vol. 10, pp. 497–8</p><p></p></div>	
+<div class='layout'><p>3 rice imports: Li Wenzhi (ed.), p. 773; naval/army purchases discontinued: Association of Chinese Historians (ed.), The Sino-Japanese War, vol. 3, pp. 177–8; ‘is concentrating the resources': Li Hongzhang, vol. 35, p. 562; Japan better equipped: Li Hongzhang, vol. 15, pp. 423–4; vol. 35, p. 562; Jiang Ming, pp. 328–9; checking Earl Li accounts: Li Hongzhang, vol. 13, pp. 74–7, 207–9, 249–50, 351–4, 364–8, 391–2, 420, 546–53; vol. 14, passim; vol. 35, p. 587</p><p></p></div>	
+<div class='layout'><p>4 ‘chooses to believe': Wang Daocheng 1994, no. 4; glowing report: Li Hongzhang, vol. 14, pp. 94–6; ‘Our ships are not': Li Hongzhang, vol. 35, p. 252; ‘paper tiger': Wu (Woo) Yong, p. 107; navy requests not passed on: Li Hongzhang, vol. 15, p. 406; ‘seeking to be one-up': Li Hongzhang, vol. 35, p. 562; Li 1894 report: Li Hongzhang, vol. 15, pp. 333–6</p><p></p></div>	
+<div class='layout'><p>5 Ito made up mind to take on China: The memoirs of Mutsu Munemitsu, Kenkenroku, in Wang Yunsheng, vol. 2, p. 35</p><p></p></div>	
+<div class='layout'><p>6 ‘calculating with too much': Hart, Letters, 1868–1907, vol. 2, p. 976; ‘not just threatening': Li Hongzhang, vol. 15, pp. 371–4; ‘within our expectations': Li Hongzhang, vol. 15, p. 372; ‘launching a punitive': Li Hongzhang, vol. 15, p. 383; Weng Tonghe 2005, vol. 1, pp. 117–18; ‘999 out of': Hart, Letters, 1868–1907, vol. 2, p. 979; ‘in a really masterful way': Hart, Letters, 1868–1907, vol. 2, p. 976; ‘her army and navy': Hart, Letters, 1868–1907, vol. 2, pp. 974–5</p><p></p></div>	
+<div class='layout'><p>7 ‘Britain cannot allow': Li Hongzhang, vol. 24, p. 168</p><p></p></div>	
+<div class='layout'><p>8 Cixi gave full support: Weng Tonghe 2006, vol. 5, p. 2708; ‘must not do anything': Weng Tonghe 2006, vol. 5, p. 2708; reprimanded Councillors: Weng Tonghe 2006, vol. 5, p. 2720; Cixi out of policy loop: Weng Tonghe 2005, vol. 2, p. 1108; ‘cowardly and incompetent': Li Hongzhang, vol. 15, p. 406; Zhirui insisted: Qi Qizhang (ed.), vol. 1, p. 41; Cixi, Guangxu and Earl Li over Admiral Ting: Weng Tonghe 2005, vol. 2, p. 1091; Li Hongzhang, vol. 15, pp. 405–7</p><p></p></div>	
+<div class='layout'><p>9 Cixi saw Grand Council: Weng Tonghe 2006, vol. 5, pp. 2730–1; scheduled to return to Summer Palace: Weng Tonghe 2006, vol. 5, p. 2732; Li presented detailed reports: Li Hongzhang, vol. 15, pp. 415–36; donating three million taels: Li Hongzhang, vol. 15, p. 424; sixtieth birthday celebrations cancelled: Weng Tonghe 2006, vol. 5, p. 2732; First Historical Archives of China (ed.), 1996, vol. 20, nos 1011–12</p><p></p></div>	
+<div class='layout'><p>10 ‘Hold it for now': Weng Tonghe 2005, vol. 2, p. 1096; ‘further fighting': Hart, Letters, 1868–1907, vol. 2, p. 991; Cixi trying to persuade Weng: Weng Tonghe 2006, vol. 5, p. 2738; Weng Tonghe 2005, vol. 2, p. 1098</p><p></p></div>	
+<div class='layout'><p>11 Earl Li's gifts: Li Hongzhang, vol. 15, p. 452; ‘No presents, please': Weng Tonghe 2006, vol. 5, p. 2740; tell officials to present gifts: ibid.</p><p></p></div>	
+<div class='layout'><p>12 attempting to explain: First Historical Archives of China (ed.), 1996, vol. 20, no. 1117; ‘Things look bad': Hart, Letters, 1868–1907, vol. 2, pp. 991–2; ‘we shall probably': Hart, Letters, 1868–1907, vol. 2, p. 992; no gifts for seventieth birthday: First Historical Archives of China (ed.), 1996, vol. 30, no. 370; Zhu Shoupeng (ed.), vol. 5, p. 5071; Hu Sijing, pp. 28–9. For other birthdays: Wu (Woo) Yong, p. 99; Zhu Shoupeng (ed.), vol. 5, pp. 5093, 5575, 5745, etc.</p><p></p></div>	
+<div class='layout'><p>13 Pearl sold posts: Weng Tonghe 2006, vol. 5, p. 2754; Xin Xiuming, p. 24; Kong Xiangji 1998, pp. 89–95; First Historical Archives of China (ed.), 1996, vol. 20, no. 803; also nos 446, 459; obtained confessions from Pearl: Kong Xiangji 1998, pp. 84–7</p><p></p></div>	
+<div class='layout'><p>14 Headland recalled: Headland, pp. 203–4; 26 November decree: First Historical Archives of China (ed.), 1996, vol. 20, no. 1301; Guangxu reaction to decree: Weng Tonghe 2006, vol. 5, p. 2754; Cixi had full access to information: First Historical Archives of China (ed.), 1996, vol. 20, no. 1304ff.; Weng Tonghe 2005, vol. 2, p. 1108; Weng Tonghe 2006, vol. 5, p. 2797</p><p></p></div>	
+<div class='layout'><p>15 Zhirui petitions: Qi Qizhang (ed.), vol. 1, pp. 41–5; ‘a hen crowing': Kong Xiangji & Murata Yujiro 2004, pp. 290–1; distraught by allegation: Weng Tonghe 2006, vol. 5, pp. 2756, 2764; ‘rest assured': to Liu Kunyi, in Association of Chinese Historians (ed.), The Reforms of 1898, vol. 4, p. 300</p><p></p></div>	
+<div class='layout'><p>16 Two other friends: Weng Tonghe 2006, vol. 5, p. 2856; Mao Haijian 2005, p. 468; Zhu Shoupeng (ed.), vol. 4, p. 3685; tried to close Guangxu's study: Weng Tonghe 2006, vol. 5, pp. 2757–9</p><p></p></div>	
+<div class='layout'><p>Chapter 17 A Peace that Ruined China (1895)</p><p></p></div>	
+<div class='layout'><p>1 Cixi key points, 5 January 1895: Weng Tonghe 2005, vol. 2, p. 1116; ‘dying swine': Kong Xiangji 2001, p. 16; 6 February, told Grand Council: Weng Tonghe 2005, vol. 2, p. 1125; Weng Tonghe 2006, vol. 5, p. 2776</p><p></p></div>	
+<div class='layout'><p>2 ‘Empress Dowager had outrage': Wang Wenshao, p. 870; called on troops to fight on: Zhu Shoupeng (ed.), vol. 4, p. 3539; Viceroy Zhang: Zhang Zhidong, vol. 3, pp. 2036, 2047; Guangxu and Council willing to accept Japanese terms: Weng Tonghe 2005, vol. 2, pp. 1125–6; Weng Tonghe 2006, vol. 5, pp. 2776–7; ‘come and get instructions': Weng Tonghe 2006, vol. 5, p. 2778</p><p></p></div>	
+<div class='layout'><p>3 Cixi objected to ceding territory: Weng Tonghe 2006, vol. 5, p. 2782; Weng Tonghe 2005, vol. 2, pp. 1134–5; Guangxu authorised ‘cede territory': Li Hongzhang, vol. 16, p. 31; Weng Tonghe 2005, vol. 2, p. 1137; Councillors wrote to Cixi: Li Hongzhang, vol. 16, p. 31; Guangxu tiptoed: Weng Tonghe 2006, vol. 5, p. 2787; ‘each year earns': Zhang Zhidong, vol. 3, p. 2041; 8 April, Cixi: ‘Cede no land': Weng Tonghe 2006, vol. 5, p. 2792; 14 April, Guangxu told Li to sign: Li Hongzhang, vol. 16, p. 56; Cixi frequently passed out: Association of Chinese Historians (ed.), The Reforms of 1898, vol. 4, p. 300; eunuch ‘often spotted': Xin Xiuming, p. 16</p><p></p></div>	
+<div class='layout'><p>4 Itō did not dispute figures: Wang Yunsheng, vol. 2, pp. 260, 268–9; ‘a voice and nothing besides': Hart, Letters, 1868–1907, vol. 2, p. 1009; ‘if Japan wins': Hart, Letters, 1868–1907, vol. 2, pp. 992, 1006; Kaiser Wilhelm II: the Kaiser's interview with Dr William Hale, 19 July 1908, in Rohl, Appendix 2</p><p></p></div>	
+<div class='layout'><p>5 Cixi asked Grand Council to reconsider: Weng Tonghe 2006, vol. 5, p. 2798; Cixi stopped trying to persuade: ibid.; ‘trembling': Weng Tonghe 2006, vol. 5, pp. 2799–800; Guangxu rushed ratification: Weng Tonghe 2006, vol. 5, pp. 2801–2, cf. p. 2791; Weng Tonghe 2005, vol. 2, p. 1062; ‘the safest line': Hart, Letters, 1868–1907, vol. 2, p. 1017</p><p></p></div>	
+<div class='layout'><p>6 ‘The Japanese war': Denby, vol. 2, p. 147; foreign debts: Jin Pushen, 2000, no. 1; Qi Qizhang, p. 504</p><p></p></div>	
+<div class='layout'><p>7 ‘there's no head': Hart, Letters, 1868–1907, vol. 2, p. 992; ‘C'est le seul homme': Carl, p. 101</p><p></p></div>	
+<div class='layout'><p>Chapter 18 The Scramble for China (1895–8)</p><p></p></div>	
+<div class='layout'><p>1 Cixi continued to receive documents: Weng Tonghe 2006, vol. 5, p. 2889; First Historical Archives of China (ed.), 1996, vols 21–4, passim; marked increase in Guangxu visits: Mao Haijian, 2010, no. 4; Zhu Shoupeng (ed.), vol. 4, pp. 3637, 3648–9, 3652, 3656, 3662, 3670–726, passim; Viceroy Zhang pointed out: Zhang Zhidong, vol. 2, pp. 989–90; cf. Sheng Xuanhuai, vol. 1, pp. 472–3, 476, 479; European powers regarded China: Denby, vol. 2, pp. 147–8; Morse, vol. 3, p. 101; Hart, Letters, 1868–1907, vol. 2, p. 998</p><p></p></div>	
+<div class='layout'><p>2 ‘When the envoys': Weng Tonghe 2005, vol. 2, p. 1063; ‘blood vessels': Wu (Woo) Yong, p. 130; Guangxu to top officials: Weng Tonghe 2006, vol. 5, p. 2803; Zhu Shoupeng (ed.), vol. 4, pp. 3595–6; ‘forced me to ratify': Tsinghua University History Department (ed.), p. 44; Guangxu berated Li: Weng Tonghe 2006, vol. 5, p. 2829</p><p></p></div>	
+<div class='layout'><p>3 ‘not even look': Mao Haijian 2010, no. 4; Gong from sickbed: Mao Haijian 2010, no. 4; Tsinghua University History Department (ed.), p. 180; mistress of the court: Mao Haijian 2010, no. 4; Weng Tonghe 2006, vol. 5, pp. 2837, 2844, 2878, 2890; Cixi on Guangxu: Association of Chinese Historians (ed.), The Reforms of 1898, vol. 4, pp. 300–1; Weng Tonghe 2006, vol. 5, p. 2742; got on really well: Mao Haijian 2010, no. 4; officials were warned: Weng Tonghe 2006, vol. 5, p. 2856; Wang Wenshao, pp. 919–20</p><p></p></div>	
+<div class='layout'><p>4 study closed down: Weng Tonghe 2006, vol. 5, p. 2878; Viceroy Zhang for alliance with Russia: Zhang Zhidong, vol. 2, pp. 1002–3; Grand Council decamped: Weng Tonghe 2005, vol. 2, p. 1064; Weng Tonghe 2006, vol. 5, p. 2883</p><p></p></div>	
+<div class='layout'><p>5 ‘on guard against future perils': Tsinghua University History Department (ed.), p. 197; Bon voyage banquet: Wu (Woo) Yong, p. 113; footnote: Morse, vol. 3, pp. 103–4; Sun Ruiqin (tr.), vol. 1, p. 116</p><p></p></div>	
+<div class='layout'><p>6 New York Times description: New York Times, 3 September 1896; Guangxu audience: Weng Tonghe 2006, vol. 5, p. 2944; Li Hongzhang, vol. 26, p. 275; after seeing Cixi: Li Hongzhang, vol. 16, p. 84; vol. 26, p. 275; Weng Tonghe 2006, vol. 5, p. 2944; Zhu Shoupeng (ed.), vol. 4, pp. 3876–7; Mao Haijian 2010, no. 4</p><p></p></div>	
+<div class='layout'><p>7 journey to Yellow River: State Archives Bureau, Ming and Qing Archives (ed.), pp. 466–7; Mao Haijian 2011, no. 1; Li Hongzhang, vol. 36, pp. 199–226; Zhang proposal: Zhang Zhidong, vol. 2, pp. 989–1001; Zhu Shoupeng (ed.), vol. 4, p. 3631ff.; ‘whole towns': Zhang (Chang) Yinhuan, p. 533; ‘had done nothing': Morse, vol. 3, p. 108</p><p></p></div>	
+<div class='layout'><p>8 Moon Festival: Weng Tonghe 2006, vol. 5, pp. 2934–6</p><p></p></div>	
+<div class='layout'><p>9 Cixi planned to restore Old Summer Palace: Weng Tonghe 2006, vol. 5, p. 2891; Weng to collect opium tax: Zhu Shoupeng (ed.), vol. 4, pp. 3963–5; Li Bingheng argued: Zhu Shoupeng (ed.), vol. 4, pp. 3972–3</p><p></p></div>	
+<div class='layout'><p>10 ‘the scheme of the Inspector General': Qing shilu, vol. 57, p. 301; Zhu Shoupeng (ed.), vol. 4, p. 3973; Germany grabbing Qingdao: Sun Ruiqin (tr.), vol. 1, pp. 106–47; Qingdao Museum et al. (eds.), pp. 121ff. Dugdale, E. T. S. (ed. & tr.), XIV, p. 69; Morse, vol. 3, pp. 106–7; ‘No fighting': Weng Tonghe 2005, vol. 2, p. 1069; Wang Yunsheng, vol. 3, pp. 173–4; Cixi informed afterwards: Weng Tonghe 2005, vol. 2, p. 1069</p><p></p></div>	
+<div class='layout'><p>11 ‘stinking beasts': Weng Tonghe 2006, vol. 6, p. 3099; Weng Tonghe 2005, vol. 2, p. 1072; ‘the Empress Dowager comforted us': Weng Tonghe 2005, vol. 2, p. 1071; Weng Tonghe 2006, vol. 6, p. 3081</p><p></p></div>	
+<div class='layout'><p>12 ‘the height of treachery': Witte, p. 100; bribing Chinese negotiators: Zhang Rongchu (tr.), pp. 203–12; ‘what a pathetic sight': Weng Tonghe 2006, vol. 6, p. 3104; Guangxu audience with Earl: Zhang (Chang) Yinhuan, p. 519; ‘It's not just you': ibid.; Cixi not consulted: Zhang (Chang) Yinhuan, pp. 519–20; Weng Tonghe 2006, vol. 6, p. 3104</p><p></p></div>	
+<div class='layout'><p>13 Censor Weijun: Weng Tonghe 2006, vol. 6, p. 3103</p><p></p></div>	
+<div class='layout'><p>Chapter 19 The Reforms of 1898 (1898)</p><p></p></div>	
+<div class='layout'><p>1 ‘In the world's history': Morse, vol. 3, p. 127; ‘urgent need': Weng Tonghe 2006, vol. 6, p. 3081; Association of Chinese Historians (ed.), The Reforms of 1898, vol. 2, p. 430; receiving Prince Heinrich: Weng Tonghe 2006, vol. 6, pp. 3118–28; Weng Tonghe 2005, vol. 2, p. 1072; Zhang (Chang) Yinhuan, p. 530</p><p></p></div>	
+<div class='layout'><p>2 stop fighting over trifles: Zhang (Chang) Yinhuan, p. 522; prince had to stand before Cixi: Weng Tonghe 2006, vol. 6, p. 3118; Guangxu and medals: Mao Haijian 2005, pp. 428–35; ‘Prince Gong was silent': Weng Tonghe 2006, vol. 6, pp. 3081, 3114; ‘The roller-coaster': Kong Xiangji & Murata Yujiro 2004, pp. 252–3</p><p></p></div>	
+<div class='layout'><p>3 Cixi launches reforms: Weng Tonghe 2006, vol. 6, p. 3132</p><p></p></div>	
+<div class='layout'><p>4 Guangxu orders Weng to retire: Weng Tonghe 2006, vol. 6, p. 3134; Cixi's summer gifts: Weng Tonghe 2005, vol. 2, p. 1074; Weng Tonghe 2006, vol. 6, p. 3134; collaborated remarkably well: Mao Haijian 2005, pp. 31–3; all decrees had Cixi's endorsement: Mao Haijian 2005, pp. 16–18, 33–5; ‘The future of China': Martin 1896, p. 327</p><p></p></div>	
+<div class='layout'><p>5 Junglu to carry it out: Zhu Shoupeng (ed.), vol. 4, p. 4135; ‘six or seven out of ten': Kong Xiangji 1988, p. 369</p><p></p></div>	
+<div class='layout'><p>6 ‘I knew I was the Sage': Kang Youwei, p. 8; writings sent on to Cixi: Mao Haijian 2005, p. 382; Weng Tonghe 2006, vol. 6, p. 3112; First Historical Archives of China (ed.), 1996, vol. 23, no. 1107; Cixi drew Guangxu's attention to Kang: Guangxu asked Weng to give him another copy of Kang's pamphlet on Japan most likely because Cixi, who kept the pamphlet, talked to him about it and he had not read it. Weng Tonghe 2006, vol. 6, p. 3128; Mao Haijian 2009, p. 382; ‘as a close adviser': Kong Xiangji (ed.) 2008a, p. 231; With Cixi's blessing: Kong Xiangji (ed.) 2008a, pp. 234–5</p><p></p></div>	
+<div class='layout'><p>7 ‘humiliation': Kang Youwei, p. 44; Mao Haijian 2009, p. 441; Macartney question: Cranmer-Byng, p. 238; Robbins, p. 386; ‘the able men': Der Ling 2004, p. 277; Debates on Advisory Board: Mao Haijian 2009, pp. 576–88; Zhang (Chang) Yinhuan, p. 547; State Archives Bureau, Ming and Qing Archives (ed.), pp. 6–11; 4,000 taels: Zhang (Chang) Yinhuan, p. 562; Kong Xiangji (ed.) 2008a, p. 142; Liang Dingfen, in Tang Zhijun, p. 67</p><p></p></div>	
+<div class='layout'><p>8 Sun Jianai: Mao Haijian 2009, pp. 582–3; friends regarded Kang's occupations: Kong Xiangji & Murata Yujiro 2009, no. 1; writings delivered to Guangxu clandestinely: Kong Xiangji (ed.) 2008a, pp. 355, 432; Mao Haijian 2009, p. 721; Liang Dingfen, in Tang Zhijun, p. 67</p><p></p></div>	
+<div class='layout'><p>9 Guangxu read Poland fable and fell ill: Kong Xiangji (ed.) 2008a, p. 433; Mao Haijian 2005, p. 131; Zhang (Chang) Yinhuan, p. 553; ‘the wisest ever in history': Kong Xiangji (ed.) 2008a, pp. 351–5</p><p></p></div>	
+<div class='layout'><p>10 Kang petitions collected into booklets: Kong Xiangji (ed.) 2008a, p. 360; bound booklets in the library of the Palace Museum, Beijing; ‘get rid of the whole lot': Kong Xiangji 1988, pp. 373–5; ‘loss of goodwill': Kong Xiangji 1988, p. 380</p><p></p></div>	
+<div class='layout'><p>11 four secretaries: Mao Haijian 2005, pp. 35, 65, 81; ‘Every day': Mao Haijian 2005, p. 73; Kang Board: Association of Chinese Historians (ed.), The Reforms of 1898, vol. 4, p. 332; Mao Haijian 2009, p. 709</p><p></p></div>	
+<div class='layout'><p>12 ‘An emperor is like the father': Kong Xiangji 1988, p. 62; ‘the modern Sage': Morse, vol. 3, p. 132; Confucius crowned King: Sun Jianai, in Mao Haijian 2009, pp. 42, 534; Liang Dingfen, in Tang Zhijun, pp. 63–4</p><p></p></div>	
+<div class='layout'><p>13 Kang anxiously explained: Kong Xiangji (ed.) 2008a, pp. 350–1</p><p></p></div>	
+<div class='layout'><p>Chapter 20 A Plot to Kill Cixi (September 1898)</p><p></p></div>	
+<div class='layout'><p>1 Wang Zhao to approach Nie: Wang Zhao, in Cen Chunxuan, Yun Yuding et al., p. 84; Tan to Yuan: Yuan Shikai, pp. 550–3; Bi Yongnian, p. 28</p><p></p></div>	
+<div class='layout'><p>2 a haul of gold: Kong Xiangji (ed.) 2008a, pp. 402–3; Mao Haijian 2009, p. 774; Kang ghosted petitions re Japan: Kong Xiangji (ed.) 2008a, pp. 399–401, 404–5, 443–5</p><p></p></div>	
+<div class='layout'><p>3 newspaper in Tianjin: Kong Xiangji & Murata Yujiro 2011, pp. 107–95; Tsinghua University History Department (ed.), p. 958; ‘My dearest and nearest': Mao Haijian 2005, pp. 440–2; It ō wrote to wife: Wang Xiaoqiu, p. 122</p><p></p></div>	
+<div class='layout'><p>4 Japanese newspapers: Wang Xiaoqiu, p. 129; ‘Ludicrous': Li Hongzhang, vol. 36, p. 193; Viceroy ‘shocked': Zheng Xiaoxu, vol. 2, p. 671; Tianjin paper promotes Kang: Kong Xiangji & Murata Yujiro 2011, pp. 148–53; Liang Dingfen, in Tang Zhijun, p. 69; ‘the first Chinese Minister': New York Times, 13 May 1897; confidential report to Tokyo: Kong Xiangji & Murata Yujiro 2004, pp. 251–4</p><p></p></div>	
+<div class='layout'><p>5 Sir Yinhuan denounced: Kong Xiangji 1988, p. 252; Zhang (Chang) Yinhuan, p. 540; nothing was done: Zhang (Chang) Yinhuan, pp. 539–41; Mao Haijian 2005, p. 38; secret middle man: Kong Xiangji 2008, pp. 230–3; Kong Xiangji (ed.) 2008a, pp. 144, 188, 422; Ma Zhongwen 1998; Mao Haijian 2009, p. 721; Liang Dingfen, in Tang Zhijun, p. 67; ‘so-called Japanese desire': Zhang (Chang) Yinhuan, p. 510; cf. Kong Xiangji & Murata Yujiro 2009a, p. 83; ‘When I go to his house': Weng Tonghe 2006, vol. 6, p. 3068; Weng Tonghe 2005, vol. 2, p. 1071</p><p></p></div>	
+<div class='layout'><p>6 ‘If the throne employs It ō ': State Archives Bureau, Ming and Qing Archives (ed.), p. 461</p><p></p></div>	
+<div class='layout'><p>7 ‘going about things': Yuan Shikai, p. 553</p><p></p></div>	
+<div class='layout'><p>8 Bi later described: Bi Yongnian, p. 28; The Wild Fox visited Richard, 19 Sept: Kang's letter to Timothy Richard, in Association of Chinese Historians (ed.), The Reforms of 1898, vol. 3, p. 528; Richard's words: Richard, dedication, pp. 258, 263, 266; ‘too delicious!': Hart, Letters, 1868–1907, vol. 2, p. 1044; ‘nonsense': National Archives, London, P.O. 17/1718, p. 191</p><p></p></div>	
+<div class='layout'><p>9 ‘detectives and policemen': Brenan to MacDonald, in Seagrave, p. 244; ‘cherishes the aspiration': Kang Youwei, p. 66; reform-needs-bloodshed theory: Liang Qichao 1964, p. 109; newspaper report: Mao Haijian 2009, p. 822</p><p></p></div>	
+<div class='layout'><p>10 The two innocent men: Chen Kuilong, p. 37; Wang Xiagang, pp. 240–4; people were appalled: Yun Yuding, vol. 1, p. 170; Mao Haijian 2011, no. 1; Kang claim first appeared: Tang Zhijun, p. 39</p><p></p></div>	
+<div class='layout'><p>11 ‘have attempted': First Historical Archives of China (ed.), 1996, vol. 24, no. 1399; cf. Mao Haijian 2005, p. 133; Yuan diary hidden: Yuan Shikai, pp. 554–5; ‘the rumoured plot': Association of Chinese Historians (ed.), The Reforms of 1898, vol. 3, p. 542; Kang charged Cixi: Tang Zhijun, pp. 57–63</p><p></p></div>	
+<div class='layout'><p>12 Sir Yinhuan acknowledged: Zhang (Chang) Yinhuan, p. 562; Weng to Yinhuan: Weng Tonghe 2006, vol. 5, passim; Wu (Woo) Yong, pp. 21–2; Kong Xiangji 2001, pp. 199–200; Ma Zhongwen 1996, no. 4; ‘traitor': Weng Tonghe 2005, vol. 2, p. 1084; ‘like the fingers': Zhang Shesheng, p. 156; footnote: Zhang (Chang) Yinhuan, p. 561; Zhang Rongchu (tr.), pp. 211–12</p><p></p></div>	
+<div class='layout'><p>13 ‘harbouring evil intentions': First Historical Archives of China (ed.), 1996, vol. 24, no. 1411; Ordered execution of Yinhuan: First Historical Archives of China (ed.), 1996, vol. 26, no. 662; cf. nos 679, 681; punishments of eunuchs: Mao Haijian 2005, pp. 142–6; Learning Companion Xu: Mao Haijian 2009, p. 859; footnote: Xin Xiuming, p. 33</p><p></p></div>	
+<div class='layout'><p>14 Reforms to continue: First Historical Archives of China (ed.), 1996, vol. 24, nos 1376, 1399, 1754, passim; Mao Haijian 2005, pp. 136, 547–8; ‘forging a Great Asia merger': Yang Tianshi, pp. 188–90; ‘The Japanese government': Yang Tianshi, p. 159; imprisoning Guangxu: Mao Haijian 2005, pp. 149–53, 160; percussion instruments: Ding Ruqin, p. 272</p><p></p></div>	
+<div class='layout'><p>15 Pearl a prisoner: Wang Daocheng, in Society of Manchu Studies (ed.), vol. 2, p. 223; Mao Haijian 2005, pp. 143, 152</p><p></p></div>	
+<div class='layout'><p>Chapter 21 Desperate to Dethrone Her Adopted Son (1898–1900)</p><p></p></div>	
+<div class='layout'><p>1 opera about a heartless adopted son: Ding Ruqin, pp. 269–70</p><p></p></div>	
+<div class='layout'><p>2 ‘clear the air': Royal Archives, Windsor, VIC/MAIN/Q/16, no. 116; Association of Chinese Historians (ed.), The Reforms of 1898, vol. 3, p. 538; Dr Dethève's report: Franzini; daily routine: Xin Xiuming, pp. 12–14; Jin Liang 1998, p. 14; Rongling, p. 12</p><p></p></div>	
+<div class='layout'><p>3 Guangxu's modest living: Yun Yuding, vol. 1, p. 405; Wang Zhao, pp. 103–4; Carl, pp. 191, 292; ‘no obsequious eunuchs': Headland, pp. 165–8; eunuchs poked fun: Wu (Woo) Yong, p. 74; ‘a Sphinx-like quality': Carl, pp. 66–7; read translations, etc.: Ye Xiaoqing 2007, no. 2; Rongling, p. 22; Wang Zhao, pp. 102–3; devil-like figures: Wu (Woo) Yong, p. 74</p><p></p></div>	
+<div class='layout'><p>4 a ruse: Kong Xiangji & Murata Yujiro 2004, pp. 123–209; ‘made a mistake': Headland, p. 65; Emperor Kangxi attributed: Forbidden City Publishing (ed.), p. 239</p><p></p></div>	
+<div class='layout'><p>5 ‘deceiving the emperor': Tsinghua University History Department (ed.), pp. 1198, 1205; Liu Kunyi, vol. 3, pp. 1112, 1415; Junglu and Earl Li: Chen Kuilong, p. 23</p><p></p></div>	
+<div class='layout'><p>6 Hart wrote: Hart, Letters, 1868–1907, vol. 2, p. 1180; Cixi's tea party and impressions: Conger, pp. 40–3; Lady Ethel MacDonald, ‘My Visits to the Dowager Empress of China', Empire Review, April 1901, in Seagrave, pp. 259, 261</p><p></p></div>	
+<div class='layout'><p>7 the prisoner wrote: First Historical Archives of China (ed.), 1996, vol. 25, no. 1512</p><p></p></div>	
+<div class='layout'><p>8 legations pressed to see Guangxu: First Historical Archives of China (ed.), 1996, vol. 25, nos 43–4; Headland, p. 161; ‘too busy': Headland, p. 161</p><p></p></div>	
+<div class='layout'><p>Chapter 22 To War against the World Powers – with the Boxers (1899–1900)</p><p></p></div>	
+<div class='layout'><p>1 powers gave Italy consent: Royal Archives, Windsor, VIC/MAIN/Q/16, no. 121; Morse, vol. 3, pp. 124–5; ‘The Italian Ultimatum': Hart, Letters, 1868–1907, vol. 2, p. 1190; Hart,Journals, 1863–1866, p. 1192</p><p></p></div>	
+<div class='layout'><p>2 ‘great surprise': Headland, p. 61; ‘being unable to': Xiang, pp. 87–8; ‘There was a bustle': Morse, vol. 3, p. 125; ‘stuck out his hand': Salvago Raggi, pp. 148–9; Cixi's decrees: First Historical Archives of China (ed.), 1996, vol. 25, nos 1207, 1220; ‘Not a speck': Xiang, p. 95</p><p></p></div>	
+<div class='layout'><p>3 ‘feeling of elation': Morse, vol. 3, p. 125; Italy only bluffing: Xiang, p. 101; Li Hongzhang, vol. 36, p. 250; ‘Foreign powers bully': Sheng Xuanhuai, vol. 2, pp. 652–6; First Historical Archives of China (ed.), 1996, vol. 25, nos 1247–8; Wu (Woo) Yong, p. 89; ‘Western people': Wu Tingfang, p. 254; ‘I happened to be': Yung Wing, pp. 70–3</p><p></p></div>	
+<div class='layout'><p>4 ‘When an Oriental': Wu Tingfang, p. 181</p><p></p></div>	
+<div class='layout'><p>5 Edwards quotes: Edwards, pp. 53–4; ‘Whenever a Christian': Smith, p. 54; ‘be fair and even-handed': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 44; First Historical Archives of China (ed.), 1996, vol. 25, no. 1451, passim</p><p></p></div>	
+<div class='layout'><p>6 ‘owing debts': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 13; German expedition: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 21–32; First Historical Archives of China & History Department of Fujian Normal University (eds.), vol. 5, pp. 588–92; ‘On the whole': Bird, p. 298; ‘punished severely': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 19–21, 38</p><p></p></div>	
+<div class='layout'><p>7 replacing Yuxian: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 38, 44–5; ‘most deeply aggrieved': First Historical Archives of China (ed.), 1996, vol. 25, no. 1423; Morse, vol. 3, p. 179; Boxers had destroyed: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 57; ‘extremely circumspect': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 46–8; Cixi banned Boxers: First Historical Archives of China (ed.), 1996, vol. 26, no. 53; legations dissatisfied and demanded: National Archives, London, P.O. 17/1412; Morse, vol. 3, p. 187</p><p></p></div>	
+<div class='layout'><p>8 ‘I have never known': National Archives, London, P.O. 17/1412; On 12 April: National Archives, London, P.O. 17/1412; Association of Chinese Historians (ed.), The Boxers, vol. 3, p. 169; published in the Peking Gazette: National Archives, London, P.O. 17/1412; Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 80</p><p></p></div>	
+<div class='layout'><p>9 ‘none of them wish': Conger, p. 91; Lord Salisbury remarked: Roberts, p. 773; Junglu sick leave: Ronglu (Junglu), p. 405; Hou Bin; ‘disciplined': Wu (Woo) Yong, p. 86; Kong Xiangji 2008, p. 168; Qing History Institute, Renmin University (ed.), vol. 12, p. 180</p><p></p></div>	
+<div class='layout'><p>10 ‘For the first time': Smith, p. 169; blue eyes!: Qing History Institute, Renmin University (ed.), vol. 12, p. 175</p><p></p></div>	
+<div class='layout'><p>11 ‘killing of all foreigners': Qing History Institute, Renmin University (ed.), vol. 12, p. 179; permission for 400 troops: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 110–11; Conger, p. 92; not authorising Seymour: Conger, pp. 97, 100; MacDonald, Sir Claude et al., p. 49; Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 142–4; Qing History Institute, Renmin University (ed.), vol. 12, p. 182; mobilisation of some Boxers: Archives of Ming and Qing Dynasties (ed.) 1979a, pp. 145, 157–8; ‘with the utmost courage': Xiang, p. 261; ‘deep regret': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 133</p><p></p></div>	
+<div class='layout'><p>12 ‘Well, what's done': Qing History Institute, Renmin University (ed.), vol. 12, p. 183; Rescue parties: Morse, vol. 3, p. 204; Fleming, p. 95; Xiang, pp. 269–70; ‘never forget': Smith, p. 240; Junglu to protect: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 144–5; decrees to rein in Boxers: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 136–41</p><p></p></div>	
+<div class='layout'><p>13 Earl Li and other dignitaries: Li Hongzhang, vol. 27, passim; An eye-witness recorded: Yun Yuding, vol. 2, pp. 785–6</p><p></p></div>	
+<div class='layout'><p>14 Queen Victoria to Salisbury: Royal Archives, Windsor, VIC/MAIN/Q/16, no. 133; ‘China Telegrams': Royal Archives, Windsor, VIC/MAIN/Q/16, nos 135–851; ‘Feel anxious': Royal Archives, Windsor, VIC/MAIN/Q/16, no. 130</p><p></p></div>	
+<div class='layout'><p>15 ‘We are in the wrong': Li Hongzhang, vol. 27, p. 74; Grass-roots officials: Wu (Woo) Yong, p. 28ff.; ‘Our choice is': Yun Yuding, vol. 2, p. 786; Queen Victoria had spelt out: Royal Archives, Windsor, VIC/MAIN/Q/16, no. 130; footnote: Roberts, p. 771</p><p></p></div>	
+<div class='layout'><p>Chapter 23 Fighting to a Bitter End (1900)</p><p></p></div>	
+<div class='layout'><p>1 1,400 leagues: Kong Xiangji 2008, p. 170; ‘The Boxers and soldiers': Conger, pp. 116, 199; ‘There is no doubt': Smith, p. 577; Cixi rewarded Boxers: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 161–2; First Historical Archives of China (ed.), 1996, vol. 26, nos 587–8; Li Hongzhang, vol. 27, p. 97; opened warehouses: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 176; ‘Slowly they came': Xiang, p. 261</p><p></p></div>	
+<div class='layout'><p>2 ‘a well-dressed': Xiang, p. 301; laid out night-stools: Liu Bannong et al., p. 75; asking a Buddhist monk: First Historical Archives of China (ed.) 2003, vol. 2, pp. 476, 478; mansion of Imperial Princess: Headland, p. 206; Forbidden City not immune: Wu (Woo) Yong, p. 87; Chen Kuilong, p. 39; Ronglu (Junglu), p. 404; Kong Xiangji 2008, p. 169; request put to Cixi: Wu (Woo) Yong, p. 87</p><p></p></div>	
+<div class='layout'><p>3 ‘Suddenly in a matter': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 187; Sarah Conger wrote: Conger, pp. 114–17, 129–30; cannon gauge raised: Chen Kuilong, p. 52</p><p></p></div>	
+<div class='layout'><p>4 ‘If I had really': Wu (Woo) Yong, p. 89; Cixi told Junglu to deliver fruit: Li Hongzhang, vol. 27, p. 154; thousands of casualties: Li Hongzhang, vol. 27, p. 117; Cixi's orders re Catholic cathedral: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 414; footnote: Carl, p. 266</p><p></p></div>	
+<div class='layout'><p>5 massacred 178: Morse, vol. 3, p. 242; Mgr Hamer: Edwards, pp. 106–7; Cixi put a stop: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 327–8, 421–3; vetoed nationwide massacre: First Historical Archives of China (ed.) 2003, vol. 1, pp. 253–4; ‘If you continue to indulge': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 415–7</p><p></p></div>	
+<div class='layout'><p>6 Viceroys would not obey her: Li Hongzhang, vol. 27, passim; ‘totally realistic': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 156–7; vol. 2, p. 946; Cixi not ready to surrender: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 401, 404, 411–12, 414; Viceroy Zhang petition: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 386–7; Yuan Chang: Kong Xiangji 2008, pp. 166–71</p><p></p></div>	
+<div class='layout'><p>7 Zhang information-gathering network: Mao Haijian 2011, no. 1; Xu Jingcheng: Sun Ruiqin (tr.), vol. 1, pp. 106, 121–45; ‘tidying up his hat': Association of Chinese Historians (ed.), The Boxers, vol. 2, p. 496; ‘harbouring private agenda': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 392; foreigners regarding Zhang: Morse, vol. 3, p. 362; Martin 1896, p. 238; Kong Xiangji 2008, p. 213; Liu Kunyi, vol. 6, p. 2586; Zhang – Britain and Japan: Royal Archives, Windsor, VIC/MAIN/Q/16, no. 628; Kong Xiangji & Murata Yujiro 2011, pp. 408–9; Liu Kunyi, vol. 6, p. 2586</p><p></p></div>	
+<div class='layout'><p>8 ‘simply fled': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 469; ‘quite a few traitors': Sheng Xuanhuai, vol. 2, p. 656; Eunuchs remembered: Xin Xiuming, p. 37; Lishan in 1898: Mao Haijian 2005, p. 38; 200 carriages: Chen Kuilong, pp. 57–9</p><p></p></div>	
+<div class='layout'><p>9 early morning of 15 August: Natong, vol. 1, p. 350; Pujia, Pujie et al., pp. 90–1; Pearl drowned: Pujia, Pujie et al., pp. 187–8; Xin Xiuming, pp. 24–5</p><p></p></div>	
+<div class='layout'><p>Chapter 24 Flight (1900–1)</p><p></p></div>	
+<div class='layout'><p>1 beginning of flight: Pujia, Pujie et al., pp. 90–3; Cen Chunxuan, in Cen Chunxuan, Yun Yuding et al., pp. 14–15; Wu (Woo) Yong, p. 51; Xin Xiuming, pp. 33–4; Wang Zhao, p. 100</p><p></p></div>	
+<div class='layout'><p>2 with County Chief Woo: Wu (Woo) Yong</p><p></p></div>	
+<div class='layout'><p>3 first time in Han attire: Pujia, Pujie et al., p. 93</p><p></p></div>	
+<div class='layout'><p>4 Eye-witnesses seeing her: Pujia, Pujie et al., p. 90; orders to provinces: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 489, passim; First Historical Archives of China (ed.) 2003, vol. 2, passim; six million taels: First Historical Archives of China (ed.) 2005, vol. 1, p. 37; 2,000 carts: Wu (Woo) Yong, p. 95; Sir Yinhuan execution: First Historical Archives of China (ed.) 1996, vol. 26, no. 662; Ma Zhongwen 1996, no. 4; Liu Kunyi to Zhang: Liu Kunyi, vol. 6, p. 2586</p><p></p></div>	
+<div class='layout'><p>5 ‘thousand times urgent': Kong Xiangji 2008, pp. 162–3; lobby Western powers to protect Cixi: Royal Archives, Windsor, VIC/MAIN/Q/16, nos 592, 806; ‘There is great danger': Royal Archives, Windsor, VIC/MAIN/Q/16, no. 843; ‘ranged themselves solidly': Morse, vol. 3, pp. 330, 342</p><p></p></div>	
+<div class='layout'><p>6 Zhang to Cixi re audience: Zhang Zhidong, vol. 2, pp. 1453–4; vol. 3, pp. 1526, 1580; Li Xizhu, pp. 116–17; silent audience: Gao Shu, p. 148</p><p></p></div>	
+<div class='layout'><p>7 Poems of Gratitude: Zhang Zhidong, vol. 12, pp. 10566–8; Junglu as decoy: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 484; Chongqi and family: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 484, 532; First Historical Archives of China (ed.) 2003, vol. 3, pp. 891–2; Qing History Institute, Renmin University (ed.), vol. 12, p. 226; Yun Yuding, vol. 2, p. 789</p><p></p></div>	
+<div class='layout'><p>8 suicides: Natong, vol. 1, p. 352; Yun Yuding, vol. 2, p. 789; assassination squad: Yang Tianshi 2011, no. 5; Sang Bing, pp. 334–5; Yang Tianshi, pp. 157–61; Warren cabled Salisbury: National Archives, London, P.O. 17/1718, p. 372; ‘Peace of Yang-tsze': Royal Archives, Windsor, VIC/MAIN/Q/16, no. 859; footnote: Liu Bannong et al., p. 31</p><p></p></div>	
+<div class='layout'><p>9 ‘found a Republic': Tang Zhijun 1997, p. 337; burst into tears: Wu (Woo) Yong, pp. 50, 89; Cen Chunxuan, Yun Yuding et al., p. 18; Xu Che, p. 486</p><p></p></div>	
+<div class='layout'><p>10 ‘In the middle of a sentence': Wu (Woo) Yong, p. 83; ‘Your Majesty': Wu (Woo) Yong, p. 74</p><p></p></div>	
+<div class='layout'><p>11 throne set up for herself: Wu (Woo) Yong, p. 81; Roosevelt Longworth, p. 99; Carl, p. 71; Townley, p. 89</p><p></p></div>	
+<div class='layout'><p>Chapter 25 Remorse (1900–1)</p><p></p></div>	
+<div class='layout'><p>1 The last thing Cixi did: interview with Prof. Wang Daocheng, who has seen the note, 21 October 2010; ‘politely requested': Smith, pp. 529–30; guardians informed Cixi: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 496–7, 551–2; vol. 2, pp. 1152, 1214, 1321, 1328–9, 1340–1; cf. Zhang Zhidong, vol. 3, p. 2168</p><p></p></div>	
+<div class='layout'><p>2 Millions of taels seized: Morse, vol. 3, p. 367; Chen Kuilong, p. 44; First Historical Archives of China (ed.) 2003, vol. 8, p. 604; Zhang Zhidong, vol. 2, p. 1451; losses from homes: Natong, vol. 1, p. 350; Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 498; Hart helped stop looting: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, pp. 496–7; ‘For decades': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 513; ‘The place was': Weale, p. 342</p><p></p></div>	
+<div class='layout'><p>3 ‘there was no slaughtering': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 1, p. 552; hygiene in the streets: Liu Bannong et al., p. 36; ‘return home as the Conqueror': Von Waldersee, p. 205; ‘deserved their fate': Von Waldersee, pp. 252–3; ‘I believe I may say': Von Waldersee, pp. 216–21; footnote: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 2, pp. 1155–6</p><p></p></div>	
+<div class='layout'><p>4 ‘Yesterday evening': Von Waldersee, pp. 241–2; ‘the bedroom': Von Waldersee, p. 221; Prettier Than Golden Flower: Qi Rushan, in Liu Bannong et al., pp. 253–63</p><p></p></div>	
+<div class='layout'><p>5 ‘should be within the ability': Morse, vol. 3, pp. 346–7, 350; footnote: Chang & Halliday, Chapter 56</p><p></p></div>	
+<div class='layout'><p>6 German demands: Morse, vol. 3, p. 350; Von Waldersee, p. 210; America's claim excessive: Hunt; Chinese population at that time: Jiang Tao 1993, pp. 78–9; arguments over indemnity: Von Waldersee, pp. 224, 233, 239–40; People's Bank of China (ed.), pp. 888–98</p><p></p></div>	
+<div class='layout'><p>7 ‘I have much sympathy': Conger, pp. 188–9; raising customs tariffs: Boxer Protocol of 1901, in National People's Congress Standing Committee Secretariat (ed.), p. 205; People's Bank of China (ed.), p. 892; up to eighteen million: Morse, vol. 3, p. 351; Cixi on new source: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 2, p. 1075; raising customs tariffs Beijing's goal: Morse, vol. 3, pp. 103–4; Sun Ruiqin (tr.), vol. 1, p. 116; Cixi on payment terms: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 2, p. 1075; footnote: Hart, Letters, 1868–1907, vol. 2, p. 1282; Morse, vol. 3, p. 351</p><p></p></div>	
+<div class='layout'><p>8 ‘I have been of some use': Fairbank et al., p. 167; Cixi bestowed on Hart: First Historical Archives of China (ed.), 1996, vol. 27, no. 751; Hart, Letters, 1868–1907, vol. 2, p. 1294; Morse, vol. 3, p. 470; 500,000 taels: Morse, vol. 3, p. 367; ‘overcome with': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 2, p. 853</p><p></p></div>	
+<div class='layout'><p>9 ‘as I am the one responsible': Wu (Woo) Yong, p. 89; ‘the Decree of Self-reproach': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 2, pp. 944–7; ‘before' or ‘after': Carl, p. 269; 29 January 1901 decree: Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 2, pp. 914–16; ‘Making these changes': Archives of Ming and Qing Dynasties (ed.) 1979a, vol. 2, p. 1328</p><p></p></div>	
+<div class='layout'><p>10 Tianjin provisional government: Procès-verbaux des Séances du Gouvernement Provisoire de Tientsin, vol. 1, Introduction, pp. 1–16; 2,758,651 taels: Morse, vol. 3, p. 365; ‘Unlike 30 years ago': Zhang Zhidong, vol. 2, p. 1428</p><p></p></div>	
+<div class='layout'><p>11 ‘the spirit of reform': Martin 2005, p. 198; ‘ranks with Catherine': Roosevelt Longworth, p. 95; ‘real revolution': Reynolds, p. 1</p><p></p></div>	
+<div class='layout'><p>Chapter 26 Return to Beijing (1901–2)</p><p></p></div>	
+<div class='layout'><p>1 ‘some uneasiness': Hart, Letters, 1868–1907, vol. 2, p. 1299; departure from Xian: Wu (Woo) Yong, pp. 95–6</p><p></p></div>	
+<div class='layout'><p>2 ‘Long Live': Xin Xiuming, p. 30; not even sacked: First Historical Archives of China (ed.) 2003, vol. 8, p. 532; Wu (Woo) Yong, pp. 95–7</p><p></p></div>	
+<div class='layout'><p>3 ‘appreciated and trusted': Wang Yanwei (ed.), vol. 4, pp. 4275–6; Cixi on Earl Li: Wang Yanwei (ed.), vol. 4, p. 4276; ‘in magnitude': Conger, pp. 212–15; heaping further honours: Wang Yanwei (ed.), vol. 4, p. 4283</p><p></p></div>	
+<div class='layout'><p>4 Yuan Shikai cable: ibid.; heir-apparent's title: First Historical Archives of China (ed.), 1996, vol. 27, no. 712; Wu (Woo) Yong, pp. 80, 121; Zhang Zhidong, vol. 10, p. 8654; farewell to Woo: Wu (Woo) Yong, pp. 123–4</p><p></p></div>	
+<div class='layout'><p>5 ‘extraordinarily smooth': First Historical Archives of China (ed.), 1996, nos 768–9; to Beijing by train: Wang Yanwei (ed.), vol. 4, p. 4287; First Historical Archives of China (ed.) 2003, vol. 8, pp. 536–7; Conger, pp. 215–16; stopped short: cf. First Historical Archives of China (ed.) 2003, vol. 8, p. 618; Shan Shiyuan 1997, pp. 452–3</p><p></p></div>	
+<div class='layout'><p>6 pet monkey: Gao Shu, p. 130; honoured Pearl: First Historical Archives of China (ed.), 1996, vol. 27, no. 824</p><p></p></div>	
+<div class='layout'><p>Chapter 27 Making Friends with Westerners (1902–7)</p><p></p></div>	
+<div class='layout'><p>1 foreigners welcome to watch: First Historical Archives of China (ed.) 2003, vol. 8, p. 586; Conger, pp. 215–16; ‘dignified': Conger, p. 217; ‘The Court': Hart, Letters, 1868–1907, vol. 2, p. 1301; reception for diplomatic ladies: Conger, pp. 217–23</p><p></p></div>	
+<div class='layout'><p>2 Lady Townley: Townley, pp. 80–1, 100–2; Headland, p. 100</p><p></p></div>	
+<div class='layout'><p>3 ‘These foreigners': Der Ling 2004, p. 286; ‘The Audiences': Hart, Letters, 1868–1907, vol. 2, p. 1303; ‘to wheedle': Carl, p. 232</p><p></p></div>	
+<div class='layout'><p>4 Other goodwill gestures: Sarah Conger's Diary, the Jewell Collection, Museum of Fine Arts, Boston, 19 March 1904, 14–15 June 1904; Conger, p. 315; Carl, p. 209; First Historical Archives of China (ed.) 2005, vol. 2, p. 1261; Rongling, p. 23; Der Ling 2004, p. 148; further relationship with Conger: Sarah Conger's Diary, the Jewell Collection, Museum of Fine Arts, Boston, 1902–4, passim; Conger, p. 223ff.</p><p></p></div>	
+<div class='layout'><p>5 ‘While there is': Conger, pp. 236, 290; dinner at American Legation: Conger, pp. 226–9; ‘plain in appearance': Headland, p. 206; Before long: Conger, p. 232ff.</p><p></p></div>	
+<div class='layout'><p>6 Conger and Cixi met often: Conger, p. 236ff.</p><p></p></div>	
+<div class='layout'><p>7 ‘Through Mrs Conger's': Boston Daily Globe, 1 January 1905; ‘China's Woman Ruler': Chicago Daily Tribune, 23 October 1904; ‘She orders women's feet': Chicago Daily Tribune, 23 October 1904; ‘we were seated': Conger, pp. 352–3; The Congers continued to receive: Sarah Conger interview, in Washington Post, 17 November 1908; Katharine Carl with Cixi: Carl</p><p></p></div>	
+<div class='layout'><p>8 ‘Pitiable!': Headland, p. 32; In the Blue Room: New York Times, 19 February 1905; The Washington Post, 19 February 1905</p><p></p></div>	
+<div class='layout'><p>9 Louisa Pierson's parents: Hart, Letters, 1868–1907, vol. 2, pp. 1200, 1328; Zheng Xiaoxu, vol. 1, p. 505; ‘a Chinese girl kept by me': Hart, Journals, 1863–1866, p. 363; Hart's three children: ibid.; Pierson and Yu Keng, promotion: Zheng Xiaoxu, vol. 1, p. 505; Hart, Letters, 1868–1907, vol. 2, pp. 1200, 1328</p><p></p></div>	
+<div class='layout'><p>10 ‘speaks French': New York Times, 9 November 1902; ‘presides over': Boston Globe, 26 October 1902; fancy-dress ball: Boston Daily Globe, 29 April 1901; son's marriage: Boston Globe, 26 October 1902; Chicago Daily, 17 October 1902; Chicago Daily Tribune, 2 November 1902; Atlanta Constitution, 21 June 1908; The two daughters: New York Times, 9 November 1902; Der Ling 1948</p><p></p></div>	
+<div class='layout'><p>11 ‘now Rongling can': Rongling, p. 11; ‘very simple': ibid.; visit of Uchida Kōsai: Rongling, pp. 32–5</p><p></p></div>	
+<div class='layout'><p>Chapter 27 Making Friends with Westerners (1902–7)</p><p></p></div>	
+<div class='layout'><p>1 foreigners welcome to watch: First Historical Archives of China (ed.) 2003, vol. 8, p. 586; Conger, pp. 215–16; ‘dignified': Conger, p. 217; ‘The Court': Hart, Letters, 1868–1907, vol. 2, p. 1301; reception for diplomatic ladies: Conger, pp. 217–23</p><p></p></div>	
+<div class='layout'><p>2 Lady Townley: Townley, pp. 80–1, 100–2; Headland, p. 100</p><p></p></div>	
+<div class='layout'><p>3 ‘These foreigners': Der Ling 2004, p. 286; ‘The Audiences': Hart, Letters, 1868–1907, vol. 2, p. 1303; ‘to wheedle': Carl, p. 232</p><p></p></div>	
+<div class='layout'><p>4 Other goodwill gestures: Sarah Conger's Diary, the Jewell Collection, Museum of Fine Arts, Boston, 19 March 1904, 14–15 June 1904; Conger, p. 315; Carl, p. 209; First Historical Archives of China (ed.) 2005, vol. 2, p. 1261; Rongling, p. 23; Der Ling 2004, p. 148; further relationship with Conger: Sarah Conger's Diary, the Jewell Collection, Museum of Fine Arts, Boston, 1902–4, passim; Conger, p. 223ff.</p><p></p></div>	
+<div class='layout'><p>5 ‘While there is': Conger, pp. 236, 290; dinner at American Legation: Conger, pp. 226–9; ‘plain in appearance': Headland, p. 206; Before long: Conger, p. 232ff.</p><p></p></div>	
+<div class='layout'><p>6 Conger and Cixi met often: Conger, p. 236ff.</p><p></p></div>	
+<div class='layout'><p>7 ‘Through Mrs Conger's': Boston Daily Globe, 1 January 1905; ‘China's Woman Ruler': Chicago Daily Tribune, 23 October 1904; ‘She orders women's feet': Chicago Daily Tribune, 23 October 1904; ‘we were seated': Conger, pp. 352–3; The Congers continued to receive: Sarah Conger interview, in Washington Post, 17 November 1908; Katharine Carl with Cixi: Carl</p><p></p></div>	
+<div class='layout'><p>8 ‘Pitiable!': Headland, p. 32; In the Blue Room: New York Times, 19 February 1905; The Washington Post, 19 February 1905</p><p></p></div>	
+<div class='layout'><p>9 Louisa Pierson's parents: Hart, Letters, 1868–1907, vol. 2, pp. 1200, 1328; Zheng Xiaoxu, vol. 1, p. 505; ‘a Chinese girl kept by me': Hart, Journals, 1863–1866, p. 363; Hart's three children: ibid.; Pierson and Yu Keng, promotion: Zheng Xiaoxu, vol. 1, p. 505; Hart, Letters, 1868–1907, vol. 2, pp. 1200, 1328</p><p></p></div>	
+<div class='layout'><p>10 ‘speaks French': New York Times, 9 November 1902; ‘presides over': Boston Globe, 26 October 1902; fancy-dress ball: Boston Daily Globe, 29 April 1901; son's marriage: Boston Globe, 26 October 1902; Chicago Daily, 17 October 1902; Chicago Daily Tribune, 2 November 1902; Atlanta Constitution, 21 June 1908; The two daughters: New York Times, 9 November 1902; Der Ling 1948</p><p></p></div>	
+<div class='layout'><p>11 ‘now Rongling can': Rongling, p. 11; ‘very simple': ibid.; visit of Uchida Kōsai: Rongling, pp. 32–5</p><p></p></div>	
+<div class='layout'><p>Chapter 29 The Vote! (1905–8)</p><p></p></div>	
+<div class='layout'><p>1 ‘In foreign countries': Sheng Xuanhuai, vol. 2, p. 653; ‘England is': Der Ling 2004, p. 277</p><p></p></div>	
+<div class='layout'><p>2 Ta Kung Pao articles: Fang Hanqi et al., pp. 31–2; ‘study their political systems': Archives of Ming and Qing Dynasties (ed.) 1979b, vol. 1, p. 1; ‘from the apex': Morse, vol. 3, p. 441</p><p></p></div>	
+<div class='layout'><p>3 ‘high hopes': Dai Hongci, p. 314; First Historical Archives of China (ed.), 1996, vol. 31, no. 722; Zaize audience: Zaize, p. 685; epoch-making proclamation: Archives of Ming and Qing Dynasties (ed.) 1979b, vol. 1, pp. 43–4; Liang Qichao: Liang Qichao 2008, p. 240</p><p></p></div>	
+<div class='layout'><p>4 draft outline of constitution: Archives of Ming and Qing Dynasties (ed.) 1979b, vol. 1, pp. 54–67; the future parliament: Archives of Ming and Qing Dynasties (ed.) 1979b, vol. 2, pp. 627–37; draft Electoral Regulation: Archives of Ming and Qing Dynasties (ed.) 1979b, vol. 2, pp. 667–84; the franchise: Archives of Ming and Qing Dynasties (ed.) 1979b, vol. 2, pp. 671–3</p><p></p></div>	
+<div class='layout'><p>5 Cixi asked for a timetable: Archives of Ming and Qing Dynasties (ed.) 1979b, vol. 2, pp. 683–4; Prince Ching against schedule: Kong Xiangji 1998, p. 78; Officials opposed vote: Archives of Ming and Qing Dynasties (ed.) 1979b, vols 1 and 2, passim; nine-year timetable: Archives of Ming and Qing Dynasties (ed.) 1979b, vol. 1, pp. 61–7</p><p></p></div>	
+<div class='layout'><p>6 timetable inscribed on plaques: Archives of Ming and Qing Dynasties (ed.) 1979b, vol. 1, p. 68; Kong Xiangji 1998, p. 79; ‘conscience': Archives of Ming and Qing Dynasties (ed.) 1979b, vol. 1, p. 68; Martin's comments: Martin 2005, pp. 197–9</p><p></p></div>	
+<div class='layout'><p>Chapter 30 Coping with Insurgents, Assassins and the Japanese (1902–8)</p><p></p></div>	
+<div class='layout'><p>1 ‘advantageous for China': Yun Yuding, in Kong Xiangji 2001, p. 387; Her diplomats: First Historical Archives of China (ed.) 2008, vol. 2, pp. 1466–78</p><p></p></div>	
+<div class='layout'><p>2 contemplated appointing Zhang to Grand Council: e.g. Mao Haijian 2005, pp. 186–209; ‘these flames': Association of Chinese Historians (ed.), The 1911 Revolution, vol. 2, pp. 501–22, 554–8; vol. 3, pp. 221–5, 272ff.; ‘to slaughter every Manchu': Xu Zaiping & Xu Ruifang, p. 188; photograph of the testimony in Palace Museum (ed.) 2002, vol. 11, p. 179</p><p></p></div>	
+<div class='layout'><p>3 Qiu Jin: Xu Zaiping & Xu Ruifang, pp. 191–9; Association of Chinese Historians (ed.), The 1911 Revolution, vol. 3, pp. 37–46, 92–7, 187–214; Xia Xiaohong, pp. 289–302; Fu Guoyong; press not suppressed: cf. Xu Zaiping & Xu Ruifang, pp. 191–9; Xia Xiaohong, p. 294; Zhejiang 1911 Revolution Study Association & Zhejiang Provincial Library (eds.), p. 393; Cixi endorsed Qiu handling: Association of Chinese Historians (ed.), The 1911 Revolution, vol. 3, pp. 187–214; ‘no general disorders': New York Times, 16 November 1908</p><p></p></div>	
+<div class='layout'><p>4 Nakanishi Shigetaro: Tōten Miyazaki, pp. 220, 223; A public decree charged Shen: First Historical Archives of China (ed.), 1996, vol. 29, no. 697; Shen death by bastinado: Kong Xiangji 1998, p. 58; newspapers' readers revolted: Fang Hanqi et al., p. 45; Western outrage: Hart, Letters, 1868–1907, vol. 2, pp. 1374–5; Association of Chinese Historians (ed.), The 1911 Revolution, vol. 1, pp. 432, 478</p><p></p></div>	
+<div class='layout'><p>5 declared that she loathed: Zhu Shoupeng (ed.), vol. 5, pp. 5329–32; amnestied: Zhu Shoupeng (ed.), vol. 5, p. 5191; Discussions about pardoning Liang: Li Yongsheng; Luo, bomb operator: Liang Qichao 2008, p. 224; Li Yongsheng. (cf. Jin Liang 1998, p. 20); footnote: Association of Chinese Historians (ed.), The 1911 Revolution, vol. 1, pp. 286–307; First Historical Archives of China (ed.), 1996, vol. 29, no. 697; Kong Xiangji 1998, pp. 54–7; Sang Bing, p. 335</p><p></p></div>	
+<div class='layout'><p>6 Tiejun: Liang Qichao 2008, pp. 206, 225, 241; Sang Bing, pp. 338–40; Kong Xiangji 1998, pp. 68–71; Li Yongsheng; ‘Nothing could exceed': Freeman-Mitford, pp. 193, 198</p><p></p></div>	
+<div class='layout'><p>7 ‘Don't make any move': Li Yongsheng; ‘See if she is alive': Der Ling 2004, pp. 234–5</p><p></p></div>	
+<div class='layout'><p>8 Count Witte: Witte, pp. 107–9; prayed privately: Carl, pp. 207–8; Der Ling 2004, p. 269</p><p></p></div>	
+<div class='layout'><p>9 ‘the tidiness of the streets': Fang Hanqi et al., pp. 15–16; ‘the ultimate goal': Sun Ruiqin (tr.), vol. 3, pp. 28, 35; Yang Ki-Tak: Cockburn; Kaiser sent a message: Sun Ruiqin (tr.), vol. 3, 39; cf. Rohl</p><p></p></div>	
+<div class='layout'><p>10 ‘yellow peril': the Kaiser's interview with Dr William Hale, 19 July 1908, in Rohl, Appendix 2, pp. 345–7; ‘It's a year now': Sun Ruiqin (tr.), vol. 3, pp. 38, 48; the Kaiser's interview with Dr William Hale, 19 July 1908, in Rohl, Appendix 2, p. 347; emissary to America: Sun Ruiqin (tr.), vol. 3, pp. 44–9</p><p></p></div>	
+<div class='layout'><p>11 ‘won the hatred': New York Times, 27 October 1909; Officer Cen: Cen Chunxuan, Yun Yuding et al., pp. 12–13; Yun Yuding, vol. 1, pp. 351–2; Zheng Xiaoxu, vol. 2, p. 1100; Kong Xiangji 2001, pp. 219–26; Kong Xiangji 2008, pp. 195–7; Sang Bing, pp. 266–70; Yang Tianshi, p. 178; Hu Sijing, p. 24; Zhu Shoupeng (ed.), vol. 5, p. 5713; Grand Councillor Lin: Zhu Shoupeng (ed.), vol. 5, p. 5713; Kong Xiangji 2008, p. 197; ‘less poise': Roosevelt Longworth, p. 102; Yuan ordered all new officials: Sato, pp. 363–4</p><p></p></div>	
+<div class='layout'><p>12 target for assassination: Yang Tianshi, p. 173; Sun Ruiqin (tr.), vol. 3, p. 28; Sato, p. 48; Zaifeng to Berlin: Wang Yanwei (ed.), vol. 4, pp. 4233–45; Rockhill, p. 53; Prince Su relationship with Japan and Guangxu: Liang Qichao 2008, p. 293; Pujia, Pujie et al., pp. 81, 88, 100, 304–15; Shanghai Cultural Relics Committee (ed.), p. 158; Jin Liang 1998, p. 24; Kamisaka, pp. 202–3, 214; footnote 1: Gao Shu, p. 158</p><p></p></div>	
+<div class='layout'><p>13 court painter: Kong Xiangji 1998, pp. 54–5; Cixi confronted Su: Jin Liang 1998, p. 24; removed Su as Chief of Police: Zhu Shoupeng (ed.), vol. 5, p. 5147; ‘sitting on a blanket of needles': Liang Qichao 2008, p. 293; reappointed Su: Zhu Shoupeng (ed.), vol. 5, p. 5681; police force in hands of: Zhang Kaiyuan, p. 328; Su to Wang Zhao: Wang Zhao, p. 108</p><p></p></div>	
+<div class='layout'><p>14 Japanese steamer: Liu Ruoyan; Wang Daocheng, in Lin Keguang et al., pp. 484–7; Palace Museum (ed.) 1932, vols 73–4, no. 5474; ‘The security': Xu Baoheng, vol. 1, p. 183; Cixi becoming ill: Zhu Jinfu & Zhou Wenquan 1985, no. 1</p><p></p></div>	
+<div class='layout'><p>15 experimental farm: Ma Zhongwen 2006, no. 5; Xu Baoheng, vol. 1, p. 190 from Manchurian Viceroy: Palace Museum (ed.) 1932, vols 73–4, no. 5472ff.; Japanese minister to Beijing: Palace Museum (ed.) 1932, vols 73–4, nos 5506–7; Fukushima to Hunan: Palace Museum (ed.) 1932, vols 73–4, nos 5504–5; Cixi told Yuan and Zhang: Xu Baoheng, vol. 1, p. 193; opera for Guangxu birthday: Ding Ruqin, pp. 273–6</p><p></p></div>	
+<div class='layout'><p>Chapter 31 Deaths (1908)</p><p></p></div>	
+<div class='layout'><p>1 ‘distant wind': Zhu Jinfu & Zhou Wenquan 1982, no. 3; Xu Baoheng, vol. 1, p. 186; ‘The Emperor': Headland, pp. 165–8</p><p></p></div>	
+<div class='layout'><p>2 Guangxu attempts to get away: Gao Shu, p. 154; Rongling and the watch: Rongling, pp. 10–11, 21–2, 31, 41; From summer 1908: Zhu Jinfu & Zhou Wenquan 1985, no. 1; Xu Baoheng, vol. 1, p. 197</p><p></p></div>	
+<div class='layout'><p>3 in 1877: First Historical Archives of China & Centre for Tibetan Studies in China (eds.), p. 8; endorsed educational programme: First Historical Archives of China & Centre for Tibetan Studies in China (eds.), p. 18; ‘As security for': Tibet Justice Center, www.tibetjustice.org/materials/treaties/treaties10.html; ‘Tibet has belonged': First Historical Archives of China (ed.), 1996, vol. 30, no. 609; ‘No concession over sovereignty': Zhu Shoupeng (ed.), vol. 5, pp. 5234–5; Zhang Xiaohui & Su Yuan, pp. 48–9</p><p></p></div>	
+<div class='layout'><p>4 Cixi cables to Dalai Lama: First Historical Archives of China & Centre for Tibetan Studies in China (eds.), p. 82ff.; cf. Hart, Letters, 1868–1907, vol. 2, p. 1432; Dalai Lama asked to meet Cixi: First Historical Archives of China & Centre for Tibetan Studies in China (eds.), p. 118ff.; Yintang's programme aborted: Guo Weiping; Talo (Draklo); problem about kneeling: First Historical Archives of China & Centre for Tibetan Studies in China (eds)., pp. 156–60</p><p></p></div>	
+<div class='layout'><p>5 ‘sincerely loyal': First Historical Archives of China & Centre for Tibetan Studies in China (eds.), p. 169; Xu Baoheng, p. 214; ‘in order not to lose goodwill': Tsewang Dorje, p. 66; Xu Baoheng, vol. 1, pp. 201, 214, 217; She and the Dalai Lama agreed: First Historical Archives of China & Centre for Tibetan Studies in China (eds.), p. 169; Their first meeting: Xu Baoheng, vol. 1, pp. 205–7; First Historical Archives of China & Centre for Tibetan Studies in China (eds), pp. 151–3; birthday with the Dalai Lama: Rongqing, pp. 140–1; Zhu Jinfu & Zhou Wenquan 1985, no. 1</p><p></p></div>	
+<div class='layout'><p>6 Prince Ching to Mausoleums: Xu Baoheng, vol. 1, p. 217; Guangxu poisoned: Dai Yi; forensic examination findings in Qingshi yanjiu (Studies in Qing History), 2008, no. 4; Empress Longyu: Xin Xiuming, p. 34; Yun Yuding, vol. 1, p. 405; bed ‘unadorned': Du Zhongjun, p. 435; Grand Councillors: Lu Chuanlin, 1994, no. 3; Xu Baoheng, vol. 1, pp. 217–18; Zaifeng Regent and Puyi emperor: First Historical Archives of China (ed.), 1996, vol. 34, nos 922–3</p><p></p></div>	
+<div class='layout'><p>7 ‘all key policies': First Historical Archives of China (ed.), 1996, vol. 34, no. 935; ‘What does Your Highness': Headland, pp. 175–6; Guangxu's official will: First Historical Archives of China (ed.), 1996, vol. 34, no. 936; A night passed: First Historical Archives of China (ed.), 1996, vol. 34, nos 926–45; Xu Baoheng, vol. 1, p. 218; ‘with my hand': Xu Baoheng, vol. 1, p. 218; Cixi's will: First Historical Archives of China (ed.), 1996, vol. 34, no. 951; ‘I am critically ill': First Historical Archives of China (ed.), 1996, vol. 34, no. 946</p><p></p></div>	
+<div class='layout'><p>8 Longyu made ‘dowager empress': First Historical Archives of China (ed.), 1996, vol. 34, no. 938; ‘a sad, gentle face': Headland, p. 202; ‘At the audiences': Headland, pp. 202–3; councillor ignored her: Lu Chuanlin 1994, no. 3</p><p></p></div>	
+<div class='layout'><p>9 ‘magic earth': Xin Xiuming, p. 97</p><p></p></div>	
+<div class='layout'><p>10 Regent against abdication: Pujia, Pujie et al., p. 83; Zaifeng resigned: Xu Baoheng, vol. 1, p. 381; ‘All I desire': Xu Baoheng, vol. 1, pp. 385–6; Decree of Abdication: First Historical Archives of China (ed.) 2001, p. 234</p><p></p></div>	
+<div class='layout'><p>Epilogue</p><p></p></div>	
+<div class='layout'><p>1 agreed conditions for the abdication: Yu Bingkun et al., p. 287; broke into Cixi's tomb: Yu Bingkun et al., pp. 288–91; Puyi devastated: Aisin-Gioro Puyi, pp. 230–1</p><p></p></div>	
+<div class='layout'><p>2 ‘Her people loved her': Buck, Foreword; ‘more articulate': ibid.</p><p></p></div>	
+﻿
+</div><!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

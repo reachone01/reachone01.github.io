@@ -1,0 +1,403 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+
+<div class='layout'><p>25 Remorse</p><p></p></div>	
+<div class='layout'><p>(1900–1)</p><p></p></div>	
+<div class='layout'><p>THE last thing Cixi did before fleeing the Forbidden City was to give the guardians of the palaces a handwritten note, stamped with her seal, telling them that only someone bearing an authorisation from her which was marked with the same seal could remove anything from the precinct. The treasures in the palaces preoccupied her as she set out on her journey.</p><p></p></div>	
+<div class='layout'><p>Within days she was cheered by reassuring news from the guardians. Instead of wantonly looting or burning the palaces, the invaders had actually placed guards on them. The heavy gates were shut and fixed with notices addressed to the occupying army that all men were ‘politely requested not to kick the Chinese attendants because they declined to open doors …' With palpable relief, the guardians informed Cixi that ‘foreign troops are now guarding the Royal City and everywhere within … all the palaces and government offices are intact … All palaces and temples are safe.'</p><p></p></div>	
+<div class='layout'><p>The guardians continued to keep Cixi informed. She was told that foreigners had been visiting the Forbidden City but, apart from a handful of objects, most things were undisturbed. Later, when the foreign troops withdrew, and the guardians checked the inventory of all the objects in the palaces, they found that relatively few valuables had gone. The biggest loss was from the Royal Kitchen, where sixty-eight gold and fifty-four silver items were missing. Otherwise, forty vases and 200 plates and bowls had been stolen from the porcelain warehouse – more likely by local robbers, as access had been obtained by digging through the walls. The Summer Palace, where the Italians and British stayed, was left as it had been, with only minor damage. (The ruins of the Old Summer Palace next door, however, were picked bare – by the locals – who sneaked in and thoroughly dismantled all the buildings that had been left standing after the fire, stealing everything from timber to bricks.) Unlike the situation under Lord Elgin in 1860, looting was strictly forbidden this time. When the Western Mausoleums – in which a number of Qing emperors were buried – lost some ceremonial vessels made of gold, silver and bronze, a complaint was made to the French minister, and the French army, which had been stationed there, handed back the ones they had taken.</p><p></p></div>	
+<div class='layout'><p>What did disappear was silver bullion. Millions of taels were seized from the Forbidden City and from various ministries in both the capital and Tianjin, and were shipped abroad. There were also losses from wealthy homes, forcibly entered at the beginning of the occupation by foreign soldiers demanding silver. But such incidents lasted only a few days, after which the guardians had a meeting with Robert Hart, who helped stop them. According to their report to Cixi, the guardians told Hart that ‘the most urgent and the most important thing is to protect the dynastic temples, the Eastern and Western Mausoleums, and all the palaces including the Forbidden City and the Royal City; the next thing is to protect the lives of millions of people …' To this Hart replied, not without irony, ‘In the West, we regard the lives of the people as of primary importance, and the dynasty comes second. Still, your request is not hard to meet …' Hart produced two posters, one in various foreign languages and one in Chinese, and told the guardians to print thousands of copies and paste them all over the city. The first poster forbade foreign soldiers from disturbing the local people. And the second one ordered the Boxers and other bandits to go home and resume their normal life, threatening ‘extermination' if they disobeyed. Most Boxers did scatter. Cixi wrote to Hart to express her gratitude: ‘For decades Your Excellency has lent your talents to a land that is not your own, and today your sincere devotion to it is clear to all. I cannot be more appreciative.'</p><p></p></div>	
+<div class='layout'><p>A small number of Boxers made futile attempts to resist the foreigners. One Allied officer remembered being led by local Christians to round up a group in their hiding place: ‘The place was evidently securely held and refused to surrender. Grouped all round, and armed with choppers, bars of iron and long poles, the crowd of native rapscallions waited in a grim silence for the denouement. It was an extraordinary scene. Everything and every one was so silent … Such things never happen twice in a lifetime.'</p><p></p></div>	
+<div class='layout'><p>Beijing soon returned to normal and people who had braced themselves for the conquering army to ‘plunder, burn, rape and slaughter' were immensely relieved. Cixi was told that ‘there was no slaughtering' and no arson.<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a> No rape was reported. The aristocrats were mortified, however, when they were treated like the common people and required to carry the bodies of those killed by the Boxers out of Beijing. In a drive to clean up the capital, they also had to pull carts, like draught animals, and anyone resisting was whipped by foreign supervisers.</p><p></p></div>	
+<div class='layout'><p>Nevertheless, the Allies were considered a vast improvement on the Boxers. They even took care of hygiene in the streets, which at the time were like a giant public toilet. The new authorities ordered all shop-owners and householders to clean up the area immediately in front of them. Thus the streets of Beijing were transformed, much to the satisfaction of the residents – and of Cixi, when she returned to the capital. This policy of being responsible for the area immediately outside one's front door was adopted by future Chinese governments.</p><p></p></div>	
+<div class='layout'><p>Two months after Beijing was occupied, a large German contingent arrived, even though the war had virtually ended before it left Germany. Field Marshal Count von Waldersee was, through the lobbying of Kaiser Wilhelm II, appointed Commander-in-Chief of the Allies. The Field Marshal dreamed that he would ‘return home as the Conqueror of the Chinese' and sent out his men on punitive expeditions outside Beijing, during which, as he recorded, many Chinese were shot. They were Boxers and ‘deserved their fate', he wrote. In one city, the Germans executed six officials who they said had slaughtered missionaries. One man's severed head was hoisted on a pole, in the Chinese style, but flexing German muscle. Whilst subjecting the region around Beijing to continual violence, Count von Waldersee, in his reports to the Kaiser, substantially exaggerated the extent of destruction and looting by the Allies before his arrival, so as to portray himself as the restorer of order: ‘I believe I may say that except in a few individual cases there have been no excesses since I have been here …'</p><p></p></div>	
+<div class='layout'><p>The post-war violence created by the Germans eventually came to an end, while the Commander-in-Chief set up his HQ in Cixi's quarters in the Sea Palace. The beauty of the place captivated the count, who found Beijing on the whole ‘the dirtiest city in the world'. He wrote in his diary:</p><p></p></div>	
+<div class='layout'><p>Yesterday evening late I returned from the city to my palace. Never in my life have I seen such a beautiful starry sky as on this occasion. Just as I had made my way through the great white empty courtyard of the Imperial Palace, and reached the bank of the Lotus Lake, strains of music broke out … the band of the 1st East Asiatic Infantry Regiment was playing in the Island Palace, wherein the Emperor had been held a prisoner … here, within the great heathen city, ringing over the countless Buddha temples, it made the most powerful impression on me. I stood still until the last notes died out.</p><p></p></div>	
+<div class='layout'><p>Not without a sense of decorum, the count ordered that ‘the bedroom and the sitting-room of Her Majesty the Empress are not to be used by us'. But one night the whole splendid building, lovingly created by Cixi over many years, was razed to the ground. A fire had broken out, caused by a large iron stove which the Germans had installed in the pantry. The destruction was heart-rending to Cixi, but there was consolation: the damage done to the palaces, and to Beijing on the whole, turned out to be far less serious than she had feared, for which she was grateful. The local people found this so unexpected that they credited a courtesan who claimed this was due to her wheedling pillow-talk with Count von Waldersee. The woman, Prettier Than Golden Flower, had gone with her husband to Berlin as his consort when he was posted there as China's minister in the 1880s. After they returned home and he died, she picked up her old profession. During the Allied occupation, she made use of her past as the minister's consort and the little German she had learned, and did brisk business with German officers, with whom she was often seen out riding through the streets of Beijing. She persuaded the German officers in her circle to take her into the Sea Palace to Count von Waldersee's quarters, clearly hoping to be introduced to him or at least to catch his eye. Whether or not she succeeded is unclear. But her claim of having ‘saved the people of Beijing' by enchanting the German Field Marshal caught the popular sentimental imagination, and Prettier Than Golden Flower has become a household name, regarded by many as something of a tragic heroine.<a name="p2" id="p2"></a><a href="#pl2" title=""><sup>2</sup></a></p><p></p></div>	
+<div class='layout'><p>The Boxer Protocol, the concluding document of the war, was not signed until 7 September 1901, a year after the Allies entered Beijing. The Chinese negotiators, Prince Ching and Earl Li, did little negotiating but waited for the powers to agree among themselves what they would demand from China.</p><p></p></div>	
+<div class='layout'><p>They decided not to hold Cixi responsible for the Boxer atrocities. Instead, Prince Duan, the father of the heir-apparent and the main sponsor of the Boxers, was named as the primary culprit and sentenced to death with a proviso that the throne, if it wished, could spare his life, on the grounds that he was a key member of the royal family. He was sent to Xingjiang for life imprisonment. Six grandees and officials were given unconditional death sentences, and more were punished in other ways. The throne dispatched representatives to Germany and Japan to express ‘regret' for the murder of their diplomats. The Dagu Forts were dismantled. And it was prohibited by law to set up or join xenophobic societies.</p><p></p></div>	
+<div class='layout'><p>The clause that really made a difference to the lives of the Chinese people concerned the indemnity. It came to a staggering 450 million taels. This figure was arrived at by adding up all the claims from all the countries involved, for the cost of their military expeditions and the damage done to their persons. America had argued that the indemnity ‘should be within the ability of China to pay'. It urged the powers to scale down their claims accordingly and initially suggested an overall sum of forty million. But Germany ‘saw no reason why the powers should show excessive generosity', and most others concurred. Count von Waldersee wrote that the Kaiser had told him ‘as big a war indemnity as possible should be imposed on the Chinese, as he was needing money urgently for the Fleet'. There was no authority to examine the validity of each country's claim, and no common principle to assess the amounts claimed. It was up to each country to decide how reasonable it should be. Many were not. The biggest claimant was Russia, whose railway in Manchuria had been attacked by mobs, and whose claims accounted for 29 per cent of the total indemnity. Next came Germany at 20 per cent; then France and Britain, which, after first agreeing with America's suggestion, soon wanted more. They were followed by Japan, which showed relative restraint compared with 1895. Even America changed course and finally made what a later investigation found to be an excessive claim.<a name="p3" id="p3"></a><a href="#pl3" title=""><sup>3</sup></a> The total sum of 462,560,614 taels was then slightly rounded down to 450 million. As the Chinese population at that time was roughly the same number, the Chinese mistakenly assumed (and still do) that the sum symbolised the penalisation of the entire population.</p><p></p></div>	
+<div class='layout'><p>Robert Hart and others argued that ‘the country is not in a position to meet it'. But some insisted that it was. The French bishop, Pierre-Marie-Alphonse Favier, alleged ‘that the Imperial Family are in possession of treasure of the value of 300 million marks'. But even Count von Waldersee found this assertion fantastic: looking at the Forbidden City ‘gives one the impression of former greatness but of a gradual decay …' Reporting to the Kaiser, he said, ‘I cannot believe a Court which puts up with such a state of decay can own great wealth. I do not know where any such treasure could have been stored.' One solution advanced was that ‘Every power must indemnify itself and occupy a portion of Chinese territory.' Count von Waldersee wanted ‘to take part of Shan-tung [Shandong]'. This was the dream the Kaiser had cherished and wished the count to fulfil. But other powers, Britain and America in particular, objected to any form of partition. Count von Waldersee remarked that America ‘seems to desire that nobody shall get anything out of China'. Sarah Conger, wife of the American minister, wrote with feeling:</p><p></p></div>	
+<div class='layout'><p>I have much sympathy for the Chinese … China belongs to the Chinese, and she never wanted the foreigner upon her soil … The Chinese seemed willing to make untold sacrifices to accomplish this end … To divide China among the nations would mean wars and a standing army large and strong. The bitterness of the Chinese would grow deeper and more active, and they would sting their venom into the foreigner with a poison not yet calculated.</p><p></p></div>	
+<div class='layout'><p>So the idea of a carve-up was shelved. Some countries then wanted to force China to take out more foreign loans. Robert Hart demurred: China was already using a quarter of its annual revenue to pay old debts, and any increase could lead to bankruptcy. Deeply sympathetic to the misery of the Chinese people, Hart and a group of foreign experts busied themselves with finding new sources of revenue. In the end, they persuaded the powers to agree to China raising customs tariffs on imports to 5 per cent (from 3.17 per cent or less), and to levy taxation on hitherto tax-free imports: goods for consumption by foreigners, such as European wines, liquor and cigarettes. So the burden of the Boxer indemnity was partially shared by Westerners.<a name="p4" id="p4"></a><a href="#pl4" title=""><sup>4</sup></a> Hart estimated that the new revenues could raise up to eighteen million taels annually.</p><p></p></div>	
+<div class='layout'><p>Cixi also thought of this new source of revenue and calculated that the increase in import tax would generate roughly twenty million taels a year. Raising customs tariffs had been Beijing's goal for years, and when Earl Li toured America and Europe in 1896, one of his main objectives had been to persuade the Western governments to agree to it. He had failed on that occasion. This time, Cixi told her negotiators to try again – and enlist the help of the British. Britain had the most commercial interest in China and would suffer if China went bankrupt. Cixi also had faith in the British sense of restraint and moderation – and she may have heard about Hart's proposal. Britain, as well as America, supported the scheme. It would appear that the empress dowager's judgement of a nation was as astute as her judgement of an individual. She further instructed Prince Ching and Earl Li to negotiate appropriate terms of payment, so that the new income ‘would be enough to pay the indemnity and even if it were not enough, the difference would not be too hard to raise'. In the end, the payment term was fixed at thirty-nine years, so that the annual payment would be around twenty million taels. (In addition to the indemnity itself, there were also the interests to pay.)</p><p></p></div>	
+<div class='layout'><p>The new duties did indeed pay a large part of the Boxer Indemnity and helped reduce the unbearable burden imposed on the Chinese. By identifying these new sources of income, at the expense mainly of foreigners and corrupt officials, and by persuading the powers to accept the increase of import tax, Robert Hart did China a sterling service. In a letter at the time he wrote that ‘I have been of some use I think, but that will be recognised more easily later than now.' Cixi deeply appreciated his work and bestowed on him a title that had just been conferred on the two very top men in the empire, Viceroy Zhang and General Yuan: Junior Guardian of the Heir Apparent. And yet, for more than a hundred years since her death, no recognition or credit has been given to Hart by the country for which he arguably did more than any other foreigner – and most natives. Today he is virtually unknown to the average Chinese, while the Boxer Indemnity is in all the textbooks, constantly invoked to condemn ‘the imperialists' and denounce Cixi for pawning her country.</p><p></p></div>	
+<div class='layout'><p>America has fared better than Hart, in that its behaviour has been given due credit: after receiving payment for a few years, it wrote off the rest, specifying that the money was to be used in education. This enabled the top Chinese university, Tsinghua, to be founded, and a large number of young people to receive scholarships and study in the States. America was also the only country to return to China the silver bullion it had seized during the invasion: in 1901, American soldiers had captured 500,000 taels in the office of the Salt Commissioner in Tianjin, and its equivalent, US $376,300, was restored to China six months later.</p><p></p></div>	
+<div class='layout'><p>When Cixi received the draft of the Boxer Protocol near the end of 1900, she was ‘overcome with a multitude of feelings', one of which was relief. Her main fears had been the loss of sovereignty or being forced to retire in favour of Emperor Guangxu. Neither materialised. The demands were not entirely unreasonable and, compared to Shimonoseki, the indemnity was not so outrageous. As a result, and because the Allies had largely protected the palaces and the capital, Cixi warmed up to the West.</p><p></p></div>	
+<div class='layout'><p>Throughout her exile, Cixi had been reflecting on past events. She saw that her policies had led to war and atrocities, with hundreds of thousands of casualties – missionaries and Chinese Christians, Boxers and soldiers and ordinary civilians. She still felt that ‘foreigners had bullied us too much' when she recalled how she had come to be associated with the Boxers in the first place; but she acknowledged that ‘as I am the one responsible for the country, I should not have let things deteriorate so disastrously. It was my fault. I let down our ancestors and I let down our people.' It was in this state of mind that early in the new year, she issued a decree, which she called ‘the Decree of Self-reproach' (zi-ze-zhi-zhao). In it she said that she had been ‘ruminating on past events, and felt pierced by emotions of shame and outrage at the wrongs that had been done'. She condemned ‘the cruel and ignorant mob' that had attacked Christian missions and the legations, and expressed her gratitude that the Allies did not conduct tit-for-tat retribution, and that they ‘did not infringe our sovereignty nor carve away our land'. Mostly, she reflected on the damage she had done: ‘The dynasty has been brought to the precipice. The spirits of our ancestors have been devastated, and the capital has been ravaged. Thousands of families of scholar-officials have been made homeless, and hundreds of thousands of soldiers and civilians are dead or wounded …' Although she attempted to explain herself and apportion some blame to others, such as the Boxer-promoting grandees, she mainly blamed herself: ‘What position am I in to reproach others when I cannot reproach myself enough?' Her emphasis was on her own ‘remorse over the catastrophe' (hui-huo) that she had caused.</p><p></p></div>	
+<div class='layout'><p>Cixi knew remorse and articulated it many times. The Boxer episode became a watershed event, and life would be referred to in the court as ‘before' or ‘after' it. It was with contrition that she vowed to change. On 29 January 1901, still in Xian, she issued a decree that signalled the start of a new phase of her reign. Its essence was ‘learning from the West': ‘The Empress Dowager enjoins her people that only by adopting what is superior about the foreign countries can we rectify what is wanting in China.' Similar sentiments had been expressed in the past, but on the agenda for change this time were ‘all the fundamentals that have made the foreign countries rich and strong', encompassing ‘dynastic rule, national traditions, governing methods, people's livelihood, educational systems, the military, and financial affairs'. She announced in yet another decree: ‘Making these changes is a matter of life or death for our country, and it gives our people the chance to live a better life. The emperor and I are determined to make the changes for the sake of our dynasty and for the sake of our people. There is no other way.'</p><p></p></div>	
+<div class='layout'><p>Her initiatives enjoyed widespread support – in spite of the Boxer mayhem, or because of it. Foreign occupation of Beijing and Tianjin brought home to the people in the north, as Hong Kong and Shanghai had done to the south, what Western-style governance could achieve, and how it could improve their lives. The impact was even more striking here, as the two southern cities had been fishing villages and swampland when the Europeans took over in the early 1840s after the Opium War. Beijing and Tianjin, on the other hand, were large cities with millions of inhabitants and concentrations of mandarins, all of whom now experienced life under a clean and efficient system. Tianjin in particular benefited, as the occupation lasted two years, and a provisional government had been set up by the Allies. The city was being transformed from medieval to modern. By the end of its administration, the provisional government had collected from taxation 2,758,651 taels and spent 2,578,627, with every penny of the expenditure counted for and the results on show: for the first time residents enjoyed running water, trams, street lamps and telephones. The city was effectively spring-cleaned and an infrastructure for sanitation was being put in place. Piles of garbage were disappearing from the streets. The novelty of public toilets was introduced. And public order was enforced by Western-style policing.<a name="p5" id="p5"></a><a href="#pl5" title=""><sup>5</sup></a> The consensus emerged that the West was a desirable model. Viceroy Zhang, the pre-eminent reformist, remarked:</p><p></p></div>	
+<div class='layout'><p>Unlike 30 years ago, people now admire the wealth of the West and lament the poverty of China; stare awestruck at the power of the Western armies and scorn the cowardice of the imperial troops; enjoy the fairness and ease of the Customs [under Robert Hart] and detest the fault-finding of China's own tax collectors; praise the orderly governance of the Western-administered cities and resent the harassment of our officials, big and small.</p><p></p></div>	
+<div class='layout'><p>The provincial Viceroys gave Cixi their full backing – as did the reformists who now staffed central government, the xenophobic grandees having been disgraced or marginalised. Although there were still West-haters and reactionaries, they were at least silenced and did not dare sabotage her course. W. A. P. Martin, the American missionary who lived in China for several decades, felt that ‘the spirit of reform was abroad in the land, and that the heart of the people was with her'.</p><p></p></div>	
+<div class='layout'><p>Western governments recognised Cixi as the indisputable leader, and began to view her as someone who ‘ranks with Catherine of Russia and Elizabeth of England, with the Egyptian Queens Hatshepsut and Cleopatra, as one of the great women rulers in history.' They resolved to cooperate with her. Buoyed up by this wide-ranging support, Cixi embarked on a course of such massive and profound change in the following years that it deserves to be described as the ‘real revolution of modern China'.</p><p></p></div>	
+<div class='layout'><p><a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> The Imperial Library, housing numerous invaluable books, was situated next to the British Legation, and had been set on fire by the Boxers during the siege in a bid to burn down the British Legation. But rumour blamed the British for the fire, and a report to Cixi presented this as fact. As the report was published in the Peking Gazette, the British minister protested, pointing out that the Westerners under siege in the legation had in fact fought the fire and tried to save the books. The man who made the report apologised – to Cixi as well as publicly – for giving her misleading information.</p><p></p></div>	
+<div class='layout'><p><a name="pl2" id="pl2"></a><a href="#p2" title=""><sup>2</sup></a> In the 1930s, a play was staged about her. The soon-to-be Mme Mao, Jiang Qing, wanted to play her, but the role went to another actress, Wang Ying. Mme Mao bore a grudge so deep and poisonous that it became one of the factors in her personal vendetta against the actress in the Cultural Revolution three decades later, ending with the death of the actress in prison.</p><p></p></div>	
+<div class='layout'><p><a name="pl3" id="pl3"></a><a href="#p3" title=""><sup>3</sup></a>The claims by all countries, whether or not part of the Allied force, were as follows (in taels; one tael was calculated at three English shillings or 0.742 American dollars):</p><p></p></div>	
+
+<div class='layout'><p>Russia:</p><p>133316000</p></div>
+<div class='layout'><p>Germany:</p><p>91287043</p></div>
+<div class='layout'><p>France:</p><p>75779250</p></div>
+<div class='layout'><p>Great Britain:</p><p>51664029</p></div>
+<div class='layout'><p>Japan:</p><p>35552540</p></div>
+<div class='layout'><p>USA:</p><p>34072500</p></div>
+<div class='layout'><p>Italy:</p><p>27113927</p></div>
+<div class='layout'><p>Belgium:</p><p>8607750</p></div>
+<div class='layout'><p>Austria-Hungary:</p><p>3979520</p></div>
+<div class='layout'><p>Netherlands:</p><p>800000</p></div>
+<div class='layout'><p>Spain:</p><p>278055</p></div>
+<div class='layout'><p>Sweden:</p><p>110000</p></div>
+<div class='layout'><p>Portugal:</p><p>no claim</p></div>
+<div class='layout'><p>Total:</p><p>462，538，116 [sic]</p></div>
+
+
+<div class='layout'><p>(H. B. Morse, The International Relations of the Chinese Empire, vol. 3, pp. 352–3)</p><p></p></div>	
+<div class='layout'><p><a name="pl4" id="pl4"></a><a href="#p4" title=""><sup>4</sup></a> Hart also took over some of the internal customs run by often corrupt officials, who routinely kept some of the taxes they collected. As he described, ‘the former occupants had merely to pay nominal sums to the treasury and pocketed the rest. T'tsin, e.g., collected over 400,000 taels and of this only 90,000 went to the treasury …'</p><p></p></div>	
+<div class='layout'><p><a name="pl5" id="pl5"></a><a href="#p5" title=""><sup>5</sup></a> Modernisation brought heartache as well. Perhaps the greatest for many was the dismantling of the stately walls that encircled the city ‘for military and hygiene purposes'. Tianjin was the first city to see its walls go, and to most people a city was not a city without those lofty corrugated walls – even though convenience and ease of moving around were also appreciated.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

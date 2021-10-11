@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+
+<div class='layout'><p>30 Coping with Insurgents, Assassins and the Japanese</p><p></p></div>	
+<div class='layout'><p>(1902–8)</p><p></p></div>	
+<div class='layout'><p>A contemporary Han official remarked that Cixi's revolution was ‘advantageous for China, but hugely disadvantageous for the Manchu government'. Indeed, many Manchus were anxious about what was happening. It was only Cixi's authority that made them put their faith, and fate, in her hands. She herself was seeking to preserve her dynasty – not least by introducing her version of constitutional monarchy. But in the end, the exclusively Manchu throne proved to be her Achilles heel. Although she took many steps to dismantle Han–Manchu segregation, she wished the throne to remain Manchu. The decree that lifted the ban on intermarriage in 1902 had added that the imperial consorts should still only be chosen from among the Manchus (and the Mongols). There were signs that she would eventually bow to the inevitability of an ethnically inclusive throne, but she never quite reached that point in her lifetime.</p><p></p></div>	
+<div class='layout'><p>Cixi had a strong sense of Manchu identity, made stronger by the fact that the Manchu were such a small minority, always at risk of being overwhelmed by the Han. To her court ladies, mostly Manchu, she always talked of ‘we Manchu'. Although she could not speak the Manchu language she compensated by sticking religiously to other outward signs of belonging: Manchu customs were unfailingly observed in the court, and Manchu clothes and hairstyles were worn without exception. Her diplomats, mostly Han, wished they could swap their Manchu costume for Western suits, but their request was rejected. Their desire to be rid of the queue was not even mentioned. Cixi was not prejudiced against the Han; indeed, she promoted Han officials in an unprecedented way, appointing them to key positions previously reserved for the Manchu. Nor did the Han have fewer privileges or lower standards of living. It was simply the Manchu throne that she desperately wanted to preserve.</p><p></p></div>	
+<div class='layout'><p>It was for this reason that for a long time Cixi resisted allowing first-rate Han statesmen into the heart of the court. Earl Li, for all his unique relationship with Cixi and his singular importance to the empire, was never a member of the Grand Council. Indeed, the Council did not have the cream of Han officials until as late as 1907, when Cixi finally appointed General Yuan and Viceroy Zhang. She had, on several occasions, not least in spring 1898 when her Reforms began, contemplated appointing Viceroy Zhang to the Grand Council, but had always decided against the idea, fearing that the throne itself might be lost to this supremely able man. By clinging to the notion that the throne must be occupied by a Manchu, Cixi undermined the desirability of a parliamentary monarchy and made Republicanism an attractive alternative.</p><p></p></div>	
+<div class='layout'><p>Sun Yat-sen, loosely the leader of the Republican movement, was the most persistent advocate of military action to overthrow the Manchu dynasty. He had tried to organise an armed uprising in 1895 and had been active in the new century with a series of insurrections. Their scale was small, but Cixi treated them with the utmost seriousness. She berated provincial chiefs for underestimating ‘these flames that could spark off a prairie fire', and cable after cable urged them to ‘extinguish them; do not let them spread'.</p><p></p></div>	
+<div class='layout'><p>Assassination was very much a part of Republican tactics, as demonstrated by the suicide bomber on the train in 1905. Two years later a local police chief in Zhejiang province in eastern China, Xu Xilin, gunned down at close range the governor of the province, a Manchu named Enming, who had come to inspect the police college. Enming had regarded Xilin as a kindred reformist spirit and had plucked him out of obscurity and entrusted him with the police force. By the traditional ethical code, Xilin ought to be grateful to his benefactor; but he killed him instead – because the governor was Manchu. After his arrest, Xilin declared in his testimony, which was published in the newspapers, that his goal was ‘to slaughter every Manchu, to the last one'. He was beheaded. Troops loyal to the dead governor ripped out his heart as a sacrificial offering – a grisly old ritual symbolising ultimate revenge. Decades earlier, the assassin of Viceroy Ma had been subjected to the same treatment.</p><p></p></div>	
+<div class='layout'><p>The killing of the governor was part of a planned insurrection, one of whose leaders was a woman. Once a student in Japan and now a teacher in a girls' school back in the province, Miss Qiu Jin was beautiful and elegant – and was one of the pioneers of feminism in China. Defying prescribed behaviour for women, she paraded herself in public, dressed in men's clothes and sporting a walking stick. She started a feminist newspaper and gave public speeches that won applause ‘like hundreds of spring thunders', wrote admiring journalists. Violent action appealed to her, and she attempted to make bombs for the insurrection, in the process of which her hands were injured. Miss Qiu was arrested, and executed in a public place – but before dawn.</p><p></p></div>	
+<div class='layout'><p>If this had happened just a few years earlier, the average man would not have raised an eyebrow. Summary execution of armed rebels was taken for granted. But this time a barrage of press condemnation greeted the execution. They asserted that the weapons found with Miss Qiu had been planted and her confession that had been made public was faked. Even the most moderate newspapers described her as being completely innocent, a victim of a vendetta by local conservative forces. They heaped eulogies on her, credited beautiful poems to her and turned her into a heroine – an image that has lasted to this day. Her comrade, the police chief, also enjoyed almost unqualified sympathy. The press asked how it came about that his heart had been cut out, given that barbaric forms of execution had been outlawed and torture in interrogation banned. The press flexed its muscles and shaped public opinion: its naming and condemning of the officials involved in the Miss Qiu case turned those involved into hate figures. When some were transferred to other regions, the authorities there declined to accept them. The county chief who sentenced Miss Qiu to death hanged himself under the pressure.</p><p></p></div>	
+<div class='layout'><p>The newly gained influence and confidence turned the press into an awesome force, especially as a watchdog over the government. Cixi never attempted to suppress it, in spite of its overwhelmingly anti-Manchu sentiment (it had not a word of sympathy, for example, for the slain Manchu governor). However, she responded to violent actions with utter ruthlessness. After receiving detailed reports about the case of Miss Qiu, which showed unmistakably that she had been one of the insurrection leaders, Cixi endorsed the handling of her case, and continued with other tough measures to do with stamping out insurgency. As a result, while she was alive, the New York Times reported in 1908: ‘no general disorders are apprehended. China is quieter now than at any time since 1900.' Still, Republicanism remained potent, waiting for the moment when she was gone.</p><p></p></div>	
+<div class='layout'><p>Fending off the Republicans with one arm, with the other Cixi wrestled with Wild Fox Kang. After his failed plot to kill her in 1898, Kang had fled to Japan. Under heavy pressure from the Qing government and, in particular, from Viceroy Zhang, whom the Japanese were keen to cultivate, Tokyo soon had to ask him to leave. But the Wild Fox was not cast into the wilderness. He left Japan to travel the world, accompanied by a Chinese-speaking Japanese intelligence man, Nakanishi Shigetaro, who had trained in Japan's espionage institute, which was specifically targeting China. He now acted as Kang's interpreter and bodyguard – and contact man with Tokyo. Kang left behind in Japan his disciple and right-hand man, Liang Qichao, who carried out Kang's orders. Overseas, Kang continued to pursue the restoration of Emperor Guangxu. This was also what Japan wanted, as it was the easiest way to control China. The Wild Fox thus worked in conjunction with, if not entirely on behalf of, Japan.</p><p></p></div>	
+<div class='layout'><p>Wild Fox Kang now organised repeated attempts on Cixi's life, and a series of assassins sailed from Japan to Beijing. One of them was Shen Jin, who had embarked on such a mission in 1900 with a pirate gang. But then their whole enterprise had failed and he had gone into exile. In 1903, he arrived in the capital to try again, and made friends with senior policemen and eunuchs. News of the would-be assassin got to the ears of Cixi's devotees and he was arrested.</p><p></p></div>	
+<div class='layout'><p>A public decree charged Mr Shen with involvement in an armed rebellion and ordered his immediate execution. As Emperor Guangxu's birthday fell within that month, and a Qing convention enjoined that the birthday month should be free of public executions, the decree instructed the Ministry of Punishments to carry out the death sentence in prison by bastinado. This medieval form of execution, which meant beating the convicted to death, was normally reserved for offending eunuchs behind the thick gates and walls of the Forbidden City, and the state prison did not possess the required equipment or expertise. Long wooden bats had to be specially made, and inexperienced executioners took quite some time to end the life of Mr Shen, who was a big man with a tough constitution. The story reached the newspapers, and the horrific detail revolted readers, especially Westerners. The English-language North China Herald called the execution ‘a monstrous perversion of even Chinese justice' and denounced Cixi directly: ‘only she whose word is law would have dared to do it'. The British Legation boycotted Cixi's reception that autumn.<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a></p><p></p></div>	
+<div class='layout'><p>Cixi had issued the decree without a second thought, just as she had ordered other bastinados to punish eunuchs over the years. Now she recognised that this cruel punishment was unacceptable in modern times, and she learned a lesson. Legal reforms soon banned the bastinado, and she publicly declared that she loathed (tong-hen) torture, including beating with wooden bats. In the following year, June 1904, she amnestied all those who had been involved in Wild Fox Kang's 1898 plot and 1900 armed revolt. Those in prison were released, and the exiles could now return home. Political offenders were officially reduced to three people, all of them in exile: Wild Fox Kang, Liang Qichao and Sun Yat-sen. There were discussions about pardoning Liang.</p><p></p></div>	
+<div class='layout'><p>She tightened her security, and the places frequented by eunuchs were closely watched. In November 1904, Wild Fox Kang sent over a high-level assassination group from Japan, one key member of which, Luo, was a bomb operator. (He also practised hypnotism, which he seemed to think might be of some use.) Their plan was to plant bombs in places frequented by Cixi, ideally in the little steamer in which she travelled between the city and the Summer Palace. As the pilot of the steamer was the only person on board who was employed from outside the palace, they tried to secure that post for the bomb operator. But while he was perfecting the bombs, which involved travelling between China and Japan, Luo was captured on the coast in July 1905 and was swiftly executed on the spot. The incident was successfully hushed up. Cixi had learned to have her assassins eliminated in secret, and this was easier to achieve in the provinces, where there was less press scrutiny than in the capital. The Wild Fox helped her cover it up, as he did not want it known that he was masterminding assassinations.</p><p></p></div>	
+<div class='layout'><p>The death of Luo the bomb operator was a major setback for the Wild Fox. But the rest of the group continued to work under his old friend and bodyguard, Tiejun. In summer 1906, Tiejun and a fellow conspirator were arrested. He admitted straight away that he was in Beijing on the order of Kang to assassinate Cixi. The two men were not delivered to the Ministry of Punishments, as they should have been, according to legal procedure. In that case information about them would be open to the public – and to the press. So instead they were taken to General Yuan's garrison in Tianjin, where they could be court-martialled away from the public eye. Cixi feared that, in an open trial, the men would simply defend themselves by pronouncing that they were only doing what the emperor wanted them to do.</p><p></p></div>	
+<div class='layout'><p>In Tianjin the two captives were escorted to separate barracks, not in shackles and not tortured, according to eye-witnesses. The barracks were under orders to treat them like VIPs, decorating their rooms with silk brocade and supplying them with lavish meals. Tiejun, a fine-looking man in his forties, wore European-style clothes: a white suit and a matching white hat. As he sweltered in the summer heat, the garrison arranged for tailors to work overnight to make him a change of clothes. The officer in charge asked him what sort of material he would like for his outer garments. He specified a kind of expensive silk, of which one side was black and shimmering and the other brown and matt.</p><p></p></div>	
+<div class='layout'><p>There was a tradition that people about to be executed were given special treatment. The day before the execution they were customarily given a lavish meal. On the execution ground, as Algernon Freeman-Mitford (grandfather of the Mitford sisters) observed when he was residing in Beijing: ‘Nothing could exceed the kindness of the officials, one and all, to the condemned men. They were giving them smokes out of their pipes, tea, and wine; even the wretched murderer, who was struggling and fighting between two soldiers, was only asked to “be quiet, be quiet,” in spite of all provocation … I was specially struck by the excessive kindness of the soldiery to the criminals.'</p><p></p></div>	
+<div class='layout'><p>Tiejun knew that his treatment was a prelude to execution. But he chatted and joked, showing not a hint of unease. The sentence of death arrived on 1 September in the form of a coded cable from General Yuan, who had gone to Beijing after interrogating his prisoners. The cable ordered the barracks to execute the men immediately and then confirm by return cable within one hour. In Tiejun's case, the court-martial judge showed him the cable and offered him the option of taking his own life. Tiejun asked for poison and died a painful death. He was buried in a nearby unmarked mass grave for executed criminals. The barracks were told to say to anyone who enquired that he had died of a sudden sickness.</p><p></p></div>	
+<div class='layout'><p>Ironically, it was on the same day that Cixi proclaimed her intention to establish a constitutional monarchy. General Yuan had gone to Beijing to help draft the proclamation, and his order for the conspirators to die followed several audiences with the empress dowager. There is little doubt that it was Cixi who authorised the death sentences.</p><p></p></div>	
+<div class='layout'><p>The death of Tiejun was only reported in one newspaper and drew little attention. As in the case of the bomb operator, Tiejun's own master, Wild Fox Kang, had as much incentive to keep the whole thing secret as General Yuan or Cixi did. The fact that Tiejun took his own life made a difference. He had been cooperative because he had actually changed his mind about his mission. In a letter to Kang before his arrest, he had asked the Wild Fox to stop pressing him to carry out his task, saying that they should abandon assassination and, instead, try to assist Cixi in her reforms. On the day before his capture, he had written to friends: ‘Don't make any move … use peaceful means from now on …' But he was not reprieved. Perhaps he would not collaborate and inform on his co-conspirators  Or perhaps Cixi was unwilling to take chances.</p><p></p></div>	
+<div class='layout'><p>She was not paranoid, though. The route she took between the palaces remained the same. One snowy day, travelling in a sedan-chair from the Summer Palace to the city, one of her chair-bearers slipped and threw her to the ground. Alive to rumours of assassins, her entourage was panic-stricken, fearing this was part of some deadly plot. ‘See if she is still alive,' cried terrified court ladies, and her lady-in-waiting, Der Ling, rushed to her side. She found Cixi ‘sitting there composedly giving orders to the chief eunuch not to punish this chair-bearer, for he was not to blame, the stones being wet and very slippery'.<a name="p2" id="p2"></a><a href="#pl2" title=""><sup>2</sup></a> There is no evidence that Cixi ever punished anyone purely on suspicion that they were involved in an assassination conspiracy.</p><p></p></div>	
+<div class='layout'><p>Japan, where the assassins were based, was the focus of Cixi's mistrust. Her dread intensified after 1905, when Japan emerged victoriously in the Russo-Japanese War.</p><p></p></div>	
+<div class='layout'><p>Russia had occupied parts of Manchuria during the Boxer turmoil in 1900, taking advantage of the fact that mobs had assaulted some Russians there. According to the Russian politician and diplomat, Count Witte, ‘On the day when the news of the rebellion reached the capital, Minister of War Kuropatkin came to see me at my office in the Ministry of Finances. He was beaming with joy.' And he proceeded to tell the count, ‘I am very glad. This will give us an excuse for seizing Manchuria.' After the Boxer Protocol was signed, foreign troops withdrew from China, but the Russians refused to leave Manchuria – which Count Witte called ‘treacherous'. Japan had long coveted the place itself and went to war against Russia. During the war, fought on Chinese soil by two foreign powers, Cixi declared China to be neutral. It was a humiliating position, but she had no better alternative. She prayed for minimal damage to her empire, in her private chapel accessed by way of hidden stairs behind her bed. When Japan won the war, many Chinese felt elated, as though Japan's victory were theirs. A ‘small' Asiatic state had defeated a big European power and shattered the assumption that Europeans were superior to Asians, and the White race to the Yellow. Japan was glorified to an unprecedented degree. But for Cixi, Japanese victory only raised the spectre that, with its new confidence and strength, Japan would soon turn a predatory eye on China. This sense of impending crisis gave her an added impetus to transform the country into a constitutional monarchy, and her mind was made up right after the Japanese win in 1905. She hoped that the population would be more patriotic as citizens.</p><p></p></div>	
+<div class='layout'><p>Her apprehensions about Japan were well justified. Japan quickly embarked on a series of diplomatic offensives to gain the powers' connivance in its designs on China, and signed deals with Britain, France and even Russia. Japanese diplomats intensified their persuasion campaign among Chinese officials and newspaper owners and editors, selling the notion that the two Asian countries should really form a ‘union'. Many listened favourably, even though Japan was bound to dominate such a union, in reality if not in name. Chinese who had been to Japan were impressed by what they saw: ‘the tidiness of the streets, the wellbeing of the people, the honesty of the merchants, and the work ethic of the average man'. It was also well known among European diplomats that Japan was spending the equivalent of six to eight million German marks a year (roughly two to three million taels) cultivating useful people, with ‘the ultimate goal of moving the emperor of Japan to Beijing', at least figuratively. Confidently, some Japanese asked the rhetorical question: ‘Why can't 50 million Japanese do what 8 million Manchus had done [to the Chinese] '</p><p></p></div>	
+<div class='layout'><p>Cixi had no desire to allow Tokyo to dominate her empire. Nor did she have any illusion that Japanese domination would make China a better place. In Korea, which Japan had put under its ‘protection' after it defeated China in 1894–5, Japanese rule was brutal. At a time when the Chinese press was enjoying unfettered freedom, the Korean press was strictly censored to eradicate any hint of anti-Japanese sentiment. An outspoken newspaper editor, Yang Ki-Tak, who was editing a British-owned Korean-language paper, was arrested and confined to a cell that was ‘so crowded that he could not lie down yet whose ceiling was too low that he could not stand up'. After a few weeks he had been reduced to a skeleton. The British Consul-General in Korea, Henry Cockburn, was shocked and went to protest to a senior Japanese official. The official was wholly unmoved and told Cockburn that if he ‘persisted in dwelling on so trivial a side issue, it must be because [he] was inspired by an unfriendly wish to interpose obstacles in the Japanese path'. Outraged by the incident and appalled that Britain was ignoring the brutality of Japanese rule, Cockburn resigned, cutting short a promising diplomatic career.</p><p></p></div>	
+<div class='layout'><p>Cixi had no automatic preference for the yellow Japanese over the white Europeans. Skin colour did not preoccupy her and she was not given to racial prejudice. Her foreign friends included white Americans – Sarah Conger and Katharine Carl – the half-American, half-Chinese Louisa Pierson, and Uchida Kōsai, the wife of the Japanese minister.</p><p></p></div>	
+<div class='layout'><p>Her wariness towards Japan did not push the empress dowager into the arms of any other power, as it might have done. Her government declined to have any foreign adviser for the throne, although it employed many Japanese and Western advisers in the ministries and provinces. In 1906, the German Kaiser, Wilhelm II, sent her a message via the departing Chinese minister in Berlin, offering to form ‘an Entente Cordiale, which would guarantee the most important parts of China' in the event of a Japanese attack. Cixi did not reply. After experiencing Russia's treachery she had no illusion about any such guarantees. Least of all did she have any trust in the Kaiser, who had, after all, spearheaded the scramble for China. The Kaiser's expression of concern was itself offensive to her, as he called a Japan–China union the ‘yellow peril'. The Kaiser would soon declare to a New York Times journalist: ‘the control of China by Japan … is sharply and bitterly antagonistic to the white man's civilization. That would be [the] worst calamity … The future belongs to [the] white race; it does not belong to the yellow nor the black nor the olive-colored. It belongs to [the] blond man …'<a name="p3" id="p3"></a><a href="#pl3" title=""><sup>3</sup></a></p><p></p></div>	
+<div class='layout'><p>Cixi's total silence perplexed and frustrated the Kaiser – ‘It's a year now. But nothing has been done. We must start working now! At once! Hurry up!…I explained to them a year ago … Obviously, their time is not money.' And ‘China is so slow. They put everything off and then put it off again …' The Kaiser tried to get America to sign up to his plan – and America was the only foreign country in which Cixi entertained a little hope. In late 1907, she received two pieces of encouraging news. America was returning the outstanding part of the Boxer Indemnity, and it was dispatching a major fleet into the Pacific. Seeing the proof of America's friendliness towards China and its obvious intention to rival Japan, Cixi decided to send an emissary to America to explore possibilities to forge closer links, while conveying thanks for the return of the indemnity. The emissary would then visit Germany and other European countries. But the return of the indemnity was delayed and the emissary did not depart for a year. The fact that Cixi neither instructed her minister in Washington to talk about the Kaiser's proposed Entente, nor dispatched a special emissary for this purpose, suggests that she did not regard it as a real possibility. America would not go to war with Japan on behalf of China; it was more likely to sacrifice China's interest for its own. Indeed, before long, America also signed a deal with Japan, the Root–Takahira Agreement, by which America endorsed Japan's dominance in southern Manchuria, in return for Japan's acquiescence to America's occupation of Hawaii and the Philippines.<a name="p4" id="p4"></a><a href="#pl4" title=""><sup>4</sup></a></p><p></p></div>	
+<div class='layout'><p>In summer 1907, Japan all but completely annexed Korea. The Korean king was forced to abdicate in favour of his son: he had not been quite obedient enough to his Japanese ‘adviser' – none other than former Prime Minister Itō Hirobumi. A new agreement between Korea and Japan now made Itō the Resident-General, and spelt out that the Korean king could not make any decision without his authorisation. Itō was to be assassinated by a Korean nationalist two years later, as he ‘won the hatred of the natives by harsh rule', wrote the New York Times at the time of his death. Now his elevation to overlord of Korea only reminded Cixi that in 1898 this ‘principal figure in Japan's rise as world power' had come very close to controlling Emperor Guangxu, and that China had been in danger of becoming another Korea. In addition, now that Korea had effectively become Japanese territory, Japan had secured a land border with China, which its army could quite easily cross if it wished.</p><p></p></div>	
+<div class='layout'><p>Against this background, Cixi made a determined effort to clear her court of suspected Japanese agents. Her principal target was an army officer called Cen Chunxuan, who had escorted the court when it fled from Beijing in 1900. Cixi had been grateful and allowed him easy access to her. It had subsequently emerged, however, that Officer Cen, whose army was stationed far away from the capital, had raced to the court's aid in defiance of his superior's order; and that he had done so at the behest of Wild Fox Kang, with whom he had maintained clandestine ties, in order to protect Emperor Guangxu. She also learned that Officer Cen had had meetings in Shanghai with the Wild Fox's associate, Liang, who had come over specially from Japan – meetings that Kang himself had planned to attend. Cixi gave Officer Cen ‘sick leave'. She also transferred his close friend, Grand Councillor Lin Shaonian, out of Beijing to Henan province to be its governor. On ‘sick leave' in Shanghai, Officer Cen continued to meet senior Japanese politicians, including Inukai Tsuyoshi, the future Prime Minister who led Japan in the invasion of Manchuria in 1931 – and who was now the most active supporter of both Wild Fox Kang and Sun Yat-sen.</p><p></p></div>	
+<div class='layout'><p>Cixi reorganised the Grand Council and appointed three new Grand Councillors, who, she was sure, would not be Japanese stooges. One was General Yuan, whom Cixi made the head of the Foreign Office, even though he was described by a foreigner as having ‘less poise than other Chinese dignitaries'. The General was one of Japan's biggest fans and had ordered all new officials reporting to him to travel there for three months before taking up their posts. But he was also tough and astute in his dealings with the Japanese, and had long been vigilant against Japan's ambitions towards China. As such, he had been a thorn in the side of Tokyo, and Wild Fox Kang made him the prime target for assassination after Cixi.<a name="p5" id="p5"></a><a href="#pl5" title=""><sup>5</sup></a></p><p></p></div>	
+<div class='layout'><p>The second new Grand Councillor was Viceroy Zhang, another admirer of Japan. In spite of his dalliance with Tokyo in 1900, Cixi trusted his commitment to an independent China, and his strong character which meant he would not be anyone's puppet. His incorruptibility also meant that he was bribery-proof.</p><p></p></div>	
+<div class='layout'><p>The third new Grand Councillor was Zaifeng, the son of her old devotee Prince Chun. Cixi was in fact grooming him to be her successor. When the Boxer Protocol demanded that a Chinese prince be sent to the German court to apologise for the murder of Baron von Ketteler, Zaifeng was chosen for the task at the age of eighteen. He handled the difficult mission well and showed quiet dignity when he delivered China's apology, having rejected Berlin's demand that he and his suite perform the kowtow to the Kaiser – a demand that Berlin eventually withdrew. After his return to Beijing, Cixi arranged a marriage for him to the daughter of Junglu, one of the men closest to her.<a name="p6" id="p6"></a><a href="#pl6" title=""><sup>6</sup></a> She gave Zaifeng as much exposure to foreign affairs as possible, sending him at every opportunity to represent the government at public functions involving foreigners. He knew the diplomatic corps and the missionaries better than most Chinese. Westerners liked him, and he mixed easily with them. Cixi had faith in him and believed that he would not be a Japanese collaborator – and he did not let her down. When Zaifeng eventually took over as Regent, after Cixi died and his son, Puyi, became the emperor, he resisted all Japanese overtures.<a name="p7" id="p7"></a><a href="#pl7" title=""><sup>7</sup></a> When his son was crowned Emperor of Manchukuo, the Japanese puppet state in Manchuria, Zaifeng visited him only once in the fourteen years of Manchukuo's existence. He stayed for a month and steered clear of politics. (He died in 1951.)</p><p></p></div>	
+<div class='layout'><p>One of Japan's key agents was Prince Su, a scion of the ruling Aisin-Gioro family. Around forty years old at this time, the prince was the most Japanised grandee, and a supporter of Emperor Guangxu. In his mansion he set up a school for his daughters and other women of the household, and had them taught by a Japanese. As the prince appeared to be an able and open-minded man, Cixi made him Chief of Police. The adviser to the police was a Japanese, Kawashima Naniwa, who had demonstrated considerable effectiveness when policing the capital during its occupation by foreign troops in the aftermath of the Boxer mayhem. The two men became good friends, and Kawashima later adopted one of Prince Su's daughters. Growing up in Japan, she became a star spy for the Japanese during their invasion of China in the Second World War, and acquired the sobriquet Eastern Jewel. She would be executed for treason after the war.</p><p></p></div>	
+<div class='layout'><p>Prince Su was to promote a Japanese takeover of China as fanatically as his daughter would. For now, though, he lay low. In 1903, Cixi was warned about his true colours. The revelation came from Qing Kuan, a court painter (whose panoramic depiction of the Summer Palace and Emperor Guangxu's wedding are today among China's national treasures). Fiercely devoted to Cixi, the painter had been instrumental in the capture of the assassin Shen Jin. Afterwards he had written to Cixi confidentially to say that the arrest had only been possible because it was kept secret from those closest to Prince Su. Cixi confronted the prince, who was reduced to mumbling, unconvincingly, in his own defence. She removed him from his post as Chief of Police, on the pretext that his duties had become too onerous, and had him closely watched. He told a liaison man from Wild Fox Kang that even his favourite concubine was working for Cixi and that he felt as though he was permanently ‘sitting on a blanket of needles'.</p><p></p></div>	
+<div class='layout'><p>With the prince now under surveillance, Cixi reappointed him, in June 1907, as head of the newly established Ministry of Public Services, under which the police force came. This move was a smokescreen for the benefit of Tokyo: as she was clearing Officer Cen and others out of the court, she wanted to avoid giving the Japanese the impression that the expulsions were connected with them. Meanwhile she ensured that the police force was firmly in the hands of the prince's deputy, a man she trusted.</p><p></p></div>	
+<div class='layout'><p>Still, the capital's fire brigade was the responsibility of the prince's ministry. He told Clerk Wang Zhao, a member of the 1898 conspiracy, who had been released from prison in Cixi's amnesty: ‘I have armed the fire brigade and drilled it like an army. When the time of drastic change comes, I will use it to storm the palaces on the pretext of putting out a fire, and the emperor will be restored to the throne.' Wang Zhao totally agreed: ‘The moment we get hold of the information that the Empress Dowager is ill and bed-ridden, Your Highness can take the fire brigade into the Sea Palace to secure the emperor, sweep him into the grandest hall in the Forbidden City and place him on the throne. Then the grandees can be summoned to take orders from him. Who would dare to disobey?'<a name="p8" id="p8"></a><a href="#pl8" title=""><sup>8</sup></a></p><p></p></div>	
+<div class='layout'><p>The Summer Palace was too far away from the city for Prince Su's fire brigade to reach it. So, it seems, another scheme was devised for it. The Japanese government offered the empress dowager a present: a steamer, to be tailor-made for the Kunming Lake. This was a gift Cixi could not refuse. So Japanese engineers were let into the Summer Palace, where they made a full-scale survey of the lake, together with the canal that linked it to the city, noting down exactly how deep and wide the waters were and how best to manoeuvre in them. They inspected her other boats, to make sure theirs was superior. The steamer was manufactured in Japan and shipped over to the Summer Palace to be assembled in its dock – by more than sixty Japanese technicians, who took to walking around the grounds, peering at the villas. Finally, at the end of May 1908, the steamer was presented to the empress dowager, complete with its own Japanese crew. She was requested to name it, which she did: Yong-he, Forever Peace. The dedication ceremony took place in the Summer Palace and was attended by officials from both countries – but no Cixi, or Emperor Guangxu. Only eventually did the last Japanese engineers and crew leave. There is no record of Cixi ever setting foot on the ‘gift'.</p><p></p></div>	
+<div class='layout'><p>A Grand Council secretary expressed dismay in his diary at the time. ‘The security of the imperial residences is a grave matter,' he wrote, ‘and even the average officials cannot enter the grounds. And yet these foreigners are wandering round day and night. This does not seem right. I have also heard that the Japanese are often drinking and yelling. I wonder what will happen if they barge into forbidden places by force.' It was impossible for Cixi not to share the secretary's misgivings. The steamer (which actually resembled a warship in appearance) was like a Trojan Horse within her palace grounds and could be used to reach Emperor Guangxu, whose villa was right on the waterfront.</p><p></p></div>	
+<div class='layout'><p>The Trojan Horse entered the Summer Palace just as Cixi was becoming ill. For a while her strong constitution had sustained her, and on a visit to the country's first modern experimental farm in May, she walked several kilometres, while Emperor Guangxu was carried in a chair by two bearers. But from the beginning of July she really had to struggle to carry on with her work, as she felt feverish and dizzy all the time, with a metallic ringing in the ears.</p><p></p></div>	
+<div class='layout'><p>Worrying news also crashed in on Cixi from her Manchurian Viceroy about problems at the border with Korea, now in Japanese hands. The Japanese were building ferry points on the Korean side and laid a railway line up to the river bank. They had even been constructing a bridge, which had reached the middle of the river before they were forced to dismantle it as a result of fierce protests from Beijing. As all this was taking place, the Japanese minister to Beijing presented a diplomatic note, threatening that their force would cross the border to strike an anti-Japanese Korean gang that was making trouble for them. It seems that Tokyo could use any excuse to send in troops – as backup for what might be happening in the palaces.</p><p></p></div>	
+<div class='layout'><p>On 18 July, Japan's legendary military-intelligence gatherer, Lieutenant-General Fukushima Yasumasa, arrived in China and went straight to Hunan province to visit Officer Cen, whom Cixi had appointed provincial governor. Perhaps prompted by a sense of foreboding, Cixi told General Yuan and Viceroy Zhang to inspect the confiscated files containing the correspondence of Wild Fox Kang and his associates. It was an order unusual enough for a Grand Council secretary to note it in his diary with surprise. Cixi normally took care to avoid doing things that were likely to incriminate those who had connections with her political foes; now she seemed to feel the need to find out whether there were other as-yet-unexposed Officer Cens.</p><p></p></div>	
+<div class='layout'><p>It was in the middle of this nerve-racking tension that Emperor Guangxu's thirty-seventh birthday was celebrated on 24 July. Cixi chose an opera to be performed for the occasion – and it was about the death of a king, Liu Bei, in ad 223. Cixi, who loved this particular opera, had had all the costumes and props made in the colour of mourning: white. On the stage the cast wore white brocade, with the dragon pattern on the king's robe embroidered in stark black thread. The armour and banners were also brilliantly white. As a rule, the colour white was taboo on an imperial birthday: courtiers would not even wear robes with sleeves that showed white linings – to avoid bad luck. But Cixi was begging for her adopted son to have bad luck. Only his death could halt the Japanese machinations to use him as their puppet.</p><p></p></div>	
+<div class='layout'><p><a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a>
+It is often claimed that Mr Shen was executed because he was an outspoken journalist. In fact, there is no sign that he wrote anything for any newspaper or other publication. His role in journalism was restricted to obtaining a document that has been referred to as the ‘Sino-Russian Secret Treaty', which was then published in Japanese newspapers. This was actually a list of demands made by Russia to Beijing in the aftermath of the Boxer mayhem, in exchange for withdrawing troops from Manchuria. Beijing never accepted the demands, and there was no treaty, ‘secret' or otherwise. (The only treaty had been in 1896.) The Japanese wanted this document to stoke anti-Russian fervour. Even so, passing this document to the Japanese was not the cause of Mr Shen's execution. His ‘crime' was his role in the armed rebellion of 1900. Cixi wanted him dead urgently because she knew he was in Beijing to try to kill her again.</p><p></p></div>	
+<div class='layout'><p><a name="pl2" id="pl2"></a><a href="#p2" title=""><sup>2</sup></a>
+Der Ling went on to describe the scene more fully: head eunuch Lianying advised that the chair-bearer must be seen to be punished, as this was the rule. ‘After saying this, he turned his head to the beaters (these beaters, carrying bamboo sticks, went everywhere with the Court, for such occasions as this) and said: “Give him eighty blows on his back.” This poor victim, who was kneeling on the muddy ground, heard the order. The beaters took him about a hundred yards away from us, pushed him down and started to do their duty. It did not take very long to give the eighty blows and, much to my surprise, this man got up, after receiving the punishment, as if nothing had happened to him. He looked just as calm as could be.' Clearly, the beaters just went through the motions, knowing that the empress dowager was not angry with him. Eunuchs who made mistakes punishable by thrashing were not always so lucky. Many took to wearing rubber mats around their backsides, just in case.</p><p></p></div>	
+<div class='layout'><p><a name="pl3" id="pl3"></a><a href="#p3" title=""><sup>3</sup></a>
+The italics and square brackets in the Kaiser's comments are in the original quotes. The journalist also wrote that during the interview, ‘His Majesty's face flushed and he lifted his arm, his fist clinched [clenched] in air [sic]. Between set teeth with his face close to mine, he exclaimed …'</p><p></p></div>	
+<div class='layout'><p><a name="pl4" id="pl4"></a><a href="#p4" title=""><sup>4</sup></a>
+Just over three decades later, with its wings fully fledged, Japan launched a surprise strike on the US base in Pearl Harbor, Hawaii, before invading the Philippines.</p><p></p></div>	
+<div class='layout'><p><a name="pl5" id="pl5"></a><a href="#p5" title=""><sup>5</sup></a>
+General Yuan was flamboyant as well as formidable. His guards, selected for their size, wore leopardskin-patterned uniforms, and looked like ‘tigers and bears', commented gawking onlookers.</p><p></p></div>	
+<div class='layout'><p><a name="pl6" id="pl6"></a><a href="#p6" title=""><sup>6</sup></a>
+Junglu died in 1903.</p><p></p></div>	
+<div class='layout'><p><a name="pl7" id="pl7"></a><a href="#p7" title=""><sup>7</sup></a>
+Puyi's story is immortalised in Bernardo Bertolucci's film, The Last Emperor.</p><p></p></div>	
+<div class='layout'><p><a name="pl8" id="pl8"></a><a href="#p8" title=""><sup>8</sup></a>Wang Zhao tried to persuade Prince Su to act straight away, but the prince was cautious and wanted to wait for the right moment. He said: ‘The rules of our dynasty are especially strict concerning us princes. We can't enter the palaces without being summoned. One foot wrong and I am a dead man.' As Wang Zhao urged him to take the plunge, he countered: ‘This is not something that risk-taking can achieve. Look what taking risks got you, straight into the prison of the Ministry of Punishments. What use was that?'</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+
+<div class='layout'><p>28 Cixi's Revolution</p><p></p></div>	
+<div class='layout'><p>(1902–8)</p><p></p></div>	
+<div class='layout'><p>CIXI carried out her revolution over seven momentous years: from her return to Beijing at the beginning of 1902 until her death in late 1908. Milestone changes defined the era, during which China decidedly crossed the threshold of modernity. Modernisation enabled the country's annual revenue to more than double in this period, from just over 100 million taels to 235 million. And as revenues grew, so it became possible to fund further rounds of modernisation. The reforms in these years were radical, progressive and humane, designed to improve people's lives and to eradicate medieval savagery. Under her measured stewardship, Chinese society was fundamentally transformed, thoughtfully and bloodlessly, for the better, while its roots were carefully preserved and suffered minimum trauma.</p><p></p></div>	
+<div class='layout'><p>One of Cixi's first revolutionary decrees, proclaimed on 1 February 1902, was to lift the ban on Han–Manchu intermarriage, a ban as old as the Qing dynasty itself. In a family-oriented society the ban had meant that there was little social intercourse between the two ethnic groups. Even if officials were close colleagues, their families hardly ever met. The American physician Mrs Headland described one occasion when two Manchu princesses and the granddaughter of a Han Grand Councillor encountered each other in her house. For a while, getting them to converse was ‘like trying to mix oil and water'. Now the Manchu–Han segregation was to be dismantled.</p><p></p></div>	
+<div class='layout'><p>The same decree required the Han Chinese to abandon their tradition of foot-binding, stressing that the practice ‘harms creatures and violates Nature's intentions' – an argument that appealed to a deeply held belief: respect Nature's creation. Aware of the tenacity of the custom that had been in place for a thousand years, and anticipating resistance that could lead to violent collisions, Cixi approached the implementation of her injunction with characteristic caution. She bid grass-roots leaders make all households aware of her message and use example and persuasion to convince the families, explicitly and emphatically forbidding the use of brutal coercion. Cixi's style was not to force through drastic change, but to bring it about gradually through perseverance. When her American friend Sarah Conger asked her if her edict would have an immediate effect in the empire, she replied, ‘No; the Chinese move slowly. Our customs are so fixed that it takes much time to change them.' Cixi was prepared to wait. Her emphasis on gradual change contributed to the fact that many young girls (including this author's grandmother) still had their feet broken a decade later. But they were the last generation to be subjected to this suffering.</p><p></p></div>	
+<div class='layout'><p>Again using persuasion and promotion rather than force, Cixi began to release women from their homes and from male–female segregation, breaking a fundamental Confucian tradition. Women started to appear in public, and to go to theatres and cinemas, enjoying undreamed-of pleasures. She particularly espoused modern education for women, repeatedly urging Viceroys, high officials and aristocrats to lead the way and set up and fund girls' schools. She herself set an example by personally founding a School for Aristocratic Women, to which she appointed her adopted daughter, the Imperial Princess, as headmistress. Another of her plans was to open an institute of higher education for women and, as an incentive for applicants, it was announced that each graduate would have the honour of being referred to as a Personal Pupil of the Empress Dowager. In 1905, a female sponsor of a girls' school, Madame Huixing, used self-immolation (a traditional and not uncommon way to draw attention to a cause) to appeal for regular funding for the school. The flourishing press of the time made her a national heroine. Men and women gathered for her memorial services, and a Peking Opera was written to tell her story. Cixi gave her full support by publicly selecting a star-studded cast to perform the opera in the Summer Palace. She also chose another new play to be performed on the same occasion: Women Can Be Patriots?– aimed at awakening women's political consciousness. In spring 1907, a Regulation for Women's Education was decreed, which made it official that women should receive education.</p><p></p></div>	
+<div class='layout'><p>A champion in women's education was Viceroy Duanfang, who had impressed Cixi with his reformist ideas and his ability during her exile in Xian, where he had been the acting governor. Elevated to key posts in the Yangtze Valley, this new political star was responsible for many modernising projects, including China's first nursery school. It was he who dispatched the country's first female students abroad, in 1905. They went first to Japan to study teacher training, and then to America. Among the teenage girls who were awarded government scholarships for Wellesley College in Massachusetts was one Song Qinglin (Qingling), later Mme Sun Yat-sen and, later still, Honorary President of Communist China. With her was her younger sister Meiling, then a child, who later attended Wellesley as well, and became Mme Chiang Kai-shek, First Lady of Nationalist China.</p><p></p></div>	
+<div class='layout'><p>Many prominent women in the future benefited from the opportunities created by Cixi. One was the first female editor of a major paper, the Ta Kung Pao, in 1904, in which capacity she attracted teams of adoring young men. Educated women launched some thirty journals to promote women's liberation, and one, Women's Daily, was apparently the only women's daily in the world at that time (even though the paper itself did not last long).</p><p></p></div>	
+<div class='layout'><p>In the first decade of the twentieth century the expression ‘women's rights' – nü-quan – was in vogue in China. An influential booklet proclaimed as early as 1903: ‘The 20th century will be the era of revolution for women's rights.' In a civilisation that had treated women with unparalleled cruelty, their emancipation had begun.</p><p></p></div>	
+<div class='layout'><p>Another key component of Chinese society, the traditional educational system through which the empire's ruling elite had been selected, was finally scrapped. This hindrance to modernisation – and to Chinese thought as a whole – had been on Cixi's agenda for some years, and during that time she had gradually established an alternative educational system – and alternative routes to a career, in government as well as in private sectors. So when the final push came, in 1905, this giant pillar in China's political infrastructure for well over a thousand years collapsed with extraordinary ease. The new educational system was based on Western models, with a whole range of subjects introduced, although Chinese classics remained on the curriculum. That year, after visiting one of the new schools, with English-speaking teachers and uniformed pupils in European-style classrooms, library and athletics room, Sarah Conger pondered in amazement, ‘What will be the future of China when these hundreds and hundreds of educated young people go out from these schools as a leaven into its vast population?' Three years later, the number of such schools, not all of them so well equipped perhaps, was in five figures.</p><p></p></div>	
+<div class='layout'><p>Young people studying abroad received either scholarships or incentives such as the promise of desirable jobs when they returned with satisfactory qualifications. At the beginning, many were reluctant to go, especially the sons of elite families, who found life without troops of servants unimaginable. But anyone who aspired to be an official was told to go, to travel if not to study, and in 1903 being abroad for at least several months was made a mandatory qualification for future posts. An edict from Cixi also ordered existing officials to travel abroad, which, she said, was something that had ‘only advantages and no drawbacks'. The number of students studying overseas soared. In Japan alone, in the early years of the century, they were estimated at something approaching 10,000.</p><p></p></div>	
+<div class='layout'><p>With new education and new thinking, young Han Chinese began to question and reject the Manchu rule, and their publications were full of outcries in this vein: ‘The Manchus are foreigners who invaded China and have dominated us Hans for 260 years! They conquered us by slaughtering, and brought us disasters for which we had to pay the price! They force us to wear “pig tails”, and make us a laughing stock in London and Tokyo …' After the list of grievances came the inevitable battle cry: ‘Drive out the Manchus! China for the Han Chinese!' In 1903, a devastatingly anti-Manchu essay, The Revolutionary Army, by one Zou Rong, appeared in a newspaper in Shanghai. Calling Cixi ‘a whore', the essay vehemently advocated the overthrow of the Manchu government. ‘Expel all Manchus who live in China, or kill them for revenge,' it cried; not least: ‘Slay the Manchu emperor!' The essay infuriated the Manchu grandees, including the most open-minded reformers, and quite possibly Cixi herself. By the Qing legal code, these incitements amounted to high treason, punishable by some gruesome form of death. Even the dedicated reformist Viceroy Duanfang, who was a Manchu, wanted the author ‘extradited' from Shanghai (which, as a Treaty Port, was governed by Western laws) and punished with life imprisonment, if not death. Shanghai turned down the request for extradition, and Zou was tried in situ by a largely Western panel, with the Chinese government represented by a lawyer. Judged against a Western law to do with sedition by word and not by deed, in mid-1904 the author was sentenced to two years' imprisonment and hard labour in a Western-style jail. The newspaper was banned.</p><p></p></div>	
+<div class='layout'><p>This cause célèbre was a lesson to all. Extremist writers felt the need to tone down their language. The prison in Shanghai, though not a hell-hole like most in China, was far from pleasant, and Zou, in poor health and unable to sleep, died within a year. For Cixi, the case provided much food for thought. She was faced with a new challenge: how to deal with hitherto unthinkable expressions akin to blasphemy in the rapidly expanding press. To treat them as treason and to deal with them by the old laws would be to turn back the clock, and she rejected the option. She refused to listen to those who advised suppression or recommended stopping sending students abroad, where they learned all manner of heresy. She chose instead to regulate the press with laws and regulations based on Western and Japanese models – and these were gradually introduced. As a result, the new century witnessed an explosion of Chinese-language newspapers and journals. Hundreds of titles sprang up in more than sixty locations around the empire. Anyone could start a newspaper, if they had the funds, and no one could silence them. General Yuan, as the Viceroy of Zhili based in Tianjin, was mercilessly assailed by the most influential newspaper there, the Ta Kung Pao, and, much as he hated it, he was unable to shut it up. All he could do was order government employees not to buy the paper, and the post office not to deliver it. Both measures were unsuccessful and only served to increase the paper's circulation. Cixi's tolerance of attacks on her government – and on herself – as well as her willingness to permit a diversity of viewpoints were unmatched by any of her predecessors – or, arguably, her successors.</p><p></p></div>	
+<div class='layout'><p>Along with the introduction of unimagined freedoms, Cixi began to revolutionise China's legal system. In May 1902, she decreed a wholesale review of ‘all existing laws … with reference to the laws of other nations … to ensure that Chinese laws are compatible with those of foreign countries'. With a legal reform team headed by a remarkable mind, Shen Jiaben, who had a comprehensive knowledge of traditional laws and had studied several different Western codes, a brand-new legal structure based on Western models was created in the course of the decade, covering a whole range of commercial, civil, criminal laws and judicial procedures. Cixi approved the team's recommendations and personally decreed many landmark changes. On 24 April 1905, the notorious ‘death by a thousand cuts' was abolished, with a somewhat defensive explanation from Cixi that this horrific form of execution had not been a Manchu practice in the first place. In a separate decree, torture during interrogation was prohibited. Up to that point it was universally regarded as indispensable to obtain confessions; now it was deemed ‘only permissible to be used on those whom there was enough evidence to convict and sentence to death, but who still would not admit guilt'. Cixi made a point of expressing her ‘loathing' for those who had a penchant for torture, and warned that they would be severely punished if they failed to observe the new constraints. Prisons and detention centres were to be run humanely; the abuse of inmates would not be tolerated. Law schools were to be set up in the capital and provinces, and law studies were to be made a part of general education. Under her a legal framework began to be constructed.</p><p></p></div>	
+<div class='layout'><p>In a less obviously groundbreaking development, commerce was made respectable. Although paradoxically the Chinese loved making money, the culture traditionally held commerce in distaste and ranked it at the bottom of the professions (the order of prestige being: scholar-officials, peasantry, craftsmen, and – lastly – merchants). In 1903, for the first time in its history, China had a Ministry of Commerce. A series of imperial decrees offered precisely defined inducements for aspiring entrepreneurs to ‘form companies', whose registration local governments were told to grant ‘instantly, without a moment of delay'. One such incentive ran: ‘Those who raise 50 million yuan worth of shares are to be appointed First-grade Adviser to the Ministry, with First-grade official status, and be awarded the special Imperial Double-dragon gold medal, with their male descendants inheriting a Third-grade Advisory post in the Ministry for three generations.' Further incentives were given for merchants to attend expositions abroad and to identify new products for export.</p><p></p></div>	
+<div class='layout'><p>The many other developments included the establishment of the state bank in 1905, followed by the birth of a national currency, with the ‘yuan' as the unit. The system is still in use today. The great north–south artery, the Beijing–Wuhan Railway, was completed in 1906. An embryo network of railways was in place. The army and navy acquired new HQs, two grand European-style turn-of-the-century edifices with oriental features. Designed by a Chinese architect, they are among the most interesting buildings in Beijing. It is said that Cixi footed the bill herself. Perhaps she was atoning for having taken money from the navy in the past.</p><p></p></div>	
+<div class='layout'><p>As the Chinese were adopting a whole range of new ways to live, the old habit of opium-smoking finally started to decline. Half a century had gone by since the country was forced to legalise the drug, and a large part of the population – officially estimated at ‘nearly 30 or 40%' – was taking some opium. A stereotypical image of the Chinese in the West was filthy and contemptible faces in foul opium dens: a most unfair portrayal, considering the origin of their addiction. Chinese anxious about the state of their country had been tirelessly advocating a ban; so had Western missionaries. Foreign opium imported into China was chiefly produced in British India and shipped solely from British ports. Public opinion on both sides of the globe was overwhelmingly in favour of prohibiting the trade. In mid-1906 the British Parliament debated the issue, and the mood of the country so excited the Chinese minister in London that he wrote home at once: ‘If we show we are serious about prohibition, I am certain Britain will be deeply sympathetic and will act in collaboration with us.' Seizing this opportunity, Cixi announced her intention to eradicate opium production and consumption in China within ten years. In the decree she expressed her revulsion towards the drug, and described the damage it was doing to the population. A detailed ten-point plan was drawn up, to enable all people in the empire under the age of sixty to kick the habit. (Those over sixty were deemed to lack the physical strength needed for this strenuous process.) The effect of the edict ‘on the nation', observed H. B. Morse, who was in China at the time, ‘was electrical'. Farmers stopped cultivation with little resistance. ‘Smokers abandoned the habit by millions; it became unfashionable to smoke in public; and the young were constrained not to acquire the habit. Many millions continued, of course, to smoke, but a generation of Chinese is growing up of whom few have acquired this habit …'</p><p></p></div>	
+<div class='layout'><p>A request was put to Britain to bring the opium trade to an end. And the British government readily responded. In line with Cixi's ten-year programme, it agreed to restrict opium export from India by one-tenth each year. Both Britain and China regarded this as a ‘great moral movement', and each willingly bore a considerable loss of revenue. At the end of ten years the eradication of opium-smoking and production in China had made astounding progress, and the British export of opium had come to a complete stop.</p><p></p></div>	
+<div class='layout'><p>Great changes chased after one another like ocean waves. Chinese who did not live in the Treaty Ports enjoyed many a ‘first' in their lives: the first street lighting, first running water, first telephone, first colleges of Western medicine (to one of which Cixi donated 10,000 taels), first sporting event, first museums, first cinemas, first zoo and public park (a former royal park in Beijing) and the first government experimental farm. Many read their first newspapers and magazines, and a pleasurable habit of reading the daily paper was being formed.</p><p></p></div>	
+<div class='layout'><p>Cixi experienced quite a few ‘firsts' herself. One day in 1903, she asked Louisa Pierson whether her daughters knew how to take photographs, as it would cause a storm ‘to allow a male photographer into the Palace'. Louisa Pierson informed Cixi that one of her sons, Xunling, had studied photography while abroad and had brought back good equipment from Europe – and perhaps he could take pictures of Her Majesty. Although a man, Xunling was Louisa's son and could be treated as ‘family'. He became the only photographer ever to take photographs of Cixi.</p><p></p></div>	
+<div class='layout'><p>Later, the Dutch-American painter Hubert Vos claimed to have photographed Cixi, in addition to painting her – a claim that is generally assumed to be true. In fact, there is no record of any kind to support his vaguely told story. Nor does it seem likely, given that he was an adult man, and a foreign man at that. Even Robert Hart, who had served the empress dowager for decades, only had a few formal meetings with her, the longest of which, in 1902, lasted twenty minutes. It was a memorable occasion and Hart recorded it:</p><p></p></div>	
+<div class='layout'><p>The old lady talked in a sweet feminine voice, and was very complimentary: I said there were others quite ready to take my place, but she rejoined that it was myself she wanted. Among other things she referred to the Coronation [of King Edward VII] and said she hoped His Majesty would enjoy all happiness. Apropos of railway travelling she said with a laugh that she began to think she would enjoy even a foreign tour!</p><p></p></div>	
+<div class='layout'><p>Given her love of travelling and her intense curiosity, Cixi would have liked nothing better than a foreign tour. But she never seriously contemplated the idea, as she judged it unfeasible. Similarly, even though she was the supreme ruler of the empire, she never set foot in the front section of the Forbidden City, or entered the palace through its front gates. She would not challenge such enormously controversial conventions for the sake of gratifying her own desires. Although she must have wished to mix freely with men, and would not have minded at all having a foreign man paint or photograph her, Cixi would have resisted doing so.<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a> Her restraint and her discrimination were key qualities that enabled her to change the empire as well as rule it. Her judgement as to what should be changed – and when and how it should be done – was crucial to the fact that there was little upheaval throughout her revolution.</p><p></p></div>	
+<div class='layout'><p>When Xunling came to take Cixi's photographs, he had to do so on his knees at first: everyone was obliged to kneel when they engaged the empress dowager's attention. But in this position he was unable to reach the camera on its tripod. Lianying, the head eunuch, brought him a stool to kneel on, but he could not balance himself while handling the camera. Cixi said, ‘All right, exempt him from kneeling while he takes the photographs.'</p><p></p></div>	
+<div class='layout'><p>Cixi, now in her late sixties, looked her age in the photographs. These realistic pictures would have made her frown, so before they were presented to her, they were touched up, which was not uncommon in those days. Her face was airbrushed, with the wrinkles erased and puffy bags under her eyes smoothed away. Many years were expunged, leaving the images of a beautiful woman in her bloom. This ‘facelift' is unmistakable when comparing the prints in Xunling's own collection (now in the Freer Gallery, Washington DC), which were not worked on, with the prints of the same photographs in the Forbidden City archives.</p><p></p></div>	
+<div class='layout'><p>These touched-up images were not what her mirrors had been telling her for quite some time. Cixi was thrilled when she saw them, and there followed a frenzy of photo-taking. She posed in various postures – in one, putting a flower in her hair, like a coquettish young girl. She changed clothes, jewels and surroundings, and had complicated sets constructed, as if for the stage. She had long wanted to act in an opera, and courtiers had spotted her singing and dancing in the palace grounds when she thought no one was watching. Now she dressed up as Guanyin, the Goddess of Mercy, had court ladies and eunuchs clothed in the costumes of the characters associated with the Goddess, and posed with them on the sets. Her favourite pictures were then enlarged to as big as 75 by 60 centimetres, tastefully coloured and framed, and mounted on the walls of her palace, so excited was Cixi by her own younger and prettier looks.</p><p></p></div>	
+<div class='layout'><p>Some large, framed prints were later presented to foreign heads of state, who had written to congratulate her on her seventieth birthday in 1904. These were delivered to the legations with considerable solemnity. American newspapers commented: ‘The picture gives her the appearance of forty years instead of seventy.'</p><p></p></div>	
+<div class='layout'><p>The touching-up, enlargement and framing of the pictures were done by the oldest and best-known photographic studio in Beijing, owned by one Ren Jingfeng, who had studied photography in Japan. Ren was soon invited to the court, where he was put in touch with the great Peking Opera actor, Tan Xinpei, a member of the court's Music Department. The actor's biggest fan was the empress dowager, who not only rewarded him handsomely, but also enabled him to command huge fees when he performed outside the court. Now Tan was directed by Ren in China's first film, The Dingjun Mountain, showing an episode in a Peking Opera of the same name. This was 1905, and Cixi could reasonably be credited as China's first movie ‘executive producer'.</p><p></p></div>	
+<div class='layout'><p>The film was shot in spite of an earlier accident. The British had given Cixi a projector and some silent movies for her birthday the year before. After three reels in the first screening, the motor had exploded. Cixi does not seem to have taken to films. Their appeal to her was limited as there was no soundtrack, which meant no music. But Ren and others went on to make other films, and cinemas showing their work as well as foreign films, including short detective stories, blossomed and percolated into the vast interior.</p><p></p></div>	
+<div class='layout'><p>The news that Cixi had photographs taken with eunuchs in stage costume – at a time when no woman could appear on stage, and to be playful with eunuchs was considered ‘improper' – soon became known to her enemies, who seized upon it in an attempt to damage her reputation. From late 1904 to the end of 1905, Shi-bao, a newspaper set up by Wild Fox Kang (with his right-hand man, Liang, as the main contributor writing from Japan), carried daily advertisements offering photographs of Cixi for sale. The advertisements, in the name of the paper's sister publishing house owned by a Japanese, Takano Bunjiro, highlighted the fact that she was dressed up in theatrical costume and ‘sitting side by side' with her two favourite eunuchs, one being Lianying. This was calculated to arouse public disgust. In addition, the prints were being offered at exceedingly low prices and were marked as discount goods, so as to maximise the insult.</p><p></p></div>	
+<div class='layout'><p>Cixi did nothing about the advertisements, or the publishing house, which had an office in Beijing, a stone's throw from the Forbidden City, as well as in Shanghai. Rather, she turned the table on her enemies by giving a photo of herself with Lianying as a present to a Japanese diplomat.</p><p></p></div>	
+<div class='layout'><p>The impact of the advertisements seems to have been non-existent. Cixi was enjoying considerable popularity. Pearl Buck, the Nobel Laureate for literature, was then living in China among peasants and other ordinary people (her parents were missionaries), and she observed that they ‘loved her'. For her seventieth birthday Cixi had decreed that there would be no celebrations. But many still celebrated. In Beijing, outside the Qianmen gate, numerous lanterns of different colours and shapes illuminated the whole area, attracting crowds of spectators and revellers. In Shanghai, Sarah Conger wrote:</p><p></p></div>	
+<div class='layout'><p>In driving through the streets in the foreign concession of Shanghai, we saw many beautiful decorations in honor of Her Majesty's birthday. The Chinese stores were aglow with brilliant colors; even the Chinese flag was waving, a most unusual thing, as the flag, in China, is used only officially. I never before saw such a departure from old customs … Myriads of beautiful lanterns in their almost endless varieties added brilliancy to the many other decorations. The Chinaman proclaimed his loyalty to China and her rulers in such a way that the foreigner could understand that loyalty…</p><p></p></div>	
+<div class='layout'><p>For all the dramatic reforms sweeping across China, Cixi introduced very few at court. Rules did relax for the eunuchs, who were allowed to visit bars and theatres outside the palace. But the medieval practice of keeping eunuchs remained – and so, consequently, did the castration of boys for this purpose. There was a moment when Cixi considered abolishing eunuch-keeping, but the eunuchs reacted with a campaign of weeping to get her to change her mind, and she suspended the move. On the whole the court stuck to the old rules, with rigid etiquette and formality. Prescribed costumes for different occasions remained sacrosanct. Arriving at a gathered court, Cixi would with a glance take in all the details of the clothes being worn and would address any errors. In her presence, people continued to stand, if not kneel. On the only occasion when she dined with the ladies of the diplomatic corps, she and the foreign diners were seated, while the Chinese princesses stood. As the banquet proceeded, Sarah Conger asked if the princesses might not be seated, too. Cixi felt obliged to turn to them and, with a wave of her hand, tell them to sit. This was the only time any Chinese (except the emperor) sat down to eat with her. But they did not really eat. An eye-witness observed, ‘They sat down in a timid, rather uncomfortable way on the edge of the chair, but did not presume to touch any of the food.' During the dinner, China's minister to Britain interpreted for her, on his knees.</p><p></p></div>	
+<div class='layout'><p>Cixi was especially strict about officials observing etiquette. Every time she travelled between her palaces, designated officials had to kneel at the arrival and departure points to greet her or see her off – even in the rain. One day the rainwater dripping from a kneeling figure was bright red and green, and it turned out that the official was too poor to own a real formal robe for the occasion and had had to wear a painted paper one. On another occasion, after she had bestowed gifts on a large number of officials, they gathered and waited to thank her by going down on their knees. Because of their numbers, they had to perform the ritual in the courtyard where it was raining hard. They waited for more than an hour, while Cixi watched the rain from behind a curtain. When the rain subsided, she ordered the ritual to proceed, during which the officials knelt on the wet ground, spattered with mud.</p><p></p></div>	
+<div class='layout'><p>The obligation to kneel was a nuisance for everyone. Grandees found it unbearable if the audiences were protracted. Eunuchs had knee pads permanently sewn into their trouser legs, as they had to drop to their knees whenever she addressed them, at all places, whether it was on stone floors or rocks. Arthritis of the knees was a common problem for eunuchs.</p><p></p></div>	
+<div class='layout'><p>Cixi understood that it was painful to kneel and would usually curtail the time people had to do so. Once, for the benefit of Katharine Carl, some court painters were summoned to draw chrysanthemums in the fields. As the empress dowager was watching, the painters had to kneel while drawing. Their discomfiture was visible to Cixi, and she told them to pluck some flowers and go and paint at home. For one reception she gave, the Foreign Office official presenting the diplomats, Wu Tingfang, was supposed to kneel. This would have put him in an embarrassing position, as the foreign diplomats he presented would be standing. He would ‘look like a dwarf next to foreigners', he complained to Louisa Pierson. On her advice Cixi exempted him: ‘In that case, he doesn't have to kneel.'</p><p></p></div>	
+<div class='layout'><p>Wu was then posted as China's minister to Washington, and led a life of heady freedom, acquiring a reputation as the ‘man who enjoyed making blandly insolent remarks at dinner parties'. Upon returning to Beijing, he interpreted for Alice Roosevelt, daughter of President Theodore Roosevelt, when she visited China in 1905 and had an audience with Cixi. Having got used to the American way of treating himself as an equal to anyone, Wu seems to have forgotten that he had to be on his knees to Cixi, or ask beforehand for permission not to kneel. He stood and chatted, quite at ease. Alice wrote:</p><p></p></div>	
+<div class='layout'><p>He stood between us, a little to the side, but suddenly, as the conversation was going on, the Empress said something in a small savage voice, whereat he turned quite gray, and got down on all fours, his forehead touching the ground. The Empress would speak; he would lift his head and say it in English to me; back would go his forehead to the ground while I spoke; up would come his head again while he said it in Chinese to the Empress; then back to the ground would go his forehead again … One literally had the feeling that she might at any moment say, ‘off with his head,' and that off the head would go.</p><p></p></div>	
+<div class='layout'><p>This was in fact the time when Wu was co-heading the empire's legal reforms – and enjoying Cixi's esteem. In those years, with her blessing, even rather conservative governors banned kneeling as part of the etiquette in their provinces. But Cixi retained it in the court. At stake for her was the god-like sacredness of the throne, which was the one thing that gave the throne its hold over the vast empire. Kneeling was the manifestation and reinforcement of that sacredness, without which – without all those bent knees – the throne, and even the empire, might falter.</p><p></p></div>	
+<div class='layout'><p>To hold on to this symbol of total submission in an increasingly enlightened empire, Cixi sacrificed her curiosity and never rode in a car. She had been presented with one by General Yuan, who had stepped into Earl Li's shoes in ways more than one. Not only had he inherited the earl's jobs and role as a close adviser to the empress dowager, but, like the earl, he was a talented gift-giver. The car he bought for her was lacquered in imperial yellow, with a dragon motif and a throne-like seat within. Cixi longed for a ride, particularly as she had just had fun riding a tricycle, also a present from the General. But with a car there was an insurmountable problem: it was impossible for the chauffeur to operate the wheel while kneeling, or even standing. The chauffeur would have to sit down, right in front of her. The car remained the only modern device that was interesting and available to the empress dowager which she did not try.</p><p></p></div>	
+<div class='layout'><p><a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> Hubert Vos's portrait of Cixi, on the other hand, shows more of her character than Katharine Carl's painting. His portrait was most likely based on a photograph of Cixi, taken by Xunling.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

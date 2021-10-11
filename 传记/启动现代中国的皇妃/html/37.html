@@ -1,0 +1,796 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+
+<div id="container">
+<div class='layout'><p>37 INDEX</p><p></p></div>	
+<div class='layout'><p>Abeel, David</p><p></p></div>	
+<div class='layout'><p>Aisin-Gioro clan 1.1, 21.1, 24.1, 29.1, 30.1</p><p></p></div>	
+<div class='layout'><p>Albert, Prince</p><p></p></div>	
+<div class='layout'><p>Alute, Miss 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 10.1</p><p></p></div>	
+<div class='layout'><p>America: American Christian missionaries in China 2.1, 2.2, 5.1, 6.1, 19.1, 22.1, 25.1, 27.1, 29.1; introduction of high-productivity foods into China from the continent 2.3; Burlingame Treaty, 1868 and 6.2, 6.3n, 22.2n; diplomatic presence in China 6.4, 12.1, 12.2, 12.3, 17.1, 21.1, 22.3, 23.1, 23.2, 25.2, 26.1, 27.2, 27.3, 27.4, 27.5, 28.1, 28.2, 28.3, 28.4, 30.1, 31.1; Zhigang visits 6.5 China sends students to 6.6, 22.4, 28.5; Sino-French War, 1884–5 and 12.4; Chinese Exclusion Act, 1882 22.5, 22.6n; treatment of Chinese within 22.7; Boxers and 22.8, 22.9, 25.3, 25.4, 25.5, 25.6, 27.6, 27.7, 30.2; Cixi's American friends 27.8, 30.3; press begins to acknowledge Cixi's reforms 27.9; Cixi's wish to explore closer links with 30.4; Root–Takahira Agreement, 1908 30.5</p><p></p></div>	
+<div class='layout'><p>Amherst, Lord</p><p></p></div>	
+<div class='layout'><p>An Dehai see Little An</p><p></p></div>	
+<div class='layout'><p>Anhui province 1.1, 26.1</p><p></p></div>	
+<div class='layout'><p>Arrow (boat)</p><p></p></div>	
+<div class='layout'><p>astrologer, court 2.1, 2.2, 8.1, 9.1, 9.2, 12.1, 13.1</p><p></p></div>	
+<div class='layout'><p>Backhouse, Sir Edmund 2.1, 2.2n</p><p></p></div>	
+<div class='layout'><p>bastinado (punishment) 16.1, 20.1, 30.1</p><p></p></div>	
+<div class='layout'><p>Beg, Yakub 12.1, 12.2</p><p></p></div>	
+<div class='layout'><p>Beijing: Manchus take over 1.1; Inner City 1.2, 22.1, 22.2; Outer City 1.3, 22.3; at time of Cixi's birth 1.4; Cixi travels outside of for first time 1.5; legations see legations, Beijing; Western troops enter during Second Opium War, 1860 2.1, 3.1, 4.1, 4.2, 5.1; Emperor Xianfeng and Cixi flee, 1860 2.2, 2.3; Cixi returns to, 1861 4.3; Boxers 9.1, 22.4, 22.5, 22.6, 23.1, 23.2, 23.3, 23.4; Western troops enter and occupy, 1900–1 9.2, 20.1, 23.5, 24.1, 25.1; Cixi flees, 1900 9.3, 23.6, 24.2, 25.2, 30.1; electricity in 11.1; railway in 11.2, 15.1, 18.1, 20.2, 26.1, 27.1, 28.1; flooding in 13.1; winter in 15.2; Armand David's collection of birds and animals in 15.3; first university in 19.1; Cixi returns to, 1901–2 26.2, 27.2, 28.2; see also Forbidden City</p><p></p></div>	
+<div class='layout'><p>Beijing University</p><p></p></div>	
+<div class='layout'><p>Beijing–Wuhan Railway 11.1, 15.1, 18.1, 20.1, 26.1, 27.1, 28.1</p><p></p></div>	
+<div class='layout'><p>Beijing, Treaty of, 1860 3.1, 3.2, 3.3</p><p></p></div>	
+<div class='layout'><p>Beitang Cathedral, Beijing</p><p></p></div>	
+<div class='layout'><p>Benoist, Michel</p><p></p></div>	
+<div class='layout'><p>‘bestowing silk' (ci-bo) 4.1, 9.1</p><p></p></div>	
+<div class='layout'><p>Bi (employed to kill Cixi) 20.1, 20.2, 20.3</p><p></p></div>	
+<div class='layout'><p>Binchun 6.1, 6.2, 6.3</p><p></p></div>	
+<div class='layout'><p>Bird, Isabella 8.1, 8.2, 22.1</p><p></p></div>	
+<div class='layout'><p>Bland, J. O. P.</p><p></p></div>	
+<div class='layout'><p>Board of Regents 3.1, 4.1, 4.2, 4.3, 4.4n, 4.5, 4.6, 4.7, 4.8, 9.1</p><p></p></div>	
+<div class='layout'><p>Boxers: Governor Bingheng's support for 18.1; birth of Boxers (Society of the Righteous and Harmonious Fists) (Yi-he-quan) 22.1; Cixi attempts to suppress 22.2; reaction to birth of by Western diplomats 22.3; Cixi endorses mobilisation of to defend Beijing from Western troops 22.4; Seymour Expedition 22.5; birth of Boxer War 22.6; Red Lanterners and 22.7; foreign troops enter Beijing to protect legations 22.8; ‘Hairies' (mao-zi) 22.9; ‘Secondary Hairies' 23.1, 23.2, 24.1; fighting with Western powers 23.3; China declares war on Western powers 22.10, 23.4; Boxers given legal status and organised under princes sympathetic to them 23.5; Boxers run wild 23.6; siege of Beijing legations 23.7; massacre of missionaries and Chinese Christians 23.8; Viceroys disobey Cixi's orders concerning 23.9, 23.10; Cixi sues for peace with Western powers 23.11; Cixi flees Beijing, 1900 23.12, 24.2, 25.1, 30.1; Western troops enter Beijing, 1900 24.3, 25.2; Boxer Protocol/Indemnity, 1901 25.3, 26.1, 26.2, 27.1, 30.2; Cixi returns to Beijing after 1901–2 26.3, 27.2, 28.1; Russia occupies parts of Manchuria during 30.3</p><p></p></div>	
+<div class='layout'><p>Brenan, Acting British Consul-General Byron</p><p></p></div>	
+<div class='layout'><p>Britain: First Opium War, 1839–42 and 1.1, 2.1, 2.2, 6.1; Second Opium War, 1856–60 and 2.3, 2.4, 3.1, 3.2, 3.3, 5.1; Hong Kong and 2.5, 2.6, 10.1, 18.1; Pekinese dogs brought to 2.7; Treaty of Beijing, 1860 and 3.4, 3.5, 3.6, 5.2, 5.3, 17.1; co-operative policy with China 5.4; Burlingame mission and 6.2; treaties with China over borders of Burma (1886) and Sikkim (1888) 12.1; Japan buys ironclad boats from 16.1, 16.2; Sino-Japanese war, 1894–5 and 16.3, 16.4; leases Weihaiwei, Kowloon Peninsula and New Territory 18.2; Cixi and its parliamentary system 19.1, 29.1, 29.2, 29.3; condones Italian attempts to gain Chinese territory, 1899 22.1; Boxers and 22.2, 22.3, 22.4, 23.1, 24.1, 25.1, 25.2; Wild Fox Kang and 20.1, 24.2; Boxer Protocol, 1901 and 25.3, 25.4; prohibition of opium trade and 28.1; treaty with China over Tibet, 1906 31.1</p><p></p></div>	
+<div class='layout'><p>British Legation, Beijing 1.1, 5.1, 11.1n, 21.1, 23.1n, 25.1n, 27.1, 30.1</p><p></p></div>	
+<div class='layout'><p>Brooks, Rev. S. M.</p><p></p></div>	
+<div class='layout'><p>Brooks, Congressman Preston</p><p></p></div>	
+<div class='layout'><p>Bruce, Frederick 2.1, 4.1, 5.1, 5.2</p><p></p></div>	
+<div class='layout'><p>Buck, Pearl 28.1, epi.1</p><p></p></div>	
+<div class='layout'><p>Buddhism 5.1, 8.1, 9.1, 14.1, 14.2, 15.1, 20.1, 23.1, 26.1, 27.1, 31.1</p><p></p></div>	
+<div class='layout'><p>Burlingame Treaty, 1868 6.1, 6.2n, 22.1n</p><p></p></div>	
+<div class='layout'><p>Burlingame, Anson</p><p></p></div>	
+<div class='layout'><p>Burma 12.1, 12.2</p><p></p></div>	
+<div class='layout'><p>cangue (heavy wooden yoke worn as punishment)</p><p></p></div>	
+<div class='layout'><p>Canton 2.1, 2.2, 2.3, 2.4, 2.5n, 2.6, 2.7, 2.8, 4.1, 5.1n, 6.1, 11.1, 12.1, 19.1, 19.2, 22.1, 23.1, 24.1</p><p></p></div>	
+<div class='layout'><p>Carl, Katharine 1.1, 9.1, 15.1, 15.2, 15.3, 21.1, 21.2n, 23.1n, 27.1, 28.1n, 28.2, 30.1</p><p></p></div>	
+<div class='layout'><p>Castiglione, Giuseppe</p><p></p></div>	
+<div class='layout'><p>Cen Chunxuan 30.1, 30.2, 30.3</p><p></p></div>	
+<div class='layout'><p>Censors (yu-shi) 5.1, 15.1, 16.1, 18.1, 19.1, 19.2, 20.1, 20.2, 21.1</p><p></p></div>	
+<div class='layout'><p>Chang Yinhuan, Sir: Russian seizure of Port Arthur, role in 18.1; knighthood 18.2, 20.1; receives medals from Emperor Guangxu 19.1; on Emperor Guangxu's change in favour of reform 19.2; Wild Fox Kang and 19.3, 19.4, 20.2, 20.3, 20.4; as Japanese agent 20.5, 20.6, 23.1; execution 20.7, 20.8, 24.1</p><p></p></div>	
+<div class='layout'><p>Chang Yintang</p><p></p></div>	
+<div class='layout'><p>Chen Guorui, Commander (‘Big Chief Chen') 8.1, 8.2</p><p></p></div>	
+<div class='layout'><p>Chen Lanbin</p><p></p></div>	
+<div class='layout'><p>Chiang Kai-Shek epi.1, epi.2</p><p></p></div>	
+<div class='layout'><p>Chiang Kai-shek, Madame 28.1, epi.1</p><p></p></div>	
+<div class='layout'><p>China under the Empress Dowager (Backhouse) 2.1, 2.2n</p><p></p></div>	
+<div class='layout'><p>China: after Cixi's death 31.1, epi.1; first ambassadors from 6.1; annual revenue 12.1, 25.1, 28.1; anti-Western feeling in 5.1, 8.1, 22.1, 23.1 see also Boxers; army and navy, modernisation of 5.2, 5.3, 11.1, 12.2, 12.3, 13.1, 14.1, 14.2, 15.1, 15.2, 16.1, 16.2, 16.3, 16.4, 16.5, 16.6, 17.1, 17.2, 19.1, 22.2, 22.3, 22.4, 28.2, epi.2; Boxers in see Boxers; civil service 5.4, 6.2; closed-door policy 2.1, 2.2, 5.5, 8.2; commerce made respectable in 28.3; conservative opposition to reform within 4.1, 6.3, 6.4, 6.5, 8.3, 10.1, 10.2, 11.2, 13.2, 16.7; Constitution Office 29.1; constitutional monarchy and elected parliament, steps towards 29.2, 30.1, 30.2; corruption in 1.1, 4.2, 5.6, 5.7, 5.8, 10.3, 12.4, 14.3, 16.8, 23.2, 25.2n, 25.3, 26.1, 29.3, 30.3; currency 2.3, 11.3, 13.3, 28.4; customs duties 2.4, 5.9, 5.10, 6.6, 11.4, 12.5, 16.9, 17.3, 18.1n, 25.4, 25.5n, 25.6, 27.1; debts 6.7, 7.1, 17.4, 18.2, 20.1, 25.7; droughts in 6.8, 11.5, 13.4, 22.5, 22.6, 22.7, 22.8, 23.3; economy/trade 1.2, 2.5, 2.6, 5.11, 5.12, 6.9, 6.10, 7.2, 8.4, 9.1, 11.6, 11.7, 11.8, 12.6n, 12.7, 13.5, 13.6, 15.3, 18.3, 18.4, 19.2, 24.1, 24.2, 28.5, 31.2, epi.3; educational reforms 5.13, 6.11, 6.12, 19.3, 25.8, 28.6, 28.7, 29.4, 29.5, 29.6, 29.7, epi.4; Electoral Regulation, 1908 29.8, 31.3; electricity introduced to 11.9, 12.8, 13.7, 13.8, 14.4, 18.5, 18.6, 28.8, epi.5; emperors see under individual emperor name; etiquette in 6.13, 6.14, 9.2, 13.9, 15.4, 18.7, 19.4, 27.2, 28.9; use of eunuchs in see eunuchs; exports 2.7, 5.14, 11.10, 19.5, 28.10, 28.11; famine in 1.3, 5.15, 11.11, 22.9; first movie made in 28.12; first national flag (Yellow Dragon) 11.12; foreign education as mandatory requirement for official posts 28.13; Foreign Office 5.16, 5.17, 5.18n, 5.19, 6.15, 6.16, 6.17, 8.5, 8.6, 11.13, 12.9, 13.10, 18.8, 18.9, 18.10, 19.6, 19.7, 20.2, 20.3, 21.1, 22.10, 22.11, 22.12, 22.13, 23.4, 28.14, 30.4; foreign powers scramble for pieces of empire 18.11, 22.14; Han Chinese begin to question and reject Manchu rule 28.15; Han Chinese required to abandon foot-binding 28.16, epi.6; ban on Han-Manchu intermarriage lifted 28.17, 30.5; imports 2.8, 2.9, 5.20, 5.21, 11.14, 11.15, 12.10, 12.11, 13.11, 13.12, 16.10, 25.9, 25.10, 28.18; industrialisation 5.22n, 5.23, 6.18, 6.19, 11.16, 11.17, 19.8; legal code 6.20, 7.3, 11.18, 22.15, 28.19, 28.20, 28.21, 30.6, 30.7; literacy in 1.4, 19.9, 29.9; literati in 1.5, 2.10, 4.3, 5.24, 8.7, 9.3, 11.19, 17.5, 20.4, 27.3, 29.10; under Mao epi.7; mining in 5.25, 5.26, 5.27, 5.28, 11.20, 12.12, 18.12; Ministry of Commerce 28.22; Ministry of Officials 1.6, 16.11; Ministry of Public Services 30.8; Ministry of Punishments 2.11, 20.5n, 30.9, 30.10, 30.11n; Ministry of Revenue 9.4, 14.5, 14.6, 16.12, 18.13, 18.14; Ministry of Rites 4.4, 16.13, 19.10, 19.11; missionaries to see missionaries; modernisation programmes 5.29, 6.21, 10.4, 11.21, 15.5, 19.12, 25.11, 26.2, 28.23 see also Cixi, Empress Dowager; natural disasters in 11.22, 12.13, 16.14; open door policy 2.12, 2.13, 5.30, 5.31, 5.32, 8.8, 12.14; opium smoking/trade and 2.14, 6.22, 9.5, 9.6n, 11.23, 13.13, 17.6, 18.15, 23.5, 28.24; policing 25.12, 29.11, 30.12; Political Affairs Office 26.3; poor treatment of Chinese abroad 22.16; population numbers 1.7, 2.15, 19.13, 25.13, 28.25, epi.8; Post Office 11.24; poverty in 7.4, 7.5, 11.25, 11.26, 11.27, 12.15, 12.16, 15.6, 15.7, 22.17, 25.14, epi.9; Preliminary Assembly set up, 1907 (Zi-zheng-yuan) 29.12; press, expansion of 28.26, 28.27, 29.13, 30.13; Provincial Assemblies 29.14; punishments in 1.8, 2.16, 4.5, 4.6, 5.33, 5.34, 6.23, 7.6, 12.17, 13.14, 16.15, 16.16, 20.6, 28.28, 30.14; railways introduced to 5.35, 5.36n, 5.37, 5.38, 11.28, 11.29, 11.30, 11.31, 12.18, 13.15, 15.8, 18.16, 18.17, 19.14, 19.15, 20.7, 22.18, 22.19, 25.15, 26.4, 28.29, 28.30, 29.15, 30.15, 31.4, epi.10; Reforms of 1898 19.16, 19.17, 19.18, 19.19, 20.8, 20.9, 20.10, 20.11, 20.12; relations with other nations see under individual nation name; becomes Republic 31.5; Republicanism in 24.3, 30.16, 31.6, 31.7; sanitation in 25.16; silver as currency of 1.9, 1.10, 2.17, 2.18, 3.1, 5.39, 5.40, 6.24, 9.7, 11.32, 11.33, 12.19, 15.9, 18.18, 19.20, 24.4, 26.5; state bank, founding of 18.19, 28.31; Taiping Rebellion see Taiping Rebellion; taxation 1.11, 17.7, 18.20, 25.17, 25.18n, 25.19, 29.16; telegraph/telephone 5.41, 5.42n, 5.43, 5.44, 11.34, 11.35, 12.20, 20.13, 22.20, 25.20, 31.8, epi.11; Tianjin anti-Christian riots, 1870 see Tianjin: anti-Christian riots, 1870; treaties with foreign nations see under individual treaty name; uprisings and mutinies in, 1911 31.9; vassal states 12.21, 12.22, 15.10, 16.17; wars and conflicts see under individual conflict or war name; women given more freedom in 28.32, 30.17</p><p></p></div>	
+<div class='layout'><p>Chinese Eastern Railway 18.1, 19.1, 25.1</p><p></p></div>	
+<div class='layout'><p>Ching, Prince 13.1, 14.1, 15.1, 15.2, 16.1, 16.2, 21.1, 22.1, 22.2, 23.1, 24.1, 25.1, 25.2, 27.1, 29.1, 31.1</p><p></p></div>	
+<div class='layout'><p>Chonghou, Imperial Commissioner 8.1, 8.2, 12.1, 12.2</p><p></p></div>	
+<div class='layout'><p>Chongqi, (father of Alute) 9.1, 9.2, 23.1, 24.1</p><p></p></div>	
+<div class='layout'><p>Chongyi, Censor 20.1, 21.1</p><p></p></div>	
+<div class='layout'><p>Chongqing</p><p></p></div>	
+<div class='layout'><p>Christianity: ban on missionaries 2.1, 2.2, 2.3; Taiping rebels claim to believe in 2.4, 5.1; Zhigang averse to 6.1; riots against missions, 1870 8.1, 22.1, 27.1; Boxers and 22.2, 22.3, 22.4, 23.1, 23.2, 25.1, 25.2</p><p></p></div>	
+<div class='layout'><p>Chun, Prince: marriage 2.1, 2.2, 2.3n, 4.1; education 4.2; Cixi's coup and 4.3, 4.4, 4.5, 8.1; privilege of not kneeling to Cixi in everyday meetings granted 6.1; Little An execution and 7.1, 7.2, 7.3, 10.1, 12.1, 12.2; demands Cixi expel all Westerners and close China's door 8.2; anti-Christian riots, 1870 and 8.3, 8.4; rebuilding of Old Summer Palace and 9.1; chooses burial spot for Emperor Tongzhi 9.2; nomination of son (Zaitian) as emperor, reaction to 10.2, 12.3, 13.1, 30.1; resignation from office 10.3; deaths of children 10.4; Cixi bestows favours on 10.5; becomes one of Cixi's keenest supporters 12.4, 12.5; Cixi involves in Xinjiang crisis 12.6; war with France turns into Cixi's ‘slave' 12.7; put in charge of Grand Council 12.8; reaction to imminent departure of Cixi in favour of Emperor Guangxu 13.2; death of 13.3, 15.1; modernisation of navy and 14.1, 15.2, 15.3; draws up the Statutes 15.4</p><p></p></div>	
+<div class='layout'><p>Church of England</p><p></p></div>	
+<div class='layout'><p>Ci'an see Zhen, Empress</p><p></p></div>	
+<div class='layout'><p>Cixi, Empress Dowager: selection as imperial consort 1.1, 1.2; names 1.3, 1.4n, 1.5, 1.6, 2.1, 4.1; family 1.7, 1.8, 1.9, 1.10, 2.2, 2.3, 8.1; education 1.11, 1.12; makes dresses/embroiders 1.13, 1.14; birth 1.15; childhood 1.16, 1.17; languages 1.18; semi-literate/writing 1.19, 5.1, 6.1; intelligence, intuitive 1.20, 4.2; self-confidence 1.21, 4.3; arbitrary punishment, attitude towards 1.22, 4.4; fresh air and unrestricted space, passionate about 1.23; corruption, attitude towards 1.24, 26.1; appearance 1.25; paintings of 1.26, 9.1, 27.1, 27.2, 28.1n; projection of authority 1.27, 5.2; enters harem 1.28; rank 1.29, 1.30, 1.31, 2.4; life in harem 1.32, 1.33, 2.5, 4.5, 4.6, 5.3, 6.2, 7.1; offers advice to Emperor Xianfeng 1.34; Empress Zhen and see Zhen, Empress; drawing/painting/calligraphy 1.35, 15.1, 15.2; opera, love of 1.36, 2.6, 13.1, 15.3, 15.4, 21.1; birth of son 1.37, 2.7, 2.8; flees Beijing during Second Opium War, 1860 2.9, 3.1, 3.2; role of during Second Opium War 2.10; childhood of son and 2.11; Old Summer Palace, rebuilding of see Old Summer Palace and Summer Palace; coup after death of Emperor Xianfeng, orchestrates 3.3, 4.7, 5.4, 7.2; becomes ‘Empress Dowager Cixi' 4.8; executions/killings, attitude towards 4.9, 5.5, 12.1, 16.1, 20.1, 20.2, 20.3, 23.1, 23.2, 23.3, 26.2, 28.2, 30.1, 30.2, 30.3n, epi.1; twenty-sixth birthday 4.10, 4.11; rules with Empress Zhen as Two Dowager Empresses 4.12, 5.6, 10.1; coronation of son and 4.13, 4.14; rule behind her son's throne 5.7; open foreign policy/pushes for amicable relations with West 5.8, 5.9, 8.2, 12.2, 12.3; yellow silk screen, conducts audiences from behind 5.10, 6.3, 6.4, 6.5, 8.3, 9.2, 10.2, 20.4, 27.3; Prince Gong and see Gong, Prince; role as main decision maker 5.11; encourages/tolerates criticisms 5.12, 5.13, 28.3, 29.1, 30.4; studies/takes lessons to improve her education 5.14; use of Western powers in defeating the Taiping Rebellion 5.15; quick to learn about the West and to grasp its ideas 5.16; promotion of Han personages 5.17; restores peace to China after Taiping Rebellion 5.18; recovery of Chinese economy under 5.19, 7.3, 28.4; expansion of foreign trade under 5.20, 11.1, 11.2; modernisation programmes 5.21, 6.6, 10.3, 11.3, 15.5, 19.1, 25.1, 26.3, 28.5; reaction to Western arrogance 5.22; industrialisation of China under 5.23n, 5.24, 6.7, 6.8, 11.4, 19.2; introduction of railway into China and 5.25, 11.5, 12.4, 13.2, 15.6, 18.1, 19.3, 26.4, 28.6; army and navy, modernisation of under 5.26, 11.6, 12.5, 12.6, 14.1, 14.2, 15.7, 16.2, 16.3, 19.4, 28.7; government of rejects some machine-age projects 5.27; ancestral tombs, attitude towards 5.28; Buddhism 5.29, 14.3, 20.5, 23.4, 26.5; conservative opponents to reforms of 6.9, 6.10, 6.11, 8.4, 10.4, 10.5, 11.7, 13.3, 16.4; educational reforms 6.12, 6.13, 19.5, 28.8; sends travellers overseas 6.14, 13.4; sends first ambassador abroad 6.15, 11.8; Grand Tutor Weng and see Weng, Grand Tutor; allows sending of teenagers to America for education 6.16, 19.6; Emperor Tongzhi (Cixi's son) takes over power from 6.17, 7.4, 7.5, 9.3; falls in love with Little An 7.6; eunuchs and 7.7, 9.4, 13.5, 14.4, 15.8, 15.9, 15.10, 20.6, 24.1, 30.5; dislike of Forbidden City 7.8; execution of Little An and 7.9, 8.5, 8.6, 12.7, 12.8; nervous breakdown 7.10, 9.5; Prince Chun and see Chun, Prince; Tianjin riots against Christian missions, 1870 and 8.7, 8.8; mother dies 8.9; Emperor Tongzhi's childhood and 9.6; Emperor Tongzhi's wedding and 9.7, 9.8; Emperor Tongzhi's rule and 9.9; Earl Li and see Li, Earl; death of son (Emperor Tongzhi) and 9.10, 10.6; deaths blamed upon 9.11, 9.12, 13.6, 20.7, 31.1; rules through adopted son 10.7; designation of monarch after death of Tongzhi/announcement of adoption of son for late husband 10.8; return to power after death of Emperor Tongzhi 10.9, 11.9; modernisation of Imperial Examinations and 11.10, 19.7, 20.8; efforts to end use of Chinese for slave-labour 11.11; threat of Japan and 11.12, 16.5, 18.2, 18.3, 18.4, 30.6; China's first national flag, role in 11.13; telegraph introduced under 11.14, 12.9; coal-mining begins under 11.15, 12.10; electricity introduced under 11.16; currency, birth of national 11.17, 13.7, 28.9; textile factories, rejects idea of 11.18; recapture of Xinjiang and 12.11; vassal states and 12.12, 12.13, 15.11, 16.6; nervous collapse, 1878 12.14; Sino-French War and 1884–5 12.15, 12.16n; fiftieth birthday 12.17; treaties with foreign powers concerning Chinese borders 12.18; announces retirement and cessation of power to adopted son, 1889 12.19; legacy of reign through adopted son 12.20; toleration of religious practice 12.21, 29.2; increase in China's annual revenue under 12.22, 28.10; shape of modern China and 12.23; Emperor Guangxu, relationship with see Guangxu, Emperor; Empress Zhen's death and 13.8; announces that she would ‘continue to act as Guardian for a few more years' 13.9; Emperor Guangxu wedding and 13.10; forced to retire in favour of Emperor Guangxu 13.11, 14.5; reduced influence under reign of Emperor Guangxu 13.12, 15.12, 15.13; building of Yi-he-yuan (the Gardens of Nurturing Harmony) and 14.6, 16.7 see also Summer Palace; self-delusion 14.7, 16.8; Statutes bar access to government reports 15.14, 16.9; formal move into Summer Palace 15.15; Lee Lianying and 12.24, 15.16; loneliness 15.17; daily routine 15.18; hair loss 15.19; dress 15.20, 15.21; make-up 15.22; morning toilette 15.23; meals 15.24; tea drinking 15.25; foot massage 15.26; manicure 15.27; k'ang and 15.28, 15.29, 27.4; bedside reading 15.30; health 15.31, 30.7, 31.2, 31.3, 31.4; plants, adoration of 15.32; orchard 15.33; gardens, passion for 15.34, 27.5, 27.6; birds and animals, love of 15.35; dogs, breeding/love of 15.36, 27.7; parlour games 15.37; Peking Opera expanded under 15.38; prejudices against women, detests 15.39; Sino-Japanese War, 1894–5 and 16.10, 16.11, 16.12, 16.13, 16.14, 17.1, 17.2, 20.9; sixtieth birthday celebrations 16.15, 16.16, 17.3; reputation plummets 16.17; seventieth birthday 16.18, 28.11, 28.12; acts to gain access to government reports 16.19; allowed access to government reports 16.20, 18.5; tackles Emperor Guangxu's favourite concubine 16.21; separates Emperor Guangxu from his friends and closes his study 16.22, 18.6; prevents policy-making privately between Emperor Guangxu and Grand Tutor Weng 16.23; Treaty of Shimonoseki, 1895 and 17.4, 17.5, 17.6, 18.7, 18.8, 20.10, 25.2; war and peace with Japan blamed on 17.7; returns to retirement after war with Japan 18.9; loyalty, inspires 18.10, 24.2; influence at court returns 18.11; Russo–Chinese Secret Treaty, 1896 and 18.12, 18.13, 18.14; state bank, attitude towards idea of 18.15, 28.13; concentrates on pursuing pleasure 18.16; sister dies 18.17; attempts to use tax from domestically grown opium for full restoration of Old Summer Palace 18.18; foreign powers scramble for Chinese territory and 18.19, 18.20; Emperor Guangxu actively seeks advice from 19.8; ‘Announcement of the Fundamental Policy of the State' and 19.9; cooperation with Emperor Guangxu in reforms 19.10; Beijing University founding and 19.11; importing of machines to process raw materials and turn them into manufactured goods for export, role in 19.12; Wild Fox Kang and 19.13, 19.14, 19.15, 20.11, 21.2, 24.3, 30.8; reaction to Emperor Guangxu's alliance with Wild Fox Kang 19.16, 19.17; plots to kill 20.12, 21.3, 30.9; Emperor Guangxu becomes Cixi's puppet after failed plot to kill her 20.13; punishments for those involved in plot to kill 20.14; covers up plot against her life 20.15; represented as a debauched despot 20.16; action against officials in the Kang case 20.17; accused of killing Reform movement 20.18; security around Emperor Guangxu, installs 20.19; detests her adopted son 21.4; false impression abroad of reactionary nature 21.5, 21.6; desperation to dethrone her adopted son 21.7; attempts to overcome bad overseas image with tea party for ladies of the diplomatic corps 21.8, 22.1; nomination of heir-apparent to Emperor Guangxu 21.9; legations take side of adopted son 22.2; Italian attempt to gain Chinese territory, 1899 and 22.3, 22.4, 	
+<div class='layout'><p>Cockburn, Henry 21.1, 30.1</p><p></p></div>	
+<div class='layout'><p>Confucius 1.1, 1.2, 4.1, 4.2n, 5.1, 5.2, 5.3, 6.1, 6.2, 6.3, 6.4, 9.1, 9.2, 9.3, 11.1, 13.1, 13.2, 13.3, 13.4, 13.5, 16.1n, 16.2, 19.1, 19.2, 19.3, 19.4, 28.1, 29.1</p><p></p></div>	
+<div class='layout'><p>Conger, Edward H.</p><p></p></div>	
+<div class='layout'><p>Conger, Sarah 21.1, 22.1, 23.1, 23.2, 25.1, 26.1, 27.1, 27.2, 27.3, 27.4, 27.5, 27.6, 28.1, 28.2, 28.3, 28.4, 30.1</p><p></p></div>	
+<div class='layout'><p>Constitution Office</p><p></p></div>	
+<div class='layout'><p>Cornell University</p><p></p></div>	
+<div class='layout'><p>Cuba</p><p></p></div>	
+<div class='layout'><p>Cui</p><p></p></div>	
+<div class='layout'><p>customs duties 2.1, 5.1, 5.2, 6.1, 11.1, 12.1, 16.1, 17.1, 18.1n, 25.1, 25.2n, 25.3, 27.1</p><p></p></div>	
+<div class='layout'><p>Dagu Forts 2.1, 2.2, 8.1, 12.1, 12.2, 22.1, 22.2, 23.1, 25.1</p><p></p></div>	
+<div class='layout'><p>Dalai Lama, thirteenth (Thubten Gyatso)</p><p></p></div>	
+<div class='layout'><p>Daoguang, Emperor 1.1, 1.2, 1.3, 2.1, 2.2, 2.3n, 6.1</p><p></p></div>	
+<div class='layout'><p>David, Armand</p><p></p></div>	
+<div class='layout'><p>death by a thousand cuts (ling-chi) 1.1, 2.1, 4.1, 4.2, 5.1, 5.2. 6.1, 7.1, 13.1, 28.1</p><p></p></div>	
+<div class='layout'><p>Denby, Charles 12.1, 12.2, 17.1, 18.1</p><p></p></div>	
+<div class='layout'><p>Deng Shichang</p><p></p></div>	
+<div class='layout'><p>Department of the Nobles</p><p></p></div>	
+<div class='layout'><p>Der Ling 15.1, 27.1, 30.1, 30.2n</p><p></p></div>	
+<div class='layout'><p>Dethève, Dr 13.1, 21.1</p><p></p></div>	
+<div class='layout'><p>Ding Baozhen 7.1, 7.2, 10.1</p><p></p></div>	
+<div class='layout'><p>Dingjun Mountain, The (film)</p><p></p></div>	
+<div class='layout'><p>Dong Fuxiang</p><p></p></div>	
+<div class='layout'><p>Duan, Prince 21.1, 22.1, 22.2, 22.3, 23.1, 23.2, 23.3, 25.1, 26.1</p><p></p></div>	
+<div class='layout'><p>Duanfang, Viceroy 28.1, 28.2, 31.1</p><p></p></div>	
+<div class='layout'><p>Dufferin, Lord</p><p></p></div>	
+<div class='layout'><p>Dunne, Captain Hart</p><p></p></div>	
+<div class='layout'><p>Edward VII, King</p><p></p></div>	
+<div class='layout'><p>Edwards, E. H.</p><p></p></div>	
+<div class='layout'><p>Elements of International Law (Wheaton)</p><p></p></div>	
+<div class='layout'><p>Electoral Regulation, 1908 29.1, 31.1</p><p></p></div>	
+<div class='layout'><p>Elgin, Lord 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 3.1, 3.2, 3.3, 25.1</p><p></p></div>	
+<div class='layout'><p>Enming</p><p></p></div>	
+<div class='layout'><p>eunuchs: royal concubines subsidise allowance by selling their embroidery through 1.1; presence in harem 1.2; Emperor's sex life and 1.3, 1.4; Cixi and 1.5, 1.6, 2.1, 4.1, 5.1, 5.2, 7.1, 14.1, 15.1, 15.2, 15.3, 15.4, 15.5, 15.6, 15.7, 15.8, 15.9, 15.10, 17.1, 20.1, 21.1, 28.1, 28.2, 31.1; Music Department and 1.7; opera and 1.8, 9.1; Little An's relationship with Cixi 7.2, 12.1; travel outside Forbidden City 7.3, 12.2; life of 7.4; castration 7.5, 28.3; punishments meted out to 7.6, 9.2, 12.3, 16.1, 20.2, 30.1; ‘sunset call' 9.3; Lee Lianying see Lee Lianying; Emperor Guangxu and 13.1, 13.2, 13.3, 13.4, 13.5, 20.3, 21.2, 31.2, 31.3; tips for 13.6, 16.2; observe that Cixi is ‘extremely thrifty' 14.2; Boxers and 23.1, 23.2, 23.3, 24.1, 24.2, 24.3; relaxation of laws for 28.4, 28.5</p><p></p></div>	
+<div class='layout'><p>Ever-victorious Army 5.1, 5.2, 5.3</p><p></p></div>	
+<div class='layout'><p>Favier, Pierre-Marie-Alphonse</p><p></p></div>	
+<div class='layout'><p>Fengxiu, Miss 9.1, 9.2</p><p></p></div>	
+<div class='layout'><p>Ferry, Jules 12.1, 12.2</p><p></p></div>	
+<div class='layout'><p>Fontanier, Henri 8.1, 8.2</p><p></p></div>	
+<div class='layout'><p>foot-binding 1.1, 15.1, 27.1, 27.2, 28.1, epi.1</p><p></p></div>	
+<div class='layout'><p>Forbidden City 1.1; selection of consorts and 1.2, 1.3; Gate of Divine Prowess 1.4; harem (hou-gong) 1.5, 1.6, 2.1, 4.1, 4.2; treasures melted down 1.7; Cixi's mother invited into to look after daughter in 2.2; funeral of Emperor Xianfeng and 4.3; coronation of Emperor Tongzhi in 4.4, 4.5; Hall of Supreme Harmony 4.6, 13.1; main part of out of bounds for women 4.7; officials travel into 5.1; Cixi's dislike of 7.1; eunuchs in 7.2, 7.3 see also eunuchs; operas staged in 7.4, 15.1; ban on music in 7.5, 9.1; shunning of Western goods in 8.1; Emperor Tongzhi sneaks out of to visit prostitutes 9.2, 9.3, 9.4; Emperor Tongzhi's wedding and 9.5, 9.6, 9.7; replica of within mausoleums 9.8; cold and impersonal 13.2; Emperor Guangxu first arrives at 13.3; Cixi moves out of into the Sea Palace 13.4; Gate of Supreme Harmony 13.5; fire in before Emperor Guangxu's wedding, 1889 13.6, 13.7, 14.1; flood waters lash at walls of 13.8; executions in 20.1, 23.1, 26.1, 30.1; doctor from French Legation enters to examine Emperor Guangxu 21.1; Boxers and 23.2, 23.3, 25.1, 25.2; Cixi's return to after invasion 26.2; Cixi hosts diplomatic corps in 27.1; Puyi expelled from, 1924 epi.1</p><p></p></div>	
+<div class='layout'><p>Foreign Office, Chinese 5.1, 5.2, 5.3n, 5.4, 6.1, 6.2, 6.3, 8.1, 8.2, 11.1, 12.1, 13.1, 18.1, 18.2, 18.3, 19.1, 19.2, 20.1, 20.2, 21.1, 22.1, 22.2, 22.3, 22.4, 23.1, 28.1, 30.1</p><p></p></div>	
+<div class='layout'><p>Fournier, Commandant 12.1, 12.2, 12.3</p><p></p></div>	
+<div class='layout'><p>France: Opium Wars and 2.1, 2.2, 2.3, 3.1, 3.2, 3.3, 3.4, 5.1, 5.2, 5.3; Chinese Treaty with, 1860 3.5, 17.1; Burlingame mission and 6.1; Zhigang in 6.2; Tianjin riot, 1870 and 8.1, 8.2, 8.3, 8.4; Chinese engineers sent to 11.1, 11.2; Sino-French War, 1884–5 12.1, 12.2n, 16.1, 16.2; treaties over borders of Vietnam 12.3; leases Guangzhouwan 18.1; Boxers and 22.1; Boxer Protocol, 1901 and 25.1</p><p></p></div>	
+<div class='layout'><p>Freeman-Mitford, Algernon 1.1, 5.1, 5.2n, 5.3, 5.4, 8.1, 8.2, 30.1</p><p></p></div>	
+<div class='layout'><p>Freycinet, Charles de</p><p></p></div>	
+<div class='layout'><p>Fujian province 11.1, 18.1</p><p></p></div>	
+<div class='layout'><p>Fukushima Yasumasa, Lieutenant-General</p><p></p></div>	
+<div class='layout'><p>Fuzhou 12.1, 12.2, 31.1</p><p></p></div>	
+<div class='layout'><p>George III, King 2.1, 2.2</p><p></p></div>	
+<div class='layout'><p>Germany: Chinese army cadets in 11.1; reaction to idea of China controlled by Japan 17.1; acquisition of Qingdao 18.1, 18.2, 19.1, 23.1; Prince Heinrich pays visit to Chinese court 19.2, 21.1; Emperor Guangxu's attitude towards 19.3, 19.4; snatches port of Shandong, 1897 22.1; Boxers and 22.2, 22.3, 22.4, 22.5n, 23.2, 23.3, 24.1, 25.1; Boxer Protocol, 1901 and 25.2, 30.1; offer of Entente Cordiale with China 30.2</p><p></p></div>	
+<div class='layout'><p>Gioja, Flavio n</p><p></p></div>	
+<div class='layout'><p>Giquel, Prosper 5.1, 12.1</p><p></p></div>	
+<div class='layout'><p>Gladstone, William</p><p></p></div>	
+<div class='layout'><p>God of Agriculture</p><p></p></div>	
+<div class='layout'><p>God of Fire</p><p></p></div>	
+<div class='layout'><p>God of Rain 22.1, 22.2, 22.3</p><p></p></div>	
+<div class='layout'><p>God of the River</p><p></p></div>	
+<div class='layout'><p>God of the Silkworm</p><p></p></div>	
+<div class='layout'><p>Goddess of Blisters 9.1, 9.2</p><p></p></div>	
+<div class='layout'><p>Gong, Prince: treaties with Britain, France and Russia, 1860 3.1, 3.2; appearance 3.3; Cixi's coup and 4.1, 4.2, 4.3, 4.4; heads Grand Council 5.1, 5.2, 11.1, 12.1; leads Foreign Office 5.3, 5.4; Taiping Rebellion and 5.5, 5.6; Hart and 5.7, 5.8, 5.9, 5.10; importance to Cixi's rule 6.1; reprimanded for arrogance 6.2; Tongwen College and 6.3, 6.4; Burlingame and 6.5; calls for Little An's execution 7.1; Tianjin riots, 1870 and 8.1, 8.2, 8.3; rebuilding of Old Summer Palace and 9.1, 9.2; illness of Emperor Tongzhi and 9.3; Cixi's designation of new emperor (Guangxu) and 10.1; Chun's resignation and 10.2; Sino-French War, 1884–5 and 12.2; health 12.3; Cixi dismisses 12.4, 12.5, 13.1; reinstated and made chief Grand Councillor 16.1; peace terms with Japan and 17.1, 18.1; moves to Summer Palace 18.2; German demand for territory and 18.3; death of 19.1</p><p></p></div>	
+<div class='layout'><p>Gordon, Charles (Chinese) 2.1, 5.1, 5.2n, 12.1</p><p></p></div>	
+<div class='layout'><p>Grand Adviser 4.1, 6.1</p><p></p></div>	
+<div class='layout'><p>Grand Council 1.1; Board of Regents and 4.1; Two Dowager Empresses and 4.2; Prince Gong as head of 5.1, 5.2, 11.1, 12.1, 12.2, 16.1, 16.2, 17.1; Cixi and 5.3, 5.4, 9.1, 9.2, 10.1, 12.3, 12.4, 15.1, 16.3, 16.4, 16.5, 16.6, 29.1, 30.1; Prince Chun as head of 12.5; Weng and 16.7, 16.8; Pearl affair and 16.9; Sino-Japanese war 1894–5 and 17.2, 17.3, 17.4, 17.5, 18.1, 18.2, 18.3; gifts to Councillors 19.1; role in decision-making process 1.2, 19.2, 29.2; plot to kill Cixi and 19.3, 20.1, 20.2, 20.3; Boxers and 22.1, 24.1; Ching as head of 29.3; lack of Han influence in 30.2; Japanese influence in curtailed 30.3; Cixi's will and 31.1</p><p></p></div>	
+<div class='layout'><p>Grand Princess (Emperor Xianfeng's daughter) 2.1, 2.2, 9.1</p><p></p></div>	
+<div class='layout'><p>Grant, General 2.1, 2.2, 3.1</p><p></p></div>	
+<div class='layout'><p>Grant, Ulysses S.</p><p></p></div>	
+<div class='layout'><p>Great Wall 1.1, 1.2, 1.3, 2.1, 3.1, 22.1</p><p></p></div>	
+<div class='layout'><p>Gros, Baron 2.1, 2.2</p><p></p></div>	
+<div class='layout'><p>Guangdong province</p><p></p></div>	
+<div class='layout'><p>Guangxi province 1.1, 12.1</p><p></p></div>	
+<div class='layout'><p>Guangxu, Emperor (Zaitian): designated monarch 10.1, 13.1; Cixi's relationship with 13.2; names for Cixi 13.3, 13.4; death of Empress Zhen and 13.5; childhood 13.6; education 13.7, 13.8, 16.1; Grand Tutor Weng and see Weng, Grand Tutor; Confucian ideals 13.9, 13.10, 13.11, 13.12, 13.13; timidity and physical weakness 13.14; accession to throne 13.15, 13.16; forced begging of Cixi not to retire, reaction to 13.17; health 13.18, 21.1; wedding 13.19; temper of 13.20; relationship with Cixi deteriorates 13.21, 13.22; wife and 13.23; sex life 13.24, 13.25; allows Cixi's reforms to lapse 13.26; frets about ‘hard life of the people' 13.27; learns English 13.28; audience with diplomatic corps 13.29; reduced influence of Cixi under reign of 15.1; shelves modernisation projects 15.2, 16.2, 16.3, 18.1; halts purchases for army and navy 16.4, 16.5; Sino-Japanese War 1894–5 and 16.6, 16.7, 16.8, 17.1, 18.2, 18.3, 20.1; Cixi tackles favourite concubine of 16.9; allows Cixi access to official papers 16.10; Cixi separates friends from 16.11, 18.4; Cixi closes study of 16.12, 18.5; becomes more submissive towards Cixi after Japanese war 18.6; state of inertia and cluelessness concerning reforms 18.7; biological mother dies 18.8; reaction to German attempt to seize Qingdao 18.9; Russian seizure of Port Arthur, reaction to 18.10; visit of Prince Heinrich of Germany and 19.1; actively seeks advice from Cixi/comes round to Cixi's ideas of reforms 19.2; ‘Announcement of the Fundamental Policy of the State' and 19.3; Wild Fox Kang and 19.4, 20.2, 20.3, 20.4, 20.5, 21.2, 21.3; latent bitterness towards Cixi 19.5; hatred of Russia 19.6; Russo–Chinese Secret Treaty, 1896 and 19.7, 19.8; dismissal of officials en masse 19.9, 20.6; appoints Kang's friends to office 19.10; breaks working arrangement with Cixi 19.11; plot to kill Cixi and 20.7, 20.8, 20.9, 21.4, 21.5; becomes Cixi's puppet after failed plot to kill her 20.10, 21.6; declining health 21.7, 21.8, 30.1, 31.1; French Legation doctor examines 21.9; Cixi's rule after failed plot to kill and 21.10; Temple of Heaven visits 21.11, 21.12; Ploughing Rite 21.13; no taste for luxury 21.14, 21.15n; nomination of heir-apparent and 21.16; foreign legations push for audience with 21.17; legations take side of 22.1; Italian attempts to gain Chinese territory and 22.2; Boxers and 22.3; flees Beijing 23.1, 24.1, 24.2, 24.3; killing of concubine Pearl and 23.2, 26.1; contrast between Cixi and 24.4; power shift between Cixi and 24.5, 27.1; conditions of captivity on return from exile 31.2; poisoning of 31.3; succession 31.4; will 31.5</p><p></p></div>	
+<div class='layout'><p>Guanyin, Goddess of Mercy 5.1, 28.1</p><p></p></div>	
+<div class='layout'><p>Guixiang, Duke 13.1, 13.2, 21.1, 21.2, 29.1</p><p></p></div>	
+<div class='layout'><p>Guo Songtao</p><p></p></div>	
+<div class='layout'><p>Han Chinese 1.1, 1.2n, 1.3, 1.4, 1.5, 5.1, 15.1, 15.2, 22.1, 24.1, 28.1, 29.1, 30.1</p><p></p></div>	
+<div class='layout'><p>Hart, Robert 13.1, 17.1; Inspector General of Customs 5.1, 5.2, 6.1, 6.2, 11.1, 12.1, 25.1, 25.2, 25.3n, 25.4, 25.5; memorandum on modernisation of China 5.3, 5.4n; Martin and 6.3; memorandum on expansion of foreign trade 11.2, 11.3; on Sino-French War, 1884–5 12.2; on Japan's withdrawal of troops from Korea 16.1; on natural disasters, 1890 16.2; Sino-Japanese War, 1894–5 and 16.3, 16.4, 16.5, 16.6, 17.2, 17.3, 18.1; opium production and 18.2; restoration of Old Summer Palace and 18.3; on Timothy Richard 20.1; on Cixi's receptions for diplomatic corps and families 21.1, 27.1, 27.2; on Italian attempts to gain Chinese territory 22.1; Boxers and 25.6; Boxer Protocol, 1901 and 25.7, 25.8, 25.9, 26.1; lives with Chinese girl 27.3; meetings with Cixi 28.1</p><p></p></div>	
+<div class='layout'><p>Headland, Mrs Isaac 2.1, 2.2, 8.1, 16.1, 28.1, 31.1</p><p></p></div>	
+<div class='layout'><p>Heinrich of Germany, Prince 19.1, 21.1</p><p></p></div>	
+<div class='layout'><p>Henderson, Mrs</p><p></p></div>	
+<div class='layout'><p>Hohenlohe, Prince</p><p></p></div>	
+<div class='layout'><p>Hong Kong 2.1, 2.2, 5.1, 6.1, 10.1, 18.1, 20.1, 24.1, 25.1</p><p></p></div>	
+<div class='layout'><p>Hong Xiuquan 2.1, 5.1, 5.2</p><p></p></div>	
+<div class='layout'><p>Hsingling</p><p></p></div>	
+<div class='layout'><p>Hsü Chi-she 6.1, 6.2n, 6.3</p><p></p></div>	
+<div class='layout'><p>Hugo, Victor</p><p></p></div>	
+<div class='layout'><p>Huixing, Madame</p><p></p></div>	
+<div class='layout'><p>Huizheng (father) 1.1, 1.2, 1.3</p><p></p></div>	
+<div class='layout'><p>Hung Jun</p><p></p></div>	
+<div class='layout'><p>Hunting Lodge, Chengde 2.1, 3.1, 3.2, 4.1, 4.2, 4.3, 14.1</p><p></p></div>	
+<div class='layout'><p>Ignatieff, Michael</p><p></p></div>	
+<div class='layout'><p>Ignatieff, Nicholas</p><p></p></div>	
+<div class='layout'><p>Ili, Xinjiang province 12.1, 12.2n, 18.1</p><p></p></div>	
+<div class='layout'><p>Imperial Apology, 1852</p><p></p></div>	
+<div class='layout'><p>Imperial Examinations 1.1, 4.1, 9.1, 11.1, 11.2, 11.3, 17.1, 19.1, 20.1</p><p></p></div>	
+<div class='layout'><p>Imperial Observatory 2.1, 8.1</p><p></p></div>	
+<div class='layout'><p>Imperial Princess (Cixi's adopted daughter) 23.1, 27.1, 28.1</p><p></p></div>	
+<div class='layout'><p>Imperial Telegraph Administration</p><p></p></div>	
+<div class='layout'><p>Inner Mongolia</p><p></p></div>	
+<div class='layout'><p>Inukai Tsuyoshi</p><p></p></div>	
+<div class='layout'><p>Italy 22.1, 22.2n, 22.3, 22.4, 22.5, 22.6, 25.1n</p><p></p></div>	
+<div class='layout'><p>Itō Hirobumi, Count 16.1, 16.2, 17.1, 20.1, 20.2, 20.3, 20.4, 20.5, 20.6, 21.1, 23.1, 30.1</p><p></p></div>	
+<div class='layout'><p>Jade, Imperial Concubine 13.1, 16.1, 16.2, 18.1, 23.1</p><p></p></div>	
+<div class='layout'><p>Japan 11.1, 18.1; Cixi's responses to threat of 11.2, 16.1, 18.2, 18.3, 18.4, 30.1; attempts to take Taiwan 11.3, 11.4, 12.1; Liuqiu (Ryukyu) Islands annexed by 12.2; war with China, 1894–5 14.1, 15.1, 16.2, 18.5, 19.1, 20.1, 20.2, 20.3, 22.1, 23.1, 24.1, 26.1; Treaty of Shimonoseki, 1895 and 17.1, 18.6, 18.7, 20.4, 20.5, 22.2; Russo-Chinese Secret Treaty, 1896 and 18.8, 18.9, 19.2; mood among educated Chinese softens towards 20.6; Wild Fox Kang and 20.7, 20.8, 20.9, 20.10, 20.11, 20.12, 20.13, 20.14, 21.1, 24.2, 24.3, 30.2, 30.3, 30.4; plots to kill Cixi and 20.15, 20.16, 20.17, 20.18, 20.19, 20.20, 20.21, 30.5, 30.6; Cixi sends officials to in ruse designed to neutralise 21.2; Boxers and 22.3, 23.2, 24.4; Boxer Protocol, 1901 and 25.1; Manchuria tensions with Russia 27.1; Chinese students in 28.1; Russo-Japanese War, 1904–5 30.7; all but annexes Korea, 1907 30.8; Emperor Puyi and epi.1; invades China epi.2; Second World War and epi.3</p><p></p></div>	
+<div class='layout'><p>Jellicoe, Captain</p><p></p></div>	
+<div class='layout'><p>Jenks, Jeremiah</p><p></p></div>	
+<div class='layout'><p>Jesuits 2.1, 2.2, 2.3, 8.1</p><p></p></div>	
+<div class='layout'><p>Jiao</p><p></p></div>	
+<div class='layout'><p>Jiaozhou Bay</p><p></p></div>	
+<div class='layout'><p>Johnson, President Andrew</p><p></p></div>	
+<div class='layout'><p>Judicious Punishment Department</p><p></p></div>	
+<div class='layout'><p>Junglu 4.1, 10.1, 10.2, 19.1, 20.1, 20.2, 21.1, 22.1, 22.2, 22.3, 23.1, 23.2, 24.1, 30.1, 30.2n</p><p></p></div>	
+<div class='layout'><p>Kaifeng 26.1, 26.2</p><p></p></div>	
+<div class='layout'><p>Kaiping 11.1, 11.2</p><p></p></div>	
+<div class='layout'><p>Kang, Guangren 19.1, 20.1</p><p></p></div>	
+<div class='layout'><p>Kang Youwei see Wild Fox Kang</p><p></p></div>	
+<div class='layout'><p>Kangxi, Emperor 2.1, 2.2, 4.1, 4.2, 7.1, 9.1, 9.2, 21.1</p><p></p></div>	
+<div class='layout'><p>kao-niu (captives bound and cuffed in manner of)</p><p></p></div>	
+<div class='layout'><p>Kawashima Naniwa</p><p></p></div>	
+<div class='layout'><p>Ketteler, Baron von 22.1, 22.2n, 30.1</p><p></p></div>	
+<div class='layout'><p>Keyl, Friedrich</p><p></p></div>	
+<div class='layout'><p>Kinder, Claude W.</p><p></p></div>	
+<div class='layout'><p>Korea 12.1, 15.1, 16.1, 16.2n, 16.3, 16.4, 30.1, 30.2, 30.3</p><p></p></div>	
+<div class='layout'><p>Kotaro Munakata</p><p></p></div>	
+<div class='layout'><p>Kou Liancai n</p><p></p></div>	
+<div class='layout'><p>Kow-shing (ship)</p><p></p></div>	
+<div class='layout'><p>Kowloon Peninsula</p><p></p></div>	
+<div class='layout'><p>kowtow 1.1, 6.1, 6.2, 9.1, 10.1, 13.1, 24.1, 30.1</p><p></p></div>	
+<div class='layout'><p>Lang Son</p><p></p></div>	
+<div class='layout'><p>Laos</p><p></p></div>	
+<div class='layout'><p>Lee Lianying 12.1, 15.1, 15.2, 24.1, 24.2, 28.1, 28.2, 30.1n, 31.1, 31.2 legations, Beijing: Emperor Xianfeng and 3.1, 5.1; anti-Christian riots, 1870 and 8.1; wedding of Emperor Tongzhi and 9.1; apply for audience with Emperor Tongzhi with exemption from kowtow 9.2; French Legation doctor examines Emperor Guangxu 21.1; sympathy with Emperor Guangxu 21.2, 21.3, 22.1; Cixi attempts to charm 21.4, 27.1, 30.2; Boxers and 22.2, 22.3, 22.4, 22.5, 22.6, 22.7, 23.1, 23.2n, 25.1, 27.2; siege of Legation Quarter, 22.8, 23.3, 23.4n, 25.2n see also under individual nation name</p><p></p></div>	
+<div class='layout'><p>Li Bai</p><p></p></div>	
+<div class='layout'><p>Li Bingheng, Governor 18.1, 18.2, 18.3, 23.1</p><p></p></div>	
+<div class='layout'><p>Li, Earl (Li Hongzhang): Taiping Rebellion and 5.1, 5.2, 5.3; promotion of Han personages and 5.4; opposes modernisation projects 5.5; Westerners high regard for 5.6; backs sending teenagers to America for education 6.1; Tianjin riot, 1870 and 8.1; Viceroy of Zhili 8.2, 23.1, 26.1; Cixi consults on issue of envoys kowtow 9.1; Cixi discusses stragety for modernisation with 11.1; slave-labour trade and 11.2; purchase of ironclad ships, role in 11.3; argues for introduction of railway 11.4; asks for permission to build textile factories 11.5; proposes letting Xinjiang go 12.1; Sino-French War, 1884, negotiator during 12.2, 12.3, 12.4; reaction to imminent departure of Cixi in favour of Emperor Guangxu 13.1, 13.2; rule of Emperor Guangxu and 13.3, 13.4, 13.5, 15.1, 15.2, 15.3; Summer Palace and 14.1; Sino-Japanese War, 1894–5 and 16.1, 16.2, 16.3, 16.4, 16.5, 16.6, 16.7, 16.8; Treaty of Shimonoseki, 1895 and 17.1, 17.2, 17.3, 17.4, 18.1, 18.2; Russo–Chinese Secret Treaty, 1896, negotiates 18.3, 18.4; sacked and fined for ‘trespassing into a royal estate' 18.5; end of political partnership with Cixi 18.6; German seizure of Qingdao and 18.7; Russian seizure of Port Arthur, role in 18.8; reaction on hearing of plans to employ Itō as adviser 20.1; Timothy Richard and 20.2; opposition to removal of Emperor Guangxu 21.1; Boxers and 22.1, 22.2, 23.2, 23.3; negotiates Boxer Protocol, 1901 24.1, 24.2, 25.1, 25.2, 26.2; loses composure in presence of Cixi 24.3; death of 26.3; General Yuan steps into shoes of 28.1; never a member of Grand Council 30.1</p><p></p></div>	
+<div class='layout'><p>Liang Qichao 19.1, 19.2, 19.3, 20.1, 20.2, 28.1, 29.1, 30.1, 30.2, 30.3</p><p></p></div>	
+<div class='layout'><p>Liaodong Peninsula 16.1, 17.1, 17.2, 18.1, 18.2</p><p></p></div>	
+<div class='layout'><p>Lin Shaonian, Grand Councillor</p><p></p></div>	
+<div class='layout'><p>Lin Zexu 2.1, 2.2</p><p></p></div>	
+<div class='layout'><p>Lincoln, Abraham</p><p></p></div>	
+<div class='layout'><p>Lishan, Lord Chamberlain</p><p></p></div>	
+<div class='layout'><p>Little An (An Dehai) 7.1, 8.1, 8.2, 9.1, 10.1, 10.2, 10.3, 12.1, 12.2</p><p></p></div>	
+<div class='layout'><p>Liu Bei</p><p></p></div>	
+<div class='layout'><p>Liu Kunyi, Viceroy 24.1, 24.2</p><p></p></div>	
+<div class='layout'><p>Liuqiu (Ryukyu) Islands 12.1, 12.2, 16.1</p><p></p></div>	
+<div class='layout'><p>Longyu, Empress 13.1, 13.2, 15.1, 21.1, 23.1, 31.1, 31.2</p><p></p></div>	
+<div class='layout'><p>Lu</p><p></p></div>	
+<div class='layout'><p>Luttrell, Lieutenant Fownes</p><p></p></div>	
+<div class='layout'><p>Ma Xinyi, Viceroy 8.1, 30.1</p><p></p></div>	
+<div class='layout'><p>Macartney, Lord 2.1, 2.2n, 2.3, 2.4, 2.5, 2.6, 9.1, 19.1</p><p></p></div>	
+<div class='layout'><p>MacDonald, Lady 21.1, 21.2</p><p></p></div>	
+<div class='layout'><p>MacDonald, Sir Claude 20.1, 20.2, 21.1, 21.2, 21.3, 22.1, 22.2, 22.3, 24.1</p><p></p></div>	
+<div class='layout'><p>Manchu people: history of 1.1, 1.2n; hairstyle 1.3, 15.1; foot-binding and 1.4, 15.2; language 1.5, 2.1, 2.2, 4.1, 4.2, 6.1, 9.1, 13.1, 13.2, 16.1; emperor's concubines as solely 1.6, 1.7; dress 1.8, 15.3, 27.1, 27.2, 27.3; milk drinking 1.9, 15.4; emperor's wet-nurse as 2.3; posture of aristocratic 3.1; dancing 9.2; tea-drinking 15.5; nails 15.6; Inner City and 22.1; Grand Council dominated by 22.2; cuisine 24.1; Han-Manchu intermarriage 28.1; Han begin to question and reject rule of 28.2, 30.1, 30.2; reforms affect power of 30.3, 30.4; Cixi worries over fate of after her death 31.1, epi.1</p><p></p></div>	
+<div class='layout'><p>Manchukuo 30.1, epi.1</p><p></p></div>	
+<div class='layout'><p>Manchuria 1.1, 1.2n, 16.1, 16.2, 16.3, 16.4, 17.1, 18.1, 18.2, 25.1, 27.1, 27.2, 30.1n, 30.2, 30.3, 30.4, 30.5, 30.6, epi.1</p><p></p></div>	
+<div class='layout'><p>Mao Zedong</p><p></p></div>	
+<div class='layout'><p>Martin, W. A. P. 6.1, 6.2, 19.1, 25.1, 29.1</p><p></p></div>	
+<div class='layout'><p>Maugham, W. Somerset</p><p></p></div>	
+<div class='layout'><p>Mausoleum, Eastern 9.1, 9.2, 15.1, 25.1, 26.1, 27.1, 31.1</p><p></p></div>	
+<div class='layout'><p>Mausoleum, Western 25.1, 27.1</p><p></p></div>	
+<div class='layout'><p>Meiji, Emperor of Japan 16.1, 16.2</p><p></p></div>	
+<div class='layout'><p>Miao, Lady 15.1, 15.2, 15.3, 16.1</p><p></p></div>	
+<div class='layout'><p>Michel, Sir John</p><p></p></div>	
+<div class='layout'><p>Ming dynasty 1.1, 11.1</p><p></p></div>	
+<div class='layout'><p>Ministry of Commerce</p><p></p></div>	
+<div class='layout'><p>Ministry of Finances</p><p></p></div>	
+<div class='layout'><p>Ministry of Officials 1.1, 16.1</p><p></p></div>	
+<div class='layout'><p>Ministry of Public Services</p><p></p></div>	
+<div class='layout'><p>Ministry of Punishments 2.1, 20.1n, 30.1, 30.2, 30.3n</p><p></p></div>	
+<div class='layout'><p>Ministry of Revenue 9.1, 14.1, 14.2, 16.1, 18.1, 18.2</p><p></p></div>	
+<div class='layout'><p>Ministry of Rites 4.1, 16.1, 19.1, 19.2</p><p></p></div>	
+<div class='layout'><p>missionaries, Western 2.1, 2.2n, 5.1, 6.1, 6.2, 9.1, 11.1, 15.1, 19.1, 20.1, 25.1, 27.1, 28.1, 29.1, 30.1; mapping of China 2.3; Opium Wars force China to accept 2.4, 2.5; anti-Christian riot, Tianjin, 1870 and 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 12.1; freedom of during Cixi's rule 12.2, 15.2; German attempt to seize Qingdao and 18.1; Boxers and 22.1, 22.2, 22.3, 22.4, 23.1, 23.2, 25.2, 25.3; advocate ban on opium trade 28.2</p><p></p></div>	
+<div class='layout'><p>Mongolia 1.1, 2.1, 2.2, 2.3, 6.1, 6.2, 7.1, 9.1, 9.2, 13.1, 29.1, 31.1, 31.2</p><p></p></div>	
+<div class='layout'><p>Monkey King, The (play) 15.1, 22.1</p><p></p></div>	
+<div class='layout'><p>Montauban, General de 2.1, 2.2</p><p></p></div>	
+<div class='layout'><p>Moon Festival, 1896</p><p></p></div>	
+<div class='layout'><p>Morse, H. B. 12.1, 19.1, 28.1</p><p></p></div>	
+<div class='layout'><p>Music Department, Chinese court's 1.1, 15.1, 15.2, 28.1</p><p></p></div>	
+<div class='layout'><p>Muslim army 22.1, 22.2, 23.1</p><p></p></div>	
+<div class='layout'><p>Nakanishi Shigetaro</p><p></p></div>	
+<div class='layout'><p>Nanjing 1.1, 2.1, 2.2, 2.3, 5.1, 5.2, 5.3, 8.1, 23.1, 24.1, 31.1; Treaty of, 1842 2.4, 2.5, 2.6</p><p></p></div>	
+<div class='layout'><p>Napoleon, Emperor 18.1, 27.1</p><p></p></div>	
+<div class='layout'><p>Napoleon III, Emperor 2.1, 6.1</p><p></p></div>	
+<div class='layout'><p>Nepal</p><p></p></div>	
+<div class='layout'><p>New Territory</p><p></p></div>	
+<div class='layout'><p>New York Times 18.1, 20.1, 27.1, 30.1, 30.2, 30.3</p><p></p></div>	
+<div class='layout'><p>Nicholas I, Tsar</p><p></p></div>	
+<div class='layout'><p>Nicholas II, Tsar 18.1, 27.1</p><p></p></div>	
+<div class='layout'><p>Nie</p><p></p></div>	
+<div class='layout'><p>North China Herald 5.1, 5.2, 6.1, 20.1, 30.1</p><p></p></div>	
+<div class='layout'><p>Northern Fleet 12.1, 16.1, 17.1, 18.1, 18.2</p><p></p></div>	
+<div class='layout'><p>Old Summer Palace 1.1, 2.1; burning of during Second Opium War, 1860 2.2, 2.3, 3.1, 4.1, 6.1, 8.1, 22.1; Cixi rebuilds part of 9.1, 14.1, 14.2, 15.1, 15.2, 20.1; ruins of 18.1, 22.2, 25.1; Cixi regrets inability to fully restore 18.2, 23.1; Cixi plans to fully restore 18.3, 18.4; Boxers and 25.2; Qing-yi-yuan (the Garden of Clear Ripples) 14.3, 14.4; Kunming Lake 14.5, 14.6, 14.7, 18.5, 30.1; Villa of the Jade Balustrade 18.6, 20.2</p><p></p></div>	
+<div class='layout'><p>opium smoking/trade 2.1, 6.1, 9.1, 9.2n, 11.1, 13.1, 17.1, 18.1, 23.1, 28.1</p><p></p></div>	
+<div class='layout'><p>Opium Wars: First, 1839–42 1.1, 2.1, 2.2, 6.1; Second, 1856–60 2.3, 3.1, 3.2, 3.3</p><p></p></div>	
+<div class='layout'><p>Palmerston, Lord 2.1, 2.2n, 5.1</p><p></p></div>	
+<div class='layout'><p>Parkes, Harry</p><p></p></div>	
+<div class='layout'><p>Paten tre, Jules</p><p></p></div>	
+<div class='layout'><p>Pearl, Imperial Concubine 13.1, 13.2, 16.1, 16.2, 18.1, 18.2, 20.1, 23.1, 26.1</p><p></p></div>	
+<div class='layout'><p>Peking Gazette 22.1, 22.2</p><p></p></div>	
+<div class='layout'><p>Peking Opera 15.1, 21.1, 22.1, 28.1, 28.2</p><p></p></div>	
+<div class='layout'><p>Pekinese 2.1, 15.1, 27.1, 27.2</p><p></p></div>	
+<div class='layout'><p>Peru</p><p></p></div>	
+<div class='layout'><p>Pescadores</p><p></p></div>	
+<div class='layout'><p>Pierson, Louisa 27.1, 28.1, 28.2, 30.1, 31.1</p><p></p></div>	
+<div class='layout'><p>Poland</p><p></p></div>	
+<div class='layout'><p>Port Arthur 12.1, 16.1, 17.1, 18.1</p><p></p></div>	
+<div class='layout'><p>Porter, General Horace</p><p></p></div>	
+<div class='layout'><p>Post Office, Chinese</p><p></p></div>	
+<div class='layout'><p>Potala Palace, Lhasa</p><p></p></div>	
+<div class='layout'><p>Praetorian Guard 4.1, 8.1, 10.1, 11.1, 13.1, 15.1, 20.1, 21.1, 23.1, 24.1</p><p></p></div>	
+<div class='layout'><p>Prettier Than Golden Flower 11.1, 25.1</p><p></p></div>	
+<div class='layout'><p>Protestant Church in China</p><p></p></div>	
+<div class='layout'><p>Pujun, heir-apparent 21.1, 26.1</p><p></p></div>	
+<div class='layout'><p>Puyi, Emperor 30.1, 30.2n, 31.1, 31.2, epi.1</p><p></p></div>	
+<div class='layout'><p>Qianlong the Magnificent, Emperor 2.1, 2.2, 2.3n, 2.4, 2.5, 2.6, 5.1, 7.1, 9.1, 12.1, 14.1, 16.1, 19.1</p><p></p></div>	
+<div class='layout'><p>Qianmen Gate 22.1, 26.1, 28.1</p><p></p></div>	
+<div class='layout'><p>Qing dynasty: birth of 1.1, 1.2; sexual activities of 1.3; royal consorts in 1.4; blessed by good weather 2.1; missionaries effect upon 2.2; biggest loss of territory 3.1; emperors write in crimson ink 4.1; no precedent of dowager empresses who ran state 4.2; Grand Council and see Grand Council; Taiping Rebellion and 5.1; punishments 5.2, 12.1, 16.1; legal procedure 7.1, 8.1, 12.2, 20.1, 28.1; eunuchs and 8.2, 15.1, 20.2n; assassinations and 8.3; education of emperors 9.1; ages at which emperors assume power 9.2, mausoleums 9.3, 10.1, 25.1, epi.1; Cixi's reign as most tolerant in history of 12.3; threat of Japan to 17.1; policy decision-making in 19.1; alternatives to offered 19.2; Temple of Heaven and 21.1; Republicanism and 24.1; Cixi prays to ancestors of 26.1; Cixi's constitution and 29.1, 29.2; Tibet and 31.1, 31.2, 31.3; end of 31.4, 31.5</p><p></p></div>	
+<div class='layout'><p>Qing Kuan</p><p></p></div>	
+<div class='layout'><p>Qingdao 18.1, 18.2, 19.1, 20.1, 23.1</p><p></p></div>	
+<div class='layout'><p>Qiu Jin, Miss</p><p></p></div>	
+<div class='layout'><p>Qiying 2.1, 2.2</p><p></p></div>	
+<div class='layout'><p>Raggi, Giuseppe Salvago</p><p></p></div>	
+<div class='layout'><p>Red Lanterners</p><p></p></div>	
+<div class='layout'><p>Reforms of 1898 19.1, 19.2, 19.3, 19.4, 20.1, 20.2, 20.3, 20.4, 20.5</p><p></p></div>	
+<div class='layout'><p>Regulation for Women's Education, 1907</p><p></p></div>	
+<div class='layout'><p>Ren Jingfeng</p><p></p></div>	
+<div class='layout'><p>Republicanism 24.1, 30.1, 31.1, 31.2, 31.3n</p><p></p></div>	
+<div class='layout'><p>Revolutionary Army, The (Zou Rong)</p><p></p></div>	
+<div class='layout'><p>Richard, Timothy 11.1, 20.1</p><p></p></div>	
+<div class='layout'><p>Rongling 27.1, 31.1</p><p></p></div>	
+<div class='layout'><p>Roosevelt, Alice</p><p></p></div>	
+<div class='layout'><p>Roosevelt, Theodore 27.1, 28.1</p><p></p></div>	
+<div class='layout'><p>Royal City, Beijing 1.1, 7.1, 9.1, 22.1, 25.1, 25.2</p><p></p></div>	
+<div class='layout'><p>Royal Navy 2.1, 22.1</p><p></p></div>	
+<div class='layout'><p>Russia: defence of Moscow, 1812 2.1; treaty with China after Second Opium War, 1860 3.1, 6.1; Burlingame in 6.2; occupation of Ili 12.1, 12.2n, 18.1; treaty over Chinese borders, 1881 12.3; Sino-Japanese War, 1894–5 and 16.1; Russo-Chinese Secret Treaty, 1896 18.2, 18.3, 18.4, 19.1, 19.2, 30.1n; attempt to take Port Arthur, 1898 18.5; Emperor Guangxu's hatred of 19.3; Sir Yinhuan takes bribes from 20.1, 20.2n; reaction to Cixi's dispatch of officials to Japan 21.1; Boxers and 22.1, 23.1, 30.2; Boxer Protocol, 1901 and 25.1; Manchuria tensions with Japanese 27.1; Russo-Japanese War, 1904–5 30.3</p><p></p></div>	
+<div class='layout'><p>Salisbury, Lord 22.1, 22.2, 22.3n, 24.1, 24.2</p><p></p></div>	
+<div class='layout'><p>san-gui-jiu-kou (kneeling three times to the emperor and touching the ground with the forehead nine times) 2.1, 2.2n</p><p></p></div>	
+<div class='layout'><p>Sanmen Bay</p><p></p></div>	
+<div class='layout'><p>Satow, Sir Ernest</p><p></p></div>	
+<div class='layout'><p>School for Aristocratic Women</p><p></p></div>	
+<div class='layout'><p>Sea Palace, Beijing 9.1, 11.1, 11.2, 13.1, 13.2, 14.1, 15.1, 15.2, 15.3, 15.4, 16.1, 20.1, 20.2, 21.1, 21.2, 25.1, 30.1, 31.1</p><p></p></div>	
+<div class='layout'><p>Second World War 30.1, epi.1</p><p></p></div>	
+<div class='layout'><p>Seymour Expedition</p><p></p></div>	
+<div class='layout'><p>Seymour, Admiral Edward</p><p></p></div>	
+<div class='layout'><p>Shandong province 7.1, 22.1, 22.2, 22.3, 22.4, 23.1, 25.1</p><p></p></div>	
+<div class='layout'><p>Shanghai 1.1, 2.1, 2.2, 2.3, 2.4, 5.1, 5.2, 7.1, 11.1, 12.1, 13.1, 16.1, 19.1, 19.2, 20.1, 20.2, 22.1, 22.2, 23.1, 24.1, 24.2, 24.3, 25.1, 27.1, 28.1, 28.2, 30.1</p><p></p></div>	
+<div class='layout'><p>Shen Jiaben</p><p></p></div>	
+<div class='layout'><p>Shen Jin 24.1, 30.1, 30.2n, 30.3</p><p></p></div>	
+<div class='layout'><p>Sheng Xuanhuai 11.1, 18.1</p><p></p></div>	
+<div class='layout'><p>Shi Nianzu</p><p></p></div>	
+<div class='layout'><p>Shi-bao</p><p></p></div>	
+<div class='layout'><p>Shimonoseki, Treaty of, 1895 17.1, 18.1, 20.1, 25.1</p><p></p></div>	
+<div class='layout'><p>Shore, Henry Noel</p><p></p></div>	
+<div class='layout'><p>Shun, Empror 6.1, 13.1</p><p></p></div>	
+<div class='layout'><p>Shunzhi, Emperor</p><p></p></div>	
+<div class='layout'><p>Si Gege</p><p></p></div>	
+<div class='layout'><p>Sichuan province</p><p></p></div>	
+<div class='layout'><p>Sikkim</p><p></p></div>	
+<div class='layout'><p>Simpson, William</p><p></p></div>	
+<div class='layout'><p>Sino-French War, 1884–5 12.1, 12.2n, 16.1, 16.2</p><p></p></div>	
+<div class='layout'><p>Sino-Japanese War, 1894–5 14.1, 15.1, 16.1, 18.1, 19.1, 20.1, 20.2, 20.3, 22.1, 23.1, 24.1, 26.1 see also Shimonoseki, Treaty of, 1895</p><p></p></div>	
+<div class='layout'><p>Skettett, Miss</p><p></p></div>	
+<div class='layout'><p>smallpox 3.1, 9.1, 9.2, 9.3</p><p></p></div>	
+<div class='layout'><p>Smith, Rev. Arthur H. 22.1, 22.2, 23.1</p><p></p></div>	
+<div class='layout'><p>Song Qingling</p><p></p></div>	
+<div class='layout'><p>St Louis Exposition, 1904 27.1, 27.2</p><p></p></div>	
+<div class='layout'><p>Stalin, Joseph</p><p></p></div>	
+<div class='layout'><p>Statutes, the 15.1, 16.1</p><p></p></div>	
+<div class='layout'><p>Su, Prince</p><p></p></div>	
+<div class='layout'><p>Sugiyama Akira</p><p></p></div>	
+<div class='layout'><p>Summer Palace (Yi-he-Yuan) (the Gardens of Nurturing Harmony), Beijing: Cixi's building of 14.1, 17.1, 18.1, 18.2, 18.3, 18.4, 20.1, 23.1; Qing-yi-yuan (the Garden of Clear Ripples), Cixi's rebuilding of 14.2, 14.3; Kunming Lake 14.4, 14.5, 14.6, 18.5, 30.1; Villa of the Jade Balustrade 18.6, 20.2; Cixi moves into, 1891 15.1, 16.1; as source of endless pleasure to Cixi 15.2; mosquitoes in 15.3; Cixi's birds and animals in 15.4; Cixi watches religious festivals from 15.5; theatre in 15.6; Cixi cut off from government in 16.2; Prince Gong in 18.7; Grand Council in 18.8; Earl Li in 18.9; Moon Festival, 1896 18.10; Wild Fox Kang and 19.1, 19.2, 20.3, 20.4, 20.5, 20.6, 20.7; Boxers and 25.1; Cixi's travel between city and 30.2; Forever Peace (Yong-he) 30.3</p><p></p></div>	
+<div class='layout'><p>Sumner, Charles</p><p></p></div>	
+<div class='layout'><p>Sun Jiagu</p><p></p></div>	
+<div class='layout'><p>Sun Jianai 13.1, 19.1</p><p></p></div>	
+<div class='layout'><p>Sun Yat-sen 24.1, 28.1, 30.1, 30.2, 30.3, 31.1n</p><p></p></div>	
+<div class='layout'><p>Sushun 4.1, 4.2, 9.1</p><p></p></div>	
+<div class='layout'><p>Suzhou 5.1, 7.1, 12.1</p><p></p></div>	
+<div class='layout'><p>Swinhoe, Robert</p><p></p></div>	
+<div class='layout'><p>Ta Kung Pao (newspaper) 28.1, 28.2, 29.1</p><p></p></div>	
+<div class='layout'><p>Taiping Rebellion, 1850–64 1.1, 1.2, 1.3, 2.1, 2.2, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 12.1, 12.2</p><p></p></div>	
+<div class='layout'><p>Taiwan 11.1, 11.2, 11.3, 12.1, 12.2, 12.3, 16.1, 17.1, 18.1, 18.2</p><p></p></div>	
+<div class='layout'><p>Takano Bunjiro</p><p></p></div>	
+<div class='layout'><p>Tan Sitong 20.1, 20.2, 20.3</p><p></p></div>	
+<div class='layout'><p>Tan Xinpei 15.1, 28.1</p><p></p></div>	
+<div class='layout'><p>Tangshan</p><p></p></div>	
+<div class='layout'><p>Taoism 5.1, 8.1, 15.1, 15.2</p><p></p></div>	
+<div class='layout'><p>Temple of Heaven 21.1, 21.2, 22.1, 31.1</p><p></p></div>	
+<div class='layout'><p>Thomson, John</p><p></p></div>	
+<div class='layout'><p>Tiananmen Gate 4.1, 9.1</p><p></p></div>	
+<div class='layout'><p>Tianjin (Tientsin): Opium Wars and 2.1, 2.2; navy and 5.1; Viceroy of Zhili base in 6.1, 11.1, 16.1, 28.1; anti-Christian riots in, 1870 8.1, 12.1, 12.2, 22.1; Sino-French war treaty signed, 1885 in 12.3, 12.4; Cixi takes train to inspect army in 19.1; Junglu's headquarters in 20.1, 20.2; newspapers in 20.3, 20.4, 29.1; Boxers and 22.2, 22.3, 23.1, 23.2, 25.1, 25.2, 25.3, 26.1, 26.2; Wild Fox Kang in 30.1; Emperor Puyi in epi.1</p><p></p></div>	
+<div class='layout'><p>Tibet 2.1, 5.1, 29.1, 31.1, 31.2</p><p></p></div>	
+<div class='layout'><p>Tiejun</p><p></p></div>	
+<div class='layout'><p>Times, The</p><p></p></div>	
+<div class='layout'><p>Ting, Admiral 16.1, 16.2, 16.3, 17.1, 18.1</p><p></p></div>	
+<div class='layout'><p>Tong King-sing</p><p></p></div>	
+<div class='layout'><p>Tongwen College, the School of Combined Learning 6.1, 6.2, 6.3</p><p></p></div>	
+<div class='layout'><p>Tongzhi, Emperor (Zaichun) (Cixi's son): birth 2.1, 2.2; childhood 2.3, 2.4, 3.1, 5.1; accession to throne 4.1; seals 4.2, 4.3, 4.4; coup and 4.5; coronation 4.6; name 4.7, 4.8n; education 6.1, 9.1, 13.1; wedding 7.1, 7.2, 9.2, 9.3; Cixi's breakdown and 7.3; sex life 9.4, 9.5, 9.6, 9.7; love of opera 9.8, 9.9; selection of consorts 9.10; receives Western legations 9.11; appearance 9.12; bureaucracy and 9.13; plan to rebuild Old Summer Palace 9.14, 14.1; general lifestyle criticised 9.15; death 9.16, 10.1, 13.2; Cixi accused of having hand in death of 9.17, 20.1; mourning for 9.18; mausoleum 9.19, 9.20; succession 10.2</p><p></p></div>	
+<div class='layout'><p>Townley, Lady Susan</p><p></p></div>	
+<div class='layout'><p>Trans-Siberian Railway</p><p></p></div>	
+<div class='layout'><p>Treaty Ports 2.1, 2.2, 8.1, 10.1, 11.1, 20.1, 20.2, 22.1, 28.1, 28.2</p><p></p></div>	
+<div class='layout'><p>Tsinghua University</p><p></p></div>	
+<div class='layout'><p>Uchida Kōsai 27.1, 30.1</p><p></p></div>	
+<div class='layout'><p>Vatican</p><p></p></div>	
+<div class='layout'><p>Verbiest, Ferdinand</p><p></p></div>	
+<div class='layout'><p>Victoria, Queen 2.1, 2.2, 2.3, 3.1, 6.1, 6.2, 6.3, 12.1, 18.1, 19.1, 20.1, 22.1, 22.2, 27.1, 29.1</p><p></p></div>	
+<div class='layout'><p>Vietnam 12.1, 12.2, 12.3, 12.4, 16.1</p><p></p></div>	
+<div class='layout'><p>Vos, Hubert 28.1, 28.2n</p><p></p></div>	
+<div class='layout'><p>Wade, Thomas 5.1, 5.2n, 5.3, 5.4, 11.1, 11.2, 11.3</p><p></p></div>	
+<div class='layout'><p>Waldersee, Field Marshal Count von 25.1, 25.2, 25.3, 25.4</p><p></p></div>	
+<div class='layout'><p>Wang Lun</p><p></p></div>	
+<div class='layout'><p>Wang Qingqi 9.1, 9.2</p><p></p></div>	
+<div class='layout'><p>Wang Wenshao</p><p></p></div>	
+<div class='layout'><p>Wang Yaoqing</p><p></p></div>	
+<div class='layout'><p>Wang Zhao, Clerk 19.1, 20.1, 30.1, 30.2n</p><p></p></div>	
+<div class='layout'><p>Ward, Frederick Townsend 5.1, 5.2</p><p></p></div>	
+<div class='layout'><p>Warren, Acting Consul-General Peiham L. 24.1, 24.2</p><p></p></div>	
+<div class='layout'><p>Washington, George 6.1, 6.2, 6.3</p><p></p></div>	
+<div class='layout'><p>Weijun, Censor 16.1, 18.1</p><p></p></div>	
+<div class='layout'><p>Weihaiwei 17.1, 18.1</p><p></p></div>	
+<div class='layout'><p>Wellesley College, Massachusetts</p><p></p></div>	
+<div class='layout'><p>Wen Tingshi</p><p></p></div>	
+<div class='layout'><p>Weng, Grand Tutor (Weng Tonghe): on Prince Chun's writing 4.1; Sushun and 4.2; as hater of the West 6.1, 6.2, 6.3, 8.1, 9.1; Little An execution and 7.1, 7.2; Tianjin riots, 1870 and 8.2; tutoring of Emperor Tongzhi 9.2, 9.3; choice of burial spot for Emperor Tongzhi 9.4; ally of Prince Chun 10.1; Cixi attempts to gain loyalty of 10.2, 11.1; tutor of Emperor Guangxu 10.3, 13.1, 13.2, 13.3, 13.4; Guo Songtao and 11.2; Sino-French War, 1884–5 and 12.1, 12.2; on Prince Gong 12.3, 12.4; admiration for Cixi's mourning for Empress Zhen 13.5; accession of Emperor Guangxu and 13.6, 13.7; on temper of Emperor Guangxu 13.8; on wedding of Emperor Guangxu 13.9; on reaction of Cixi to news of Emperor Guangxu's poor health 13.10; becomes receptive to some Western practices 13.11; opposes railway-building 13.12, 15.1, 18.1; allows reforms to lapse during reign of Emperor Guangxu 13.13, 13.14, 13.15; on Old Summer Palace restoration 14.1; lack of investment in navy and 16.1, 16.2; Sino-Japanese war, 1894–5 and 16.3, 16.4, 16.5, 16.6, 16.7, 17.1; Cixi's sixtieth birthday celebrations and 16.8; Cixi impedes communication between Emperor Guangxu and 16.9; made a Grand Councillor 16.10; records lack of respect of foreign envoys after war with Japanese 18.2; on Cixi's praise for grandees in light of Russo–Chinese Secret Treaty, 1896 18.3; Cixi's attempt to raise revenue for restoration of Old Summer Palace and 18.4; German attempt to grab Qingdao and 18.5, 18.6; appointed to Chinese Foreign Office 18.7; Russian seizure of Port Arthur, role in 18.8, 18.9; visit to China of Prince Heinrich of Germany and 19.1; ‘Announcement of the Fundamental Policy of the State' and 19.2; Emperor Guangxu dismisses 19.3, 19.4, 20.1</p><p></p></div>	
+<div class='layout'><p>Wild Fox Kang (Kang Youwei) 19.1, 30.1, 30.2, 30.3, 31.1; background and character 19.2; ‘The History of Me' 20.1; gains influence at court of Emperor Guangxu 19.3; Cixi impressed by 19.4, 19.5; ‘Advisory Board' to throne, recommends kind of 19.6, 19.7; ‘On the Destruction of Poland' 19.8; Cixi attempts to curb influence of 19.9; wish to be Emperor 19.10; Confucius and 19.11; plot to kill Cixi and 20.2, 20.3, 20.4, 20.5, 21.1; flees Beijing 20.6; public accusations against Cixi 20.7, 20.8; attempts to persuade foreign governments to use military force to overthrow Cixi 20.9, 21.2; raises army and occupies cities with arms supplied from Japan 24.1, 24.2; fails to persuade Britain to back his project 24.3; uses photographs of Cixi to undermine her 28.1; organises attempts on Cixi's life 30.4; Japanese agents at Chinese court and 30.5</p><p></p></div>	
+<div class='layout'><p>Wilhelm II, Kaiser 11.1, 17.1, 18.1, 19.1, 19.2, 23.1, 25.1, 25.2, 25.3, 30.1, 30.2, 30.3n</p><p></p></div>	
+<div class='layout'><p>Wiltshire Regiment</p><p></p></div>	
+<div class='layout'><p>With the Empress Dowager (Carl)</p><p></p></div>	
+<div class='layout'><p>Witte, Count 18.1, 30.1</p><p></p></div>	
+<div class='layout'><p>Wolseley, Lieutenant Colonel G. J. 2.1, 2.2, 2.3</p><p></p></div>	
+<div class='layout'><p>Women Can Be Patriots (play)</p><p></p></div>	
+<div class='layout'><p>Women's Daily (journal)</p><p></p></div>	
+<div class='layout'><p>Woo Yong, County Chief 24.1, 24.2, 24.3, 26.1, 27.1</p><p></p></div>	
+<div class='layout'><p>Woren</p><p></p></div>	
+<div class='layout'><p>World Expo, Philadelphia, 1876</p><p></p></div>	
+<div class='layout'><p>Wu Kedu n</p><p></p></div>	
+<div class='layout'><p>Wu Tingfang 2.1, 22.1, 28.1</p><p></p></div>	
+<div class='layout'><p>Wu Yue</p><p></p></div>	
+<div class='layout'><p>Wu Zetian 4.1, 15.1</p><p></p></div>	
+<div class='layout'><p>Wuhan 11.1, 15.1, 18.1, 20.1, 24.1, 26.1, 31.1</p><p></p></div>	
+<div class='layout'><p>Wuhu</p><p></p></div>	
+<div class='layout'><p>Wusong</p><p></p></div>	
+<div class='layout'><p>Wutai</p><p></p></div>	
+<div class='layout'><p>Xianfeng, Emperor: accession to throne 1.1; selection of consorts for 1.2; sex life 1.3; Taiping rebellion and 1.4, 5.1; Cixi offers advice to 1.5; artistic nature 1.6; love of opera 1.7, 2.1, 2.2, 3.1; birth of son and 1.8; loathing of Westerners 2.3, 2.4, 5.2; as successor to throne 2.5; Opium Wars and 2.6, 2.7, 2.8, 2.9, 3.2, 3.3; flees Beijing during Second Opium War 2.10, 3.4, 3.5, 4.1; treaties signed with Britain and France after Second Opium War and 3.6, 3.7; death 3.8, 4.2, 4.3, 4.4; will 3.9, 4.5, 4.6; gives seals to son and Empress Zhen 4.7, 4.8, 4.9n, 4.10, 4.11; Peking Opera and 15.1; great-nephew nominated as Emperor Guangxu's heir-apparent 21.1</p><p></p></div>	
+<div class='layout'><p>Xinjiang 12.1, 12.2n, 18.1, 20.1, 20.2, 24.1, epi.1</p><p></p></div>	
+<div class='layout'><p>Xu Jingcheng 23.1, 24.1</p><p></p></div>	
+<div class='layout'><p>Xu Xilin</p><p></p></div>	
+<div class='layout'><p>Xu Zhijing, Learning Companion 19.1, 19.2, 19.3, 19.4, 20.1</p><p></p></div>	
+<div class='layout'><p>Xue, Dr</p><p></p></div>	
+<div class='layout'><p>Xunling 28.1, 28.2, 28.3n</p><p></p></div>	
+<div class='layout'><p>Yang Ki-Tak</p><p></p></div>	
+<div class='layout'><p>Yang Rui 19.1, 20.1</p><p></p></div>	
+<div class='layout'><p>Yang Shenxiu, Censor 19.1, 19.2, 20.1, 20.2</p><p></p></div>	
+<div class='layout'><p>Yangtze River 1.1, 5.1, 5.2, 11.1, 11.2</p><p></p></div>	
+<div class='layout'><p>Yangtze Valley 2.1, 11.1, 28.1</p><p></p></div>	
+<div class='layout'><p>Yano Fumio</p><p></p></div>	
+<div class='layout'><p>Yao, Emperor 6.1, 13.1</p><p></p></div>	
+<div class='layout'><p>Ye, Viceroy</p><p></p></div>	
+<div class='layout'><p>Yee, Prince</p><p></p></div>	
+<div class='layout'><p>Yellow River 6.1n, 18.1, 20.1, 20.2, 26.1</p><p></p></div>	
+<div class='layout'><p>Younghusband, Major Francis</p><p></p></div>	
+<div class='layout'><p>Yu Keng 27.1, 27.2</p><p></p></div>	
+<div class='layout'><p>Yu, Emperor</p><p></p></div>	
+<div class='layout'><p>Yuan Shikai, General 1.1, 4.1n, 20.1, 20.2, 20.3, 20.4, 20.5, 21.1, 22.1, 25.1, 26.1, 28.1, 28.2, 30.1, 30.2, 30.3, 30.4, 30.5n, 30.6, epi.1</p><p></p></div>	
+<div class='layout'><p>Yuan, Lady</p><p></p></div>	
+<div class='layout'><p>Yuan Chang</p><p></p></div>	
+<div class='layout'><p>Yung Wing</p><p></p></div>	
+<div class='layout'><p>Yuxian, Governor 22.1, 23.1, 23.2</p><p></p></div>	
+<div class='layout'><p>Zaifeng, Regent 10.1, 30.1, 31.1, 31.2, 31.3, 31.4</p><p></p></div>	
+<div class='layout'><p>Zaize, Duke 29.1, 29.2</p><p></p></div>	
+<div class='layout'><p>Zeng Guofan, Marquis 4.1, 5.1, 8.1, 8.2, 8.3, 8.4, 9.1, 11.1, 12.1, 24.1</p><p></p></div>	
+<div class='layout'><p>Zeng Jr, Marquis 11.1, 12.1, 12.2, 13.1</p><p></p></div>	
+<div class='layout'><p>Zhang Zhidong, Viceroy: Cixi's identification of talent and 5.1; proposes railway projects 11.1, 20.1; recommends keeping Lang Son and other Vietnamese territory 12.1; Sino-Japanese war, 1894–5 and 17.1, 17.2; opposes Treaty of Shimonoseki, 1895 18.1, 18.2, 18.3; presents proposal for restarting modernisation 18.4, 18.5; Wild Fox Kang and 20.2, 24.1, 24.2, 30.1, 30.2; Boxers and 22.1, 23.1, 23.2, 23.3, 24.3; relationship with Cixi 24.4; Poems of Gratitude 24.5; title conferred 25.1; on modernisation of China 25.2; Yu Keng and 27.1; Grand Council and 30.3, 30.4; death of 31.1n</p><p></p></div>	
+<div class='layout'><p>Zhao Erfeng</p><p></p></div>	
+<div class='layout'><p>Zhejiang province</p><p></p></div>	
+<div class='layout'><p>Zhen, Empress (Ci'an) 9.1, 9.2; becomes Empress 1.1, 9.3; enters harem 1.2; appearance 1.3; defends Cixi from Emperor Xianfeng's anger 1.4; lifelong friendship with Cixi 1.5; rank 2.1; Zaichun and 2.2; shares ‘Dowager Empress' title with Cixi 4.1; seals 4.2, 4.3; Cixi's coup and 4.4, 4.5, 4.6, 4.7, 4.8; co-rule with Cixi as Two Dowager Empresses 4.9, 5.1, 5.2, 5.3, 8.1; willingly plays second fiddle to Cixi 5.4; death 5.5, 13.1, 20.1; Cixi accused of poisoning 20.2; Little An execution and 7.1; Emperor Tongzhi and 9.4, 9.5, 9.6, 9.7, 13.2; retires into harem after wedding of Emperor Tongzhi 9.8; role after death of Emperor Tongzhi 10.1, 10.2, 11.1</p><p></p></div>	
+<div class='layout'><p>Zheng, Prince 4.1, 9.1</p><p></p></div>	
+<div class='layout'><p>Zhennan Pass</p><p></p></div>	
+<div class='layout'><p>Zhigang 6.1, 6.2, 6.3</p><p></p></div>	
+<div class='layout'><p>Zhili province 6.1, 8.1, 8.2, 18.1, 22.1, 22.2, 23.1, 26.1, 28.1</p><p></p></div>	
+<div class='layout'><p>Zhirui 16.1, 16.2, 16.3</p><p></p></div>	
+<div class='layout'><p>Zhou Fu</p><p></p></div>	
+<div class='layout'><p>Zou Rong</p><p></p></div>	
+<div class='layout'><p>Zuo Zongtang, General</p><p></p></div>	
+﻿
+</div>
+
+ <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>
