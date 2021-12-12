@@ -1,0 +1,424 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿	
+<div class='layout'><p> 2 ON THE THRESHOLD OF A NEW WORLD</p><p></p></div>	
+<div class='layout'><p>Mao left school at the age of thirteen. His stern teacher had used harsh methods of instruction and often beat his pupils. Mao could no longer endure such abuse and his father had no objection to his quitting school. “I didn't want you to become a xiucai,” he said, referring to the lowest degree one could receive in imperial China by passing the district examination. “In any case, the imperial exams<a name="pn2" id="pn2"></a><a href="#pnn2" title=""><sup>2</sup></a> had already been abolished, and it made no sense for the boy to continue his studies. There's much work to be done, so come back home,” he is reported to have said.<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a> Mao Yichang supposed that his son would attend to the family's business, and in particular that he would take care of the bookkeeping chores, but Mao wanted to continue his studies on his own. A passion for reading consumed him. He avidly devoured everything that came into his hands, with the exception of classical philosophical texts. He usually read at night, covering the window of his room with a blue homespun sheet to prevent his father from seeing the light of the oil lamp by which he read. His father would fly into a rage whenever he saw his son with a book, even if Mao was reading during his free time.</p><p></p></div>	
+<div class='layout'><p>It was at this time that Mao came across a book that aroused his interest in politics. Written by the great reformer Zheng Guanying (also known as Zheng Zhengxiang), Words of Warning to an Affluent Age, published in 1893, summoned Chinese to study “the science of wealth and power,” that is, to apply the lessons of European industrialization to the task of modernizing China. It spoke of the need to establish a British-style constitutional monarchy in the Middle Kingdom. The author came out against the traditional Confucian order and in favor of limited bourgeois reforms aimed at strengthening the state.<a name="pn2" id="pn2"></a><a href="#pln2" title=""><sup>2</sup></a></p><p></p></div>	
+<div class='layout'><p>To understand the role this book played in the life of the adolescent Mao, we must briefly examine the situation in China at that time. At the beginning of the twentieth century, China was in a state of semicolonial economic dependency as a result of the aggression of the developed capitalist countries. The two Opium Wars (1839–42 and 1856–60), the first waged against China by England, which craved the legalization of free trade, and the second by England in league with France, forced the Middle Kingdom to conclude unequal treaties with the “hairy foreign devils,” as the Chinese called the white colonialists. The victors seized control of China's tariffs and China lost its economic independence. Foreign merchants were exempted from paying domestic custom duties (lijin) upon crossing provincial boundaries, which put Chinese merchants at a disadvantage. Foreigners secured the right to establish settlements in the growing number of ports that were open to foreign commerce. They enjoyed the right of extraterritoriality, in other words, they were not subject to Chinese courts.</p><p></p></div>	
+<div class='layout'><p>Cheap Western goods began to flood Chinese markets, resulting in the bankruptcy of millions of handicraft workers. The tax burden rose sharply. Defeated in a series of wars, China was forced to pay indemnities to the victors.</p><p></p></div>	
+<div class='layout'><p>China's inclusion in the world economy led to a profound economic and social crisis. The country was shaken by a huge anti-Manchu uprising, the Taiping Rebellion, in which many destitute peasants and handicraft workers took part. (Taiping means “great peace.”) The leader of the rebellion, Hong Xiuquan, a rural teacher from Guangxi in South China, called for the creation of a Taiping Heavenly Kingdom based on the principle of equality. Inspired by Christian precepts, in particular Baptist and Puritan teachings, Hong claimed that in a dream God the Father had revealed to him that he was the younger brother of Jesus Christ. The Heavenly Kingdom of Great Peace would be celebrated on the ruins of the corrupt Qing dynasty. With fire and sword the rebels would clear a path to ideal peace and justice, plundering and killing not only the Manchus but also the tuhao and the lieshen.</p><p></p></div>	
+<div class='layout'><p>More than twenty million people were killed during the civil war. The country teetered on the brink of collapse, but the dynasty survived. Between 1861 and 1894, the Manchu court, headed by Empress Dowager Ci Xi, attempted to implement a series of state-building reforms under the rubric of self-strengthening. Ci Xi and her lover Prince Gong, together with influential Chinese dignitaries and conquerors of the Taiping, tried to industrialize and modernize China in order to transform it into a strong military power. They began to build industrial enterprises, arsenals, and wharves, construct railroads, open modern universities, and publish newspapers and journals. Capitalism, however, developed very slowly in China. Although the state formally ceased interfering in private business, corrupt government officials and local bigwigs continued to restrict the initiative of individual private entrepreneurs in order to stop competition. Most industrial enterprises belonged to bureaucratic capital and to regional oligarchs, the most powerful of whom controlled their own private armies. From its very beginning capitalism in China was monopolistic. At the start of the twentieth century there were slightly more than twelve million nonagricultural workers, of whom three-fourths, or around nine million, worked in large enterprises that employed more than five hundred workers. Favorable conditions for the growth of small- and medium-scale native entrepreneurs did not develop.</p><p></p></div>	
+<div class='layout'><p>Progressive patriots, among them Zheng Guanying, who supported self-strengthening, criticized the monopolistic economic policy of high government officials. They advised against restricting small and medium business, promoted reform and, to a certain extent, radical reform, and occasionally voiced democratic ideas. Many of their proposals addressed the need for political as well as economic reforms, and for liberalizing the judicial system as well as the state system. But they were ignored and the reform program failed.</p><p></p></div>	
+<div class='layout'><p>In 1885 China lost another war with France; in 1895, in the Sino-Japanese War, it was humiliated by Japan. Although this defeat ignited an even greater flare-up of patriotic feeling, the plans of the reformers were doomed to failure. The leaders of the new reform movement, Kang Youwei and Liang Qichao, who were leading philosophers and men of letters, called on the young and progressive-minded emperor to emulate Peter the Great and initiate reform from above. They urged him to introduce a constitutional monarchy, Westernize the army and the educational system, and encourage entrepreneurship. The emperor attempted to institute new reforms during a hundred-day period in 1898. Hoping to remove the empress dowager from affairs of state, he turned for help to Yuan Shikai, a powerful general, but in vain. Ci Xi learned about the plot. She promptly had her nephew declared insane, removed him from power, and put him under house arrest. Many reformers were executed; Kang Youwei and Liang Qichao fled abroad.</p><p></p></div>	
+<div class='layout'><p>Civil society did not exist in China. Since all opposition political activity was suppressed inside China, advocates of change were forced to pursue their political activities abroad. One such person was Sun Yat-sen (real name Sun Wen), a native of Guangdong province in the south, and a student of Zheng Guanying. Sun was born in 1866, and educated in Hawaii, Canton, and Hong Kong. In 1892 he graduated from medical school. Disillusioned with the reformist movement, Sun left China in 1894, relocating to Hawaii, where his elder brother lived. There, in Honolulu in November 1894, he founded the first Chinese revolutionary society, the Xingzhonghui (China Revival Society). Unlike the reformers, Dr. Sun Yat-sen demanded the revolutionary transformation of China along republican lines. In January 1895 a branch of the society was established in the British colony of Hong Kong and soon afterward in the nearby metropolis of Canton, where Sun himself moved shortly thereafter. That autumn, members of the society mounted their first anti-Manchu uprising in Canton, which failed. Sun was forced to flee with a high price on his head. He spent sixteen years in exile and did not return to his homeland until two months after the antimonarchical revolution had taken place.</p><p></p></div>	
+<div class='layout'><p>Despite its crushing defeat, the China Revival Society survived and soon resumed its revolutionary activity. During the period 1901–1904 new revolutionary organizations appeared in China. In 1905 many of them combined to form the Zhongguo geming tongmenghui (Chinese Revolutionary Alliance), known by its shorter name as the Tongmenghui (Revolutionary Alliance) and founded in Tokyo. As president of the Revolutionary Alliance, in the first issue of Minbao (The People), the main organ of the Revolutionary Alliance, Sun Yat-sen proclaimed a radical political program of the Three Principles of the People: Nationalism, Democracy, and People's Livelihood.</p><p></p></div>	
+<div class='layout'><p>By Nationalism Sun meant the overthrow of the Manchu monarchy, by Democracy the establishment of a republic. The third principle, People's Livelihood, meant the so-called equalization of land rights, that is, the nationalization of the basic means of production in China in the interest of strengthening the regulatory role of the state in the Chinese economy. Sun Yat-sen's political program guaranteeing the primacy of the state in the economy was directed against oligarchic capitalism, which created conditions for the exclusive enrichment of those who had already risen to the top. His objective was to use state power to promote the development of a middle class in China. Sun supported a progressive land tax that could facilitate the creation of a “just society” with equal opportunities.</p><p></p></div>	
+<div class='layout'><p>Meanwhile, another powerful peasant uprising was occurring in north China, aimed against the “hairy foreign devils.” The uprising was led by a secret religious society, the Yihequan (Fists of Righteousness and Harmony), comprising mostly martial arts masters. Like the members of the Brotherhood of the Sword, the warriors of the Yihequan believed that physical and spiritual exercises as well as magic and sorcery would render them invulnerable to enemy bullets, missiles, and sabers. Their mode of fighting resembled fisticuffs, and so the first foreigners who clashed with them called them Boxers. The uprising began in 1898 in Shandong and Zhili provinces. On June 13, 1900, the rebels seized Beijing, the capital, plundered the wealthy merchants' quarter, torched thousands of houses, and laid siege to the foreign diplomatic compounds. Their anger was directed mainly against missionaries and Chinese Christians.</p><p></p></div>	
+<div class='layout'><p>Improbably, Ci Xi supported the Yihequan uprising. The story went that she decided to conduct an experiment and invited a group of “invulnerables” to the Forbidden City. At her command, soldiers from her personal guard lined up the Boxers against a wall and unleashed a volley of gunfire at them. None of the Boxers was even wounded. Stunned by this miracle, on June 21, 1900, Ci Xi declared war against the whole world.</p><p></p></div>	
+<div class='layout'><p>The miracle was short-lived, however. A joint eight-power army consisting of the major Western powers, including the United States, and Japan defeated the Boxers and the Qing forces. In Beijing on September 7, 1901, the Chinese government signed a new unequal treaty that bound China to pay 450 million ounces of silver as an indemnity over the next thirty-nine years, the equivalent of $301.5 million U.S. gold dollars at the time. Chinese troops had to leave Beijing and foreign troops were quartered in the capital. Thus, at the beginning of the twentieth century, China was fully dependent economically, and partly dependent politically, on foreign powers. Foreign businessmen dominated the Chinese market. The Middle Kingdom occupied a third-tier position in the international division of labor. China's dependence on the imperialist powers increased over the next decade. By 1912 China's national debt was 835 million ounces of silver. By then, 107 treaty ports were open to foreigners. The socio-political crisis was deepening.</p><p></p></div>	
+<div class='layout'><p>In 1901, after the suppression of the Boxer Rebellion, the Qing again turned to reform. The court began to discuss the possibility of introducing a constitution, undertook measures to stimulate private entrepreneurship, and established a new army consisting of thirty-six battle-worthy modern divisions. At the high point of the reformist movement, the emperor, who had never been released from house arrest, passed away on November 14, 1908, preceding by just one day the death of his power-hungry aunt, Empress Ci Xi.</p><p></p></div>	
+<div class='layout'><p>Big changes were in the air. The country's new rulers, acting on behalf of the new, three-year-old emperor, Pu Yi, took measures to introduce a constitution. In 1909 elections were held for provincial consultative committees in preparation for the constitution. They became foci of liberal opposition. It was announced that elections for a parliament would be held in 1913.</p><p></p></div>	
+<div class='layout'><p>The adolescent Mao knew almost nothing of these developments. Whatever he may have heard of them made no impression on him. The great events of the day passed him by. We may suppose that no one told the young Mao about the Boxers; Shaoshan was a backwater where nobody read newspapers. Even news of the death of the emperor and the empress dowager did not reach Shaoshan until two years after Pu Yi had ascended the throne.<a name="p3" id="p3"></a><a href="#pl3" title=""><sup>3</sup></a> But Mao must certainly have been told about the Taipings. The Taiping Rebellion had rolled through the province only forty years before his birth, and there were many surviving eyewitnesses of those terrible events. Moreover, Mao's father served in the Xiang Army in the 1880s, the same army that had suppressed the Taiping Rebellion twenty years earlier.</p><p></p></div>	
+<div class='layout'><p>A new conflict with his father flared up, intensified by his parents' decision to have him marry. In either late 1907 or 1908, they picked out a suitable girl for him. She was a distant relative of Mao Zedong. The girl, named Luo Yigu (“First Daughter”), was four years older than Mao. (She was born on October 20, 1889.) Her father, Luo Helou, was a rural intellectual, a shenshi, but he was basically a farmer. The family was very poor and unfortunate. Luo Helou and his wife had had five sons and five daughters, but all the sons died in infancy and only three daughters survived. The death of their sons was a heavy blow, since in China sons alone were considered a blessing. After growing up, a girl had to marry, that is, she would leave her family which, moreover, was obligated to provide a rich dowry. But a son would stay at home as an heir and successor. His duties included taking care of his parents in their old age and, after their passing, to put the souls of the dead at ease and regularly perform at their graves the traditional ceremonies. Luo Helou was happy to present his eldest daughter to the family of Mao Yichang, whose wife, Wen Qimei, was in need of a helper because her health, undermined by heavy labor, had deteriorated.</p><p></p></div>	
+<div class='layout'><p>In keeping with tradition, matchmakers were sent to the bride's house. It was considered improper to accept the proposal right away, so the matchmaking took quite a while. Finally, both sides exchanged gifts and concluded a marriage contract, which was considered inviolable. Even should the bride die before the wedding, a tablet with her name on it would be brought to the groom's home and placed on the family altar. If the groom died, the bride had to go to her “husband's” home as his widow.</p><p></p></div>	
+<div class='layout'><p>Mao Zedong and his bride met only on the day the marriage contract was drawn up.<a name="p4" id="p4"></a><a href="#pl4" title=""><sup>4</sup></a> We don't know whether he was pleased with Luo Yigu;<a name="pn3" id="pn3"></a><a href="#pln3" title=""><sup>3</sup></a> in any case he wanted to study, not get married. Unfortunately, he had no choice but to bow to the will of his parents. By the time he learned of their intentions, it was already too late. The marriage contract had been signed, the wedding date set, and Mao Yichang had delivered a bride-price and other ritual gifts to Luo Helou.</p><p></p></div>	
+<div class='layout'><p>Following the local custom, the wedding feast, to which numerous relatives and friends were invited, began in the groom's home a day before the wedding itself. On the wedding day, the bride, dressed in red, was carried in a red palanquin to the home of the bridegroom. Her face was covered with a red veil and her lips crimsoned with red lipstick. The girl was supposed to express her unhappiness, to cry, and to accuse her future husband of his failings, calling him a “hairy insect,” a “ravenous, lazy, and tobacco-addicted dog,” a “drunkard,” and so forth. A fireworks display was arranged at the bridegroom's home. Then the bridegroom and the bride prostrated themselves before the ancestral altar of the bridegroom, before the spirits of Heaven and Earth, the Sun and the Moon, the “sovereign and the elements of Water and Earth,” and, finally, before the spirits of the deceased ancestors. Then they bowed to each other, concluding the wedding ceremony. The guests continued to feast for two more days and presented gifts, usually money, to the newlyweds. Then a “viewing” of the young couple took place. As a joke this was called “making a commotion in the bridal chamber.” A master of ceremonies, his face painted black and wearing a costume festooned with leaves, conducted guests into the bridal chamber, where they made indecent gestures or sang obscene verses. To put an end to these improprieties the young husband had to bribe the guests. The new bride had to show her mother-in-law the bloodstained sheet from her wedding night as proof of her virginity.</p><p></p></div>	
+<div class='layout'><p>Mao Zedong endured all these ceremonies with difficulty. According to him, he did not sleep with his bride and he refused to live with her.<a name="p5" id="p5"></a><a href="#pl5" title=""><sup>5</sup></a> Mao accorded so little significance to this, his first marriage, that he couldn't even remember how old his wife had been when they were betrothed. Mentioning his wedding in passing to Edgar Snow, he said, “My parents had married me when I was fourteen to a girl of twenty.”<a name="p6" id="p6"></a><a href="#pl6" title=""><sup>6</sup></a> In fact, Luo Yigu was eighteen. It's hard to believe that a fourteen-year-old adolescent boy refused to share his bed with an eighteen-year-old girl, but we have no evidence that Mao spoke untruths to Edgar Snow, provided one does not consider the strange note in the Chronicle of the Shaoshan Mao Clan that Mao Zedong and Luo Yigu supposedly had a son named Yuanzhi, who, for some reason, was handed over to be raised by a family named Yang.<a name="p7" id="p7"></a><a href="#pl7" title=""><sup>7</sup></a> No one knows whether this is so, but most likely the scribe who compiled the Chronicle got something mixed up. There is no other evidence for the birth of this child.</p><p></p></div>	
+<div class='layout'><p>Soon after his wedding, Mao ran away from home and lived for a year in the house of an unemployed student, also in Shaoshan. He continued his avid reading, devouring the Records of the Grand Historian by the ancient Chinese chronicler Sima Qian and the History of the Former Han Dynasty by Ban Gu. These books described the deeds of the great rulers of ancient China—heroes and antiheroes, generals, politicians, and philosophers. He also was attracted to contemporary books and articles, immersing himself in Personal Protests from the Study of Jiao Bin, compiled in 1861 by Feng Guifen, another leading reformer. It recounted the foreign aggression against China and counseled self-reliance by borrowing foreign techniques and technology but not altering the foundations of China's ideological-political system.<a name="p8" id="p8"></a><a href="#pl8" title=""><sup>8</sup></a> Mao also read a pamphlet by the young Chinese revolutionary Chen Tianhua, which, he claimed, produced a particularly strong impression upon him: “I remember even now that this pamphlet opened with the sentence: ‘Alas, China will be subjugated!' It told of Japan's occupation of Korea and Formosa, of the loss of suzerainty in Indo-China, Burma and elsewhere. After I read this I felt depressed about the future of my country and began to realize that it was the duty of all the people to help save it.”<a name="p9" id="p9"></a><a href="#pl9" title=""><sup>9</sup></a></p><p></p></div>	
+<div class='layout'><p>Poor Luo Yigu. “Neither a married woman nor a maiden,” is how they talked about her in the villages. She bore her humiliation in silence. Philip Short, one of Mao's biographers, writes that some villagers in Shaoshan believed she remained in her new family as a concubine of Mao's father.<a name="p10" id="p10"></a><a href="#pl10" title=""><sup>10</sup></a> Whether or not this was true, she had not long to live. On February 11, 1910, she died of dysentery.<a name="p11" id="p11"></a><a href="#pl11" title=""><sup>11</sup></a> She was barely past her twentieth birthday.</p><p></p></div>	
+<div class='layout'><p>Surprisingly, Mao's father forgave his “ungrateful son” for having shamed him in front of the entire village. Evidently, Mao Yichang wasn't nearly as bad as Mao later recalled. In the fall of 1910, Mao Yichang's obstinate son asked for money to continue his education and the older man grudgingly agreed. He had to fork out quite a lot of money, some 1,400 copper cash or one Chinese silver dollar for five months of tuition, space in a dormitory, and use of the library. The school Mao Zedong chose—the Dongshan Higher Primary School—was located some fifteen miles from Shaoshan and taught contemporary subjects, including the natural sciences.</p><p></p></div>	
+<div class='layout'><p>At this time Mao was sixteen and a half. For the first time in his life, he left his native place, in the company of an older cousin, Wen Yunchang, nine years his senior, who attended the same school and had persuaded Mao to enroll there. His hated father and all his other relatives escorted Mao to the edge of the village,<a name="p12" id="p12"></a><a href="#pl12" title=""><sup>12</sup></a> and when Mao Yichang returned home he found the following verses written by the prospective student of the Dongshan School:</p><p></p></div>	
+<div class='layout'><p>Full of resolve your eldest</p><p></p></div>	
+<div class='layout'><p>sets out from his native place.</p><p></p></div>	
+<div class='layout'><p>My studies will bring me glory;</p><p></p></div>	
+<div class='layout'><p>And I'll never return to this place.</p><p></p></div>	
+<div class='layout'><p>Wherever my bones may be buried</p><p></p></div>	
+<div class='layout'><p>will make no difference at all.</p><p></p></div>	
+<div class='layout'><p>Wherever one goes in the valley</p><p></p></div>	
+<div class='layout'><p>The mountains are equally tall.<a name="p13" id="p13"></a><a href="#pl13" title=""><sup>13</sup></a></p><p></p></div>	
+<div class='layout'><p>Already he burned with a desire to leave his mark on history. Books about the great Chinese emperors, two of whom, Liu Bang of the Han dynasty (256 or 247–195 BCE) and Zhu Yuanzhang of the Ming dynasty (1328–1398), were sons of the poorest of the poor, whirled about in Mao's youthful head. It is just such a passion to attain glory that animates the children of ordinary families to become leading scientists, writers, and politicians. Patriotic feelings summoned Mao to great deeds. The proud soul of the provincial youth propelled him forward.</p><p></p></div>	
+<div class='layout'><p>The path to glory, however, was difficult. In his new school, the poorly dressed, thin, and lanky peasant boy was greeted with hostility by his fellow classmates. (At five foot nine inches Mao was unlike the typically short southerners.) Most of them were the sons of rich landlords; moreover, unlike Mao they were from Xiangxiang district. They were bursting with arrogance, and they had only contempt for the interloper who had just one decent suit of clothes. They found everything about him irritating, including his dialect. In many parts of China even people in neighboring districts speak different dialects. This was the case in the neighboring districts in Hunan that were separated only by Mount Shao—Xiangtan where Mao was born, and Xiangxiang, his mother's home district and the place where Dongshan School was located.<a name="p14" id="p14"></a><a href="#pl14" title=""><sup>14</sup></a> The people in these two neighboring districts could understand each other, but not easily.</p><p></p></div>	
+<div class='layout'><p>Only a few of his fellows showed Mao any sympathy. The student closest to him, apart from his cousin, was Xiao Zizhang (or Xiao San). Later, in 1920, Xiao left China to work and study in France, where he joined the European branch of the Chinese Communist Party. Subsequently, in 1927, he set off for the Soviet Union, where he stayed for many years, and under the nom de plume of Emi Siao became a well-known writer and poet and one of the first biographers of Mao Zedong. One friend and one cousin were not enough. Mao, with his overbearing character, suffered from the hostility of most of his classmates. “I felt spiritually very depressed,” he recalled later.<a name="p15" id="p15"></a><a href="#pl15" title=""><sup>15</sup></a></p><p></p></div>	
+<div class='layout'><p>This situation only intensified his desire for success. Insults irritated his willful and unruly spirit, steeled his will, and deepened his hostility toward anyone who surpassed him in one way or another. Ultimately, he succeeded in winning the teachers' respect through his efforts. Mao was able to compose essays in the classical style and was industrious and hardworking. He continued to be a voracious reader. During his time at the Dongshan School, he maintained his interest in history, particularly the history of ancient Chinese rulers, including the legendary sage-kings Yao and Shun, the bloodthirsty emperor Qin Shi Huangdi, and the famous Han emperor Wu Di, who was the first Chinese ruler to pacify the northern Xiongnu nomads (Huns) and bring eastern Turkestan, Vietnam, and Korea under Chinese control. For the first time Mao became acquainted with geography and began to read foreign history. A book called Great Heroes of the World drew his attention, and he learned about Napoleon, Catherine the Great, Peter the Great, Wellington, Gladstone, Rousseau, Montesquieu, and Lincoln.<a name="p16" id="p16"></a><a href="#pl16" title=""><sup>16</sup></a> He wanted to be like them.</p><p></p></div>	
+<div class='layout'><p>His most important reading at the time was material about Kang Youwei and the reform movement of 1898, including a copy of the Xinmin congbao (Renovation of the people) journal published by Liang Qichao in Yokohama. He was shaken by these works, which his cousin had passed along to him. “I read and re-read these until I knew them by heart,” he said subsequently. Liang Qichao's book, On Renovation of the People, published in Xinmin congbao in 1906, was a treasure trove of knowledge for him. In this philosophical treatise, the famous reformer, in his own words, “wanted to search for the primary cause of the decay and backwardness of the people of our state and compare this with the progress of other countries, so that the people, learning of our defects, would take precautions against disaster, and hasten to progress of their own accord.”<a name="p17" id="p17"></a><a href="#pl17" title=""><sup>17</sup></a></p><p></p></div>	
+<div class='layout'><p>Liang Qichao's arguments about the progressive role of constitutional monarchy and the regressive influence of despotic monarchy made the greatest impression upon Mao. After reading the chapter “On State Ideology,” Mao wrote the following note:</p><p></p></div>	
+<div class='layout'><p>In a constitutional state, the constitution is created by the people; the monarch enjoys the love of the people ……  In a despotic state, the monarch lays down the law, and one bows down before the monarch, not the people ……  England and Japan are examples of the first type, the various dynasties that have pillaged China over several thousand years are examples of the second type.<a name="p18" id="p18"></a><a href="#pl18" title=""><sup>18</sup></a></p><p></p></div>	
+<div class='layout'><p>Mao literally prayed for Kang Youwei and Liang Qichao, believing that an “honest, good, and wise” emperor would summon Kang and Liang to his aid, and would bestow a constitution upon the country. Nationalistic feelings that had already stirred him were strengthened by reading the works of the reformers. Both Liang and Kang were extremely chauvinistic. China's revival on an Anglo-Japanese model would, they believed, lead to the Middle Kingdom's victory in the global competition among nations and the establishment of Chinese hegemony. Otherwise, the two ideologues of reform asserted, China would perish.</p><p></p></div>	
+<div class='layout'><p>In school Mao learned about Japan's victory over Russia in 1905. He and other students were excitedly informed of this by a young teacher of music and English who had studied in Japan. Mao was proud of the Japanese victory, and many years later he was able to sing for Edgar Snow the Japanese song “Battle of the Yellow Sea,” which his teacher loved. “At the time I knew and felt the beauty of Japan, and felt something of her pride and might, in this song of her victory over Russia,” said Mao.<a name="p19" id="p19"></a><a href="#pl19" title=""><sup>19</sup></a> He sympathized with the Japanese, but not because he rejoiced at the victory of “the yellow race over the whites,” as some of his biographers assert.<a name="p20" id="p20"></a><a href="#pl20" title=""><sup>20</sup></a> It is doubtful that Mao can be accused of racism. At the time, Mao was a patriot, not a racist. The victory of the Land of the Rising Sun in the war with czarist Russia evoked his delight only because it demonstrated the superiority of constitutional monarchy over despotism. It likewise confirmed the ideas of his beloved reformers that an Asian country that had set out on the path of political modernization could reduce to ashes a mighty European power that was bound by the chains of absolutism.</p><p></p></div>	
+<div class='layout'><p>He remained at the Dongshan School for just seven or eight months. In early 1911, Mao decided to go to Changsha, the capital of Hunan province, to enroll in a middle school that was accepting students from the district of Xiangxiang. He received a letter of recommendation from one of his teachers, gathered together his few belongings, and set off on foot in the early spring to the large and unfamiliar city. He left behind his childhood and adolescence; the Dongshan School encircled by a high, fortresslike wall; and his arrogant classmates and supportive teachers. An alluring and frightening new world awaited him.</p><p></p></div>	
+
+
+<div class='layout'><p><a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a>. Li, Moi otets Mao Tszedun, 91.</p><p></p></div>	
+<div class='layout'><p><a name="pl2" id="pl2"></a><a href="#p2" title=""><sup>2</sup></a>. See Zheng Guanying, Shengshi weiyan (Words of Warning to an Affluent Age) (Beijing: Huaxia chubanshe, 2002).</p><p></p></div>
+
+
+	
+<div class='layout'><p><a name="pl3" id="pl3"></a><a href="#p3" title=""><sup>3</sup></a>. Snow, Red Star Over China, 135.</p><p></p></div>	
+<div class='layout'><p><a name="pl4" id="pl4"></a><a href="#p4" title=""><sup>4</sup></a>. See Kong Dongmei, Gaibian shijiede rizi: yu Wang Hairong tan Mao Zedong waijiao wangshi (Days that Changed the World: Talking to Wang Hairui about Mao Zedong's Foreign Policy) (Beijing: Zhongyang wenxian chubanshe, 2006), 16–17.</p><p></p></div>	
+<div class='layout'><p><a name="pl5" id="pl5"></a><a href="#p5" title=""><sup>5</sup></a>. Snow, Red Star Over China, 145.</p><p></p></div>	
+<div class='layout'><p><a name="pl6" id="pl6"></a><a href="#p6" title=""><sup>6</sup></a>. Ibid., 144–45.</p><p></p></div>	
+<div class='layout'><p><a name="pl7" id="pl7"></a><a href="#p7" title=""><sup>7</sup></a>. See Shaoshan Mao shi zupu (The Chronicle of the Shaoshan Mao Clan), vol. 7, 387.</p><p></p></div>	
+<div class='layout'><p><a name="pl8" id="pl8"></a><a href="#p8" title=""><sup>8</sup></a>. Pang Xianzhi, ed., Mao Zedong nianpu, 1893–1949 (Chronological Biography of Mao Zedong, 1893–1949), vol. 1 (Beijing: Renmin chubanshe and Zhongyang wenxian chubanshe, 2002), 6.</p><p></p></div>	
+<div class='layout'><p><a name="pl9" id="pl9"></a><a href="#p9" title=""><sup>9</sup></a>. Snow, Red Star Over China, 133.</p><p></p></div>	
+<div class='layout'><p><a name="pl10" id="pl10"></a><a href="#p10" title=""><sup>10</sup></a>. Short, Mao, 29, 649.</p><p></p></div>	
+<div class='layout'><p><a name="pl11" id="pl11"></a><a href="#p11" title=""><sup>11</sup></a>. See Ma, Hongse diyi jiazu (The First Red Family), 11.</p><p></p></div>	
+<div class='layout'><p><a name="pl12" id="pl12"></a><a href="#p12" title=""><sup>12</sup></a>. Li, Moi otets Mao Tszedun (My Father Mao Zedong), 94.</p><p></p></div>	
+<div class='layout'><p><a name="pl13" id="pl13"></a><a href="#p13" title=""><sup>13</sup></a>. Mao Zedong, Oblaka v snegu. Stikhotvoreniia v perevodakh Aleksandra Pantsova (Clouds in the Snow. Poems in Trans. Alexander Pantsov) (Moscow: “Veche,” 2010), 11.</p><p></p></div>	
+<div class='layout'><p><a name="pl14" id="pl14"></a><a href="#p14" title=""><sup>14</sup></a>. Stuart R. Schram, ed., Mao's Road to Power: Revolutionary Writings 1912–1949, vol. 1 (Armonk, NY: M. E. Sharpe, 1992), 60.</p><p></p></div>	
+<div class='layout'><p><a name="pl15" id="pl15"></a><a href="#p15" title=""><sup>15</sup></a>. Snow, Red Star Over China, 134.</p><p></p></div>	
+<div class='layout'><p><a name="pl16" id="pl16"></a><a href="#p16" title=""><sup>16</sup></a>. Ibid., 135; Lichnoe delo Mao Tszeduna (Personal File of Mao Zedong), RGASPI, collection 495, inventory 225, file 71, vol. 1, sheets 290–91.</p><p></p></div>	
+<div class='layout'><p><a name="pl17" id="pl17"></a><a href="#p17" title=""><sup>17</sup></a>. Quoted from L. N. Borokh, Konfutsianstvo i evropeiskaia mysl' na rubezhe XIX–XX vekov: Lian Tsichao i teoriia obnovleniia naroda (Confucianism and European Thought at the Turn of the Nineteenth–Twentieth Centuries. Liang Qichao and the Renovation of the People Theory) (Moscow: Nauka, 2001), 98.</p><p></p></div>	
+<div class='layout'><p><a name="pl18" id="pl18"></a><a href="#p18" title=""><sup>18</sup></a>. Quoted from Pang, Mao Zedong nianpu, 1893–1949 (Chronological Biography of Mao Zedong, 1893–1949), vol. 1, 9.</p><p></p></div>	
+<div class='layout'><p><a name="pl19" id="pl19"></a><a href="#p19" title=""><sup>19</sup></a>. Snow, Red Star Over China, 135.</p><p></p></div>	
+<div class='layout'><p><a name="pl20" id="pl20"></a><a href="#p20" title=""><sup>20</sup></a>. See, for example, Short, Mao, 38.</p><p></p></div>	
+<div class='layout'><p><a name="pnn2" id="pnn2"></a><a href="#pn2" title=""><sup>n2</sup></a>. The imperial exams were the primary path to official service in China during the dynastic era.</p><p></p></div>
+
+<div class='layout'><p><a name="pln3" id="pln3"></a><a href="#pn3" title=""><sup>n3</sup></a>. Most likely Mao was not impressed. According to his granddaughter, Kong Dongmei, at this time the fourteen-year-old Mao Zedong was in love with another girl, his cousin Wang Shigu, but unfortunately for him, their horoscopes did not match and the local geomancer would not allow the marriage.</p><p></p></div>	
+ ﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

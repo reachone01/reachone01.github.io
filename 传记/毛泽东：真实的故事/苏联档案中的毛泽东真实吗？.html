@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h3>苏联档案中的毛泽东真实吗？</h3>
+
+<p>[摘要]《毛泽东：真实的故事》近日由联经出版社出版。它大量依据以前从未被学者公开使用过的位于莫斯科的档案数据，是“全球最大、也是最集中的有关国际共产主义运动和多国共产党历史的文献汇集”。</p>
+<p>AlexanderV.Pantsov/StevenI.Levine，Mao：TheRealStory，Simon&Schuster，2013.</p>
+<p>【编者按】丁学良等历史学者也不忘提醒读者，“它的真实和完整的程度不应该被绝对化，须知，莫斯科的档案文献从一开始就被其拥有机构做了限制性处理。”问题来了，秘密档案里一定藏着历史真相吗？我们在此刊发一篇根据该书英文版撰写的评论，希望开卷有益，也希望提供另一种阅读的方法。</p>
+<p>苏联档案中的毛泽东真实吗？</p>
+<p>如果要问哪位中国历史人物的传记能在欧美出版市场经久不衰，那么“毛泽东”就应该是理所当然的答案。自1937年埃德加？斯诺在《西行漫记》中描绘了毛泽东后，几十年间每隔数载都会有一本关于毛泽本的新传记进入西方读者的视野。新近最引人瞩目的当属美国首都大学俄裔历史学教授潘佐夫（AlexanderV.Pantsov）与蒙大拿大学研究员梁思文（StevenI.Levine）于2012年在美国出版的《毛泽东：真实的故事》（Mao:TheRealStory）。</p>
+<p>这部毛泽东传记的最大特点就是大量利用了苏联方面有关毛泽东及中国革命的各类档案，范围囊括了前苏共中央、各主要政府部门、共产党情报局乃至克格勃等。苏联解体后，前苏联的大量解密档案成为各国历史学家、政治学者趋之若鹜的“资料宝藏”。身为一名土生土长的莫斯科人，又是从莫斯科国立大学毕业的高材生——潘佐夫在挖掘这批档案时自然有着得天独厚的优势。当该作英文原版在美出版时，两位作者就特别强调，这部毛泽东传记的最大优点就是充分利用苏联解密档案，而过往论著则多依赖毛泽东本人的叙述、相关人士的回忆、中共官方的公开文件又或者干脆是道听途说后的瞎编。正是由于两位作者以扎实的档案资料为写作基础，所有他们才敢于用“真实的故事”来当作书名。</p>
+<p>20世纪90年代，俄罗斯对前苏联档案采取了极为宽松的开放政策。自1993年俄罗斯政府正式颁行《俄罗斯联邦档案馆藏及档案馆库管理基本法》后，包括中国学者在内的全世界学者几乎都蜂拥而至。俄罗斯档案机构甚至还与外国研究机构开展合作，其中较为代表性的成果便是俄罗斯国家社会政治历史档案馆（RGASPI）联合德国波兰自由大学联合编辑出版了有关共产国际、联共（布）对华政策的档案文件集《联共（布）、共产国际与中国》（全部21卷已由中共中央党史研究室翻译出版）。华东师范大学的沈志华教授先后主编出版了《苏联历史档案选编》（共34卷）、《俄罗斯档案选编：中苏关系》（共11卷）。此外，社科院俄罗斯东欧中亚研究所、人民出版社亦曾翻译出版了《20世纪俄罗斯解密档案文件》。</p>
+<p>苏联档案中的毛泽东真实吗？</p>
+<p>《联共（布）、共产国际与中国》</p>
+<p>苏联档案中的毛泽东真实吗？</p>
+<p>《俄罗斯档案选编：中苏关系》</p>
+<p>两位作者通过查阅俄罗斯社会政治历史档案馆所收藏的毛泽东个人档案，书中描述的种种细节颇具说服力，也让大部分读者不得不信服于这些资料的权威性，而丰富的细节也让本书显得非常生动，可读性甚高。不少档案都是在此之前从未公开的史料，例如1950年1月毛泽东访苏时的体检报告。根据苏联医生的检查，当时57岁的毛泽东已呈现动脉硬化的症状，并影响其脑部与心脏供血情况，继而容易产生身体虚弱与腿部不适的感觉。此外，由于1948年时曾得过肺气肿，因此当时毛泽东的肺部仍可观察到严重炎症留下的痕迹。类似惟妙惟肖的细节描述在全书可随处可见，大量前苏联解密档案的使用确实“功不可没”。另值得注意的是由于2000年后俄罗斯档案开放政策的骤然收紧，包括毛泽东个人档案在内的大部分资料又被锁入了档案馆深处换而言之，潘佐夫这代研究者可谓恰逢其时，相关档案想重见天日恐怕又要等上很多年。</p>
+<p>除了着重使用前苏联档案外，潘佐夫与梁思文更多是站在苏联的立场去诠释毛泽东生涯中一个个重要片段。在作者看来，毛泽东的政治生涯似乎就是以斯大林为榜样的一生，尤其是晚年的各种重大决策都可窥见斯大林主义挥之不去的影子。</p>
+<p>在论述1949年底至1950年初毛泽东访苏过程时，作者认为当时斯大林为了更好地掌控中国，便曾故意将毛泽东冷落在一边，连续数日不安排任何官方活动，借此来施加压力。在最近中共中央文献研究室刚出版的《毛泽东年谱》中似乎也能找到可印证此说法的史料：1950年1月1日毛泽东的翻译师哲曾私下向柯瓦廖夫透露：如果联共（布）中央政治局委员级别的高层领导能来看望毛泽东，那么他一定会很高兴（第一卷 ，第68页）。初看起来，郁闷无聊的毛泽东确实希望能继续保持与苏联高层领导人之间密切的互动交流，而不是被遗忘在别墅里。</p>
+<p>然而，任何档案本身皆不等于历史真相。如档案这样看似客观的所谓“第一手资料”同样是各类权力博弈交织后留下的一种叙述而已，更是一种官僚系统的行政工具。档案中的任何描述、措辞都会受档案形成时政治氛围的深刻影响。历史学家却很容易被过往的“秘密资料”所吸引，仿佛那些曾经被列为“绝密”的档案中一定藏着所谓“历史真相”。实际上，那些“绝密”的标签或许只是代表着当时获取某方面信息的“特权”而已。在潘佐夫与梁思文的毛泽东传记中，既然以前苏联解密档案作为资料基础乃至研究特色，那么其论述在某种程度上是在映射苏联当时的政治认知便在情理之中了。</p>
+<p>与之相较，国内著名的中苏关系史家沈志华教授在解读此段历史时，却得出了完全不同的结论：由于当时斯大林一度拒绝跟新中国签订新的中苏条约，所以毛泽东为了迫使斯大林让步并同意签署新的中苏条约，才提出在别墅里静养一周。期间，他表示只与苏联最高决策层的领导人会面。除此之外，他“不想参观工厂、不想作报告，也不想发表公开演讲”，拒绝一切外出活动。换而言之，非但不是斯大林将毛泽东冷落在一旁，相反则是毛泽东试图通过这种方式来表达自己的不满。1950年1月2日即师哲向柯瓦廖夫转达毛泽东希望与苏联领导人会谈的强烈意愿后第二天，莫洛托夫与米高扬就出现在毛泽东下榻的别墅，向他转达了斯大林的慰问。不久之后，斯大林便再次与毛举行了正是会谈。</p>
+<p>如毛泽东这样的历史人物无疑是充满复杂性的，甚至有时候会呈现彼此矛盾的不同面目，任何静态化的单一解释均难以切实勾画有关于他的“真实故事”。2012年，《柯林斯书评》（KirkusReviews）曾将潘佐夫与梁思文版的毛泽东传记选为年度最佳著作之一。在高度肯定两位作者对前苏联档案的认真挖掘之余，却也不忘指出这部传记虽已让毛泽东的形象变得“有血有肉”，但是“伟大舵手”的真实面貌依旧是复杂难解的。（文/沙青青）</p>
+
+
+<p style='float:right;'>本页共18段，2873个字符，7957 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

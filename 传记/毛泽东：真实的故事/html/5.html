@@ -1,0 +1,756 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿
+
+<div class='layout'><p>5 DREAMS OF A RED CHAMBER</p><p></p></div>	
+
+
+
+<div class='layout'><p>Mao and his friends arrived in Beijing on August 19, 1918, and set off at once for the home of Yang Changji, who lived in the northern part of town, not far from the city gates. Yang was overjoyed to see them, and offered to accommodate four of them, including Mao.<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a> Yang; his wife, Xiang Zhenxi; his twenty-year-old son, Yang Kaizhi; and his seventeen-year-old daughter, Yang Kaihui (literally, “Opening Wisdom”) lived in the small house located on a narrow and dirty alley.<a name="p2" id="p2"></a><a href="#pl2" title=""><sup>2</sup></a> Mao was already acquainted with his teacher's family since he had often visited Yang Changji in Changsha. At the professor's invitation, in the summer of 1916 Mao had even spent several days as his guest in Yang's native town of Bancang. Mao recalled how he had walked more than twenty miles in his straw sandals to the unprepossessing brick house.<a name="p3" id="p3"></a><a href="#pl3" title=""><sup>3</sup></a> At that time, Yang Kaihui, who was affectionately called Xia (“Dawn” or “Little Dawn”),<a name="p4" id="p4"></a><a href="#pl4" title=""><sup>4</sup></a> was only fifteen (she was born on November 6, 1901), and the bashful Mao had not exchanged a single word with her. Nor had he spoken with his hostess. It was considered improper to converse with women whom you barely knew, so he had simply bowed his head as a token of respect. But he fully indulged his desire for conversation with his teacher, whose enormous library also delighted him. He and Yang Kaihui had seen each other subsequently, but Mao, it will be recalled, was not interested in women and apparently did not even notice that the young girl had blossomed into a young woman.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Now, seeing her again, Mao could not contain his emotions. Standing before him was a beautiful young woman with sensuous lips and attentive dark eyes. Mao's friends were equally impressed. “She was rather small in stature and round-faced. She looked somewhat like her father,” recalled Xiao Yu, “with the same, deep-set, smallish eyes, but her skin was quite white.”<a name="p5" id="p5"></a><a href="#pl5" title=""><sup>5</sup></a> Meanwhile, “Little Dawn” was captivated by this “intelligent and well-mannered” Shaoshan native whom her father had often praised. “I had fallen madly in love with him already when I heard about his numerous accomplishments,” she recalled many years later. “Even though I loved him, I did not display my feelings ……  I was firmly convinced that people had to come to love on their own. Nonetheless, I did not stop hoping and dreaming ……  I decided that if nothing came of this, I would never marry anyone else.”<a name="p6" id="p6"></a><a href="#pl6" title=""><sup>6</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>To Yang Kaihui's disappointment, their relationship did not develop smoothly. Two and a half years passed before their fates became intertwined. Mao was too shy, and he also had no money to go courting. His pride would not allow him to live off Yang Changji. After several days relaxing at the Yangs', Mao and his friends thanked their hosts and moved into a small apartment consisting of three tiny rooms.<a name="pn4" id="pn4"></a><a href="#pln4" title=""><sup>4</sup></a> They were too poor to afford anything else.<a name="p6" id="p6"></a><a href="#pl6" title=""><sup>7</sup></a> The one-story little wooden house with its large, paper-covered windows housed four other friends as well. Every night the eight men somehow managed to fit onto a single kang—a low, flat platform that occupied almost half the room, stretching from wall to wall. Serving as a heated bed in traditional Chinese homes, in cold weather the kang is warmed by hot smoke from a hearth built into one of its sides. The smoke circulates throughout the kang, filling all the cavities, and exits through an aperture in an outside wall. The friends, however, could not afford to heat the kang, so they slept close together for warmth. There was only one padded cotton coat among the eight, so on cold winter days they took turns going outside. Only after four months could they afford to buy two more coats. They cooked on a small stove inside the room.<a name="p8" id="p8"></a><a href="#pl8" title=""><sup>8</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>The tiny house with its minuscule interior courtyard was on a narrow alley in the Three-Eyed Well district of Beijing, quite close to Peking University. It was also near the famous artificial lake Beihai (North sea), located in a park of the same name, as well as the Forbidden City, the permanent residence of the former emperor Pu Yi.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Mao often wandered along Beijing's dusty streets and unpaved alleys. Unlike Changsha, Beijing was not a large commercial center and its commercial streets were not marked by a profusion of signs and advertisements. Yet many of the streets, the main shopping street of Wangfujing above all, were packed with people. Five times as many people lived in Beijing as in Changsha, around one million in all.<a name="p9" id="p9"></a><a href="#pl9" title=""><sup>9</sup></a> Large numbers of rickshaws, always being pulled at a fast clip, crowded the streets and alleys.<a name="p10" id="p10"></a><a href="#pl10" title=""><sup>10</sup></a> Almost one out of every six Beijing men between the ages of sixteen and fifty earned his livelihood as a rickshaw puller. An efficient rickshaw man could net more than fifteen silver dollars a month after deducting payment for the rickshaw, which most pullers rented from special garages—this at a time when an assistant librarian at Peking University earned only eight.<a name="p11" id="p11"></a><a href="#pl11" title=""><sup>11</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>Automobiles, still a rarity, rolled along the wide avenues, honking their horns. Coachmen shouted at passersby to make way for their carriages, pulled by shaggy Mongolian ponies. Pullers with empty rickshaws hustled for fares, shouting raucously above the roar, “Mister! Mrs.!” The din was unbearable; it deafened every traveler in Beijing. One could often see camels on the streets as goods caravans arrived in Beijing from the Mongolian steppe. Their appearance only added to the chaos.<a name="p12" id="p12"></a><a href="#pl12" title=""><sup>12</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>Nevertheless, the city produced a surprisingly favorable impression. It was impossible not to be delighted with its magnificent architectural monuments, its unique palace complexes and temples, harmoniously placed in parklike settings. Mao, too, sensed the profound poetic charm of the capital. “[I]n the parks and the old palace grounds I saw the early northern spring,” he said. “I saw the white plum blossoms flower while the ice still held solid over the North Sea [Beihai] ……  The innumerable trees of Peking [Beijing] aroused my wonder and admiration.<a name="p13" id="p13"></a><a href="#pl13" title=""><sup>13</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>Beijing is one of China's oldest cities. It was founded four or five thousand years ago during the time of the legendary Yellow Emperor and initially called Yudu (Peaceful capital). Its current name of Beijing (Northern capital) dates from 1403 CE and was bestowed by the Ming emperor Yongle, who in 1421 transferred the capital here from Nanjing (Southern capital). It was on Yongle's command that a grandiose palace complex, occupying more than seventeen hundred acres, was built in the center of Beijing, officially called the Purple Forbidden City. In the southern part of Beijing, Yongle erected the stunningly beautiful Temple of Heaven (Tiantan), intended for imperial sacrifices to the ancestors.</p><p></p></div>	
+
+
+
+<div class='layout'><p>The Manchus captured Beijing in 1644, and constructed the elegant Summer Palace in the northwestern outskirts of the city. This palace, located in the center of an enormous 840-acre park, Yuanmingyuan (Park of perfect splendor), stood until 1860, when the “civilized” Anglo-French forces that invaded Beijing during the Second Opium War pillaged and torched it in barbaric fashion. Deciding against restoring the palace, the empress dowager instead ordered the refurbishing of another grandiose summer residence in a nearby park, the Yiheyuan (Good health and harmony park).</p><p></p></div>	
+
+
+
+<div class='layout'><p>Unfortunately, Mao could not enjoy the beauties of the Yiheyuan, since the entrance fee was so high that not even many rich Beijing residents could afford to visit the emperor's palace. But Mao was not depressed. What he did see was quite enough for a first visit.</p><p></p></div>	
+
+
+
+<div class='layout'><p>In the early twentieth century, Beijing was also China's cultural and intellectual center. It was there in 1898 that a modern pedagogic institute was established and which, soon after the 1911 Revolution, was renamed Peking University, or Beida as Chinese usually call it. After the appointment of the liberal Cai Yuanpei as rector in the fall of 1916, a “New Culture” movement unfolded at Beida and many other educational and scholarly institutions throughout the country. The initiators of this movement were like the eighteenth-century French philosophes, who proclaimed the cult of reason instead of the traditional cult of faith, this time in Chinese society. The Enlightenment had finally come to China and Peking University was its bastion. The New Culture Movement inspired the new Chinese intelligentsia to search for new theoretical approaches that might help to solve China's economic, political, and social crises.</p><p></p></div>	
+
+
+
+<div class='layout'><p>The mouthpiece of the movement was Xin qingnian (New youth), the same journal that published Mao Zedong's essay on physical culture in April 1917. Its editor in chief was Chen Duxiu, the dean of the College of Letters at Beida. New Youth had initiated the New Culture Movement, which targeted traditional Confucian ideas, and became one of the most influential publications disseminating such Western ideas as democracy, humanism, and the latest scientific theories. Its pages popularized anti-Confucian morality and Western individualism and liberalism, and sounded a clarion call for the spiritual renewal of society. The journal likewise played a major role in disseminating the new literary language of baihua (common speech) in place of the ancient classical Chinese language, which was too difficult for the broad mass of the Chinese people to learn to read.</p><p></p></div>	
+
+
+
+<div class='layout'><p>The ideals that New Youth and Cai Yuanpei stood for were naturally close to the heart of young Mao Zedong. He admired Rector Cai, Beida professors Li Dazhao, Hu Shi, and other leaders of the popular movement, and he simply idolized Chen Duxiu. Peking University, or more precisely its newly constructed main building on Shatan (Sandbar), was just a fifteen-minute walk from Mao's quarters in the Three-Eyed Well. The tall, four-and-a-half-story building attracted Mao like a magnet. He already knew that the students and teachers had named it the Red Chamber (hong lou), after the eighteenth-century novelist Cao Xueqin's famous novel Dream of the Red Chamber, because the three upper stories of the building were clad in dark red bricks.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Mao must have been overjoyed when, in October 1918, Professor Yang Changji found him a job in Peking University. Yang gave him a letter of recommendation to Li Dazhao, professor of economics and director of the Beida library.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Li, like Mao, was from a prosperous peasant family, and only slightly more than four years older than Mao. He had been born not far from Beijing, in the small village of Daheito, on October 29, 1889. He had gone to a private village school, where, like Mao, he had studied the Confucian classics, and in 1907 he entered the Beiyang Political-Legal Academy in Tianjin, the large commercial city near Beijing. By the eve of the 1911 Revolution, he had already become politically and socially active. In 1913 the twenty-four-year-old published patriotic verses and articles that attracted the attention of thoughtful intellectuals. After graduating in 1913, Li decided to continue his education abroad and soon enrolled in Waseda University, a famous Tokyo institution. He returned to China in May 1916 and immediately became involved in the New Culture Movement. Li was invited to join Peking University in November 1917 and took up his duties as professor of economics and head of the library in January 1918. Soon after, at Chen Duxiu's suggestion, he became a member of the editorial board of New Youth.<a name="p14" id="p14"></a><a href="#pl14" title=""><sup>14</sup></a> At the end of December 1918, he and Chen Duxiu founded another journal, Meizhou pinglun (Weekly review), which addressed political issues in an even sharper manner than New Youth.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Li was a tall, smiling, and amiable person who wore round metal-rimmed glasses and cultivated a long mustache.<a name="p15" id="p15"></a><a href="#pl15" title=""><sup>15</sup></a> He was precise in manner and elegantly dressed, and unlike many other Beida professors, he liked on occasion to wear Western suits, a tie, and white shirts with high starched collars. He was someone whom people noticed.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Li offered Mao a position as assistant to the librarian at a salary of eight dollars a month.<a name="p16" id="p16"></a><a href="#pl16" title=""><sup>16</sup></a> This was not much money, but Mao was not worried by material problems. He happily accepted the offer, and for the first time in his life he had his own desk. Later, with pride in his voice, he would tell his relatives that he worked on the staff at Beida.<a name="p17" id="p17"></a><a href="#pl17" title=""><sup>17</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>Director Li was even better read than Chen Duxiu and Cai Yuanpei, especially in the areas of contemporary Western philosophy, politics, and economics. He was the first person to show a serious interest in what for China were the new teachings of Marxism. Before him almost no one in China knew anything about Marx, even though the earliest news about Marxian socialism appeared in the Middle Kingdom toward the very end of the nineteenth century. In early 1903 a brief excerpt from The Communist Manifesto was first published in China in the form of a quotation cited in Contemporary Socialism, a book published in China by the Japanese author Fukuda Shinzoō. In January 1908, Chinese anarchists published a translation of Friedrich Engels's preface to the 1888 English edition of The Communist Manifesto in their journal Tianyi bao (Heaven's justice). This was the first work by the founders of Marxism published in China in complete form. At this time, the overwhelming majority of Chinese intellectuals were unclear as to what Marxism actually was and failed to differentiate Marx's socialism from all the other socialist teachings.<a name="p18" id="p18"></a><a href="#pl18" title=""><sup>18</sup></a> This is what Mao himself said in April 1945:</p><p></p></div>	
+
+
+
+<div class='layout'><p>Apart from a small number of students who had studied abroad, no one in China [in those years] understood [Marxism]. I myself did not know that there had been such a person as Marx either ……  At that time we  …… knew nothing about the existence in the world of imperialism or any kind of Marxism ……  Earlier there had been people like Liang Qichao and Zhu Zhixin who had referred to Marxism. They say there was also someone who translated Engels' Socialism: Utopian and Scientific in a journal. Generally speaking, at the time I didn't see [these editions], and if I did, I just skimmed over them, and paid them no heed.<a name="p19" id="p19"></a><a href="#pl19" title=""><sup>19</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>Li Dazhao was the first in China to draw attention not only to Marxism, but also to the worldwide significance of the Bolshevik experience. Embracing the Bolshevik positions, in 1918 he began to propagandize Russian communism on a wide scale. As early as July 1918, in his article “Comparing the French and Russian Revolutions,” Li Dazhao wrote,</p><p></p></div>	
+
+
+
+<div class='layout'><p>The Russian revolution marks a change in the consciousness not only of Russians, but of all mankind in the 20th century ……  We must proudly welcome the Russian revolution as the light of a new civilization. We must pay close attention to the news from Russia which is building upon the principles of freedom and humanism. Only thus can we keep pace with world progress. And we should not despair over occasional disorders in today's Russia!<a name="p20" id="p20"></a><a href="#pl20" title=""><sup>20</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>Such were the dreams born in the stillness of the Red Chamber.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Shortly after Mao joined the library staff, Director Li himself acquainted him with the rudiments of Bolshevik ideology. “Capitalists,” he suggested, “comprise an insignificant minority of mankind while workers are the overwhelming majority ……  Anyone who does not work, but who consumes that which others produce is a thief.” We must put an end to “injustice,” Li argued. “We must  …… provide everyone an opportunity to become workers, not thieves.” How can this be done  Through the path of a world socialist revolution, which the Russian communists have begun. “The Bolsheviks,” he explained,</p><p></p></div>	
+
+
+
+<div class='layout'><p>grounded their actions in the teaching of the German economist, the socialist Marx; their goal is to do away with state boundaries that currently are an obstacle to socialism, to destroy the regime of capitalism by which the bourgeoisie accumulates profits ……  The Bolsheviks recognize the existence of class warfare, the war of the world proletariat against the world bourgeoisie ……  They propose to establish a federal democratic republic of Europe as the foundation of a world federation ……  This is the new credo of world revolution in the 20th century.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Intoxicated with his new faith, Li Dazhao wrote:</p><p></p></div>	
+
+
+
+<div class='layout'><p>One can understand that Trotsky sees the Russian revolution as the fuse that will ignite the world revolution ……  Numerous popular revolutions will erupt one after the other  …… these are revolutions on the Russian model, revolutions of the 20th century ……  The tocsin of humanism has sounded. The dawn of freedom has arrived. The future world is the world of the red flag ……  The Russian revolution  …… heralds changes on the earth ……  [T]he victory of Bolshevism is the victory of a new spirit based on the general awakening of mankind in the 20th century.<a name="p21" id="p21"></a><a href="#pl21" title=""><sup>21</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>Li soon tried to draw his assistant into actual political activity. He invited Mao to a meeting of the preparatory committee to organize a patriotic society called Young China, the goals of which coincided with those of the Renovation of the People Study Society. In late November 1918, Mao attended another meeting called by Li Dazhao at Beida, which resolved to found a Marxist Study Society.<a name="p22" id="p22"></a><a href="#pl22" title=""><sup>22</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>Of course, prior to meeting Li Dazhao, Mao had already heard about the Russian Revolution from the Chinese local and national press. On November 17, 1917, the Changsha Dagong bao (Justice) carried a story about the events in Russia and Mao certainly knew the name of the leader of the Bolshevik party.<a name="p23" id="p23"></a><a href="#pl23" title=""><sup>23</sup></a> In November 1917, Mao could read brief accounts of the speeches by Trotsky and Lenin at the Second All Russian Congress of Soviets, in the pages of Minguo shibao (Republic news) and Shishi xinbao (Factual news). They reported Lenin's proposals to end the world war promptly, to give land to the peasants, and to tackle the economic crisis. Information about Lenin, Trotsky, Bolshevism, and the October Revolution appeared often in the Chinese press in 1918 and evoked considerable interest. But Mao could not have imagined that this was the “light of a new era.”<a name="p24" id="p24"></a><a href="#pl24" title=""><sup>24</sup></a> Everything that Li Dazhao said was new to him. He realized his education thus far was insufficient, so he decided to attend lectures at Peking University.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Toward this end, in early 1919 Mao joined three university societies: philosophy, modern literature, and journalism.<a name="p25" id="p25"></a><a href="#pl25" title=""><sup>25</sup></a> In the latter he became acquainted with the important publisher and publicist Shao Piaoping, who had founded the Chinese information agency and the popular Beijing newspaper Jing bao (Capital news). This was a very useful contact. Shao inducted Mao into the world of authentic journalism. At a meeting of the Young China society, Mao's attention was drawn to Deng Kang, a student in the Department of Literature at Peking University. A tall, thin, jovial youth with a kind smile and mischievous eyes, he was dressed in a traditional Chinese gown from which his long neck protruded. Mao may have turned to him because of his Hunan accent. In any case, the two young men, who were almost the same age, shared basically the same ideals and soon became friends. Like Mao's old friend Cai Hesen, Deng played an important role in Mao's life and under the name of Deng Zhongxia became one of the first organizers of the workers' and communist movement in China, and a leading figure in the CCP.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Yet the man who, in Mao's own words, “influenced” him “perhaps more than anyone else” was Chen Duxiu.<a name="p26" id="p26"></a><a href="#pl26" title=""><sup>26</sup></a> In 1936 Mao was not shy about confessing this even to Edgar Snow, an American journalist whom he did not know, despite the fact that by then Chen Duxiu, after a rather tortuous life journey, had become the main Chinese Trotskyist. Mao must really have respected Chen Duxiu to make such a confession during the heat of the paranoid anti-Trotskyist campaign that Stalin was conducting in the international communist movement.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Chen Duxiu's personality had a hypnotic effect on other people as well. As early as 1917 Mao and his friends at the Normal School discussed that Chen meant as much to China as Tolstoy did to Russia, and that, like the Russian writer, he was someone who in his personal life and in his writings has “sought after truth and abided in the truth, not caring what others might say.”<a name="p27" id="p27"></a><a href="#pl27" title=""><sup>27</sup></a> Chen Duxiu enjoyed enormous respect on the part of the patriotic intelligentsia even though he was still rather young. Born on October 8, 1879, in 1918 he was just thirty-nine.</p><p></p></div>	
+
+
+
+<div class='layout'><p>A native of Huaining (now Anqing) in Anhui province, as a child Chen had received a classical Confucian education. Between 1900 and 1902 he gained some knowledge of Western sciences by visiting contemporary educational institutions in China and Japan. Returning to China in the spring of 1903, he was drawn into intensive revolutionary activity, participating in the founding of progressive newspapers and magazines in Shanghai and in Anhui province. It was Chen Duxiu who in mid-September 1915 founded the journal Qingnian (Youth) in the International Settlement of Shanghai. A year later it was renamed Xin qingnian (New youth). Chen Duxiu was invited to join Peking University at the end of November 1916, and was soon appointed dean of the College of Letters.<a name="p28" id="p28"></a><a href="#pl28" title=""><sup>28</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>Like Li Dazhao, at the time Chen enjoyed occasionally dressing in Western clothes. His three-piece gray suit, perfectly starched shirt, and tie gave him the look of an American professor at a business school. But his appearance was deceptive. He was extremely sociable, both sharp-tongued and funny and sometimes peremptory in debate, but he was never contemptuous toward others. Despite the ten years between them, Chen Duxiu and Li Dazhao became friends, and Chen greatly respected his younger colleague.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Chen treated Mao Zedong, who was not even officially a student, in the same democratic spirit he treated Li Dazhao. Mao could not help but fall under his spell. “We regard Mr. Chen as a bright star in the world of thought,” he wrote after several months. “When Mr. Chen speaks, anyone with a reasonably clear mind assents to the opinions he expresses.”<a name="p29" id="p29"></a><a href="#pl29" title=""><sup>29</sup></a> Unlike Li Dazhao, however, Chen Duxiu was not yet a supporter of either Bolshevism or Marxism. Responding to a reader of New Youth, he said it made no sense to talk about socialism in China since industry was so little developed in the country.<a name="p30" id="p30"></a><a href="#pl30" title=""><sup>30</sup></a> He continued to advocate personal freedom, democracy, and humanism.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Chen Duxiu's ideological position meant a lot to Mao Zedong. The assistant librarian respected Director Li, but he implicitly believed in Professor Chen. Therefore, he was still quite skeptical about Bolshevism. Of the various communist currents, Mao was most interested in anarchism, with its strong emphasis on individualism, the more so since both Chen Duxiu and Li Dazhao were sympathetic toward anarchist ideas.<a name="p31" id="p31"></a><a href="#pl31" title=""><sup>31</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>Between 1916 and 1920 anarchism was enormously popular in China, including at Peking University. Anarchism was the first Western social philosophy to attract followers in China, and it was the anarchists who first paid attention to the workers' situation and who began to organize the first trade unions. Among the Chinese anarchists were supporters of various teachings, such as Kropotkin's mutual aid, Bakunin's spontaneous revolution, Proudhon's anarcho-syndicalism, and the theories of some Japanese anarchists who advocated the reconstruction of society by establishing isolated, self-supporting new settlements in mountainous and forest districts. Kropotkin enjoyed the greatest influence. He advocated the transformation of state and society via decentralization on the basis of the free self-organization of people in a federated union of communist communities. Chinese anarchists typically intertwined various strands of anarchist thought and strived above all for absolute personal freedom, which they understood to entail a total rupture with contemporary society.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Mao was able to find quite a few anarchist works in the Beida library. He became acquainted with and was attracted by a number of them.<a name="p32" id="p32"></a><a href="#pl32" title=""><sup>32</sup></a> After all, he had come to Beijing to take part in the “work-study movement in France” headed by anarchists. Recalling his life in Beijing, Mao said, “My interest in politics continued to increase, and my mind turned more and more radical ……  But just now I was still confused, looking for a road ……  I read some pamphlets on anarchy, and was much influenced by them. With a student named Chu Hsun-pei [Zhu Qianzhi], who used to visit me, I often discussed anarchism and its possibilities in China. At that time I favored many of its proposals.”<a name="p33" id="p33"></a><a href="#pl33" title=""><sup>33</sup></a> Kropotkin had the greatest influence on Mao. Obviously, Mao's dreams were no less fantastic than those of Li Dazhao.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Of all the members of the Renovation of the People Study Society, Mao alone found work at Peking University. The others made ends meet through casual earnings. They all enrolled in training classes at various educational institutions that were preparing candidates for the trip to France. Several of them enrolled in a school attached to Peking University, others in a school located in Baoding, a city about a hundred miles southwest of the capital; Cai Hesen began to study at a school south of Baoding. In addition to these young men and young women, two older persons were preparing seriously for the journey. We have already met one of them, Xu Teli, a professor at the First Normal School in Changsha. The other was Cai Hesen's mother, Ge Jianhao, also known as Ge Lanying. The main subject of study was French, and results on the exams were the basis on which persons were selected for the journey. Candidates had to pass an oral conversation test in French and submit to a health test.<a name="p34" id="p34"></a><a href="#pl34" title=""><sup>34</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>Having gotten his bearings in Beijing, Mao changed his mind about going to Paris. What was he thinking  In his conversations with Edgar Snow, he said, “Although I had helped organize the movement  …… I did not want to go to Europe. I felt that I did not know enough about my own country, and that my time could be more profitably spent in China.”<a name="p35" id="p35"></a><a href="#pl35" title=""><sup>35</sup></a> Why, then, did he have to go to Beijing  Why start working in the library  Mao's statement is very dubious. Let us recall how happy he had been to receive news from Yang Changji about the recruitment of students for France. Most likely there were other reasons Mao did not go to France. He had no money, but he could have got his hands on some. Professor Yang would certainly have lent the necessary sum to his favorite student. No, it was not a question of money. None of Mao's friends had any, and ultimately the expenses of the trip were covered by contributions.<a name="p36" id="p36"></a><a href="#pl36" title=""><sup>36</sup></a> The problem was a different one. Mao, who had absolutely no talent for languages, simply couldn't pass the French language exam. During his time at the Normal School every morning he learned English by rote,<a name="p37" id="p37"></a><a href="#pl37" title=""><sup>37</sup></a> but the result still was next to nothing. Could it have been any different with French?  Even if he had been accepted to study in France, he would not have been able to feel confident in a foreign country. He was not one to accept second-class status.</p><p></p></div>	
+
+
+
+<div class='layout'><p>The main reason for Mao's decision not to go to France was pride. Mao, a proud and imperious individual, did not want to feel that he was worse than the others. Even in Beijing, the elitist capital, he didn't always feel at ease.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Of course, Li Dazhao, Chen Duxiu, and Shao Piaoping treated him well, but even so, he could not help but feel like a poorly educated provincial. Even though he was almost the same age as Li Dazhao, there was a huge gulf between them. During the five months he worked at Beida he felt constantly humiliated. Yet in Changsha he had been the best student of all, and recognized as the leader. “One of my tasks was to register the names of people who came to read newspapers,” Mao recalled, “but to most of them I didn't exist as a human being ……  I tried to begin conversations with them on political and cultural subjects, but they were very busy men. They had no time to listen to an assistant librarian speaking southern dialect.”<a name="p38" id="p38"></a><a href="#pl38" title=""><sup>38</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>As is so often the case, it was young people who had merely reached the threshold of success in society and politics who displayed such haughtiness. For the leaders of the Beida Student Union, Fu Sinian and Luo Jialun, the library assistant from Hunan was an invisible man. Hu Shi, already a well-known professor of philosophy, and who was just two years older than Mao, likewise ignored him.<a name="p39" id="p39"></a><a href="#pl39" title=""><sup>39</sup></a> At meetings of the journalist society Mao became acquainted with Chen Gongbo and Tan Pingshan, who were soon to play an important role in the creation of the CCP, but they also paid him little heed. Zhang Guotao, who by the beginning of 1919 had made a name for himself among Beida students through his patriotic activity, was indifferent to Mao. In his memoirs, which were written in the 1950s and 1960s, Zhang did not even recall his first meeting with Mao, but Mao remembered it very well, and he did not forget how Zhang had brushed him off.<a name="p40" id="p40"></a><a href="#pl40" title=""><sup>40</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>In January 1919, Xiao Yu was the first to leave for France, and in March the other Hunanese were ready for the journey. Just then Mao Zedong received news that his mother's health had further deteriorated. In his own words, he “had to rush back home to look after her.”<a name="p41" id="p41"></a><a href="#pl41" title=""><sup>41</sup></a> His was a strange sort of haste. He left Beijing on March 12, but didn't arrive in Changsha until April 6, and not till April 28 did he write a letter informing his uncles that he was on his way. All this time he was thinking of everything but his ill and much-beloved mother. Mao first went to Shanghai with a group of students who were ready to depart for France, and hung around there for twenty days. “I was detained there on business,” he explained to his uncles.<a name="p42" id="p42"></a><a href="#pl42" title=""><sup>42</sup></a> What sort of business?  All he did was wait to say good-bye to his dear friends who were sailing for France. Meanwhile, his mother was growing sicker by the day. A strange sort of behavior for a devoted son.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Why did he suddenly exhibit such callousness?  We can understand this only if we again recall the insults Mao endured in the capital. Psychologically, he needed to accompany his friends on the trip to Shanghai. Moreover, now that general secretary Xiao Yu was gone, he again began to play the role of leader, escorting the members of the group that he led on this important political enterprise. He wanted so much to feel like an important person again, the leader, a political activist. He passionately desired fame and power. But he probably also felt guilty, which is why in his interview with Edgar Snow he falsely asserted that his mother had died in 1918, before he had gone to Beijing.<a name="p43" id="p43"></a><a href="#pl43" title=""><sup>43</sup></a> His conscience may have tormented him, but his vanity and lust for power trumped his conscience.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Mao Zedong's unhappy mother died on October 5, 1919, at the age of fifty-three. Burdened with grief and possibly shame, Mao arrived home to bid her farewell on her final journey. Standing in front of her grave, he recited verses that he had composed himself:</p><p></p></div>	
+
+
+
+<div class='layout'><p>From her sickbed Mother calls her sons.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Her love is boundless.</p><p></p></div>	
+
+
+
+<div class='layout'><p>I suffer endless pangs of conscience</p><p></p></div>	
+
+
+
+<div class='layout'><p>from failing to express my gratitude.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Throughout her life, and now again, she seeks the Buddha.</p><p></p></div>	
+
+
+
+<div class='layout'><p>I know her time on earth is short.</p><p></p></div>	
+
+
+
+<div class='layout'><p>I grieve, but know not where to find her loving face.</p><p></p></div>	
+
+
+
+<div class='layout'><p>Spring winds scatter the sunlight on distant southern shores.</p><p></p></div>	
+
+
+
+<div class='layout'><p>The autumn rains of Shaoshan shed endless tears.<a name="p44" id="p44"></a><a href="#pl44" title=""><sup>44</sup></a></p><p></p></div>	
+
+
+
+<div class='layout'><p>Less than four months later, Mao's father died of typhus at the age of forty-nine. He was buried in the same grave with his wife.<a name="p45" id="p45"></a><a href="#pl45" title=""><sup>45</sup></a> By then Mao was back in Beijing, preoccupied with important political issues. He did not attend the funeral.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a>. Siao-yu, Mao Tse-tung and I Were Beggars, 166.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl2" id="pl2"></a><a href="#p2" title=""><sup>2</sup></a>. Liao, Mao Zedong baike quanshu (Encyclopedia of Mao Zedong), vol. 1, 25, 36.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl3" id="pl3"></a><a href="#p3" title=""><sup>3</sup></a>. Ma, Hongse diyi jiazu (The First Red Family), 17–18.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl4" id="pl4"></a><a href="#p4" title=""><sup>4</sup></a>. Ibid., 30.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl5" id="pl5"></a><a href="#p5" title=""><sup>5</sup></a>. Siao-yu, Mao Tse-tung and I Were Beggars, 41.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl6" id="pl6"></a><a href="#p6" title=""><sup>6</sup></a>. Quoted from Ma, Hongse diyi jiazu (The First Red Family), 22.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl7" id="pl7"></a><a href="#p7" title=""><sup>7</sup></a>. Schram, Mao's Road to Power, vol. 2, 23; Snow, Red Star Over China, 149.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl8" id="pl8"></a><a href="#p8" title=""><sup>8</sup></a>. Siao-yu, Mao Tse-tung and I Were Beggars, 166.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl9" id="pl9"></a><a href="#p9" title=""><sup>9</sup></a>. See David Strand, Rickshaw Beijing: City People and Politics in the 1920s (Berkeley: University of California Press, 1989), 13.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl10" id="pl10"></a><a href="#p10" title=""><sup>10</sup></a>. See Ellen N. La Motte, Peking Dust (New York: Century, 1919), 20.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl11" id="pl11"></a><a href="#p11" title=""><sup>11</sup></a>. Strand, Rickshaw Beijing, 20–21; Snow, Red Star Over China, 148.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl12" id="pl12"></a><a href="#p12" title=""><sup>12</sup></a>. Schram, Mao's Road to Power, vol. 2, 17–22; Chang, The Rise of the Chinese Communist Party, vol. 1, 39.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl13" id="pl13"></a><a href="#p13" title=""><sup>13</sup></a>. Snow, Red Star Over China, 149.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl14" id="pl14"></a><a href="#p14" title=""><sup>14</sup></a>. On Li Dazhao, see the Exposition of Li Dazhao Museum in Laoting, Hebei Province; Han Yide et al., Li Dazhao shengping jinian (Biographical Chronicle of Li Dazhao) (Harbin: Heilongjiang renmin chubanshe, 1987); Li Dazhao zhuan (Biography of Li Dazhao) (Beijing: Renmin chubanshe, 1979); Li Dazhao guju (Li Dazhao's Birthplace) (Shijiazhuang: Hebei renmin chubanshe, 1996); Li Dazhao jinianguan (Museum of Li Dazhao) (Shijiazhuang: Hebei renmin chubanshe, 1999); Maurice Meisner, Li Ta-chao and the Origins of Chinese Marxism (New York: Atheneum, 1979).</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl15" id="pl15"></a><a href="#p15" title=""><sup>15</sup></a>. Chang, The Rise of the Chinese Communist Party, vol. 1, 90, 265, 335.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl16" id="pl16"></a><a href="#p16" title=""><sup>16</sup></a>. Snow, Red Star Over China, 148.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl17" id="pl17"></a><a href="#p17" title=""><sup>17</sup></a>. See Schram, Mao's Road to Power, vol. 1, 317.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl18" id="pl18"></a><a href="#p18" title=""><sup>18</sup></a>. For more details, see L. N. Borokh, Obshchestvennaia mysl' Kitaia i sotsialism (nachalo XX v.) (Social Thought in China and Socialism in the Early Twentieth Century) (Moscow: Nauka, 1984); M. A. Persits, “O podgotovitel'nom etape kommunisticheskogo dvizheniia v Azii” (On the Preparatory Stage of the Communist Movement in Asia), in R. A. Ul'anovsky, ed., Revoliutsionnyi protsess na Vostoke: Istoriia i sovremennost' (The Revolutionary Process in the East: Past and Present) (Moscow: Nauka, 1982), 38–76; Martin Bernal, Chinese Socialism to 1907 (Ithaca, NY: Cornell University Press, 1976); Makesi Engesi zhuzuo zhongyiwen zonglu (Catalogue of Chinese Translations of Marx and Engels's Works) (Beijing: Shumu wenxian chubanshe, 1988), 1119–21.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl19" id="pl19"></a><a href="#p19" title=""><sup>19</sup></a>. Mao Zedong, “Qida gongzuo fangzhen” (Work Report at the Seventh Congress), Hongqi (Red flag), no. 14 (1981): 4.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl20" id="pl20"></a><a href="#p20" title=""><sup>20</sup></a>. Li Dazhao, Izbrannye proizvedeniia (Selected Works) (Moscow: Nauka, 1989), 147.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl21" id="pl21"></a><a href="#p21" title=""><sup>21</sup></a>. Ibid., 155, 156, 158–61.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl22" id="pl22"></a><a href="#p22" title=""><sup>22</sup></a>. See Han, Li Dazhao shengping jinian (Biographical Chronicle of Li Dazhao), 59.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl23" id="pl23"></a><a href="#p23" title=""><sup>23</sup></a>. See Liao, Mao Zedong baike quanshu (Encyclopedia of Mao Zedong), vol. 5, 2662.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl24" id="pl24"></a><a href="#p24" title=""><sup>24</sup></a>. Li, Izbrannye proizvedeniia (Selected Works), 164.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl25" id="pl25"></a><a href="#p25" title=""><sup>25</sup></a>. See Liao, Mao Zedong baike quanshu (Encyclopedia of Mao Zedong), vol. 5, 2664.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl26" id="pl26"></a><a href="#p26" title=""><sup>26</sup></a>. Snow, Red Star Over China, 151.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl27" id="pl27"></a><a href="#p27" title=""><sup>27</sup></a>. Schram, Mao's Road to Power, vol. 1, 139.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl28" id="pl28"></a><a href="#p28" title=""><sup>28</sup></a>. See Lee Feigon, Chen Duxiu: Founder of the Chinese Communist Party (Princeton, NJ: Princeton University Press, 1983), 23–112.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl29" id="pl29"></a><a href="#p29" title=""><sup>29</sup></a>. Schram, Mao's Road to Power, vol. 1, 329.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl30" id="pl30"></a><a href="#p30" title=""><sup>30</sup></a>. Chen Duxiu, Chen Duxiu wenzhang xuanbian (Selected Writings of Chen Duxiu), vol. 1 (Beijing: Shenghuo. Dushu. Xinzhi sanlian shudian, 1984), 170.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl31" id="pl31"></a><a href="#p31" title=""><sup>31</sup></a>. See Li, Izbrannye proizvedeniia (Selected Works), 192; Feigon, Chen Duxiu, 142; Chang, The Rise of the Chinese Communist Party, vol. 1, 90, 110, 694.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl32" id="pl32"></a><a href="#p32" title=""><sup>32</sup></a>. See Lichnoe delo Mao Tszeduna (Personal File of Mao Zedong), RGASPI, collection 495, inventory 225, file 71, vol. 1, sheet 296.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl33" id="pl33"></a><a href="#p33" title=""><sup>33</sup></a>. Snow, Red Star Over China, 149.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl34" id="pl34"></a><a href="#p34" title=""><sup>34</sup></a>. Spichak, Kitaitsy vo Frantsii (Chinese in France) (manuscript), 23–24; Luo Shaozhi, “Cai mu Ge Jianhao” (Mama Cai, Ge Jianhao), in Hu Hua, ed., Zhonggongdang shi renwu zhuan (Biographies of Persons in the History of the CCP), vol. 6 (Xi'an: Shaanxi renmin chubanshe, 1982), 47–57.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl35" id="pl35"></a><a href="#p35" title=""><sup>35</sup></a>. Snow, Red Star Over China, 148.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl36" id="pl36"></a><a href="#p36" title=""><sup>36</sup></a>. Ibid., 150.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl37" id="pl37"></a><a href="#p37" title=""><sup>37</sup></a>. See Schram, Mao's Road to Power, vol. 1, 85.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl38" id="pl38"></a><a href="#p38" title=""><sup>38</sup></a>. Snow, Red Star Over China, 148.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl39" id="pl39"></a><a href="#p39" title=""><sup>39</sup></a>. Schram, Mao Tse-tung, 48.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl40" id="pl40"></a><a href="#p40" title=""><sup>40</sup></a>. Snow, Red Star Over China, 149.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl41" id="pl41"></a><a href="#p41" title=""><sup>41</sup></a>. Schram, Mao's Road to Power, vol. 1, 317.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl42" id="pl42"></a><a href="#p42" title=""><sup>42</sup></a>. Ibid., 317.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl43" id="pl43"></a><a href="#p43" title=""><sup>43</sup></a>. Snow, Red Star Over China, 147.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl44" id="pl44"></a><a href="#p44" title=""><sup>44</sup></a>. Mao, Oblaka v snegu (Clouds in the Snow), 13.</p><p></p></div>	
+
+
+
+<div class='layout'><p><a name="pl45" id="pl45"></a><a href="#p45" title=""><sup>45</sup></a>. See Pang, Mao Zedong nianpu, 1893–1949 (Chronological Biography of Mao Zedong, 1893–1949), vol. 1, 52.</p><p></p></div>	
+
+
+<div class='layout'><p><a name="pln4" id="pln4"></a><a href="#pn4" title=""><sup>4</sup></a> Later, conversing with Edgar Snow, Mao reduced the number of rooms to just one, probably to impress upon Snow just how poor he had been at the time.</p><p></p></div>
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

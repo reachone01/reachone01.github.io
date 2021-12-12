@@ -1,0 +1,462 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>7 BREATHING WORLD REVOLUTION, OR THE MAGIC OF DICTATORSHIP</p><p></p></div>	
+<div class='layout'><p>Arriving in Shanghai on May 5, 1920, Mao lodged with Hunanese friends in a small two-story house on a dirty street in the western part of town. There he stayed for two and a half months.<a name="p1" id="p1"></a><a href="#pl1" title=""><sup>1</sup></a> As always, Mao was almost broke, as were his friends. In order to make ends meet, he had to jettison what he called his “intellectual's habit” and engage in physical labor. Mao wound up washing other people's laundry.<a name="p2" id="p2"></a><a href="#pl2" title=""><sup>2</sup></a> His work as a laundryman occupied only “half-time” and he spent his free hours politicking and wandering about town.<a name="p3" id="p3"></a><a href="#pl3" title=""><sup>3</sup></a></p><p></p></div>	
+<div class='layout'><p>He managed to have a good look around Shanghai. Located on the banks of the Huangpu, one of the tributaries of the Yangzi River, Shanghai was already the largest industrial and commercial center of China and in all of East Asia. Starting in 1842, the year the British arrived on the scene, Shanghai had been transformed by 1920 from a town of 230,000 into a giant metropolis with no fewer than two million residents, twice as many as in Beijing. The city was the main open port of the country. Countless wharves and warehouses stretched along the left bank of the Huangpu River.</p><p></p></div>	
+<div class='layout'><p>Shanghai was divided into six main districts. Five of them—Nandao, Zhabei, Wusong, the International Settlement, and the French Concession—were located on the left or west bank of the Huangpu, and one—Pudong—on the right or east side. Close to the northern railroad station, on the left bank of the Wusong (also known as Suzhou Creek), a small river that was a tributary of the Huangpu, lay the industrial, workers' quarter of Zhabei. This was a new district dating from the mid-nineteenth century. Nandao, the oldest part of Shanghai, dating from the Tang dynasty (618–906 CE), lay between the southern railroad station and the Huangpu. South of Zhabei and north and west of the Huangpu stretched the International Settlement, which was governed by the British. Adjoining the International Settlement to the south was the French Concession. Thus the foreign concessions bisected the left bank of Shanghai, forming two broad swathes squeezed in between the Chinese districts of Nandao and Zhabei. To the west of the International Settlement and the French Concession, on the upper reaches of Suzhou Creek, was the remaining Chinese district of Wusong.</p><p></p></div>	
+<div class='layout'><p>Of the city's thirty-five square miles, more than a third belonged to foreigners. Foreign law prevailed on the territory of the settlements (the concessions), and foreign troops and police were stationed there. Chinese were allowed to live in these districts. Wealthy Chinese and intellectuals opposed to the Chinese authorities took advantage of this opportunity. In fact, the number of Chinese living in the International Settlement and the French Concession was many times greater than the number of foreigners.<a name="pn6" id="pn6"></a><a href="#pln6" title=""><sup>n6</sup></a> The political atmosphere was much more liberal than anywhere else in China, and in the International Settlement, the standard of living significantly higher. The stores that lined Nanking Road were unique in China. Branches of the largest European and American banks were located in the International Settlement and the French Concession, along with expensive hotels and villas. Shanghai's architectural profile contrasted sharply with those of other Chinese cities. The quay made a particularly strong impression with its massive stone skyscrapers and sharp spires thrusting into the sky. Life bubbled up all around, advertisements blazed, cars careened along the streets, rickshaw pullers rushed to and fro, ships from every nation were loading and unloading in the harbor, elegantly dressed ladies accompanied by refined gentlemen promenaded along the central part of the quay or Bund in the shade of the trees. Crowds of people jostled each other along Nanking Road and nearby streets and alleys. Numerous shops and restaurants, movie theaters and casinos attracted an affluent public.</p><p></p></div>	
+<div class='layout'><p>In Shanghai one could hear English, French, and even Russian spoken everywhere. In 1925 there were 2,766 Russians in Shanghai, no fewer than 6,000 British, about 1,500 Americans, and more than 1,000 French. In all, there were 37,758 foreigners of various nationalities in the city. Japanese composed the majority; in 1925 there were 13,804 Japanese,<a name="p4" id="p4"></a><a href="#pl4" title=""><sup>4</sup></a> but owing to the presence of the Russians, British, and French who put their stamp on the city, Shanghai had the flavor of a European capital. The architecture of its international quarters differed little from New York or London.</p><p></p></div>	
+<div class='layout'><p>Mao Zedong could not help but notice how un-Chinese it seemed even though he lived rather far from Nanking Road and the Bund. He could always use that technological wonder, a tram, which ran through the International and French settlements. He also rode the tram to reach his clients, picking up dirty laundry and delivering freshly washed bundles. These trips, he said, used up a large part of his minuscule income.<a name="p5" id="p5"></a><a href="#pl5" title=""><sup>5</sup></a></p><p></p></div>	
+<div class='layout'><p>By now quite a few of the anti-Zhang activists were gathered in Shanghai. The Association for the Revival of Hunan, a public organization established by wealthy emigrants from the province, had begun functioning in Shanghai in December 1918. Other Hunanese fraternal societies that demanded the ouster of Zhang also operated in Shanghai. The most influential was the Society of Hunanese Residing in Shanghai. In the spring of 1920, Xu Fosu, a famous son of Hunan, who was president of the parliament of the Republic of China and an opponent of Zhang Jingyao, stayed in Shanghai.<a name="p6" id="p6"></a><a href="#pl6" title=""><sup>6</sup></a></p><p></p></div>	
+<div class='layout'><p>All the efforts of Mao and other patriotic Hunanese in Shanghai were in vain, yet Mao Zedong continued tilting at windmills. To be sure, he now approached the struggle in a more sophisticated way. He sought not only to get rid of the corrupt bosses, but to change the vicious system that produced such despots. In proclamations that he wrote between the spring and autumn of 1920, Mao, displaying a utopian fervor, favored Hunanese popular self-rule. He proposed separating Hunan from China, which was mired in filth; declaring Hunan's complete independence; and introducing a local constitution and an elected, genuinely democratic form of governance. Mao recalled, “Disgusted with the Northern Government, and believing that Hunan could modernize more rapidly if freed from connections with Peking [Beijing], our group agitated for separation. I was then a strong supporter of America's Monroe Doctrine and the Open Door.”<a name="p7" id="p7"></a><a href="#pl7" title=""><sup>7</sup></a> This is a strange confession on the part of a man who told Edgar Snow that by the summer of 1920 he had become a Marxist.</p><p></p></div>	
+<div class='layout'><p>The idea of an “independent Hunan” was not new. On the eve of the 1911 Revolution, the Hunanese revolutionary democrat Yang Shouren had insisted that a free Hunan could become a model for all the other provinces in China, which would ultimately unite around new, federalist principles, leading to the renaissance of the Chinese nation.<a name="p8" id="p8"></a><a href="#pl8" title=""><sup>8</sup></a> Naturally, this idea had not the slightest connection with Marxism or Bolshevism, but it fit well into the traditions of several Western European countries as well as that of the United States. Mao did not accept it immediately. In March 1920 he still expressed doubts about the possibility of separating Hunan: “[S]ince it is a province within China, it would not be easy for Hunan to establish its independence, unless …… our status becomes like that of an American or German state.”<a name="p9" id="p9"></a><a href="#pl9" title=""><sup>9</sup></a> Soon, however, he became a passionate advocate. He started from the premise that “China is so vast. Each province differs greatly from the others in sentiments, interests, and the level of popular wisdom. …… [At the same time] Hunan's geography and the nature of its people have great potential. If they are mixed up in the nationwide organization, their particular strengths will be undermined, and they will be restrained from further progress.”<a name="p10" id="p10"></a><a href="#pl10" title=""><sup>10</sup></a></p><p></p></div>	
+<div class='layout'><p>Mao counted upon the creative energy of the citizens of his native province. “If the Hunan people can take the lead now, then Shaanxi, Fujian, Sichuan, and Anhui provinces, having similar conditions, will follow, and then some ten to twenty years later, they may join together in providing a general solution to the problems of the whole country.”<a name="p11" id="p11"></a><a href="#pl11" title=""><sup>11</sup></a> He wanted to establish a kind of special “Hunanese civilization,” a society of free people who would govern their own country without a military governor or an army, and would promote education, industry, and trade.<a name="p12" id="p12"></a><a href="#pl12" title=""><sup>12</sup></a> He also compared Hunan with Switzerland and with Japan.<a name="p13" id="p13"></a><a href="#pl13" title=""><sup>13</sup></a> Mao counted especially upon the citizens of the provincial capital to be the vanguard in the movement for independence and democratization. “[T]he responsibility has inevitably fallen on the shoulders of our 300,000 citizens of Changsha,” he wrote.<a name="p14" id="p14"></a><a href="#pl14" title=""><sup>14</sup></a></p><p></p></div>	
+<div class='layout'><p>In June 1920, Mao presented his plan for the revival and reconstruction of Hunan to the person whom he respected most, Chen Duxiu.<a name="p15" id="p15"></a><a href="#pl15" title=""><sup>15</sup></a> Chen was then living in a small, traditional Chinese brick house on a quiet lane in the French Concession where the editorial office of New Youth was also housed. What Chen replied is unknown, but most likely he showed no interest in this naive project. Otherwise, Mao Zedong would surely have made mention of his response in one of his speeches. Instead, Chen Duxiu tried to set Mao onto the “true path” of Marxism. “I had discussed with Ch'ên [Chen], on my second visit to Shanghai, the Marxist books that I had read,” Mao later recalled, “and Ch'ên's own assertions of belief had deeply impressed me at what was probably a critical period in my life.”<a name="p16" id="p16"></a><a href="#pl16" title=""><sup>16</sup></a></p><p></p></div>	
+<div class='layout'><p>Chen Duxiu was busy establishing the first Bolshevik cell in China. Soviet communists, members of the Communist International (Comintern), provided him with direct financial and ideological assistance. Created on Lenin's initiative in March 1919, the Comintern united and coordinated the efforts of all radical revolutionary parties that adopted Bolshevik principles. It was the headquarters of world revolution, the main ideological and organizational center of the world communist movement. It was also a powerful intelligence service, dispatching agents and saboteurs to various countries. An elected Executive Committee (ECCI), with its own bureaucratic apparatus staffed by foreign as well as Soviet communists, directed the Comintern. From its headquarters on Moscow's Sapozhnikovskaia Square across from the Kremlin, the ECCI sent its representatives to the far corners of the earth, carrying instructions, directives, and, most important, money and valuables that the Bolsheviks had expropriated from the former Russian aristocracy and the bourgeoisie. This money created communist organizations in Europe and Asia, in Africa and America, opened underground presses and party schools, and paid striking workers and professional revolutionaries. The Bolshevik leaders Lenin, Trotsky, Zinoviev, and Stalin did not stint on supporting the communist movement outside of Soviet Russia. In the early years of Soviet power they linked their hopes for the construction of socialism in backward Russia to the victory of proletarian revolution on a world scale.</p><p></p></div>	
+<div class='layout'><p>Naturally, their attention was also drawn to China. During the years when civil war was raging in Russia, one couldn't reach China from Moscow. Therefore, in the spring of 1920 a group of Bolsheviks from the Soviet Far East, headed by Grigorii Voitinsky, was dispatched to China. Voitinsky, whom Chinese called Wu Tingkang, was a tall, smart, and energetic twenty-seven-year-old with dark, curly hair and sad, thoughtful eyes. He pleasantly surprised people with his native intelligence, tact, and gentle, dignified manner. Moreover, he spoke English fluently, a great asset, since many radical Chinese intellectuals knew Western languages, particularly English and French, but not Russian. Meeting Voitinsky, it was impossible to imagine that this charming young man was one of the main organizers of the communist movement in Siberia and the Russian Far East, a rock-solid Bolshevik who was merciless toward the enemies of the revolution.<a name="p17" id="p17"></a><a href="#pl17" title=""><sup>17</sup></a></p><p></p></div>	
+<div class='layout'><p>Voitinsky, whose real name was Zarkhin, was accompanied on his trip by his wife, also a Bolshevik, Maria Kuznetsova, whose party alias was Nora. Voitinsky's traveling party also included a Chinese interpreter, Yang Mingzhai, a former worker who subsequently became an accountant, and who had lived in Vladivostok since 1901. The Comintern agents arrived in Beijing in April 1920. Before them lay an especially conspiratorial task: to establish regular ties with radical Chinese activists in order to help them organize communist circles. They had sufficient money for this subversive work.</p><p></p></div>	
+<div class='layout'><p>They got lucky right away. Through a teacher of Russian literature at Peking University, a Russian émigré named Sergei A. Polevoi, who was sympathetic toward Soviet Russia, Voitinsky was able to make contact with Li Dazhao. The Soviet Bolshevik presented to Professor Li a breathtaking plan to create a communist party in China, but although Li accepted the idea wholeheartedly he advised Voitinsky to discuss the plan first with Chen Duxiu. Yang Mingzhai, who had heard about Chen Duxiu from the Russian émigrés, proffered the same advice to Voitinsky. Carrying a letter of recommendation from Li Dazhao, the trio of Voitinsky, Kuznetsova, and Yang arrived in Shanghai at the end of April.</p><p></p></div>	
+<div class='layout'><p>In China, not only money but also personal connections were important. Thus Voitinsky's approach, skillfully making use of Polevoi and Li Dazhao, was effective. A group of Soviet communists already in Shanghai established contact with Voitinsky's group and together they all began to “cultivate” Chen, who was already prepared for an alliance with Soviet Russia. It was decided to make use of New Youth as a tribune for the dissemination of communist ideas, with the objective of uniting all radical revolutionary forces around the journal.<a name="p18" id="p18"></a><a href="#pl18" title=""><sup>18</sup></a></p><p></p></div>	
+<div class='layout'><p>It was just then that Mao Zedong visited Chen. Their conversation confused Mao, who trusted Chen but didn't want to abandon his plan to unite the popular masses of Hunan in support of proclaiming the province's independence on the basis of self-rule and progress. In early July he returned to Hunan still in a state of confusion.</p><p></p></div>	
+<div class='layout'><p>Mao conceived the idea of jointly investing with his friends to establish the first cooperative bookstore in China that would distribute social and political literature. The store, called the Cultural Book Society, opened for business in September with the aim of selling all kinds of worthwhile books, journals, and newspapers at affordable prices, thereby making a notable contribution to the enlightenment of the Hunanese people.<a name="p19" id="p19"></a><a href="#pl19" title=""><sup>19</sup></a> The initiative attracted the attention of many public figures. It is worth noting that the Chinese characters for the store's signboard were written by Tan Yankai himself, although only after he was forced to step down in late November 1920 from his position of provincial governor of Hunan.<a name="p20" id="p20"></a><a href="#pl20" title=""><sup>20</sup></a> The store was located in a small two-story building consisting of three rooms that Mao and his comrades rented from the Sino-American Xiangya Hospital. Its initial capital was only 519 yuan, but by the end of October 1920, Mao and his friends were able to stock 164 book titles for sale, including works by Russell, Kropotkin, Darwin, Plato, Hu Shi, Kirkup's History of Socialism, which Mao liked so well, and many others.<a name="p21" id="p21"></a><a href="#pl21" title=""><sup>21</sup></a> The store also sold as a separate brochure Marx's preface to the first edition of Capital and a book by the journalist Shao Piaoping called A Study of the New Russia, which was essentially the first detailed account by a Chinese author of the history of the Russian communist movement over the past seventeen years.<a name="p22" id="p22"></a><a href="#pl22" title=""><sup>22</sup></a> The store also distributed forty-five journals and three newspapers, including the communist media published by Chen Duxiu, Li Dazhao, and several other socialists: New Youth, Workers' World, The Workers, Workers' Tide, and Young China. By April 1921 branches of the Cultural Book Society had opened in seven districts in Hunan, and kiosks were installed at four educational institutions in Hunan.<a name="p23" id="p23"></a><a href="#pl23" title=""><sup>23</sup></a></p><p></p></div>	
+<div class='layout'><p>In late August 1920, under the influence of his conversations with Li and Chen, Mao founded the Russia Studies Society in Changsha.<a name="p24" id="p24"></a><a href="#pl24" title=""><sup>24</sup></a> For tactical reasons, Jiang Jihuan, a well-known liberal, was chosen as general secretary, but Mao was really in charge. The society had ambitious goals: individual and collective study of Soviet Russia, collecting accessible literature, publishing research and reviews about the Land of Soviets, and sponsoring a special Russian class to prepare people who wanted to travel to Moscow to study. The society was located in the same quarters as the bookstore.<a name="p25" id="p25"></a><a href="#pl25" title=""><sup>25</sup></a></p><p></p></div>	
+<div class='layout'><p>Mao himself dreamed of going to Russia. In Beijing he consulted with Li Dazhao and several other comrades about this and even took some classes with the Russian professor Polevoi.<a name="p26" id="p26"></a><a href="#pl26" title=""><sup>26</sup></a> When he was in Shanghai, he had wanted to continue his study and for some time looked for another Russian émigré who would agree to teach him Russian. An entire campaign of work and study in Soviet Russia whirled in his head along the lines of the “diligent work and frugal study” movement initiated by the anarchists in regard to France.<a name="p27" id="p27"></a><a href="#pl27" title=""><sup>27</sup></a> He undoubtedly received news of the active preparations along these lines that Chen Duxiu and Voitinsky were undertaking in Shanghai. In September 1920 Chen and Voitinsky organized a Foreign Language School for socialist-minded youth who wanted to study in Moscow.<a name="p28" id="p28"></a><a href="#pl28" title=""><sup>28</sup></a> Once a week, Chen Wangdao, the translator into Chinese of The Communist Manifesto, gave them lectures on Marxism.<a name="p29" id="p29"></a><a href="#pl29" title=""><sup>29</sup></a> Voitinsky supplied graduates with funding to pay for their travel to Russia.</p><p></p></div>	
+<div class='layout'><p>All this made an impression on Mao, yet he was not quite ready to embrace Bolshevism. He respected Li Dazhao and Chen Duxiu deeply and was attentive to their point of view, but it was terribly difficult for him to shed his liberal and anarchist ideas. Striving to advance the cause of popular enlightenment in order to awaken the creative forces of Hunanese, in the summer and autumn of 1920 Mao took part in organizing several other societies both in Hunan and in his native district of Xiangtan.<a name="p30" id="p30"></a><a href="#pl30" title=""><sup>30</sup></a> He continued to agitate for Hunan self-determination in articles he published in the local press, and he petitioned the governor and spoke in public. In early October he chaired a public meeting in Changsha at the Education Committee, where he organized a signature drive for a petition he had drafted calling for the convening of a People's Constitutional Assembly in Hunan. The petition was signed by 430 persons, including journalists, scientists and educators, businessmen, and even workers.<a name="p31" id="p31"></a><a href="#pl31" title=""><sup>31</sup></a> On October 10, China's national day, the resolution was delivered to Tan Yankai during a grandiose, ten-thousand-person demonstration.<a name="p32" id="p32"></a><a href="#pl32" title=""><sup>32</sup></a> On November 7, during another massive demonstration in Changsha, Mao carried a large banner reading “Long Live Great Hunan!”<a name="p33" id="p33"></a><a href="#pl33" title=""><sup>33</sup></a></p><p></p></div>	
+<div class='layout'><p>But nothing came from his ventures for independence. Individual demonstrations and meetings, even massive ones, did not lead to revolution. Reminiscing about this many years later, Mao noted with bitter self-irony, “T'an Yen-k'ai [Tan Yankai] was driven out of Hunan by a militarist named Chao Hêng-t'i [Zhao Hengti], who utilized the ‘Hunan independence' movement for his own ends. He pretended to support it, advocating the idea of a United Autonomous States of China, but as soon as he got power he suppressed the democratic movement with great energy.”<a name="p34" id="p34"></a><a href="#pl34" title=""><sup>34</sup></a></p><p></p></div>	
+<div class='layout'><p>To be fair, on January 1, 1922, Zhao Hengti would become the only militarist in China to grant a constitution to his province; however, as Mao correctly noted, he did this only because he lacked sufficient military power to play the role of a national leader. The constitution, which masked his military dictatorship, bore no relationship to the kind of people power Mao advocated. “The life span of the Provincial Constitution is definitely limited,” Mao prophesied. “Realization of a federation of self-ruled provinces is even less of a possibility under any circumstances.”<a name="p35" id="p35"></a><a href="#pl35" title=""><sup>35</sup></a></p><p></p></div>	
+<div class='layout'><p>Confronting these difficulties for the first time, many of Mao's formerly active supporters began to abandon the movement for popular self-rule. Those who earlier had shouted louder than anyone else now preferred to sit at home. Everything that Mao had long stood for now collapsed. What disturbed Mao most of all and contributed to his profound sense of disillusionment was the apathy of the population. The people whom he had counted upon turned out to be so passive that Mao simply lost heart. He poured out his rage in a letter to a friend from his youth, Xiang Jingyu: “In the last few months, I have seen through the Hunanese: muddle-headed with neither ideals nor long-term plans. In political circles, they are lethargic and extremely corrupt, and we can say there is absolutely no hope for political reform.”<a name="p36" id="p36"></a><a href="#pl36" title=""><sup>36</sup></a></p><p></p></div>	
+<div class='layout'><p>This is when he began to think seriously about what Li Dazhao and Chen Duxiu had said to him. Yes, he decided, “We can only …… carve out a new path, and create a new environment.”<a name="p37" id="p37"></a><a href="#pl37" title=""><sup>37</sup></a> Cai Hesen, who had studied French at a men's college in Montargis, France, also appealed to him. Cai had become an ardent Bolshevik under the impression of everything he had seen in Europe. He wrote to Mao:</p><p></p></div>	
+<div class='layout'><p>I believe that a contemporary world revolution is the only way to achieve victory. I now see clearly that socialism is a reaction to capitalism. Its basic mission is to destroy the economic system of capital by means of the dictatorship of the proletariat. …… I think the principles and methods of socialism are completely applicable for the future reconstruction of China. …… [O]ur first order of business is to organize a party, a communist party, inasmuch as it is the initiator, propagandist, vanguard, and headquarters of the revolutionary movement.<a name="p38" id="p38"></a><a href="#pl38" title=""><sup>38</sup></a></p><p></p></div>	
+<div class='layout'><p>Just then Chen, Voitinsky, and Li were working at creating such a party. In May 1920 Chen and Voitinsky had established the so-called Revolutionary Bureau, which also included three people who were close to Chen.<a name="p39" id="p39"></a><a href="#pl39" title=""><sup>39</sup></a> It began working to create party circles. On July 19, 1920, a meeting of the most active comrades took place in Shanghai, at which it was decided to organize a communist cell headed by Chen Duxiu.<a name="p40" id="p40"></a><a href="#pl40" title=""><sup>40</sup></a> On August 22, the Shanghai Socialist Youth League was formed, and similar organizations soon appeared in Beijing, Tianjin, Wuchang, and several other cities. In October a Beijing communist group headed by Professor Li was formed, and in November the Socialist Youth League of China was officially proclaimed.</p><p></p></div>	
+<div class='layout'><p>This first score of Chinese communists were all students, young teachers, and journalists. There were no workers or peasants among them. The oldest, Chen Duxiu, just forty-two, was known as “the Old Man.” The youngest was the eighteen-year-old Beida student Liu Renjing, who knew a little Russian. What united them was a passionate desire to achieve in their own homeland by whatever means possible and as quickly as possible what had occurred in Russia. In November 1920, Chen began to publish in Shanghai a quasi-legal journal, Gongchandang (Communist), in which he persistently propagated the idea of establishing a communist party. The journal published Comintern documents as well as articles about the prospects for a Bolshevik revolution in China. He also began publishing a magazine for workers, Laodongjie (Workers' world), which in simple and accessible language explained the Marxist theory of capital and surplus value to poorly educated persons.</p><p></p></div>	
+<div class='layout'><p>Mao Zedong also understood the need to create a “group of people bound together by an ism.”<a name="p41" id="p41"></a><a href="#pl41" title=""><sup>41</sup></a> He never had any doubts about the importance of a highly cohesive political organization, but the Renovation of the People Study Society had always been rather amorphous and the Hunan Students Association had long since ceased to exist. He had to start over again. Mao decided to reorganize the Renovation of the People Study Society along Bolshevik lines. He shared his ideas with Luo Zhanglong, who had already joined the Bolshevik circle in Beijing:</p><p></p></div>	
+<div class='layout'><p>We really must create a powerful new atmosphere. …… To create such an atmosphere naturally requires a group of hardworking and resolute “people,” but even more than that, it requires an “ism” that everyone holds in common. Without an ism, the atmosphere cannot be created. I think our Study Society should not merely be a gathering of people, bound by sentiment. …… An ism is like a banner; only when it is raised will the people have something to hope for and know in what direction to go.<a name="p42" id="p42"></a><a href="#pl42" title=""><sup>42</sup></a></p><p></p></div>	
+<div class='layout'><p>Mao began to rectify the amorphous character of the society while he was still in Shanghai, in May 1920. He called a meeting of the twelve members of the group who were then in Shanghai and they adopted new principles aimed at strengthening the organization. But there was no discussion of any “common ism.”<a name="p43" id="p43"></a><a href="#pl43" title=""><sup>43</sup></a></p><p></p></div>	
+<div class='layout'><p>At this point the situation changed dramatically. Mao had become convinced of the need to draw a clear line of demarcation between those who only paid lip service to radical change and those who were prepared to act upon their convictions at whatever cost. He had had enough of amorphousness and inclusivity. By November 1920 Mao had fixed on Bolshevism, with its program of world socialist revolution, as the “ism” of choice. Not all of his old friends agreed with Mao. Xiao Yu, who had returned from France in October 1920, did not accept the Bolshevik program. In a letter to Mao he noted bitterly, “We do not regard it as permissible to sacrifice part of the people in exchange for the welfare of the majority. I advocate a moderate revolution, a revolution with education as its instrument, which seeks to promote the general welfare of the people and carries out reforms through the medium of trade unions and cooperatives. I do not think the Russian-style Marxist revolution is justified.”<a name="p44" id="p44"></a><a href="#pl44" title=""><sup>44</sup></a> But Mao's mind was made up. He had been attracted both to anarchism and liberalism, and had reaped only disappointment. He might still agree in principle with Xiao Yu that it was a good thing “to seek the welfare of all by peaceful means,” but he now considered all these notions as utopian fantasies. He expressed his position as follows: “[M]y present view of absolute liberalism, anarchism, and even democracy, is that these things sound very good in theory, but are not feasible in reality.” How could one depend upon the reeducation of the exploiters, he wondered, if education in the contemporary world was in the hands of these very same capitalists? The bourgeoisie owned the factories and the banks, controlled parliament, the army, and the police. Where was there room for the communists? No, he objected, only “A Russian-style revolution …… is a last resort when all other means have been exhausted. It is not that some other better means are rejected and we only want to use this terrorist tactic.”<a name="p45" id="p45"></a><a href="#pl45" title=""><sup>45</sup></a> In other words, let it be Bolshevism rather than a better way out of the situation; “charity” got you nowhere. “[I]n my opinion,” Mao summed up, “the Russian Revolution, and the fact that radical Communists in various countries are daily growing more numerous and more tightly organized, represent simply the natural course of events.”<a name="p46" id="p46"></a><a href="#pl46" title=""><sup>46</sup></a></p><p></p></div>	
+<div class='layout'><p>His approach to Bolshevism was deliberate. He chose “terrorist tactics” under the pressure of circumstances, having become disillusioned with the creative power of the people and their capacity for self-government. Bolshevik-style totalitarianism, with its denial of civic freedom, its appeal to an all-around dictatorship of the communist party, its fanaticism and uncompromising character was the logical solution to the problem for the young radical. It also fit his purely personal needs: we may recall that in Mao's consciousness, “will” and “power” trumped all other concepts.</p><p></p></div>	
+<div class='layout'><p>It was not the romance of universal equality that enticed him to embrace communism. What attracted him was the apologia for violence, the triumph of will, and the celebration of power. Finally, he had made his choice. It was immoral, but understandable. How could one speak of liberalism or democracy in a state where civil society was absent, where 390 million of 400 million were illiterate, in which even though the emperor's power had been abolished in 1912 “there are very few citizens who really know what a republic is.”<a name="p47" id="p47"></a><a href="#pl47" title=""><sup>47</sup></a> It was a country where capitalism had still not penetrated all aspects of public life, and in which every economic structure known to history was represented. It was a savage, patriarchal country. What kind of force was needed to move such a country out of its profound torpor?</p><p></p></div>	
+<div class='layout'><p>What attracted Mao to Bolshevism also attracted other radical Chinese revolutionaries. Swept off their feet by the October Revolution, they embraced the Bolshevik experiment practically without any critical understanding. Even those who had read the works of the founders of classical Marxism and who could, therefore, discern a distinct divergence between the theory and the practice of the Bolsheviks on one hand and Marx's materialist concepts on the other, were still inclined to view the actions of the Russian communists as real “Marxism,” and concluded that there were “defects” in Marx's historical materialism. As to the teachings of Marx and Engels themselves, Chinese radical youth most easily grasped the strongly revolutionary ideas of class struggle of the workers against the capitalists, of an anticapitalist social revolution, and of the dictatorship of the proletariat.<a name="p48" id="p48"></a><a href="#pl48" title=""><sup>48</sup></a> Among the classics of Marxism with which they were familiar, the young Chinese intellectuals singled out? The Communist Manifesto, the pamphlet written by the young Marx and Engels that was openly propagandistic and political in tone, and exceptionally passionate in calling for direct revolutionary action. They were attracted by its extremism, which was reminiscent of the radicalism of the Bolsheviks. It was precisely in the Manifesto that Chinese supporters of communism found their confirmation of the authentically Marxist character of Bolshevik theory. Typical in this connection are Chen Duxiu's lectures “A Critique of Socialism,” which he published in the July 1, 1921, issue of New Youth. Abundantly quoting from the Manifesto as well as from The Critique of the Gotha Programme, Chen Duxiu concluded, “Only in Russia was the true essence of Marx's teaching revived and given the name of communism. …… Only the Russian communist party, in both words and deeds, is truly Marxist.”<a name="p49" id="p49"></a><a href="#pl49" title=""><sup>49</sup></a></p><p></p></div>	
+<div class='layout'><p>The Chinese followers of the Bolsheviks agreed that the immediate goal of their movement was to prepare their own October Revolution. China's proletarian revolution, they thought, should not only destroy the rule of feudal-militarist forces, but also put an end to the development of capitalist relations in their country. It should be aimed at the old exploiting classes as well as against the new, including the national bourgeoisie. At the same time, it was also anti-imperialist, aiming at overthrowing the sway of foreign capital in China. Naturally, the result of such a revolution in China would be the establishment of a dictatorship of the proletariat.<a name="p50" id="p50"></a><a href="#pl50" title=""><sup>50</sup></a></p><p></p></div>	
+<div class='layout'><p>Ultimately, Mao Zedong arrived at similar conclusions. Once he accepted Bolshevism he no longer had any doubts. In mid-November 1920, Mao turned to the task of establishing underground cells in Changsha. In October he had already received the statutes of local Socialist Youth Leagues from Shanghai and Beijing.<a name="p51" id="p51"></a><a href="#pl51" title=""><sup>51</sup></a> Therefore, he started with organizing just such an association. From the beginning of the school year he had been working as the director of a primary school attached to the Provincial First Normal School, so that he was in contact with young people.<a name="pn7" id="pn7"></a><a href="#pln7" title=""><sup>n7</sup></a></p><p></p></div>	
+<div class='layout'><p>The first person Mao spoke to concerning the “search for comrades” to undertake appropriate work was his former student from the Xiuye Primary School, Zhang Wenliang.<a name="p52" id="p52"></a><a href="#pl52" title=""><sup>52</sup></a> At the time Zhang was already a student in the Provincial First Normal School; he was, apparently, following in the steps of his teacher. Mao began to look for suitable young persons among students at the Hunan Commercial Institute and the First Middle School in Changsha.<a name="p53" id="p53"></a><a href="#pl53" title=""><sup>53</sup></a> He acted cautiously, and he advised Zhang Wenliang to do likewise. “He also talked [with me] about the Youth League,” Zhang Wenliang wrote in his diary, “saying that emphasis should now be given to looking for real comrades, and that it was better to go slowly, and not advance too hastily.”<a name="p54" id="p54"></a><a href="#pl54" title=""><sup>54</sup></a> By early December they had succeeded in recruiting more than twenty young people, and soon after, on January 13, 1921, the Hunan branch of the Socialist Youth League was officially established.<a name="p55" id="p55"></a><a href="#pl55" title=""><sup>55</sup></a></p><p></p></div>	
+<div class='layout'><p>Sometime in November 1920, Mao received a letter from Chen Duxiu advising him to organize a communist group in Changsha like the one in Shanghai.<a name="p56" id="p56"></a><a href="#pl56" title=""><sup>56</sup></a> Chen's suggestion evoked not only Mao's interest, but also that of Bewhiskered He, Peng Huang, and another friend of Mao's, He Minfan of the Chuanshan Municipal Middle School. For reasons of security, the friends met in a cemetery. A start had been made. What lay ahead was convincing other members of the Renovation of the People Study Society to accept Bolshevism, and thereby transform an existing organization that had not yet defined its political position into a communist one.</p><p></p></div>	
+<div class='layout'><p>For the time being everything was going well, and Mao hoped to win over additional members of the society, at least those who were in Changsha. Things were also looking up in his personal life. At the end of September he began seeing Yang Kaihui, the daughter of the late Yang Changji. She had returned to Changsha with her mother and brother in January 1920 after the death of her father. According to custom, the family conveyed the coffin of the deceased to his native place. In Bancang, a little town some twenty miles north of Changsha, the ashes of the revered Professor Yang were interred. After observing the stipulated period of mourning, Kaihui moved to Changsha to continue her studies.<a name="p57" id="p57"></a><a href="#pl57" title=""><sup>57</sup></a> At first the young people were shy with each other, and they went for walks along the river accompanied by Zhang Wenliang and Tao Yi, who apparently had completely cooled off toward Mao. Mao already had experience with girls, but it took him a long time to overcome his shyness toward Kaihui. Instead of love, they spoke often of politics. Mao told her about Soviet Russia and the Bolshevik revolution, and acquainted her with the ABC's of Marxism, to the degree that he was acquainted with them. Under his influence Kaihui joined the Socialist Youth League. But in the end the feelings growing in both of them burst into the open. “I saw his heart,” Kaihui later recalled, “and he clearly saw mine.”<a name="p58" id="p58"></a><a href="#pl58" title=""><sup>58</sup></a></p><p></p></div>	
+<div class='layout'><p>Evidently, they were made for each other. But what had happened to Mao's naive faith in free love? In the winter of 1920 he and Kaihui were married.<a name="p59" id="p59"></a><a href="#pl59" title=""><sup>59</sup></a> The young couple was of one mind in rejecting a traditional marriage ceremony. They did without a dowry and without a red palanquin. They dismissed all this as petty bourgeois philistinism.<a name="p60" id="p60"></a><a href="#pl60" title=""><sup>60</sup></a></p><p></p></div>	
+<div class='layout'><p>Both before and after her wedding Kaihui was extremely jealous of her husband's relationship with Tao Yi. It seemed to her that that old romance was still going on.<a name="p61" id="p61"></a><a href="#pl61" title=""><sup>61</sup></a> Her fears intensified when she did not see her beloved for a long time. They lacked the money to rent their own room, so they continued to live apart as before, seeing each other only on Sundays. Only on their honeymoon in Shaoshanchong, which lasted just a few days, were they together. They arrived there in early February 1921, to celebrate Chinese New Year's with Mao's brothers; his second cousin Zejian, whom Mao's parents had adopted as their daughter in 1912;<a name="p62" id="p62"></a><a href="#pl62" title=""><sup>62</sup></a> and Mao's sister-in-law Wang Shulan, the wife of his brother Zemin.<a name="p63" id="p63"></a><a href="#pl63" title=""><sup>63</sup></a> Not until October 1921 were they able to rent a small three-room wooden house on the edge of a pond in the suburb of Qingshuitang, just beyond the eastern gates of the city. Kaihui brought her mother, Xiang Zhenxi, there from the village. It was the custom in China to share a home with parents. It was thought that several generations should live under one roof.<a name="p64" id="p64"></a><a href="#pl64" title=""><sup>64</sup></a> Mao got the money to pay the rent from party funds. By this time he had succeeded not only in communizing the Renovation of the People Study Society, but also in expanding underground Bolshevik activity in many directions.</p><p></p></div>	
+<div class='layout'><p><a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a> Ibid., 518; vol. 2, 26.</p><p></p></div>	
+<div class='layout'><p><a name="pl2" id="pl2"></a><a href="#p2" title=""><sup>2</sup></a> See Li, The Early Revolutionary Activities of Comrade Mao Tse-tung, 134.</p><p></p></div>	
+<div class='layout'><p><a name="pl3" id="pl3"></a><a href="#p3" title=""><sup>3</sup></a> Schram, Mao's Road to Power, vol. 1, 518.</p><p></p></div>	
+<div class='layout'><p><a name="pl4" id="pl4"></a><a href="#p4" title=""><sup>4</sup></a> See Pan Ling, In Search of Old Shanghai (Hong Kong: Joint, 1983), 19; Betty Peh-t'i Wei, Old Shanghai (Hong Kong, 1991), 13, 14, 15; All About Shanghai and Environs: A Standard Guide Book: Historical and Contemporary Facts and Statistics (Shanghai: University Press, 1934); Tang Zhentang, ed., Jindai Shanghai fanhualu (Lively Notes on Modern Shanghai) (Hong Kong: Shangwu yinshuguan, 1993), 12.</p><p></p></div>	
+<div class='layout'><p><a name="pl5" id="pl5"></a><a href="#p5" title=""><sup>5</sup></a> See Li, The Early Revolutionary Activities of Comrade Mao Tse-tung, 134.</p><p></p></div>	
+<div class='layout'><p><a name="pl6" id="pl6"></a><a href="#p6" title=""><sup>6</sup></a> See Schram, Mao's Road to Power, vol. 1, 473, 514–16.</p><p></p></div>	
+<div class='layout'><p><a name="pl7" id="pl7"></a><a href="#p7" title=""><sup>7</sup></a> Snow, Red Star Over China, 152.</p><p></p></div>	
+<div class='layout'><p><a name="pl8" id="pl8"></a><a href="#p8" title=""><sup>8</sup></a> See A. M. Grigoriev, Antiimperialisticheskaia programma kitaiskikh burzhuaznykh revoliutsionerov (1895–1905) (The Anti-imperialist Program of the Chinese Bourgeois Revolutionaries [1895–1905]) (Moscow: Nauka, 1966), 65.</p><p></p></div>	
+<div class='layout'><p><a name="pl9" id="pl9"></a><a href="#p9" title=""><sup>9</sup></a> Schram, Mao's Road to Power, vol. 1, 501.</p><p></p></div>	
+<div class='layout'><p><a name="pl10" id="pl10"></a><a href="#p10" title=""><sup>10</sup></a> Ibid., 599.</p><p></p></div>	
+<div class='layout'><p><a name="pl11" id="pl11"></a><a href="#p11" title=""><sup>11</sup></a> Ibid., 523.</p><p></p></div>	
+<div class='layout'><p><a name="pl12" id="pl12"></a><a href="#p12" title=""><sup>12</sup></a> Ibid., 523, 526.</p><p></p></div>	
+<div class='layout'><p><a name="pl13" id="pl13"></a><a href="#p13" title=""><sup>13</sup></a> Ibid., 511, 527, 529.</p><p></p></div>	
+<div class='layout'><p><a name="pl14" id="pl14"></a><a href="#p14" title=""><sup>14</sup></a> Ibid., 572.</p><p></p></div>	
+<div class='layout'><p><a name="pl15" id="pl15"></a><a href="#p15" title=""><sup>15</sup></a> Snow, Red Star Over China, 151.</p><p></p></div>	
+<div class='layout'><p><a name="pl16" id="pl16"></a><a href="#p16" title=""><sup>16</sup></a> Ibid., 154.</p><p></p></div>	
+<div class='layout'><p><a name="pl17" id="pl17"></a><a href="#p17" title=""><sup>17</sup></a> See V. I. Glunin, “Grigorii Voitinsky, 1893–1953,” in G. V. Astafiev et al., eds., Vidnye sovietskie kommunisty—uchastniki kitaiskoi revoliutsii (Prominent Soviet Communists—Participants in the Chinese Revolution) (Moscow: Nauka, 1970), 66–67; Pantsov, The Bolsheviks and the Chinese Revolution, 1919–1927, 295.</p><p></p></div>	
+<div class='layout'><p><a name="pl18" id="pl18"></a><a href="#p18" title=""><sup>18</sup></a> See M. L. Titarenko et al., eds., VKP(b), Komintern i Kitai: Dokumenty (The CPSU, the Comintern and China: Documents), vol. 1 (Moscow: AO “Buklet,” 1994), 48; M. L. Titarenko, ed., Istoriia Kommunisticheskoi partii Kitaia (History of the Communist Party of China), vol. 1 (Moscow: IDV AN SSSR, 1987), 48–49; Chang, The Rise of the Chinese Communist Party, vol. 1, 122–23.</p><p></p></div>	
+<div class='layout'><p><a name="pl19" id="pl19"></a><a href="#p19" title=""><sup>19</sup></a> Schram, Mao's Road to Power, vol. 1, 589.</p><p></p></div>	
+<div class='layout'><p><a name="pl20" id="pl20"></a><a href="#p20" title=""><sup>20</sup></a> See Lichnoe delo Mao Tszeduna (Personal File of Mao Zedong), RGASPI, collection 495, inventory 225, file 71, vol. 1, sheets 296–97.</p><p></p></div>	
+<div class='layout'><p><a name="pl21" id="pl21"></a><a href="#p21" title=""><sup>21</sup></a> Schram, Mao's Road to Power, vol. 1, 584–86.</p><p></p></div>	
+<div class='layout'><p><a name="pl22" id="pl22"></a><a href="#p22" title=""><sup>22</sup></a> Shao Piaoping, Xin Eguo zhi yanjiu (A Study of the New Russia) (n.p.: Riben daban naqu dongying bianyishe, 1920).</p><p></p></div>	
+<div class='layout'><p><a name="pl23" id="pl23"></a><a href="#p23" title=""><sup>23</sup></a> Schram, Mao's Road to Power, vol. 1, 534, 585–86, 589–91; vol. 2, 48–49.</p><p></p></div>	
+<div class='layout'><p><a name="pl24" id="pl24"></a><a href="#p24" title=""><sup>24</sup></a> Pang, Mao Zedong nianpu, 1893–1949 (Chronological Biography of Mao Zedong, 1893–1949), vol. 1, 63.</p><p></p></div>	
+<div class='layout'><p><a name="pl25" id="pl25"></a><a href="#p25" title=""><sup>25</sup></a> Schram, Mao's Road to Power, vol. 1, 554–55.</p><p></p></div>	
+<div class='layout'><p><a name="pl26" id="pl26"></a><a href="#p26" title=""><sup>26</sup></a> See Chang and Halliday, Mao, 16.</p><p></p></div>	
+<div class='layout'><p><a name="pl27" id="pl27"></a><a href="#p27" title=""><sup>27</sup></a> See Schram, Mao's Road to Power, vol. 1, 493–94, 506–7, 518.</p><p></p></div>	
+<div class='layout'><p><a name="pl28" id="pl28"></a><a href="#p28" title=""><sup>28</sup></a> Qiwu lao-ren (Bao Huiseng), “Do i posle obrazovaniia Kommunisticheskoi partii Kitaia” (Before and After the Formation of the Communist Party of China), Rabochii klass i sovremennyi mir (The working class and the contemporary world), no. 2 (1971): 120; Renmin ribao (People's daily), August 14, 1983; Xiao Jingguang, “Fusu xuexi qianhou” (Before and After Studying in the Soviet Union), Gemingshi ziliao (Materials on revolutionary history), Beijing, no. 3 (1981): 6; Donald Klein and Anne Clark, Biographic Dictionary of Chinese Communism, vol. 1 (Cambridge, MA: Harvard University Press, 1971), 241; vol. 2, 982.</p><p></p></div>	
+<div class='layout'><p><a name="pl29" id="pl29"></a><a href="#p29" title=""><sup>29</sup></a> See Xiao, “Fusu xuexi qianhou” (Before and After Studying in the Soviet Union), 6; Exposition of the Shanghai Socialist Youth League Museum.</p><p></p></div>	
+<div class='layout'><p><a name="pl30" id="pl30"></a><a href="#p30" title=""><sup>30</sup></a> Schram, Mao's Road to Power, vol. 1, 536–37, 539–40, 575–76, 615.</p><p></p></div>	
+<div class='layout'><p><a name="pl31" id="pl31"></a><a href="#p31" title=""><sup>31</sup></a> See Short, Mao, 108.</p><p></p></div>	
+<div class='layout'><p><a name="pl32" id="pl32"></a><a href="#p32" title=""><sup>32</sup></a> Schram, Mao's Road to Power, vol. 2, 16.</p><p></p></div>	
+<div class='layout'><p><a name="pl33" id="pl33"></a><a href="#p33" title=""><sup>33</sup></a> See Lichnoe delo Mao Tszeduna (Personal File of Mao Zedong), RGASPI, collection 495, inventory 225, file 71, vol. 1, sheets 296–97.</p><p></p></div>	
+<div class='layout'><p><a name="pl34" id="pl34"></a><a href="#p34" title=""><sup>34</sup></a> Snow, Red Star Over China, 152.</p><p></p></div>	
+<div class='layout'><p><a name="pl35" id="pl35"></a><a href="#p35" title=""><sup>35</sup></a> Schram, Mao's Road to Power, vol. 2, 167.</p><p></p></div>	
+<div class='layout'><p><a name="pl36" id="pl36"></a><a href="#p36" title=""><sup>36</sup></a> Ibid., vol. 1, 595.</p><p></p></div>	
+<div class='layout'><p><a name="pl37" id="pl37"></a><a href="#p37" title=""><sup>37</sup></a> Ibid.</p><p></p></div>	
+<div class='layout'><p><a name="pl38" id="pl38"></a><a href="#p38" title=""><sup>38</sup></a> Zhang Yunhou et al., Wusi shiqi de shetuan (Societies During the May Fourth Era), vol. 1 (Beijing: Shenghuo. Dushu. Xinzhi sanlian shudian, 1979), 28–29. In this connection, Jung Chang and Jon Halliday's assertion that the idea of forming the Communist Party “did not stem …… from any …… Chinese” is mistaken. Chang and Halliday, Mao, 19. Cai Hesen decided that it was necessary to establish the CCP independently of Voitinsky or of any other representatives of Moscow.</p><p></p></div>	
+<div class='layout'><p><a name="pl39" id="pl39"></a><a href="#p39" title=""><sup>39</sup></a> See Titarenko, VKP(b), Komintern i Kitai: Dokumenty (The CPSU, the Comintern and China: Documents), vol. 1, 30.</p><p></p></div>	
+<div class='layout'><p><a name="pl40" id="pl40"></a><a href="#p40" title=""><sup>40</sup></a> See K. V. Shevelev, Iz istorii obrazovaniia Kommunisticheskoi partii Kitaia (From the History of the Establishment of the Communist Party of China) (Moscow: IDV AN SSSR, 1976), 63.</p><p></p></div>	
+<div class='layout'><p><a name="pl41" id="pl41"></a><a href="#p41" title=""><sup>41</sup></a> Schram, Mao's Road to Power, vol. 1, 600.</p><p></p></div>	
+<div class='layout'><p><a name="pl42" id="pl42"></a><a href="#p42" title=""><sup>42</sup></a> Ibid.</p><p></p></div>	
+<div class='layout'><p><a name="pl43" id="pl43"></a><a href="#p43" title=""><sup>43</sup></a> Ibid., vol. 2, 26–27.</p><p></p></div>	
+<div class='layout'><p><a name="pl44" id="pl44"></a><a href="#p44" title=""><sup>44</sup></a> Ibid., 8.</p><p></p></div>	
+<div class='layout'><p><a name="pl45" id="pl45"></a><a href="#p45" title=""><sup>45</sup></a> Ibid., 8, 9.</p><p></p></div>	
+<div class='layout'><p><a name="pl46" id="pl46"></a><a href="#p46" title=""><sup>46</sup></a> Ibid., 11.</p><p></p></div>	
+<div class='layout'><p><a name="pl47" id="pl47"></a><a href="#p47" title=""><sup>47</sup></a> Ibid., vol. 1, 544.</p><p></p></div>	
+<div class='layout'><p><a name="pl48" id="pl48"></a><a href="#p48" title=""><sup>48</sup></a> See V. I. Glunin, Komintern i stanovlenie kommunisticheskogo dvizheniia v Kitae, 1920–1927 (The Comintern and the Rise of the Communist Movement in China, 1920–1927), in R. A. Ulianovskii, ed., Komintern i Vostok: Bor'ba za leninskuiu strategiiu i taktiku v natsional'no-osvoboditel'nom dvizhenii (The Comintern and the East: The Struggle for Leninist Strategy and Tactics in the National Liberation Movement) (Moscow: Nauka, 1968), 249.</p><p></p></div>	
+<div class='layout'><p><a name="pl49" id="pl49"></a><a href="#p49" title=""><sup>49</sup></a> Chen Duxiu, “Shehuizhuyi piping” (A Critique of Socialism), Xin qingnian (New youth) 9, no. 3 (1921): 11, 13.</p><p></p></div>	
+<div class='layout'><p><a name="pl50" id="pl50"></a><a href="#p50" title=""><sup>50</sup></a> See, for example, their selected works, included in the following collections: Makesizhuyi zai Zhongguo—cong yingxiang chuanru dao chuanbo (Marxism in China—From Influence to Dissemination), vol. 2 (Beijing: Qinghua daxue chubanshe, 1983); Gongchan xiaozu (Communist Cells), 2 vols. (Beijing: Zhonggong dangshi ziliao chubanshe, 1987).</p><p></p></div>	
+<div class='layout'><p><a name="pl51" id="pl51"></a><a href="#p51" title=""><sup>51</sup></a> See Wu, Mao Zedong guanghui licheng dituji (Atlas of Mao Zedong's Glorious Historical Path), 21.</p><p></p></div>	
+<div class='layout'><p><a name="pl52" id="pl52"></a><a href="#p52" title=""><sup>52</sup></a> Pang, Mao Zedong nianpu, 1893–1949 (Chronological Biography of Mao Zedong, 1893–1949), vol. 1, 70.</p><p></p></div>	
+<div class='layout'><p><a name="pl53" id="pl53"></a><a href="#p53" title=""><sup>53</sup></a> Ibid.</p><p></p></div>	
+<div class='layout'><p><a name="pl54" id="pl54"></a><a href="#p54" title=""><sup>54</sup></a> Quoted from Schram, Mao's Road to Power, vol. 1, 594.</p><p></p></div>	
+<div class='layout'><p><a name="pl55" id="pl55"></a><a href="#p55" title=""><sup>55</sup></a> See Pang, Mao Zedong nianpu, 1893–1949 (Chronological Biography of Mao Zedong, 1893–1949), vol. 1, 75.</p><p></p></div>	
+<div class='layout'><p><a name="pl56" id="pl56"></a><a href="#p56" title=""><sup>56</sup></a> Ibid., 73; Chang, The Rise of the Chinese Communist Party, vol. 1, 105, 129.</p><p></p></div>	
+<div class='layout'><p><a name="pl57" id="pl57"></a><a href="#p57" title=""><sup>57</sup></a> See Li, Moi otets Mao Tszedun (My Father Mao Zedong), 134.</p><p></p></div>	
+<div class='layout'><p><a name="pl58" id="pl58"></a><a href="#p58" title=""><sup>58</sup></a> Quoted from Pang, Mao Zedong nianpu, 1893–1949 (Chronological Biography of Mao Zedong, 1893–1949), vol. 1, 76.</p><p></p></div>	
+<div class='layout'><p><a name="pl59" id="pl59"></a><a href="#p59" title=""><sup>59</sup></a> Ibid.</p><p></p></div>	
+<div class='layout'><p><a name="pl60" id="pl60"></a><a href="#p60" title=""><sup>60</sup></a> Li, Moi otets Mao Tszedun (My Father Mao Zedong), 135.</p><p></p></div>	
+<div class='layout'><p><a name="pl61" id="pl61"></a><a href="#p61" title=""><sup>61</sup></a> Short, Mao, 226.</p><p></p></div>	
+<div class='layout'><p><a name="pl62" id="pl62"></a><a href="#p62" title=""><sup>62</sup></a> In 1920 Mao Zedong had rescued this woman from the family of her unloved husband, having convinced her to dissolve her “feudal marriage.” Zejian was fifteen years old at the time and her name was Jumeizi (“Younger Sister Chrysanthemum”). Mao himself created a new name for her: Zejian means “Beneficent Creation.” See Li, Moi otets Mao Tszedun (My Father Mao Zedong), 127–28; Kong Dongmei, Fankai wo jia laoyingji: Wo xinzhongde waigong Mao Zedong (Opening the Old Photo Albums of My Family: My Grandfather Mao Zedong Is In My Heart) (Beijing: Zhongyang wenxian chubanshe, 2003), 189; Pei Jian, Xiang hun—Mao Zedongde jiashi (The Spirit of Hunan—Generations of Mao Zedong's Family) ([Beijing]: Qunzhong chubanshe, 1992), 56–58; Mao zhuxi yijia liu lieshi (Six Martyrs from the Chairman Mao's Family) (Changsha: Hunan renmin chubanshe, 1978), 93–110.</p><p></p></div>	
+<div class='layout'><p><a name="pl63" id="pl63"></a><a href="#p63" title=""><sup>63</sup></a> See Pang, Mao Zedong nianpu, 1893–1949 (Chronological Biography of Mao Zedong, 1893–1949), vol. 1, 82.</p><p></p></div>	
+<div class='layout'><p><a name="pl64" id="pl64"></a><a href="#p64" title=""><sup>64</sup></a>. See Li, Moi otets Mao Tszedun (My Father Mao Zedong), 135.</p><p></p></div>	
+﻿
+<div class='layout'><p><a name="pln6" id="pln6"></a><a href="#pn6" title=""><sup>n6</sup></a> In 1885, for example, the ratio of Chinese to foreigners in the International Settlement was 35 to 1, and in the French Concession there were 25,000 Chinese and 300 foreigners.</p><p></p></div>
+
+<div class='layout'><p><a name="pln7" id="pln7"></a><a href="#pn7" title=""><sup>n7</sup></a> The Chinese system of education in the 1920s had some unique features. There were three levels in primary school—lower, middle, and high. Therefore, graduates of the highest level of primary school might be in the sixteen- to seventeen-year-old age range.</p><p></p></div>
+
+
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>
