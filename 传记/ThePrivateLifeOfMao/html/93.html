@@ -1,0 +1,460 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>93</p><p></p></div>	
+<div class='layout'><p>NOTES</p><p></p></div>	
+<div class='layout'><p>BY ANNE F. THURSTON</p><p></p></div>	
+<div class='layout'><p>1 After 1973, Mao was never photographed standing up or walking, since he had to be physically assisted. Chinese sources record another meeting, on May 27, 1976, between Mao and Pakistani prime minister Bhutto.</p><p></p></div>	
+<div class='layout'><p>2 Chinese sources say that Mao's arranged marriage took place in 1908, that the young woman moved into the Mao family house, and that she died in 1910. Reports on whether the marriage was consummated differ.</p><p></p></div>	
+<div class='layout'><p>3 Much of what Mao said during this trip was circulated to ranking officials after the flight of Lin Biao.</p><p></p></div>	
+<div class='layout'><p>4 Chen Xilian was closely associated with Hua Guofeng and also had ties to Mao Yuanxin and members of the Gang of Four. He was forced to resign in February 1980, after Deng Xiaoping's return to power.</p><p></p></div>	
+<div class='layout'><p>1 Peking Union Medical College was founded in 1904 by six Western churches. The Rockefeller Foundation support began in 1914. Shanghai's Fudan University was moved to Chongqing during the war.</p><p></p></div>	
+<div class='layout'><p>2 According to Bo Yibo, there were only sixty thousand “higher-level” intellectuals in China in 1949.</p><p></p></div>	
+<div class='layout'><p>1 At that time, cadres were divided into four ranks in terms of the size of the pot in which their food was cooked. Top leaders ate out of the smallest pot, and the food was cooked for them and their families by chefs. High-ranking cadres had small pots, but their food was not as good and the chefs not as skilled. Middle-level cadres, like Dr. Li, ate food cooked in medium-sized pots, and lower-ranking cadres ate food cooked in huge pots, which served large numbers of people, and the food was coarse.</p><p></p></div>	
+<div class='layout'><p>2 One of the reasons Wang Dongxing may have been in charge of the photographers was the suspicion with which cameras were viewed. Cameras imported from the West were frequently inspected for fear that foreign spies had hidden secret weapons inside, and the explosion of a flashbulb during a picture-taking session with Liu Shaoqi and Zhou Enlai once created great security concerns.</p><p></p></div>	
+<div class='layout'><p>1 An additional concern was the sudden death from a cerebral hemorrhage of Ren Bishi, the fifth ranking member of the party elite. It was also at this point that each of China's top leaders was assigned a personal physician.</p><p></p></div>	
+<div class='layout'><p>2 The Chinese continue to assert that the United States used germ warfare in Korea, and the United States continues to deny it.</p><p></p></div>	
+<div class='layout'><p>3 Other reports say Mao and Yang Kaihui had three sons, one of whom died when they went to Shanghai after their mother's execution.</p><p></p></div>	
+<div class='layout'><p>4 Wang Hebin, who served as Mao's physician prior to Dr. Li, reports that Mao once gave him some letters from Anqing in which Mao's son describes his mind being occupied by a little person who was always prodding him to do things he ought not do. Anqing wrote that he could not control or hide from the little person, which made him uneasy, but without him, Mao Anqing felt lonely. After the episode described here, Mao Anqing was diagnosed by Chen Xueshi. The psychiatric profession was nearly decimated under the communists, and Chen later spent many years in jail. Dr. Li does not know what drugs were used to treat Mao's son or other high-ranking patients. ECT, however, was never used. Wang Hebin says that Mao Anqing was sent for treatment to the Soviet Union for several years after this incident.</p><p></p></div>	
+<div class='layout'><p>5 Several other doctors had treated Mao prior to 1954, including Fu Lianzhang, Chen Binghui, Zhong Fuchang, and Zhou Yisheng prior to 1949, and Wang Hebin, Zhou Zezhao, and Xu Tao after the establishment of the People's Republic.</p><p></p></div>	
+<div class='layout'><p>6 The word Chen Zongying used to describe Jiang Qing was saojianhuo, meaning both “flirtatious” and “base.”</p><p></p></div>	
+<div class='layout'><p>7 Mao had been studying English on and off since he was a youth. In 1912, he had entered a Western-style business school but had to withdraw after a month because most of the courses were in English. Some believe his ineptitude with foreign languages is one of the reasons he never studied abroad.</p><p></p></div>	
+<div class='layout'><p>8 Mao's love of fatty pork is well known, and he is said to have believed such food necessary for the functioning of his brain. Both his earlier doctor, Xu Tao, and his wife, Jiang Qing, had clashed with Mao over his eating habits, and the clash with his wife is said to have led to their eating separately.</p><p></p></div>	
+<div class='layout'><p>9 Yudin is the coauthor of A Concise Philosophical Dictionary, also published in Chinese, and recognized as an authoritative expositor of Stalin's thought. The Soviet Union began publishing criticisms of Mao's “On Contradiction” and “On Practice” in 1953, the same year Yudin came to serve as the Soviet ambassador to China. While Mao welcomed the arrival of Yudin, some Chinese later believed that he was sent to learn more about Mao's philosophy in order to criticize it.</p><p></p></div>	
+<div class='layout'><p>10 Some sources say He Zizhen had six children, one of whom was delivered during the course of the Long March. Of the six, only one was male. Only Li Min is known to have survived. Two of the children were given to peasant families and never found again. The others died.</p><p></p></div>	
+<div class='layout'><p>11 Given the deprivations of the Long March, it is almost impossible to believe that Fu Lianzhang had a chicken every day. Fu's biographer says he was born in 1894, a year after Mao.</p><p></p></div>	
+<div class='layout'><p>12 Mao's insomnia, beginning at least in 1927, is well documented in Chinese sources. Some people attribute it to the rigors of guerrilla warfare, which often required nighttime activities and made any regular schedule impossible. In addition, Mao is known to have lost sleep at times of political struggle. Others' memoirs say that his bodyguards were forbidden from waking him once he fell asleep, and they counted the number of hours he slept by the week rather than the day. Rarely was he said to have slept more than thirty hours a week.</p><p></p></div>	
+<div class='layout'><p>1 At least since the communists established their guerrilla base in Yanan in the mid-1930s, Mao was always given the best residence available. His cave in Yanan is said to have been the most comfortable.</p><p></p></div>	
+<div class='layout'><p>2 Another source says Fu Lianzhang's daughter and son-in-law were killed sometime after the beginning of the Long March in 1934. Fu's physician son-in-law, Chen Binghui, is said to have treated Mao in 1932. The fact that Fu and his family were well off financially and lived a comfortable life was one source for the charge that they were “anti-Bolshevik.” Fu Lianzhang was saved through the help of Mao and Zhang Wentian, but his relatives were not.</p><p></p></div>	
+<div class='layout'><p>3 Reports have Mao playing mah-jongg as early as 1927.</p><p></p></div>	
+<div class='layout'><p>1 Big Beard Wang's confession is not the only reason the campaign was stopped. Many were falsely accused.</p><p></p></div>	
+<div class='layout'><p>2 Mao had begun hosting dancing parties in the mid-1930s in Yanan, where Ye Zilong had organized the participation of young women and a band of amateur musicians from his section of confidential secretaries.</p><p></p></div>	
+<div class='layout'><p>3 Mao himself agreed in 1953 that the cultural work troupe should not be set up so close on the heels of the “three-anti” campaign against corruption, waste, and bureaucratism, but it was still not disbanded.</p><p></p></div>	
+<div class='layout'><p>1 The unretouched photos of Mao smiling clearly reveal his blackened teeth.</p><p></p></div>	
+<div class='layout'><p>2 The Berkeley Wellness Letter of September 1992 notes recent ads of a “famous Romanian anti-aging formula” that will “make you younger overnight” and describes the alleged wonder drug as procaine (trade name Novocain). The report says that a Dr. Anna Aslan experimented with the drug in Bucharest in the 1940s. No studies have ever shown the drug to live up to its claims.</p><p></p></div>	
+<div class='layout'><p>Here and elsewhere, the Western reader will notice the absence of informed consent in Chinese medical practice. The notion is relatively new in the United States as well.</p><p></p></div>	
+<div class='layout'><p>3 In a September 1961 meeting with Field Marshal Montgomery, Mao talked about his death and possible successor. Before the meeting, he told Xiong Xianghui that even Qin Shihangdi had not been able to find the elixir of long life and said that such an elixir was nonsense.</p><p></p></div>	
+<div class='layout'><p>1 Mao's bowel habits have been written about by others who were close to him. It is said that in Jinggangshan Mao's wife, He Zizhen, used her fingers to clean out Mao's bowels and later learned how to administer enemas. During the civil war against the nationalists, Mao refused to use a lavatory, and his bodyguards would accompany him to the fields, dig a hole where he could empty his bowels, then cover the hole with dirt. It is said that during the Long March, Mao's bowel movements were a source of inspiration to his soldiers.</p><p></p></div>	
+<div class='layout'><p>2 Here and elsewhere, Dr. Li uses the term depression in the popular rather than strictly medical sense, since he was not trained in psychiatry. The Chinese perception of mental illness has changed since Mao's death, and psychological counseling clinics have been set up in many Chinese cities.</p><p></p></div>	
+<div class='layout'><p>1 Scholars of this period describe a much more complicated interaction between the Comintern and the Chinese Communist party, and many are more charitable to Wang Ming than to Mao. Similarly, Soviet help to the Chinese communist cause, while not extensive, was greater than Mao was willing to recognize.</p><p></p></div>	
+<div class='layout'><p>2 Almost 90 percent of the munitions used by China during the Korean War were bought from the Soviet Union. The Chinese borrowed more than $1.3 billion from the Soviets in order to buy them.</p><p></p></div>	
+<div class='layout'><p>3 Zhu De joined Zhang Guotao, who later split with Mao, during part of the Long March.</p><p></p></div>	
+<div class='layout'><p>1 Edgar Snow's account appears in The Long Revolution (New York: Vintage, 1971), p. 175.</p><p></p></div>	
+<div class='layout'><p>2 Traditional Chinese folk belief posits that the fate of a sibling who lives after another sibling has died becomes stronger, as though the living take on the strength and power the deceased would have possessed had he lived.</p><p></p></div>	
+<div class='layout'><p>3 Khrushchev remembers the crudity of Mao's language in asserting that China could produce more people, and he and other Soviet leaders were apparently horrified at his callousness with respect to human life. See Khrushchev Remembers, translated and edited by Strobe Talbott (Boston: Little, Brown, 1974), p. 255.</p><p></p></div>	
+<div class='layout'><p>1 One Chinese account asserts that Mao never flew after 1955–56. Dr. Li, however, can remember thirteen occasions after then that he flew with Mao.</p><p></p></div>	
+<div class='layout'><p>2 Jiang Qing was also involved in the decision to build the pool. Mao's own account of the incident says he offered to pay 50,000 yuan for the construction.</p><p></p></div>	
+<div class='layout'><p>1 Mao's tailor was a French-trained fashion designer named Wang Ziqing; his Leimeng Dress Shop was on Beijing's busiest shopping street, Wangfujing.</p><p></p></div>	
+<div class='layout'><p>2 Wang Hebin, who served as Mao's doctor from August 1949 to October 1953, had been trained in medicine in Yanan. After leaving his post with Mao, he went to the Soviet Union for further study, returning to work for a while in Beijing Hospital. At Mao's death, he was working in Taiyuan, Shanxi.</p><p></p></div>	
+<div class='layout'><p>1 Under Mao's prodding, the Chinese had upped the 1957 production targets for both grain and steel. Grain yield would increase from 300 to 500 million tons, and steel production from 18 million to 30 million tons. That Mao's plan was adventurist can be seen in the fact that in 1984, the year that produced the largest harvest in China's history, grain yield was only 400 million tons; steel production only reached 30 million tons in 1983.</p><p></p></div>	
+<div class='layout'><p>2 From The Poems of Mao Tse-tung, translation, introduction, and notes by Willis Barnstone, in collaboration with Ko Ching-po (New York: Harper & Row, 1972), pp. 85–87.</p><p></p></div>	
+<div class='layout'><p>Some have read Mao's poem, with its reference to death, as an indication of his knowing he did not have much longer to live, and thus not that much time to build his “great walls” and establish himself as a modern-day Qin Shihangdi. The “storms and waves” have been seen as the impediments to his plans put up by Khrushchev's attack on Stalin and his own colleagues' commitment to a slower approach.</p><p></p></div>	
+<div class='layout'><p>1 Some sources say Wang Guangmei was Liu's fifth wife. We have only been able to confirm that she was the third.</p><p></p></div>	
+<div class='layout'><p>1 Bo Yibo says the first time he heard Mao talk about retreating to the second line was in the summer of 1954.</p><p></p></div>	
+<div class='layout'><p>1 Again, Dr. Li is using the term depression in the popular sense, not in the psychiatric meaning of clinical depression. The timing may be off here. Mao was quite active between November 1956 and May 1957, giving speeches in January, February, and March 1957 and traveling to several cities in March. Mao also had a series of meetings with intellectuals and leaders of the “democratic parties” in April. It seems more likely that Mao's depression began in May or June 1956, when the criticisms of his “adventurism” began, and that it lasted until November, when he began implementing his own counterattack. He may have become depressed again in May 1957, when the criticisms of the Communist party became virulent.</p><p></p></div>	
+<div class='layout'><p>1 In 1956, Yale-in-China Medical School was renamed Hunan Medical College. Today it is Hunan Medical University.</p><p></p></div>	
+<div class='layout'><p>1 Reports saying that Dr. Li shared a room with Mao's interpreter, Li Yueran, are mistaken.</p><p></p></div>	
+<div class='layout'><p>2 Mao's inspiration for asserting that China would overtake Great Britain within fifteen years may have been Khrushchev's boast that the USSR would overtake the United States within the same period. Dr. Li did not, however, hear Khrushchev's speech. The term Great Leap Forward was first publicly used by Zhou Enlai in a speech in the summer of 1957, and the People's Daily called for a Great Leap Forward on November 13 of that year, before Mao's return from Moscow.</p><p></p></div>	
+<div class='layout'><p>3 Khrushchev's recollections of Mao during the 1957 meetings in Moscow can be found in Khrushchev Remembers, op. cit., pp. 250–257.</p><p></p></div>	
+<div class='layout'><p>1 Chen Yi, then a vice-premier and the Chinese foreign minister, is said to have made similar complaints against Jiang Qing, saying that in order to satisfy her demands for silence he had had to take off his shoes and walk around in bare feet.</p><p></p></div>	
+<div class='layout'><p>2 Chen Boda had been criticized by Mao for suggesting that the contradiction between the proletariat and the bourgeoisie had been solved and saying that the main contradiction was between China's economic and cultural development and the people's demands.</p><p></p></div>	
+<div class='layout'><p>3 Bo Yibo had opposed Mao's “adventurism” in 1956 and had rejected the call to achieve “greater, faster, better and more economical results.” When Mao began his counterattack in September 1957, Bo Yibo was one of those criticized. Mao accused him of leaning to the right.</p><p></p></div>	
+<div class='layout'><p>1 The poem is by Yu Xin, who lived in the period of the Northern and Southern dynasty, A.D. 513–581.</p><p></p></div>	
+<div class='layout'><p>2 Mao had begun using the phrase “greater, faster, and more economical results” in late 1955 and early 1956.</p><p></p></div>	
+<div class='layout'><p>1 Li Dongye was appointed minister of metallurgy, and Liu Huafeng became the secretary-general of the party's Organization Department. He Zai first became a section chief of the Organization Department and later its secretary-general.</p><p></p></div>	
+<div class='layout'><p>1 The original photograph, which appeared in the People's Daily on May 26, 1958, showed Beijing mayor Peng Zhen standing near Mao. When Peng was purged during the Cultural Revolution, he was airbrushed out of the picture.</p><p></p></div>	
+<div class='layout'><p>1 Khrushchev's description of the 1958 visit can be found in Khrushchev Remembers, op. cit., pp. 258–261.</p><p></p></div>	
+<div class='layout'><p>2 For a fuller explanation of the genesis of people's communes, see Roderick MacFarquhar, The Origins of the Cultural Revolution 2: The Great Leap Forward 1958–1960 (New York: Columbia University Press, 1983), pp. 77–88.</p><p></p></div>	
+<div class='layout'><p>3 Mao is no doubt referring to Jack Belden's China Shakes the World, first published in 1949 and republished in 1970 (New York: Monthly Review Press, 1970).</p><p></p></div>	
+<div class='layout'><p>4 While Mao cautioned Dr. Li that the trip was secret, the Chairman was trailed by numerous reporters and officials, and the trip soon became a great media event.</p><p></p></div>	
+<div class='layout'><p>1 Zhou Enlai's capacity for alcohol was well known in China, and he suffered throughout his life from frequent nosebleeds.</p><p></p></div>	
+<div class='layout'><p>1 Other reports from China indicate that Mao visited steel factories in the northeast in February 1958, but Dr. Li remembers this trip taking place in the winter of 1958–59.</p><p></p></div>	
+<div class='layout'><p>1 Film clips taken of Mao during his second visit to Shaoshan show that a tombstone was added.</p><p></p></div>	
+<div class='layout'><p>1 The Chinese for “sticking together like glue” is ni xingying bu li, ru jiao si ji—your body and shadow won't separate, like glue, like paint.</p><p></p></div>	
+<div class='layout'><p>1 In fact, Xinyang had been devastated by the famine.</p><p></p></div>	
+<div class='layout'><p>1 Grain yield went from 200 million tons in 1958 to 170 million in 1959, 143 million in 1960, and 147 million in 1961. Not until 1966 did grain yield exceed the amount for 1957.</p><p></p></div>	
+<div class='layout'><p>1 Some of the scholars who have read this account doubt that Mao's quarters could have been bugged without his permission. Dr. Li is reporting on what he actually saw and heard, which led him to believe that Mao did not know.</p><p></p></div>	
+<div class='layout'><p>1 Mao met Montgomery again in 1961. He invited the field marshal to swim with him in the Yangtze, but indigestion prevented Montgomery from joining Mao.</p><p></p></div>	
+<div class='layout'><p>1 See Barnstone, The Poems of Mao Tse-tung, op. cit., p. 103.</p><p></p></div>	
+<div class='layout'><p>2 One Chinese source puts the meeting with He Zizhen in 1959. Another agrees that it was in 1961.</p><p></p></div>	
+<div class='layout'><p>1 The 7,000 cadres' conference took place from January 11 to February 7, 1962.</p><p></p></div>	
+<div class='layout'><p>2 Chinese sources say Mao first met Hua Guofeng in 1955.</p><p></p></div>	
+<div class='layout'><p>3 Dr. Li may be referring here to a meeting in early March on theater and the arts.</p><p></p></div>	
+<div class='layout'><p>1 Li Weihan's memoirs say he was dismissed in December 1964, although Mao's criticisms of him began in 1962. Wang Jingxian was not dismissed until March 1966. Deng Zihui was dismissed when the Rural Works Department was abolished in November 1962.</p><p></p></div>	
+<div class='layout'><p>2 One Chinese source says that Wang Feng was dismissed in November 1966.</p><p></p></div>	
+<div class='layout'><p>3 The Chinese definition of schizophrenia is clearly much broader than that given in the Diagnostic and Statistical Manual of the American Psychiatric Association, used in the West. The psychiatric profession was nearly devastated after 1949, and there were few practicing psychiatrists.</p><p></p></div>	
+<div class='layout'><p>4 Wang Guangmei's report was given in July 1964 to the Hebei provincial party committee and in September 1964 to the party Central Committee. While Jiang Qing began making public appearances in 1962, Mao did not criticize Wang Guangmei until 1964.</p><p></p></div>	
+<div class='layout'><p>1 The People's Daily reports a public performance of Li Huiniang as early as August 1961, together with favorable reviews, including one by Liao Mosha. In March 1963, the party Central Committee circulated a directive forbidding performances of operas about ghosts, and in May 1963, Liao Mosha's laudatory review of Li Huiniang was publicly criticized.</p><p></p></div>	
+<div class='layout'><p>2 Jiang Qing's cooperation with Ke Qingshi began as early as 1962.</p><p></p></div>	
+<div class='layout'><p>1 Beijing Normal University High School is one of the finest in the city, reserved for the best students, many of whom are children of intellectuals and the political elite. Dr. Li's housing was also far superior to that of other doctors at the time, many of whom lived with extended families in very cramped quarters.</p><p></p></div>	
+<div class='layout'><p>2 The rural practice of turning to folk healers such as shamans and spirit mediums for medical help was criticized as superstitious by the communists. Few rural Chinese would agree with the connotation of “witch doctor.”</p><p></p></div>	
+<div class='layout'><p>1 Yang Shangkun was officially removed as director of the General Office in November 1965. Luo Ruiqing was officially removed in December 1965. They were both removed from their positions on the Central Committee secretariat in May 1966.</p><p></p></div>	
+<div class='layout'><p>2 Mao's fear of poison may be more reasonable than appears. The one time I stayed in a villa once reserved for Mao, the most striking thing, beyond the size of the rooms and their opulence, was the peculiar odor, so strong that sleep was difficult. A Chinese friend who visited another of Mao's villas also remarked on the strange odor. Most of Mao's haunts were in the hot and humid south and they were left unused when Mao was not there, sometimes for years. I can only conclude that they became mildewed in his absence. Others have pointed out that peasants, who spend most of their time outdoors and live in relatively primitive housing, often find adjustment to the indoors difficult and fear the stifling atmosphere.</p><p></p></div>	
+<div class='layout'><p>1 There are differing interpretations of Peng Zhen's behavior over this incident. Some believe that he understood Mao's feelings from the beginning and decided to resist him.</p><p></p></div>	
+<div class='layout'><p>1 Ye Qun apparently made two visits to Mao, one in November 1965, which Dr. Li did not witness, and the second in early 1966, described here.</p><p></p></div>	
+<div class='layout'><p>2 Lin Biao's baldness was probably the result of favus of the scalp that he contracted as a youth.</p><p></p></div>	
+<div class='layout'><p>1 Fu Lianzhang died in March 1968.</p><p></p></div>	
+<div class='layout'><p>2 Some in the West believe that Mao's letter to Jiang Qing, published in China after Lin Biao's demise, was a forgery. Dr. Li does not concur. Other sources not only believe the letter to have been real but say that Mao showed the letter to Zhou Enlai, who in turn informed Lin Biao. In any case, the letter was later published and is available in English in Issues and Studies, January 1973.</p><p></p></div>	
+<div class='layout'><p>1 Chinese sources say that Wang Dongxing sent Wang Li and Qi Benyu to seize Tian Jiaying's documents on the afternoon of May 22 and that the search continued into the night. Tian is reported to have committed suicide early in the morning of May 23.</p><p></p></div>	
+<div class='layout'><p>2 Tao Zhu was appointed executive secretary of the central secretariat on May 23, 1966. Other sources indicate he had arrived in Beijing on June 4 and left for Hangzhou on June 9. His return to Beijing described here is some six weeks after his central-level appointments.</p><p></p></div>	
+<div class='layout'><p>3 Other sources suggest a different order of speakers. One source suggests the order was Li Xuefeng, Deng Xiaoping, Zhou Enlai, Liu Shaoqi. Another suggests it was Li Xuefeng, Liu Shaoqi, Deng Xiaoping, Zhou Enlai. Dr. Li remembers the second order as the accurate one.</p><p></p></div>	
+<div class='layout'><p>1 Kang Sheng lived in Building 8; Chen Boda lived in Building 15.</p><p></p></div>	
+<div class='layout'><p>1 The figure of 2 million soldiers called out to “support the left” is confirmed by Zhou Enlai in a conversation with Edgar Snow. See Snow, The Long Revolution, op. cit., p. 103.</p><p></p></div>	
+<div class='layout'><p>2 Military units in China are given secret code names. Many Chinese believe that the number assigned to the Central Garrison Corps—8341—was assigned on the basis of the prediction by a fortune-teller, who said that Mao would live to be eighty-three years old, which he did, and lead the Chinese Communist party for forty-one years (dating from 1935), which he also did. There is, so far as I know, no evidence to support the story.</p><p></p></div>	
+<div class='layout'><p>3 According to Chinese sources, Wang Dongxing's troops arrived at Beijing Textile Factory on June 26, 1967.</p><p></p></div>	
+<div class='layout'><p>4 The picture appears in People's Pictorial, No. 4, 1968. The revolutionary committee is reported to have been established on September 19, 1967.</p><p></p></div>	
+<div class='layout'><p>1 Many in the West believe that the “May 16 Rebels” never existed. Dr. Li was not acquainted with the group, only with the accusations against it. Chen Yi was overthrown, however, and the British offices were burned.</p><p></p></div>	
+<div class='layout'><p>1 This meeting was reported in the West at the time and is widely seen as a turning point in Mao's relations with radical students.</p><p></p></div>	
+<div class='layout'><p>1 No one, including Chen Boda and Wang Dongxing, openly argued that Lin Biao should assume the chairmanship, though the implication was clear. The open argument focused on whether the chairmanship should be reestablished. While Lin and his supporters argued that the chairmanship should be reinstated and that Mao should assume the position, he also knew that Mao would not. If the position were reinstated and Mao did not assume it, Lin Biao was the only logical choice.</p><p></p></div>	
+<div class='layout'><p>2 There is no evidence to suggest that Mao was correct in assuming that Snow was a member of the CIA. Snow's version of this interview with Mao can be found in his The Long Revolution, op. cit., pp. 169–172.</p><p></p></div>	
+<div class='layout'><p>1 Deng Xiaoping returned to Beijing in February 1973 and made his first public appearance in April. In August 1973, Deng was formally reinstated on the Central Committee and in December was appointed a member of both the politburo and the Military Affairs Commission. Deng's new positions were not formally confirmed until the Second Plenum of the Tenth Party Central Committee, in January 1975, when he was appointed a member of the politburo standing committee and vice-chairman of the party.</p><p></p></div>	
+<div class='layout'><p>2 Some sources attribute the idea of rotating the regional military commanders to Deng Xiaoping.</p><p></p></div>	
+<div class='layout'><p>1 Despite Chinese attempts to gather information on how amyotrophic lateral sclerosis is treated in the United States, no foreign doctor ever examined Mao.</p><p></p></div>	
+<div class='layout'><p>1 Wang Dongxing's purge was not official until February 1980, when he was forced to resign as a vice-chairman of the party and member of the politburo standing committee.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

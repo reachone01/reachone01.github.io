@@ -1,0 +1,409 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>27</p><p></p></div>	
+<div class='layout'><p>While we were in Chengdu, the party rectification campaign was intensifying in Beijing. My friend Lin Ke, the secretary responsible for briefing Mao on the contents of the daily Reference Materials and another of his English tutors, was one of the first to come under attack. Lin Ke left Chengdu for Beijing as soon as he learned he had been implicated. He had to be present to defend himself.</p><p></p></div>	
+<div class='layout'><p>Known later as the Black Flag Incident, the episode was the most bizarre and complicated among the political struggles I had yet to witness within the inner circle. It would destroy lives and ruin careers. Meanwhile, I learned an unforgettable lesson.</p><p></p></div>	
+<div class='layout'><p>The nature of the political-appointment system within the Communist party explains much about how the Black Flag Incident evolved. Much of the problem centered on the concept of responsibility. When a Chinese official suggests someone for appointment and the candidate is appointed, the official also assumes responsibility for the actions of the person he appoints. For the system to work, the subordinate must become absolutely subservient to his superior and carry out his orders even when they violate his better judgment. The fundamental tenet of party membership is discipline, and party discipline means absolute obedience to one's superiors, the subordination of one's own will to the dictates of the party, compliance with higher-level commands. The party, and one's superiors within the party, are always right. Thus, criticism of one's superiors is a violation of everything a party member has been taught. An attack on one's leader is an attack on the party itself. Loyalty is the paramount virtue.</p><p></p></div>	
+<div class='layout'><p>The benefit of subservience is protection. Since the subordinate is always following orders from his superior and the superior is responsible for his actions, the superior must therefore protect his subordinate from attack. Similarly, any higher-level purge begins with attacks on the target's underlings. If a lower-level person is guilty of political misdemeanor, so is his superior. Thus, the endless series of political struggles that I witnessed over the years always began not at the top but somewhere in the middle. The goal may have been higher-ranking leaders, but the route was through their subordinates.</p><p></p></div>	
+<div class='layout'><p>Mao fervently opposed this system, which he thought caused the party to lack daring and courage. Everyone was always trying to pass responsibility further up the ladder, and because the price for mistakes was so high, initiative, independence, and boldness were stifled. If one person fell, so did many others—not only the actor himself, but his boss and everyone under him. It was assumed that if the party boss had allowed one person under him to go astray, others under his command must similarly have committed mistakes.</p><p></p></div>	
+<div class='layout'><p>Mao revived the party rectification campaign in the fall of 1957 as a way of shaking up this stultifying system, hoping to liven up the leaders by giving their subordinates more say. He called upon lower-ranking party cadres to expose the misconduct of their superiors—especially any conduct that might be construed as conservative and therefore “rightist.”</p><p></p></div>	
+<div class='layout'><p>But for those asked to participate it was an unusual and frightening request. What if the criticisms were not upheld? What if the party leader remained in his post? The leader could take revenge, use his higher-level position to make life miserable for the people who had dared to criticize, and condemn them as anti-party, rightist, or worse. These were the lessons of the anti-rightist campaign.</p><p></p></div>	
+<div class='layout'><p>Thus, when Mao launched the rectification campaign again, most party members remained silent. I certainly did. I had grievances against people like Ye Zilong and Li Yinqiao, but I would never have spoken out.</p><p></p></div>	
+<div class='layout'><p>Some people within Zhongnanhai did speak out, however. Eight political secretaries—staff members of the Office of Political Secretaries under the Zhongnanhai General Office headed by Yang Shangkun—got together to criticize their boss, He Zai, the deputy director of their office. He Zai's primary crime was his arrogance. The dissidents accused him of taking credit for everything that went right and blaming his subordinates for everything that went wrong. They accused him of toadying to his superiors and intimidating his subordinates.</p><p></p></div>	
+<div class='layout'><p>Lin Ke was one of the eight who participated in the attack.</p><p></p></div>	
+<div class='layout'><p>But He Zai passed the responsibility upstairs, saying that real decision making rested not with him but with his boss, the much higher-ranking Yang Shangkun. By this logic, to accuse He Zai of being a rightist was tantamount to accusing Yang Shangkun and hence politically more dangerous. He Zai further argued that to attack him was to attack the party and that the eight accusers were the real rightists. He mobilized other staff members within the Office of Political Secretaries to attack the eight and spread the word that my friend Tian Jiaying—another of Mao's political secretaries and, like He Zai, one of the deputy directors of the Office of Political Secretaries—had instigated the attack against He Zai. By March, when we were in Chengdu, He Zai had marshaled sufficient support within the General Office that the eight staff members, Lin Ke included, were about to be officially declared an anti-party, anti-socialist, rightist clique.</p><p></p></div>	
+<div class='layout'><p>It was only after the Chengdu meetings were over and Lin Ke had returned to Beijing that I realized how serious the accusations were. I had left Chengdu with Mao, going first to Chongqing and then for a boat ride through the Yangtze River gorges, stopping in Wuhan for another discussion of the Yangtze River dam project, and then traveling on to Guangzhou, arriving in late April. Ye Zilong and Tian Jiaying joined us there, and I learned that Yang Shangkun had suspended the eight secretaries, including Lin Ke, and ordered them to write “self-evaluations.” The investigation of their anti-party activities was continuing.</p><p></p></div>	
+<div class='layout'><p>Tian Jiaying was distressed. The accusations were unfair. But he was in a quandary. As a deputy director, he was of the same rank as He Zai. The eight staff members were also his subordinates. Rumors were circulating that he had instigated the eight to make their accusations, and he was on the verge of being investigated himself. He wanted to discuss the issue with Mao but was afraid of getting into further trouble if he did. Tian Jiaying, like everyone else in Group One, served two masters. He worked directly for Mao, but he still served under the overall command of the General Office of the party. If Tian Jiaying took his concerns directly to Mao, he could be accused of going over the head of Yang Shangkun and the General Office. But with the decision already made by the General Office, Mao himself was the only one who could override it.</p><p></p></div>	
+<div class='layout'><p>I, too, was distressed by the news about Lin Ke. I was vaguely acquainted with all of the accused, but Lin Ke and I had worked closely together over the past several years, often sharing a room when we traveled. Lin's job as Mao's secretary was the same one Mao had offered me, and I could easily have been in his position. Lin Ke spoke bluntly and his frankness was sometimes offensive, but I had never heard him utter a word against the party. To accuse him of being an anti-party element was preposterous. Besides, he was Mao Zedong's secretary. How could Mao's secretary be anti-party?</p><p></p></div>	
+<div class='layout'><p>In Guangzhou, Group One was abuzz with talk about the case. But when I came to Lin Ke's defense, saying I could not imagine him doing anything against the party and wondering whether his attackers had some kind of grudge, Ye Zilong challenged me. “You're not in Beijing. How do you know?”</p><p></p></div>	
+<div class='layout'><p>“If Lin Ke is really opposed to the party, it would be awfully difficult for him not to give the slightest hint,” I responded. “In my presence, he has always been loyal. How could he suddenly become anti-party?” My resolve to keep quiet was slipping.</p><p></p></div>	
+<div class='layout'><p>Wang Jingxian signaled me, and I joined him in an adjacent room. He cautioned me against speaking so rashly. The decision has already been made, he said, and my voice had no political weight. “If you keep talking like this, people will say you are covering up for Lin Ke. Then you'll be charged with opposing the decision of the party. You could be implicated, too.” Ye Zilong, delighted to see Lin gone, had already reported the decision to Mao. If I continued defending Lin Ke, Ye Zilong could take out after me, too.</p><p></p></div>	
+<div class='layout'><p>Wang was right. There was nothing I could do.</p><p></p></div>	
+<div class='layout'><p>But I was still uneasy. The attack was unfair. It was not right that no one dared to speak out in Lin Ke's defense.</p><p></p></div>	
+<div class='layout'><p>I believed that if Mao knew the full story, he would support Lin Ke. When Ye Zilong reported on his case, Mao had said nothing, a sign that he disagreed. Ye had misinterpreted, taking Mao's silence as agreement. I thought otherwise. But if I came to Lin's defense, Ye Zilong would accuse me of interfering in a decision of the party. My only hope was for Mao to raise the question himself.</p><p></p></div>	
+<div class='layout'><p>Mao called for me later that afternoon. Wearing a bathing suit and covered with a robe, he was sprawled on a lounge chair on the deck of the yacht near his guesthouse. He wanted an English lesson. But shortly after we began, Ye Zilong interrupted to report further on the “anti-party group” in Zhongnanhai. I rose to leave. The matter was no official business of mine. Mao encouraged me to stay. “This is no secret,” he said. “We'll study English in a bit.”</p><p></p></div>	
+<div class='layout'><p>Mao wondered why a report on the anti-party group was coming from Ye. Yang Shangkun and his deputies were responsible for the investigation. The information should be coming from them. But Yang Shangkun's deputy had asked Ye to report.</p><p></p></div>	
+<div class='layout'><p>Mao was silent. Ye Zilong left.</p><p></p></div>	
+<div class='layout'><p>I knew that Mao was unhappy, but I still did not dare to speak. I was under the jurisdiction of the Public Health Ministry's Central Bureau of Health and the controversy was taking place within the Office of Political Secretaries under the General Office. The matter was none of my business, and party discipline required me to stay out. My meeting with Mao was not private. No meeting with Mao ever was. His guards, continually coming and going, pouring us tea, wiping Mao's face with a hot washcloth, eavesdropped on everything, hanging on to every word, and when they were not in the room, they listened at the door. If I brought up the question of Lin Ke, they would tell Ye Zilong and Lin Ke's enemies within Group One would turn on me, too. I could not take the initiative. I had to wait for Mao.</p><p></p></div>	
+<div class='layout'><p>I picked up our lesson for the day. We were reading the English version of Liu Shaoqi's political report to the second session of the Eighth National Congress, scheduled for May. Liu Shaoqi was giving Mao plenty of time to comment, and its thrust was pure Mao—“go all-out, aim high, and build socialism with greater, faster, better, and more economical results.”</p><p></p></div>	
+<div class='layout'><p>Mao stopped me. He was quiet, thinking. “Do you know about this problem at the Office of Political Secretaries?” he asked.</p><p></p></div>	
+<div class='layout'><p>“I know about it, but not in detail,” I responded. “I was surprised to learn from Director Ye that Lin Ke is in such serious trouble.”</p><p></p></div>	
+<div class='layout'><p>“Do you know the eight people involved?”</p><p></p></div>	
+<div class='layout'><p>“I am acquainted with them all, but Lin Ke is the only one I know well.”</p><p></p></div>	
+<div class='layout'><p>“What do you think of Lin Ke?”</p><p></p></div>	
+<div class='layout'><p>My opportunity had come. I had to be careful. Others were listening. I had to present Lin Ke's faults as well as his strengths. “In the past three or four years, we have spent a great deal of time together,” I began. “We have talked a lot. I don't think Lin Ke is in any way against the party. He's a little egotistical, that's all.”</p><p></p></div>	
+<div class='layout'><p>“Who isn't egotistical? But we're not talking about that. I'm asking whether you think Lin Ke is against the party.”</p><p></p></div>	
+<div class='layout'><p>I explained that so far as I knew, Lin Ke had never said anything against the party. Maybe he had been critical of particular individuals or leaders, but I never heard him utter a complaint against the party itself or against the Chairman. In fact, I assured the Chairman, he seemed very loyal.</p><p></p></div>	
+<div class='layout'><p>“Right. During the anti-rightist campaign last year, Lin Ke and the other seven were all very active. How is it that when the rectification campaign starts they suddenly become opposed to the party?”</p><p></p></div>	
+<div class='layout'><p>“I don't know the details of the case,” I responded. “But Comrade Tian Jiaying is here now. He knows.”</p><p></p></div>	
+<div class='layout'><p>Mao wanted to talk to Tian Jiaying.</p><p></p></div>	
+<div class='layout'><p>Tian Jiaying and Wang Jingxian were incredulous when I told them about my conversation. Wang thought me brave. But Tian Jiaying was still concerned. Yang Shangkun was also his boss, and Tian did not want to give the impression of opposing Yang or going over his head. But Mao had asked to discuss the matter with him. He decided to tell the whole story. The two talked that evening.</p><p></p></div>	
+<div class='layout'><p>At four o'clock that morning, I was awakened from a sound sleep by one of Mao's bodyguards. The Chairman wanted another English lesson. I splashed my face with cold water and hurried to Mao's bedroom.</p><p></p></div>	
+<div class='layout'><p>“I wanted to wake you two hours ago,” Mao said, “but I knew it was still too early.” One of the guards served me a cup of strong tea.</p><p></p></div>	
+<div class='layout'><p>I knew Mao wanted to talk about Lin Ke, but first we read some English. Then Mao stopped. He had talked to Tian Jiaying, he said. “I think I understand the situation now. The eight staff members criticized the leading cadres of the Office of Political Secretaries for having rightist leanings. Then He Zai and Yang Shangkun tried to help each other out by attacking the eight. But they completely distorted the case. I think the eight staff members are right. Some of the leaders do have rightist tendencies. The way they've gone about striking down the eight staffers shows they have rightist leanings, doesn't it? Those eight were enthusiastic supporters of the anti-rightist campaign last year. How could they suddenly become rightists themselves? The leaders making the charges against them are the ones who are rightists. They're using this notion of party discipline to scare their subordinates. They're ruthless. The eight have no way to survive.”</p><p></p></div>	
+<div class='layout'><p>Mao compared the case to a similar episode during the Tang dynasty when eight young and courageous reformist officials had offended the landlords and bureaucrats with their proposals for change. The landlords and bureaucrats had struck back at the reformists by sending them all into exile.</p><p></p></div>	
+<div class='layout'><p>“I have ordered Tian Jiaying back to Beijing,” Mao continued. “We'll go back soon.”</p><p></p></div>	
+<div class='layout'><p>We returned to Beijing at the end of April, three days before the May Day activities. Mao spent three hours talking with Lin Ke, listening to his view of the case. The mood in Zhongnanhai changed dramatically with Mao's return. Yang Shangkun had arranged a big “struggle session” against the eight. Then Tian Jiaying returned to report that the case would not be settled until Mao himself investigated. The party chairman did not agree with the decision of the General Office. Now He Zai and Yang Shangkun were in a quandary.</p><p></p></div>	
+<div class='layout'><p>Just after May Day, Mao called Tian Jiaying, Lin Ke, He Zai, and two staff members from the party organization at the General Office—Liu Huafeng and Xiao Lan—to a meeting in his room. He asked me to sit and listen.</p><p></p></div>	
+<div class='layout'><p>Mao was in bed, wearing only his robe, and he was calm, conciliatory, trying to find a way to compromise. He said that the rectification movement within the Office of Political Secretaries had not been properly conducted and reiterated what he had already told me—that the eight staff members had supported the anti-rightist campaign. They were leftists, not rightists. The case had to be handled on the basis of fact. Proletarian problems could not be solved with bourgeois means—you attack me and I overthrow you.</p><p></p></div>	
+<div class='layout'><p>Had everyone present agreed with the Chairman, the case against the eight could easily have been dropped. But Xiao Lan, one of the staff members from the General Office, a woman in her forties, disagreed. She pointed out that the eight had criticized the leaders of the General Office, and the General Office had already determined that the eight were opposed to the party. They had been suspended from their work and ordered to make self-evaluations.</p><p></p></div>	
+<div class='layout'><p>Xiao Lan was challenging Mao, and while I disagreed with her point of view, I had to admire her courage. But she was also stupid and naive. Committed to the supremacy of the party and its leadership, educated to subordinate herself to party discipline, she did not understand why Mao had launched the rectification movement. Mao was dissatisfied with the conservatism of the party leaders. He wanted them criticized. He thought the eight staff members had been right.</p><p></p></div>	
+<div class='layout'><p>Xiao Lan was also stupid to think that the party itself was supreme or that decisions of the party were final. She did not understand that above the party was the emperor. She had just challenged the emperor.</p><p></p></div>	
+<div class='layout'><p>The change in Mao's attitude was instantaneous. He sat upright, pushed the terry-cloth towel from his body, looked around the room. He was ready for battle. “All right,” he said coldly. “Both sides continue to insist on their own points of view. I cannot change your minds. We'll organize a meeting to handle the case. Everyone has to go. Let's have a thorough debate, clear the whole thing up once and for all. The meeting will begin tomorrow. Order the staff members of all the offices in Zhongnanhai to be there. Now you can all leave.”</p><p></p></div>	
+<div class='layout'><p>Mao had dropped a bombshell, and nothing could prevent its explosion. He was supporting the cadres who had criticized their boss and hoped that other staff members would, too.</p><p></p></div>	
+<div class='layout'><p>Yang Shangkun, who was both director and party secretary of the General Office and party secretary of the Central Committee's General Headquarters (zhongzhi jiquan), was clever. He Zai was his subordinate, and He Zai's defense had been that he had merely been carrying out the orders of Yang Shangkun. Knowing that Mao did not support He Zai, Yang Shangkun made a “self-criticism,” distancing himself from He Zai by apologizing for not paying sufficient attention to He Zai's work or to the rectification movement within the Office of Political Secretaries. “I am asking all of you to speak up and identify those who tried to strike down our leftist comrades,” he said at the first meeting. “If anyone thinks I did something wrong, then speak up against me, too.” It was a clever maneuver.</p><p></p></div>	
+<div class='layout'><p>Xiao Lan persisted in her attacks against the eight even after knowing Mao's stand, and her attack gave the incident its name. The Lin Ke group, she insisted in meeting after meeting, had not been raising a red flag in support of the Communist party but a black flag of opposition.</p><p></p></div>	
+<div class='layout'><p>The meetings continued for a month. I did not have the stomach to attend. The eight were finally exonerated, as they had to be once Mao intervened. But it was not until the Cultural Revolution that I fully understood Mao's strategy during the Black Flag Incident. Yang Shangkun, as the highest-ranking party member involved, was the real object of Mao's suspicion even then, and above Yang Shangkun, behind the scenes, was his boss, Deng Xiaoping. The Black Flag Incident was but one episode in Mao's lengthy test of Yang's behavior, a test that Yang Shangkun would ultimately fail. In 1958, Yang Shangkun was allowed to continue as director of the General Office, but the General Headquarters of the Central Committee, of which he was party secretary, was abolished—a major diminution of his authority but still a way of saving his face. During the Cultural Revolution the Black Flag Incident would be resuscitated to destroy him and presented as one of his two major crimes.</p><p></p></div>	
+<div class='layout'><p>The middle-ranking cadres, the staff members just under Yang, were the ones punished in this round of trials. Two staff members, Li Dongye and Liu Huafeng, good men who had acted under orders from Yang Shangkun and Zeng San, were made scapegoats, sent down to lower-level organizations for reform, where their life was very hard. Only in 1980, after Mao's death and the return to power of both Deng Xiaoping and Yang Shangkun, were they finally exonerated.</p><p></p></div>	
+<div class='layout'><p>He Zai, the original target of the staff members' criticisms, fared even worse. He was expelled from the party and also sent down to lower levels for reform, to be exonerated only in 1980.</p><p></p></div>	
+<div class='layout'><p>Xiao Lan, the woman who had led the challenge against Mao, insisting that the eight had been waving a black flag of opposition, was destroyed. She lost her job and was expelled from the party and sent to be reformed. She was never exonerated and died in hard labor.</p><p></p></div>	
+<div class='layout'><p>But nothing was ever as it seemed. The rumors about Tian Jiaying had been true. He was behind the eight staff members in their struggle against He Zai, and both He Zai and Yang Shangkun were his targets. As the case evolved, however, Tian Jiaying saved Yang Shangkun from being fired by claiming that Yang Shangkun was telling the truth when he said he did not know what He Zai was doing. When He Zai was demoted, Yang Shangkun rewarded Tian with a promotion.</p><p></p></div>	
+<div class='layout'><p>We in Zhongnanhai were a privileged group, often shielded from the harsh realities outside, but the Black Flag Incident taught me how dangerous the intricate political struggles within Zhongnanhai itself could be. Mao had called upon subordinates to criticize their superiors as a way of shaking up the conservative elite. But the elite had power and the means to counterattack, and the risk of being declared a rightist or counterrevolutionary was great for an underling. Only Mao's personal intervention could save a subordinate from doom. And Mao was not yet willing to go straight to the top and overthrow the leaders with whom he disagreed. The outcome of any political struggle was always uncertain, and some people always lost. Those people were the middle-ranking cadres, men like me and Lin Ke, and the signals we received were conflicting. Party loyalty required subservience to one's superior and obedience to his command. Following Mao meant criticizing one's superior and risking being declared a rightist. I was grateful once more that I did not have Lin Ke's job and resolved anew to remain silent and out of the political fray.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

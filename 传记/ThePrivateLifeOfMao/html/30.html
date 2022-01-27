@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>30</p><p></p></div>	
+<div class='layout'><p>Khrushchev arrived for a secret visit to Beijing on July 31, 1958. Mao returned the extravagant hospitality given him in the Soviet Union with a slap in Khrushchev's face. He received the Soviet leader by the side of his swimming pool, clad only in his swimming trunks. When Mao suggested that Khrushchev join him and don swimming trunks himself, the Soviet leader surprised us all by accepting the offer, changing into one of the bathing suits that were kept in ample supply in the dressing rooms alongside the pool, and plunging into the water with Mao. Khrushchev did not know how to swim and wore a life preserver in the water, surrounded by me and a couple of bodyguards, with the interpreters trying to manage their work from the side.</p><p></p></div>	
+<div class='layout'><p>Superficially, the two men were cordial, and Khrushchev did not then acknowledge the insult, but the talks between the two men did not go well, and Khrushchev's memoirs record the disdain he felt for Mao's unorthodox ways. He had originally planned to stay a week, but he left after only three days. The Chairman was deliberately playing the role of emperor, treating Khrushchev like the barbarian come to pay tribute. It was a way, Mao told me on the way back to Beidaihe, of “sticking a needle up his ass.”</p><p></p></div>	
+<div class='layout'><p>Mao's catalog of complaints against the Soviets had grown, but could be reduced to a single, overriding concern. “Their real purpose,” Mao said, “is to control us. They're trying to tie our hands and feet. But they're full of wishful thinking, like idiots talking about their dreams.” The Soviets, he said, had proposed the creation of a joint fleet and wanted to build a long-range radio station in China.</p><p></p></div>	
+<div class='layout'><p>Mao accused Khrushchev of trying to use China as a pawn in the Soviet effort to improve relations with the United States. Khrushchev, he said, wanted a promise from China not to attack Taiwan. He was also criticizing China for beginning a program to amalgamate the agricultural collectives into huge people's communes.</p><p></p></div>	
+<div class='layout'><p>“I told him we could build a joint long-range radio station,” Mao said, “but he has to give us the equipment and technology. We could also create a joint fleet—with his ships and our captains. I told him that whether or not we attack Taiwan is our own domestic affair. He shouldn't try to interfere. As for the people's communes, what is so wrong about trying them out? So I summarized everything for him. We could create a joint radio station and a joint fleet—in accordance with my conditions. We will do something on the Taiwan front. We will definitely give the people's communes a try.”</p><p></p></div>	
+<div class='layout'><p>Hidden from the world, unbeknownst to the West, the Sino-Soviet dispute had begun.</p><p></p></div>	
+<div class='layout'><p>On the way back to Beidaihe, Mao continued to fume. “Khrushchev just doesn't know what he's talking about,” he complained to me. “He wants to improve relations with the United States? Good, we'll congratulate him with our guns. Our cannon shells have been in storage for so long they're becoming useless. So why don't we just use them for a celebration? Let's get the United States involved, too. Maybe we can get the United States to drop an atom bomb on Fujian. Maybe ten or twenty million people will be killed. Chiang Kai-shek wants the United States to use the bomb against us. Let them use it. Let's see what Khrushchev says then.</p><p></p></div>	
+<div class='layout'><p>“Some of our comrades don't understand the situation. They want us to cross the sea and take over Taiwan. I don't agree. Let's leave Taiwan alone. Taiwan keeps the pressure on us. It helps maintain our internal unity. Once the pressure is off, internal disputes might break out.”</p><p></p></div>	
+<div class='layout'><p>Mao's talk was baffling. I had no knowledge of radio stations or joint fleets and knew little about Taiwan. I even dared to hope when he raised the question of Taiwan that peace talks between the two sides might soon begin. I had not heard about the movement to establish people's communes. We had just finished the transition to higher-level agricultural cooperatives.</p><p></p></div>	
+<div class='layout'><p>It would be several weeks before the real meaning of Mao's talk about Taiwan became clear. But I was about to get a firsthand look at the new people's communes.</p><p></p></div>	
+<div class='layout'><p>On August 2, 1958, at three o'clock in the morning, after our return to Beidaihe from the meeting with Khrushchev, I was awakened from a sound sleep by one of Mao's bodyguards. The Chairman wanted an English lesson. I rushed to his room, where we began reading Engels's Socialism: Scientific and Utopian. That and the Communist Manifesto were his two favorite English books, and we read them over and over. Mao never really learned English. He used the lessons as a way to relax, and our lessons were an occasion to chat. We stopped around six in the morning. Mao asked me to join him for dinner.</p><p></p></div>	
+<div class='layout'><p>While we were eating, he handed me the current issue of Internal Reference, the compilation of secret reports written by journalists all over China and edited by the New China News Agency. Distributed daily to leaders at the ministerial level and above, Internal Reference kept the highest-level leaders informed about events the party did not want the rest of the people to know. The reporting was often critical, focusing on problems that had yet to be solved or on disparities between party ideals and the reality of everyday life. During the period of “blooming and contending” in 1957, when everyone was being encouraged to speak out, the Internal Reference was filled with the most scathing criticisms of the party. Sometimes the reporting was sensational-stories of rapes and murders that were never reported to the public.</p><p></p></div>	
+<div class='layout'><p>With the beginning of the anti-rightist campaign in the summer of 1957, however, the character of Internal Reference had changed. Some journalists who had reported honestly on the dark side of Chinese society, men like Li Shenzhi, were labeled rightists and removed from their positions, and some were sent into exile in remote areas of the country. By early 1958, with the new drive for internal party rectification and Mao's efforts to whip up party support for his go-all-out fast approach, Internal Reference had turned 180 degrees, glorifying the great advances that were taking place throughout the country—particularly in the rural areas. The copy Mao showed me that morning had a report about the creation of a people's commune, an amalgamation of many smaller agricultural cooperatives into one gigantic organization, in Chaya Hill, Henan province.</p><p></p></div>	
+<div class='layout'><p>“This is an extraordinary event,” Mao said. “This term people's commune is great. Lots of rural cooperatives have been united to form one big people's commune. The commune will be the bridge linking socialism to communism. But there are lots of things we don't know. How is this people's commune organized? How does it work? How does it allocate income and verify how much people have worked? How do they implement the idea of uniting agricultural labor with military training?”</p><p></p></div>	
+<div class='layout'><p>Sometime in the spring and summer of 1958, when the massive water conservancy campaign had led to shortages of rural labor, some places had begun amalgamating the agricultural producers' cooperatives into huge organizations. At first, the new organizations had a variety of names. Mao had not yet visited the new rural units and the politburo had yet to approve them, but Mao liked the idea of huge rural organizations, and the name people's commune appealed to him, too.</p><p></p></div>	
+<div class='layout'><p>Mao wanted me to investigate some of these new people's communes. “Have a look,” he said. “Stay a month. Get a clear picture of the situation, and then come back to tell me about it. Do you have any pressing business here?”</p><p></p></div>	
+<div class='layout'><p>In the midst of a long, quiet summer in Beidaihe, I had, at Mao's suggestion, been translating a book on aging from English into Chinese, sharing the translation with Mao. He had loved the first few chapters but became bored with the section on the effect of aging on the body's cells. I had continued the translation, though. It was a way to pass the time and kept me in contact with medical literature. But I assured him I could stop my work for the trip he proposed.</p><p></p></div>	
+<div class='layout'><p>“The book is of no great interest,” he said. “You can translate it later. The people's commune is a great event. It affects the political system of our nation. Back in 1949, when our army crossed the Yangtze River, an American wrote a book called China Shakes the World—or something like that. Now, ten years later, with the creation of people's communes, China is going to shake the world again. So you go and take a look. Don't go by yourself, though. Ask Ye Zilong and Huang Shuze to go, too.”</p><p></p></div>	
+<div class='layout'><p>My knowledge of life in China's rural areas was limited to the walks I had taken to villages when Mao's train stopped for him to rest, and I had been appalled by what I saw: abject poverty and peasants subsisting on a staple diet of steamed buns made from coarsely ground corn. They were simple and honest people, and once when I tried to buy some buns, they insisted on presenting them as gifts. I had eaten one myself and taken another to Mao. He was less surprised by the poverty, but he encouraged me and the rest of his staff to continue such “social investigations” whenever we could.</p><p></p></div>	
+<div class='layout'><p>Even as he spoke about sending me to inspect the people's communes, Mao was falling asleep and his speech was slurred, his voice nearly inaudible. He had taken his sleeping pills just before we started eating and he had brought up the idea of the investigation in the midst of that half-awake, half-asleep euphoria he entered as the drug began to take effect. I was not sure whether his suggestion was real or part of a drug-induced dream. “I'll talk to the others. We can be ready to go in two or three days,” I responded.</p><p></p></div>	
+<div class='layout'><p>“There's nothing to talk about,” he snapped, momentarily alert. “Tell them to get ready today and get going tomorrow.”</p><p></p></div>	
+<div class='layout'><p>The Chairman fell asleep. It was eight o'clock in the morning. I went immediately to tell Ye Zilong about Mao's new assignment.</p><p></p></div>	
+<div class='layout'><p>A month in the countryside—traveling without Mao and thus by ordinary train, sleeping in humble guesthouses, eating the coarse food of the peasants—was not Ye Zilong's idea of a desirable assignment. He had no interest in national policy. Communism, socialism, capitalism were all the same to him so long as his life of luxury was not interrupted.</p><p></p></div>	
+<div class='layout'><p>“The Chairman just eats till he's full and has nothing else to do,” Ye complained. “What the fart good can this trip of ours do?”</p><p></p></div>	
+<div class='layout'><p>I insisted we had to go. The Chairman wanted us to investigate.</p><p></p></div>	
+<div class='layout'><p>“You go tell Huang Shuze about it,” he said. “Then we'll get together and talk about it. But we can't leave tomorrow. I need a few days.”</p><p></p></div>	
+<div class='layout'><p>His talk was making me nervous. We could not delay. “Chairman asked us to leave tomorrow,” I insisted. “We can't refuse his orders.” I suggested that Ye Zilong talk with Mao himself, and I went to inform Huang Shuze, the deputy director of the Central Bureau of Health.</p><p></p></div>	
+<div class='layout'><p>Huang was an idealistic follower of Mao. The Chairman's word was gospel, and his instructions had to be followed. He was honored with Mao's assignment and could easily be ready to go the next day.</p><p></p></div>	
+<div class='layout'><p>Still, I was troubled by Mao's orders. The suggestion had come while he was under the influence of the barbiturates. Maybe the suggestion was whimsy. I decided to raise the matter with Jiang Qing.</p><p></p></div>	
+<div class='layout'><p>She was still in bed, eating a breakfast of almond yogurt and toast, when I was ushered into her room around noon. I explained my dilemma. “I don't think the Chairman would treat such a matter casually,” she replied. “But I'll talk to him when he wakes up.”</p><p></p></div>	
+<div class='layout'><p>I ran into Mao's political secretary Tian Jiaying. Tian was my good friend and was always exceptionally well informed—not just from the reports that came in through Internal Reference but because he was continually receiving confidential background material from the provinces and from his friends and lower-level political secretaries all over China. He knew all about the new people's communes. He was skeptical.</p><p></p></div>	
+<div class='layout'><p>Tian pointed out that when advanced cooperatives were introduced in 1956, the peasants complained that we were going too fast. The administration of the lower-level cooperatives had not been straightened out before the higher-level cooperatives were introduced. Now we were trying to adopt a still higher form of organization—people's communes. They were, he thought, economically unsound, a way for the provincial leaders to escape Mao's whip, a new method of courting favor with the Chairman.</p><p></p></div>	
+<div class='layout'><p>After Mao's goading and prodding at the meetings in Chengdu and Nanning, he said, the provincial leaders wanted to show that they were doing their best to carry out the decisions. They used all sorts of tricks to get the central authority's attention and went into a frenzy competing with each other to increase production targets. They all wanted to be in the vanguard. But Tian encouraged me to go have a look for myself.</p><p></p></div>	
+<div class='layout'><p>After lunch, I packed my luggage, prepared to leave the next day. Then I lay down for a nap. I had been up since three in the morning.</p><p></p></div>	
+<div class='layout'><p>At seven in the evening Mao's bodyguard Xiao Li woke me. Chairman Mao was waiting to see me.</p><p></p></div>	
+<div class='layout'><p>Ye Zilong and Jiang Qing had both talked to him. “I've decided to go take a look myself,” he said. “Such a big event, how can I not go see? We'll leave in a couple of days. I want to visit quite a few places. So get yourself prepared again. And take along an assistant if you need someone to help you out.” Huang Shuze, Mao said, was “liberated.” He did not have to go. Mao needed a nurse instead. He was still taking the ginseng that I had prescribed for his impotence, and we were preparing it the traditional way—boiling the root in water. The nurse would be responsible for making and administering the concoction. I suggested Wu Xujun, who had accompanied us to Moscow.</p><p></p></div>	
+<div class='layout'><p>Mao cautioned me that the journey was absolutely secret and made clear that my role on the trip was not merely to serve as his personal physician. “It's no good for medical personnel to confine themselves to treating illness,” he said. He did not want me “isolated from society,” especially when society was undergoing such a fundamental change. He wanted me to see how the changes were affecting the people. He saw our trip as an exploration in the relationship between the particular and the universal—a chance to see how the particularity of individual people's communes fit their socialist principles.</p><p></p></div>	
+<div class='layout'><p>Two days later, we set out from Beidaihe, ensconced in the luxury of Mao's private train. Thus began—partly in defiance of Khrushchev, partly the whimsy of a drug-induced stupor, and partly Mao's genuine need to know—what was to become the most sensational “nationwide inspection tour” the Chairman had ever made.</p><p></p></div>	
+<div class='layout'><p>Our train headed south. This social investigation, it was clear from the beginning, would be different. The Great Leap Forward had begun.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

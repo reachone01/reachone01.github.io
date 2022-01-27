@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>50</p><p></p></div>	
+<div class='layout'><p>Nineteen sixty-two was a political turning point for Mao. In January, when he convened another expanded Central Committee work conference to discuss the continuing disaster, his support within the party was at its lowest. Seven thousand cadres attended—party and military officials from the regional bureaus, provinces, cities, prefectures, and counties, together with managers of industry and mining—so the event has been known ever since as the 7,000 cadres' conference. The participants were not the select party elite who made the decisions about how the country would be run but the cadres responsible for implementing higher-level decisions in their local areas. In Beijing, they ate good food, stayed in good hotels, and were well entertained at night. The leadership wanted their support.</p><p></p></div>	
+<div class='layout'><p>Liu Shaoqi was in control, but he consulted Mao about the speech he was preparing for the 7,000 cadres' conference. Mao said he did not want to see it. He wanted the meeting to be “democratic,” he said. The participants would be encouraged to present their own opinions, based on their experiences in their own jurisdictions, and the draft of Liu's speech would then be revised on the basis of what the participants had said.</p><p></p></div>	
+<div class='layout'><p>But Mao was not prepared for Liu's speech. Liu refused to accept Mao's official explanation that the country's economic disasters had been caused by the weather. “Natural disasters hit only one region of the country,” he argued in his address in the Great Hall of the People. “Man-made disasters strike the whole country. We must remember  this lesson.” He wanted to bring back the leaders who had been purged for opposing the “left adventurism” of the Great Leap Forward—the local cadres who had been supporters of the more balanced view of Peng Dehuai. He was making preparations to exonerate them.</p><p></p></div>	
+<div class='layout'><p>I knew the Chairman was furious. “He's not using the class standpoint,” Mao complained to me right after the meeting. “He's not addressing the question of whether we are going the capitalist road or the socialist road. He talks about natural disasters versus man-made disasters. This kind of talk is a disaster in itself.”</p><p></p></div>	
+<div class='layout'><p>But Liu Shaoqi's viewpoint was widely shared. The party was badly divided. So bleak was the situation in China, there was so little agreement on vital issues, that the meetings went on for more than a month, as one disillusioned local official after another railed against the troubles facing the country and the policies that had brought us there.</p><p></p></div>	
+<div class='layout'><p>But the meeting was cathartic. Mao, as usual, rarely attended. While administrators from all over the country met nearby to pour out their complaints, Mao spent most of his time in the Great Hall of the People's Room 118, ensconced on his extra-large bed, “resting” with the young women assembled there for his pleasure, reading the daily transcripts of the proceedings that were taking place in the same building.</p><p></p></div>	
+<div class='layout'><p>With Mao in retreat, the basic-level cadres were able at last to end the pretensions of the Great Leap Forward, to confront the stark reality of the economic disaster. The local-level cadres had been under tremendous pressure throughout the Great Leap. The slogan of the day, “Go all-out, aim high, achieve better and faster results,” had pushed them to set ever higher and more impossible production targets, and they risked being labeled rightists or worse and losing their jobs if they kept the targets low or failed to fulfill the ones they set. They had lied and cheated when the targets proved impossible to meet, and with pressure still coming from the top, they were being blamed for much that went wrong. The 7,000 cadres' conference was their opportunity to pour forth their complaints against the party leadership. A giddy euphoria set in as they got to speak their minds.</p><p></p></div>	
+<div class='layout'><p>The complaints were never directed against Mao. They were focused instead on the policies of the Great Leap Forward. But everyone knew the policies were Mao's. To criticize the policies was to criticize Mao.</p><p></p></div>	
+<div class='layout'><p>Mao did not like what he was reading in the daily transcripts. “They complain all day long and get to watch plays at night. They eat three full meals a day—and fart. That's what Marxism-Leninism  means to them,” he said to me one day. Required by protocol to be on hand around the clock, I was spending a boring month pacing the corridors of the Great Hall, listening to gossip, and reading in my office just adjacent to Mao's suite.</p><p></p></div>	
+<div class='layout'><p>Finally, as the criticisms continued, Mao was forced to admit that at least some of the responsibility for the disaster was his. No one, so far as I knew, ever directly suggested to Mao that he offer a self-criticism. It was part of his political strategy.</p><p></p></div>	
+<div class='layout'><p>Mao was loath to admit his mistakes. His was a life with no regrets. In 1960, I had heard him tell Britain's colorful Field Marshal Montgomery that he had “done a lot of stupid things and made a lot of mistakes,” but to ranking party leaders or the people of China, Mao was psychologically incapable of admitting that the catastrophe besetting the country had anything to do with him. His self-criticism was the first Mao had made since coming to power in 1949. “For all errors directly or indirectly attributable to the central authority, I am responsible,” he said in his speech on January 30, 1962, “because I am Chairman of the central authority.” But Mao never said concretely what his mistakes had been, and he quickly countered by making certain that others took responsibility, too. “I don't mean that others should try to evade their responsibilities,” he said. “Indeed, many others also have a share of the responsibility. But I should be the first person to assume responsibility for the errors.” Then he began attacking the household contract agricultural system.</p><p></p></div>	
+<div class='layout'><p>I am convinced Mao never really believed he had done anything wrong. But in retrospect I can see his fear even then that he was losing control of the party and China. He intended to remain the center, the nucleus, of the nation even as he retreated to the second line. Giving Liu Shaoqi the position of chairman had been a test of his loyalty, and by 1962 and the 7,000 cadres' conference, Mao was becoming convinced that Liu was less than loyal. The country had two chairmen, two centers, two nuclei, and that Mao could not accept. Thus he “took responsibility” for the disasters only to reassert his position at the center, not because he believed he had done anything wrong.</p><p></p></div>	
+<div class='layout'><p>Lin Biao was one of the few supporters Mao had left, and the most vocal. Lin's speech followed directly after Mao's. “The thoughts of the Chairman are always correct,” he said. “If we encounter any problem, any difficulty, it is because we have not followed the instructions of the Chairman closely enough, because we ignored or circumscribed the Chairman's advice.”</p><p></p></div>	
+<div class='layout'><p>I was sitting behind the stage, hidden by a curtain, during Lin's speech. “What a good speech Vice-Chairman Lin has made,” Mao  said to me afterward. “Lin Biao's words are always so clear and direct. They are simply superb! Why can't the other party leaders be so perceptive?” I knew then that Mao's self-criticism had been staged, that he had not been sincere in admitting his “mistakes.” But even then I was skeptical of Lin. He had been out of the limelight so long, without major responsibilities and so uninvolved in the country's affairs, that his speech seemed insincere. Almost everyone involved in administering the party and the state was dissatisfied with Mao and the Great Leap Forward. Lin Biao had ulterior motives.</p><p></p></div>	
+<div class='layout'><p>Hua Guofeng, the former party secretary of Xiangtan prefecture in Mao's native Hunan, whom I had first met in 1959, was more sincere and less sycophantic than Lin, but his refusal to criticize Mao won the Chairman's appreciation. At the 7,000 cadres' conference, Hua pointed out again, as he had the year before, that “after our great undertakings of 1958, 1959, and 1960, the people have lost weight, the cattle have lost weight, even the land has lost weight. We cannot try for great undertakings anymore.” But at this meeting, Hua coupled that observation with a bow toward Mao. “If we want to overcome the difficulties in our rural areas,” he said, “we must insist on going the socialist road and not on adopting the household contract system or individualized farming. Otherwise we will come to a dead end.”</p><p></p></div>	
+<div class='layout'><p>“Hua Guofeng is an honest man,” Mao had said to me after the meetings in January 1962. “He's a lot better than many of our national leaders.” With the purge of Zhou Xiaozhou and his supporters in Hunan and the promotion of Zhang Pinghua to first party secretary, several provincial-level slots had been freed. Hua Guofeng was promoted to head the party secretariat in Hunan, in charge of day-to-day affairs of the province. Mao liked what he did there.</p><p></p></div>	
+<div class='layout'><p>The retreat from the Great Leap Forward continued after the 7,000 cadres' conference and so did the centrifugal force tearing the party asunder. Party and state operated increasingly independent of Mao. The communes were finally restructured, cut back in scale, with production organized at a smaller, more manageable level, equivalent to the small-scale collectives of 1956. Industrial targets were lowered again. The whole economy was to be restructured, and the leftist line of the Great Leap Forward continued to be roundly criticized.</p><p></p></div>	
+<div class='layout'><p>In February and March, when the State Commission on Science and Technology convened a meeting of scientists in Guangzhou, there was even a movement to exonerate the intellectuals, despite Mao's known antagonism to them. The country's scientists and intellectuals had never recovered from the anti-rightist campaign of 1957, when hundreds of thousands had been fired, demoted, or sent to do labor  reform. A pall of depression continued to hang over the intellectual community. Even those who had not suffered direct political persecution existed in a perpetual state of fear, afraid to speak out, often unable to work in their chosen profession or forced to attend so many political meetings that their capacity to work had suffered. Vice-Premier Chen Yi's speech at the science-and-technology conference set a new tone. “There is something other people won't dare to say, but I will,” he declared to the embattled intellectuals. “China needs intellectuals, needs scientists. For all these years, they have been unfairly treated. They should be restored to the position they deserve.” His words were a direct affront to Mao, but he gave the intellectuals new hope that their services were needed and their contributions appreciated.</p><p></p></div>	
+<div class='layout'><p>At the same meeting, Zhou Enlai's keynote speech, “On the Question of Intellectuals,” further reversed the anti-intellectual trend that had prevailed since the anti-rightist campaign. Zhou told the group that in socialist China most of them could be counted as members of the laboring class and therefore friends of socialism, and he argued that “to destroy superstition does not mean to destroy science.” Destroying superstition, in fact, meant relying on scientists. He urged scientists and intellectuals to become actively, wholeheartedly involved in the nation's development effort.</p><p></p></div>	
+<div class='layout'><p>The scientists were as happy about their meeting as the local-level officials had been about the 7,000 cadres' conference, and they easily succumbed to Zhou's flattery. In speech after speech, they poured forth their gratitude for the concern the party was showing them. The “rightists” were particularly elated. Their labels might soon be removed. They might be called back to respectable work again.</p><p></p></div>	
+<div class='layout'><p>Zhou knew, as did his audience, that Mao had led the 1957 attack against intellectuals, asserting that professors were ignorant and calling upon the workers and peasants to cast off their “superstitious” inferiority complex. Zhou would never speak without the approval of Mao. His speech was the official word of a representative of the party center. Both Mao and the politburo had approved his speech in advance.</p><p></p></div>	
+<div class='layout'><p>But reading the transcripts of the meeting after the fact, Mao was unhappy with the tone of the conference. “There's something I would like to ask,” he said to me sarcastically one night after reading the report. “Who makes history—the workers and peasants, the laboring people—or someone else?” Mao remained convinced that only the workers and peasants, not scientists and intellectuals, made history. Peasant rebellions had been the driving force of Chinese history.</p><p></p></div>	
+<div class='layout'><p>Shortly after the meetings where Zhou Enlai's liberal, conciliatory views had been so well received, Mao decided to call another, less public, meeting to discuss the position of intellectuals in Chinese society. No longer able to work his will through normal bureaucratic channels, he was beginning to marshal his forces behind the scenes, formulating his strategy and mustering support for a later counterattack. Quietly, unobtrusively, he began mobilizing people sympathetic to his views. One of these was Chen Boda, Mao's leading political secretary and editor in chief of the party's theoretical journal,  Red Flag. Chen Boda, Mao had decided, was the party's leading Marxist theoretician. “No revolution can proceed without a theory,” Mao said to me. “Chen Boda is one of the very few theoreticians our party has.”</p><p></p></div>	
+<div class='layout'><p>Chen Boda was no theorist, but he had written well and extravagantly in praise of the Great Leap Forward. Quoting Marx that one day under communism is equal to twenty years under capitalism, Chen Boda had asserted that with the Great Leap Forward, the dawn of Chinese communism had arrived. So rapidly was China progressing, Chen suggested, that China was accomplishing in one day what took twenty years to accomplish under capitalism. China had been transformed. Communism was around the corner.</p><p></p></div>	
+<div class='layout'><p>Confronted two years later with the massive starvation during the Great Leap Forward, Chen dismissed the millions of deaths. “This is an unavoidable phenomenon in our forward march,” he declared. No wonder Mao liked this mean, petty, and ambitious man. In one simple sentence, he absolved Mao of responsibility for one of the greatest catastrophes the country had ever faced—a catastrophe for which Mao's policies were directly responsible.</p><p></p></div>	
+<div class='layout'><p>Mao turned to Chen in 1962 for help in steering the country back to the left. It was Chen Boda who organized the meeting to reassert the true Maoist view of intellectuals. Mao addressed the meeting, and the message he delivered was at obvious odds with Zhou Enlai's earlier speech. “Intellectuals work in offices,” Mao said. “They live well, eat well, dress well. They don't walk very much. This is why they often catch colds.” Mao wanted the nation's college students, university faculty, and administrators to spend five months doing manual labor in factories and the rural areas—a move that intellectuals were sure to see as yet another form of punishment. Mao wanted them to participate in class struggle and learn about revolution.</p><p></p></div>	
+<div class='layout'><p>“Things are getting complicated now,” Mao continued. “Some people are talking about a household contract system, which is really nothing but a revival of capitalism. We have governed this country for  all these years, but we are still able to control only two thirds of our society. One third remains in the hands of our enemy or sympathizers of our enemy. The enemy can buy people off, not to mention all those comrades who have married the daughters of landlords.”</p><p></p></div>	
+<div class='layout'><p>I had no idea what Mao was talking about, but his hostility to intellectuals and to other ranking leaders was too obvious for me to ignore. When the Cultural Revolution began several years later and Jiang Qing came to power, she labeled the science-and-technology meeting chaired by Chen Yi and Zhou Enlai a “black conference,” accusing “certain” party leaders—meaning Zhou and Chen—of having kowtowed to bourgeois intellectuals by removing their bourgeois hats and replacing them with “the hat of the laboring class.”</p><p></p></div>	
+<div class='layout'><p>Liu Shaoqi's work also continued to be at odds with Mao. Liu was working to bring the victims of Mao's 1959 purges back into the service of the country. Within the party, it was a popular move. During the 7,000 cadres' conference—quietly, behind the scenes, and unknown to me at the time—people had begun raising the issue of Peng Dehuai. This purge had been unfair, they were saying. They were beginning to compare Peng Dehuai to Hai Rui, the upright Ming dynasty official purged by the emperor for his sound advice and wise criticism—the official Mao claimed to admire.</p><p></p></div>	
+<div class='layout'><p>Liu Shaoqi may well have agreed. By April, the central secretariat, under Liu's direction, had issued a set of guidelines for rehabilitating people who had been purged for supporting Peng Dehuai and criticizing the Great Leap Forward. Called “On the Reevaluation of the Work of Party Cadres and Party Members,” the guidelines would exonerate at least 70 percent of the accused cadres. Only the purge of Peng Dehuai would not be reconsidered. Even Liu Shaoqi would not override Mao on the case of Peng.</p><p></p></div>	
+<div class='layout'><p>Liu did not ask Mao's approval for the process of rehabilitation, nor did An Ziwen, the director of the party's Organization Department and thus the person in charge of political rehabilitations. Mao got hold of a copy of the guidelines nonetheless. He gave me the document to read. “It seems this An Ziwen never reports his work to the central authority,” Mao said, “so the comrades at the center know nothing about the activities of the Organization Department. He is blocking information from reaching us, setting up an independent kingdom. They are exerting pressure on me, don't you think?”</p><p></p></div>	
+<div class='layout'><p>Tian Jiaying told me that when An Ziwen learned of Mao's criticism, he was furious. “The center? Who is the center?” he asked. “There are a number of leading comrades in Beijing—Liu Shaoqi, Deng Xiaoping, Peng Zhen. They are in charge of day-to-day administration  of the party. When I report to them, am I not reporting to the center?”</p><p></p></div>	
+<div class='layout'><p>Chen Yun was another ranking party leader who was clearly at odds with Mao. Chen was a vice-chairman of the party, nominally at the pinnacle of power, but his relations with Mao had long been strained and he had little influence. Mao viewed him as something of a rightist, and the two rarely met. With the agricultural disasters of the early 1960s, Chen Yun was convinced that the only solution was a dissolution of the communes and a return of land to the peasants, and after the 7,000 cadres' conference, he was put in charge of directing the party's economic and financial work. When he submitted a report detailing his suggestions for managing the crisis and turning land back to the peasants, Mao refused to approve it. This “paints a very dark picture,” he wrote in the margins, “showing not one trace of light. This man, Chen Yun, came from a small businessman's background. He cannot get rid of his bourgeois character. He leans consistently to the right.”</p><p></p></div>	
+<div class='layout'><p>For the party chairman to accuse one of the vice-chairmen, the man in charge of the economy, of having a bourgeois character and leaning consistently to the right was incendiary. Chen Yun was much higher in the party hierarchy than Peng Dehuai. Mao's accusation could split the party apart. So inflammatory were Mao's words, so damaging to Chen Yun, so dangerous to party unity, that Tian Jiaying took the unprecedented step of ordering Lin Ke, who had recently returned from exile, not to forward the document with Mao's comments to the central secretariat. If it had been forwarded, the document could be used in future attacks against Chen Yun.</p><p></p></div>	
+<div class='layout'><p>Tian had no authority to stop such an important transmission, but he admired Chen Yun and agreed with his judgment. He did not want to foster a split at the highest levels of the party. Lin Ke hid the document under his mattress. It was not transmitted to the top.</p><p></p></div>	
+<div class='layout'><p>Someone—I never knew who—must have told Chen Yun what Mao had written because Chen immediately retreated to Suzhou to recover from an “illness” that could only have been political. Chen was never dismissed from his post, nor was he ever directly attacked. But never again during Mao's lifetime did he play an active role in politics. Not until 1980, after the Cultural Revolution and Mao's death, did Chen Yun return to the political stage. Ironically, having retreated when he learned of Mao's critique, he was spared many of the agonies of the Cultural Revolution. Because he was not working then, the attacks against him were mild compared to what others suffered.</p><p></p></div>	
+<div class='layout'><p>The purloined document attacking Chen Yun was recovered in  1964. Xu Yefu, a rival of Lin Ke's, who had returned as Mao's confidential secretary after the discovery of the bugging devices, knew about the incident and had Lin's apartment searched while Lin was away on a trip with Mao. The hidden document was found, and Xu Yefu forwarded it to the central secretariat and reported the case to both Mao and Wang Dongxing. Lin Ke was dismissed from Group One for good. No one replaced him. Xu Yefu became Mao's exclusive confidential secretary. Tian Jiaying escaped censure at the time. But when the Cultural Revolution began, he was the first of Mao's staff to be attacked.</p><p></p></div>	
+<div class='layout'><p>Seeing the plight of my friend Lin Ke and listening to the vicious attacks against him, I was doubly grateful that I had not accepted Mao's offer to serve as his secretary. Had I agreed, I would have been attacked, too.</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing thought me overly sensitive when I told him of my suspicions that Mao was growing increasingly disenchanted with the top leadership of the party. “We aren't the Communist party of the Soviet Union,” he insisted. “The Chinese Communist party is united.” But I was listening carefully to Mao. The situation was tense.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

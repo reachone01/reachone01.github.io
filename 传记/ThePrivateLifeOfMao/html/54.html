@@ -1,0 +1,407 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>54</p><p></p></div>	
+<div class='layout'><p>The first edition of the Quotations from Chairman Mao was published in May 1964. It was a small book, no bigger than the palm of a hand, covered in gaudy red plastic and filled with aphorisms drawn from Mao's speeches and writings. The cult of Mao had begun.</p><p></p></div>	
+<div class='layout'><p>And so had a reversion from the practical, mundane demands of building a viable modern economy, as though nothing had been learned from the disasters of the Great Leap Forward. Ideological purity, not expertise, was what mattered. Lin Biao was at the forefront of the movement. He introduced the slogan of the “four firsts”: Put the human factor first; political work first, ideological work first; and living ideas first.</p><p></p></div>	
+<div class='layout'><p>Mao loved the adulation, returning Lin's flattery with compliments of his own. “Lin's idea of the four firsts is a great creation,” Mao said. “Who said we Chinese cannot create and invent things?” Mao ordered the whole nation—schools, industry, communes—to learn from Lin Biao and the People's Liberation Army. “The merit of the Liberation Army,” Mao said, “is that its political ideology is correct.” The army set up political departments in work units everywhere in China to teach the thought of Mao. “Only this way can we whip up the revolutionary spirit of the tens of millions of cadres and workers in our industries, in commerce, and in agriculture,” Mao said. Suddenly all of China was engaged in political study, reading Chairman Mao's works, reciting by heart the most simplistic of the Chairman's writings. The cult of Mao was spreading to every factory and school and commune in China. The party Chairman was becoming a godhead.</p><p></p></div>	
+<div class='layout'><p>Not everyone shared Lin Biao's worship of Mao or wanted to push his cult. The more pragmatic and sober-minded members of the party leadership were outspoken in their criticisms of Lin. Deng Xiaoping, then serving as secretary-general of the party Central Committee, and Lu Dingyi, the director of propaganda, insisted that Mao's little red book was both an oversimplification and a vulgarization of Marxism and Mao. To tout Mao as the greatest of all Marxist-Leninists, they argued, was to create needless divisions within the Marxist ranks.</p><p></p></div>	
+<div class='layout'><p>Luo Ruiqing, then chief of the general staff and secretary-general of the Military Affairs Commission, was appalled. “If Mao Zedong's thought is really the most advanced and creative development of Marxism-Leninism, does that mean there is no room for further development of Marxism or of Mao? Is there a second most advanced? A second most creative?” Luo saw recitations from the little red book as a needless exercise in forced memorization, a silly effort to find answers to everything where answers could not be found, a separation of reality and theory.</p><p></p></div>	
+<div class='layout'><p>Luo also took great exception to Lin's views on military matters. Lin Biao still believed that guerrilla tactics were the only way to fight a war and argued that ideology was more important than weapons, revolutionary ideals more important than strategy. By 1964, China's relations with onetime big brother the Soviet Union had deteriorated to the brink of war, and Lin was arguing that victory depended on imbuing soldiers with the thought of Mao Zedong. Luo Ruiqing had a different, more practical view. He thought soldiers needed weapons, too, and he wanted to train the Chinese army to fight a modern war.</p><p></p></div>	
+<div class='layout'><p>Mao was not happy with leaders who objected to the cult of personality. But he was not yet able to strike out directly against them. He found other scapegoats instead. The Central Bureau of Health was one.</p><p></p></div>	
+<div class='layout'><p>In the spring of 1964, as the party leadership was squabbling about the little red book, Liu Shaoqi contracted tuberculosis. Vice-minister of public health Xu Yunbei brought me the news and asked me to tell Mao so as to prepare him for the more formal written report on Liu's health that would follow.</p><p></p></div>	
+<div class='layout'><p>Mao seemed neither concerned nor surprised when I told him. Indeed, a flicker of satisfaction crossed his face. “What's everyone so excited about?” he wondered. “If he's sick, then let him take a rest and have the doctors treat him. This has nothing to do with you. Don't get involved. Let other people handle it.”</p><p></p></div>	
+<div class='layout'><p>But Liu's illness galvanized Mao into action. Though he could not attack his rival directly, he could try to make Liu Shaoqi's life miserable. Mao issued a series of instructions concerning the health care of the highest leadership. The Ministry of Public Health was to terminate its special services to the top leaders. They would no longer have their own personal physicians. The Central Bureau of Health, responsible for ensuring that the leaders received only the most sophisticated health care, was to be abolished. Mao ordered that Beijing Hospital, which treated only the elite, be renamed Hospital for Serving Lords.</p><p></p></div>	
+<div class='layout'><p>Mao had criticized the Central Bureau of Health and Beijing Hospital before. “Those lords live in luxury and comfort,” he had said, referring to the life-style of the top leaders. “Medical services are always available to them. Even with the most minor health problem, they receive the greatest of care.”</p><p></p></div>	
+<div class='layout'><p>The Central Bureau of Health was completely unprepared for Mao's attack, and its director, Shi Shuhan, was stunned. The entire Ministry of Public Health was thrown into turmoil, and the top leaders, from Liu Shaoqi on down, were upset.</p><p></p></div>	
+<div class='layout'><p>No one dared challenge the order. But no one was willing to throw the leadership to the mercies of the country's public health-care system, either. A way had to be found both to comply with Mao's command and ensure that the leaders still received their special health care.</p><p></p></div>	
+<div class='layout'><p>After lengthy discussions between representatives of the Central Bureau of Health and officials of the Ministry of Public Health under the State Council, a compromise was worked out. The Central Bureau of Health would be abolished and so would the Zhongnanhai Office of Health, which was jointly administered by the Central Bureau of Health and the Central Bureau of Guards. Shi Shuhan and Huang Shuze, formerly in charge of the Central Bureau of Health, were promoted to vice-ministers of public health, but much of their concrete work, overseeing the health of the highest leaders, remained the same. Most of the personal physicians serving the top-level leaders would be appointed to head departments in Beijing Hospital on call to serve the leadership when needed. Beijing Hospital would continue to serve the party elite, though Mao's orders required the hospital to open its doors to the public. Worried about how to guarantee the safety of the leaders being treated there, afraid that “bad elements” might do the leaders in, the Ministry of Public Health had to restrict public access. Its solution was to limit public services to the staff from work units in the hospital's immediate vicinity and to make the party leadership in each of those work units responsible for guaranteeing the political reliability of the patients.</p><p></p></div>	
+<div class='layout'><p>Mao, of course, still had to have his own personal physician, but the Zhongnanhai Office of Health, which was my organization, had been abolished. I was appointed deputy secretary of the Committee on Medical Science under the Ministry of Public Health and the Science and Technology Commission. The Committee on Medical Science was formed to plan and direct high-level medical research, and I worked there in the mornings, spending my afternoons and evenings at Zhongnanhai with Mao. Like everyone else, I agreed that Mao should continue to have his own private doctor. He was the Chairman and he deserved his special privileges. Only much later did I come to regard it as unfair.</p><p></p></div>	
+<div class='layout'><p>One issue remained to be solved. No one in the health-care profession wanted to change the name of Beijing Hospital to the Hospital for Serving Lords. But since Mao had ordered the change, only he could rescind the order. The task of persuading him to change his mind fell to me. Xu Yunbei and Shi Shuhan insisted.</p><p></p></div>	
+<div class='layout'><p>I reported to Mao the proposed abolition of both the Central Bureau of Health and the Zhongnanhai Office of Health and my appointment to the Committee on Medical Science. “Only one problem remains,” I concluded, after explaining the changes in great detail. “The name Hospital for Serving Lords doesn't sound right. The hospital was built in the 1920s by the Germans. It has always been called Beijing Hospital. Can we keep the name?”</p><p></p></div>	
+<div class='layout'><p>Mao did not object. “Call it Beijing Hospital then. I'm glad it's open to the common people now.”</p><p></p></div>	
+<div class='layout'><p>Mao's own life did not change greatly with the restructuring of the elite health-care system. Nor did Jiang Qing's. Jiang Qing, because of her “poor health,” continued to be served by a team of nurses, and I remained Mao's personal physician. Even though I worked mornings for the Committee on Medical Science, my work was inseparable from Mao. Since Mao's most frequent medical complaints were bronchitis and the common cold, all my efforts were spent researching how to treat or prevent those two illnesses.</p><p></p></div>	
+<div class='layout'><p>For me, the greatest personal change was that my family moved out of Zhongnanhai. With the abolition of the Office of Health, we no longer had the right to live there.</p><p></p></div>	
+<div class='layout'><p>We did not move far. The abolished Central Bureau of Health vacated its space in the beautiful old-fashioned courtyard complex in Gongxian Lane where I had had my first fateful meeting with Fu Lianzhang on my return to China in 1949. Lillian and I and our two sons were assigned a comfortable four-bedroom old-style house in the complex. The setting was magnificent. Our courtyard was full of flowers, and the milky-white tuberoses seemed to bloom year-round. We marked our arrival by planting a date tree and soon it was yielding delicious fruit. Our new location was convenient to some of our favorite spots in the city—the Longfusi food market and the bustling shopping district of Wangfujing. Beijing Normal University High School, where my elder son was studying, was close enough for him to bike to, and a chauffeur-driven car took me back and forth to Zhongnanhai. The Polish embassy was redecorating its residences at about the time we moved, so we were able to buy old furniture from there at bargain prices to decorate our new home.</p><p></p></div>	
+<div class='layout'><p>I was happy to be gone from Zhongnanhai. There, faced with so many restrictions, we had been prohibited from inviting our friends and relatives to visit us. Sitting at the window of our new place, looking out over our flower-filled courtyard, I could almost forget the tragedy of having had to give up my family's ancestral home. I could even forget Mao and Group One. I loved our new home.</p><p></p></div>	
+<div class='layout'><p>Mao had only one regret about his decision to abolish the Zhongnanhai Office of Health. One night at three o'clock in the morning, shortly after I had moved to my new home, he called for me, apparently not realizing that I had moved to Gongxian Lane. “I never thought I was doing myself such a disservice,” he said to me the next day. So I put a bed in my office in Zhongnanhai in order to be on call at night as well. I often slept there, and occasions to be with my family continued to be rare.</p><p></p></div>	
+<div class='layout'><p>Mao's relations with Liu Shaoqi and Deng Xiaoping continued to deteriorate. In January 1965, Deng Xiaoping convened a party work meeting to discuss the socialist education campaign, which was focused on eliminating corruption among rural cadres and had as its slogan the “four cleanups”—cleaning up rural accounts, properties, granaries, and work points. Mao was not feeling well when the meeting convened, and Deng suggested that he not attend. But Mao did attend and delivered a speech arguing that the problem in the countryside was a contradiction between socialism and capitalism. Liu Shaoqi interrupted Mao's talk to argue that the conflict was not only one of class but of the “four cleans” and the “four uncleans” and of contradictions both within the party and outside the party. The next day, Mao brought copies of the country's constitution and the party's regulations to the meeting and argued that according to the constitution he was a citizen with the right to speak his mind, and that as a member of the party he also had the right to speak at meetings. He said that “one of you,” meaning Deng Xiaoping, had tried to prevent him from participating in the meeting and another, meaning Liu Shaoqi, would not allow him to voice his opinions.</p><p></p></div>	
+<div class='layout'><p>The Third Plenary Session of the People's Congress took place from December 21, 1964, to January 4, 1965. Into the “Report on the Work of the Government,” to be presented by Zhou Enlai, Mao inserted several passages of his own. These passages indicated that he still believed in the idea of the Great Leap Forward, though he now placed the idea in a different context. He stated, “We cannot take the conventional road of economic development and crawl step by step after others. We must shatter the convention, adopt as much as we can the most advanced technology, and, within a relatively short period of time, build China into a strong, modern, socialist country. This is the idea of the Great Leap.… One of China's great revolutionary leaders, our predecessor Sun Yat-sen, said at the beginning of this century that a great leap would take place in China.”</p><p></p></div>	
+<div class='layout'><p>After Chinese New Year 1965, Mao left Beijing for a trip, taking with him two female confidential clerks. He also invited Wang Hairong, the granddaughter of his cousin Wang Jifan. On the train, Mao continued to have Zhang Yufeng as his special attendant. By the time he reached Wuhan, many women surrounded Mao and eagerly competed for his favors, squabbling constantly.</p><p></p></div>	
+<div class='layout'><p>One morning, Wang Hairong burst into the duty office and complained bitterly to me. “How can you let a person like Zhang Yufeng work here? She is a shameless, ill-tempered woman, and very rude to the Chairman. Last night the Chairman said to me that Zhang was driving him crazy. He is advanced in age; we can't allow Zhang Yufeng to insult him. If you don't do something about her, I'll report the matter to the Central Authority.”</p><p></p></div>	
+<div class='layout'><p>“Take it easy,” I said. “Tell me what happened.”</p><p></p></div>	
+<div class='layout'><p>“I cannot take it easy. I cannot stand it that this person insults the Chairman.” She walked out of the office, looking for Wang Dongxing.</p><p></p></div>	
+<div class='layout'><p>At this moment, the guard Xiao Zhang came in and said, “The Chairman is angry. He says Zhang Yufeng has gone too far; he wants to have a meeting called to criticize her.”</p><p></p></div>	
+<div class='layout'><p>Upon hearing of this incident, Wang Dongxing said to me with annoyance, “Do we always have to wash this kind of dirty laundry? How can we call a meeting on this matter? Mao's personal relations with these women are so tangled! How can a meeting decide anything?”</p><p></p></div>	
+<div class='layout'><p>Still, Mao had asked for a meeting, and so a meeting was held in his dining room in the guesthouse. Wang sat there for a moment only; then he left, asking me to preside.</p><p></p></div>	
+<div class='layout'><p>Wang Hairong repeated her charges.</p><p></p></div>	
+<div class='layout'><p>Zhang Yufeng responded, “When Mao and I got into a quarrel, he swore at me, even at my mother. I had to swear back.”</p><p></p></div>	
+<div class='layout'><p>As she was about to tell how the quarrel started, I thought it necessary to stop the meeting before she further exposed Mao's sorry relations with her. I felt that if I let her continue, Mao might come to feel—even though he had ordered this meeting himself—that some of us were trying to probe into his private life.</p><p></p></div>	
+<div class='layout'><p>But Wang Hairong would not let the subject go, arguing that nothing had been settled. Unable to handle the situation, I sent for Wang Dongxing and asked him to pacify Wang Hairong. I also asked head nurse Wu Xujun to persuade Zhang Yufeng to see Mao for a self-criticism.</p><p></p></div>	
+<div class='layout'><p>Wang Hairong did not like the way the matter was handled, and insisted that Wang Dongxing and I had no sense of justice. She returned, angrily, to Beijing. Zhang Yufeng was still angry, too. She asked why she had to criticize herself before Mao when it was Mao who had sworn at her and her mother. She left the guesthouse and returned to the train.</p><p></p></div>	
+<div class='layout'><p>Nevertheless, things soon returned to normal.</p><p></p></div>	
+<div class='layout'><p>Then Mao caught a cold, which in turn led to acute bronchitis, with fever and coughing. I treated him, and soon his fever was gone and his coughing less frequent. He developed laryngitis, however, and within two days he had lost his voice. Worried that the loss might be permanent, he kept asking me for treatment. I explained to him that it would take a while for the inflammation of the larynx to subside, but he persisted in asking for a cure.</p><p></p></div>	
+<div class='layout'><p>I ordered that he be given physical therapy, but he did not like it and discontinued it after only a single session. Then I asked him to take some Chinese herb medicine, which proved very effective. He regained some of his voice within two days and was fully recovered three days after that.</p><p></p></div>	
+<div class='layout'><p>Then he wanted to go swimming. Ignoring my warning against it, he said, “All your treatments, this one and that one, Chinese medicine and Western medicine—none of it does any good. My swimming treatment is still the most effective.” He swam in the guesthouse pool.</p><p></p></div>	
+<div class='layout'><p>After May Day 1965, Mao decided to visit Jinggangshan, on the border of the Hunan and Jiangxi provinces, where he had established a guerrilla base and launched his rebellion in 1927. We took the train to Changsha, in Hunan province, and continued our trip from there by car. Zhang Yufeng, still not entirely over her anger, refused to go.</p><p></p></div>	
+<div class='layout'><p>The point of the trip to Jinggangshan was to threaten the Central Authority by implying that Mao might now reestablish a base for himself there, from which he might reorganize the party and the army if the Central Authority did not submit to his will. This trip was part of his continuing attack on his rival Liu Shaoqi.</p><p></p></div>	
+<div class='layout'><p>The secretary of the Hunan provincial party committee joined Mao for the trip, but no one from Jiangxi province accompanied us, because Wang Dongxing, who had been vice-governor of the province for nearly five years when he was “sent down for reform,” was familiar with the area we were visiting.</p><p></p></div>	
+<div class='layout'><p>We stopped in Chalin county, Hunan, for the night. The county government vacated all its offices in order to provide quarters for us. The place was full of mosquitoes, and the insect spray we carried was for Mao's use only. The rest of us had to sleep under thick linen mosquito nets, which trapped much of the smoke from the moxa that was burned to repel the insects. I felt dizzy the next morning.</p><p></p></div>	
+<div class='layout'><p>We arrived at Jinggangshan and stayed in a two-story guesthouse in Maoping, which was a hamlet with a rice field at its center. On the south side of Maoping was a store selling handicrafts; in one room was displayed a shoulder pole said to have been used by Marshal Zhu De to carry water barrels during the rebellion in the 1920s. (During the Cultural Revolution it was claimed that Lin Biao had used this pole, yet another example of the falsification of history during this period.) Jinggangshan itself was full of bamboo groves, and a small paper mill there produced a kind of white translucent paper from the bamboo. I hadn't seen this kind of paper since I was a boy.</p><p></p></div>	
+<div class='layout'><p>We left Jinggangshan on May 29 and returned to Beijing in the middle of June.</p><p></p></div>	
+<div class='layout'><p>Mao's dissatisfaction with Liu Shaoqi and Deng Xiaoping was reflected in his increasing disaffection with the health-care system. Soon he was lashing out against the Ministry of Public Health as well. “I want you to tell the people in the Ministry of Public Health something,” he told me on June 26, 1965. “They are providing health care to only 15 percent of the people of this nation. Of these 15 percent, it's those lords in the national and local governments who receive the best care. The ministry thinks that so long as those lords are happy, its work is being done well. But the vast percentage of people in the countryside have no health care at all—no medicine, no doctors. I'm going to write a poem dedicated to the Ministry of Public Health—‘Health care, health care, it benefits high officials; peasants, peasants, their life and death are nobody's business.'</p><p></p></div>	
+<div class='layout'><p>“The Ministry of Public Health is not serving the people,” Mao continued. “It is not the people's ministry. The ministry pays attention only to city residents, to those masters. Let's give it a new name—the Ministry of Urban Health, the Ministry for the Health of the Lords. Our hospitals have all sorts of modern medical equipment and technology, but they ignore the needs of the villages. We are training doctors to serve the urban areas. But China has 500 million peasants.” Mao wanted sweeping reforms of the health-care system, a reorientation from the elite to the masses, from the cities to the countryside.</p><p></p></div>	
+<div class='layout'><p>He wanted to reform medical education, too. “Medical students don't need to read so many books,” he insisted. The most famous doctors of Chinese history, Hua Tao and Li Shizhen, never attended medical school. Medical schools do not have to enroll high school graduates. A primary-school certificate should be sufficient to begin studying medicine. Medical skill is learned through practice. The type of doctor we need in the villages doesn't have to be so talented,” he said. “They'd still be better than witch doctors. Besides, this is the only type of doctor the villages can afford.”</p><p></p></div>	
+<div class='layout'><p>Mao also criticized the Ministry of Public Health for investing manpower and resources in research into rare and exotic diseases, trying to advance medical science without paying attention to the prevention and treatment of common illnesses. “I'm not saying we should ignore advanced medical science,” Mao said, “just that only a minor portion of our manpower and resources should be spent there. We should devote a major portion of our resources to what the masses need most.</p><p></p></div>	
+<div class='layout'><p>“There's another thing that is really strange,” Mao continued. “Doctors always put on masks when treating patients. Are they afraid the patients might catch a disease from them? No, I think they are afraid of catching some disease from the patients. It seems to me that doctors should wear masks only when they really need them. Otherwise, they create a barrier between doctor and patient.”</p><p></p></div>	
+<div class='layout'><p>Mao had a new proposal. He wanted to staff the urban hospitals with newly graduated physicians, the ones with the least experience. The better-trained, experienced senior doctors should be sent to the countryside. “Our medical profession should concentrate its future work on the villages.”</p><p></p></div>	
+<div class='layout'><p>I was astonished at Mao's broadside against the medical profession, but he instructed me to report his thoughts to the Ministry of Public Health, so I drew up a lengthy memo of our conversation, dated June 26, 1965, and submitted it both to the ministry and to Peng Zhen, the deputy secretary to the Central Committee's secretariat. I had no idea that during the Cultural Revolution, the memo would become Mao's “June 26 directive,” the basis for launching the nationwide barefoot-doctor campaign, used by the radicals to launch class struggle in the medical profession, ruining China's urban health-care system. And it hardly occurred to me that Mao would send his personal physician to the villages, too.</p><p></p></div>	
+<div class='layout'><p>In the tension and confusion that accompanied the abolition and restructuring of the Central Bureau of Health, the spark that had set Mao off was deliberately forgotten. Mao ordered the end of special medical care for the top leaders immediately after learning that Liu Shaoqi had contracted tuberculosis. He had ordered me not to get involved in treating Liu Shaoqi's illness, and to this day I know nothing of how Liu was cured. But we in Group One knew that Mao's attack on the health-care system was also a disguised attack on Liu Shaoqi. “It's still too early to say that Liu Shaoqi will succeed the Chairman,” Tian Jiaying concluded. “We don't really know yet. The Chairman doesn't always stand by his words. One day he says one thing, tomorrow another. Nobody can be sure what he thinks.” Wang Dongxing agreed.</p><p></p></div>	
+<div class='layout'><p>We kept our concerns to ourselves. I never told anyone in the Central Bureau of Health that Liu Shaoqi's illness had prompted Mao's restructuring. Those of us in Group One who had heard Mao's private quips about Liu Shaoqi never shared them with anyone beyond the inner circle. Wang Dongxing was the only person I told how worried I was.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

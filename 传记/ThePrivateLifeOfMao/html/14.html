@@ -1,0 +1,414 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>14</p><p></p></div>	
+<div class='layout'><p>If Jiang Qing was the most dependent member of Mao's inner circle, Ye Zilong was the most useful. Everyone around Mao had a use.</p><p></p></div>	
+<div class='layout'><p>Formally, Ye was the director of the Office of Confidential Secretaries and the head of Mao's small group of confidential secretaries—in charge of arranging and recording meetings and serving as Mao's chief steward, responsible for the personal details of Mao's life—his food, his clothing, his financial affairs.</p><p></p></div>	
+<div class='layout'><p>Later I learned from Wang Dongxing, and from Ye Zilong himself, that he also helped with Mao's women friends. They came from several places, especially the Bureau of Confidential Matters and the Cultural Work Troupe of the Central Garrison Corps. The girls were young, innocent, uneducated, politically correct, and completely loyal to Mao.</p><p></p></div>	
+<div class='layout'><p>Ye's home was right in Mao's compound—to facilitate his job as Mao's steward and confidential secretary. Many of Mao's women friends stayed in Ye's house awaiting their audience with the Chairman. Ye Zilong would arrange for the young women to enter Zhongnanhai. The women would then hide in Ye's house until Jiang Qing was safely asleep and Mao was ready to receive them. The young women were then led through the dining room and into Mao's bedchamber. In the early hours of the morning, they would be escorted out.</p><p></p></div>	
+<div class='layout'><p>Ye was also in charge of the generously endowed special bank account Mao kept in the office of special accounts under the General Office. By 1966, on the eve of the Cultural Revolution and before the little red book of Mao's quotations had sold hundreds of millions of copies, Mao had already earned 3 million renminbi from his Selected Works alone. Even in the 1950s, he was one of the richest men in China. He could afford to be generous with his money. He supported several of his former teachers, friends, and associates, assuring that they continued to live comfortably even after the new communist government had robbed them of their possessions and right to earn a livelihood. He used his money to show appreciation to the various women brought before him, too. Mao never touched money himself, so Ye Zilong was in charge of paying all these people—anywhere from a few hundred renminbi to a couple of thousand at a time.</p><p></p></div>	
+<div class='layout'><p>I found Ye to be an unsavory man, ignorant and nearly illiterate. He was a peasant who had joined the party as a youth. He had started working for Mao in the late thirties, just after participating in the Long March. Before arriving in Beijing in 1949, he had never visited a city or used electricity or seen a neon light. The party's takeover of Beijing was a genuine liberation for him, and he was quick to credit Mao with having transported him in one gigantic leap from rural deprivation to a paradise of riches. He was not one of those simple peasants who unwittingly became corrupted by the bright lights of the city. His character, I am sure, was wanting long before he arrived in Beijing. What had been lacking in the past was the opportunity.</p><p></p></div>	
+<div class='layout'><p>I had first come across Ye Zilong in the Zhongnanhai Clinic before I started to work for Mao, and I had never liked him. My first memory of him is from 1951, when Ye asked me for five vials of penicillin. He told me that one of his peasant relatives in Hunan had syphilis. The rural health clinic there had no modern drugs. But in those days China did not manufacture penicillin, and the two imported vials we had stored in the clinic were precious. To Ye's great consternation, I refused his request.</p><p></p></div>	
+<div class='layout'><p>The head nurse in the clinic had been astonished. Ye was known even then to be very close to the Chairman and thus to have considerable clout. Most people would have tried to court Ye's favor by granting his request, and the nurse was certain I had offended him. It never occurred to me that my path would cross Ye's again or that we would be thrown into constant, almost daily, contact.</p><p></p></div>	
+<div class='layout'><p>Like all of us in the early 1950s, Ye Zilong was on the free-supply system. He had no money for the luxuries he craved. But he was able to wheedle what he wanted for free, since people were eager to ingratiate themselves with Mao's confidential secretary as a way to curry favor with the Chairman himself. When the party was teaching the virtues of simplicity and frugality, Ye enjoyed every pleasure, every luxury, he could. When the elegant club for high-ranking cadres was established, Ye Zilong befriended the new managers, who regularly treated him, free of charge, to the best banquets the club could offer.</p><p></p></div>	
+<div class='layout'><p>Guards charged with prohibiting ordinary Chinese from entering his favorite pleasure haunts—the exclusive high-cadres' club and the Beijing Hotel—never asked Ye for his pass. Anyone could tell that he was an important man, a high-ranking party official. Only his rough, uncultured speech revealed his peasant past. Otherwise, he cut a handsome figure. His skin was white and smooth, and when all of Beijing was wearing faded, patched, and baggy cotton, Ye was dressed in woolen Mao suits, well cut and perfectly tailored. Ye officiated when Mao was fitted for clothes, and the Chairman's grateful tailor supplied Ye's impressive wardrobe for free.</p><p></p></div>	
+<div class='layout'><p>As chief steward, Ye was in charge of Mao's private storeroom, where the Chairman's many gifts were kept, in much the same manner that trusted eunuchs had managed such treasures during imperial days. Mao was generous in disbursing his gifts—everyone within the inner circle had been a recipient—but Wang Dongxing told me that Ye's East German cameras, Swiss watches, and Japanese-made transistor radio came from Mao's storeroom. He became an expert on the leading brands of a whole range of foreign-made electrical products, though he would not have been able to locate their countries of origin on a map.</p><p></p></div>	
+<div class='layout'><p>Ye also followed the old adage that the manager of the kitchen gets to eat there, too. Tuanhe reform farm, whose prisoners raised a wide range of foods—meat, fish, vegetables, and rice—was one source of Ye's food, which he paid for with a token sum. When the Communist party seized power, the new government set up “reform farms” all over the country, filling them quickly with both genuine criminals and political prisoners. Conditions on the reform farms were harsh. Most of the early political prisoners were lowly sorts—former foot soldiers or low-level local officials under the Guomindang. The ranking officials had either fled or been welcomed into the communist fold. My father was one who had been welcomed. When the communist armies were approaching Nanjing, Zhou Enlai had sent an intermediary urging him not to flee. Later, with Zhou's help, my father moved to Beijing and was given a sinecure, with a comfortable salary and housing.</p><p></p></div>	
+<div class='layout'><p>Tuanhe, run by the Beijing municipal bureau of public security, was the leading reform farm in the capital. Ye Zilong, like many other high-ranking cadres, used the Tuanhe reform farm to keep himself well supplied with all the food he needed. Even during the famine of 1960–1962, when millions of people were starving, Ye continued to receive copious quantities of high-quality food.</p><p></p></div>	
+<div class='layout'><p>Ye was married and never divorced his wife, but he developed a close friendship with a staff member from the Bureau of Confidential Matters whom he met at one of Mao's dances in the Spring Lotus Chamber. When the young woman's boss discovered it, Ye's friend was shipped secretly out of Beijing. No one would tell Ye where she had gone.</p><p></p></div>	
+<div class='layout'><p>Ye met her again by chance at another dance in 1958, when he was with Mao in Wuhan. The two renewed their friendship. Ye helped her to get a divorce, a difficult thing to arrange in those days, and to move to the industrial city of Tianjin, some 100 kilometers east of Beijing. There was no highway then and the roads were always clogged, so the drive was six hours from Beijing. Ye arranged a job and a house for the woman, and he visited her often, sometimes using Jiang Qing's car when the Chairman's wife was out of Beijing. Ye's friend, too, was well fed when many in China were hungry. Their friendship was interrupted again during the Cultural Revolution, when Ye came under scrutiny. But in 1980, when Ye Zilong was rehabilitated and appointed vice-mayor of Beijing, the two became reacquainted—Ye a bald old man and the woman a gray-haired old lady.</p><p></p></div>	
+<div class='layout'><p>My entry into Group One did not sit well with Ye Zilong. He had not forgotten my refusal to supply him the penicillin. As a veteran cadre, a peasant, and a Long Marcher, he saw me as a bourgeois intellectual tainted by the values of the old society. That I had been appointed by his enemy Wang Dongxing only added to his antagonism toward me. Knowing that I was uncomfortable with my new position, he and Fu Lianzhang had tried to have me dismissed. Jiang Qing told me they took their concerns directly to Mao, arguing that my bourgeois past made me politically unreliable. Mao did not agree.</p><p></p></div>	
+<div class='layout'><p>Working closely and frequently with Ye Zilong in Group One only made me dislike him more.</p><p></p></div>	
+<div class='layout'><p>Mao's security personnel were also offensive. Their offices were right next to those of the medical staff, so it was impossible not to notice the differences between the two groups. The nurses concentrated on their work, talking only about business. Xu Tao was particularly silent. Labeled a member of the anti-party group and recently accused of sexual misbehavior, he knew that the slightest slip of the tongue could get him even further into trouble.</p><p></p></div>	
+<div class='layout'><p>But the security personnel were always chattering with each other, often very loudly, freely, and about subjects the medical staff would not have dared discuss. Sex was a favorite topic.</p><p></p></div>	
+<div class='layout'><p>I had already been surprised by how casually Mao discussed sex. Mao did not understand the human reproductive system, but I quickly learned that he was remarkably preoccupied with sex. He was extremely curious, for instance, about the sex life of Gao Gang, the onetime head of Manchuria, who had taken his own life after having been accused in 1954 of an “anti-party alliance.” Gao Gang was said to have amassed so much power that his good friend Stalin had called him the king of Manchuria. Wang Dongxing had told me that Gao and his alleged co-conspirator, Rao Shushi, were purged because they had pretensions of usurping the leadership of Liu Shaoqi.</p><p></p></div>	
+<div class='layout'><p>In his conversations with me, Mao spoke little of Gao Gang's political mistakes. Instead, he marveled at the allegations that Gao had engaged in sex with more than one hundred different women, and was fascinated with the means Gao had used to snare so many partners, including the dance parties Gao hosted. “He had had sex twice on the very night he committed suicide,” Mao told me. “Can you imagine such lust?</p><p></p></div>	
+<div class='layout'><p>“Gao's sexual adventures were really a trivial matter,” Mao continued. “If he hadn't made serious political mistakes, they wouldn't be worth our concern. Even with his political mistakes, we could still have made use of him if he had thoroughly confessed his faults.”</p><p></p></div>	
+<div class='layout'><p>Jiang Qing also spoke freely about sex. I was surprised, not long after beginning my service, to hear her announce proudly on several occasions that she and Mao had made love the night before. She praised the Chairman's sexual prowess.</p><p></p></div>	
+<div class='layout'><p>Given the atmosphere, perhaps I should not have been so shocked that sex was a frequent topic of discussion among Mao's guards.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing was another favorite subject of theirs. When she was out of earshot, the discussion always turned eventually to her, and the guards mocked her mercilessly. One young guard in particular, Xiao Zhang, used to do scathing imitations of the Chairman's wife. Xiao Zhang was clever, effeminate, almost pretty, and a very good actor. Jiang Qing's clothes were kept in the guardroom—the washing and ironing (even Jiang Qing's silk underwear was ironed) were done by the bodyguards there—and Xiao Zhang used to dress up in one of Jiang Qing's raincoats and wear one of her straw hats, prancing around, twisting his body this way and that, in uncanny imitation. The other guards would laugh uproariously, and once even Mao walked by to catch sight of the act, grinning without saying a word.</p><p></p></div>	
+<div class='layout'><p>But the ambience in the guardroom made me very uncomfortable, and I tried to distance myself from the security personnel. I was quiet around them, and my disapproval of their behavior was no doubt obvious. Ye Zilong noticed this and accused me of putting on airs and looking down on him.</p><p></p></div>	
+<div class='layout'><p>Unknown to me, he went directly to Mao, saying that I put on airs because I was a doctor and charging me with looking down on cadres from worker and peasant backgrounds—another sign of my political unreliability.</p><p></p></div>	
+<div class='layout'><p>It was the type of accusation Mao loved. Mao never wanted his underlings to band together against him, so he was constantly gathering information to play us off against each other. He made sure that relations within Group One were always strained. Jiang Qing, for instance, was constantly bickering with Ye Zilong and Li Yinqiao. She and Ye had once been close, but their relationship cooled as Mao depended more on Ye. She did not like Li Yinqiao, either, because he had once accused her of running away to Hangzhou to avoid the scrutiny of an unfolding political campaign. Wang Dongxing and Ye Zilong had disliked each other for years. Ye Zilong and Li Yinqiao did not get along because they were competing for Mao's favor. Mao cultivated the discord, and when the divisions threatened to go too far, he would step in to mediate the dispute, serving as the peacemaker, bringing us back to what was always an unstable, short-lived equilibrium.</p><p></p></div>	
+<div class='layout'><p>“Doctors always put on airs,” Mao complained to me one day in Guangzhou. “I just don't like it.”</p><p></p></div>	
+<div class='layout'><p>“Doctors may put on airs to others,” I responded, “but not to you.”</p><p></p></div>	
+<div class='layout'><p>“Not necessarily,” Mao shot back. “Haven't you put on airs?” It was then that I learned of Ye Zilong's accusations against me.</p><p></p></div>	
+<div class='layout'><p>In fact, if measured by the standards of Mao's entourage, I had put on airs. Both my family's social standing and my training as a doctor had taught me that my profession was prestigious and that physicians deserved respect. Mao's revolutionary values were supposed to have changed those notions. Pride of place now rested with the peasants and workers. But my own thinking was not so easily changed. I still took pride in my work and could not help but be offended by the coarseness of Mao's staff.</p><p></p></div>	
+<div class='layout'><p>Ye thought I should be dismissed, but Mao played the peacemaker. He told Ye to stop complaining about me. But he also gave instructions, through Jiang Qing, to me. She urged me to show some respect to Ye Zilong, suggesting that I try to say something nice to him. Ye Zilong came to the Chairman even earlier than she had, Jiang Qing explained. Even she had to accommodate him.</p><p></p></div>	
+<div class='layout'><p>But I had no intention of sweet-talking Ye Zilong, just as I refused to sweet-talk Jiang Qing. I told Mao frankly what I thought of both Ye Zilong and Li Yinqiao, adding that others found them offensive, too. Mao said, “They are useful to me. Try to maintain good relations with them.” It would be several years before I learned why the two men were so useful to Mao.</p><p></p></div>	
+<div class='layout'><p>Already, though, I found my situation oppressive—not because of Mao, whom I still revered, or even Jiang Qing, who was so difficult, but because of the staff of Group One. I was disgusted by Mao's sycophants and the advice that I sweet-talk this person and toady up to another. I was a member of Mao's imperial inner court. We seemed a privileged, exalted group. But the staff of Group One treated me like a nobody. Ye Zilong and Li Yinqiao, the confidential secretaries and bodyguards in general, were like the eunuchs in the imperial court, at the emperor's side from morning till night, transmitting his imperial edicts, using their power to intimidate and humiliate others. I was expected to swallow my pride and become a sycophantic courtier myself. I was Chairman Mao's personal physician, but I was at the mercy of louts like Ye Zilong and Li Yinqiao.</p><p></p></div>	
+<div class='layout'><p>I was proud, and the humiliation was excruciating. I took stock of my situation. Mao's health was still good. He had no need for a full-time physician. I could never develop into a first-class physician if I stayed, and my dream of excelling as a doctor was still strong.</p><p></p></div>	
+<div class='layout'><p>I decided to resign.</p><p></p></div>	
+<div class='layout'><p>I told Wang Dongxing first. He was incredulous. “You have done a great job for the Chairman,” he encouraged me. “You solved his white blood cell count problem. You gave him new sleeping pills. You have to look at this from a broader perspective. You have to take the needs of the party into consideration. It's not easy to be appointed to the position you have. Besides, if you don't think this whole thing through, if you leave here without very clear reasons, you may find yourself without another job.”</p><p></p></div>	
+<div class='layout'><p>Wang's final point was chastening. Other people who had left Group One without good reason, including one of Mao's previous doctors, had had difficulty finding work. Everyone assumed they had left under some sort of political cloud. Why else would anyone leave the privileged circle of Zhongnanhai? No one was willing to risk hiring a politically suspect person. With my family history, my departure would surely be suspect. I was trapped. I felt terribly unsafe in Group One, but if I tried to get out, I could end up nowhere.</p><p></p></div>	
+<div class='layout'><p>But as I continued to think about my situation, the answer was still the same. I wanted to leave the job, the sooner the better, no matter what the consequences.</p><p></p></div>	
+<div class='layout'><p>I went to Jiang Qing. “I have been thinking about my situation here,” I explained to her. “I am an intellectual from the old society. I don't meet the political requirements for the Chairman's personal physician. I think we need to find a replacement for me—someone who comes from the right class and who has no political problems in his past.”</p><p></p></div>	
+<div class='layout'><p>Jiang Qing asked if I had talked with Mao. I explained that I had told him clearly about my personal background when we first met but that I had not talked to him about my intention to leave.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing thought for a moment. She told me not to talk to the Chairman. She would talk to him herself.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing called me to her quarters the next day. She had spoken to Mao. They had made a decision. She explained that while I and my family had political problems, these were a thing of the past. It is unfair to blame you for your family's past, she said. Besides, Wang Dongxing, Luo Ruiqing, and Yang Shangkun had all investigated my background and concluded it was not a problem. Zhou Enlai had also been informed of my case. “So you can feel at ease and go back to your work,” she said. “Forget about your political problems.”</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing was delighted. “At last we know what the Chairman thinks of you,” he said proudly. “Isn't he nice to you? Didn't I say that when I size up a person, he is bound to be good? Now all you have to do is work hard. You'll have no more problems at all.”</p><p></p></div>	
+<div class='layout'><p>I was trapped.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing became much friendlier to me after that, making certain that I was served tea when we met and often inviting me to join her to chat. She was learning to imitate Mao's conversational style, feigning his relaxed and easygoing manner, encouraging me to speak without restraint, trying to probe my mind without revealing hers, circumspect about jumping in too quickly with her own views. She did quite a good imitation of her husband—Jiang Qing had once been an actress, after all—but it was not a style that came naturally to her or one that she could maintain for long. Her opinions continued to come straight from her husband, and I often disagreed with her, though I had to be cautious about expressing myself. I had no way of knowing then that a decade later Jiang Qing would be unleashed and that even the most innocent comment one made about a novel or poetry could ruin a person's life. But from the beginning I had an uneasy feeling about her and was often tense and on guard during our visits.</p><p></p></div>	
+<div class='layout'><p>         </p><p></p></div>	
+<div class='layout'><p>In the early summer of 1956, while we were still in Guangzhou, Jiang Qing's nurse came to tell me that Jiang Qing wanted to see me. “There is good news for you,” she said.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing, who was quite a good amateur photographer, was studying some of her photographs when I went in. She put them aside. “Doctor, I hear you have been perspiring a lot,” she said.</p><p></p></div>	
+<div class='layout'><p>I was embarrassed. I had no clothes for Guangzhou's tropical climate. I took off my jacket during work, but there was no air-conditioning and my heavy trousers were uncomfortably warm. I perspired all day.</p><p></p></div>	
+<div class='layout'><p>“I didn't bring my summer clothes,” I explained to Jiang Qing.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing pointed to several bolts of fabric on a table nearby. “Take one of these and have a tailor make a new suit for you,” she said. “Your clothes are too heavy.”</p><p></p></div>	
+<div class='layout'><p>I hesitated. “I can get by—just wearing my shirt without the jacket.” Her nurse tugged me by the sleeve, silently encouraging me to accept Jiang Qing's gift, but I continued. “I appreciate your concern, but no thank you.” Jiang Qing's offer was both her way of apologizing for our many disagreements and an attempt to ingratiate herself with me. But I did not want to be accused of accepting special favors from the wife of the party chairman.</p><p></p></div>	
+<div class='layout'><p>“Please take it,” Jiang Qing insisted. She instructed one of the attendants to accompany me to the tailor.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing's offer put me in an extremely uncomfortable position. She had a reputation for being impossibly stingy, but now she had suddenly become generous, singling me out as the object of her new magnanimity. With so much backbiting and petty jealousies within Group One, there was likely to be gossip if I accepted the gift. But by refusing I would risk insulting Jiang Qing and possibly even Mao.</p><p></p></div>	
+<div class='layout'><p>I took my dilemma to Wang Dongxing. “If you don't take it, she will accuse you of looking down on her,” he said. “If you do, others will be jealous. Let me talk to her and see if I can explain the problem and get her to change her mind.”</p><p></p></div>	
+<div class='layout'><p>But Jiang Qing would not change her mind. “She wondered why one comrade should not show concern for another,” Wang Dongxing told me. “She says she's not trying to buy you over. If others make a fuss behind your back, I'll explain the situation to them.”</p><p></p></div>	
+<div class='layout'><p>I was forced to take the gift. But the gossip was even worse than I had feared. “Jiang Qing has always been such a stingy person,” Li Yinqiao sniped. “Her goodwill gesture to Dr. Li is certainly a first.” Then Ye Zilong and Li Yinqiao began circulating a rumor that Jiang Qing and I were hao, which literally means “good,” but implied that we were sexually involved. The rumor went all the way to Mao. I think he half believed it.</p><p></p></div>	
+<div class='layout'><p>As soon as I learned of this rumor, I went immediately to Mao.</p><p></p></div>	
+<div class='layout'><p>I asked the Chairman if he knew about Jiang Qing's gift. “Yes, I knew about it ahead of time,” he said. “Go ahead and take it.” I told him there had been rumors about Jiang Qing and me. He had already heard.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing would never dare to have an affair. An affair would have provided Mao an excuse to get rid of her, and her fear of abandonment was too strong. But she would go to great lengths to ingratiate herself with people who were close to Mao, and she was happy to allow herself to be amused by other men.</p><p></p></div>	
+<div class='layout'><p>By mentioning the rumor to Mao, I was also denying its truth. I needed to say no more. Mao believed me. “ ‘A gentleman acts according to his conscience,' ” he said. The rumor ended there.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

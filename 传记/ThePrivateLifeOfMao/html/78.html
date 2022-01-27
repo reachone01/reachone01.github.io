@@ -1,0 +1,405 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>78</p><p></p></div>	
+<div class='layout'><p>Mao's health continued to decline. He was already sick by the time we returned to Zhongnanhai from Chen Yi's funeral. The funeral parlor at Babaoshan had been cold, and Mao had stood, increasingly uncomfortable and unsteady on his feet, throughout the entire proceedings. He was coughing when we left, and his legs were trembling. When he tried to get in his car, his legs were so shaky that I had to help put them inside. I had never seen him so weak. His health had taken a dramatic turn for the worse.</p><p></p></div>	
+<div class='layout'><p>He was running a slight fever, and his lung infection had returned. I wanted to begin antibiotic injections.</p><p></p></div>	
+<div class='layout'><p>Mao refused. He wanted no more shots, only pills.</p><p></p></div>	
+<div class='layout'><p>But the pills did no good, and his condition worsened. His legs swelled, and his lungs became more congested. His coughing was labored, his heartbeat irregular. The Chairman was very sick. I wanted him to have a thorough physical exam and thought he should be seen by specialists.</p><p></p></div>	
+<div class='layout'><p>“You just want to dump your responsibility on others,” Mao responded testily. I was at a loss.</p><p></p></div>	
+<div class='layout'><p>Five days later, he stopped taking the antibiotics altogether. “They're useless,” he said. Still he was uncomfortable, spending all his time in bed, his sleep intermittent, his thinking disoriented.</p><p></p></div>	
+<div class='layout'><p>At around noon on January 18, 1972, Wu Xujun rushed to me with an emergency. She could not find Mao's pulse.</p><p></p></div>	
+<div class='layout'><p>I ran into his room. His pulse was racing, 140 beats to the minute. I alerted Wang Dongxing and Zhou Enlai and insisted that Mao had to let the doctors examine him. We had to determine what was wrong.</p><p></p></div>	
+<div class='layout'><p>Zhou agreed. I was to head a special medical team consisting of Shang Deyan, director of anesthesia at Beijing's Fuwai Hospital, Gao Rixin, director of anesthesia at Beijing Hospital, Wu Jie, the director of internal medicine at Beijing Hospital, Hu Xudong from the Zhongnanhai Clinic, and Yue Meizhong, the director of internal medicine at Xiyuan Hospital and a member of the Chinese Academy of Traditional Medicine. A number of nurses would also participate, and we agreed to ask Mao to have an electrocardiogram.</p><p></p></div>	
+<div class='layout'><p>Mao did not want a team of specialists. I insisted. If he did not agree, I said, he would not recover from his illness. His condition was worsening. He was so weak and his breathing so laborious that he could not even cough. His edema had spread upward, and I was afraid his internal organs might be involved.</p><p></p></div>	
+<div class='layout'><p>Finally, Mao agreed. The team administered a full physical examination and took an electrocardiogram. The results indicated that he had developed a pulmonary heart condition—congestive heart failure. Because his heart was not pumping sufficient blood, his brain was not getting enough oxygen, which was why he was constantly drowsy, unable to open his eyes, napping constantly. The electrocardiogram also revealed arrhythmia.</p><p></p></div>	
+<div class='layout'><p>Mao could still speak, but he was exhausted and irritable. His sense of humor was gone. When Yue Meizhong tried to explain Mao's condition in terms of traditional Chinese medicine, Mao stopped him. “Okay, okay. Just go away and discuss this somewhere else,” he insisted. As we turned to leave, he called me back. “Traditional medicine isn't going to do me any good,” he told me. “Let that guy go.”</p><p></p></div>	
+<div class='layout'><p>Dr. Yue was over seventy years old, a famous and highly reputable doctor of traditional Chinese medicine. We could not just send him away.</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing and I conferred about how to remove Dr. Yue without causing him to lose face. We decided that Wang Dongxing would listen to the doctor's diagnosis and Wang in turn would consult with Dr. Yue about a minor health problem he was having. Wang somehow managed to assuage Yue's feelings.</p><p></p></div>	
+<div class='layout'><p>Wu Jie, Hu Xudong, and I were in charge of Mao's treatment. We decided to give him injections of penicillin, together with oral digitalis to stimulate his heart and diuretics to relieve the edema. Mao agreed to everything but the diuretics. “Don't try everything at once,” he said. “Otherwise, you have nothing left if the problem continues.”</p><p></p></div>	
+<div class='layout'><p>Mao still did not understand modern medicine. He had heard that Kang Sheng was ill and wondered what medicine he was taking, He wanted to take the same thing. But following the Lin Biao affair, Kang Sheng had become clinically depressed. He stayed in his room at Diaoyutai, sitting immobile on a sofa, saying nothing. His condition was completely different from Mao's. But his doctor, a man named Gu, had told me that the only medicine Kang trusted was antibiotics. I used that information to persuade Mao to continue his antibiotic treatment and insisted that he take the other drugs, too. But Mao was delighted to hear that Kang Sheng took only antibiotics. “See, I don't need all those different drugs,” he said. He stopped the digitalis after only one dose.</p><p></p></div>	
+<div class='layout'><p>The antibiotics had no effect on Mao's congestive heart failure. The blood tests had indicated that his oxygen level was so dangerously low that a less robust man would have died. Mao's life was in danger.</p><p></p></div>	
+<div class='layout'><p>On January 21, I spoke with Zhou Enlai again, urging him to persuade Mao to cooperate in the treatment and emphasizing the real danger to Mao's life. I also pointed out that Mao had told me he did not want Jiang Qing to interfere in his treatment and that I therefore thought it best that Jiang Qing be kept out of our discussions. Zhou agreed.</p><p></p></div>	
+<div class='layout'><p>But when Zhou returned to Mao's residence at the indoor swimming pool that evening, I was shocked to see that Jiang Qing was with him. “The Chairman is seriously ill,” he explained to me when Jiang Qing left the room. “If something were to happen to him, what would I say to her? She's a politburo member and Chairman's wife. Besides, everyone belongs to an organization. She and I are both politburo members. How could I not tell her?” Zhou was ever the loyal party man.</p><p></p></div>	
+<div class='layout'><p>Wu Jie and Hu Xudong joined me in describing Mao's condition to Jiang Qing and Zhou Enlai. I emphasized that unless treatment were begun at once, Mao's life was in danger. Zhou questioned us in detail about our proposed treatment.</p><p></p></div>	
+<div class='layout'><p>“Wasn't the Chairman in good health just a few days ago at Babaoshan?” Jiang Qing asked. “The Chairman was in good health all last year,” she continued. “He is physically strong. Nothing is going to happen to him. Don't get so panicky.”</p><p></p></div>	
+<div class='layout'><p>But Zhou Enlai knew Mao was ill. He had been watching his decline since Lin Biao's death. He asked me to accompany him and Jiang Qing to talk with Mao. My medical expertise would be useful, he said. I could help them persuade Mao to accept treatment.</p><p></p></div>	
+<div class='layout'><p>I entered first. Clad only in an open robe, Mao was sitting on his sofa, his head back, eyes closed, breathing noisily through a half-open mouth, his bare chest rising and falling with each breath. His arms and legs were sprawled motionless on the sofa, as though paralyzed, and he was pale. “Chairman,” I whispered to him, standing next to the sofa. “Premier and Comrade Jiang Qing are here to see you.”</p><p></p></div>	
+<div class='layout'><p>We drew up chairs, sitting close to him, while Wang Dongxing and Zhang Yaoci stood outside, straining to hear what we said. Zhou shooed them away.</p><p></p></div>	
+<div class='layout'><p>Mao coughed, convulsed, until he was finally able to expel the phlegm from his lungs. I reached for a spittoon as Jiang Qing handed him her handkerchief. Mao pushed his wife's hand away, using the spittoon instead. Jiang Qing and Mao had been separated for so long that she no longer knew her husband's habits. He always used a spittoon.</p><p></p></div>	
+<div class='layout'><p>“What are you all doing here?” Mao demanded. “Tell me!”</p><p></p></div>	
+<div class='layout'><p>Zhou glanced at Jiang Qing, who was sitting upright, silent. “We were just discussing Chairman's health,” he began, “and want to report to you.”</p><p></p></div>	
+<div class='layout'><p>“There is nothing to report,” Mao responded. “You are not doctors and don't know what is going on. You have to listen to the doctors.”</p><p></p></div>	
+<div class='layout'><p>Looking at Jiang Qing, Zhou continued. “Just a while ago, the three people …”</p><p></p></div>	
+<div class='layout'><p>“What three people?” Mao demanded.</p><p></p></div>	
+<div class='layout'><p>“Li Zhisui, Wu Jie, and Hu Xudong. They explained Chairman's health condition to Comrade Jiang Qing and me.”</p><p></p></div>	
+<div class='layout'><p>Mao's eyes had been closed. Now he opened them. “And what about my health?”</p><p></p></div>	
+<div class='layout'><p>“The Chairman has caught a cold,” Zhou explained. “This has led to a lung infection. The lung infection in turn has affected your heart. We believe it necessary to improve Chairman's treatment.” Zhou turned to me. “Please explain the illness and your proposed treatment again to Chairman,” he requested.</p><p></p></div>	
+<div class='layout'><p>Mao did not let me explain. “What was that medicine you gave me?” he asked. “I've lost my appetite because of it. And you've given me so many shots my rear end aches and itches.”</p><p></p></div>	
+<div class='layout'><p>Jiang Qing saw her opportunity. “In 1968, Li Zhisui tried to poison me with his drugs, and you wondered why he tried to poison me and not you. ‘Wouldn't it be easier to poison me than you?' you asked. Remember? Now it's clear. He is trying to harm you.”</p><p></p></div>	
+<div class='layout'><p>“Oh? So you've done a great deed, haven't you?” Mao said sarcastically, turning to me.</p><p></p></div>	
+<div class='layout'><p>I felt as if I had been punched in the stomach. My mouth was suddenly dry. I was paralyzed with fear. Jiang Qing was accusing me of harming the Chairman, and Mao was agreeing.</p><p></p></div>	
+<div class='layout'><p>“Step out of the room,” Jiang Qing said to me. “You won't be playing your tricks around here anymore.”</p><p></p></div>	
+<div class='layout'><p>Suddenly, I was at peace. Nothing mattered anymore. I stood up. I was about to be arrested, and I knew that I would be sentenced to death for trying to harm Mao. I was resigned. The end had come at last. Walking slowly to the door, I was aware only of Zhou Enlai. He was stiff, immobilized, all color drained from his face. His hands were trembling.</p><p></p></div>	
+<div class='layout'><p>Mao spoke just as I reached the door. “Don't leave,” he said in a booming voice. “If there is anything to be said against you, it will be said openly.” He turned to Jiang Qing. “Why talk behind someone's back?” he asked her.</p><p></p></div>	
+<div class='layout'><p>I felt like a rock on the edge of a cliff that had finally fallen safely to ground. If I could defend myself, I knew I would win. I could see Zhou relaxing, too.</p><p></p></div>	
+<div class='layout'><p>I began to explain to Mao what I thought was wrong. The reason he had lost his appetite, I told him, was because his weakened heart had slowed his circulation. “Your body is swollen, too, and I think it very likely that some of your internal organs, like your stomach and intestines, are also swollen and suffering from lack of oxygen. It is because of this that you don't want to eat. And the medicine is not being rapidly absorbed because of your circulation problem. This is why you feel itchy and achy where the needle went in.”</p><p></p></div>	
+<div class='layout'><p>But Mao was not listening. He was shaking his head, his hand tapping the sofa. “Jiang Qing, somebody took that lotus stalk you sent me and boiled it in water, and I vomited after I drank it. Your medicine is no good, either.” Lotus stalk is a traditional Chinese herbal medicine, and Kang Sheng had recommended it to Jiang Qing.</p><p></p></div>	
+<div class='layout'><p>I nearly laughed with joy to hear Mao snap at his wife. She was sullen, dabbing her forehead with a handkerchief, gasping.</p><p></p></div>	
+<div class='layout'><p>Mao leaned his head on the sofa. “I don't think the medicine either of you gave me is any good,” he said. He turned to me. “Stop all medications. Whoever wants me to take medicine, leave the room.”</p><p></p></div>	
+<div class='layout'><p>I was horrified. Mao was sick. Without medicine, he would die. He had to get well.</p><p></p></div>	
+<div class='layout'><p>Mao turned to Zhou Enlai. “My health is too poor,” he said. “I don't think I can make it. Everything depends on you now …”</p><p></p></div>	
+<div class='layout'><p>Zhou Enlai was distraught. “No, Chairman's health problem is not serious,” he interrupted. “We all depend on Chairman's leadership.”</p><p></p></div>	
+<div class='layout'><p>Mao shook his head weakly. “No. Cannot make it. I cannot make it. You take care of everything after my death,” he said wanly. “Let's say this is my will.”</p><p></p></div>	
+<div class='layout'><p>Jiang Qing was aghast. Her eyes opened wide, her hands curled into fists. She was about to explode in anger.</p><p></p></div>	
+<div class='layout'><p>Zhou drew his legs toward his chair and put his hands on his knees, leaning toward Mao, frozen. The chairman of the Chinese Communist party was turning leadership of the whole country—the party, government, and army—over to the premier. And he was doing it in front of his wife, who wanted control herself. I was still trembling from my ordeal and perspiring heavily. I barely understood the import of Mao's words. I think now that he was confronting his own mortality for the first time.</p><p></p></div>	
+<div class='layout'><p>“It's done now,” Mao finally said. “You can all go.”</p><p></p></div>	
+<div class='layout'><p>As we reached the duty office where Wang Dongxing and Zhang Yaoci were waiting, Jiang Qing threw her military cap on the floor. “There's a spy ring around here,” she said, spitting out the words. “I'm going to have it thoroughly checked.” Then she turned to Zhou Enlai. “Call a meeting of the politburo immediately, in Huairen Hall,” she said, walking angrily away. I could only guess who Jiang Qing thought the spies were, but I was sure she would count me among them. Perhaps she thought Wang Dongxing was our leader.</p><p></p></div>	
+<div class='layout'><p>“Comrade Dongxing,” Premier Zhou said, turning to the chief of Mao's security. “Notify all members of the politburo now in Beijing. We have to meet immediately.” It was nine o'clock in the evening.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

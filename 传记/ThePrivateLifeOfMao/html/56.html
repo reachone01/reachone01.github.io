@@ -1,0 +1,426 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<div class='layout'><p>IV 1965–1976</p><p></p></div>	
+﻿<div class='layout'><p>56</p><p></p></div>	
+
+<div class='layout'><p>In early November 1965, after we had been in Qianshan county for three months, Wang Dongxing was summoned back to Beijing for an urgent meeting. Something important was happening, but none of us knew what. We were isolated in our villages and had little news from outside. Wang expected to return in a few days.</p><p></p></div>	
+<div class='layout'><p>Weeks went by. Winter came, and the weather turned depressingly cold and rainy. Our work in the fields came to a halt. My boredom, anxiety, and alienation grew. Still Wang did not return.</p><p></p></div>	
+<div class='layout'><p>Finally, at the end of December, he came back.</p><p></p></div>	
+<div class='layout'><p>“You didn't expect me to be gone so long, did you?” he teased. Then he suddenly turned serious. “Something has happened.” Wang Dongxing had not gone to Beijing. He had gone to Hangzhou, where Mao was staying, to meet with him.</p><p></p></div>	
+<div class='layout'><p>Several of the top leaders—Beijing party chief Peng Zhen, chief of general staff Luo Ruiqing, director of the party's General Office Yang Shangkun, and director of the Propaganda Department Lu Dingyi—were in serious political trouble. The party was holding a series of secret meetings to decide how to handle their cases. Few decisions had been made.</p><p></p></div>	
+<div class='layout'><p>One matter, though, had been decided. Yang Shangkun, who had first angered Mao during the Black Flag Incident and whom Mao blamed for the bugging of his train and guesthouses, had been dismissed. Wang Dongxing had been appointed to replace him. Wang would continue as head of the Central Bureau of Guards, because the position had real power. And while he never resigned from his post as vice-minister of public security, he never returned to the job. The directorship of the General Office was a much more powerful position.</p><p></p></div>	
+<div class='layout'><p>“I said I was not qualified for the job,” Wang told me, “and suggested Chen Boda instead. The Chairman did not agree. Then I suggested that Hu Qiaomu serve as the director of the General Office, with me serving as his deputy director. The Chairman said that Hu Qiaomu was too pedantic and ill suited to administrative work. He insisted that I take the job.”</p><p></p></div>	
+<div class='layout'><p>“So you've been promoted,” I exclaimed. “Congratulations!”</p><p></p></div>	
+<div class='layout'><p>Immediately, I wondered how the political changes would affect me. Luo Ruiqing and Yang Shangkun had given the final approval when I was brought on as Mao's doctor. If there was to be a sweeping purge of their subordinates, I might come under attack. But Wang Dongxing had been my real sponsor and continued to protect me. He was being promoted. Perhaps I would be safe. But I was uneasy. This was the most far-ranging and highest-level political shakeup since the communists had come to power, and it would surely reverberate to many levels of Chinese society.</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing, too, was sober. He had come back to Jiangxi not just to finish our work with the socialist education campaign but to escape the political fray. He wanted to wait out the battle until the issues had been decided. He wanted us to stay there, too. Once the purges began, subordinates would be implicated. We were safer in the countryside.</p><p></p></div>	
+<div class='layout'><p>My malaise continued. I had always shied away from politics, but I had learned to stay well informed about the shifts of political wind. It was a way of staying safe. The countryside was safe for now, but I needed to know more about what was happening at the center, what Mao was thinking and what plans he had. In the village, it was difficult to figure out what was going on in Beijing.</p><p></p></div>	
+<div class='layout'><p>The attack against the four party leaders was not a complete surprise to me. After the bugging incident, Mao never trusted Yang Shangkun, and while he placed real blame on leaders still higher in the hierarchy—on men like Deng Xiaoping and Liu Shaoqi—his practice was always to hit at the middle levels first.</p><p></p></div>	
+<div class='layout'><p>And Mao had long been suspicious of Beijing party chief Peng Zhen. Several years earlier, he had told me that Kang Sheng suspected Peng of “anti-Mao” tendencies. In my experience with Peng, he had been completely loyal to Mao, always asking after the Chairman's health. But Kang Sheng was telling Mao that Peng Zhen had criticized the “three red banners” of Mao's Great Leap Forward, wondering how revolutionary they really were.</p><p></p></div>	
+<div class='layout'><p>Lu Dingyi's political trouble was also no great surprise. As director of the Propaganda Department, Lu was in charge of literature and the arts. With Jiang Qing and Ke Qingshi on the offensive against the world of culture and with Mao supporting their attacks, Lu's political difficulties were almost inevitable.</p><p></p></div>	
+<div class='layout'><p>I was best acquainted with Luo Ruiqing, having worked closely with him from the beginning of my service to Mao and from that first incident at Beidaihe when Luo had opposed Mao's swim in the turbulent sea. Luo had always put Mao's safety and protection first and was never in any real sense disloyal to him. But he did have differences of opinion with Lin Biao—and consequently with Mao.</p><p></p></div>	
+<div class='layout'><p>I had known Luo Ruiqing was in political trouble since June 1964, when he organized a huge military exercise near the Ming tombs, outside of Beijing. Soldiers from both the Beijing and the Jinan military regions participated in the coordinated maneuvers, conducted under the unified command of Luo Ruiqing, Yang Yong, and Yang Dezhi. Lin Biao was invited to observe, but he refused. He did not believe in military exercises, he said.</p><p></p></div>	
+<div class='layout'><p>Mao did review some of the maneuvers, but was able to twist what he saw in support of Lin Biao's line that men and ideology were more important than weapons. When a squadron of soldiers scaled a five-story building without any equipment, Mao was delighted at how much could be done without modern weapons. The maneuver, he said, was an example of how backward, underdeveloped China could overcome even the most powerful and technologically advanced of enemies, proof that China could conquer the giant enemy to the north. “The Soviet Union is a giant,” Mao said to Luo after witnessing the maneuvers, “but it is not untouchable. So long as we have a method for handling the giant, nothing, no matter how big and powerful, should scare us.”</p><p></p></div>	
+<div class='layout'><p>But Mao knew that Luo Ruiqing was pushing for the modernization of the Chinese army, outspoken in his disdain for Lin's—and Mao's—theory of man over weapons. “Luo isn't worth the clothes on his back,” Mao quipped to me one day.</p><p></p></div>	
+<div class='layout'><p>I was able to learn more about Luo Ruiqing's plight from some documents, drafted by the navy and passed on by the Military Affairs Commission to Mao, that Wang Dongxing brought back. Lin Biao's wife, Ye Qun, had been campaigning against Luo Ruiqing. In November 1965, just before Wang Dongxing was called back to Beijing, she flew to Hangzhou to complain to Mao that Luo opposed her husband's slogan “Let politics take command.”</p><p></p></div>	
+<div class='layout'><p>Mao sided with Ye Qun. “Those who do not believe in putting politics in command and only give lip service to the idea are trying to propagate ‘eclecticism,' ” he had written on the document Wang gave me. “We have to beware of their position.”</p><p></p></div>	
+<div class='layout'><p>Air force political commissar Wu Faxian had joined with Ye Qun against Luo Ruiqing, alleging that Luo had opposed Lin Biao's appointment to replace Peng Dehuai from the beginning and was now trying to persuade Lin Biao to resign. When Lin Biao had been ill and unable to meet with Luo Ruiqing, Luo had lashed out against Lin, shouting, “If he's sick so often, how can he be responsible for anything? Let someone else take over his job. Don't stand in the way.”</p><p></p></div>	
+<div class='layout'><p>Luo was bothered by Ye Qun's active involvement in politics, suggesting she should spend more time caring for her chronically ill husband. If Lin's health were better, Luo said, he could devote more attention to the business of the central authority. Wu Faxian claimed that Luo Ruiqing really wanted Lin Biao to resign, saying that Luo Ruiqing had tried to prevail upon Liu Yalou, the commander in chief of the air force, to encourage Ye Qun to persuade her husband to step down. “Everyone has to step out of the political arena at some point,” Luo was said to have argued, “and so does Lin Biao.” Luo Ruiqing wanted Lin Biao to remove himself from his position in the Military Affairs Commission so that he, Luo Ruiqing, could take over the position himself. If Ye Qun persuaded her husband to resign, Luo promised that she would eventually be rewarded, although I never learned how.</p><p></p></div>	
+<div class='layout'><p>Ye Qun and Wu Faxian did not listen to Luo Ruiqing, and Mao sided with them. Luo Ruiqing was deprived of his major military responsibilities in mid-December.</p><p></p></div>	
+<div class='layout'><p>I was worried. Luo's removal was not a good omen.</p><p></p></div>	
+<div class='layout'><p>Several of Wang Dongxing's comments also led me to believe that Zhou Enlai was worried, too, siding with Luo Ruiqing and wary of Lin Biao. Premier Zhou Enlai was urging Wang to return to Beijing as quickly as possible. Zhou was in charge of the daily affairs of state. As early as 1964, Zhou had complained to Wang Dongxing about the scarcity of administrative talent at the highest levels of government, saying how difficult it was to get anything done, “because we have so few capable people.” Peng Zhen managed party administration; Luo Ruiqing was in charge of the army; and Zhou was responsible for the government. Zhou despaired that with such a big country there were so few people doing most of the work. Other people, he told Wang, talked a lot but did little. With Peng Zhen and Luo Ruiqing under attack, Zhou Enlai was more worried still. Getting anything done in Beijing would be all the more difficult. He urged Wang Dongxing to return to Beijing to assume his new administrative position as soon as possible. But Wang Dongxing intended for us to stay in the countryside, working in the socialist education campaign, until April 1966.</p><p></p></div>	
+<div class='layout'><p>I was happy to stay. With the political situation so tense, who could predict what would happen upon my return to Beijing?</p><p></p></div>	
+<div class='layout'><p>I was soon to find out. Several days after Wang Dongxing's return, as I was still trying to digest the impact of the great political uncertainties, Mao summoned me.</p><p></p></div>	
+<div class='layout'><p>It was New Year's Day, 1966, and the team from Group One wanted to celebrate the holiday properly. That morning, head nurse Wu Xujun and I slogged through the mud, drenched by a chilling rain, to the village where Wang Dongxing was based. We city folk were the only ones observing the holiday. The peasants in the villages were still tied to the lunar calendar. Despite our attempts to draw them into our festivities, they insisted that their new year would not arrive for another six weeks. The Western calendar made no sense to them.</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing had ordered meat and flour for the occasion and set us to work making traditional New Year's dumplings. Some of us chopped meat and made the filling, others mixed flour and water for the dough, and the rest of us wrapped the dumplings in final preparation for cooking. When we were almost done, a public-security official from Shangrao prefecture, out of breath and dripping with perspiration, suddenly burst into the room. He had arrived unexpectedly by jeep and was in a hurry. “No need to rush,” someone joked. “There are plenty of dumplings.”</p><p></p></div>	
+<div class='layout'><p>The official called me, nurse Wu, and Wang Dongxing aside. “I've been trying for two hours to get you by phone,” he said, “but I couldn't get through.” He had been called by the Jiangxi provincial party committee at three that morning. The Chairman was ill. He was in Nanchang, the provincial capital, and wanted me and nurse Wu to go there immediately.</p><p></p></div>	
+<div class='layout'><p>The drive would take eleven or twelve hours by jeep, and we had to set out immediately.</p><p></p></div>	
+<div class='layout'><p>I wanted to return to Shixi to pack an overnight bag, but Wang Dongxing objected. I could buy what I needed in Nanchang, he said. The trip was secret. “If you go back, everyone will ask where you are going,” he said. Wang decided to join us. He wanted to know how serious Mao's illness was and to seize the opportunity to catch up on news from Beijing. If the Chairman was not seriously ill, he would return to the village immediately.</p><p></p></div>	
+<div class='layout'><p>We never got to eat the dumplings. Wang insisted on leaving immediately. We set off in the rain on the unpaved mud road, stopping for a quick bite at the Shangrao guesthouse and then creeping along at a snail's pace, slipping and sliding, the mud splashing the windshield so it was often impossible to see, until we finally reached a gravel road. From there, our speed picked up. It was midnight by the time we arrived in Nanchang.</p><p></p></div>	
+<div class='layout'><p>We met first with Fang Zhichun, chairman of the Jiangxi provincial people's congress, and several other provincial party officials. “The Chairman has been here two weeks,” Fang explained, “and he became ill two days ago. We thought it best to call Dr. Li.”</p><p></p></div>	
+<div class='layout'><p>We were escorted to the Binjiang guesthouse, where Mao and his entourage were staying. Wang Dongxing's subordinate, Central Garrison Corps commander Zhang Yaoci, was there and so was Xu Yefu, the opportunistic secretary who had managed to get rid of Lin Ke and take his place. A new chief of security guards, Qu Qiyu, was responsible for Mao's immediate personal security, and a new male attendant, Zhou Fuming, was responsible for Mao's personal needs. Several of Mao's female companions were there—a nurse and his two favorite confidential clerks—and so was train attendant Zhang Yufeng. Three chefs had come with him, and over a dozen armed guards. With all of Mao's previous staff now replaced, the atmosphere was completely different. I felt vaguely uncomfortable.</p><p></p></div>	
+<div class='layout'><p>Mao's new personal attendant, a young man from Hangzhou named Zhou Fuming, who had cut Mao's hair a few times before joining Group One (Big Beard Wang had finally retired, with a generous pension), was the one I knew best, so he told me what had happened. Mao had celebrated his seventy-second birthday on December 26 by drinking a little wine in the afternoon and then going for a walk along the Gan River, accompanied by several of his female friends. It was windy, but Mao had felt warm and unbuttoned his shirt. Then he and Zhang Yufeng squabbled. The two were carrying on an old argument. A year earlier, Mao had discovered that Zhang Yufeng had developed a close friendship with someone on his staff. But Mao was determined to control her life. When he found out, he forced Zhang Yufeng to kneel down before him and apologize. The male staff member was expelled from Zhongnanhai and sent to Nanjing, but the episode continued to trouble the relationship between Mao and Zhang Yufeng, and another flare-up had taken place on the afternoon of Mao's birthday.</p><p></p></div>	
+<div class='layout'><p>The Chairman's cold had started just afterward, and by evening he was coughing heavily and running a fever. He had refused all offers to see local Nanchang doctors, hoping to heal himself. The party leadership in Jiangxi became increasingly distressed. The Chairman's health was deteriorating and he refused all help. Finally, when he could bear the fever and discomfort no more, Mao asked for me and nurse Wu.</p><p></p></div>	
+<div class='layout'><p>I went in to see him. He was lying in bed, his face flushed, his breathing labored, coughing constantly. “I've been like this for a few days already,” he explained. “I thought I could stick it out, but I can't. I had to ask you to come.” I was still the only doctor Mao trusted.</p><p></p></div>	
+<div class='layout'><p>He had a temperature of 104 degrees, and the cold had turned into bronchitis. I suggested we give him a shot of antibiotics to treat the bronchitis and lower his fever. He agreed.</p><p></p></div>	
+<div class='layout'><p>It was five o'clock in the morning before nurse Wu and I finally returned to the Nanchang guesthouse, where Wang Dongxing and a number of Jiangxi officials were waiting. We decided that if Mao's condition improved the next day, the three of us would return to the countryside that afternoon.</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing went with me to see Mao the next day. The antibiotics were taking effect. His temperature had gone down. But Mao was still coughing, and he wanted to continue the treatment for a few more days. He ordered Wang Dongxing back to the village, leaving me and nurse Wu to treat him.</p><p></p></div>	
+<div class='layout'><p>Wang was irritated. Mao had sent us all down to eat bitterness and participate in the socialist education campaign and then report back to him on our work. But he had not asked a single question about what we were doing. Wang wondered what was going on in Mao's mind.</p><p></p></div>	
+<div class='layout'><p>Wang returned to the village that evening, his question unanswered.</p><p></p></div>	
+<div class='layout'><p>Mao was less accessible than before. He was surrounded by young female companions, who took turns caring for him. One was always by his side. Zhou Fuming rarely went into the Chairman's room. He would fetch Mao's food or tea from the kitchen and then hand it to one of the young women, who would serve it to Mao. Knowing that the women were intimately involved with the Chairman and not wanting to intrude into his personal affairs, I stayed in the background, trying to minister to his health without disturbing his privacy.</p><p></p></div>	
+<div class='layout'><p>But I was worried about his health. His bronchitis and cough responded quickly to the antibiotics and cleared up in a matter of days. But in the course of treating his bronchitis, I realized that since I had been sent to the countryside, Mao had begun taking an extraordinary number of sleeping pills—ten times the normal dosage and enough to kill an ordinary person. Over the years, as Mao's reliance on sleeping pills continued, he had developed an amazing tolerance for barbiturates. But I had no idea where the dividing line between his tolerance and a potentially lethal dose might be. In the countryside, I could not have been held responsible had Mao overdosed on sleeping pills. In Nanchang, directly overseeing his health, I was responsible for anything that went wrong.</p><p></p></div>	
+<div class='layout'><p>The number of sleeping pills Mao was taking was directly linked to the current political tension. His insomnia and politics were always linked. A couple of members of his staff told me that he had begun increasing the dosage in November 1965, after Lin Biao's wife, Ye Qun, had come to him with the news of Luo Ruiqing's opposition to her husband. On December 8, Mao had convened an enlarged meeting of the politburo standing committee in Shanghai, where he had dismissed Luo Ruiqing as chief of the general staff and appointed his deputy, General Yang Chengwu, to replace him. The meetings had lasted a week, and Mao was so tense he barely slept at all. He began downing the barbiturates in increasingly larger dosages, taking the pills even when he had no intention of going to bed.</p><p></p></div>	
+<div class='layout'><p>I had to break him of this dependence.</p><p></p></div>	
+<div class='layout'><p>I went to see him around midnight a week after I had come back. He was lying in bed reading a history of the later Han dynasty (A.D. 25–220). Mao read history rather than Marx when preparing for political battle, and the Han dynasty history was particularly well written and full of strategic intrigues.</p><p></p></div>	
+<div class='layout'><p>“This time it looks like you do have some tricks in that medicine bag of yours,” he said when I went in. “I seem to have recovered.”</p><p></p></div>	
+<div class='layout'><p>“It was just ordinary medicine,” I responded. “But it worked.”</p><p></p></div>	
+<div class='layout'><p>He handed me a pamphlet and wondered if I had read it. I had come to raise the question of his sleeping pills, not to discuss politics, but I glanced at the title of the piece. I recognized it—“Commentary on the Newly Revised Historical Play Hai Rui Dismissed from Office.” Isolated though we were in Shixi, it was one of the few things I had read. Written by Shanghai “theoretician” Yao Wenyuan and published in the November 10, 1965, issue of Shanghai's Wen Hui Bao, the article was a critique of a play written by Beijing vice-mayor Wu Han. The play was a paean to Hai Rui, the upright Ming dynasty official Mao had so often asked his own party officials to emulate.</p><p></p></div>	
+<div class='layout'><p>The critique had puzzled me. Mao himself had promoted the traditional operas about Hai Rui. Wu Han, in addition to being a vice-mayor of Beijing, was a professor at Peking University and one of the country's leading Ming dynasty historians. Mao's longtime interest in Ming dynasty history had brought him into early contact with Wu Han. After Mao's encouragement to study history, I sometimes sat in on his chats with Wu Han. Mao had criticized an earlier work of Wu's—a biography of Ming dynasty founder Zhu Yuanzhang called Beggar Turned Emperor—for its historical inaccuracies, its critique of Zhu's role in the Red Turban Army, and its use of Zhu Yuanzhang to criticize the modern-day Chiang Kai-shek. In a series of remarks that would have been heresy had they come from anyone but Mao, the party chairman defended Chiang's role in history—from his northern expedition of 1926–27 to his refusal to succumb to political pressure from the United States to his insistence on the indivisibility of China. Wu Han had accepted Mao's criticisms, though, and his authorship of a play about Hai Rui seemed to agree with Mao's own call to study the example of Hai Rui. I could not understand why either Wu Han or the play were under attack.</p><p></p></div>	
+<div class='layout'><p>Mao wanted to talk about the piece. He supported Yao Wenyuan's critique, which, he said, was written on the basis of an idea of Jiang Qing and Zhang Chunqiao.</p><p></p></div>	
+<div class='layout'><p>The “idea” traced back to the 7,000 cadres' conference in January 1962 where Mao had been forced to make what came to be known as his “self-criticism.” Mao's dismissal of Peng Dehuai had been a frequent topic of private discussion at the 7,000 cadres' conference, and many people believed that Peng's dismissal had been unfair. People began comparing the Jiajing emperor's unfair dismissal and imprisonment of Hai Rui with Mao's dismissal of Peng Dehuai. Peng Dehuai and Hai Rui were both impeccably honest and principled officials, devoted to the welfare of their country and loyal to their leader; they pointed to shortcomings not to rebuke him but to add to his glory by improving his rule. Peng Dehuai was the modern-day Hai Rui.</p><p></p></div>	
+<div class='layout'><p>The two leaders had something else in common, too. Neither accepted criticism with grace.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing's suspiciousness, her new political persona, and her interest in literature and the arts lent a certain predictability to her discoveries of playwrights disloyal to her husband. Maybe it was only natural for her to suspect Wu Han of disloyalty after seeing his play Hai Rui Dismissed from Office.</p><p></p></div>	
+<div class='layout'><p>But Beijing mayor Peng Zhen, propaganda chief Lu Dingyi, and deputy propaganda chief Zhou Yang all refused her demand that a campaign be organized to criticize the play. Wu Han was their colleague and friend, a highly respected intellectual, and a man known to listen to Mao. Had he not followed Mao's suggestion to change the name of his biography of Ming dynasty founder Zhu Yuanzhang from Beggar Turned Emperor to The Biography of Zhu Yuanzhang? Had he not written Hai Rui Dismissed from Office in answer to Mao's call to learn from Hai Rui? The Beijing leadership had no reason to listen to Jiang Qing. She held no official position and had been forbidden since the Yanan days from participating in politics. She was looked down upon by the political elite. Actresses were traditionally despised in China, and an actress who furthered her political ambitions by manipulating a marriage with the leader was particularly deplored.</p><p></p></div>	
+<div class='layout'><p>But at this turning point in his career, Mao needed Jiang Qing. Even her political ambitions were of use. She was, as she claimed, the most loyal lieutenant he had, because without Mao, Jiang Qing was no one. When Shanghai leader Ke Qingshi died suddenly in April 1965 of acute pancreatitis, his mantle was passed to the city's propaganda chief, Zhang Chunqiao, who was as anxious as his predecessor to do Mao's bidding. Zhang Chunqiao brought in his close associate Yao Wenyuan, the editor of the Jiefang Ribao (Liberation Daily), to work directly with Jiang Qing. Mao, meanwhile, withdrew and was not consulted on the contents until the final draft, just before it was published in Wen Hui Bao. The attack was meant to launch a campaign against both Wu Han and other supporters of Peng Dehuai. Other newspapers and magazines were expected to join in the attack.</p><p></p></div>	
+<div class='layout'><p>But the Beijing media ignored Yao Wenyuan's attack. “For nineteen days after it was published in Wen Hui Bao, the Beijing newspapers adamantly refused to print the article,” Mao told me that night. He was furious. “It was only after I sent my word that the Beijing newspapers began reprinting it. Don't you think they are awfully tough?”</p><p></p></div>	
+<div class='layout'><p>I was confused. I still did not understand why Hai Rui and Wu Han were under attack. I certainly had no idea that Yao Wenyuan's article was the opening salvo of what was about to become Mao's Great Proletarian Cultural Revolution. Nor did I fully understand to whom Mao was referring when he said that “they” were awfully tough. Only after the Cultural Revolution began did I understand that “they” included head of state Liu Shaoqi and all the top leaders most closely associated with him.</p><p></p></div>	
+<div class='layout'><p>I remained silent. I needed to understand Mao's position better. I promised Mao I would read Yao Wenyuan's pamphlet again.</p><p></p></div>	
+<div class='layout'><p>“Yes, take another look,” Mao said, handing me the article. “Then tell me what you think.”</p><p></p></div>	
+<div class='layout'><p>I tried to steer the conversation back to his health.</p><p></p></div>	
+<div class='layout'><p>“There is something else,” I began. “The number of sleeping pills Chairman is taking now is excessive, more than ten times the usual dose.”</p><p></p></div>	
+<div class='layout'><p>“That much?” Mao asked.</p><p></p></div>	
+<div class='layout'><p>“Yes. I've been checking Chairman's medical records. Such a large dose could be harmful to Chairman's health.”</p><p></p></div>	
+<div class='layout'><p>“So what should we do?”</p><p></p></div>	
+<div class='layout'><p>“I think we have to adjust the dosage as soon as possible.” I suggested that we fill some gelatin capsules with harmless glucose, fill others with a mixture of half glucose and half barbiturate, and then mix the placebos together with his regular sleep medication. The color of the capsules would be the same, so Mao would not be able to see the difference, but the actual dosage would be cut way down. Mao agreed.</p><p></p></div>	
+<div class='layout'><p>But Mao was still troubled. He wanted to talk.</p><p></p></div>	
+<div class='layout'><p>“There's something about this guesthouse,” he said. “It's poisonous. There's something poisonous here. I can't stay here any longer. Tell Zhang Yaoci to get ready. We're going to Wuhan.”</p><p></p></div>	
+<div class='layout'><p>The paranoia I had first sensed in Chengdu in 1958, when Mao suspected that his swimming pool was poisoned, was tightening its grip. Mao thought that his illness in Nanchang had come from a poison infecting the guesthouse. But the only poison was political, the intrigue and backstabbing at the highest levels of communist power.</p><p></p></div>	
+<div class='layout'><p>I had to tread lightly. I passed Mao's orders on to Zhang Yaoci, telling him to get ready to move Mao and his entourage to Wuhan. Then I used the secure line to phone Shi Shuhan, who was now a vice-minister at the Ministry of Public Health, to inform him of Mao's most recent illness and explain how we had decided to handle the problem with his sleeping pills. The pharmacy at Beijing Hospital would be responsible for making the glucose-filled gelatin capsules.</p><p></p></div>	
+<div class='layout'><p>Shi Shuhan was worried. He was afraid that Mao's fever might be an indication of something more serious than bronchitis—pneumonia perhaps. He wanted to tell Zhou Enlai and send a team of specialists to look at the Chairman. He urged me to cover myself by giving Mao a chest X ray. But I was certain that Mao's physical health had returned to normal. What worried me was his consumption of barbiturates and his irrational fear of poison. He was afraid of conspiracies against him, and I wanted to give him no excuse for fear. If other specialists came to examine him, if I insisted that he get an X ray, he might suspect that I was lying to him about his illness or trying to avoid responsibility or bringing in spies. If we talked to Zhou Enlai without first informing Mao, he might also suspect some sort of conspiracy. I convinced Shi Shuhan to let well enough alone.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

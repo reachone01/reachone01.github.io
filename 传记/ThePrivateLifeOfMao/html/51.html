@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>51</p><p></p></div>	
+<div class='layout'><p>Mao had reached his Yellow River. He was determined to push on. In the summer of 1962, he emerged from his retreat. When he told me he would call two major party conferences in the upcoming months, I knew that his counteroffensive was about to begin. What I did not know was who would be attacked first.</p><p></p></div>	
+<div class='layout'><p>The first party conference, held in Beidaihe on August 6, was a relatively small gathering of leaders at the rank of provincial first party secretary, minister, and above. Mao delivered a speech called “Classes, the Situation, and the Contradiction.” Mao had spent much of his time in retreat formulating his theoretical justification, in Marxist terms, of the attacks he was about to launch against his own party. He could not simply purge the leaders he did not like. He did not have the power. Like all Chinese leaders, he needed Marxist morality to justify his actions. By relying on Marxist morality, he could mobilize the masses against the leaders he wanted to purge.</p><p></p></div>	
+<div class='layout'><p>His justification was the argument that classes do not disappear with the introduction of socialism. Even after the collectivization of property, classes continue to exist, Mao said, and class struggle persists. Contradictions between the bourgeoisie and the proletariat, between the capitalist road and the socialist road, continue too, he said, and so does class struggle.</p><p></p></div>	
+<div class='layout'><p>With the Tenth Plenum of the party's Eighth Central Committee that met the following month, in September 1962, Mao's theoretical justification for his counterattack was further refined. Not only do classes and class struggle continue to exist, Mao asserted, but the battle between the proletariat and the bourgeoisie will be protracted and sometimes severe. “In the historical period from the proletarian revolution to the proletarian dictatorship, and in the transitional period from capitalism to communism, which may last several decades or longer, a class struggle between the proletariat and the bourgeois classes, a struggle between the capitalist road and the socialist road, still exists,” he said. China was facing a danger of capitalist restoration that had to be fought through relentless class struggle.</p><p></p></div>	
+<div class='layout'><p>Still later he would argue that the party itself had become a haven for capitalists. Members of the bourgeoisie were right in the party ranks.</p><p></p></div>	
+<div class='layout'><p>His two speeches were filled with invective, and his attacks were wide-ranging. He lashed out against intellectuals, further reversing the conciliatory stance of Zhou Enlai and Chen Yi. A union between intellectuals and workers is premature, Mao asserted. “The party has not yet properly educated the intellectuals. The bourgeois spirit hangs like a ghost over their heads. They are vacillating.”</p><p></p></div>	
+<div class='layout'><p>He struck out against Peng Dehuai, too. Peng had submitted a lengthy appeal for his political rehabilitation, professing his support for the people's communes and asserting that he had never formed an anti-party group or colluded with the Soviet Union. Instead of accepting Peng's appeal, Mao escalated the charges, accusing him now of having colluded not only with the Soviet Union but with all reactionary forces of the world, including even, he implied, the United States. Peng, Mao said, had been trying to conduct a worldwide counterrevolutionary, anti-communist chorus. There would be no reversal of verdicts on Peng Dehuai or those who had sympathized with his views. Exoneration of the enemy was out of the question.</p><p></p></div>	
+<div class='layout'><p>Then he turned his opprobrium against the Panchen Lama of Tibet, denouncing him as “an enemy of our class.” Tibet's chief spiritual leader, the Dalai Lama, had fled to India in 1959 when negotiations between the central Chinese government and Tibetan leaders had broken down and many Tibetans had rioted. A crackdown had followed, and the Panchen Lama, ordinarily subservient to Beijing, was now arguing that Beijing's so-called “democratic reforms” had moved too far to the left. He hoped that the ultraleftist trend in Tibet could be corrected.</p><p></p></div>	
+<div class='layout'><p>Li Weihan, the director of the party's United Front, who had supported the Panchen Lama's views, was next to come under Mao's gun. Mao denounced him as a “capitulationist,” accusing him of kowtowing to the Tibetan lords and criticizing him for promoting unity between intellectuals and workers. Li Weihan was dismissed from his position. The Panchen Lama was spared, but attacks against him continued. During the Cultural Revolution, the Panchen Lama spent nearly ten years under house arrest.</p><p></p></div>	
+<div class='layout'><p>Wang Jingxian, head of the central party offices responsible for liaison with foreign Communist parties, had suggested improving ties with the Soviet Union and Eastern Europe while reducing economic aid to communist parties seeking the liberation of Asia, Africa, and Latin America. Wang was stripped of his power, accused by Mao of being a revisionist. Wang remained in his post, but his substantive responsibilities were transferred to deputy director Zhao Yimin.</p><p></p></div>	
+<div class='layout'><p>Mao saw the system of contracting production to rural households as an example of the persistence of capitalism and ordered the practice halted. Advocates of the policy were capitalists and had to be purged. He attacked Deng Zihui and Liao Luyan, the two men responsible for the national direction of agriculture. Deng Zihui, director of the party's Rural Work Department and the man who had been encouraging a more moderate approach to agriculture since I joined Group One in the mid-1950s, was accused of being a veteran rightist of ten years' standing. Liao Luyan, the minister of agriculture under the State Council, who had argued that the mess of the Great Leap had more to do with policy than weather, was labeled a revisionist.</p><p></p></div>	
+<div class='layout'><p>Anhui's Zeng Xisheng was among the first of the local leaders to be purged, just after the meetings concluded. The province's successful agricultural experiments were brought to an end, and agricultural production in the already poor and suffering countryside plunged further still.</p><p></p></div>	
+<div class='layout'><p>Ge Man, the party secretary of Linxia prefecture, in Gansu province—a rival with Anhui for the dubious honor of poorest province in China—was next on Mao's list. Ge Man had introduced the contract responsibility system into Linxia prefecture and the results had been good. Agricultural production had increased. Gansu provincial party secretary Wang Feng, attributing the widespread hunger and poverty in Gansu to the formation of people's communes, fully supported Ge Man in his experiments. Mao accused both men of being “capitalist roaders,” but only prefectural chief Ge Man was purged in 1962. Wang Feng did not lose his position until August 1966. When the Cultural Revolution began, he was among the first three people to be labeled by Mao as “counterrevolutionary revisionists.” Ge Man suffered renewed attack at the same time and committed suicide.</p><p></p></div>	
+<div class='layout'><p>The autumn of 1962 was a turning point for Mao and the party. Mao's insistence that classes persisted even under socialism effectively silenced the voices of reason, voices of potential dissent. The spirit of openness and daring that had characterized the 7,000 cadres' conference was reversed. Those who had the good of the country at heart, who believed that agricultural production would best be served by taking responsibility for agricultural management out of the hands of the collectives and the cadres and giving it back to the peasants, dared not push their views. Mao's arguments about classes and class contradictions provided the theoretical underpinnings for all the purges that followed, culminating, in 1966, with his Great Proletarian Cultural Revolution. To disagree with the Chairman was to risk becoming a counterrevolutionary and a “capitalist roader,” and for Mao there was no greater crime.</p><p></p></div>	
+<div class='layout'><p>The purges continued after the September 1962 Tenth Plenum, and the man Mao put in charge was Kang Sheng.</p><p></p></div>	
+<div class='layout'><p>Kang Sheng was a longtime party member and had been with Mao in Yanan. Indeed, it was said that Kang Sheng had sponsored Jiang Qing's membership in the party and arranged for her to go to Yanan, where she met and married Mao. Kang Sheng and Jiang Qing were both from Shandong province and their close relationship went back long before the revolution of 1949.</p><p></p></div>	
+<div class='layout'><p>I first met Kang Sheng in 1958. He had not been actively involved in politics after 1949. He had been hospitalized sometime around the communist takeover and was not released until the beginning of the Great Leap Forward, when he became one of its most vocal supporters. My friends, doctors responsible for his treatment at Beijing Hospital, told me he was suffering from schizophrenia, and I do not know why he was finally released. My contact with him was minimal—and strained. I saw him visit Mao occasionally, but their meetings were always private, and Kang Sheng never indulged in the same small talk, the easy give-and-take, of other leaders who visited the Chairman from time to time.</p><p></p></div>	
+<div class='layout'><p>He and Jiang Qing became particularly close after 1966, during the Cultural Revolution, and they occasionally asked me to join them to watch Jiang Qing's favorite American movies. Jiang Qing was always solicitous and respectful of Kang, more solicitous than I ever saw her with anyone else. She asked his opinion on everything and took his answers to heart. She called him Kang Lao, one of the most respectful and affectionate forms of address available in the Chinese language. He was the only person to whom she ever accorded such an honor.</p><p></p></div>	
+<div class='layout'><p>I usually tried to avoid Kang Sheng, sensing in him some deeper evil that I could never fully explain. He had the look of deceit about him. Even his photographs, I think, convey an air of evil. I associated him with the dark side of the party, with all the dirty work that had to be done, delving into people's pasts, finding new enemies, suggesting new targets for attack. I did not want to be part of that, nor would Mao have wanted me to be. There was much that I never knew.</p><p></p></div>	
+<div class='layout'><p>Kang's political activities picked up after the Tenth Plenum. When Mao attacked Vice-Premier Xi Zhongxun, accusing him of supporting the rehabilitation of Gao Gang and of being anti-party, he put Kang Sheng in charge of investigating “the Xi Zhongxun anti-party plot.” Kang Sheng's investigations implicated more than three hundred cadres from the party, government, and military, including Central Committee member Jia Tuofu, Ma Wenrui, the minister of labor under the State Council, and Bai Jian, vice-minister of the State Council's first ministry of machine building.</p><p></p></div>	
+<div class='layout'><p>I knew Xi Zhongxun well, and the charges against him and his supporters were fabricated. But Kang Sheng's job was to depose and destroy his fellow party members, and his continuing “investigations” of ranking party leaders in the early 1960s laid the groundwork for the attacks of the Cultural Revolution to come. Many casualties followed immediately in the wake of the Tenth Plenum. Vice-Premier Xi Zhongxun was sent down to Henan and later put under house arrest. He remained in political disgrace until 1980. Many of the three hundred people falsely implicated suffered similar fates.</p><p></p></div>	
+<div class='layout'><p>Mao also began trying to reassert control over agriculture following the Tenth Plenum, halting the trend toward private farming and trying to prevent what he saw as a capitalist resurgence. The process was slow, and the question of what had gone wrong with the Great Leap Forward was forgotten. Not until May 1963, at a meeting of the politburo and secretaries of the regional bureaus in Hangzhou, was Mao victorious. It was then that his draft “Resolution on Certain Problems of Rural Work at the Present Time” was discussed and passed. The resolution asserted that both feudal and capitalist forces were attempting to stage a comeback in the Chinese countryside, leading to sharp class struggle in the rural areas. Mao's solution to the problems was to launch what he called a “socialist education campaign” in the Chinese countryside. Class enemies had to be properly identified and brought to task, and local cadres and peasants had to be educated in socialism and class struggle.</p><p></p></div>	
+<div class='layout'><p>From the protective bubble of Group One, I still knew little about what was going on in the Chinese countryside—except that the Great Leap had been a catastrophe and recovery from the famine was slow. I did not understand Mao's socialist education campaign. Sitting on the train after the May 1963 Hangzhou meetings, talking to Wang Dongxing and Lin Ke, just before he left Group One for good, I questioned the policy. Just when communes were successfully restructured and peasants seemed to be getting back into a more reasonable routine, Mao wanted to stir things up again, I pointed out. He was calling on teams of urban cadres to go down to the villages to check into the economic and financial conditions of the people's communes. The presumption was that many of the local cadres had become corrupt during the famine. The city teams would both get a firsthand understanding of the hardships in the villages and act as outside investigators into cadre corruption in financial accounting, food distribution, property divisions, and the system of how commune members were paid.</p><p></p></div>	
+<div class='layout'><p>Lillian was sent to join one of the first teams sent to the countryside, so the campaign had an immediate personal impact on me. With Lillian gone, I was left to take care of our two sons—John in junior high school and Erchong in kindergarten. But I had no way to care for two children. I was with Mao almost around the clock. And what if he decided to travel?</p><p></p></div>	
+<div class='layout'><p>And what sense did it make to send Lillian, the daughter of a landlord, to conduct “socialist education”? Not only was she not a member of the Communist party, her family was considered the class enemy. What use could she be investigating and educating fellow class enemies?</p><p></p></div>	
+<div class='layout'><p>But when I tried to intervene on her behalf, the director of the Institute of West Asian and African Studies at the Chinese Academy of Social Sciences, where she was a research fellow, told me that Lillian was being sent to the countryside precisely because of her “bad” class background. Witnessing how others like her were being reformed, she could be reformed herself. And everyone has a family, he told me. If people were exempted from the campaign just because they had no one to take care of their children, there would be no way to conduct the campaign. The central authority had ordered the campaign. Everyone had to cooperate, regardless of the difficulties.</p><p></p></div>	
+<div class='layout'><p>Lillian left for the countryside in late September 1963.</p><p></p></div>	
+<div class='layout'><p>I complained to Wang Dongxing. “Our leaders require us to work hard day and night,” I told him, knowing he considered himself my leader, “and then they show no concern for our own personal difficulties. This is no way to treat people.”</p><p></p></div>	
+<div class='layout'><p>Wang asked the Central Bureau of Health to intervene, explaining confidentially to Lillian's boss that I was Chairman Mao's doctor. She was allowed to return immediately.</p><p></p></div>	
+<div class='layout'><p>Liu Shaoqi was also having problems with Mao's socialist education campaign. Liu took it upon himself to revise Mao's original resolution on rural problems, proposing instead his own guidelines, “Regulations on Some Specific Policies in the Socialist Education Movement in Rural Areas (Draft).” When a Central Committee work conference met in September 1963 to discuss Liu's proposal, Mao was clearly upset, accusing Liu of trying to undermine his efforts to promote class struggle. I think, though, that what really bothered Mao was less the specific content of Liu's September proposal—what came to be called the Second Ten Points—than the fact that Liu had made the proposal at all. What angered Mao was that Liu Shaoqi had dared to revise Mao's document. Mao, after all, was always right. His original resolution, he was certain, laid out the country's rural problems in such clear and convincing terms that any revision could only muddy the waters.</p><p></p></div>	
+<div class='layout'><p>Above all, Mao resented Liu's assertion of his own authority. In revising Mao's resolution, Liu was once again asserting control over the center. Mao considered himself, and himself alone, the center. There could not be two centers.</p><p></p></div>	
+<div class='layout'><p>Mao grew angrier with Liu Shaoqi in 1964, when Liu sent his wife, Wang Guangmei, to head one of the work teams investigating the situation in Taoyuan (Peach Garden) production brigade in Hebei province. To send Wang Guangmei to the countryside was appropriate. Mao wanted cadres from Beijing to do this. What Mao resented was the fanfare that accompanied Wang Guangmei's departure and that upon her return she reported her experiences and observations to a huge gathering of cadres and thus became a model for all other work teams to follow. Mao did not like Liu giving power to his wife and was not pleased that both of them were upstaging him. Even then, difficult though it was to believe and much though I hoped it was not true, I sensed that Mao's real targets were people like Liu Shaoqi and Deng Xiaoping. For the time being he continued his usual practice of purging lesser figures while leaving the top leadership intact.</p><p></p></div>	
+<div class='layout'><p>Ironically, while he was criticizing Liu for allowing his wife to participate in politics, Jiang Qing had been given new political responsibilities.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

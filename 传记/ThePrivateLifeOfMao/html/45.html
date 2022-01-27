@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>45</p><p></p></div>	
+<div class='layout'><p>Depressed over the agricultural crisis and angry with the party elite, upon whom he was less able now to work his will, Mao was in temporary eclipse, spending most of his time in bed. The Spring Lotus Chamber in Zhongnanhai was renovated and refurbished, and while construction was under way, the twice-weekly dances continued in Huairen Hall. When the renovation was complete, a room just off the dance floor was furnished with a huge bed so Mao could rest. I was still attending Mao's dances and could see him taking young dance partners into the room to “rest” with him. (It was at about this time that the Beijing Room in the Great Hall of the People was renamed Room 118 and turned over to Mao for his private use. The suite was the most opulent I had ever seen, its furnishings and chandeliers surpassing those in the palaces of the Kremlin.)</p><p></p></div>	
+<div class='layout'><p>To be brought into the service of Mao was, for the young women who were chosen, an incomparable honor, beyond their most extravagant dreams. Many women refused his advances, but they were usually older and relatively well educated. Many of his nurses, for instance, believed that personal involvement with the Chairman would have violated their professional ethics. Those who agreed were elated by the opportunity. Everyone who worked for Mao was carefully screened, and the young women were no exception. Careful screening guaranteed that the young women would be filled with awe, admiration, and wonder for the Chairman. All were the offspring of impoverished peasants, from families who owed their lives to the Communist party, for whom Mao was their messiah and savior.</p><p></p></div>	
+<div class='layout'><p>Liu, for instance, had been a beggar as a child. When her father died and left them destitute, mother and daughter had taken to the streets to beg. Liu was only eight or nine when the Communist party came to power and she was chosen to train with the air force's Cultural Work Troupe. The Communist party saved her.</p><p></p></div>	
+<div class='layout'><p>Another young woman, a member of the Railway Corps' Cultural Work Troupe, was the orphaned daughter of “revolutionary martyrs.” Her parents, both party members, had died for the communist cause. The young woman never graduated from primary school, but the party rescued her, too, when she was only a child by training her as a dancer for the railroad's cultural troupe.</p><p></p></div>	
+<div class='layout'><p>To have been rescued by the party was already sufficient good luck for such young women. To be called to the Chairman was the greatest experience of their lives. For most Chinese, a mere glimpse of Mao standing impassively atop Tiananmen was a coveted opportunity, the most uplifting, exciting, exhilarating experience they would know. The privileged few who actually got to shake his hand would go for weeks without washing, as friends and acquaintances came from miles around to touch the hand that had touched the hand of Mao and thus to partake of a transcendent, almost mystical experience. During the Cultural Revolution, even the mangoes Mao presented to the workers became sacred objects, worshiped on altars, and a sip of the water in which a bit of one such mango had been boiled was drunk as a magic elixir. Imagine, then, what it meant for a young girl to be called into Mao's chambers to serve his pleasure!</p><p></p></div>	
+<div class='layout'><p>They never loved Mao in the conventional sense. They loved him rather as their great leader, their teacher and savior, and most knew the liaison would be temporary. They were all very young when they began serving Mao—in their late teens and early twenties—and usually unmarried. When Mao tired of them and the honor was over, they married young, uneducated men with peasant pasts.</p><p></p></div>	
+<div class='layout'><p>But for the duration of the relationship, Mao expected the same loyalty from these young women that he demanded from everyone else, and they needed his permission to marry, which he usually gave only after he had cast them aside. Some of them, not understanding the terms of the relationship, married without his permission during the long intervals between being called before him. Sometimes Mao renewed the relationship nonetheless. Mao never fully understood how the young women viewed him, not making the same distinctions between himself as their great leader and savior and himself as a man. “The Chairman is such an interesting person,” one young woman told me one day. “But he cannot tell the difference between one's love of him as the leader and love of him as a man. Isn't that funny?”</p><p></p></div>	
+<div class='layout'><p>The young women stood in the same awe of Mao's sexual prowess as they did of his political leadership. At sixty-seven, Mao was past his original projection for the age at which sexual activity stops but, curiously, only then did his complaints of impotence cease altogether. It was then that he became an adherent of Daoist sexual practices,<a name = "p1"></a><a href="#n1"><sup>1</sup></a> which gave him an excuse to pursue sex not only for pleasure but to extend his life. He was happiest and most satisfied with several young women simultaneously sharing his bed. He encouraged his sexual partners to introduce him to others for shared orgies, allegedly in the interest of his longevity and strength.</p><p></p></div>	
+<div class='layout'><p>Mao's claim that Daoist sexual practices were a means of keeping him healthy were nothing more than an excuse for his own sexual appetite, but I could not avoid knowing of them. His paramours, ever ready for a call from the imperial chambers, were so proud to serve the Chairman that some were uninhibited in talking about those experiences with me. They never did anything to hide their relationship. Young but uneducated, they turned to me as a doctor and senior member of Mao's staff. Mao often gave them the Daoist sex manual, Classic of the Plain Girl's Secret Way, and asked them to read it in preparation for their trysts. The text, written in classical Chinese, was difficult to read and there were many ideographs the young women did not understand. They would question me about the meaning, and over the years, I learned the Daoist text well. The young women appreciated what they learned and what the Chairman taught. “He is great at everything—simply intoxicating,” one of the young women confessed to me one day, referring to Mao's sexual prowess.</p><p></p></div>	
+<div class='layout'><p>Mao's sexual activity was not confined to women. The young males who served as his attendants were invariably handsome and strong, and one of their responsibilities was to administer a nightly massage as an additional aid to sleep. Mao insisted that his groin be massaged, too, a practice I became aware of only in 1960, when one of the guards refused to oblige him. “This is a job for a woman, not me,” he told me just before he left. Later, in 1964, I witnessed a similar incident on Mao's train. As his guard was preparing him for sleep, Mao grabbed the young man and began fondling him, trying to pull the man into bed with him. For a while I took such behavior as evidence of a homosexual strain, but later I concluded that it was simply an insatiable appetite for any form of sex. In traditional times young men, often effeminate and pretty, played the female roles in Chinese operas, and many were brought into the sexual service of wealthy merchants and officials. Both The Dream of the Red Chamber and The Golden Lotus, China's classic pornographic novel and another of Mao's favorites, contain stories of such liaisons. Catamites are part of Chinese tradition.</p><p></p></div>	
+<div class='layout'><p>Mao's bodyguards, though, were neither homosexual nor actors, and the presence of so many attractive young women often caused problems for them. In imperial times, the chastity of concubines had been guaranteed by a prohibition against any males, except for the emperor himself and his eunuchs, passing the night within the walls of the Forbidden City. But Mao's bodyguards were not eunuchs. They were young, healthy, handsome rural youth, often woefully naive before being fully initiated into Mao's inner circle. Confronted with frequent temptations, some of them succumbed.</p><p></p></div>	
+<div class='layout'><p>One young bodyguard who overstepped the bounds paid a heavy price. When one of Mao's girlfriends came into the duty office one night to count out the Chairman's sleeping pills, the young bodyguard began cooing praises of her soft, tender skin and even dared to fondle her on the behind.</p><p></p></div>	
+<div class='layout'><p>“Liumang” she screeched, using the catchall epithet that translates, politely, as “scoundrel.” She ran immediately to Mao, who summoned Wang Dongxing.</p><p></p></div>	
+<div class='layout'><p>“What do you think you're doing, trying to pull teeth from the tiger's mouth?” Wang, rushing to the scene, yelled when he saw the young guard.</p><p></p></div>	
+<div class='layout'><p>The guard waited in terror as Mao and Wang Dongxing conferred. “This is awful,” he kept lamenting, pacing the floor as his fate hung in the balance. Mao ordered Wang to confiscate the bodyguard's handgun and cart him off to jail. Wang demurred, taking the gun but rescuing the guard from prison, sending him instead to work for the public security bureau in a coastal town.</p><p></p></div>	
+<div class='layout'><p>Other young bodyguards got into trouble without having sought it.</p><p></p></div>	
+<div class='layout'><p>One morning at about four o'clock I was awakened by another of Mao's guards, a naive nineteen-year-old: Something terrible had happened, the young man was saying to me in desperation, shaking me awake.</p><p></p></div>	
+<div class='layout'><p>We were in Shanghai, in the elegant old Jinjiang Hotel in the heart of the former French quarter, where Mao always occupied one of the top floors. The entire hotel had been cleared for his use. Mao's usual group of young women was along, and his favorite of the moment was sharing his bed that night.</p><p></p></div>	
+<div class='layout'><p>The guard had gone to add some hot water to the Chairman's tea and unwittingly walked in on Mao and the young woman. He was new to the Chairman's personal entourage and had yet to be initiated into the details of Mao's personal life. He said he did not know that the young woman was there. He had not even seen her directly, spotting her instead through the gap in the silk screen that was always placed just beyond the entrance to Mao's room, affording him a measure of privacy even with an open door. “Just as I walked in, she fell out of bed onto the floor. She was completely naked! I was so scared I just ran away. What should I do?” He was convinced that the young woman had fallen out of bed in fright over seeing him.</p><p></p></div>	
+<div class='layout'><p>I sat up in bed, fully awake, and urged the guard to calm down. “Tell me, did the Chairman see you?”</p><p></p></div>	
+<div class='layout'><p>“I don't know,” he responded. “I ran out the second I saw her.”</p><p></p></div>	
+<div class='layout'><p>I was worried. Mao's paranoia was growing and his moods were unpredictable. I had no idea what he would do if he found out his guard had seen him.</p><p></p></div>	
+<div class='layout'><p>The guard began crying, panicked. “I'm new here,” he said. “Nobody told me when to go into the Chairman's room. I've just been feeling my way. I didn't know this kind of thing was going on.” He wanted me to testify on behalf of his innocence.</p><p></p></div>	
+<div class='layout'><p>I assured him that I would but cautioned him that he had to be more discreet in the future and make certain before entering that no women were in Mao's room. “The Chairman did not call for you, and you should not go in unless he does. Otherwise, he'll think you're spying,” I said.</p><p></p></div>	
+<div class='layout'><p>The guard wanted to resign from Group One immediately.</p><p></p></div>	
+<div class='layout'><p>But he had to go back to the Chairman. He was on duty, and regulations required the bodyguards to stay by Mao's side.</p><p></p></div>	
+<div class='layout'><p>Mao and the young woman were yelling at each other when the guard returned. He hovered at the door, incredulous, convinced the argument was about him. But Mao saw him there and invited him in. The woman was wailing, and Mao wanted the guard to witness the scene. He soon found out what had happened.</p><p></p></div>	
+<div class='layout'><p>The guard had entered Mao's bedchamber just at the onset of an argument between the Chairman and the woman. She had met a young man she wanted to marry, but Mao would not agree. The more she insisted, the more adamant Mao became. The woman finally became so angry that she accused Mao of being a corrupt bourgeois womanizer, using her for his own sexual pleasures. Mao was so furious that he pushed her out of the bed. It was at this moment that the guard entered the room. The two had been so immersed in their argument they had not even known he was there.</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing was brought in, and Mao insisted that a staff meeting be called immediately to criticize the young woman. Wang Dongxing was instructed to organize the session.</p><p></p></div>	
+<div class='layout'><p>The young woman's special relationship with Mao made her fearless. She said that if a meeting was called, she would tell the truth about her relationship with the Chairman and accuse him of being a bourgeois womanizer. Wang was in a quandary. He had to call a meeting. Mao had ordered it. But if the young woman was not placated, she would tell her side of the story. Wang's efforts to protect the Chairman from himself would be shattered. Wang called on me for help.</p><p></p></div>	
+<div class='layout'><p>I talked to the woman, trying to find a way for both Mao and her to save face and persuade her to keep her peace and protect the Chairman's reputation. No good would be served if she made her accusations public. She was still tearful and angry, but after much discussion she agreed to make a self-criticism before the staff, saying she was wrong to be rude to Chairman Mao.</p><p></p></div>	
+<div class='layout'><p>Mao accepted her self-criticism. His face had been saved. But little good came to the young woman. Mao still refused to allow her to marry. Only in 1966, after the Cultural Revolution began, did she finally get married. The relationship was never so ardent after that, and Mao turned his attention to another young woman, a member of the Railway Corps, whom he had met at one of the Zhongnanhai dancing parties.</p><p></p></div>	
+<div class='layout'><p>The new object of Mao's affection would spend the whole night in his bedroom and would often move in with Mao when Jiang Qing was out of town, sleeping with him when he slept and waiting on him when he was awake—serving him meals and tea, sponging him down with hot washcloths. Mao began taking her with him on trips, and the two stayed together, their relationship obvious to the local security forces and hotel attendants who ought not to have known. The young woman was delighted. “What kind of life is it anyway, half in the dark and half in the open?” she asked me.</p><p></p></div>	
+<div class='layout'><p>She became proud to the point of arrogance of the honor Mao conferred upon her, convinced that to be chosen as Mao's woman made her better and more privileged than anyone else. She lost all sense of Mao's need for privacy, doing everything she could to flaunt her special relationship.</p><p></p></div>	
+<div class='layout'><p>But Wang Dongxing's job was to protect Mao from his own indiscretions. He had to prevent Mao's private life from becoming public. His staff and the confidential secretaries were expected to be discreet. But no one outside Group One could be expected to stay silent. Wang did not want to risk the Chairman's reputation. He wanted the woman to stay in a separate room when they traveled.</p><p></p></div>	
+<div class='layout'><p>But he could not say so to Mao for fear of irritating the Chairman. He used an unsophisticated nineteen-year-old bodyguard as his sacrificial lamb, instructing him to make the suggestion to Mao. The guard did and Mao, remarkably, agreed, sending his female companion pouting off to a nearby chamber. But Mao was so perturbed with the young guard that he had him fired and transferred out of Zhongnanhai.</p><p></p></div>	
+<div class='layout'><p>The young woman introduced Mao to other women. Her relationship with the Chairman became a family affair, for she arranged for him to indulge himself with some of her female relatives. He was disappointed with one, a member of an opera troupe who was no longer so young or pretty, but his dalliance with the woman's sister was more successful.</p><p></p></div>	
+<div class='layout'><p>In December 1961 Mao invited me to join him, the young woman, her sister, and her sister's husband, a military officer, for a banquet in the villa where we were staying in Wuxi. As we ate the delectable meal, there was not a hint of what would follow. The scene was idyllic, the air fragrant with the scent of plum trees. It had just snowed, and was still misty. The place was famous for its delicious fish, and the whole area is renowned for its teas and silks. Broad-leaved mulberry trees that feed the silkworms grow in abundance there, too.</p><p></p></div>	
+<div class='layout'><p>It did not matter to Mao that the woman's sister was married. Nor did the cuckolded husband feel disgraced. Indeed, he considered it an honor to offer his wife to the Chairman—and a stepping-stone to military promotions. At the end of the dinner, Mao sent the husband home and spent the next three days with the woman and her sister, interrupting his activities only long enough to meet with Shanghai mayor Ke Qingshi and Anhui's Zeng Xisheng.</p><p></p></div>	
+<div class='layout'><p>Even Wang Dongxing was outraged at the affair. “If [the girls'] mother were still alive, the Chairman would have her, too,” Wang snapped. His greatest opprobrium was reserved not for Mao but for the military officer and cuckolded husband. “He sold his own wife,” Wang said.</p><p></p></div>	
+<div class='layout'><p>Wang saw Mao's sexual adventures as a fight against death. The Chairman is getting on in age, he said to me one day. He wondered whether a fear of death was leading Mao to grab as many young women as he could.</p><p></p></div>	
+<div class='layout'><p>Most of Mao's women had been innocent young girls when they first came to him. Over the years, I saw the same phenomenon repeated. After being brought to Mao's bed, they would become corrupted. Mao's sexual demands and his own character were one source of the corruption. His power was another. Rather than being humbled by Mao, the women became arrogant. Uneducated, unskilled, with no great futures, their association with Mao was their sole distinction. And what a claim it was! They became demanding, supercilious, using their association with Mao to assert their superiority over others. In time, when the Cultural Revolution began, some of the young women Mao had cast aside even used their special relationship with the Chairman to grab power for themselves.</p><p></p></div>	
+<div class='layout'><p>Watching so many innocent young women become corrupted through association with Mao, I began to sense that Jiang Qing's life had followed a similar path. Maybe she really had been kind in Yanan when she first married Mao. Maybe he had corrupted her as well.</p><p></p></div>	
+<div class='layout'><p>With so much sexual activity, venereal disease was practically inevitable. One young woman contracted trichomonas vaginalis, thus starting a chain. The young dancers in her cultural troupe often shared each others' clothes, and I suspect that the woman contracted the disease from wearing another dancer's underwear. Trichomonas vaginalis is not, strictly speaking, a venereal disease, but an infected woman transmits the disease through intercourse to her male partners. They in turn can pass the disease on to other females. The disease usually produces considerable distress to the woman but is ordinarily asymptomatic in the male, who thus becomes a carrier without knowing it. Once one of Mao's partners became infected, he quickly contracted the disease as well, and soon it had spread. He sent the infected women to me for treatment.</p><p></p></div>	
+<div class='layout'><p>The young women were proud to be infected. The illness, transmitted by Mao, was a badge of honor, testimony to their close relations with the Chairman. They were proud, too, to receive treatment from me. As the Chairman's doctor, I had access to the best and most modern medicines, imported from the West, and they considered it a privilege to be treated with the Flagyl I prescribed.</p><p></p></div>	
+<div class='layout'><p>But treating Mao's women did not solve the problem. Because Mao was the carrier, the epidemic could be stopped only if he received treatment himself. I wanted him to halt his sexual activities until the drugs had done their work.</p><p></p></div>	
+<div class='layout'><p>The Chairman scoffed at my suggestion, saying that doctors always exaggerate things. I explained that he was a carrier of disease, passing it on to others even though he himself was experiencing no ill effects. “If it's not hurting me,” he said, “then it doesn't matter. Why are you getting so excited about it?”</p><p></p></div>	
+<div class='layout'><p>I insisted, wondering what would happen if Jiang Qing were to become infected.</p><p></p></div>	
+<div class='layout'><p>Mao found my question amusing. “That'll never happen,” he said. Mao's sexual relations with his wife had long since ceased. “I told her a long time ago that I'm too old—can't do it anymore,” he said with a wave of the hand and a smile on his face.</p><p></p></div>	
+<div class='layout'><p>I suggested that he should at least allow himself to be washed and cleaned. Mao still received only nightly rubdowns with hot towels. He never actually bathed. His genitals were never cleaned. But Mao refused to bathe. “I wash myself inside the bodies of my women,” he retorted.</p><p></p></div>	
+<div class='layout'><p>I was nauseated. Mao's sexual indulgences, his Daoist delusions, his sullying of so many naive and innocent young women, were almost more than I could bear.</p><p></p></div>	
+<div class='layout'><p>But I had to find a way to prevent the disease from spreading further. At a minimum, I could make certain that the bedding and towels in the guesthouses where Mao stayed were sterilized. But the staff at the guesthouses considered it an insult to the Chairman to sterilize his bedding, and I could not explain the problem to them without revealing Mao's secret.</p><p></p></div>	
+<div class='layout'><p>I spoke privately to the staff in Group One, who were already aware of the problem, and urged them to use their own towels. And I instructed them how to sterilize Mao's bedding and towels without the Chairman's knowledge.</p><p></p></div>	
+<div class='layout'><p>But Mao remained a carrier the rest of his life.</p><p></p></div>	
+<div class='layout'><p><a name = "n1"></a><a href="#p1"><sup>1</sup></a> The Daoist prescription for longevity requires men to supplement their declining yang—the male essence that is the source of strength, power, and longevity—with yin shui—the water of yin, or vaginal secretions—of young women. Because yang is considered essential to health and power, it cannot be dissipated. Thus, when engaged in coitus, the male rarely ejaculates, drawing strength instead from the secretions of his female partners. The more yin shui is absorbed, the more male essence is strengthened. Frequent coition is therefore necessary. For an authoritative account of Daoist sexual practices, including translations of many of the texts, see Douglas Wile, Art of the Bedchamber: The Chinese Sexual Yoga Classics Including Women's Solo Meditation Texts (Albany: State University of New York Press, 1992).</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

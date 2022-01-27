@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>39</p><p></p></div>	
+<div class='layout'><p>On July 10, eight days into the Lushan meetings, Mao convened a meeting of the regional leaders. Again he spoke. He emphasized that only through unity and shared ideology could the party resolve its problems. The general line, he argued, referring to the policy of the Great Leap Forward and catching up with Great Britain in fifteen years, was completely correct. The achievements of the past year were great. There had been failures, to be sure, but those failures were relatively minor. “Doesn't each person have ten fingers?” he asked. “We can count nine of those fingers as achievements, only one as a failure.”</p><p></p></div>	
+<div class='layout'><p>He warned against the idealism of those who thought China was on the verge of entering communism. At the present stage of development, he said, the people's communes must be considered merely rural cooperatives—advanced cooperatives, to be sure, but not communist organizations. If people look at communes this way then there should be no serious problems at all. People—cadres and ordinary folk alike—have had unrealistically high expectations of the people's communes. Now expectations had to be lowered. In waging revolution, we have to pay a certain “tuition” for the experience. The nation had lost some 2 billion renminbi in the endeavor to build steel furnaces, but people everywhere in the country had learned a new skill—how to make steel. The money lost is really just tuition for learning a new skill.</p><p></p></div>	
+<div class='layout'><p>Mao did not wait to hear the comments after his speech, and I left with him as soon as it was over. But Tian Jiaying told me later that everyone fell silent after the Chairman left. His speech had served as a warning to criticize no more.</p><p></p></div>	
+<div class='layout'><p>Peng Dehuai, though, continued the debate. He did so discreetly, in a private, handwritten letter that he delivered to Mao on July 14. It was a long letter, and while I did not know at first what it said, I knew that Mao was unhappy. He did not sleep the night after receiving it.</p><p></p></div>	
+<div class='layout'><p>In the first part of his letter, which I read later, Peng praised the accomplishments of the Great Leap Forward in 1958, citing the great increases in agricultural and industrial production. He discussed the people's communes, pointing out that their shortcomings had been largely corrected through revised organizational guidelines proposed at a series of meetings in November 1958. The backyard steel furnaces also had produced both losses and gains. The furnaces had prompted a nationwide geological survey in search of natural resources to run the furnaces. Many people had learned new technical skills in running the furnaces, and cadres had improved their organizational skills. These were gains. In the process, however, considerable amounts of both natural resources and manpower were wasted. These were losses. He thought the losses were greater than the gains.</p><p></p></div>	
+<div class='layout'><p>In the second part of his letter, Peng Dehuai emphasized the need to learn from the Great Leap Forward. He argued that the Leap had fostered leftist tendencies—that production claims had been greatly inflated and that many people had been infected with a petit bourgeois fanaticism. He concluded with a plea that the party differentiate clearly between right and wrong and that it elevate ideological thinking to a high level. He did not want to blame specific individuals. To do so would not be good for the unity of the party or for the work still ahead. It was a mild and honest letter, thoughtful and well balanced. Peng Dehuai was not a politician. He was a simple and honest man, a soldier incapable of political intrigue. But he was exceptionally courageous. He was telling the truth when many others were lying, and unlike most other party leaders, he had no fear of Mao.</p><p></p></div>	
+<div class='layout'><p>On July 16, clad only in a white robe and slippers without socks, Mao called the politburo standing committee to a meeting at his villa. Liu Shaoqi, Zhou Enlai, Zhu De, and Chen Yun were the only members then at Lushan. Deng Xiaoping was in Beijing Hospital. On May 2, he had slipped and broken his leg while playing billiards at the high-level cadres' club north of Zhongnanhai. I had sent him to Beijing Hospital for surgery, following which his leg was put in a cast. He stayed there for weeks, receiving round-the-clock treatment from a young nurse originally sent from Shanghai to Beijing to serve Mao. (The director of the Central Bureau of Health, Shi Shuhan, told me that the young woman became pregnant during this time and was transferred back to Shanghai and forced to have an abortion.)</p><p></p></div>	
+<div class='layout'><p>Lin Biao was not there, either. He continued to suffer from neurasthenia and was often ill. I learned later that he had phobias about water, wind, and cold, and the clouds of Lushan, the daily rain, and winds would have been torture for him.</p><p></p></div>	
+<div class='layout'><p>Mao's staff listened as the standing committee talked.</p><p></p></div>	
+<div class='layout'><p>Mao told the party leaders that rightists outside the party had already criticized the Great Leap Forward and that now some people within the Communist party were criticizing it, too, saying that the Great Leap Forward had done more harm than good. Peng Dehuai was one such person, as evidenced in his letter to Mao.</p><p></p></div>	
+<div class='layout'><p>Mao said he was going to have Peng's letter distributed to the participants in the Lushan meetings so they could evaluate its contents themselves. He said, ominously, that if the party were to split in two, he would organize a new one—among the peasants. If the army were to split apart, he would organize another army.</p><p></p></div>	
+<div class='layout'><p>The standing committee then began discussing the contents of Peng's letter. Mao had already impressed upon them how serious the issue was. His colleagues' remarks were guarded.</p><p></p></div>	
+<div class='layout'><p>Following the standing committee meeting, Peng's letter was distributed to the small group meetings for discussion. Few people dared to agree with Peng. But some did. On July 19, Huang Kecheng, chief of the general staff and a close friend of Peng's, expressed his support for the letter, and so did Zhou Xiaozhou, the first party secretary of Hunan province, who was already so upset with the way the economic crisis was being handled. Both men praised the intent of Peng's letter while arguing that some of its phrasing was a bit too harsh. Li Rui, who had recently begun serving as one of Mao's political secretaries, also agreed with Peng, saying that his letter had put the problems of the Great Leap into sharp focus and had shattered the stifling atmosphere that prevented honest criticisms even among the party elite.</p><p></p></div>	
+<div class='layout'><p>On July 21, in another small group meeting, vice–foreign minister Zhang Wentian, who had been educated in the Soviet Union, made a stunning, lengthy attack on Mao's leadership and the Great Leap. In the early 1930s, after his return from the Soviet Union, Zhang had been a member of the Wang Ming faction, opposed to Mao's leadership. But later he had supported Mao and was known as a man who could be counted upon to follow the Chairman. He had served as ambassador to the Soviet Union for a period but had no position of great responsibility after 1949.</p><p></p></div>	
+<div class='layout'><p>Zhang Wentian pointed out that when the free-supply system and public dining halls were introduced in the people's communes, some people thought that communism had arrived. Zhang disagreed. He argued in favor of using the mass line to seek truth from facts. But this, he said, is more easily said than done, as Chairman Mao himself often pointed out. Zhang was arguing, obliquely, that Mao's words and deeds had been inconsistent—that he had said the party ought to listen to the masses, had argued that the party ought to seek truth from facts, but then had ignored his own dicta in practice. Chairman Mao often tells us we should be courageous enough to propose ideas that differ from his, Zhang Wentian pointed out, that we should pull the emperor off his horse even if that means losing our heads. These words are correct. But who is not frightened by the prospect of losing his head?</p><p></p></div>	
+<div class='layout'><p>Zhang ended by arguing in favor of the spirit of democracy and free speech. “We need to create a lively, fresh atmosphere in which people can freely speak their minds,” he said. “Only then can we develop a fighting spirit. Our leadership must adopt a work style and create an environment in which the rank and file can freely present their ideas. Peng Dehuai's letter is intended to evaluate and to summarize our experiences. Its intentions are good.”</p><p></p></div>	
+<div class='layout'><p>Other participants in Zhang Wentian's small group, especially people like Shanghai mayor Ke Qingshi, Anhui first party secretary Zeng Xisheng, and Shandong first party secretary Shu Tong, took exception, frequently interrupting Zhang's talk, refuting his arguments, rebuking him for speaking so directly against Mao. Zhang Wentian responded by saying that he would rather die telling the truth than live in misery.</p><p></p></div>	
+<div class='layout'><p>On July 23, Mao called another plenary session of the enlarged politburo. Again he spoke. Now people both inside and outside the party have joined in attacking us, he said. Some people outside the party are rightists. Now some people inside our party are rightists. Let me offer a word of advice to those comrades inside our party, he said. When you speak, you must know in which direction you are going. You should not waver in a moment of crisis. Some of our comrades lose their composure in the midst of great storms. They don't stand firm. They swing like farmers doing the rice-planting dance. They display the same kind of unreliability and pessimism as the bourgeoisie. They are not rightists, but they are moving closer and closer to the rightists—maybe just thirty kilometers away. Dangerously close.</p><p></p></div>	
+<div class='layout'><p>Mao refuted the Peng letter point by point, focusing especially on Peng's references to petit bourgeois fanaticism and accusing him for saying that we had gained less than we lost.</p><p></p></div>	
+<div class='layout'><p>The meeting became tense.</p><p></p></div>	
+<div class='layout'><p>While Mao spoke, Peng Dehuai was sitting quietly in the last row of the auditorium. He was already angry. Even before Mao spoke, Peng had confronted the Chairman privately, demanding to know why Mao had taken a private letter addressed to him and distributed it to the conference participants without his permission. Mao had responded disingenuously that Peng had not instructed him not to distribute the letter. Peng was so angry he could not continue the conversation.</p><p></p></div>	
+<div class='layout'><p>After Mao finished his speech, Peng quickly slipped out the door. I left with Mao, and we bumped into Peng Dehuai outside. “Minister Peng, let's have another talk,” Mao said as soon as he saw the military leader.</p><p></p></div>	
+<div class='layout'><p>But Peng Dehuai was livid. “There's nothing more to talk about. No more talk,” he said, his face turning red as he raised his right arm over his head and brought it down hard against thin air.</p><p></p></div>	
+<div class='layout'><p>“We have our differences, but we can still exchange opinions,” Mao responded.</p><p></p></div>	
+<div class='layout'><p>“Talk is useless,” Peng said, and walked away.</p><p></p></div>	
+<div class='layout'><p>The chorus of criticisms of Peng Dehuai began, echoing Mao's charge that Peng and his sympathizers were rightists. Then Mao decided to call the Central Committee of the Eighth Party Congress into its eighth plenary session. The Central Committee was the highest organ of power in China. Any formal action against Peng Dehuai would require its approval.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing arrived in Lushan the next day. She had called Mao to say she wanted to be there. Mao had changed his mind. He wanted her there, too.</p><p></p></div>	
+<div class='layout'><p>Ye Zilong, Wang Dongxing, and I met her at the Jiujiang airport on the morning of July 24, where she greeted me curtly. “How is Chairman's health?” she asked coldly. I explained that Mao had lost his appetite and complained about his food for a few days but that the problem had been solved when Wang Dongxing brought in an excellent chef from Nanchang. The Chairman's appetite had returned, and he was enjoying especially the turtle soup that was one of the chef's specialties.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing had come to Lushan with a political mission, and her demeanor had suddenly changed. Her illnesses and lethargy had disappeared. She was ordinarily exhausted at the end of a trip and would take a long nap when she arrived. But the tension at Lushan had fired her energy. Mao was still asleep when she arrived, so she went immediately to see Lin Biao, who had also just arrived. He was staying at the bottom of the mountain, away from the damp and the cold. They talked for two hours. Then she went up the mountain to pay separate and lengthy calls on Zhou Enlai and his wife, Deng Yingchao, on Vice-Premier Li Fuchun and his wife, Cai Chang, and on Shanghai mayor Ke Qingshi. Jiang Qing had never been active in politics before. When she married Mao in Yanan, the politburo had set one firm condition. Mao's wife was to stay out of politics. Jiang Qing did nothing without Mao's permission. That she should come to Lushan to meet with the other high-ranking leaders meant that Mao had a very big problem. She was there to defend her husband. It was evening by the time she finished her rounds. By then Mao was awake.</p><p></p></div>	
+<div class='layout'><p>I went to see her the next morning. “I rushed here because I was worried about the Chairman,” she said. “But he seems to be in high spirits and good health. You must take good care of him. Last night, Li Yinqiao told me that the Chairman had not been eating well. You must bear in mind that you are the person responsible for the Chairman's diet. Make sure the kitchen staff continue to improve their work.”</p><p></p></div>	
+<div class='layout'><p>I knew that Li Yinqiao had been criticizing me to Jiang Qing again. I was a doctor, not a dietician, and continued to resent being called upon to find new chefs and deal with his changes in appetite. My insistence on retaining my integrity as a physician was one of the reasons Li Yinqiao had criticized me during Group One's mini-conference. I could respond to Jiang Qing only by reminding her that the problem with Mao's food had been solved. She nodded, then added a word of caution. “Doctor, you are an intelligent and knowledgeable person. You're different from people like Li Yinqiao. You have to be sensitive about political matters. Don't let other people fool you. While you are here, try not to make contact with others.” Jiang Qing's warning was a gesture of goodwill, an effort to protect me from the effects of the political fallout that would surely result from the controversy at Lushan. She wanted me to avoid contact with people known to disagree with Mao—people like my friend Tian Jiaying.</p><p></p></div>	
+<div class='layout'><p>When the Eighth Plenum of the Eighth Central Committee opened on August 2, Mao was again on the attack. “We took it easy when we first arrived in Lushan,” he said. “We held a sort of ‘fairy meeting,' chatting with each other without an agenda. There was no tension. Later, I became aware that some people felt they had not had a chance to speak their minds freely. The kind of loose talk we had had was not to their liking. They could not grasp the essence of our discussions. They want a tense situation. They want to attack the general line, to destroy the general line. Now, the signs of a division have gradually appeared. In the last nine months, we have opposed leftist tendencies. Today, the problem is different. At the Lushan conference we are not opposing leftist tendencies but rightist ones. Right opportunists are launching a furious attack on the party, on the leadership of the party, the work of the people, and the great and dynamic socialist reconstruction.”</p><p></p></div>	
+<div class='layout'><p>Mao's opening speech to the Central Committee set the tone for the meetings that followed. By calling upon the participants to criticize the divisive activities of the “anti-party group,” Mao had turned Peng into an enemy, and no amount of talk or exchange of opinions could save him. For the next week, from August 3 to 10, the Central Committee broke up into small working groups, charged with criticizing both Peng's letter and those who supported him. The meaning of the incident was being transformed, blown out of proportion. There was in fact nothing anti-party or anti-Mao about Peng's letter. But under Mao's direction, the letter was coming to be seen as part of a conspiracy. Peng and the men who had shared his views were being called upon to explain to the Central Committee how they had “plotted together both before and during the meeting.” I began to understand better some of Mao's exaggerations and distortions in his conversations with me. “History” as Mao told it often diverged from the truth.</p><p></p></div>	
+<div class='layout'><p>Suddenly, the conversation I had participated in on board ship to Lushan, when Tian Jiaying had reported so many deaths from starvation in Sichuan and Wang Jingxian had spoken so freely about Mao's sex life, took on an ominous importance. Three of Mao's political secretaries—Tian Jiaying, Chen Boda, and Hu Qiaomu—had been sent to the provinces to investigate the results of the Great Leap Forward. All had witnessed economic disaster and widespread death by starvation—Tian in Sichuan, Chen in Fujian, and Hu in Anhui. All had reported honestly. Now the first party secretaries of those three provinces—Li Jingquan, Ye Fei, and Zeng Xisheng—came forward to defend themselves against the secretaries' reports and to attack the men who had made them.</p><p></p></div>	
+<div class='layout'><p>Shanghai mayor Ke Qingshi, Hubei's Wang Renzhong, Guangdong's Tao Zhu, and security chief Luo Ruiqing all came forward too, viciously attacking Peng and his supporters, and singling out my friend Tian Jiaying in particular. “What does a young man like you know about Marxism?” Luo Ruiqing demanded of Tian Jiaying, shaking a finger in his face. “You are speaking nonsense. What right do you have to speak before the plenary session of the Central Committee?” The trip Luo had taken with Mao in 1958 had only strengthened his loyalty to the Chairman.</p><p></p></div>	
+<div class='layout'><p>Li Rui, the newest of Mao's political secretaries, was also attacked. When he tried to defend his position, Zhou Enlai stopped him. “This is a plenary session of the party Central Committee,” he said. “You are neither a member nor an alternate. You have no right to speak.”</p><p></p></div>	
+<div class='layout'><p>As the meetings progressed and the criticisms continued, Chen Boda, Hu Qiaomu, and Tian Jiaying were all in danger of being condemned as members of this new “anti-party group.”</p><p></p></div>	
+<div class='layout'><p>The final determination was Mao's. He spoke at another session on August 11. “Peng Dehuai and his supporters do not have the ideological preparation necessary for the proletarian socialist revolution,” he said. “They are bourgeois democrats who made their way into our party by pretending to be followers of Marxism. Chen Boda, Hu Qiaomu, and Tian Jiaying are our party's scholars. We still need them. As for Li Rui, he is not in the same category. He is not a party scholar.” With these words, Tian Jiaying, Chen Boda, and Hu Qiaomu were saved. Li Rui was condemned to the anti-party group.</p><p></p></div>	
+<div class='layout'><p>Mao's staff also came under criticism. Luo Ruiqing called us together on August 12 to give us a good tongue-lashing. “You are blind to your own good fortune,” he said. “The party has shown great confidence in you by letting you work for the Chairman. But you have no self-esteem. I have heard some of you do not get along with each other and do not cooperate with each other as you should. Instead, you try to push your own responsibilities off on others. And you, Wang Jingxian, have spoken carelessly, letting the anti-party elements make use of your bad-mouthing. We will look into this matter when we return to Beijing.” Luo laid down one rule: We were not to tell anyone, no matter who, anything about what happened in Group One or about Mao. We were not even to chat among ourselves about the Chairman or the situation in Group One. I sensed that the issue was not yet settled, that there were dismissals and purges to come.</p><p></p></div>	
+<div class='layout'><p>In a party document that circulated at the final meeting on August 16, Mao wrote that a great struggle had occurred at the Lushan conference. “It is a class struggle,” Mao said, “a continuation of the life-and-death struggle between the two great classes—the bourgeoisie and the proletariat—and has been going on for the last ten years of socialist revolution.” With these words, Peng Dehuai and his supporters were condemned to the ranks of the bourgeoisie.</p><p></p></div>	
+<div class='layout'><p>The Lushan conference approved the document condemning Peng as an anti-party element and defending the general line of the Great Leap Forward. The party would launch yet another nationwide campaign against rightists, this time against party members and cadres who shared Peng Dehuai's critical views of the Great Leap Forward and were deemed, by virtue of their realism, to be suffering from a new malady the party dubbed “right opportunism.”</p><p></p></div>	
+<div class='layout'><p>The latest party decision left me befuddled and anxious. To place the problem with Peng Dehuai in the category of “class struggle,” to see him as an “anti-party element” and a “right opportunist,” was to put him in a category almost as bad as the Guomindang. I knew Peng was not an enemy of the party. I knew him to be a good and honest man.</p><p></p></div>	
+<div class='layout'><p>I was not in any political danger myself, though my good friend Tian Jiaying was being put through the political wringer and even though, on the boat ride down the Yangtze, I had been privy to conversations critical of Mao. I had Mao's trust, and I had never said a word against him. I was both too cautious for that and too naive.</p><p></p></div>	
+<div class='layout'><p>But what happened at Lushan had been excruciatingly painful to watch, and my tension was compounded by the backbiting within Group One. The tension began to take a personal toll. My ulcer, previously only a mild annoyance, flared up with a vengeance. I was in constant pain, unable to eat, and had to force myself to swallow liquids. I was bleeding internally, and my stools turned black. The medicine I had prescribed for myself was doing no good. I was weak and losing weight rapidly. Dr. Wang Shousong, in charge of the Lushan clinic, urged me to leave the conference to get treatment in nearby Nanchang. But if I suddenly left in the midst of the political conflict, people might suspect that I had political problems, too, and was using illness as an excuse to escape them. Mao was keeping a close eye on his staff, attempting to gauge our loyalty, calculating where we stood on the continuing political debate. He wanted our full support. If I told him my problem, he might not believe me, and if I left to get treatment, he might doubt my loyalty and suspect me of supporting Peng Dehuai. So I stayed, never mentioning my problem to Mao, trying to nurse myself with a liquid diet and medication.</p><p></p></div>	
+<div class='layout'><p>But the bleeding persisted. By the time the Central Committee meetings had concluded, I was thin and weak. When Hu Qiaomu came to see me with a cold, he saw immediately that I was thin and ill. He urged me to get treatment immediately, arguing from his own experience with a recurring ulcer that further delay could only prolong my recovery. He promised to speak with the Chairman himself and get permission for me to leave.</p><p></p></div>	
+<div class='layout'><p>Hu went directly to Mao. The Chairman agreed that I should return immediately to Beijing and get the best possible treatment. Huang Shuze, the deputy head of the Central Bureau of Health, was instructed to arrange for my hospitalization, and Ye Zilong would get me on one of the planes that were ferrying documents and personnel between Jiujiang and Beijing.</p><p></p></div>	
+<div class='layout'><p>I went to say goodbye to Jiang Qing. The beauty of Lushan had presented her with many opportunities to practice her photography, and she was looking at some of her pictures when I went in. She, too, was shocked by my appearance. Both she and the Chairman had been terribly busy in the past several weeks, she said, and they had not known how sick I was. Still, she was hesitant about letting me return to Beijing. She wanted me to stay a bit longer and accompany her and Mao when they left. It was a gesture of goodwill on her part, a way of saying that I still enjoyed Mao's trust and that they would both protect me. But I was too sick to accept.</p><p></p></div>	
+<div class='layout'><p>“It wouldn't be convenient to have a sick man like me along,” I explained. “I'd better go back to Beijing.”</p><p></p></div>	
+<div class='layout'><p>Jiang Qing agreed. I told her Huang Shuze could take over my responsibilities in my absence.</p><p></p></div>	
+<div class='layout'><p>I asked Jiang Qing to wish Mao goodbye for me, but she urged me to see him in person.</p><p></p></div>	
+<div class='layout'><p>He was lying in bed, reading a Ming dynasty history. Perhaps he was rereading the story of Hai Rui, who had had the courage to tell the emperor the truth.</p><p></p></div>	
+<div class='layout'><p>I explained that Huang Shuze would be substituting for me. Mao urged me go to Beijing Hospital. It was no ordinary hospital. It was the most exclusive country club in China. Its patients were all government and party officials of the rank of vice-minister and above or leading “democratic personages” like Guo Moruo. Established by Germans around the turn of the century, its medical facilities and staff were the finest in all of China.</p><p></p></div>	
+<div class='layout'><p>Mao hoped that I would soon be well and warned me not to tell anyone in Beijing about what had happened at the Lushan conference. “Observe the decisions of the party,” he said.</p><p></p></div>	
+<div class='layout'><p>Huang Shuze was reluctant to serve as my substitute, but he had little choice. I gave him Mao's medical records and briefed him on the Chairman's health. He was efficient and gracious in making the arrangements for my return to Beijing, phoning Shi Shuhan, the director of the Central Bureau of Health, and Ji Suhua, who had become the president of Beijing Hospital, arranging for them to meet me at the airport the following day.</p><p></p></div>	
+<div class='layout'><p>I said goodbye to Luo Ruiqing and Yang Shangkun. Luo, like Mao, urged me to take care of myself and get the best treatment, and he cautioned me about the political situation. “Keep everything you have learned here secret,” he warned. “You must be sensitive about political matters.”</p><p></p></div>	
+<div class='layout'><p>Yang Shangkun attributed my illness to the tensions of our mini-Lushan conference. “Group One is like a big barrel of dye,” he said. “Nobody can stay in it without being painted some sort of color. You have heard a lot in Lushan. When you are in Beijing, maybe you can visit Comrade Deng Xiaoping. He has checked out of the hospital now.”</p><p></p></div>	
+<div class='layout'><p>While Mao and Luo Ruiqing had impressed upon me the secrecy of everything that had happened at Lushan, Yang Shangkun wanted me to report to his superior. But I knew that the only way to stay out of trouble was to remain silent. Beijing Hospital would be my shield against the political storm. China's leaders often use Beijing Hospital to nurse their political wounds, too, withdrawing from worldly involvement to ride out the latest storm. I vowed to stay there as long as I could and to use the opportunity to find a way out of Group One. I wanted to find another job.</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing and head of the Jiangxi people's congress Fang Zhichun saw me off at the airport, laden with gifts—a big basket of fruit, tins of Lushan tea, and ten bottles of Jiangxi wine. I could not drink wine with an ulcer, but Wang insisted I take it to share with my friends.</p><p></p></div>	
+<div class='layout'><p>Even as the car made its way down the winding mountain road, my tension began to ease. I was leaving behind a party rent by internal divisions. My dreams for China and the party had been destroyed. My image of Mao had been shattered. My only hope was to save myself. The further we traveled from Lushan, the less the pain in my stomach. I was relieved to be leaving. I had found it impossible to sleep in Lushan, but as soon as the airplane took off, I fell fast asleep. I was still asleep when we landed in Beijing. I had been the only passenger on board.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

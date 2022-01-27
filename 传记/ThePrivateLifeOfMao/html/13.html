@@ -1,0 +1,419 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>13</p><p></p></div>	
+<div class='layout'><p>Jiang Qing was in Guangzhou, too, and we were in frequent contact.</p><p></p></div>	
+<div class='layout'><p>“You'd better brief Jiang Qing on the Chairman's health,” Mao's bodyguard Li Yinqiao had said to me only two days after we had arrived.</p><p></p></div>	
+<div class='layout'><p>“Why?” I wanted to know. “Didn't we all see her the first day we got here?”</p><p></p></div>	
+<div class='layout'><p>“If you don't, she'll say you look down on her,” Li insisted.</p><p></p></div>	
+<div class='layout'><p>I followed his advice. At nine that morning, I was ushered into her study in Sun Yat-sen's old villa, Building 2. She was seated, dressed in a pastel blue suit and white low-heeled leather shoes, her hair done up in a bun, reading Reference Materials*<a name = "p1"></a><a href="#n1"><sup>1</sup></a>,the highly confidential newsletter, circulated daily to the country's highest leaders, that contained important foreign and domestic news, completely uncensored, much of it from the foreign press. Jiang Qing had copied Mao's habit of greeting visitors with book in hand, but to considerably less effect. She only pretended to read, often waiting until the visitor's arrival had been announced before picking up her book.</p><p></p></div>	
+<div class='layout'><p>She motioned for me to sit as I greeted her politely, remembering the repeated admonitions of Li Yinqiao and the nurses that the Chairman's wife must be treated with special courtesy. “The Chairman's health is good,” I told her. “His irregular schedule is unfortunate, but he has been living like this for a long time. If we forced him to change now, it could do more harm than good.”</p><p></p></div>	
+<div class='layout'><p>“You mean you think there is no need to persuade the Chairman to follow a regular schedule?” she inquired curtly.</p><p></p></div>	
+<div class='layout'><p>“That's right,” I responded. “Otherwise his insomnia might become worse.”</p><p></p></div>	
+<div class='layout'><p>“Isn't that something of a physician's opinion?” Her voice was full of sarcasm. Already the meeting was not going well.</p><p></p></div>	
+<div class='layout'><p>“It is my opinion,” I replied. I was, after all, a physician.</p><p></p></div>	
+<div class='layout'><p>She raised her eyebrows and stared at me. “Have you reported your opinion to the Chairman?”</p><p></p></div>	
+<div class='layout'><p>“I have.”</p><p></p></div>	
+<div class='layout'><p>Jiang Qing was taken aback. She began tapping her finger on the end table next to her. “And what did the Chairman say?” she demanded.</p><p></p></div>	
+<div class='layout'><p>“The Chairman agreed with me. He said he is getting old and is no longer able to change his habits so easily,” I explained.</p><p></p></div>	
+<div class='layout'><p>She lowered her head for a moment, then lifted it, lightly patting her hair with her hand. I knew that Mao's habits greatly distressed his wife and that she would like to see them changed. But she could not afford to disagree with her husband. Jiang Qing was the most pathetically dependent, the most slavishly loyal, and the most unabashed flatterer of anyone in the inner circle. Without Mao she was nothing. “I agree with this opinion,” she responded disingenuously. “In the past, a number of leaders have encouraged the Chairman to change his habits. I have not agreed.” She smiled. Then she asked. “And what about his sleeping pills?”</p><p></p></div>	
+<div class='layout'><p>“The Chairman has had insomnia for many years. The pills help him sleep, and he needs the rest.”</p><p></p></div>	
+<div class='layout'><p>“It looks as though you are not suggesting any changes,” she responded.</p><p></p></div>	
+<div class='layout'><p>“That's right—as long as he does not increase the dosage.”</p><p></p></div>	
+<div class='layout'><p>“No doctor, it seems to me, thinks it's such a good idea to take sleeping pills,” she said, baiting me again. “Do you take them yourself?”</p><p></p></div>	
+<div class='layout'><p>“No, I don't.”</p><p></p></div>	
+<div class='layout'><p>“You do not. You do know, don't you, that sleeping pills are harmful to one's health?” she asked superciliously.</p><p></p></div>	
+<div class='layout'><p>“Of course it is best not to take any medicine if you can help it,” I agreed. “But for years the Chairman has had this habit—”</p><p></p></div>	
+<div class='layout'><p>“Did you tell the Chairman he can continue taking sleeping pills?” she interrupted icily.</p><p></p></div>	
+<div class='layout'><p>“Yes, I did. I have been calculating the Chairman's sleep pattern. Every day he goes to sleep two or three hours later than the day before. Sometimes he doesn't sleep for twenty-four or thirty-six hours. But after going so long without sleep, he then sleeps for ten or twelve hours. The cycle averages about five or six hours of sleep a day. The pattern looks irregular at first, but actually it has a regularity of its own.”</p><p></p></div>	
+<div class='layout'><p>“Then why haven't you told me all this before?” she demanded.</p><p></p></div>	
+<div class='layout'><p>My patience was wearing thin. “I have not had a chance,” I responded. “The Chairman has only recently told me this.”</p><p></p></div>	
+<div class='layout'><p>“All right. Let's stop here,” Jiang Qing concluded coldly. “In the future, when you have other ideas, let me know first before telling the Chairman.”</p><p></p></div>	
+<div class='layout'><p>I had no intention of consulting with Jiang Qing first. She had no way of controlling her husband and was trying to control me as a way of exerting some small measure of power over Mao. If I consulted with her before discussing the issues with Mao himself, I would have to do things her way. I would not fall into her trap. I bade her a polite goodbye while ignoring her command.</p><p></p></div>	
+<div class='layout'><p>A heavy rain was falling when I left her study, so I waited in the anteroom for it to stop. She walked out to find me still there. “You are too reserved, Doctor,” she said, her voice turning kind when I explained why I was waiting. “Come in and let's have a chat.”</p><p></p></div>	
+<div class='layout'><p>She asked about my schooling and then told me a story about visiting a doctor in Shanghai when she was seriously ill. The doctor had looked at her perfunctorily and prescribed some medication without even asking her to describe what ailed her. Jiang Qing had complained, but the doctor ignored her and encouraged her to leave. Jiang Qing became angry. “You are just a running dog of Western capitalists,” she had shouted at him. “The way you treat patients is shameful.” She left without the medicine.</p><p></p></div>	
+<div class='layout'><p>She paused for a moment after telling me the story. Then she continued. “You Western-trained physicians are all alike. None of you care about patients.”</p><p></p></div>	
+<div class='layout'><p>“Not all physicians are that way,” I protested, still trying to be polite. I tried to explain that many physicians make tremendous sacrifices on behalf of their patients.</p><p></p></div>	
+<div class='layout'><p>“That's nothing but petit bourgeois humanitarianism,” she shot back.</p><p></p></div>	
+<div class='layout'><p>“But there are many moving stories …” I tried to explain. My protest was to no avail. Service to mankind without regard to class did not exist for Jiang Qing. She believed only in “revolutionary humanism,” which could be practiced only by workers and peasants and meant confining aid to members of one's own class. Class enemies, the bourgeoisie, were not worthy of being cured.</p><p></p></div>	
+<div class='layout'><p>But I believed in treating everyone regardless of class, whether friend or enemy. Jiang Qing could not believe this and certainly she did not consider it revolutionary humanitarianism but capitalistic and bad.</p><p></p></div>	
+<div class='layout'><p>“You are a doctor and I am a patient,” she answered me. “I don't like people debating me.” Having stumbled unwittingly into a struggle with Mao's wife, I was summarily dismissed.</p><p></p></div>	
+<div class='layout'><p>Later, Jiang Qing told one of her nurses that I was very arrogant. “He thumbed his nose at me today,” Jiang Qing said. “I have never seen such a person. He is opinionated and stubborn and refuses to change his mind about anything. We're going to have to do something to get him.”</p><p></p></div>	
+<div class='layout'><p>I reported my conversation with Jiang Qing to Mao. “We don't object to humanitarianism in its entirety.” Mao smiled. “We are simply opposed to practicing humanitarianism on the enemy.” Jiang Qing, though more strident, had been reflecting Mao.</p><p></p></div>	
+<div class='layout'><p>But he tried to make peace between us. “It looks as though Jiang Qing has something against you,” he continued. “Why don't you say something to flatter her? That way she'll be happy.”</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing concurred with Mao. He wanted me to show her more respect and seemed worried about the consequences if I did not. I suspected that he, too, had had problems with Jiang Qing.</p><p></p></div>	
+<div class='layout'><p>Their advice surprised me. I had been taught to be sincere, to avoid courting favor through flattery.</p><p></p></div>	
+<div class='layout'><p>I would not flatter her and to sympathize with her was difficult, but I was forced to try to understand her. She lived a life of luxury. Everything she wanted, she was given. But she had nothing to do. Her life had no meaning. Jiang Qing was adrift. Mao was both busy and indifferent to her, and she no longer shared his life. There was a twenty-year age gap between them, and their tastes and preferences were completely different. Jiang Qing insisted on schedule and routine; Mao rebelled against all regularity. Mao read voraciously. Jiang Qing was too impatient to read. Mao prided himself on his health and physical prowess; Jiang Qing wallowed in her illnesses. They would not even eat the same food. Mao relished his hot and spicy Hunan dishes while Jiang Qing insisted on either blandly cooked fish and vegetables or fancied herself a connoisseur of the “Western” food she had eaten in the Soviet Union—pot roast and caviar.</p><p></p></div>	
+<div class='layout'><p>Efforts had been made to give her meaningful work. In 1949, she had been appointed deputy director of the Film Guidance Committee of the Ministry of Culture, but she had behaved so arrogantly, claiming to speak for Chairman Mao, that no one could get along with her. She was transferred to Yang Shangkun's General Office in Zhongnanhai as deputy director of the Office of Political Secretaries. Again she was so intimidating to everyone that Mao had ordered her to resign.</p><p></p></div>	
+<div class='layout'><p>He appointed her one of his secretaries instead, putting her in charge of reading and compiling reports from Reference Materials. Not having time to read it himself, Mao relied on secretaries to scour the news and cull what was most important. It was a task most other leaders had also delegated to their wives.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing could often be seen with a copy of Reference Materials, but she rarely bothered to read it. When she did, she had no way to distinguish what was important, so her efforts were useless to Mao. Lin Ke actually compiled the reports.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing was what the Chinese call xiao congming—“penny wise”—clever at small details but muddled when it came to large matters, and devoid of analytic ability. She knew little of China's history and even less of the world beyond. She had heard of the major countries and a few of the most important world leaders, but her knowledge was limited. She knew nothing, for instance, about Spain—where it was, its political past, its current leadership. She frequently missed the point of what she read. She once told me that England was not as feudalistic as China because it had often been ruled by queens. Since Chinese paternalism was regarded as feudalistic, rule by a woman constituted modernity, she thought. Despite her ear for the Beijing accent, her knowledge of the Chinese language was limited, although she hid her ignorance of words she did not know by pretending to ask how they were pronounced in the Beijing dialect. Looking up words in a dictionary was too burdensome for her.</p><p></p></div>	
+<div class='layout'><p>Despite her own intellectual shortcomings, she was fond of mocking the deficiencies of others. Mao had once teased me by claiming that I had learned all my history from Beijing opera—an insult that impelled me to a more systematic and determined reading of China's past. But Jiang Qing continued to delight in Mao's comment long after the joke had worn thin, often repeating it to me sarcastically.</p><p></p></div>	
+<div class='layout'><p>Mao was perturbed by his wife's indifference to history and current events and often sent her books, documents, and compilations of the news, demanding that she study the same official documents he did. Always, she demurred.</p><p></p></div>	
+<div class='layout'><p>She watched imported movies from Hong Kong instead. She watched movies incessantly—morning, afternoon, and evening. She was sick, she said. Jiang Qing was always sick. She watched movies as a treatment for her neurasthenia.</p><p></p></div>	
+<div class='layout'><p>In 1953, the Ministry of Public Health and the Central Bureau of Guards had responded to her malingering by assigning her a personal physician, Dr. Xu Tao. Xu Tao was originally Mao's physician, but since Mao was so vigorous and Jiang Qing was so ill, Xu Tao's services, Mao said, were better devoted to his wife.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing had made life miserable for Xu Tao, instigating the attacks against him during the 1954 campaign against counterrevolutionaries in Zhongnanhai and continuing her abuse after the campaign was over. In Guangzhou, he came under vicious slander again, accused of making improper sexual advances toward one of Jiang Qing's nurses.</p><p></p></div>	
+<div class='layout'><p>The nurse was anemic and often felt dizzy and weak, so she asked Dr. Xu for a checkup shortly after Jiang Qing and her entourage arrived in Guangzhou. Dr. Xu conducted the examination in an anteroom of the guesthouse where they were staying. One of the bodyguards—an ignorant peasant youth of dubious morality, with no knowledge of medical etiquette and a peasant's suspicion of sex—somehow walked in during the course of the examination. The youth accused Dr. Xu of sexual impropriety.</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing, in charge of the bodyguards, was responsible for investigating the matter. He did not believe the accusation. He knew Xu Tao too well and thought that the young bodyguard was not only ignorant but deficient in character.</p><p></p></div>	
+<div class='layout'><p>I, too, was shocked at the allegation. That Dr. Xu could have done such a thing was inconceivable. He was a cautious man, a bit stubborn perhaps, but he had a strong sense of morality. Besides, he had already been implicated as a member of the anti-party group and would surely do nothing so foolish as to destroy his entire future. I defended him at the meeting Wang Dongxing was forced to call, pointing out that Dr. Xu's personal integrity and professional career were at stake. We had no right to saddle him with a completely unsubstantiated charge.</p><p></p></div>	
+<div class='layout'><p>In the end, even Mao defended the doctor's integrity. Dr. Xu was exonerated and his accuser was fired—probably the first time ever that a member of Mao's medical staff was fairly treated in a clash with the security personnel.</p><p></p></div>	
+<div class='layout'><p>But Jiang Qing's harassment of her doctor was unrelenting. She assigned him the task of screening all her movies, demanding that he select only those that would relax her and allow her to sleep. When she did not like one of his selections—and often she did not—she accused him of mental torture. Xu pleaded to be relieved of the responsibility. A doctor ought not to be required to screen films, he said, but Jiang Qing insisted. Watching movies was a treatment for her neurasthenia, she argued, and screening the films was therefore a doctor's responsibility.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing's neurasthenia was the result of a life without meaning and her incessant fear that she would be abandoned by Mao. Her illness took the form of a general malaise and restiveness, an excessive sensitivity to noise and light, and an impossibly bad temper. She was an inveterate pill-taker, but she also tried to take solace through psychological escape. Movies were her main form of escape.</p><p></p></div>	
+<div class='layout'><p>But Jiang Qing did not like most of the movies she saw and her critiques were often scathing. She had a way of taking a perfectly good movie and making it impossible for others to enjoy. She often watched Gone With the Wind, all the while deriding it as propaganda for the Southern slave system and accusing those of us who openly enjoyed the movie of being “stinking counterrevolutionaries.” In the mid-1950s her words had little bite. Years later, during the Cultural Revolution, her vicious indictments would destroy careers and lives.</p><p></p></div>	
+<div class='layout'><p>Even when she approved of Dr. Xu's movie selections, she still could not be satisfied. Sometimes the lighting on the screen was too bright, and she claimed it hurt her eyes. When the lighting was turned down, she could not see the picture. If the lighting was right, then something would be wrong with the temperature in the room.</p><p></p></div>	
+<div class='layout'><p>The staff set up two rooms for her—one for watching movies and the other for sitting and resting. Just when the temperature and light in one room had been painstakingly adjusted to meet her demands, she would move back to the other. Never could all her demands be met at once. Whether the room was too bright or too dark, too cold or too hot, too stuffy or too drafty, the fault was always with her staff, whom she accused endlessly of torturing her.</p><p></p></div>	
+<div class='layout'><p>When Guangzhou was struck by a brief cold wave, the staff assigned to stoke the coal furnace had to crawl past her sitting-room window on hands and knees lest the outside activity disturb her uneasy tranquility. When a guard argued with her about whether the tango has four steps or five, she ordered him to stand outside for two hours without moving. While en route back to Beijing, she ordered her plane to land in Jinan so she could put off her doctor and a guard with whom she had disagreed. Her continual demands kept five or six people constantly scurrying in response to her every whim. It was considered an honor to work for the Chairman's wife, but the level of distress and anxiety among those who served her was high indeed.</p><p></p></div>	
+<div class='layout'><p>Later I would come to understand that it was her husband's incessant womanizing that was most distressing to Jiang Qing. Since I was in charge of her nurses, who were often attractive young women and easy prey for Mao, she occasionally urged me to warn them against becoming involved with her husband. Once in Zhongnanhai, I happened upon her crying on a park bench just outside Mao's compound. She urged me not to tell anyone about her tears, saying that just as no one, Stalin included, could win in a political battle with her husband, so no woman could ever win the battle for his love. Her greatest fear, which intensified over the years as his womanizing became more flagrant, was that her husband would leave her.</p><p></p></div>	
+<div class='layout'><p>Mao made some effort to save Jiang's face where his many female companions were concerned, but as time went on, he became less careful. Several times Jiang Qing came upon her husband with other women, including one of her own nurses. She had always taken great pride in her beauty and her competence. Her husband's behavior hurt her deeply, but she could never openly display anger to Mao. She was too afraid that he would leave her. She was powerless to stop his philandering.</p><p></p></div>	
+<div class='layout'><p>Mao knew this. “Jiang Qing is always worried that I may not want her anymore,” he told me before I was fully aware of his philandering. “I've told her that this isn't true, but she just can't stop worrying. Don't you think that's odd?” Mao could not understand that Jiang Qing was actually hurt by his behavior, that no wife wants her husband to be involved with other women. Nor could he understand her continuing insecurity.</p><p></p></div>	
+<div class='layout'><p>Isolated, lonely, and frustrated, she took out her frustrations on everyone around her. Whether it pained her I do not know, but Jiang Qing had to agree with Mao in every detail of all matters, and she would do nothing without his permission. Powerless before Mao, she used her position as his wife to lord it over her staff, and her insecurity made her mean and vicious. She often became upset with the security guards, because she knew that some of them were instrumental in procuring women for Mao. But because they worked directly for Mao and were under the supervision of Wang Dongxing, there was little she could do to harass them. Her personal staff usually suffered the brunt of her hostilities, and her medical staff was particularly hard hit.</p><p></p></div>	
+<div class='layout'><p>Much as she accused others of torturing her, the fact is that she inflicted incessant mental torture on those around her. She seemed to believe that if she was unhappy, everyone around ought to suffer as well. Few of her staff stayed for long, asking to be transferred when they could stand her demands no more.</p><p></p></div>	
+<div class='layout'><p>In the fall of 1956, Xu Tao asked to leave. After the campaign against counterrevolutionaries and the slander over his alleged sexual indiscretions, he had found escape by devoting himself to study, and he wanted to return to a hospital, where he could use and improve his medical skills. He went to Peking Union Medical Hospital, financed by the United States with money from the Rockefeller Foundation. It was one of the country's best hospitals. By that time, I envied him his release.</p><p></p></div>	
+<div class='layout'><p><a name = "n1"></a><a href="#p1"><sup>1</sup></a> China at that time had three “internal” sources of news. Reference News (cankao xiaoxi) contained news from foreign newspapers and wire services as well as domestic reports from the New China News Agency that were not openly published. This was read by ordinary cadres. Reference Materials (cankao ziliao) was reserved for top leaders and contained news reports from foreign sources. Internal Reference News (neibu cankao) contained domestic Chinese news reports and was also reserved for top leaders.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

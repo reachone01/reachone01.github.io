@@ -1,0 +1,403 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>68</p><p></p></div>	
+<div class='layout'><p>Mao was protecting me, but I no longer saw him every day. He had no need for my medical services. I worked instead at Beijing Textile Factory, serving as a doctor for the workers and their families, reporting back to Mao every few days. The workers at Beijing Textile Factory were lucky, and so was I. The factory was peaceful, and normal production continued. Since it was one of the factories “directly administered by Mao,” the contending factions had reached an early accord. “What's all this talk about the Cultural Revolution?” Mao had asked after one of my reports from the factory. “Aren't people still getting married and having babies? The Cultural Revolution is very remote from most people.”</p><p></p></div>	
+<div class='layout'><p>The Cultural Revolution became remote from me, too, and Mao was right that many people were trying to ignore it, hoping it would go away. But in other work units and other parts of the country, the Cultural Revolution was continuing to create turmoil, and outbreaks of violence continued. For many, the violence raging around them was impossible to ignore. Without direct intervention from the top, the feuds could not be stopped.</p><p></p></div>	
+<div class='layout'><p>In October 1968, Mao called me back to Zhongnanhai. He had been bothered by a toothache for several days.</p><p></p></div>	
+<div class='layout'><p>It was strange to return. Group One had completely changed. Wang Dongxing had set up new facilities for me on the third floor of his own building because Mao Yuanxin and Li Na had taken over my duty office, using it as their living quarters. None of Mao's former staff remained. Like me, everyone else had also been sent to join the military-control committees in other factories under Mao's “direct control,” serving as Mao's eyes and ears. His bodyguard, Zhou Fuming, had been sent to the February 7 Locomotive Factory. Xie Jingyi, a staff member of the Bureau of Confidential Matters, was in Qinghua University, where the fundamentally uneducated young woman soon became the deputy director of the revolutionary committee there—vice-president of one of China's leading universities.</p><p></p></div>	
+<div class='layout'><p>Uniformed soldiers from Wang Dongxing's 8341 Corps continued to keep guard over Mao, but what was most striking to me about the Chairman's inner circle was the number of young women about. I did not know Mao's new aides, attendants, or bodyguards, but it was clear the new replacements worshiped him, much as I had when I first went to work for him. I think the older members of his original staff suffered a similar affliction to mine: The more one knew Mao, the less he could be respected. By changing the inner circle, bringing in a fresh crop of worshipers, Mao assured himself continual adulation.</p><p></p></div>	
+<div class='layout'><p>I examined the Chairman. His teeth were still coated with heavy green plaque, but I had no way of knowing what was wrong and I had no dental equipment. I tried to explain that I was not a dentist and therefore unable to make a diagnosis. I suggested that we bring in a specialist.</p><p></p></div>	
+<div class='layout'><p>“You can treat me,” Mao insisted. “We don't need a dentist.”</p><p></p></div>	
+<div class='layout'><p>I resisted, fearing that I might do him more harm than good. “Dentistry is a specialty,” I explained once more. “A non-dentist like me could do more harm than good to your teeth.”</p><p></p></div>	
+<div class='layout'><p>Mao was silent. I knew him well enough to know that his silence was a sign of disagreement, but I felt strongly that it would be inappropriate for me to treat him.</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing insisted that I try. “This is the first time Chairman has asked for your help since Jiang Qing charged you with trying to poison her,” he said. “Everyone on his staff but you has been replaced. It is important for you to try your best to serve him. Jiang Qing is still lurking out there, you know, trying to get you.”</p><p></p></div>	
+<div class='layout'><p>This was true. Jiang Qing was still trying to find a way to arrest me. When Ye Qun and Zhou Enlai refused to cooperate in her accusations of poison, she had turned to Mao's nurse, Wu Xujun. Knowing that Wu Xujun and I had worked closely together for years, Jiang Qing ordered Wu to work for her in Diaoyutai, trying all the while to persuade the nurse to sign a written statement formally accusing me of deliberately trying to harm her. An accusation from Wu, Jiang reasoned, would carry particular weight.</p><p></p></div>	
+<div class='layout'><p>When Wu Xujun refused to sign, even after Jiang Qing's continual badgering, the Chairman's wife turned against her, too, accusing her of being part of an elaborate cover-up. When Jiang Qing ordered an investigation of Wu Xujun, the nurse fled to Wang Dongxing, who protected her by finding her a room in his own compound in Zhongnanhai.</p><p></p></div>	
+<div class='layout'><p>I deeply appreciated the support Wu Xujun had given me and wanted to do all I could to help her. I took her with me the next time I saw Mao, hoping she could tell her side of the story. Mao was surprised to see her. The last he knew, Wu had been working in the February 7 Locomotive Plant. But he listened to her story about Jiang Qing's effort to force her to accuse me of trying to harm her. “Now I'm about to be declared a counterrevolutionary,” Wu Xujun concluded.</p><p></p></div>	
+<div class='layout'><p>Mao laughed. “Very good,” he said. “My place is becoming a haven for counterrevolutionaries. You two counterrevolutionaries can stay here with me.” Neither of us had to work for Jiang Qing anymore, he told us. Jiang Qing could find her own doctor and nurse. “Dodge her when you see her coming,” he told us. “Try to avoid running into her.”</p><p></p></div>	
+<div class='layout'><p>I could hardly avoid Jiang Qing. Our paths within Zhongnanhai frequently crossed. She never spoke to me. She would look right past me as though I was not even there.</p><p></p></div>	
+<div class='layout'><p>I tried to find a dentist for Mao. Ordinarily, I would have called someone from Beijing Hospital, but the chaos of the Cultural Revolution had spread to the hospitals, too, and Beijing Hospital was in an uproar, split into two contending factions. The head of the hospital and the party secretary had both been overthrown, and no new leadership had been appointed. To call a dentist from one faction would be taken as an indication that I, and by implication Mao, supported that faction over the other, but I had no idea which faction to support and could not afford a political mistake. Finally, I arranged to have a leading dentist from Shanghai's East China Hospital fly up to Beijing. Mao kept the man waiting for days even as I tried gently to remind the Chairman that the dentist was ready to examine his teeth.</p><p></p></div>	
+<div class='layout'><p>Then Mao lost his temper. “I told you I didn't want this dentist,” he yelled at me, “but you keep insisting I see him. You're trying to force me to do something I don't want to do. No wonder Jiang Qing is against you.”</p><p></p></div>	
+<div class='layout'><p>Those were ominous words, and unfair. I was not a dentist and could not pretend to be one. Mao did not want me to force him to do anything against his will, but he was forcing me to do something I was not able to do. He was adamant. He refused to see the dentist and insisted I treat him instead.</p><p></p></div>	
+<div class='layout'><p>So I treated Mao by consulting the dentist every day on how to examine Mao and what treatment to give. I studied books on dentistry. Mao's disease was periodontic. His gums were deteriorating. He would never let me, or anyone, clean his teeth properly. The best I could do was help him rinse his mouth with antiseptic, clean out the surface food particles, and administer medicine to the site of infection. After a month, the problem was better.</p><p></p></div>	
+<div class='layout'><p>Mao's malaise was not just physical. It was political, too. The party leaders who had not been purged were preparing to convene the Ninth Party Congress in April 1969, and they were badly divided. The guiding principles of the Eighth Party Congress, which had convened thirteen years before, in September 1956, had never been officially reversed. Those principles—supporting the idea of a collective leadership, promising that China would never have a cult of personality, removing Mao's thought as the country's guiding ideology, and criticizing Mao's “adventurism”—had long been anathema to Mao, and so had the men he held responsible for propagating them—Liu Shaoqi and Deng Xiaoping.</p><p></p></div>	
+<div class='layout'><p>In the intervening years, Mao had maneuvered to reverse those principles, and his efforts had culminated in the Great Proletarian Cultural Revolution. As the party prepared for the Ninth Party Congress, the mere mention of collective leadership would have been a counterrevolutionary crime, and the cult of Mao was at its height. All China was wearing Mao buttons and carrying his little red book and reciting his quotations, and even the simplest transaction in a shop had to include a recitation from Mao's words. His portrait was everywhere. Tens of millions of people throughout the country began each day by bowing before a picture of Mao and asking it for their day's instructions. They ended the day by bowing again, reporting to Mao and confessing their mistakes. Every workday began and ended with collective recitations of Mao's thoughts. Chairman Mao's thought was not just the country's guiding ideology, it was its collective mantra.</p><p></p></div>	
+<div class='layout'><p>And adventurism? Mao's Great Leap Forward had resulted in the worst famine in human history. We know today that at least 25 or 30 million people died.<a name = "p1"></a><a href="#n1"><sup>1</sup></a> His Cultural Revolution had plunged the country into chaos, destroying lives, families, friendships, the whole fabric of Chinese society.</p><p></p></div>	
+<div class='layout'><p>Liu Shaoqi, China's head of state, whom Mao blamed for all that he saw wrong with the Eighth Party Congress, had not only been purged but in October 1968 had been expelled from the party and subjected to gross abuse. In April 1969, I did not know where Liu was and would have been afraid to ask. Later, long after the party meeting was over, I learned that he had been shipped to Kaifeng, in October 1969, seriously ill, and died the following month, his illness untreated.</p><p></p></div>	
+<div class='layout'><p>Deng Xiaoping, too, had been purged. The politburo had been decimated. Most of the provincial party leaders had lost their jobs, and governance of the provinces was now in the hands of “revolutionary committees” dominated by the military. The majority of the Central Committee elected by the Eighth Party Congress had been removed.</p><p></p></div>	
+<div class='layout'><p>The Ninth Party Congress was to be the culmination of Mao's efforts over the past thirteen years. It would officially reverse the principles of the Eighth Congress and reestablish Mao as the supreme leader and his thought as the country's guiding ideology. It would formally elect a new Central Committee, which in turn would appoint the politburo. With Mao's will made official through party law, his Great Proletarian Cultural Revolution could also officially be declared successful.</p><p></p></div>	
+<div class='layout'><p>As time for convocation of the party congress grew near, relations between the survivors of the purges—those who had united to throw out the old guard—grew tense. Mao appeared cool, aloof from the battle, but the alliance between Lin Biao and Jiang Qing was unraveling. Zhou Enlai, ever loyal to Mao, and anxious too about the allegations that he had been a traitor, was caught in the middle. The two dominant contending groups, one supporting Lin Biao and the other under Jiang Qing's control, were trying to pack the Central Committee and the politburo with their respective followers.</p><p></p></div>	
+<div class='layout'><p>Zhou Enlai was visibly distressed. He almost never discussed political questions with me, but one evening when our paths crossed at Wang Dongxing's home, he took me aside for a private talk. He wondered what Mao was saying about the future composition of the party leadership.</p><p></p></div>	
+<div class='layout'><p>“He has not said much about it,” I reported honestly. “He just says he wants the Central Cultural Revolution Small Group and the ad hoc policy group to handle the question.” Jiang Qing was in control of the Small Group, and because all members of that group were also members of the ad hoc policy group, she exerted considerable power over that body, too. The accusation against Zhou was coming directly from Jiang Qing, and I felt I had to warn Zhou about her vendetta against him.</p><p></p></div>	
+<div class='layout'><p>“From the very beginning of the Cultural Revolution, Jiang Qing has singled you out as a target,” I told him. I explained that when she said that the Cultural Revolution was a conflict between the new revolution and the old government, the “old government” could be no one else but the premier. I explained that the Chairman was very unhappy with her when she and her colleagues organized “May 16 Rebels” in the foreign ministry to oppose Zhou and foreign minister Chen Yi. “The Chairman thinks this group is counterrevolutionary and told the Central Cultural Revolution Small Group to state very clearly at a rally of ten thousand people that they do not oppose you,” I said. “Jiang Qing did not agree, and I heard her talking to her colleagues Kang Sheng and Chen Boda. None of them want to hold a rally to support you. They thought a gathering of a few dozen people would do. They are still plotting against you.”</p><p></p></div>	
+<div class='layout'><p>Zhou was distraught. “For decades I have done everything I could to help Jiang Qing,” he said. He pointed out that during the Second World War, when he was in Chongqing and Jiang Qing wanted to have a toothache treated there, he personally had flown to Yanan to take her to Chongqing. And when she had to go to the Soviet Union, both in 1949 and in 1956, Zhou had made all the arrangements.</p><p></p></div>	
+<div class='layout'><p>Suddenly, Zhou's demeanor changed. “Have you told anyone else about this?” he wanted to know. I explained that Wang Dongxing knew everything and that we had often talked but that I had discussed the current political situation with no one else. Zhou relaxed a bit, urging me not to repeat our conversation.</p><p></p></div>	
+<div class='layout'><p>Zhou Enlai, more than any of China's top leaders, had remained loyal to Mao—so faithful, in fact, that Lin Biao had once characterized him to Wang Dongxing as an “obedient servant.” Zhou was more than loyal. He was subservient, sometimes embarrassingly so. I was present on November 10, 1966, when Mao and Zhou met to plan the seventh gathering of the Red Guards in Tiananmen Square. The crowds had grown bigger each time Mao appeared, and this time the public-security officials were projecting a crowd of 2.5 million students. The square, though, could accommodate only half a million people, and the logistics of marching so many students through were complicated. Zhou Enlai was suggesting that in addition to filling the square, the students should line Changan Avenue, the wide boulevard that runs east and west through Beijing, just in front of Tiananmen, and also some of the side streets running north above the square. Mao would ride through the streets in an open jeep, reviewing the students at the various scattered points.</p><p></p></div>	
+<div class='layout'><p>As he was talking to Mao in Room 118, trying to explain his idea, Zhou got out a map and spread it on the floor, kneeling on the carpet to show Mao the direction his motorcade would take. Mao stood, smoking a cigarette, watching Zhou crawl on the floor.</p><p></p></div>	
+<div class='layout'><p>For Zhou to kneel before Mao seemed to me humiliating, and I was deeply embarrassed to see a man of Zhou's stature, the premier of China, behave that way. Mao seemed to take a sardonic pleasure watching Zhou crawl before him. Nowhere were the contradictions of Mao's dictatorship more pronounced than in his relationship with Zhou. Mao demanded Zhou's absolute loyalty, and had he not received it, Zhou would no doubt have been overthrown. But because Zhou was so subservient and loyal, Mao held the premier in contempt.</p><p></p></div>	
+<div class='layout'><p>Zhou was almost as obsequious before Jiang Qing. In December 1966, when Jiang Qing arrived at the door of the room in the Great Hall of the People where Zhou Enlai was conducting an important meeting, Zhou's longtime chief bodyguard, Cheng Yuangong, suggested politely that rather than interrupt the meeting, Jiang Qing might first want to eat and return when the meeting was over.</p><p></p></div>	
+<div class='layout'><p>Jiang Qing was infuriated. “You, Cheng Yuangong, behave like an obedient dog before the premier but act like a wolf to me. I want you arrested.” She ordered Wang Dongxing to arrest the premier's bodyguard.</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing refused, agreeing only to transfer Cheng to another job.</p><p></p></div>	
+<div class='layout'><p>Deng Yingchao, Zhou's wife, the premier's closest confidante, intervened. “You must arrest Cheng Yuangong,” she insisted to Wang. “We don't want to show any favoritism toward him.”</p><p></p></div>	
+<div class='layout'><p>Still Wang refused to arrest the bodyguard. “Cheng Yuangong has worked for the premier and his wife all his life,” Wang said, “and they're throwing him out just to protect themselves.” He finally sent Cheng off for a stint at the General Office's May 7 Cadre School to work in the fields.</p><p></p></div>	
+<div class='layout'><p>Thus it was no surprise that as the power struggle between Lin Biao and Jiang Qing unfolded, Zhou Enlai threw his lot with Jiang Qing and her faction—despite all the attacks she had directed against him. Zhou was an astute politician and knew better than anyone else that despite Mao's criticisms of his wife and their growing personal estrangement, Jiang Qing was Mao's closest lieutenant. Real loyalty to Mao required siding with her as well.</p><p></p></div>	
+<div class='layout'><p>Zhou's support for Jiang Qing also led to his betrayal of Wang Dongxing.</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing was a key person in the unfolding political struggle. As head of the 8341 Corps, which had taken over the six factories and two universities (Qinghua and Beida) that were administered in Mao's name, he had amassed considerable power and was viewed as one of Mao's closest followers. But in the conflict between Jiang Qing and Lin Biao, he was on the side of Lin Biao, both because he hated Jiang Qing and because the strains with Mao over Wang's trip to Indonesia with Liu Shaoqi continued. As the Ninth Party Congress approached, Wang Dongxing was being considered for a position on the politburo. Zhou and Wang Dongxing were also close, and Zhou initially supported Wang's appointment, assuring him that all members of the ad hoc policy group, Wang Dongxing included, would be made members of the leading group.</p><p></p></div>	
+<div class='layout'><p>In the course of the deliberations, however, Wang Dongxing developed a bleeding ulcer and had to be hospitalized. Zhou Enlai invited me and nurse Wu Xujun to accompany him to break the news to Mao, asking me to explain the gravity of Wang's illness. As I was telling Mao about the dangers of a massive loss of blood, Zhou started to cry. “Wang Dongxing is such a good comrade,” he said. Suddenly, nurse Wu and I also burst into tears, and the three of us sat sobbing together in front of Mao.</p><p></p></div>	
+<div class='layout'><p>Mao remained impassive, the expression on his face never changing, and he never said a word. When our tears stopped, we too sat silent and embarrassed, not knowing what to do. Finally, Mao said, “If Wang is sick, get him the treatment the doctors suggest. We can do nothing else.”</p><p></p></div>	
+<div class='layout'><p>As we left, Mao remarked to his nurse that we had been crying over Wang as though there had been a death in our families. Our shared tears had led Mao to suspect that Zhou Enlai, Wang Dongxing, Wu Xujun, and I were not only close but something of a faction.</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing was not worried about Mao's suspicions. “We all work for him, not for anyone else,” he said when I visited him in the hospital.</p><p></p></div>	
+<div class='layout'><p>But Zhou Enlai was worried. He wanted to do nothing to rouse Mao's suspicions. Jiang Qing and Kang Sheng were adamantly opposed to Wang's appointment to the politburo and met with Zhou to persuade him to join their opposition. Zhou agreed. While Wang was still seriously ill, recovering from his ulcer, Zhou asked him to withdraw from the competition.</p><p></p></div>	
+<div class='layout'><p>Wang Dongxing was incensed. “He did precisely what Jiang Qing and Kang Sheng asked him to do,” he fumed at me from his bed. “The man has no sense of personal loyalty.”</p><p></p></div>	
+<div class='layout'><p>The two sides were forced to compromise. When the Ninth Party Congress was held in April 1969, Wang Dongxing was elected a member of the Central Committee and an alternate member of the politburo, despite Jiang Qing's objections. Lin Biao had backed Wang Dongxing, and he and his faction were in the ascendancy. Lin Biao gave the political report at the Ninth Party Congress and was officially designated Mao Zedong's “close comrade in arms and successor.” Mao's thought was reinstituted as the guiding ideology of China.</p><p></p></div>	
+<div class='layout'><p>Lin Biao's son, Lin Liguo, also gained power. Not long after the Ninth Party Congress, he was made deputy director of the War Department of the Air Force Command and hailed as a natural “third-generation” leader. The air force put together a collection of Lin Liguo's speeches and sent them to Mao. Within the air force, Lin Liguo's name was often mentioned right after that of his father, and calls for loyalty to the air force often included calls for loyalty to Lin Liguo, too.</p><p></p></div>	
+<div class='layout'><p>My spirits plunged after that. Mao's goal of reversing the principles of the Eighth Party Congress had been achieved. It was the culmination of thirteen years of struggle. The party representatives I most respected had all been purged—more than 80 percent of the previous Central Committee was dismissed—and the newcomers were all unfamiliar to me, members of the Jiang Qing or Lin Biao factions. With their followers taking over leadership of China, I despaired for my country.</p><p></p></div>	
+<div class='layout'><p><a name = "n1"></a><a href="#p1"><sup>1</sup></a> Some put the figure as high as 43 million.</p><p></p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>
