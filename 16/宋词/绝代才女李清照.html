@@ -1,0 +1,554 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	width:100%;
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	overflow-x:auto;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>绝代才女李清照</h4>
+
+
+<p>在唐代，许多写诗写得好的诗人，都有一个响当当的江湖名号。比如：</p>
+<p>“诗仙”李白，“诗魔”白居易，“诗鬼”李贺。</p>
+<p>比起唐朝诗人五花八门的绰号，宋朝的词人就很直接，他们将词写得好的人称为词宗。获得这个称号的人不多，一只手就能数得过来。</p>
+<p>苏轼、秦观、辛弃疾、李清照。</p>
+<p>这四个人谁的词写得更好，不是一般人能下判断的。不过，有一点是确定的，颜值最高的一定是千古第一才女李清照。</p>
+<p>因为这四位当中就她一个萌妹子，剩下的都是糙老爷们儿。这一章，我们就来好好聊一聊李清照。</p>
+<p>她的一生可以大致分为三个时期：</p>
+<p>少女时代、婚姻生活（横跨北宋、南宋时期）、凄凉晚年。</p>
+<p><h3>一、少女时代</h3></p>
+<p>李清照是个官二代，她的父亲叫李格非，是苏门的后四学士、旧党中人。她的母亲也擅长写文章，婆家人还曾是朝廷宰相。李清照从小就很聪慧，受到了很好的教育，喜欢读书，擅长写文章，真正诠释了什么叫作邻居家的孩子。</p>
+<p>少女时期的李清照喜欢喝酒作诗，到处撒欢。她这一时期的词主要是写她少女时代的生活状态。</p>
+<p>据说李清照16岁创作了处女作《如梦令·常记溪亭日暮》，一下子就轰动了整个文坛，开启了她的词人生涯。</p>
+<p></p>
+
+<pre>
+<strong>如梦令·常记溪亭日暮</strong>
+
+常记<sub>1</sub>溪亭日暮<sub>2</sub>，沉醉<sub>3</sub>不知归路。
+兴尽<sub>4</sub>晚回舟，误入藕花<sub>5</sub>深处。
+争渡<sub>6</sub>，争渡，惊起一滩鸥鹭<sub>7</sub>。
+</pre>
+
+<p>【必背注释】</p>
+<p>[1]  常记：常常想起。</p>
+<p>[2]  日暮：太阳将落的时候，即傍晚。</p>
+<p>[3]  沉醉：沉，即深。沉醉，即深醉，大醉。</p>
+<p>[4]  兴尽：尽了酒宴兴致。</p>
+<p>[5]  藕花：荷花。</p>
+<p>[6]  争渡：小舟奋力从荷花丛里冲出来。</p>
+<p>[7]  鸥鹭：泛指水鸟。</p>
+<p>【必背翻译】</p>
+<p>常常想起到溪亭玩到天黑的情景，喝得大醉不知道回家的路在哪里。游玩宴饮的兴致已尽，大家乘着夜色掉转船头，却不料小船错划进了荷花深处。小舟奋力从荷花丛里划啊，划啊，终于冲出来，惊得溪滩上所有水鸟都飞起来了。</p>
+<p>除了描写游乐的场景，李清照偶尔也会抒发少女的烦恼。她17岁时，写了另外一首《如梦令·昨夜雨疏风骤》，通过对春天的怜惜来表达对少女时光匆匆流逝的感叹。</p>
+<p></p>
+
+<pre>
+<strong>如梦令·昨夜雨疏风骤</strong>
+
+昨夜雨疏<sub>1</sub>风骤<sub>2</sub>，浓睡<sub>3</sub>不消残酒<sub>4</sub>。
+试问卷帘人<sub>5</sub>，却道海棠依旧。
+知否，知否？应是绿<sub>6</sub>肥红<sub>7</sub>瘦。
+</pre>
+
+<p>【必背注释】</p>
+<p>[1]  疏：指稀少。</p>
+<p>[2]  骤：疾速。</p>
+<p>[3]  浓睡：酣睡、熟睡。</p>
+<p>[4]  残酒：这里指残余的酒意。</p>
+<p>[5]  卷帘人：指侍女。</p>
+<p>[6]  绿：绿叶。</p>
+<p>[7]  红：红花。</p>
+<p>【必背翻译】</p>
+<p>昨夜雨稀稀落落地下，风疾速地刮。一夜的熟睡并没消除残余的酒意。问那正在卷帘的侍女：庭园里海棠花现在怎么样了？她说海棠花依然和昨天一样。你知道吗？你知道吗？这样的一夜风雨后，应该是绿叶繁茂、红花凋零了。</p>
+<p>李清照少女时代的词有个特点——很有画面感。她善于抓住一瞬间的变化，并把这个变化生动地描绘出来，简直就是人肉照相机。</p>
+<p>李清照年纪轻轻，却早已是词坛宗师，她还写过一篇关于词的论文——《词论》。在这篇文章当中，她把北宋的词坛大佬们都数落了一遍。</p>
+<p>李清照的《词论》在历史上褒贬不一，但却代表了她早年对于词的观点。她认为“词别是一家”，要协音律，有内涵，还不能太俗气。</p>
+<p><h3>二、婚姻生活</h3></p>
+<p>李清照到了谈婚论嫁的年龄，就嫁给了赵明诚。</p>
+<p>那赵明诚是何许人也呢？</p>
+<p>赵明诚可以说是那个时代的“国民老公”，而且他也很喜欢李清照。</p>
+<p>传说，他为了说服老爸，特意编了一个字谜：</p>
+<p>言与司合，安上已脱，芝芙草拔。</p>
+<p>不过，毕竟老赵也是文化人，他很快就意识到：</p>
+<p>言与司合，乃词字也；</p>
+<p>安上已脱，乃女字也；</p>
+<p>芝芙草拔，乃之夫二字也。</p>
+<p>总结下来就是词女之夫，翻译成大白话，就是女词人的丈夫。赵明诚和李清照之间唯一的阻碍是党争。赵明诚的老爸赵挺之是新党中人，而李清照的老爸李格非是旧党中人。</p>
+<p>两个人的结合似乎是不太可能的。</p>
+<p>不过，正巧碰上新皇帝即位，为了笼络人心，他要求两党和睦相处，放下仇恨。</p>
+<p>于是，有情人终成眷属。</p>
+<p>但这也埋下了祸根。几年之后，李清照就深深地感受到了新旧两党斗争的残酷。</p>
+<p>婚后的李清照是幸福的，而且开启了花式虐狗的模式。</p>
+<pre>
+卖花担上，买得一枝春欲放。
+泪染轻匀，犹带彤霞晓露痕。
+怕郎猜道，奴面不如花面好。
+云鬓斜簪，徒要教郎比并看。
+                           ——节选自《减字木兰花》
+</pre>
+<p></p>
+<p>这首词的大意是：我买了一朵花，把花插在云鬓间，让老公看看，是我好看还是花好看。</p>
+<p>李清照20岁那年，赵明诚因故远游，她只能独守闺房。重阳节那天，她特别思念丈夫，于是写下了下面这首词。</p>
+<p></p>
+
+<pre>
+<strong>醉花阴·薄雾浓云愁永昼</strong>
+
+薄雾浓云愁永昼<sub>1</sub>，瑞脑<sub>2</sub>销<sub>3</sub>金兽<sub>4</sub>。
+佳节又重阳，玉枕纱厨<sub>5</sub>，半夜凉初透。
+东篱<sub>6</sub>把酒<sub>7</sub>黄昏后，有暗香<sub>8</sub>盈袖。
+莫道不销魂<sub>9</sub>，帘卷西风<sub>10</sub>，人比黄花<sub>11</sub>瘦<sub>12</sub>。
+</pre>
+
+<p>【必背注释】</p>
+<p>[1] 永昼：漫长的白天。</p>
+<p>[2] 瑞脑：一种薰香名。又称龙脑，即冰片。</p>
+<p>[3] 销：通“消”，耗尽、毁灭。</p>
+<p>[4] 金兽：铜制的兽形香炉。</p>
+<p>[5] 纱厨：即纱帐，用以避蚊。</p>
+<p>[6] 东篱：泛指采菊之地。陶渊明《饮酒诗》：“采菊东篱下，悠悠见南山。”故“东篱”亦成为诗人惯用之咏菊典故。</p>
+<p>[7] 把酒：端起酒杯喝酒。</p>
+<p>[8] 暗香：这里指菊花的幽香。</p>
+<p>[9] 销魂：形容极度忧愁、悲伤。</p>
+<p>[10] 西风：秋风。</p>
+<p>[11] 黄花：指菊花。菊花在秋天开放，秋令在金，故以黄色为正，因称黄花。</p>
+<p>[12] 瘦：菊花的花瓣细长，因而言其瘦。</p>
+<p>【必背翻译】</p>
+<p>薄雾弥漫，云层浓密，漫长的日子充满烦忧，龙涎香的烟气在金兽香炉中缭绕。又到了重阳佳节，卧在玉枕纱帐中，半夜的凉气慢慢将全身浸透。在东篱边饮酒直到黄昏以后，淡淡的黄菊清香溢满双袖。不要说凉秋不让人伤神，西风卷起珠帘，帘内的人儿比篱边的黄花更加消瘦。</p>
+<p>这里的黄花指的是菊花，因为重阳节的一大特色就是赏菊，所以暗香也指菊花的香气。</p>
+<p>这首词还有个传说。据说，李清照把词寄给了赵明诚后，赵明诚惊叹于最后三句的惊艳，不过他不太服气，于是连夜作词50多首。第二天，他把“莫道不销魂，帘卷西风，人比黄花瘦”混在其中，拿给一个很懂文学的朋友看。</p>
+<p>“你觉得这些词怎样？”</p>
+<p>“这三句简直绝了，其它都是垃圾！”</p>
+<p>从此之后……</p>
+<p>就这样被你征服！</p>
+<p>除了写词，赵明诚还热衷于收集金石文物。他是那个时代顶级的金石专家。</p>
+<p>而夫唱妇随，李清照也和他一起收集、品鉴金石文物，这成了两人一生的事业，还写了一部《金石录》。</p>
+<p>金石指的就是古代镌刻文字、颂功纪事的钟鼎碑碣等。</p>
+<p>婚后的前两年，李清照是幸福的。赵明诚与李清照的婚姻也被传为千古佳话。</p>
+<p>后来，蔡京率领新党对旧党进行打击，李清照的父亲被革职，她也被勒令离开京城。</p>
+<p>据说，她曾经去求自己的公公帮忙，却没有得到帮助。</p>
+<p>后来李家的事情平复了，李清照得以回到京城与赵明诚团聚。可一波未平一波又起，她的公公却因为政治失利而去世，赵家一落千丈，赵明诚的官也丢了，只能回到青州老家。</p>
+<p>他们在青州一待就是10年，每天就收集金石，吟诗作赋，还比赛背书。</p>
+<p>他们给书房取名归来堂，这个名字出自陶渊明的《归去来兮辞》。李清照还自称易安居士，这里的“易安”也出自这篇文章(“倚南窗以寄傲，审容膝之易安”)。</p>
+<p>美好的岁月总是短暂的。后来，赵明诚又开始到各地做官。也就是在此时，金兵开始大规模入侵，北方已经不再安全。</p>
+<p>小夫妻俩开始担心收集的金石文物，于是李清照精挑细选了15车，准备将之运送到江宁(今南京)和丈夫会合。</p>
+<p>在运送途中，兵荒马乱，她凭借智慧保住了这些金石文物。不过，这只是李清照人生悲剧的开始。当时江宁城闹兵变，赵明诚听说了这件事之后，非但没有镇压，反而丢下李清照独自弃城而逃。</p>
+<p>赵明诚虽然跑了，但他手下的人却镇压了叛乱，他因为此事而被罢了官。</p>
+<p>不久后，赵明诚被重新起用。李清照陪着赵明诚前往江西，途中经过了当年项羽自刎的地方。有感于宋朝和赵明诚的怯弱，李清照写下了《夏日绝句》。</p>
+<p></p>
+
+<pre>
+<strong>夏日绝句</strong>
+
+生当作人杰<sub>1</sub>，死亦为鬼雄<sub>2</sub>。
+至今思项羽，不肯过江东<sub>3</sub>。
+</pre>
+
+<p>【必背注释】</p>
+<p>[1] 人杰：人中的豪杰。汉高祖曾称赞开国功臣张良、萧何、韩信是“人杰”。</p>
+<p>[2] 鬼雄：鬼中的英雄。屈原《国殇》：“身既死兮神以灵，子魂魄兮为鬼雄。”</p>
+<p>[3] 江东：长江以南的地区。这是项羽当初随叔父项梁起兵的地方。</p>
+<p>【必背翻译】</p>
+<p>活着应当作人中的豪杰，死了也应当作鬼中的英雄。至今人们还思念项羽，只因他宁肯战死也不肯回到江东偷生。</p>
+<p>从这首诗中，我们看出李清照虽然是柔弱的女子，但她也有顽强刚毅的一面。埋怨归埋怨，赵明诚毕竟是自己的丈夫，日子还得过。可老天压根儿不打算让李清照有舒坦日子过，没多久，赵明诚就去世了。赵明诚留下来的就是个烂摊子。他们没有孩子，却有价值连城的金石文物。要知道，当时连皇帝都被金军撵着满世界逃，金石文物在那个时候已经不是宝物，而是烫手的山芋。</p>
+<p>李清照是一个弱女子，而且已经40多岁了。</p>
+<p>她想要守护这批金石文物谈何容易？</p>
+<h3>三、晚年漂泊</h3>
+<p>但李清照并没有自暴自弃，而是尽自己最大的努力想要保住这批金石文物。</p>
+<p>她派人把一部分金石文物运送至赵明诚的妹婿那儿。这个妹婿当时正做大官，比李清照更有能力保护这批金石文物。可万万没想到，这批金石文物遭遇战火丢失了。</p>
+<p>李清照只能带着剩余的一部分轻便的书帖典籍逃难，前去投奔自己的弟弟。此时又有传言说，赵明诚曾勾结金人。为了证明丈夫的清白，她带着所有的文物追随皇帝的脚步，希望把这些文物都捐给国家，结果在途中丢失大半。</p>
+<p>后来，她的住处又被小偷洗劫，大量的书画被盗。</p>
+<p>此时的李清照伤心欲绝，但她还是希望能够保住所剩不多的金石文物。在这样的绝境中，一个男人闯入了她的世界。这个男人叫张汝舟。</p>
+<p>他对李清照十分体贴。李清照考虑到自己如今孤苦无依的境地，而想要保住所剩不多的金石文物也需要有个依靠，于是，她就嫁给了张汝舟。</p>
+<p>在李清照的时代，改嫁是不被世俗所接受的。</p>
+<p>李清照之所以这么做，是因为赵明诚的父母已经去世，无须赡养老人，她也没有孩子需要抚养。</p>
+<p>后世对于李清照再嫁张汝舟的事情争议颇多，这里就不细说了。万万没想到，张汝舟只是想得到李清照的金石文物，而李清照似乎没有想要交给他的意思。后来，张汝舟还发现李清照的金石文物并没有传说的那么多。</p>
+<p>于是，他开始对李清照谩骂，甚至家暴。</p>
+<p>面对如此境地，李清照没有示弱妥协，她果断选择离婚。但张汝舟赖上了她，就是不同意。</p>
+<p>于是，她告发张汝舟曾经骗官，这在当时是重罪。虽然她成功地离婚了，但在宋朝，妻子告发自己的丈夫，就算成功了，也要坐牢。在好友的帮助下，李清照在监狱里待了9天就被放了出来。此时李清照承受的是一般人想象不到的痛苦。自从出狱后，许多文人都嘲笑她。</p>
+<p>李清照因为离婚事件，从此身败名裂，遭受着巨大的非议。在此后的岁月里，李清照始终孑然一身，没有再嫁。</p>
+<p>此时，她才不到50岁。</p>
+<p>晚年的李清照生活很是凄凉，她常常追忆与赵明诚在一起的岁月。</p>
+<p></p>
+
+<pre>
+<strong>声声慢·寻寻觅觅</strong>
+
+寻寻觅觅，冷冷清清，凄凄惨惨戚戚<sub>1</sub>。
+乍暖还寒<sub>2</sub>时候，最难将息<sub>3</sub>。
+三杯两盏淡酒，怎敌<sub>4</sub>他，晚来风急!
+雁过也，正伤心，却是旧时相识。
+满地黄花堆积，憔悴损<sub>5</sub>，如今有谁堪<sub>6</sub>摘？
+守着窗儿，独自怎生<sub>7</sub>得黑!
+梧桐更兼细雨，到黄昏，点点滴滴。
+这次第<sub>8</sub>，怎一个愁字了得!
+</pre>
+
+<p>【必背注释】</p>
+<p>[1] 凄凄惨惨戚戚：忧愁苦闷哀伤的样子。</p>
+<p>[2] 乍暖还(huán)寒：指秋天的天气，忽暖忽冷，变化无常。</p>
+<p>[3] 将息：旧时方言，有休养调理之意。</p>
+<p>[4] 敌：对付，抵挡。</p>
+<p>[5] 损：表示程度极高。</p>
+<p>[6] 堪：可。</p>
+<p>[7] 怎生：怎样的。生：语气助词。</p>
+<p>[8] 这次第：这光景，这情形。</p>
+<p>【必背翻译】</p>
+<p>我独自在空空荡荡的屋子里寻找，但一切都已经不在了，满目只是冷冷清清的景象，令人悲惨心伤。天气时暖时凉，身子最难保养调理。即便饮三两杯淡酒，又怎能抵御晚来的寒风侵袭？一行大雁飞过，不仅让人心伤，因为都是旧时相识。</p>
+<p>地上到处是零落的黄花，憔悴枯损，如今有谁能与我共摘呢!守着窗子，一个人怎么从天明熬到天黑？梧桐叶上细雨淋漓，到黄昏时分，还能听到点点滴滴。这般情景，怎是一个愁字能概括得了的呢!</p>
+<p>李清照并没有荒废这段岁月，她开始着手整理赵明诚的《金石录》，还写了一篇著名的文章——《金石录后序》。这部作品讲述了两人的故事，这是如今研究李清照的第一手资料。</p>
+<p>很多人以为李清照只会写词，其实她的文章和诗在当时也是一流的。她的诗大多是感时伤世，抒发爱国情怀的作品，很有大丈夫之气。</p>
+<p>不仅李清照不幸福，当时南宋也风雨飘摇。俗话说，国家不幸诗家幸，赋到沧桑句便工。</p>
+<p>李清照没有就此消沉，相反，她开始创作大量忧国忧民的词作。一次金兵来犯，李清照写下了这首著名的《武陵春·风住尘香花已尽》。</p>
+<p></p>
+
+<pre>
+<strong>武陵春·风住尘香花已尽</strong>
+
+风住尘香<sub>1</sub>花已尽，日晚倦梳头。
+物是人非<sub>2</sub>事事休，欲语泪先流。
+闻说双溪<sub>3</sub>春尚好，也拟<sub>4</sub>泛轻舟。
+只恐双溪舴艋舟<sub>5</sub>，载不动许多愁。
+</pre>
+
+<p>【必背注释】</p>
+<p>[1] 尘香：落花触地，尘土也沾染上落花的香气。</p>
+<p>[2] 物是人非：事物依旧在，人不似往昔了。三国曹丕有《与朝歌令吴质书》：“节同时异，物是人非，我劳如何？”</p>
+<p>[3] 双溪：水名，在浙江金华，是唐宋时有名的风光秀丽的游览胜地。</p>
+<p>[4] 拟：准备、打算。</p>
+<p>[5] 舴艋(zé měng)舟：小船，两头尖如蚱蜢。</p>
+<p>【必背翻译】</p>
+<p>风停了，花儿已经凋零，只有尘土还留有花香。天已经很晚了，却懒得梳头。事物依旧在，人不似往昔，一切都已经完结。一想到这些，还没有开口倾诉感慨就已经泪流满面。</p>
+<p>听说双溪的春景不错，我也想划船去那里看看。可我又担心，那单薄的小船，载不动我内心沉重的忧愁啊!</p>
+<p>李清照在晚年创作了大量的精品诗词，这使得她作家的身份被当时的文坛所认同，完成了一次巨大的蜕变。</p>
+<p>后来，朝廷派使臣出使金国，李清照写诗为两位使臣送行，歌颂两人的高义。</p>
+<pre>
+欲将血泪寄山河，去洒东山一抔土。
+    ——节选自《上枢密韩公、工部尚书胡公》
+	</pre>
+<p>最终，李清照在极度孤苦、凄凉中，悄然辞世。</p>
+<p>关于李清照的生平，我们就聊到这里。</p>
+<p>我们从三个方面来进行总结：</p>
+<h4>1. 李清照的一生</h4>
+<p>李清照的一生可以说是跌宕起伏。她年少成名，后来嫁给赵明诚，前半生虽有不如意之事，但总体上很幸福。</p>
+<p>后半生，她经历了国破家亡，丈夫去世，还被骗婚，简直悲惨到了极点。</p>
+<p>面对人生的困境，李清照没有放弃，她用自己的智慧化解了困局。</p>
+<p>在晚年，李清照更是心系国家，缅怀故土。</p>
+<p>国家不幸诗家幸，李清照也因此实现了创作的大丰收，使得她成为顶级的宋词大家。</p>
+<h4>2. 李清照词的思想内核</h4>
+<p>李清照的词自成一家，这和她写的《词论》中“词别是一家”的主张是一致的，被后世称为易安体。</p>
+<p>李清照的词善于言情，主要的内容和情调基本上可用一个“愁”来概括，不过和大宋的命运一样，她的愁在前后期是不同的。
+<h4>3. 历史的“例外”：李清照</h4>
+<p>有人把李清照、蔡文姬、上官婉儿、班昭并称为四大才女。</p>
+<p>也有人把李清照称之为千古第一才女。</p>
+<p>在中国历史上，才女并不多见，许多才女都成了传说，使我们无法辨别真假。</p>
+<p>除了上述的几位才女之外，如今有可靠史料佐证的才女只有：汉朝的班婕妤。</p>
+<p>魏晋的谢道韫。</p>
+<p>唐代的李冶、薛涛、鱼玄机、刘采春。</p>
+<p>宋代的朱淑真、魏夫人。</p>
+<p>在中国古代，文坛是由男性主导，女性写作并不被鼓励，更不可能得到支持，她们的大多数作品都很难得以保留。</p>
+<p>同样是宋朝女词人的朱淑真，流传后世的作品就极少，这是因为她的父母认为她丢了家庭的脸面，于是一把火烧掉了她的作品。</p>
+<p>这其实是来自社会的偏见，导致许多女性文人的作品一直不被作为主流看待。男性对于文学的垄断，到唐宋更是达到了巅峰。比如：有一类题材叫作闺怨。这类文学作品主要表达的是女性思念情人的思想感情。</p>
+<p>但是这类作品主要是男性来写。比如：温庭筠的《菩萨蛮》就描写了妇女在闺房里起床梳洗的情态。</p>
+<p>可以说，男性几乎堵死了女性进入文坛的各种路径，因此，想要获得与男性一样的成就十分艰难。</p>
+<p>李清照是历史的一个“例外”，在本就不多的才女当中，她是唯一一位在文学史上取得了崇高文学地位的女性。</p>
+<p>她与秦观被看作婉约派的词宗，与李白、李煜并称为词家三李。韵学家沈谦在《填词杂说》就写道：</p>
+<p>男中李后主，女中李易安，极是当行本色。</p>
+<p>她作品散失了许多，至今只留下了80多首词，几乎都是精品，这是十分难能可贵的。</p>
+<p>这意味着她作出了超乎常人的努力。</p>
+<h4>4. 隐藏在历史深处的李清照</h4>
+<p>可即便如此，李清照去世之后，她的形象也被扭曲了。尤其是她“改嫁”的事情，在李清照生前就被人诟病，之后更是成了后世一代代学者们争论的焦点。</p>
+<p>虽然我们如今了解到的李清照未必就是真实的李清照，但并不妨碍她因她的作品而名垂千古。</p>
+
+
+<p style='float:right;'>本页共212段，8302个字符，20903 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

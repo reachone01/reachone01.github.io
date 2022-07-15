@@ -1,0 +1,566 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	width:100%;
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	overflow-x:auto;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>名将词人辛弃疾</h4>
+
+
+<p>之前我们说了一辈子都在爱国的大诗人陆游，他成天想着北伐。然而他实际在前线的日子，也就短短八个月。</p>
+<p>但他有一位好友，可是真刀实枪和金人干过架的。</p>
+<p>这个人就是我们今天的主角，人称“词中之龙”的辛弃疾。</p>
+<p>按道理，这样一个人应该是风光无限的吧，但是他的好朋友陆游写给他的诗中却说：</p>
+<pre>
+大材小用古所叹，
+管仲萧何实流亚。
+                                     ——节选自《送辛幼安殿撰造朝》
+</pre>
+<p>在好友陆游眼里，辛弃疾是可以和管仲、萧何比肩的。</p>
+<p>但是他为什么被大材小用了呢？</p>
+<p>接下来，咱们就来看看辛弃疾起起落落的一生。</p>
+<h3>一、南归之前：我是一匹来自北方的狼</h3>
+<p>辛弃疾出生在山东济南，是个典型的豪爽的山东大汉。</p>
+<p>据史料记载，辛弃疾的长相是这样的：</p>
+<p>肩膀宽阔，身材健壮，目光有杀气。</p>
+<p>别看这长相不太像文化人的样子，但辛弃疾念书的时候是妥妥的“别人家的孩子”，学得又好又快。</p>
+<p>但辛弃疾显然是不满足于乖乖念书的，那时的他，心里无时无刻不在想着一件事：</p>
+<p>原来早在辛弃疾出生前，北方地区就已经被金人占领了。辛弃疾的爷爷虽然被迫留在了沦陷区，还做了一个小官，但他充分展示了什么叫“身在曹营心在汉”。</p>
+<p>辛弃疾的爷爷没事就带着孩子们爬山，讨论军事问题，比如以后要是起义，哪里当根据地比较好。</p>
+<p>后来，辛弃疾两次去金国的首都参加科举。</p>
+<p>别的读书人都是冲着当官发财去的，但辛弃疾，一路上都在搜集金国的情报。</p>
+<p>机会总是留给有准备的人。金国皇帝脑洞大王完颜亮兴兵南下，国内空虚，北方的汉人们趁机起义。辛弃疾自己拉起了一支队伍，也在老家山东揭竿而起。</p>
+<p>辛弃疾起义之后投靠了当时最牛的起义军首领耿京。</p>
+<p>耿京的团队挺大，但都是大老粗，没啥文化。辛弃疾一来，可算有了个文化人，耿京就让他负责起义军的文书事物，还把公章给了辛弃疾保管。</p>
+<p>但辛弃疾可不是普通的文官，他可能是中国历史上武力值最高的文人：</p>
+<p>人文里我最能打，武将里我最有才。</p>
+<p>那么辛弃疾都干了些啥呢？</p>
+<p>各位读者，你们可瞧仔细了!</p>
+<p>辛弃疾有个朋友义端和尚，他当时也带着一支队伍起义，辛弃疾就把他也拉到耿京的队伍里。</p>
+<p>但是这个义端和尚，花花肠子比较多，后来竟然偷了辛弃疾掌管的公章，跑路了。</p>
+<p>辛弃疾立下了三天追回叛徒的军令状，一路追去，结果还真的让他给追上了。</p>
+<p>义端吓尿了，想要求饶，据说他猛夸辛弃疾：</p>
+<p>我看出你的真身了，你是青牛转世，力大无穷，求你别杀我。</p>
+<p>辛弃疾直接把义端给砍了，回去复命。从此以后，文武双全的他更加得到耿京的重用。</p>
+<p>干掉义端这种叛徒，对辛弃疾而言只不过是牛刀小试，后来又出了叛徒2.0张安国，辛弃疾除掉这个叛徒的过程，堪比武侠小说中的情节。</p>
+<p>辛弃疾觉得起义军想要有活路，还得投靠南宋朝廷，耿京同意辛弃疾的看法，于是就派他去南宋联络。</p>
+<p>辛弃疾和南宋朝廷谈得很顺利，可就在他回来的路上，却惊闻噩耗。</p>
+<p>有个叫张安国的叛徒，接受了金国的诱降，把耿京给杀死了。一般人听到这个消息，估计会直接掉头回南宋。但是辛弃疾何许人也，不报仇，那还是男子汉大丈夫吗？</p>
+<p>当时他就组织了五十多人的复仇者联盟，直接杀向张安国几万人的驻地，骗出张安国，活捉了他，顺便还忽悠了上万人当场起义，一块儿回了南宋。</p>
+<p>经过一系列的波折，辛弃疾终于回归了他梦寐以求的南宋，正式进入南宋朝廷，准备施展才华，大干一场。</p>
+<p>但是他可能没想到，他青年时代的这一壮举，就是他这辈子的巅峰了。</p>
+<h3>二、南归之后：仰卧起坐式的官场生涯</h3>
+<p>辛弃疾年轻时在起义军里的表现，那可以说是：</p>
+<p>能文能武。</p>
+<p>按理说，这样一个文武双全的人应该会受到重用，但辛弃疾南归之后四十几年的人生，却跟坐过山车一样，上上下下，起起落落。而这四十几年，大概又可以分为三个阶段：</p>
+<p>辗转各地，赋闲在家，老年领兵。</p>
+<h4>第一阶段：<strong>辗转各地</strong>。</h4>
+<p>当时南宋和金国对峙，南宋朝廷内部一直有主战和主和两派，成天吵个没完。</p>
+<p>宋高宗在位的时候，重用秦桧，杀死岳飞，主和派占上风，刚南归的辛弃疾一心想提着刀打仗，自然不得重用。</p>
+<p>这一时期，是辛弃疾南归生涯的第一阶段：</p>
+<p>之后宋高宗皇帝做腻了，把位置传给了宋孝宗。这个年轻人热血沸腾，立志恢复中原。</p>
+<p>这一时期，主战派占据了上风，还发动了北伐，可是……这次北伐以惨败收场，宋孝宗和主战派被浇了一盆冷水，情绪低落。而就在这时，辛弃疾却站了出来，一口气写了十篇论文，论证天下大势，以及如何打败金国，这就是有名的</p>
+<p>美芹十论!</p>
+<p>在朝野上下一片悲观的情况下，辛弃疾还能写出如此逻辑严谨且深谋远虑的论文，可见他抗金的信念有多强烈。</p>
+<p>虽然辛弃疾论文发表了不少，却都没有得到朝廷的重视。此时的他依然重复着前十几年的故事，辗转各地。但是在这一时期，辛弃疾干出了不少业绩。</p>
+<p>比如在江西平定贩卖私茶的茶军叛乱。</p>
+<p>比如在湖南建立飞虎军保障当地治安。</p>
+<p>但是辛弃疾内心真正渴望的是上前线，十几年的不得重用，让他满腔愤懑无处发泄。</p>
+<p>这些强烈的情感都体现在了他的词里：</p>
+<p></p>
+
+<pre>
+<strong>太常引·建康<sub>1</sub>中秋夜为吕叔潜赋</strong>
+
+一轮秋影转金波<sub>2</sub>。
+飞镜<sub>3</sub>又重磨。把酒问姮娥<sub>4</sub>。
+被白发<sub>5</sub>、欺人奈何<sub>6</sub>。
+乘风好去<sub>7</sub>，长空万里，直下看山河<sub>8</sub>。
+斫去桂婆娑<sub>9</sub>。人道是、清光更多。
+</pre>
+
+<p>【必背注释】</p>
+<p>[1] 建康：六朝时期的南京。</p>
+<p>[2] 金波：指月光。源自《汉书》卷二十二《礼乐志》：“月穆穆以金波”。</p>
+<p>[3] 飞镜：天上的月亮像飞天之明镜，这里指月亮。</p>
+<p>[4] 姮héng娥：即嫦娥，传说中的月中仙女。</p>
+<p>[5] 被白发：白发渐渐增多。被(pī)，同“披”，覆盖。</p>
+<p>[6] 欺人奈何：欺负我拿它没办法。</p>
+<p>[7] 乘风好去：乘风而去。</p>
+<p>[8] 直下看山河：俯视大好河山。</p>
+<p>[9] 斫去桂婆娑suō：砍去摇曳的桂树枝。《酉阳杂俎》中记载，月中的桂树高五百丈，树下有一个人常常砍树，斧子砍下去，树的创口就长好了；这个人姓吴名刚，是西河人，学仙道时犯错，被罚砍树。斫：砍。桂：桂树。婆娑：树影摇曳的样子。</p>
+<p>【必背翻译】</p>
+<p>一轮圆月洒下万里金波，好像刚磨亮的铜镜飞上了夜空。我举起酒杯问那月中的嫦娥，我已白发日增，上天故意欺负我，为之奈何。我要乘风飞上万里高空，俯视宋朝的大好山河。还要砍去月中婆娑摇曳的桂树枝柯，因为人们都说，这将会使月亮洒向人间的光辉更多。</p>
+<p>这首词运用了月亮的传说，具有浓厚的浪漫主义色彩。</p>
+<p>上阕感慨年复一年时光虚度，但是却无可奈何。</p>
+<p>下阕展开了想象，作者希望砍掉桂树，让黑暗消失，让清辉洒满人间。表达了辛弃疾对去除社会黑暗，把光明带给人间的决心。这首词虽是辛弃疾对长期不得重用的苦闷发泄，但是从中也可以看出他对实现理想的坚定信念。</p>
+<br>
+<p>辛弃疾在地方上当官这些年，用官银买粮赈灾、建军队防爆乱，因此得罪了不少权贵。</p>
+<p>这些人抓着机会就要搞事情，辛弃疾因此被罢官：</p>
+<p>被罢官之后的辛弃疾，回到了他在江西上饶的家。</p>
+<p>这之后他的南归人生就进入了第二阶段：在家赋闲。</p>
+<h4>第二阶段：<strong>在家赋闲</strong></h4>
+<p>在上饶他不仅修了房子，还从地势低的地方挖了块田出来。因为房子旁边有田，所以他特地给房子取了个名字——稼轩。</p>
+<p>稼，是指庄稼、农事；轩，则是指房屋。正是因为这处房子，辛弃疾把自己的别号也取成了稼轩。</p>
+<p>辛弃疾这一赋闲就是二十年，虽然中间也出去当了两次小官，但都很快又回来了。</p>
+<p>他大部分的时间就是种种地、旅旅游，所以这个时期辛弃疾创作了很多描写农村风光的词，我们来看下面这首词：</p>
+<p></p>
+
+<pre>
+<strong>清平乐·村居</strong>
+
+茅檐<sub>1</sub>低小，溪上青青草。
+醉里吴音<sub>2</sub>相媚好<sub>3</sub>，白发谁家翁媪<sub>4</sub>？
+大儿锄豆<sub>5</sub>溪东，中儿正织<sub>6</sub>鸡笼。
+最喜小儿亡赖<sub>7</sub>，溪头卧<sub>8</sub>剥莲蓬。
+</pre>
+
+<p>【必背注释】</p>
+<p>[1] 茅檐：茅屋的房檐。</p>
+<p>[2] 吴音：吴地的方言。作者当时住在信州(今天上饶)，这一带的方言为吴音。</p>
+<p>[3] 相媚好：指相互取悦逗乐。</p>
+<p>[4] 翁媪(ǎo)：老翁、老妇。</p>
+<p>[5] 锄豆：锄掉豆田里的杂草。</p>
+<p>[6] 织：编织，指编织鸡笼。</p>
+<p>[7] 亡(wú)赖：这里指小孩顽皮、淘气。亡，通“无”。</p>
+<p>[8] 卧：趴。</p>
+<p>【必背翻译】</p>
+<p>茅屋的房檐又低又小，溪边长满了碧绿的小草。听到带有醉意的吴地方言，真是温柔又美好，不知他们是谁家的满头白发的老翁老妇。</p>
+<p>大儿子在溪水东面豆田里锄草，二儿子正忙着编织鸡笼，最令人喜爱的是顽皮的小儿子，他正趴在溪头的草丛里，剥着刚摘下的莲蓬。</p>
+<p>这首词纯粹用的是白描手法，整首词围绕小溪展开画面，构思巧妙。茅檐、小溪、青草都是常见的东西，组合在一起，构成了一幅清新自然的农村风景图。</p>
+<p>语言虽然质朴，但整首词却充满了诗情画意。</p>
+<p>这种诗情画意与满腔的报国壮志形成了鲜明的对比，虽有雄才大略，却英雄无用武之地，明明想驰骋疆场，却只能在家种地，其中的愁绪也只有辛弃疾自己能懂了：</p>
+<p></p>
+
+<pre>
+<strong>丑奴儿·书博山道中壁</strong>
+
+少年不识<sub>1</sub>愁滋味，爱上层楼。
+爱上层楼，为赋<sub>2</sub>新词强<sub>3</sub>说愁。
+而今识尽<sub>4</sub>愁滋味，欲说还休<sub>5</sub>。
+欲说还休，却道天凉好个秋。
+</pre>
+<p>【必背注释】</p>
+<p>[1] 不识：不懂，不知道。</p>
+<p>[2] 赋：写词。</p>
+<p>[3] 强(qiǎng)：勉强地，硬要。</p>
+<p>[4] 识尽：尝够，意为深深懂得。</p>
+<p>[5] 欲说还休：想说还是停止了，指内心有所顾虑而不敢表达。</p>
+<p>【必背翻译】</p>
+<p>人年轻的时候不知道忧愁的滋味，喜欢登上高楼远望。喜欢登上高楼远望，为写一首新词无愁而勉强说愁。</p>
+<p>现在尝尽了忧愁的滋味，想说却又停下不说。想说却又停下不说，却说：好一个凉爽的秋天啊!</p>
+<p>这首词是历代写“愁”的诗词里非常有名的一首。</p>
+<p>上阕着重描写了自己的少年时代，想法单纯、乐观、自信。下阕与上阕进行对比，突出了自己随着年岁的增长对“愁”的理解的加深。“天凉好个秋”，表面形似轻松，实际上却是深沉含蓄，愁到心头了。所以辛弃疾虽然种着地，心里却依然念着家国天下，辛弃疾的南归人生，也即将进入最后一个阶段：</p>
+<h4>第三阶段，老年领兵</h4>
+<p>辛弃疾赋闲了二十年，天下的局势发生了一些改变：</p>
+<p>金国在华北地区长期的压迫统治，导致华北地区民间起义愈发频繁。同时北方蒙古人崛起，开始不断南下骚扰。</p>
+<p>南宋的一些大臣，发现了金国的内忧外患，心想：这个时候不北伐，啥时候北伐!</p>
+<p>于是南宋朝廷开始集结兵马，准备打过去了。</p>
+<p>当时朝堂上说话最管用的是韩侂胄，在准备干架的这个当头，他自然是要起用一直主张伐金的人。</p>
+<p>这个时候他想起了写过伐金大论文的辛弃疾。</p>
+<p>而这个时候的辛弃疾，已经六十四岁高龄了。</p>
+<p>辛弃疾满怀激情重新出山。但事实上，韩侂胄只是看中了辛弃疾主战派元老的招牌，并没有打算真正重用他。</p>
+<p>在这期间，辛弃疾来到三国遗址北固亭，有感而发，写了两首特别有名的词：</p>
+<p></p>
+
+<pre>
+可堪回首，佛狸祠下，一片神鸦社鼓。
+凭谁问：廉颇老矣，尚能饭否？
+                           --节选自《永遇乐·京口北固亭怀古》
+</pre>
+
+<p>词人以廉颇自比，一是表示自己虽然年老，但仍然和当年的廉颇一样，老当益壮，勇武不减当年；二是抒写忧虑，恨自己像廉颇一样，空有豪情却报国无门。</p>
+<p></p>
+
+<pre>
+<strong>南乡子·登京口<sub>1</sub>北固亭有怀</strong>
+
+何处望<sub>2</sub>神州<sub>3</sub>？满眼风光北固楼。
+千古兴亡<sub>4</sub>事？悠悠<sub>5</sub>。
+不尽长江滚滚流。
+年少<sub>6</sub>万兜鍪<sub>7</sub>，坐断<sub>8</sub>东南<sub>9</sub>战未休<sub>10</sub>。
+天下英雄谁敌手<sub>11</sub>？曹刘。
+生子当如孙仲谋<sub>12</sub>。
+</pre>
+
+<p>【必背注释】</p>
+<p>[1] 京口：今江苏省镇江市。</p>
+<p>[2] 望：眺望。</p>
+<p>[3] 神州：这里指中原地区。</p>
+<p>[4] 兴亡：指国家兴衰，朝代更替。</p>
+<p>[5] 悠悠：形容漫长、久远。</p>
+<p>[6] 年少：年轻。这里指孙权十九岁继父兄之业统治江东。</p>
+<p>[7] 兜鍪(dōu móu)：原指古代作战时兵士所戴的头盔，这里代指士兵。</p>
+<p>[8] 坐断：坐镇，占据。</p>
+<p>[9] 东南：指吴国在三国时地处东南方。</p>
+<p>[10]  休：停止。</p>
+<p>[11]  敌手：能力相当的对手。</p>
+<p>[12]  生子当如孙仲谋：生儿子就要像孙仲谋。此为典故，据说三国时期曹操率大军南下，见孙权的军队雄壮威武，喟然而叹：“生子当如孙仲谋，刘景升儿子若豚犬耳。”仲谋，孙权的字。</p>
+<p>【必背翻译】</p>
+<p>从什么地方可以看见中原故土呢？在北固楼上，满眼看到的都是美好的风光。从古而今，有多少国家兴亡大事呢？无法说清。连绵不断的往事，如同没有尽头的长江水滚滚地奔流不息。</p>
+<p>想当年孙权尚青春年少，就已经统领了千军万马。他能坐镇东南，坚持抵抗，没有向敌人低过头。天下英雄谁是孙权的敌手呢？只有曹操和刘备罢了。难怪曹操说生儿子就要生孙权那样的儿子。整首词一共三问。</p>
+<p>第一问通过描写登高远眺的场景，来抒发词人对故土的怀念。第二问则表现了词人的愁绪就像这滔滔江水，延绵不断。第三问借用了“生子当如孙仲谋”的典故，讽刺了朝廷中主和派的懦弱。辛弃疾对战争的意见得不到重视，只是被当成吉祥物，呼之则来，挥之即去。</p>
+<p>而掌权的韩侂胄，口气挺大，本事却没多少。他急哄哄地打过去，结果分分钟被金国的军队教做人。这个时候又想让辛弃疾来收拾烂摊子了。</p>
+<p>但是辛弃疾表示：</p>
+<p>我拒绝。</p>
+<p>辛弃疾早就看透了韩侂胄的为人，不想与他共事。而且此时六十八岁的辛弃疾已经病到起不来了，在写完辞职信后不久，就与世长辞了。</p>
+<h3>三、写词就要大声吼</h3>
+<p>辛弃疾的一生，真的像跳楼机一样上上下下，让人唏嘘。但他的词随了他的长相，那就是——豪</p>
+<p>他在词上面的成就主要有两个方面：</p>
+<p>首先，在苏东坡之后，他的词又一次突破了描写儿女情思的传统内容，让词有了抒发忠义之士的家国情怀的作用。</p>
+<p>比如说下面这首非常有名的词：</p>
+<p></p>
+
+<pre>
+<strong>破阵子·为陈同甫赋壮词以寄之</strong>
+
+醉里挑灯看剑，梦回吹角连营。
+八百里<sub>1</sub>分麾<sub>2</sub>下炙<sub>3</sub>，五十弦<sub>4</sub>翻<sub>5</sub>塞外声<sub>6</sub>，沙场秋点兵。
+马作<sub>7</sub>的卢<sub>8</sub>飞快，弓如霹雳<sub>9</sub>弦惊。
+了却君王天下事<sub>10</sub>，赢得生前身后名。
+可怜<sub>11</sub>白发生!
+</pre>
+
+<p>【必背注释】</p>
+<p>[1] 八百里：指牛。《世说新语·汰侈》记载：“晋王恺有良牛，名‘八百里驳’。”后诗词多以“八百里”指代牛。</p>
+<p>[2] 麾：军旗。麾下：指部下。</p>
+<p>[3] 炙：烤肉。</p>
+<p>[4] 五十弦：本指瑟，泛指乐器。</p>
+<p>[5] 翻：演奏。</p>
+<p>[6] 塞外声：以边塞作为题材的雄壮悲凉的军歌。</p>
+<p>[7] 作：像……一样。</p>
+<p>[8] 的卢(dí lú)：马名。一种额部有白色斑点的烈性快马。相传刘备曾乘的卢马从襄阳城西的檀溪水中一跃三丈，脱离险境。</p>
+<p>[9] 霹雳：响雷，比喻拉弓时弓弦响如惊雷。</p>
+<p>[10] 天下事：指恢复中原之事。</p>
+<p>[11] 可怜：可惜，值得怜悯。</p>
+<p>【必背翻译】</p>
+<p>醉梦里挑亮油灯细看宝剑，梦中恍惚又回到了当年，各个营垒接连响起号角声。把烤肉分给部下，让军中奏起雄壮的军乐。这是秋天在战场上阅兵的场景。</p>
+<p>想那战场上，战马像的卢一样跑得飞快，弓箭像惊雷一样震耳离弦。我一心想替君主完成收复国家失地的大业，取得世代相传的功名。可怜我已经成了白发人!</p>
+<p>这首词是典型的英雄人写英雄词，把沙场点兵的壮志豪情、惊心动魄的战斗场面，都描绘得栩栩如生。</p>
+<p>但可惜这些场景都在“醉里”和“梦回”，幻想的壮阔场面和现实的寂寞清冷形成了鲜明对比。</p>
+<p>壮与悲，理想与现实，形成了鲜明的对照，抒发了词人报国无门的苦闷。这首词既然叫“壮词”，可谓情壮、景壮、事壮、语壮、声壮、人壮、马壮，气势豪迈，读起来让人热血沸腾。</p>
+<p>其次，辛弃疾的语言技巧高超，既通俗易懂，又能引经据典；既有古典的意象，也有对自然景物的描写。这是对词表现形式的一种极大的突破。</p>
+<p>比如下面这首：</p>
+
+<p></p>
+<p></p>
+
+<pre>
+<strong>西江月·夜行黄沙<sub>1</sub>道中</strong>
+
+明月别枝惊鹊<sub>2</sub>，清风半夜鸣蝉<sub>3</sub>。
+稻花香里说丰年，听取<sub>4</sub>蛙声一片。
+七八个星天外，两三点雨山前。
+旧时<sub>5</sub>茅店<sub>6</sub>社林<sub>7</sub>边，路转溪桥忽见<sub>8</sub>。
+</pre>
+
+
+<p>【必背注释】</p>
+<p>[1] 黄沙：黄沙岭，在今江西上饶的西面。</p>
+<p>[2] 别枝惊鹊：惊动了喜鹊飞离枝头。</p>
+<p>[3] 鸣蝉：蝉叫。</p>
+<p>[4] 听取：听闻。</p>
+<p>[5] 旧时：往日。</p>
+<p>[6] 茅店：茅草盖的乡村客店。</p>
+<p>[7] 社林：土地庙旁边的树林。社，土地神庙。古时，村有社树，为祀神处，故曰社林。</p>
+<p>[8] 见：同“现”，显现，出现。</p>
+<p>【必背翻译】</p>
+<p>一轮明月升上了天空，惊飞了栖在枝头的喜鹊。清凉的晚风送来了远处的蝉鸣。在稻花的香气里，谈论着丰收的年景，耳边传来一阵阵青蛙的叫声，好像也在说着丰收年。</p>
+<p>天边的星点点闪烁，山前的雨滴滴飘过。从前那熟悉的茅草客店，依然坐落在土地庙附近的树林中。道路转过溪水的源头，它便忽然出现在我们的眼前。</p>
+<p>词的上阕描写的由高到低的景物，洋溢着丰收年景的幸福感。下阕远而忽近，隐而骤明，表现了作者沉浸在稻花中怡然自得的心态。这首词语言朴素，没有任何修饰，体现了辛弃疾情真意切的诚挚一面。叶嘉莹老师曾说，辛弃疾最为了不起和不可及者，是他能够将“诗之境阔”和“词之言长”这两种文体的优点合而为一……他的词不仅正面表现了他忠心报国、收复中原的坚定意志，还艺术再现了他的那一分深厚强大的生命力。</p>
+<p>辛弃疾这辈子，虽空有将帅之才、报国之心无处施展，但忠义之心和建功之志一直伴随着他。</p>
+<p>辛弃疾这个人，可以说是“文能提笔安天下，武能立马定乾坤”。</p>
+<p>哪怕朝廷虐他千百遍，他北伐收复故土的决心无论何时都坚定不移。他可谓一位当之无愧的爱国词人。</p>
+
+
+<p style='float:right;'>本页共203段，8375个字符，21060 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
