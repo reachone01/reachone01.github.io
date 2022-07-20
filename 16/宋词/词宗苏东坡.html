@@ -1,0 +1,488 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	width:100%;
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	overflow-x:auto;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>词宗苏东坡</h4>
+
+
+<p>“大江东去，浪淘尽，千古风流人物。”</p>
+<p>豪放派鼻祖——一代“词宗”苏东坡</p>
+<p>被誉为“百年第一”的全能才子</p>
+<p>公元1056年，一辆风尘仆仆的马车在一座寺庙门口停下，车上走下来一个年近半百的中年人，另外还有两个年龄相仿的年轻人。这两个年轻人，一个十九岁，一个十七岁，看上去面目清秀，文质彬彬，他们携带随身包裹跟随父亲进了寺庙，准备在这里暂时寄居下来，和许多进京赶考的学子一样，以迎接来年春天礼部主持的贡举考试。</p>
+<p>公元1057年这场春试的主考官，正是当时主张诗文革新的文坛领袖欧阳修，兄弟俩透彻的说理、平易晓畅的文风很符合欧阳公的喜好，轻松地通过了这场考试。尤其是哥哥，他写的《刑赏忠厚之至论》一文颇受欧阳修赏识，被赞为脱尽五代宋初以来的浮靡艰涩之风，判了第二名。据说，欧阳修原本要判此文为第一，但疑心此文为自己的得意门生曾巩所作，为了避嫌，所以改判了第二。</p>
+<p>在这场科举考试中名列第二的，正是日后词坛的大文豪苏轼。虽然当时苏轼才二十岁，但已初露锋芒，独具慧眼的欧阳修十分欣赏他文学上的天赋与才华，大胆预言：“此人可谓善读书，善用书，他日文章必独步天下。”他还曾在给好友梅尧臣的信中如是说：“老夫当避此人，放出一头地。”</p>
+<p>就才华而言，苏轼完全当得起如此夸赞，他不仅文章写得好，书法、绘画、诗词、音律无不精通，是百年难得一遇的全才。</p>
+<p>公元1061年，仁宗皇帝亲自主持选拔优秀人才的制科考试，苏轼又一举拔得头筹，成为数百年制科考试历史上唯一的第三等，被誉为“百年第一”。跟三年一试的常规科举考试不同，制科考试不定期举行，应试者由朝廷命官举荐，在长达数百年的宋朝历史中总共只举行过22次，又因要求极为严格，通过者仅41人，而在所有应试者中，第三等为事实上的最高等，因为从未有人得过第一、二等的殊荣——苏轼的才华由此可见一斑。然而，正如《孟子》所言：“天将降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身……”这个才高八斗的年轻人在事业上颇为不顺，先是公元1066年父亲苏洵病逝，他与弟弟苏辙扶柩回乡，守孝三年。三年后，当苏轼、苏辙兄弟再回京城时，为革除宋初制度不完善导致的流弊，年轻气盛的神宗皇帝重用王安石，开始了轰轰烈烈的熙宁变法。当时朝野上下因变法分成了新党和旧党两大阵营，反对变法的欧阳修等人在朝中受到打击，苏轼也因政治主张与王安石不合而受到排挤。公元1071年，在朝中手脚被束的苏轼无奈自请离京，到地处江南的杭州当了个通判，虽然官职小，官衔低，但远离了纷争不断的朝廷，这一时期他的内心是平静安宁的，他的词也多为抒情、唱和之作，洋溢着年轻人的青春气息。如那首写给即将离任的杭州太守陈襄的送别诗<a href="https://so.gushiwen.cn/mingju/juv_513ce6770fcc.aspx">《虞美人》</a>：</p>
+<pre>
+湖山信是东南美，一望弥千里。
+使君能得几回来？便使樽前醉倒更徘徊。
+
+沙河塘里灯初上，水调谁家唱？
+夜阑风静欲归时，惟有一江明月碧琉璃。
+</pre>
+<p>再如远赴润州“出差”赈灾时写给妻子的<a href="https://www.gushiji.cc/gushi/337132.html">《少年游》：</a></p>
+<pre>去年相送，余杭门外，飞雪似杨花。
+今年春尽，杨花似雪，犹不见还家。
+
+对酒卷帘邀明月，风露透窗纱。
+恰似姮娥怜双燕，分明照、画梁斜。
+</pre>
+<p>从气势上看，这些词篇远不及后期的词作那般气势磅礴，但已突破了“词为艳科”的传统格局，渐渐形成了“词别是一家”的风格。</p>
+<h3>1 超然台上说“超然”的密州太守</h3>
+<pre>
+十年生死两茫茫，不思量，自难忘。
+千里孤坟，无处话凄凉。
+纵使相逢应不识，尘满面，鬓如霜。
+
+夜来幽梦忽还乡，小轩窗，正梳妆。
+相顾无言，惟有泪千行。
+料得年年肠断处，明月夜，短松冈。
+</pre>
+<p>这首<a href="https://www.pinshiwen.com/shiji/sushi/20220329333847.html">《江城子》</a>写于公元1075年正月，是苏轼悼念亡妻王弗的一首抒情词。全词充满悲凉，沉痛感人。然而，这种因梦见亡妻而生的悲凉，并不仅仅存在于梦境中，或仅停留在梦醒后的片刻，它是不断扩散的广阔的悲凉，犹如北方冰雪覆盖的山川大河一般，是苏轼长期以来挣扎着想要突破却始终无法突破的心境。毕竟，此时的苏轼已年近四十，鬓角渐生白发。青春无法驻留，一个有抱负的人可以一时假装对失意毫不在乎，假装自己享受在江南品茶、写词、论道的生活，但这种自我放逐，是苏轼真正想要的吗？</p>
+<p>自开国以来，宋廷就一直与辽、西夏纷争不断，凭借“潭渊之盟”“庆历和议”，北宋与辽、西夏的大战已休，但随着国势强弱的变迁，彼此的边境摩擦和冲突仍不断发生，而百余年的积弊又使宋王朝渐现衰微之势，面对如此内忧外患，苏轼何尝不渴望为国家多做些事？他的<a href="https://baike.baidu.com/item/江城子·密州出猎/3034528">《江城子·密州出猎》</a>，就很明确地表达了自己的雄心与抱负：</p>
+<pre>
+老夫聊发少年狂，左牵黄，右擎苍。
+锦帽貂裘，千骑卷平冈。
+为报倾城随太守，亲射虎，看孙郎。
+
+酒酣胸胆尚开张，鬓微霜，又何妨？
+持节云中，何日遣冯唐？
+会挽雕弓如满月，西北望，射天狼。
+</pre>
+<p>自称“老夫”是苏轼感慨时光易逝，但此时的他正值壮年，只要给他机会，他就愿意像孙权那般亲自弯弓射虎，像西汉太守魏尚那般奔赴边疆抗击辽和西夏的入侵和滋扰！“为报倾城随太守，亲射虎，看孙郎”，“会挽雕弓如满月，西北望，射天狼”，这豪气冲天的壮语，正是苏轼热切渴望的内心写照。</p>
+<p>除了《江城子·密州出猎》，在担任密州太守的前后岁月里，苏东坡还写过不少经典的豪放派词作，如<a href="https://baike.baidu.com/item/沁园春·孤馆灯青/2803683">《沁园春·孤馆灯青》</a>：
+<pre>
+孤馆灯青，野店鸡号，旅枕梦残。
+渐月华收练，晨霜耿耿，云山摛锦，朝露漙漙。
+世路无穷，劳生有限，似此区区长鲜欢。
+微吟罢，凭征鞍无语，往事千端。
+
+当时共客长安，似二陆初来俱少年。
+有笔头千字，胸中万卷，致君尧舜，此事何难。
+用舍由时，行藏在我，袖手何妨闲处看。
+身长健，但优游卒岁，且斗尊前。
+</pre>
+<p>这是公元1074年苏轼由杭州奔赴密州上任途中写给弟弟苏辙的词，词中以西晋诗人陆机、陆云自喻，感慨他与苏辙兄弟二人“有笔头千字，胸中万卷”的才能和“致君尧舜”的雄心壮志，又化用《论语》“用之则行，舍之则藏”之句来宽解仕途不顺的弟弟和自己。此时的苏轼，不论其词境还是心境，在慨叹现实之余流露出的是大气磅礴与豪放奔腾之气。</p>
+<p>然而，苏轼的豪情壮志始终没有用武之地。变法仍在继续，他虽敬仰王安石正直的人品，却无法赞同他过于激进的变革方式，而王安石也无法容忍苏轼的“保守”，这就注定他们在政治上势不两立，王安石在朝廷掌权一天，苏轼就难有所作为。个人在时代面前是渺小的，苏轼意识到自己在现实面前无能为力，便只好在政治之外寻求解脱。在密州担任太守期间，他曾命人将城北的一座旧台修葺一新，将其命名为“超然台”，希望能成为<a href="https://baike.baidu.com/item/望江南·超然台作/2802546">《望江南·超然台作》</a>中所描述的“超然太守”：
+<pre>
+春未老，风细柳斜斜。
+试上超然台上望，半壕春水一城花。
+烟雨暗千家。
+
+寒食后，酒醒却咨嗟。
+休对故人思故国，且将新火试新茶。
+诗酒趁年华。
+</pre>
+<p>苏轼是词人，也是哲人，他生性豁达，明白人生、历史与这超然台上所见之景一样，逃不过春去秋来荣枯的自然规律，但毕竟身在尘世，纵然明白这些道理，又哪里逃得出现实的苦闷？如果登上超然台可以真的超然，苏轼又何必发出“高处不胜寒”的感慨？</p>
+<pre>
+丙辰中秋，欢饮达旦，大醉，作此篇，兼怀子由。
+
+明月几时有？把酒问青天。
+不知天上宫阙，今夕是何年。
+我欲乘风归去，又恐琼楼玉宇，高处不胜寒。
+起舞弄清影，何似在人间？
+
+转朱阁，低绮户，照无眠。
+不应有恨，何事长向别时圆？
+人有悲欢离合，月有阴晴圆缺，此事古难全。
+但愿人长久，千里共婵娟。
+</pre>
+<p>这首<a href="https://baike.baidu.com/item/水调歌头·明月几时有/9634137">《水调歌头》</a>是苏轼在密州时写给远在他乡的苏辙的，词中不仅道出了对兄弟的思念，更传达出这一时期他复杂的心境：既有“我欲乘风归去，又恐琼楼玉宇，高处不胜寒”的矛盾，又有对“人有悲欢离合，月有阴晴圆缺，此事古难全”的无奈，说“不应有恨”，他真正想表达的，不正是对人生不能遂意的遗憾与苦闷吗？</p>
+<h3>2 一篇表文引发“乌台诗案”</h3>
+<p>公元1079年，于苏轼是个多事之秋。</p>
+<p>这年春天，苏轼被从徐州调到湖州任太守，按照惯例，他给神宗皇帝写了一篇感恩戴德的《湖州谢上表》，令他想不到的是，这篇表文竟意外掀起了一场震动朝野的轩然大波，他自己差点在这场腥风血雨中含冤死去，许多平日里和他交往密切的好友纷纷受到了牵连。</p>
+<p>事情的起因还是离不开新旧党争。当时，四十二岁的苏轼虽在政治上没有多大起色，但在文坛上已是赫赫有名的新一代文坛领袖。新党忌惮苏轼在文坛的影响力，对他诗文中流露出的对新政的微词颇为不满，早想治治这个不听话的“异党”，只是苦于一直找不到机会。不过这回，他们总算抓住了苏轼的“把柄”，原来，苏轼在《湖州谢上表》一文中写了“陛下知其愚不适时，难以追陪新进；察其老不生事，或能收养小民”。新党拿着这句话大做文章，说苏轼妄自尊大、愚弄朝廷，又翻出大量他以前写的诗词，捕风捉影，给他罗列罪名。</p>
+<p>经过长达4个月的“潜心钻研”，监察御史台里行舒亶向神宗弹劾苏轼：“至于包藏祸心，怨望其上，讪渎谩骂，而无复人臣之节者，未有如轼也。盖陛下发钱以本业贫民，则曰‘赢得儿童语音好，一年强半在城中’；陛下明法以课试郡吏，则曰‘读书万卷不读律，致君尧舜知无术’；陛下兴水利，则曰‘东海若知明主意，应教斥卤变桑田’；陛下谨盐禁，则曰‘岂是闻韶解忘味，尔来三月食无盐’；其他触物即事，应口所言，无一不以讥谤为主。”</p>
+<p>紧接着，国子博士李宜之，曾为自己的政治前途隐瞒丧母消息而被苏轼讥为“不孝”的御史中丞李定，也相继上奏弹劾苏轼，历数他的“罪行”，声称必须将苏轼斩首才能“奋忠良之心，好恶既明，风俗自革”。</p>
+<p>公元1079年7月，苏轼在湖州上任不满三个月，就突然被御史台的人逮捕下狱。其后，在御史台不择手段的逼供下，他屈打成招，承认了种种他们为他罗列的“罪行”。新党内的群小觉得这是个契机，不仅想除去苏轼，还揪出司马光、范镇、张方平等数十名与苏轼过从甚密的朝臣，想借此机会将政敌一网打尽。苏轼万万没料到，他在表中随意发的一句牢骚话竟会掀起如此轩然大波！</p>
+<p>所幸朝中仍有不少正直的大臣为苏轼等人求情，其中包括他政治上的死敌王安石，而神宗皇帝本人也颇为爱才，不忍杀害苏轼这样一个难得的人才。公元1079年12月底，这场史称“乌台诗案”的风波终于有了定论——皇帝下诏对苏轼从轻发落，贬为黄州团练副使。</p>
+<p>“乌台诗案”这一突如其来的变故成为苏轼人生重大的转折点。</p>
+<p>公元1080年春，劫后余生的苏轼终于出狱，他消瘦了许多，也憔悴了许多。“乌台诗案”带给他的，远不止狱中遭受的身心折磨与煎熬，更有许多绕不开的现实窘境——往日风光不再，优游自在的生活也一去不复返，出狱后的苏轼贫病交加，一路风餐露宿赶到黄州，到黄州后官薪微薄难以养家，只好自盖茅屋、自辟山地勉强糊口。然而，比起生活的困顿与艰苦，最令苏轼唏嘘的还是人情冷暖。“乌台诗案”中，不少与苏轼交好的朝中大臣纷纷受到牵连，被责罚或贬官，诗案了结后，不少往日亲友视他为洪水猛兽，因怕受连累对他避而远之——世态炎凉至此，不免叫人伤心。</p>
+<p>经历人生剧变的苏轼，此时的心境大为改变，他的<a href="https://baike.baidu.com/item/哨遍·为米折腰/2328882">《哨遍·为米折腰》</a>一词，就是此时的内心写照：</p>
+<pre>
+陶渊明赋《归去来》，有其词而无其声。
+余治东坡，筑雪堂于上。
+人俱笑其陋，独鄱阳董毅夫过而悦之，有卜邻之意。
+乃取《归去来》词，稍加檃括，使就声律，以遗毅夫。 
+使家童歌之，时相从于东坡，释耒而和之，扣牛角而为之节，不亦乐乎？
+
+为米折腰，因酒弃家，口体交相累。
+归去来，谁不遣君归。觉从前皆非今是。
+露未晞。征夫指予归路，门前笑语喧童稚。
+嗟旧菊都荒，新松暗老，吾年今已如此。
+但小窗容膝闭柴扉。策杖看孤云暮鸿飞。
+云山无心，鸟倦知还，本非有意。
+
+噫！归去来兮。我今忘我兼忘世。
+亲戚无浪语，琴书中有真味。
+步翠麓崎岖，泛溪窈窕，涓涓暗谷流春水。
+观草木欣荣，幽人自感，吾生行且休矣。
+念寓形宇内复几时。不自觉皇皇欲何之？
+委吾心、去留谁计。神仙知在何处，富贵非吾志。
+但知临水登山啸咏，自引壶觞自醉。
+此生天命更何疑。且乘流、遇坎还止。
+</pre>
+<p>这首词是苏轼为好友董毅夫所写。董毅夫从鄱阳来黄州探望苏轼，苏轼则在田间一边劳作，一边命家僮唱“噫！归去来兮……”，扣牛角击节，为董毅夫唱词。密州时期一身“狂”与“豪”、对仕途充满进取的苏轼已然不再，黄州的苏轼在沉重的打击下不觉产生了“归去”之意。</p>
+<p>在这种心境的影响下，苏轼的词作内容也有很大的变化，言志的少了，多写与友人的唱和、对风景的描摹、对事物的歌咏以及对生活的感悟，其风格也不再锋芒毕露，而是渐趋恬淡宁静，有种历经大难后彻悟人生的了然与淡泊。这种了然与淡泊，在苏轼这一时期创作的许多词中均有体现，如<a href="https://baike.baidu.com/item/水龙吟·次韵章质夫杨花词/3022520">《水龙吟·次韵章质夫杨花词》</a>：</p>
+<pre>
+似花还似非花，也无人惜从教坠。
+抛家傍路，思量却是，无情有思。
+萦损柔肠，困酣娇眼，欲开还闭。
+梦随风万里，寻郎去处，又还被莺呼起。
+
+不恨此花飞尽，恨西园、落红难缀。
+晓来雨过，遗踪何在？一池萍碎。
+春色三分，二分尘土，一分流水。
+细看来不是杨花，点点是离人泪。
+</pre>
+<p>再如著名的《定风波》：</p>
+<pre>
+莫听穿林打叶声，何妨吟啸且徐行。
+竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。
+
+料峭春风吹酒醒，微冷，山头斜照却相迎。
+回首向来萧瑟处，归去，也无风雨也无晴。
+</pre>
+<p>作《定风波》时，苏轼已到黄州整整两年。两年来，尽管生活贫瘠艰辛，但总算熬过了最艰难的时候，苏轼渐渐从心灰意冷的失意中走出，自制茶饮，自酿美酒，自号东坡，借一片山地，在他的“雪堂”中过起了不问世事的生活。这年阳春三月，苏轼病后初愈，与一众友人共游沙湖，不巧途中风雨大作，大家没带雨具，一时慌乱进退两难，唯有苏轼任凭风雨吹打，依然从容前行。这种从容，是旷达之人经历大风大浪后的悠然淡定，它几乎贯穿了苏轼的整个后半生，在豪放词代表作《念奴娇·赤壁怀古》中，也流露出了这一色彩：</p>
+<pre>
+大江东去，浪淘尽，千古风流人物。
+故垒西边，人道是，三国周郎赤壁。
+乱石穿空，惊涛拍岸，卷起千堆雪。
+江山如画，一时多少豪杰。
+
+遥想公瑾当年，小乔初嫁了，雄姿英发。
+羽扇纶巾，谈笑间，樯橹灰飞烟灭。
+故国神游，多情应笑我，早生华发。
+人生如梦，一尊还酹江月。
+</pre>
+<p>黄州位于湖北黄冈，坐落于长江北岸、大别山南麓，出城北汉川门，北面有山陡峭如壁，山石颜色赤红，因此称为“赤壁”。在黄州时，苏轼曾多次游览此地，并于公元1082年秋、冬写下了流传千古的《前赤壁赋》《后赤壁赋》，还创作了著名的《念奴娇·赤壁怀古》。</p>
+<p>“大江东去，浪淘尽，千古风流人物”，这首词的开篇气势磅礴，然而，多少风流人物、多少英雄豪杰，终归湮没于历史的滚滚长河中，纵然人生得意如雄姿英发的周公瑾又能如何？想到这里，苏轼不禁发出了“人生如梦”的感慨。</p>
+<p>既然“人生如梦”，那么还有什么值得在意和计较呢？跌宕起伏的后半生</p>
+<p>公元1085年正月的一天，身着庄严帝服的神宗皇帝赵顼端坐于朝堂之上。这年赵顼三十七岁，正值壮年，却已是一脸憔悴、一副抱病老态。</p>
+<p>从十九岁即位起，此时赵顼已经当了十八年皇帝。他是个年轻有抱负的皇帝，登基不久就启用王安石开始轰轰烈烈的革新变法，他兢兢业业、励精图治，亲自主持新政，与政见不同者和既得利益者展开了长达十几年的斡旋与斗争。借助变法去除贫弱、富国强兵是他的理想，可惜因变法操之过急、方法不当，他最终不得不在重重阻力面前屈服，满腔热情的付出，只换得精疲力竭、变法失败的结局。</p>
+<p>变法失败已使神宗郁郁寡欢、身体每况愈下，而不久前从西北边境传来的战败消息更是雪上加霜，让他在内忧外患的情形下病情加重。虽然他还年轻，但几乎所有人心里都已升起一种不祥的预兆。朝堂之下，大臣们个个屏气凝神，面色凝重。终于，在沉默良久后，神宗向朝中大臣环视了一眼，挥了挥手，命人宣读了事先准备好的立储诏书。大臣们心里的石头总算落了地。</p>
+<p>这年四月，神宗皇帝驾崩，享年三十七岁；哲宗继位，高太后垂帘听政。新政随着神宗时代的逝去暂时告一段落，新党失势，司马光等旧党重新受到重用，年近半百的苏轼也因此迎来了人生中短暂的春天。</p>
+<p>其实早在公元1084年奉诏调离黄州，就已预示着苏东坡人生“春天”的临近，但他没有狂喜，其心境恰如《浣溪沙·细雨斜风作小寒》中写的那般平静而清旷：</p>
+<pre>细雨斜风作小寒，淡烟疏柳媚晴滩。
+入淮清洛渐漫漫。
+
+雪沫乳花浮午盏，蓼茸蒿笋试春盘。
+人间有味是清欢。
+</pre>
+<p>到了公元1085年，苏轼东山再起，短短数月先是复官朝凤郎，后被诏还朝中，升起居舍人，再升中书舍人，又升翰林学士知制诰，可谓扶摇直上、平步青云。</p>
+<p>但无论身在何处，苏轼始终无法改变正直坦荡的秉性，他曾受尽新旧党争的冤苦，如今看到夺回权力的旧党对新党不遗余力的倾轧，又忍不住要站出来抱不平，正如苏辙后来为他撰写的墓志铭中写的那般：“其于人，见善称之，如恐不及；见不善斥之，如恐不尽；见义勇于敢为，而不顾其害。用此数困于世，然终不以为恨。”</p>
+<p>正直是美德，但正直之人在斗争激烈的政治领域却往往不受待见。公元1089年，苏轼因不愿与旧党随波逐流，自请外放杭州。他一到杭州就疏浚西湖、筑西湖长堤，为百姓做了许多实事。两年后，苏轼一度被召回朝堂，但不久又被贬到颍州、惠州等地当官，人生几度沉浮，不过，这些对年过半百的苏轼而言只是些小风小浪，他都不以为意，坦然笑对。</p>
+<p>在贬官惠州期间，苏轼曾作一首《蝶恋花·春景》：
+<pre>
+花褪残红青杏小。燕子飞时，绿水人家绕。
+枝上柳绵吹又少，天涯何处无芳草！
+
+墙里秋千墙外道。墙外行人，墙里佳人笑。
+笑渐不闻声渐悄，多情却被无情恼。
+</pre>
+<p>据说苏轼的爱妾王朝云十分喜爱这首词，时时弹琴吟唱，每唱到“枝上柳绵吹又少”之句就会黯然神伤以致落泪。王朝云多才多艺，是苏轼的红颜知己，她能读懂苏轼的豁达与坦荡，也能读懂苏轼在这旷达背后的隐痛与无奈，因此总是无法将“天涯何处无芳草”一句唱出。</p>
+<p>但在苏轼的一生中，惠州并非最远的“天涯”。公元1097年，哲宗亲政后重启新党，苏轼再度遭到打压，被贬到比惠州还偏远、荒凉的海南儋州，那里人烟稀少、经济文化都十分落后。此时苏轼已过花甲之年，妻妾均已先他而去，身边只剩小儿子苏过，被贬到这样一个地方，无异于被逼到了绝境，但他仍保持着一贯的旷达，“此心安处是吾乡”，将儋州视为第二故乡，在这里安心办学讲学，传播学问，教化民众，才短短数年，就使在北宋一百多年里从未出过进士的儋州出了乡贡。</p>
+<p>苏轼晚年时曾写过一首<a href="https://www.gushiji.cc/gushi/334456.html">《点绛唇》</a>：</p>
+<pre>
+不用悲秋，今年身健还高宴。
+江村海甸。总作空花观。
+
+尚想横汾，兰菊纷相半。
+楼船远。白云飞乱。空有年年雁。
+</pre>
+<p>一首词中两个“空”字，正是苏轼对世事的参悟。因为有此参悟，从公元1097年到公元1101年这人生的最后几年，他拖着病躯，像任凭乱风吹拂的白云，从儋州飘到廉州，从廉州飘到永州，后来又奉诏北归，直到卒于北归途中。其间所有的沉浮得失，他都作“空花”观，不悲不喜，无论身在何处、身处何境，都只做自己，尽自己所能，为世人尽一份绵薄之力。</p>
+
+
+<p style='float:right;'>本页共157段，7913个字符，22434 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

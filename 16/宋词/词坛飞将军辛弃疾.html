@@ -1,0 +1,563 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	width:100%;
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	overflow-x:auto;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>词坛飞将军辛弃疾</h4>
+
+
+<p>“众里寻他千百度。蓦然回首，那人却在，</p>
+<p>灯火阑珊处。”一身剑气的豪放派</p>
+<p>——“词坛飞将军”辛弃疾</p>
+<p><h3>1 闯入金营生擒叛贼</h3></p>
+<p>公元1162年正月，黄河以北的中原地区仍是千里冰封、万里雪飘。因为战乱和寒冷，人们闭门不出，旷野中鲜有人影出现，大道上也几乎看不见通行的车马。极目远眺，广阔的平原上唯有白茫茫的风雪。但在这风雪之中，一条偏僻的小道上，却意外出现了几个骑着快马、一路匆匆南去的人——这些人正是山东义军首领耿京派往南宋朝廷的使者，其中一个是诸军都督提领贾瑞，而那个英姿飒爽的年轻人，就是节度掌书记辛弃疾。这一年，辛弃疾二十二岁，此时距北宋灭亡、南宋建朝已有三十多年。这三十多年来，金人屡次南侵意欲将南宋一举消灭而未果，南宋也曾几度北伐、但一次次因朝廷的软弱和犹豫功败垂成。这场持久的拉锯战，最终以南宋朝廷杀害抗金名将岳飞、与金国签订绍兴合议宣告结束。</p>
+<p>岳飞被害那年，辛弃疾才两岁。因自幼生长于金人统治的中原，他亲眼见到了汉人遭受的悲惨境遇，并对南宋向金国称臣、并每年纳贡大量岁币和绢帛义愤填膺。</p>
+<p>公元1161年，野心勃勃的金国皇帝完颜亮不满绍兴合议中金、宋两国的边境划分，率数十万金兵，兵分四路，再度大举入侵南宋。南宋朝廷用合议换取的近二十年安逸日子到了头，宋高宗舒展的眉头又皱了起来，日夜想着究竟是继续南逃，还是以更优厚的条件向金国求和。而生活于北方的中原百姓则久不堪金兵滋扰，一些有胆有识的英雄人物趁金兵南下、中原空虚之际，纷纷率领百姓揭竿而起，而辛弃疾，正是这样一位举起抗金大旗的英雄人物。</p>
+<p>金兵再度南侵这年，二十一岁的辛弃疾聚集两千余人，与山东的另一位好汉耿京的义军汇合，以期完成驱走金人、收复失地、恢复宋廷的宏大理想。随后，因不断有山东、河南、河北等地的其他义军汇入，以耿京为首的这支义军在不到一年的时间里竟发展到数十万之众，成为中原地区十分重要的一股抗金力量。这年年底，金国内部发生了宫廷政变——完颜亮的从弟完颜雍趁其兄亲自率军南征之机，在东京辽阳拥兵称帝，这一消息传到前线，金兵军心动摇，一些南征将士偷偷逃回北方拥立完颜雍，留下的将士也斗志全无，以致在与宋军交战时连连溃败。而此时，完颜亮为了颜面不愿无功而返，他恼羞成怒，以“三日渡江不得，将随军大臣尽行处斩”来威逼将士背水一战，结果激起兵变，在营帐中为部将所杀。随后，金兵北撤，南宋朝廷的危局暂时得以解除。</p>
+<p>公元1162年正月，辛弃疾与贾瑞等一纵人马领义军首领耿京之命、冒着风雪匆匆南下，为的正是前往南宋朝廷奏请南归，并进一步谋划如何在朝廷的支持下抗击金兵、收复北方失地。经历了一场虚惊的宋高宗见有中原义士南归，十分高兴，大方地对他们进行了嘉奖，他授耿京为天平节度使、知东平府，给其他义军将士也授予了官职。辛弃疾被授予右丞务郎一职，从此北雁南归，正式成为南宋的臣民。</p>
+<p>不料，就在辛弃疾欲北还复命时，却听说叛徒张国安暗杀了义军首领耿京并投降了金人。听到这一消息，年轻气盛的辛弃疾当即率领五十余骑，连夜奔袭金营，生擒张国安，并日夜兼程将他押送到当时宋高宗所在的建康城，以正国法。辛弃疾这一英雄之举，令他声名大振，同时也震慑了金兵，大大鼓舞了宋军的士气。</p>
+<p>从辛弃疾的一生来看，他不仅是个血气方刚的抗金英雄，还是个才华横溢的词坛大家，为后世留下了数百篇优秀词作，无论是言志、抒情还是记述日常生活，他都信手拈来，题材包罗万象，风格也十分多变，或雄伟奔放，或朴素清丽，或婉约细腻，且都能写出极高的意境，被《四库全书总目提要》评为“其词慷慨纵横，有不可一世之概，于倚声家为变调；而异军特起，能于剪红刻翠之外，屹然别立一宗，迄今不废”。而他本人，也被后世誉为“词中之龙”。</p>
+<p>如果知道辛弃疾是这样一位有着文韬武略的英雄人物，那么就不难想象他年轻时那种踌躇满志的昂扬气势。而他年少时的这种气势，在他晚年时所作的<a href="https://baike.baidu.com/item/鹧鸪天·有客慨然谈功名，因追少年时事，戏作">《鹧鸪天·有客慨然谈功名因追念少年时事戏作》</a>一词中可见一斑：</p>
+<pre>
+壮岁旌旗拥万夫，锦襜突骑渡江初。
+燕兵夜娖银胡觮，汉箭朝飞金仆姑。
+
+追往事，叹今吾，春风不染白髭须。
+却将万字平戎策。换得东家种树书。
+</pre>
+<p>词的上阕，虽只有短短四句话，但那个英勇无畏、生擒叛贼的少年英雄辛弃疾已呼之欲出。</p>
+<p>但是南归之后，辛弃疾发现原来一切并不像想象的那般顺利。《鹧鸪天》中“追往事，叹今吾”中的一个“叹”字，便是他对这一生种种不顺的概括。</p>
+<p>为什么要叹呢？因为尽管他怀有满腔报国热忱，一心想平定中原，这一愿望却无法实现，凝结他心血的“万字平戎策”，到头来却只换得“东家种树书”的结果。</p>
+<p>这种现实与理想的深度割裂，其实辛弃疾在南归后不久，就已深深体会到——南归这年五月，高宗退位、孝宗继位，辛弃疾曾满怀希望，向当时在朝中颇具声望、也颇受皇帝看重的主战大臣张浚提出分兵攻打金兵的策略，结果这一建议被束之高阁，置之不理。</p>
+<p>原本怀着一颗炽烈的报国心而来，希望能干出一番功绩，没想到南归不久就遇到挫折和打击，辛弃疾的内心感到失落怅然。一开始，他以为这失落只是一时的，于是在失落中等待机会。然而，当时朝中虽有张浚等大臣力主抗金，但抗金并非或战或和这样简单，辛弃疾心中虽有制敌之术却无路请缨，不禁忧心如焚，在南归后的次年立春写下了<a href="https://baike.baidu.com/item/汉宫春·立春日">《汉宫春·立春日》</a>一词：
+<pre>
+春已归来，看美人头上，袅袅春幡。
+无端风雨，未肯收尽余寒。
+年时燕子，料今宵梦到西园。
+浑未办，黄柑荐酒，更传青韭堆盘？
+
+却笑东风，从此便薰梅染柳，更没些闲。
+闲时又来镜里，转变朱颜。
+清愁不断，问何人会解连环？
+生怕见花开花落，朝来塞雁先还。
+</pre>
+<p>辛弃疾胸怀天下，一心想要建立扫平北虏的大功业，不料南归即遭冷遇，尽管春日里的一切充满盎然生机，他却满腹愁肠，无心欣赏。</p>
+<p>“清愁不断，问何人会解连环？”这句中的“连环”，便是辛弃疾虽在南宋朝廷为官，却无法施展才华的艰难处境。他想要早日回到北方，回到故乡，可却什么也做不了，只能眼睁睁看着时间一天天过去，收复失地的愿望却始终无法实现。当年秦昭王遣使齐国，送上玉连环一串，请齐人解环，齐国满朝大臣面面相觑，无人能解，君王后却机智地用椎将玉连环打破，为齐国挽回了颜面，而此时，又有谁能够帮他解开这“连环”，将他从沉闷的处境和无尽的忧愁中解救出来？</p>
+<p>“生怕见花开花落，朝来塞雁先还。”是辛弃疾给自己的答案。眼下的情势，令他隐隐感到，此生想要驱走金人、重归北方故园，恐怕是难以企及的奢望了。</p>
+<h3>2 被搁浅的英雄</h3>
+<p>和所有英雄人物一样，辛弃疾胸中怀有远大的志向，且从未放弃对志向的追求。然而，个人命运在时代面前总是脆弱的——不幸的时代犹如一个巨大的铁轮，常常将个人理想碾压得粉碎。可以说，辛弃疾的一生，就是承受理想不断被碾压的一生。自公元1162年南归后，十余年间，辛弃疾曾多次向朝廷上奏抗金战略，其中最为著名的便是《美芹十论》。他在《美芹十论》的开篇就忧心忡忡地写道：“臣闻事未至而预图，则处之常有余；事既至而后计，则应之常不足。虏人凭陵中夏，臣子思酬国耻，普天率土，此心未尝一日忘……”他先声明了凡事预则立、不预则废的重要性，接着条分缕析，从审势、察情、观畔、自治、守淮、屯田、致用、防微、久任、详战十个方面入手，系统论述了自己在抗击和抵御金国方面的见解。在写这篇文章时，他的分析冷峻而清醒，他的情感却充沛而激昂，正如他自己所言：“臣虽至陋，何能有知，徒以忠愤所激，不能自已。”且不说《美芹十论》中的一字一句都是他多年来日夜苦思的心血的结晶，他抗金的这样一种热情，就十分令人感动。</p>
+<p>辛弃疾原本期望皇帝能够“赦其狂僭而怜其愚忠”，让他从事一些与抗金直接相关的职务，结果却事与愿违，他一直在地方担任通判等不合他心意的官职。在建康任通判时，他怀着忧愤急切的心情，写下了<a href="https://baike.baidu.com/item/水龙吟·登建康赏心亭">《水龙吟·登建康赏心亭》</a>一词：</p>
+<pre>
+楚天千里清秋，水随天去秋无际。
+遥岑远目，献愁供恨，玉簪螺髻。
+落日楼头，断鸿声里，江南游子。
+把吴钩看了，栏杆拍遍，无人会，登临意。
+
+休说鲈鱼堪脍，尽西风，季鹰归未？
+求田问舍，怕应羞见，刘郎才气。
+可惜流年，忧愁风雨，树犹如此！
+倩何人唤取，红巾翠袖，揾英雄泪！
+</pre>
+<p>时间一年年过去，心中怀有的英雄志向却无法实现，这令辛弃疾感到十分苦闷。他自嘲“江南游子”，为自己不被伯乐发现而惆怅不已，然而，“把吴钩看了，栏杆拍遍，无人会，登临意”，这世间知道他稼轩的志向与才干的，又有几人呢？</p>
+<p>除了《美芹十论》，公元1170年，辛弃疾还曾作《九议》以论“恢复之事”——一片赤子之心，天地可鉴。但南归后的十余年间，他始终被南宋主和的政治局势裹挟着，不得不像当时的多数官员一样被不断调遣，辗转于江苏、浙江、安徽、江西、湖北、湖南等地，担任的职位从签判、司农主簿、地方太守、安抚司参议官到转运副使等，始终与他的理想相去甚远。</p>
+<p>但现实中越是没有机会实现理想，收复中原失地的宏愿就越像一匹不羁的野马在他胸中奔腾。想起自己南归已有多年，南宋朝廷苟且偷安、不思进取的局面却丝毫没有改变，辛弃疾的忧愁无处述说，只好化为一篇篇满含豪情壮志的词作。</p>
+<p>《鹧鸪天·送人》是辛弃疾赠给一位友人的词作，看似是赠别，实则无处不在言志：</p>
+<pre>
+唱彻《阳关》泪未干，功名余事且加餐。
+浮天水送无穷树，带雨云埋一半山。
+
+今古恨，几千般，只应离合是悲欢？
+江头未是风波恶，别有人间行路难！
+</pre>
+<p>“今古恨，几千般”，离别固然伤感，但人一生的愁苦又何止离愁一种？“功名余事且加餐”只是送别时的一句安慰话。在这风波险恶的世间，于辛弃疾而言，找不到出路的烦闷，才最令他不堪忍受。</p>
+<p>一年元宵佳节，眼看强敌压境，南宋朝廷却一派歌舞升平，毫无忧患意识，辛弃疾于忧愤之中写下了流传千古的名作《青玉案·元夕》：</p>
+<pre>
+东风夜放花千树。更吹落、星如雨。
+宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。
+
+蛾儿雪柳黄金缕。笑语盈盈暗香去。
+众里寻他千百度。蓦然回首，那人却在，灯火阑珊处。
+</pre>
+<p>元宵夜的街头越是繁华，他的内心就越是孤寂落寞。在通明的灯火中、在人来人往的欢声笑语中，他痴痴地寻找着一个人，却怎么也寻不到，但“蓦然回首”，竟发现他在繁华之外，默默立于灯火阑珊的幽暗之处。</p>
+<p>王国维曾提出“人生三境界”，第一境界为“昨夜西风凋碧树。独上高楼，望尽天涯路”，第二境界为“衣带渐宽终不悔，为伊消得人憔悴”；而“众里寻他千百度。蓦然回首，那人却在，灯火阑珊处”则为人生的最高境界。</p>
+<p>辛弃疾没有明说他要寻找的是何人，所为何事，但不论怎样，人生有许多事，不正是“蓦然回首”时才看清？有许多追求，难道不正是“蓦然回首”时才得到？只是这世间鲜有人能做到“蓦然回首”、不再执迷于那耀眼的灯光幻影。</p>
+<p>或许在理想受挫时，辛弃疾也曾无数次渴望自己能淡然处之，希望自己能达到“蓦然回首”、超然于世的境界，然而无数的叹息和感慨过后，内心深沉的爱国情怀却又重新浮现。他无法驰骋战场与金兵厮杀，于是将滔滔的爱国热忱倾注在纸笔间，写下了一篇又一篇洋溢着悲怆深沉的爱国之情的诗词。</p>
+<p>《菩萨蛮·书江西造口壁》一词，便是这样一首感人肺腑之作：</p>
+<pre>
+郁孤台下清江水，中间多少行人泪。
+西北望长安，可怜无数山。
+
+青山遮不住，毕竟东流去。
+江晚正愁余，山深闻鹧鸪。
+</pre>
+<p>这首词作于公元1176年，为辛弃疾驻节赣州、途经造口时所作。《菩萨蛮》是一首小令，过往词人多用这一词牌来表现闺情，而辛弃疾却将它写成了爱国绝唱。</p>
+<p>“行人泪”像那郁孤台下的清江水一样滔滔不绝。行人为什么落泪？因为“西北望长安，可怜无数山”。那重重叠叠的山峦阻隔的不只是辛弃疾这个南归北人的视线，更是他意欲收复北方失地的理想。“可怜”二字，道出了这个游子无可奈何的现实处境，而深山里传来的鹧鸪声，更勾起了他深切的思乡之情与理想无法实现的绵绵愁绪。</p>
+<p>虽然忧愁，但一次次遭受打击的辛弃疾仍未放弃理想，仍在期盼。“青山遮不住，毕竟东流去”——他相信，虽然在投降派当权的眼下收复北方失地困难重重，但他心中所盼之事，总会有实现的一天。</p>
+<p>辛弃疾就是这么“固执”，尽管世道艰难、屡屡受挫，他却一刻也不曾放弃收复中原失地的志向，正因如此，多年过去，他身上那种豪情万丈的英雄之气丝毫不曾减损。这种豪气，在他的词作中随处可见，如<a href="https://baike.baidu.com/item/满江红·汉水东流/2550388">《满江红·汉水东流》</a>一词：</p>
+<pre>
+汉水东流，都洗尽，髭胡膏血。
+人尽说，君家飞将，旧时英烈。
+破敌金城雷过耳，谈兵玉帐冰生颊。
+想王郎，结发赋从戎，传遗业。
+
+腰间剑，聊弹铗。
+尊中酒，堪为别。
+况故人新拥，汉坛旌节。
+马革裹尸当自誓，蛾眉伐性休重说。
+但从今，记取楚楼风，庾台月。
+</pre>
+<p>这首词作于公元1177年，是辛弃疾赠给一位同僚的励志词。此时距辛弃疾南归已然过去十五年，当时那个踌躇满志的少年英雄已是年近不惑的中年人了。虽然从通判做到江陵知府兼湖北安抚使这样的军政长官，但辛弃疾始终无法如愿跻身抗金前线，而朝廷偏安一隅的局面也始终未有改观。</p>
+<p>南归的理想落空，辛弃疾对“汉水东流，都洗尽，髭胡膏血”的现状感到十分无奈，对自身“腰间剑，聊弹铗”的处境感到愤懑。然而，胸中纵有不平之气，但他真正在意的并非个人得失，而是国家的盛衰。既然自己无法驰骋战场抗金杀敌，他就将这一希望寄托于“王郎”，希望他能记取马革裹尸的决心，不堕青云之志。</p>
+<h3>3 词坛“愁将军”</h3>
+<p>南宋时，湖北民间有一支由茶商组成的特殊“军队”——“茶商军”，他们私贩茶叶，且持有兵器，一旦遇到政府的武力干涉，便进行反抗。公元1175年初夏，湖北爆发了茶商赖文政领导的“茶商军”起义，这支起义军灵活精悍，后来从湖北转向湖南，屡次将官兵打得落花流水。</p>
+<p>当朝廷屡次进攻却无法灭一灭“茶商军”气焰时，时任仓部郎官的辛弃疾被火速调往江西任提刑，即掌管刑狱、治安等方面的长官，节制诸军，进击“茶商军”。辛弃疾素来行事果断，又颇具军事才能，当年就平定了起义。</p>
+<p>然而，尽管拥有一身才干，辛弃疾却只被朝廷用来镇压盗贼，后来还因与朝中善妒的小人不合而遭受排挤，以至于在短短四年中改官六次，别说实现心中宏愿，就是想留在一个地方踏踏实实做事也成了奢望——这险恶的官场、艰难的处境，无不令辛弃疾感到苦闷。</p>
+<p>公元1179年，被朝廷支来支去的辛弃疾再次由湖北转运副使改调湖南转运副使，这种频繁的调遣令他失望、无奈，故而在此期间作了一首<a href="https://baike.baidu.com/item/%E6%91%B8%E9%B1%BC%E5%84%BF%C2%B7%E6%9B%B4%E8%83%BD%E6%B6%88%E5%87%A0%E7%95%AA%E9%A3%8E%E9%9B%A8/6752174">《摸鱼儿》</a>来抒发胸中的不平之气：</p>
+<pre>
+淳熙己亥，自湖北漕移湖南，同官王正之置酒小山亭，为赋。
+
+更能消、几番风雨，匆匆春又归去。
+惜春长怕花开早，何况落红无数。
+春且住，见说道、天涯芳草无归路。
+怨春不语。
+算只有殷勤，画檐蛛网，尽日惹飞絮。
+
+长门事，准拟佳期又误。
+蛾眉曾有人妒。
+千金纵买相如赋，脉脉此情谁诉？
+君莫舞，君不见、玉环飞燕皆尘土！
+闲愁最苦！
+休去倚危栏，斜阳正在，烟柳断肠处。
+</pre>
+<p>于辛弃疾而言，抗金的大好春天已经过去，而他自己也如当年被弃于长门的汉代陈皇后，虽有一片赤胆忠诚，却因小人谗言不得重用，终致年华老去，功业未成。他痛斥那些长袖善舞的小人，用“玉环飞燕皆尘土”来预言他们的未来。然而当下，眼看南宋朝廷日薄西山，而他这位壮怀激烈、忠心耿耿的臣子竟无一点办法来挽救局面，是何等的忧和愁，苦和怨！</p>
+<p>抱怨归抱怨，辛弃疾毕竟是务实派。他就像《摸鱼儿》词中的那只蜘蛛，明知春天不可能留住，却仍要殷勤地罗织蛛网，用蛛丝挽留那飘飞的柳絮。</p>
+<p>初到湖南时，辛弃疾惩治盗贼、整顿湖南乡社，且创制了旨在防御盗贼和少数民族武装、只受帅臣节制的一支地方武力“飞虎军”。飞虎军规模不大，不过两三千人，但建军、养军要耗费大量钱财，一年少说也得花费数万贯钱、数万石粮。朝中有人以耗费巨大为由阻挠飞虎军的建立，但辛弃疾力排众议，通过各方斡旋，竟筹集到创立军队的巨款。后来，飞虎军屡屡被调往前线战斗，成了南宋后期一股重要的军事力量。</p>
+<p>在辛弃疾湖南任职期间，当时要修造营寨，但因秋雨连绵，片瓦难求。情急之下，辛弃疾下令全城居民在两日内每家供送二十片瓦，凡送足瓦片者可得一百文钱。结果百姓们踊跃送瓦，所需的瓦片很快就攒够了。</p>
+<p>这些事虽不大，但都可以看出辛弃疾雷厉风行的做事风格，以及他务实的办事才干。尽管他在湖南任职才一年多的时间，后又被派往别处做官。他在别处也像在湖南一样，即便只能作短暂停留，他也要努力留下惠政，造福百姓。</p>
+<p>然而，朝中小人仍无法容忍他的存在。离开湖南后不久，辛弃疾即遭弹劾，此后除两次短暂的复职，他在家中闲居了近二十年之久。这二十年，本是一个人建功立业的最好时期，而辛弃疾除了与友人唱和、相聚议论时政，并无多少实事可做，心中之愁，自不必说。</p>
+<p>为此，他写下了大量的“愁词”，<a href="https://baike.baidu.com/item/鹧鸪天·晚日寒鸦一片愁/5548211">《鹧鸪天·晚日寒鸦一片愁》</a>便是其中一种：</p>
+<pre>
+晚日寒鸦一片愁。柳塘新绿却温柔。
+若教眼底无离恨，不信人间有白头。
+
+肠已断，泪难收。相思重上小红楼。
+情知已被山遮断，频倚阑干不自由。
+</pre>
+<p>词中写的是一个女子的离愁，而她对远去情人的相思之苦，不正像辛弃疾对北方故国的相思之情吗？因为愁苦而肝肠寸断，明知会被层层叠叠的山峦挡住视线、即便登高远眺也望不见，仍要“重上小红楼”，倚着栏杆望啊望、盼啊盼，又岂止词中的女子一人？这种愁已不再是“闲愁”，而是哀绵不绝、充满深情的愁。公元1188年，辛弃疾本与好友朱熹、陈亮等人相约在铅山瓢泉相见，共同商讨统一大计。结果朱熹因事爽约，辛弃疾又染疾在床，当他看到陈亮独自风尘仆仆赶来赴约时，心中无比高兴。那是一个大雪飘飞的冬日，这对志同道合的朋友一起豪饮，共游鹅湖，长歌相答，纵谈国事。这段往事，从辛弃疾与陈亮分别后所作的<a href="https://baike.baidu.com/item/贺新郎·同父见和再用韵答之/1800712">《贺新郎·同父见和再用韵答之》</a>中可见一斑：
+<pre>
+老大那堪说。
+似而今、元龙臭味，孟公瓜葛。
+我病君来高歌饮，惊散楼头飞雪。
+笑富贵千钧如发。
+硬语盘空谁来听？
+记当时、只有西窗月。
+重进酒，换鸣瑟。
+
+事无两样人心别。
+问渠侬：神州毕竟，几番离合？
+汗血盐车无人顾，千里空收骏骨。
+正目断关河路绝。
+我最怜君中宵舞，道“男儿到死心如铁”。
+看试手，补天裂。
+</pre>
+<p>词的上阕是对这次相会的回忆，而下阕则表达了他与好友陈亮坚定的抗金志向。</p>
+<p>这被后世称为“第二次鹅湖之会”的聚会，还流传着一则故事。</p>
+<p>据说有一晚上辛弃疾酣饮后，开始大谈宋、金关系，他分析了南宋吞并金国的策略，又说金国想灭南宋简直易如反掌，只要阻断牛头山、决了西湖堤坝，杭州城就将不攻自破。听了辛弃疾的分析，第二天陈亮特地跑去西湖边观察地形，发现杭州城的地势竟低于西湖水面。怔怔地望着西湖盈盈的湖水，他不禁对辛弃疾的军事分析才能钦佩不已，忍不住感慨道：“城可灌尔！”（见《四朝闻见录》）</p>
+<p>但这样一位军事奇才却遭闲置，他该是怎样的忧愁？怎样的无奈？怎样的激愤？与陈亮分别后的另一首词——<a href="https://baike.baidu.com/item/破阵子·为陈同甫赋壮词以寄之/733405">《破阵子·为陈同甫赋壮词以寄之》</a>，便抒发了这般百感交集的愁绪：
+<pre>
+醉里挑灯看剑，梦回吹角连营。
+八百里分麾下炙，五十弦翻塞外声。
+沙场秋点兵。
+
+马作的卢飞快，弓如霹雳弦惊。
+了却君王天下事，赢得生前身后名。
+可怜白发生！
+</pre>
+<p>他向往的是骑着战马驰骋于沙场的生活，他期盼的是辅佐君王统一国家的宏伟大业，但现实却是如此苍白：转眼他已成半百之人，两鬓生出白发，功业却丝毫未成。“可怜白发生”一句，道出了这位迟暮英雄壮志未酬、万丈豪情被压抑的悲苦。而当辛弃疾写下<a href="https://baike.baidu.com/item/鹧鸪天·欲上高楼去避愁/8854564">《鹧鸪天·欲上高楼去避愁》</a>一词时，他的愁绪又重了一些：</p>
+<pre>
+欲上高楼去避愁，愁还随我上高楼。
+经行几处江山改，多少亲朋尽白头。
+
+归休去，去归休。不成人总要封侯？
+浮云出处元无定，得似浮云也自由。
+</pre>
+<p>辛弃疾明白，人生苦短，转眼就到了满头白发的年纪；他也明白追求功名，就难免要遭受无尽的愁苦。他曾自问：人为什么非要建立封侯封相的功业？为什么不能像浮云那般逍遥自在？虽然他十分向往自由自在的生活，却始终无法淡忘心中那未曾实现的抱负。他的愁在心里如影随形，无法释然，又如何躲避？</p>
+<p>而<a href="https://baike.baidu.com/item/丑奴儿·书博山道中壁/6975372">《丑奴儿·书博山道中壁》</a>一词中所写的愁，则愁到了极致：</p>
+<pre>
+少年不识愁滋味，爱上层楼。
+爱上层楼。
+为赋新词强说愁。
+
+而今识尽愁滋味，欲说还休。
+欲说还休。
+却道天凉好个秋。
+</pre>
+<p>少年时不谙世事，偏要“强说愁”，现如今“识尽愁滋味”，才明白原来真正的愁苦是说不出的。“欲说还休”四个字看似什么都没说，实际却道出了最深切的哀愁。</p>
+<h3>4 迟来的北伐</h3>
+<pre>
+茅檐低小，溪上青青草。
+醉里吴音相媚好，白发谁家翁媪？
+
+大儿锄豆溪东，中儿正织鸡笼。
+最喜小儿亡赖，溪头卧剥莲蓬。
+</pre>
+<p>正如这首<a href="https://baike.baidu.com/item/清平乐·村居/6975184">《清平乐·村居》</a>所描绘的，辛弃疾的闲居生活便是如此清淡，日复一日，十几年就这样过去了。</p>
+<p>公元1192年，在家赋闲了十余年的辛弃疾再次出仕，先被派到福建提点刑狱任职，次年迁太府少卿，到秋天又升任福州太守兼福建安抚使——看这升职的态势，他似乎要被光宗重用了。虽然已是五十几岁的年纪，但辛弃疾宝刀未老，一到福建任上，就着手修建储存粮食的仓库以备荒年，改革官盐买卖的法令，又修建福建郡学，做了不少实事。然而，不想短短两年时间，他再次因受人弹劾被免除官职，成为闲人。这一闲，又是近十年的时间。</p>
+<p>此时，辛弃疾已从上饶旧居搬到位于铅山的瓢泉新居。在漫长的闲居生活中，他漫游山水、托兴诗酒，却无一点闲情，因为他仍无法放下未竟的志向，即便在梦里，也依然想着年少时的梦想。</p>
+<p>在此期间，辛弃疾曾作有<a href="https://baike.baidu.com/item/%E6%B0%B4%E8%B0%83%E6%AD%8C%E5%A4%B4%C2%B7%E6%88%91%E5%BF%97%E5%9C%A8%E5%AF%A5%E9%98%94/2510611">《水调歌头·我志在寥阔》</a>一词：
+<pre>
+赵昌父七月望日用东坡韵叙太白、东坡事见寄，过相褒借，且有秋水之约。
+八月十四日，余卧病博山寺中，因用韵为谢，兼寄吴子似。
+
+我志在寥阔，畴昔梦登天。
+摩娑素月，人世俯仰已千年。
+有客骖鸾并凤，云遇青山赤壁，相约上高寒。
+酌酒援北斗，我亦虱其间。
+
+少歌曰：“神甚放，形如眠。
+鸿鹄一再高举，天地睹方圆。”
+欲重歌兮梦觉，推枕惘然独念，人事底亏全？
+有美人可语，秋水隔婵娟。
+</pre>
+<p>这是一首写梦的词——他梦见自己与好友飞向寥阔的天空，抚摸皎洁的明月，还与李白、苏轼这样的雅士一起把酒言欢，在梦中高歌。他高歌精神的恣意奔放，高歌鸿鹄自由搏击长空——这梦境，是何等潇洒浪漫！</p>
+<p>但梦境毕竟是梦境，醒来后，他一下从高高的“青天”跌落，重重地摔在现实坚硬的土地上。梦中的无拘无束瞬间消失得无影无踪，现实如囚笼般牢牢将他困住，他纵有鸿鹄之志又能怎样？辛弃疾早年在建康任江东安抚使参议官时，叶衡为江东安抚使，是他的上司。后来叶衡升迁，入京拜右丞相兼枢密使，辛弃疾曾写下<a href="https://baike.baidu.com/item/菩萨蛮·赏心亭为叶丞相赋/15548057">《菩萨蛮·金陵赏心亭为叶丞相赋》</a>来抒发内心的情感：
+<pre>
+青山欲共高人语，联翩万马来无数。
+烟雨却低回，望来终不来。
+
+人言头上发，总向愁中白。
+拍手笑沙鸥，一身都是愁。
+</pre>
+<p>此时的辛弃疾南归已有十多年，因不被重用头发“总向愁中白”。如今他年近花甲，眼看再无机会实现心中理想，成了那只“一身都是愁”的沙鸥。</p>
+<p>然而，正如辛弃疾在《水调歌头·我志在寥阔》一词中所写：“神甚放，形如眠。”虽然赋闲在家，看似无所事事，但他心里其实无时无刻不在关注家国大事，也无时无刻不在等待，等待被重新任用、为国效力的一天。</p>
+<p>然而这一天迟迟不来，时光却无情地流逝了。辛弃疾这位胸怀壮志的英雄，一天天临近暮年。晚年时，他曾怀着无尽的遗憾和伤心，写下了<a href="https://baike.baidu.com/item/西江月·示儿曹以家事付之/270246">《西江月·示儿曹以家事付之》</a>一词：
+<pre>
+万事云烟忽过，一身蒲柳先衰。
+而今何事最相宜，宜醉宜游宜睡。
+
+早趁催科了纳，更量出入收支。
+乃翁依旧管些儿，管竹管山管水。
+</pre>
+<p>此时的辛弃疾老了，他不再提杀敌，也不再提抗金；不再作慷慨激昂之词，也不再忧愤抱怨。他感到心力交瘁、力不从心，只想将所有的事抛在一边，做个“管竹管山管水”的闲人。然而，就当辛弃疾对抗金几乎不再抱什么希望时，命运与时势却突然出现了转机。</p>
+<p>公元1194年，在赵汝愚和外戚韩侂胄的拥立下，当了短短五年皇帝的宋光宗被迫让位给太子赵扩。赵扩格外倚重韩侂胄，从此开启了韩侂胄长达十几年的专权生涯。</p>
+<p>韩侂胄是北宋名臣韩琦之后，虽独断专行，却在政治上力主抗金。他掌权后，追封岳飞为鄂王，追夺秦桧官爵，朝中遭罢黜、贬官的大臣和将领又纷纷得到重用。公元1203年，辛弃疾正是在这样的大势下第三次入仕。</p>
+<p>公元1204年，宋宁宗赵扩依韩侂胄之言，决定发动抗金战争，辛弃疾趁机在皇帝面前慷慨陈词，分析了当前形势与抗金战略，并预言金国必乱必亡，为抗金造势。</p>
+<p>公元1205年，在辛弃疾等大臣的建言下，韩侂胄加封平章军国事，总揽军政大权，下令各军密作行军准备。在大规模北伐前，宋兵先渡过淮河，以声东击西、攻其不备的战略，顺利夺取了泗州、虹县、新息县、褒信县等地，令韩侂胄信心大增。见宋军旗开得胜，形势一片大好，韩侂胄奏请宁宗正式下诏，出兵北伐。</p>
+<p>为这一刻，辛弃疾已经等了四十多年，他怎能不激动？在此情此景下，他提笔写就了豪情万丈的<a href="https://gushi.4qx.net/gushici/803/3103-10.html">《六州歌头》</a>，盛赞了韩侂胄北伐的气魄：</p>
+<pre>
+西湖万顷，楼观矗千门。
+春风路，红堆锦，翠连云。
+俯层轩。风月都无际。
+荡空蔼，开绝境，云梦泽，饶八九，不须吞。
+翡翠明珰，争上金堤去，勃窣媻姗。
+看贤王高会，飞盖入云烟。
+白鹭振振，鼓咽咽。
+
+记风流远，更休作，嬉游地，等闲看。
+君不见，韩献子，晋将军，赵孤存。
+千载传忠献，两定策，纪元勋。
+孙又子，方谈笑，整乾坤。
+直使长江如带，依前是、保赵须韩。
+伴皇家快乐，长在玉津边。
+只在南园。
+</pre>
+<p>整首词气势磅礴，洋溢着必胜的信心。辛弃疾的乐观是有依据的——此时，金国朝政混乱，国力衰退，又受蒙古与西夏两面夹击，已呈现出风雨飘摇之势。</p>
+<p>原本，这的确是北伐的好时机，无奈南宋朝廷腐败已久，军备松弛，军纪涣散，朝中又无多少可用的人才，加上作战部署失当，投降派从中作梗，军中又出内奸，西线有吴曦叛变，东线有丘崈主和，韩侂胄渐渐陷于孤立无援的境地，宋军大败已成定局。</p>
+<p>公元1207年，随着战争局势的变化，南宋北伐竟转变为金兵南侵。尽管此时的金朝其实并不具备继续作战的能力，却仍虚张声势，恫吓南宋派去求和的使臣，说南宋如果愿意称臣，则以江淮之间取中重划两国边界；如果南宋愿意称子，则以长江为界来划分边界，并提出了斩杀韩侂胄、献上其首级的残酷要求，增加岁币等条款也是咄咄逼人。</p>
+<p>韩侂胄得知后大怒，决意再度整兵出战。于是宁宗下诏招募新兵，起用辛弃疾为枢密院都承旨指挥军事。</p>
+<p>如果这件事发生在三十年前，二十年前，甚至十年前，辛弃疾都会欣然赴任。为国家统一上前线抗金杀敌，是他苦苦等了一辈子，盼了一辈子的事！然而此时，辛弃疾已经六十八岁高龄，既老且病，收到朝廷的旨意时他正在家中养病，纵然他杀敌的志向坚定，无奈他腰间的宝刀已经老锈。</p>
+<p>这年九月，辛弃疾自知病重、已无力担负起如此重任，于是上奏请求告老，不久即病逝于家中。</p>
+
+
+<p style='float:right;'>本页共238段，11400个字符，32267 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
