@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>6</p><p></p></div>	
+<div class='layout'><p>CHAPTER 6</p><p>第六章</p></div>	
+<div class='layout'><p>TO?FARM OR?NOT TO?FARM</p><p>种田还是不种田</p></div>	
+<div class='layout'><p>FORMERLY, ALL PEOPLE ON EARTH WERE HUNTER-GATHERERS. Why did any of them adopt food production at all? Given that they must have had some reason, why did they do so around 8500?B.C.?in Mediterranean habitats of the Fertile Crescent, only 3,000 years later in the climatically and structurally similar Mediterranean habitats of southwestern Europe, and never indigenously in the similar Mediterranean habitats of California, southwestern Australia, and the Cape of South Africa? Why did even people of the Fertile Crescent wait until 8500?B.C., instead of becoming food producers already around 18,500 or 28,500?B.C.?</p><p>以前，地球上所有的人都以狩猎采集为生。为什么他们中竟有人会选定粮食生产呢？如果说他们这样做必定有其理由，那么他们为什么只是在公元前8500年左右在新月沃地的地中海栖息地这样做，后来仅仅过了3000年又在气候和地质构造方面相类似的西南欧的地中海栖息地这样做，而从来没有在加利福尼亚、澳大利亚西南部和南非好望角这些类似地中海栖息地的地方这样做呢？为什么新月沃地的居民不是在公元前18500年或28500年左右即已成为粮食生产者，而是要一直等到公元前8500年呢？</p></div>	
+<div class='layout'><p>From our modern perspective, all these questions at first seem silly, because the drawbacks of being a hunter-gatherer appear so obvious. Scientists used to quote a phrase of Thomas Hobbes's in order to characterize the lifestyle of hunter-gatherers as “nasty, brutish, and short.” They seemed to have to work hard, to be driven by the daily quest for food, often to be close to starvation, to lack such elementary material comforts as soft beds and adequate clothing, and to die young.</p><p>从我们现代的观点来看，所有这些问题初看起来似乎有点愚蠢，因为作为狩猎采集族群的不利条件似乎是显而易见的。科学家们经常引用托马斯·霍布斯<sup><a name="p1" id="p1"></a><a href="#pl1" title=""><sup>[1]</sup></a></sup>的话来形容狩猎采集族群的生活方式：“凶险、粗野、短命。”他们似乎不得不努力工作，每天为寻找食物而四处奔波，常常难免饥馁，他们没有诸如柔软的床铺和足够的衣裳之类的基本物质享受，而且年纪轻轻就死了。</p></div>	
+<div class='layout'><p>In reality, only for today's affluent First World citizens, who don't actually do the work of raising food themselves, does food production (by remote agribusinesses) mean less physical work, more comfort, freedom from starvation, and a longer expected lifetime. Most peasant farmers and herders, who constitute the great majority of the world's actual food producers, aren't necessarily better off than hunter-gatherers. Time budget studies show that they may spend more rather than fewer hours per day at work than hunter-gatherers do. Archaeologists have demonstrated that the first farmers in many areas were smaller and less well nourished, suffered from more serious diseases, and died on the average at a younger age than the hunter-gatherers they replaced. If those first farmers could have foreseen the consequences of adopting food production, they might not have opted to do so. Why, unable to foresee the result, did they nevertheless make that choice?</p><p>事实上，由于富裕的第一世界公民实际上用不着亲自去做种植粮食的工作，所以对他们来说，粮食生产<sup>(通过远处的大农场经营)</sup>意味着较少的体力劳动，更多的享受，使人免于饥饿并获得较长的期望寿命。虽然农民和牧人构成了世界上实际粮食生产者的大多数，但其中大部分人的境况不一定就比以狩猎采集为生的人来得优越。对时间安排的研究表明，他们每天花在工作上的小时和以狩猎采集为生的人相比可能只多不少。一些考古学家已经证实，许多地区最早的农民同被他们取代的以狩猎采集为生的人相比，身材较矮小，营养较差，患严重疾病的较多，死时平均年龄也较轻。如果这些最早的农民能够预见到选定粮食生产的后果，他们也许不会决定那样去做。既然他们不能预见到这个结果，那么他们为什么还要作出这样的选择呢？</p></div>	
+<div class='layout'><p>There exist many actual cases of hunter-gatherers who did see food production practiced by their neighbors, and who nevertheless refused to accept its supposed blessings and instead remained hunter-gatherers. For instance, Aboriginal hunter-gatherers of northeastern Australia traded for thousands of years with farmers of the Torres Strait Islands, between Australia and New Guinea. California Native American hunter-gatherers traded with Native American farmers in the Colorado River valley. In addition, Khoi herders west of the Fish River of South Africa traded with Bantu farmers east of the Fish River, and continued to dispense with farming themselves. Why?</p><p>有许多实际情况表明，狩猎采集族群的确看见过他们的邻居在进行粮食生产，不过他们还是拒绝接受想象中的粮食生产的好处，而仍然过着狩猎采集生活。例如，澳大利亚东北部的狩猎采集族群几千年来一直同澳大利亚与新几内亚之间托里斯海峡诸岛上的农民交换物品。加利福尼亚的以狩猎采集为生的印第安人同科罗拉多河河谷的印第安农民交换物品。另外，南非菲什河以西的科伊族牧人同菲什河以东的班图族牧人交换物品，并继续摈弃农业。为什么？</p></div>	
+<div class='layout'><p>Still other hunter-gatherers in contact with farmers did eventually become farmers, but only after what may seem to us like an inordinately long delay. For example, the coastal peoples of northern Germany did not adopt food production until 1,300 years after peoples of the Linearbandkeramik culture introduced it to inland parts of Germany only 125 miles to the south. Why did those coastal Germans wait so long, and what led them finally to change their minds?</p><p>还有一些与农民接触的狩猎采集族群最后的确成了农民，但那也只是在我们看来可能是经过极其漫长的拖延之后。例如，德国北部的近海族群，直到利尼尔班克拉米克文化时期一些族群把粮食生产引进距离南部仅仅125英里的德国内陆地区后1300年才采纳了粮食生产。为什么这些近海的德国人要等待这么长的时间，又是什么使他们最后改变了主意呢？</p></div>	
+<div class='layout'><p>BEFORE WE CAN?answer these questions, we must dispel some misconceptions about the origins of food production and then reformulate the question. What actually happened was not a?discovery?of food production, nor an?invention, as we might first assume. There was often not even a conscious choice between food production and hunting-gathering. Specifically, in each area of the globe the first people who adopted food production could obviously not have been making a conscious choice or consciously striving toward farming as a goal, because they had never seen farming and had no way of knowing what it would be like. Instead, as we shall see, food production?evolved?as a by-product of decisions made without awareness of their consequences. Hence the question that we have to ask is why food production did evolve, why it evolved in some places but not others, why at different times in different places, and why not instead at some earlier or later date.</p><p>在我们能够回答这些问题之前，我们必须消除关于粮食生产起源的几个错误观念，然后重新系统地阐述这个问题。我们可能首先会理所当然地认为，粮食生产是发现的，或发明的，但实际情况并非如此。从事粮食生产还是狩猎采集，这中间甚至不存在有意识的选择。具体地说，在地球上每一个地区，最早的选定粮食生产的族群显然不可能作出有意识的选择，也不可能有意识地把农业作为他们的奋斗目标，因为他们从来没有见过农业，根本不知道农业是怎么一回事。相反，正如我们将要看到的那样，粮食生产是逐步形成的，是在不知道会有什么结果的情况下所作出的决定的副产品。因此，我们不得不提出的问题是：为什么粮食生产竟会发展起来，为什么它是在某些地方而不是在另一些地方发展起来，为什么它是在不同的时间和不同的地方发展起来，为什么它发展的时间不是更早一些或更晚一些？</p></div>	
+<div class='layout'><p>Another misconception is that there is necessarily a sharp divide between nomadic hunter-gatherers and sedentary food producers. In reality, although we frequently draw such a contrast, hunter-gatherers in some productive areas, including North America's Pacific Northwest coast and possibly southeastern Australia, became sedentary but never became food producers. Other hunter-gatherers, in Palestine, coastal Peru, and Japan, became sedentary first and adopted food production much later. Sedentary groups probably made up a much higher fraction of hunter-gatherers 15,000 years ago, when all inhabited parts of the world (including the most productive areas) were still occupied by hunter-gatherers, than they do today, when the few remaining hunter-gatherers survive only in unproductive areas where nomadism is the sole option.</p><p>另一个错误观念是：在到处流浪的狩猎采集族群与定居的粮食生产者之间必定是界线分明。事实上，虽然我们经常把他们分为两种截然不同的人群，但在某些物产丰富的地区，包括北美洲的西北太平洋沿岸以及可能还有澳大利亚东南部，狩猎采集族群已经定居下来，但从未成为粮食生产者。在巴勒斯坦、秘鲁近海地区和日本的其他一些狩猎采集族群先是过起了定居生活，直到过了很久才采纳了粮食生产。在15000年前的狩猎采集族群中，定居群体的比例比现在要高得多，因为那时世界上所有住人的地方<sup>(包括一些最富饶的地区)</sup>仍然为狩猎采集族群所居住，而今天剩下来的狩猎采集族群只生活在一些贫瘠的地区，在那里游牧生活是唯一的选择。</p></div>	
+<div class='layout'><p>Conversely, there are mobile groups of food producers. Some modern nomads of New Guinea's Lakes Plains make clearings in the jungle, plant bananas and papayas, go off for a few months to live again as hunter-gatherers, return to check on their crops, weed the garden if they find the crops growing, set off again to hunt, return months later to check again, and settle down for a while to harvest and eat if their garden has produced. Apache Indians of the southwestern United States settled down to farm in the summer at higher elevations and toward the north, then withdrew to the south and to lower elevations to wander in search of wild foods during the winter. Many herding peoples of Africa and Asia shift camp along regular seasonal routes to take advantage of predictable seasonal changes in pasturage. Thus, the shift from hunting-gathering to food production did not always coincide with a shift from nomadism to sedentary living.</p><p>相反，粮食生产者中也有流动的群体。新几内亚湖泊平原的一些现代游牧民族在丛林中开垦土地，种植香蕉和番木瓜树，再离开几个月重新过狩猎采集生活，然后回来看看他们的作物，如果他们发现作物在生长，就给他们的园地除草，接着再出发去打猎，几个月后再回来看看，如果他们的园地有了出产，他们就定居一阵子来收获和食用他们的产品。美国西南部的阿帕切族印第安人沿着季节性的固定路线变换营地，以利用牧场上可以预料的季节性变化。因此，从狩猎采集向粮食生产的转变，并不总是与从游牧生活到定居生活的转变同时发生。</p></div>	
+<div class='layout'><p>Another supposed dichotomy that becomes blurred in reality is a distinction between food producers as active managers of their land and hunter-gatherers as mere collectors of the land's wild produce. In reality, some hunter-gatherers intensively manage their land. For example, New Guinea peoples who never domesticated sago palms or mountain pandanus nevertheless increase production of these wild edible plants by clearing away encroaching competing trees, keeping channels in sago swamps clear, and promoting growth of new sago shoots by cutting down mature sago trees. Aboriginal Australians who never reached the stage of farming yams and seed plants nonetheless anticipated several elements of farming. They managed the landscape by burning it, to encourage the growth of edible seed plants that sprout after fires. In gathering wild yams, they cut off most of the edible tuber but replaced the stems and tops of the tubers in the ground so that the tubers would regrow. Their digging to extract the tuber loosened and aerated the soil and fostered regrowth. All that they would have had to do to meet the definition of farmers was to carry the stems and remaining attached tubers home and similarly replace them in soil at their camp.</p><p>另一个实际上已变得模糊不清的想象中的区别，是粮食生产者积极经营土地而狩猎采集族群采集土地上的野生物产这两者之间的差异。实际上，有些狩猎采集族群集中力量经营他们的土地。例如，新几内亚的从未驯化过西谷椰子和山露兜树的土著，却知道怎样来增加这些可食用的野生植物的产量，他们使用的办法是清除掉与这些植物争夺地盘的树木，使生长西谷椰子的沼泽地里的沟渠中的水保持清澈，以及砍掉成熟的西谷椰子树以促进新苗的生长。还没有达到种植薯蓣和种子植物阶段的澳大利亚土著，却能预先考虑到有关耕作的一些原理。他们用畬田的方法来处理地面上的蔓枝杂草，以促进在烧荒后长出来的可供食用的种子植物的生长。在采集野生薯蓣时，他们把可食用块根的大部分切下来，但把茎连同块根的上端重新埋入土中，这样块根就又可以重新生长了。他们挖掘块根疏松了土壤，并使土壤通气，从而有利于块根的重新生长。如果他们想要成为名副其实的农民，他们只需把茎连同剩下的块根一起带回家，重新栽在自己的营地里就行了。</p></div>	
+<div class='layout'><p>FROM THOSE PRECURSORS?of food production already practiced by hunter-gatherers, it developed stepwise. Not all the necessary techniques were developed within a short time, and not all the wild plants and animals that were eventually domesticated in a given area were domesticated simultaneously. Even in the cases of the most rapid independent development of food production from a hunting-gathering lifestyle, it took thousands of years to shift from complete dependence on wild foods to a diet with very few wild foods. In early stages of food production, people simultaneously collected wild foods?and?raised cultivated ones, and diverse types of collecting activities diminished in importance at different times as reliance on crops increased.</p><p>粮食生产就是这样由狩猎采集族群发端于前，然后一步步发展起来的。并不是所有必要的技术都是在短时间内发展起来的，并不是所有在某一地区最后驯化的野生动植物都是同时驯化的。即使是在粮食生产以最快的速度从狩猎采集的生活方式独立发展起来的情况下，也要花上几千年时间才能从完全依赖野生食物转变为依赖很少几种野生食物。在粮食生产的早期阶段，人们采集野生食物和培育非野生食物是同时进行的，而随着对作物的依赖的增加，各种采集活动在各个时期的重要性减少了。</p></div>	
+<div class='layout'><p>The underlying reason why this transition was piecemeal is that food production systems evolved as a result of the accumulation of many separate decisions about allocating time and effort. Foraging humans, like foraging animals, have only finite time and energy, which they can spend in various ways. We can picture an incipient farmer waking up and asking: Shall I spend today hoeing my garden (predictably yielding a lot of vegetables several months from now), gathering shellfish (predictably yielding a little meat today), or hunting deer (yielding possibly a lot of meat today, but more likely nothing)? Human and animal foragers are constantly prioritizing and making effort-allocation decisions, even if only unconsciously. They concentrate first on favorite foods, or ones that yield the highest payoff. If these are unavailable, they shift to less and less preferred foods.</p><p>这种转变是逐步实现的，其根本原因是，粮食生产制度的渐次形成乃是许多关于时间和劳力分配的不同决定积累的结果。觅食的人同觅食的动物一样，只有有限的时间和精力，但他们花费时间和精力的方式却可以是多种多样的。我们可以设想一下，有这么一个早期的农民，他在早晨醒来时自问：我今天是不是应该用锄头给我的菜园子除草<sup>(预计从现在起几个月后可以出产出许多蔬菜)</sup>，或是去摸点虾或蟹什么的<sup>(预计今天就可以吃到一点河鲜)</sup>，或是去捕猎鹿<sup>(今天可能会得到许多肉，但更可能什么都得不到)</sup>？觅食的人和觅食的动物一样，都在不断地按优先顺序来作出分配劳力的决定，哪怕是无意识地也是一样。他们首先集中注意力于最喜欢的食物，或者能够产生最高报偿的食物。如果这些食物无法得到，他们就转向不太喜欢的食物。</p></div>	
+<div class='layout'><p>Many considerations enter into these decisions. People seek food in order to satisfy their hunger and fill their bellies. They also crave specific foods, such as protein-rich foods, fat, salt, sweet fruits, and foods that simply taste good. All other things being equal, people seek to maximize their return of calories, protein, or other specific food categories by foraging in a way that yields the most return with the greatest certainty in the least time for the least effort. Simultaneously, they seek to minimize their risk of starving: moderate but reliable returns are preferable to a fluctuating lifestyle with a high time-averaged rate of return but a substantial likelihood of starving to death. One suggested function of the first gardens of nearly 11,000 years ago was to provide a reliable reserve larder as insurance in case wild food supplies failed.</p><p>在作出这些决定时要考虑许多问题。人们寻找食物是为了充饥果腹。他们也渴望得到一些特别的食物，如富有蛋白质的食物、脂肪、盐、甜水果以及只要吃起来味道好的食物。如果所有其他情况都相同，人们就用一种以最少的时间、最小的努力和最大的把握产生最大的回报的方法去寻找食物，从而追求在卡路里、蛋白质或其他特别的食物品种方面得到最大限度的回报。同时，他们也追求最小限度的风险：同按平均时间计算回报率很高但也很可能饿死的一种变化不定的生活方式相比，适中的然而可靠的回报显得更为可取。差不多11000年前最早的菜园的一个可想而知的作用是，万一在野生食物供应短缺时提供一个作为预防的食物储备地。</p></div>	
+<div class='layout'><p>Conversely, men hunters tend to guide themselves by considerations of prestige: for example, they might rather go giraffe hunting every day, bag a giraffe once a month, and thereby gain the status of great hunter, than bring home twice a giraffe's weight of food in a month by humbling themselves and reliably gathering nuts every day. People are also guided by seemingly arbitrary cultural preferences, such as considering fish either delicacies or taboo. Finally, their priorities are heavily influenced by the relative values they attach to different lifestyles—just as we can see today. For instance, in the 19th-century U.S. West, the cattlemen, sheepmen, and farmers all despised each other. Similarly, throughout human history farmers have tended to despise hunter-gatherers as primitive, hunter-gatherers have despised farmers as ignorant, and herders have despised both. All these elements come into play in people's separate decisions about how to obtain their food.</p><p>相反，男性猎人的行动往往要受到声望这类考虑的影响。例如，他们可能宁愿每天去猎捕长颈鹿，每月猎获一头长颈鹿，从而赢得伟大猎人的身份，而不是降低身份，每天确保采集到坚果，一个月背回家两倍于一头长颈鹿重量的食物。人们也受到看似随心所欲的文化偏好的影响，例如把鱼或者看作是美味，或者看作是禁忌。最后，他们的优先考虑还要受到他们所喜爱的生活方式的相对价值的严重影响，就像我们今天所能看到的那样。例如，在19世纪的美国西部，养牛人、牧羊人和农民全都彼此鄙视。同样，在整个人类历史上，农民总是看不起以狩猎采集为生的人，说他们粗野原始，以狩猎采集为生的人也看不起农民，说他们愚昧无知，而牧人则对这两种人都看不起。所有这些因素在人们关于如何得到食物所作出的不同决定中都发生了作用。</p></div>	
+<div class='layout'><p>AS WE ALREADY?noted, the first farmers on each continent could not have chosen farming consciously, because there were no other nearby farmers for them to observe. However, once food production had arisen in one part of a continent, neighboring hunter-gatherers could see the result and make conscious decisions. In some cases the hunter-gatherers adopted the neighboring system of food production virtually as a complete package; in others they chose only certain elements of it; and in still others they rejected food production entirely and remained hunter-gatherers.</p><p>我们已经注意到，每个大陆上的农民是不可能有意识地去选择农业的，因为他们没有看到过他们的附近有任何别的农民。然而，粮食生产一旦在某个大陆的某个部分出现，邻近的狩猎采集族群就能看到粮食生产的结果，从而作出有意识的决定。在某些情况下，这些狩猎采集族群几乎是全盘接受了邻近的粮食生产制度；在另一些情况下，他们只选择其中的某些成分；在还有一些情况下，他们则是完全拒绝粮食生产，而继续做以狩猎采集为生的人。</p></div>	
+<div class='layout'><p>For example, hunter-gatherers in parts of southeastern Europe had quickly adopted Southwest Asian cereal crops, pulse crops, and livestock simultaneously as a complete package by around 6000?B.C.?All three of these elements also spread rapidly through central Europe in the centuries before 5000?B.C.?Adoption of food production may have been rapid and wholesale in southeastern and central Europe because the hunter-gatherer lifestyle there was less productive and less competitive. In contrast, food production was adopted piecemeal in southwestern Europe (southern France, Spain, and Italy), where sheep arrived first and cereals later. The adoption of intensive food production from the Asian mainland was also very slow and piecemeal in Japan, probably because the hunter-gatherer lifestyle based on seafood and local plants was so productive there.</p><p>例如，在欧洲东南部一些地区的狩猎采集族群，在公元前6000年左右迅速接受了西南亚的谷类作物、豆类作物和牲口，而且是同时全盘接受的。所有这3个成分在公元前5000年前的几百年中也迅速地传播到整个中欧。采纳粮食生产在东南欧和中欧可能非常迅速而且是大规模的，因为那里的狩猎采集生活方式所获较小，也不太有竞争力。相形之下，粮食生产在西南欧<sup>(法国西南部、西班牙和意大利)</sup>则是逐渐被采纳的，那里最先引进的是绵羊，后来引进的是谷物。日本从亚洲大陆采纳集约型粮食生产非常缓慢，而且是逐步实现的，这大概是因为那里的以海产和本地植物为基础的狩猎采集生活方式十分丰足的缘故吧。</p></div>	
+<div class='layout'><p>Just as a hunting-gathering lifestyle can be traded piecemeal for a food-producing lifestyle, one system of food production can also be traded piecemeal for another. For example, Indians of the eastern United States were domesticating local plants by about 2500?B.C.?but had trade connections with Mexican Indians who developed a more productive crop system based on the trinity of corn, squash, and beans. Eastern U.S. Indians adopted Mexican crops, and many of them discarded many of their local domesticates, piecemeal; squash was domesticated independently, corn arrived from Mexico around?A.D.?200 but remained a minor crop until around?A.D.?900, and beans arrived a century or two later. It even happened that food-production systems were abandoned in favor of hunting-gathering. For instance, around 3000?B.C.?the hunter-gatherers of southern Sweden adopted farming based on Southwest Asian crops, but abandoned it around 2700?B.C.?and reverted to hunting-gathering for 400 years before resuming farming.</p><p>正如狩猎采集的生活方式可以逐渐转换为粮食生产的生活方式一样，一种粮食生产制度也可逐渐转换为另一种粮食生产制度。例如，美国东部的印第安人在公元前2500年左右已开始驯化本地的植物，但也和墨西哥的印第安人发生交换关系，这些墨西哥印第安人在谷物、南瓜属植物和豆类三合一的基础上发展出一种更多产的作物体系。美国东部的印第安人采纳了墨西哥的作物，他们中许多人逐步抛弃了本地的驯化植物；南瓜属植物是独立驯化的，玉米在公元200年左右从墨西哥引进，但直到公元900年始终是一种主要的作物，而豆类则是在一二百年之后引进的。甚至偶然也有放弃粮食生产制度、复归狩猎采集生活的例子。例如，在公元前3000年左右，瑞典南部的狩猎采集族群采纳了以西南亚作物为基础的农业，但在公元前2700年时放弃了，重新回归狩猎采集生活，又过了400年才又一次恢复了农业生活。</p></div>	
+<div class='layout'><p>ALL THESE CONSIDERATIONS?make it clear that we should not suppose that the decision to adopt farming was made in a vacuum, as if the people had previously had no means to feed themselves. Instead, we must consider food production and hunting-gathering as?alternative strategies?competing with each other. Mixed economies that added certain crops or livestock to hunting-gathering also competed against both types of “pure” economies, and against mixed economies with higher or lower proportions of food production. Nevertheless, over the last 10,000 years, the predominant result has been a shift from hunting-gathering to food production. Hence we must ask: What were the factors that tipped the competitive advantage away from the former and toward the latter?</p><p>所有这些考虑清楚地表明，我们不应该认为采纳农业的决定是在封闭状态下作出的，就好像那些人在这以前没有养活自己的手段似的。相反，我们必须把粮食生产同狩猎采集看作是相互竞争的供选择的办法。在狩猎采集外再种植某些作物或饲养某些牲口的混合经济，不但在和这两种“纯粹”经济竞争，而且也在和粮食生产比例或高或低的混合经济竞争。尽管如此，在过去的1万年中，普遍的结果一直是从狩猎采集转变为粮食生产。因此，我们必须问一问：是什么因素使竞争优势不属于前者而属于后者？</p></div>	
+<div class='layout'><p>That question continues to be debated by archaeologists and anthropologists. One reason for its remaining unsettled is that different factors may have been decisive in different parts of the world. Another has been the problem of disentangling cause and effect in the rise of food production. However, five main contributing factors can still be identified; the controversies revolve mainly around their relative importance.</p><p>考古学家和人类学家仍在争论这个问题。这个问题之所以仍未解决，一个原因就是不同的因素可能在世界上的不同地区起着决定性的作用。另一个原因是怎样理清粮食生产出现过程中的因果关系问题。然而，我们仍然可以找出5个起作用的主要因素；而争论也主要是围绕这些因素的相对重要性而展开的。</p></div>	
+<div class='layout'><p>One factor is the decline in the availability of wild foods. The lifestyle of hunter-gatherers has become increasingly less rewarding over the past 13,000 years, as resources on which they depended (especially animal resources) have become less abundant or even disappeared. As we saw in Chapter 1, most large mammal species became extinct in North and South America at the end of the Pleistocene, and some became extinct in Eurasia and Africa, either because of climate changes or because of the rise in skill and numbers of human hunters. While the role of animal extinctions in eventually (after a long lag) nudging ancient Native Americans, Eurasians, and Africans toward food production can be debated, there are numerous incontrovertible cases on islands in more recent times. Only after the first Polynesian settlers had exterminated moas and decimated seal populations on New Zealand, and exterminated or decimated seabirds and land birds on other Polynesian islands, did they intensify their food production. For instance, although the Polynesians who colonized Easter Island around?A.D.?500 brought chickens with them, chicken did not become a major food until wild birds and porpoises were no longer readily available as food. Similarly, a suggested contributing factor to the rise of animal domestication in the Fertile Crescent was the decline in abundance of the wild gazelles that had previously been a major source of meat for hunter-gatherers in that area.</p><p>一个因素是获得野生食物的可能性减少了。狩猎采集族群的生活方式在过去的13000年中变得好处越来越少了，因为他们所依赖的资源<sup>(尤其是动物资源)</sup>已不再那么丰富或者甚至消失了。我们在第一章中已经看到，大多数大型哺乳动物在更新世结束时已在南美洲和北美洲灭绝了，有些在欧亚大陆和非洲灭绝了，这或者是因为气候发生了变化，或者是因打猎的人的技巧提高了和人数增加了。虽然动物的灭绝在最终<sup>(在长期延迟之后)</sup>推动古代的印第安人、欧亚大陆居民和非洲人走上粮食生产道路方面所起的作用仍然可以争论，但在较晚近时期的一些海岛上却存在这方面的许多不容置疑的例证。最早的波利尼西亚移民在新西兰消灭了恐鸟和大批杀死海豹，并在其他波利尼西亚岛屿上消灭或大批杀死海鸟和陆鸟。只有在那之后，他们才加强了他们的粮食生产。例如，虽然在公元500年移居复活节岛的波利尼西亚人带去了鸡，但直到野鸟和海豚不再容易捉来充当食物时鸡才成了主要的食物。同样，促成新月沃地出现动物驯化的一个想得到的因素是野瞪羚的个体密度减少了，而在这之前野瞪羚一直是这一地区狩猎采集族群的主要的肉食来源。</p></div>	
+<div class='layout'><p>A second factor is that, just as the depletion of wild game tended to make hunting-gathering less rewarding, an increased availability of domesticable wild plants made steps leading to plant domestication more rewarding. For instance, climate changes at the end of the Pleistocene in the Fertile Crescent greatly expanded the area of habitats with wild cereals, of which huge crops could be harvested in a short time. Those wild cereal harvests were precursors to the domestication of the earliest crops, the cereals wheat and barley, in the Fertile Crescent.</p><p>第二个因素是：正如野生鸟兽资源的枯竭往往使狩猎采集活动好处不大一样，由于获得可驯化野生植物的可能性增加了，对植物进行驯化的做法可以得到较大的好处。例如，更新世结束时新月沃地的气候变化大大增加了野生谷物的产地面积，从而可以在很短的时间内收获大量的庄稼。这些野生谷物的收获就是新月沃地最早的作物——小麦和大麦——驯化的先声。</p></div>	
+<div class='layout'><p>Still another factor tipping the balance away from hunting-gathering was the cumulative development of technologies on which food production would eventually depend—technologies for collecting, processing, and storing wild foods. What use can would-be farmers make of a ton of wheat grains on the stalk, if they have not first figured out how to harvest, husk, and store them? The necessary methods, implements, and facilities appeared rapidly in the Fertile Crescent after 11,000?B.C., having been invented for dealing with the newly available abundance of wild cereals.</p><p>还有一个不利于狩猎采集生活的因素，是粮食生产可能最后依赖的一些技术——对野生粮食的收集、加工和贮藏的技术的长期发展。如果未来的农民不是首先弄清楚怎样对小麦进行收割、脱粒和贮藏，那么长在麦秆上的麦粒即使有一吨重，他们又能怎样去加以利用呢？公元前11000年后，各种必要的方法、工具和设备在新月沃地迅速出现，这些都是为处理当时新出现的大量野生谷物而发明出来的。</p></div>	
+<div class='layout'><p>Those inventions included sickles of flint blades cemented into wooden or bone handles, for harvesting wild grains; baskets in which to carry the grains home from the hillsides where they grew; mortars and pestles, or grinding slabs, to remove the husks; the technique of roasting grains so that they could be stored without sprouting; and underground storage pits, some of them plastered to make them waterproof. Evidence for all of these techniques becomes abundant at sites of hunter-gatherers in the Fertile Crescent after 11,000?B.C.?All these techniques, though developed for the exploitation of wild cereals, were prerequisites to the planting of cereals as crops. These cumulative developments constituted the unconscious first steps of plant domestication.</p><p>这些发明包括用来收割野生谷物的、装在木柄或骨柄上的燧石镰刀；从生长谷物的山坡把谷物运回家的篮子；给谷物去壳的石臼、杵或磨板；烘焙谷粒以免在贮藏时发芽的技术；以及贮藏谷物的地窖，有些地窖还抹上灰泥防水。在公元前11000年后新月沃地的狩猎采集族群的遗址中，关于所有这些技术的证据非常丰富。所有这些技术虽然都是为利用野生谷物而发展起来的，但也是种植粮食作物的必备条件。这方面的长期发展构成了植物驯化的无意识的第一步。</p></div>	
+<div class='layout'><p>A fourth factor was the two-way link between the rise in human population density and the rise in food production. In all parts of the world where adequate evidence is available, archaeologists find evidence of rising densities associated with the appearance of food production. Which was the cause and which the result? This is a long-debated chicken-or-egg problem: did a rise in human population density force people to turn to food production, or did food production permit a rise in human population density?</p><p>第四个因素是人口密度增加和粮食生产出现这两者之间的相互关系。在世界各地，凡是可以得到充分证据的地方，考古学家们都发现了人口密度增加与粮食生产之间出现相互联系的证据。哪个是因？哪个是果？这是一个长期争论不休的先有鸡还是先有蛋的问题：是人口密度增加迫使人们求助于粮食生产，还是粮食生产促使人口密度增加？</p></div>	
+<div class='layout'><p>In principle, one expects the chain of causation to operate in both directions. As I've already discussed, food production tends to lead to increased population densities because it yields more edible calories per acre than does hunting-gathering. On the other hand, human population densities were gradually rising throughout the late Pleistocene anyway, thanks to improvements in human technology for collecting and processing wild foods. As population densities rose, food production became increasingly favored because it provided the increased food outputs needed to feed all those people.</p><p>原则上，人们期望因果链在两个方向上运作。正如我已经讨论过的那样，粮食生产往往会导致人口密度的增加，因为它每英亩产生的可食用热量比狩猎采集更多。另一方面，由于人类采集和加工野生食物的技术的进步，人类人口密度在整个晚更新世逐渐上升。随着人口密度的增加，粮食生产越来越受欢迎，因为它提供了养活所有这些人所需的更多粮食产量。</p></div>	
+<div class='layout'><p>That is, the adoption of food production exemplifies what is termed an autocatalytic process—one that catalyzes itself in a positive feedback cycle, going faster and faster once it has started. A gradual rise in population densities impelled people to obtain more food, by rewarding those who unconsciously took steps toward producing it. Once people began to produce food and become sedentary, they could shorten the birth spacing and produce still more people, requiring still more food. This bidirectional link between food production and population density explains the paradox that food production, while increasing the quantity of edible calories per acre, left the food producers less well nourished than the hunter-gatherers whom they succeeded. That paradox developed because human population densities rose slightly more steeply than did the availability of food.</p><p>这就是说，采纳粮食生产为所谓的自身催化过程提供了例证——这是一个在正反馈循环中自身催化的过程，这个过程一旦开始，速度就越来越快。人口密度的逐步增加，迫使人们去奖励那些无意中增加了粮食产量的人，以获得更多的粮食。一旦人们开始生产粮食并过定居的生活，他们就能够缩短生育间隔期，生出更多的人来，从而也就需要更多的粮食。粮食生产与人口密度之间的这种双向关系，说明了一种矛盾的现象，即粮食生产一方面增加了每英亩可摄入的卡路里的数量，一方面却又使这些粮食生产者的营养不及他们所继承的那些以狩猎采集为生的人。这种矛盾之所以产生，是因为人口密度的增加速度要稍高于粮食的增加速度。</p></div>	
+<div class='layout'><p>Taken together, these four factors help us understand why the transition to food production in the Fertile Crescent began around 8500?B.C., not around 18,500 or 28,500?B.C.?<strong>At the latter two dates hunting-gathering was still much more rewarding than incipient food production, because wild mammals were still abundant; wild cereals were not yet abundant; people had not yet developed the inventions necessary for collecting, processing, and storing cereals efficiently; and human population densities were not yet high enough for a large premium to be placed on extracting more calories per acre.</strong></p><p>以上4种因素综合起来，就能帮助我们了解为什么新月沃地向粮食生产的过渡开始于公元前8500年左右，而不是公元前18500年左右或28500年左右。<strong>在这后两个年代，狩猎采集活动所得到的报酬要比当时刚开始的粮食生产大得多，因为那时野生哺乳动物的数量仍然非常丰富；野生谷物的数量很少；人们还没有发明有效地收集、加工和贮藏谷物的必要技术；同时人口密度也没有高到需要十分重视从每英亩土地设法得到更多的卡路里。</strong></p></div>	
+<div class='layout'><p>A final factor in the transition became decisive at geographic boundaries between hunter-gatherers and food producers. The much denser populations of food producers enabled them to displace or kill hunter-gatherers by their sheer numbers, not to mention the other advantages associated with food production (including technology, germs, and professional soldiers). In areas where there were only hunter-gatherers to begin with, those groups of hunter-gatherers who adopted food production outbred those who didn't.</p><p>转型的最后一个因素在狩猎采集者和粮食生产者之间的地理界限上起到了决定性作用。人口密度大得多的粮食生产者使他们能够以绝对数量取代或杀死狩猎采集者，更不用说与粮食生产相关的其他优势（包括技术、细菌和专业士兵）。在一开始只有狩猎采集者的地区，那些采用粮食生产的狩猎采集者群体比那些不采取粮食生产的群体繁殖得快。</p></div>	
+<div class='layout'><p>As a result, in most areas of the globe suitable for food production, hunter-gatherers met one of two fates: either they were displaced by neighboring food producers, or else they survived only by adopting food production themselves. In places where they were already numerous or where geography retarded immigration by food producers, local hunter-gatherers did have time to adopt farming in prehistoric times and thus to survive as farmers. This may have happened in the U.S. Southwest, in the western Mediterranean, on the Atlantic coast of Europe, and in parts of Japan. However, in Indonesia, tropical Southeast Asia, most of subequatorial Africa, and probably in parts of Europe, the hunter-gatherers were replaced by farmers in the prehistoric era, whereas a similar replacement took place in modern times in Australia and much of the western United States.</p><p>结果，在地球上大多数适于粮食生产的地区，狩猎采集族群只能有两种命运：要么他们被邻近的粮食生产者所取代，要么他们为了生存只有采纳粮食生产的办法。在有些地方，因为那里的狩猎采集族群的人数本来已经很多，或者因为地理条件妨碍了粮食生产者从外面移入，所以他们有时间在史前时期采纳了农业，从而作为农民而生存了下来。这种情况可能发生在美国西南部、地中海以西地区、欧洲的大西洋沿岸以及日本的一些地方。然而，在印度尼西亚、热带东南亚、非洲赤道以南的大部分地区，可能还有欧洲的一些地方，狩猎采集族群在史前时代就已被农民取而代之了，而在现代的澳大利亚和美国西部的许多地方也发生了类似的更替现象。</p></div>	
+<div class='layout'><p>Only where especially potent geographic or ecological barriers made immigration of food producers or diffusion of locally appropriate food-producing techniques very difficult were hunter-gatherers able to persist until modern times in areas suitable for food production. The three outstanding examples are the persistence of Native American hunter-gatherers in California, separated by deserts from the Native American farmers of Arizona; that of Khoisan hunter-gatherers at the Cape of South Africa, in a Mediterranean climate zone unsuitable for the equatorial crops of nearby Bantu farmers; and that of hunter-gatherers throughout the Australian continent, separated by narrow seas from the food producers of Indonesia and New Guinea. Those few peoples who remained hunter-gatherers into the 20th century escaped replacement by food producers because they were confined to areas not fit for food production, especially deserts and Arctic regions. Within the present decade, even they will have been seduced by the attractions of civilization, settled down under pressure from bureaucrats or missionaries, or succumbed to germs.</p><p>在有些地方，由于存在着强大的地理或生态障碍，粮食生产者很难从外面移入，适合本地的粮食生产技术也很难传播进来。只有在这些地方，狩猎采集族群才能在一些适合粮食生产的地区一直生存到现代。这方面的三个突出的例子是：加利福尼亚的以狩猎采集为生的印第安人，由于被沙漠把他们同亚利桑那的印第安农民隔开而继续生存下来；南非好望角地区的以狩猎采集为生的科伊桑族，由于那里的地中海型气候带不适于附近班图族农民的赤道作物而继续生存下来；以及整个澳洲大陆的以狩猎采集为生的族群，由于被一片片狭窄的海域把他们同印度尼西亚和新几内亚的粮食生产者隔开而继续生存了下来。有几个直到20世纪仍然以狩猎采集为生的族群所以能逃脱被粮食生产者取代的命运，是因为他们局处一隅，生活在一些不适于粮食生产的地区，尤其是在沙漠和北极地区。在当前的10年之内，即便是他们也会受到文明的诱惑，在政府官员或传教士的压力下定居下来，或听任病菌的摆布。</p></div>	
+<div class='layout'><p> </p><p>注释：</p></div>	
+<div class='layout'><p> </p><p><a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a>. 托马斯·霍布斯<sup>(1588—1679)</sup>：英国政治哲学家、机械唯物主义者，拥护君主专制，提出社会契约说，主要著作有《利维坦》、《论物体》等。——译者</p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>
