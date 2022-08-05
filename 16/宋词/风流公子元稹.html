@@ -1,0 +1,428 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	width:80%;
+	font-size:120%;
+	line-height:160%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	overflow-x:auto;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+	font-size:120%;
+	line-height:160%;    
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>风流公子元稹</h4>
+
+
+<p>“曾经沧海难为水，除却巫山不是云”
+<p>唐代</p>
+<p>最风流的多情公子——元稹</p>
+<h3>1 始乱终弃的多情书生</h3>
+<p>唐代文学最当盛名的自然是唐诗，唐诗之外人们不得不提的就是唐传奇了，因为唐传奇革新了以前小说类作品的模式，抛弃了那些作品中的志怪色彩，完全记述现实世界，将小说直接与人们的现实生活关联起来。唐传奇中影响最大、流传最广的作品之一就是《莺莺传》，它是后来元代四大名剧之一《西厢记》的发端，而中国古代四大名著之首的《红楼梦》则明显受到《西厢记》的影响。可见这《莺莺传》的重要性。</p>
+<p>《莺莺传》讲的是一个爱情故事。男主人公叫张生，是一个书生，女主人公叫崔莺莺，是一个知书达理的大家小姐。张生旅居蒲州（今山西永济）普救寺时遇到兵乱，帮忙救护了同寓寺中的远房姨母崔夫人一家。在答谢宴上，张生对表妹崔莺莺一见倾心，即通过婢女传书，几经反复，两人终于花好月圆、私订终身。后来张生赴京应试落第，滞留京城，依然与莺莺情书来往，互表深情，恩恩爱爱。但时日一长，张生觉得崔莺莺是“妖物”，会断送他的前程，便书信渐少，终至于音讯断绝，爱情终了。一年多后，莺莺另嫁，张生也另娶。一次，张生路过崔莺莺家门，要求以表兄的身份相见，遭到莺莺拒绝。当时人多“许张为善补过”。</p>
+<p>现代人都能看出这是一篇始乱终弃却将女人妖魔化的故事，但作者意在赞扬张生“善于补过”，为他的薄幸辩护，令人憎恶。鲁迅先生在他的《中国小说史略》中对这篇作品的评价是：“篇末文过饰非，遂堕恶趣。”这篇“遂堕恶趣”的唐传奇，其作者就是本篇的主角元稹，并且据研究者考证，《莺莺传》正是元稹少年时恋爱旧事的演绎，张生的原型正是他本人。正是由于有这些轻薄往事，几十年后当他好不容易官至卿相被拜为“中书门下平章事”时，“朝野杂然轻笑”（《新唐书·列传第九十九》），大家觉得元稹德薄，出任宰相匡正天下得失就像一个笑话。但所有这些并不妨碍他成为中晚唐时期的重要诗人及颇具才干的官员。
+<p>七七九年，元稹生于洛阳一个士大夫之家，自小饱读诗书，七九三年参加明经科考试，一举高中。七九九年初入官场，在河中府（今山西永济蒲州）任职。当时当地驻军叛乱，蒲州动荡，元稹在朋友的帮助下离开了那里，暂时借居一个远房亲戚家躲避战祸。不成想亲戚家的幼女正值豆蔻年华，才貌双全，一来二去便与一表人才、风流倜傥的元稹相恋，最后元稹西入长安求取功名，这一段恋情便不了了之。这正是《莺莺传》故事的原型。八〇三年，元稹参加吏部考试，顺利登科，随后被任命为校书郎，并在此前后认识了终身好友白居易。做了京官之后，元稹便一心考虑如何加官晋爵、建功立业。</p>
+<p>虽然元稹初出茅庐，但当时的京兆尹韦夏卿很欣赏这个年轻人，相信他凭借出众的才华定能有大好前途，便有意将家中最宠爱的小女儿韦丛嫁给他。元稹知道京兆尹有此意，刚开始有点犹豫，因为此时的他在蒲州还有恋人。这位恋人知书达理、温柔贤惠，虽也家中富有，但毕竟无权无势，对于他心心念念的功业之事帮助有限；而韦氏幼女虽然尚未谋面，但毕竟出身官宦之家，父亲位高权重。他思前想后，再三权衡，最后决定放弃蒲州旧情，迎娶韦家幼女。令他没有想到的是，韦家少女才貌出众、贤良淑德，更令他没有想到的是这女子与他一见如故，有情有义，丝毫没有富家小姐的脾气，更没有对他这个高攀的小官宦之子有丝毫不敬之意。</p>
+<p>这年十月，韦夏卿另授东都洛阳留守，要赴洛阳上任，但由于“谢公最小偏怜女”，割舍不下心爱的小女儿韦丛，元稹、韦丛夫妇干脆同行洛阳，侍奉韦夏卿左右。到洛阳后，年轻的元稹夫妇还没有能力另置宅邸，就住在韦夏卿的家中。直到第二年年初，元稹才返回京城就职。由于韦丛依旧留在洛阳，所以这段时间就苦了元稹，经常要在洛阳和长安之间奔波。在政途上，难说元稹从这桩婚姻中是否直接受益，但可以确定的是，元稹从这段婚姻中获得了令他终生难忘的爱情和幸福。自从嫁于元稹以来，韦丛一改大家小姐的做派，家中事务一手包办，尽全力支持元稹读书、考试、做官，不让他为家中俗务分心。</p>
+<p>八〇九年，三十岁的元稹被授为监察御史，奉旨出使剑南川东，意气风发，经常上书言事，弹劾不法官吏，终于触动了藩镇利益，得罪了朝中权贵，最后被借故外放至洛阳，虽然仍然是监察御史，但是权力受到了削弱。恰是这一年，元稹的仕途渐渐有所起色，生活即将有所改善的时候，与他一同过了七年贫贱生活的妻子韦丛病逝，年仅二十六岁。而最为可悲的是，当时元稹刚被外放洛阳，妻子逝世时他还无法回长安为她送葬，韦丛孤独离世。</p>
+<p>元稹内心极度伤痛而内疚，在洛阳郁郁寡欢，陆续写了好多首诗悼念亡妻，追忆亡妻生前与他相濡以沫、相敬如宾的生活，如“顾我无衣搜荩箧，泥他沽酒拔金钗。野蔬充膳甘长藿，落叶添薪仰古槐”（《遣悲怀三首·其一》）；表现了妻子去世后自己睹物思人的情形，如“衣裳已施行看尽，针线犹存未忍开。尚想旧情怜婢仆，也曾因梦送钱财”（《遣悲怀三首·其二》）；也表达了对妻子的感念与感恩，如“惟将终夜长开眼，报答平生未展眉”（《遣悲怀三首·其三》）。而流传最广的则是那首《离思五首·其四》：</p>
+<pre>
+曾经沧海难为水，除却巫山不是云。
+取次花丛懒回顾，半缘修道半缘君。
+</pre>
+<p>《离思五首·其五》也情真意切、委婉动人：</p>
+<pre>
+寻常百种花齐发，偏摘梨花与白人。
+今日江头两三树，可怜和叶度残春。
+</pre>
+<h3>2 浣花溪畔的痴情才女</h3>
+<p>中晚唐时期，四川有个奇女子，名叫薛涛，文人士子无人不知她的大名。薛涛才貌双全，诗名远播，与当时著名诗人白居易、张籍、王建、刘禹锡、杜牧、张祜多有唱和，并且，她还是中国古代历史上少有的女官员——川西节度府的校书郎。当时宰相武元衡就曾作诗《赠道者》，称她“麻衣如雪一枝梅，笑掩微妆入梦来。若到越溪逢越女，红莲池里白莲开”。可见她确实魅力不凡。</p>
+<p>薛涛本是长安人，父亲前往四川做官，即迁家于蜀地，父亲去世后，薛涛和母亲留在四川，相依为命。薛涛美貌聪慧，加之出身文人家庭耳濡目染，所以七八岁时就能作文赋诗，同时也精通音律，可谓多才多艺，十几岁便名倾一方。韦皋出任剑南西川节度使时，召见薛涛，邀请她入乐籍，从此成为出色的歌伎。久而久之，她也帮助韦皋处理一些案牍工作，后来干脆被推荐为朝廷命官，秘书省校书郎，做公文撰写和典校藏书的工作。后世称歌伎为“女校书”正是出于这个原因。</p>
+<p>薛涛其实骨子里颇有男子气概，所以当地方官吏想通过贿赂她求见韦皋时，她也毫不在乎，有礼送来她就安心收着，然后上交。但是时间一长，流言蜚语就多了起来，动静越闹越大，令韦皋非常生气，一怒之下就将她发配松州（今四川松潘），以示惩罚。松州地处四川边陲，十分荒凉，加上人烟稀少、兵荒马乱，让薛涛感到很凄凉，不久便写了《十离诗》寄与老上司，凄惨悔恨都在纸上：“驯扰朱门四五年，毛香足净主人怜。无端咬着亲情客，不得红丝毯上眠。”（《十离诗·犬离主》）“铸泻黄金镜始开，初生三五月徘徊。为遭无限尘蒙蔽，不得华堂上玉台。”（《十离诗·镜离台》）韦皋看后十分不忍，又把她召回了成都。归来不久，薛涛就主动脱去乐籍，成了一个自由身，在成都西郊浣花溪畔置办了一所院子，过起了潇洒自在的文人生活。相传，她的院子里种满了枇杷树。</p>
+<p>八〇九年三月的一天，已隐居浣花溪畔二十年的薛涛收到了当时著名诗人元稹的书信，约她在梓州（今四川三台县）一见。薛涛当然知道元稹的大名，也读过他的诗作，为他的才华所倾倒，但没想到会突然收到他的约见信。薛涛也没有多想，只是抱着诗友相见的念头只身去了梓州。</p>
+<p>原来这年三月升任监察御史的元稹奉旨出使川西，早就听说女诗人薛涛为人爽朗、诗文一流，遂修书约会。薛涛到达元稹在梓州的任所时，元稹早已在门口等待。三月春满，繁花满枝，鸟鸣清脆。薛涛只身下轿，虽然已经近四十岁，但依然丰姿绰约，腹有诗书气自华，年龄和阅历留在她脸上的不是年老色衰，而是静水流深的成熟。元稹正值壮年，身材匀称，面貌俊朗，也是一身诗书才华，加之刚刚加官，那种意气风发也让他多了许多魅力。很显然，这场诗友相见自然而然就变成了情人相会。几乎是在一刹那，两人间就燃起了熊熊的爱情烈火。传说第二天，薛涛就作了一首《池上双鸟》，陷入爱情不可自拔的小女子情态全在这二十个字中：</p>
+<pre>
+双栖绿池上，朝暮共飞还。
+更忆将雏日，同心莲叶间。
+</pre>
+<p>接下来，两人自然是情投意合、卿卿我我，他们心中装着炽热的爱情，抓紧一切时间相处相爱，屋前是“春来江水绿如蓝”的锦江，屋后是“万点蜀山尖”的青川。那段时光，几乎是薛涛有生以来最幸福的日子，也是元稹步入官场之后的一次意外的甜蜜之旅。但是由于元稹弹劾东川节度使严砺，得罪了朝中权贵，很快就被一纸诏令罢去了监察御史的官职，调往东都洛阳，“分务东台”，前后不过百日。元稹调离后，很快就给薛涛寄来了情诗《寄赠薛涛》，这令薛涛非常欣慰：</p>
+<pre>
+锦江滑腻峨嵋秀，幻出文君与薛涛。
+言语巧偷鹦鹉舌，文章分得凤凰毛。
+纷纷词客皆停笔，个个公卿欲梦刀。
+别后相思隔烟水，菖蒲花发五云高。
+</pre>
+<p>收到情诗的薛涛满怀着千山万水的爱情，用心将回信的纸染成桃红色，裁剪精巧，只书情诗。这种款式的信纸后来流传开来，被称为“薛涛笺”，它的流传除了信笺本身别出心裁，还附带着薛涛痴心的爱情。但是，只有三十来岁且整日忙于应对官场浮沉的元稹并没有过多的时间专心于这样的儿女私情，渐渐地情诗就少了，哪怕薛涛的回信用的是精巧而用心的“薛涛笺”。传说自此以后，薛涛默默地脱下了她极为喜爱的红裙，换上了一袭灰色的道袍，她的人生也从热烈走向了淡然，她在浣花溪旁的宅院也不再车马喧嚣、高朋满座。后来，这所经历了无数风流的宅院空了下来，它的主人移居碧鸡坊，置办了一座吟诗楼，在那里度过了最后的时光，直到八三二年逝世。薛涛过世后，曾任宰相的段文昌亲手为她题写了墓志铭，墓碑上赫然写着：西川女校书薛涛洪度之墓。</p>
+<h3>3 被人嘲笑的宰相</h3>
+<p>元稹才高，少年得志，所以直至三十多岁并未深切体会官场凶险，也未曾体会人世悲凉。这一切也都从八〇九年开始，但不是开始于三月他与薛涛的蜀地春情，而是开始于七月妻子韦丛的孤独离世。没错，韦丛最后在家中孤独受病的日子，正是元稹在梓州与薛涛共度春宵的日子。这也是当时人及后世说他薄情轻德的依据之一，即便他后来在悼念亡妻的诗中写出了“曾经沧海难为水，除却巫山不是云”的名句，也于事无补。</p>
+<p>八一〇年，被外放东都洛阳并丧妻的元稹依然意气风发，想通过尽忠职守地上表奏书引起皇帝注意，好调回长安。但适得其反，这一年，元稹因弹劾河南尹房式（乃开国重臣房玄龄之后）不法之事，惹怒朝中权贵，被召回罚俸。回长安途中，在华州（今陕西渭南）敷水驿休息，元稹仗着自己是朝廷命官，想住驿站的上房，可恰恰遇到宦官仇士良、刘士元等人，他们依仗自己是宫中人，也想住驿站的上房。可是上房只有一间，双方均争强好胜，两不相让。元稹说：“本人乃朝廷八品命官，难道还不配住这小小驿站的一间上房吗？”仇士良说：“哟，原来是八品命官呀，我以为谁呢？你一个八品官，能和我们争吗？”元稹说：“你们这帮奴才！在宫中怎么了？在宫中就可以为所欲为吗？”话音还没落，刘士元上前扬起马鞭就打，打得元稹鲜血直流，房间里一下子乱作一团。看管驿站的小官吏着急地喊着：“各位大人，你们不要打了，不要打了！”元稹就这样被赶出了驿站的上房。回到长安后，皇帝听说此事更是怒不可遏，厉声骂道：“元稹啊元稹，堂堂我大唐朝廷八品命官，竟无丝毫风度，也无丝毫德望，大庭广众之下与宫人互骂斗殴，丢尽了大唐的颜面。成何体统，成何体统！”元稹只能吃哑巴亏，宪宗以“元稹轻树威，失宪臣体”（《新唐书·元稹传》）为由，将其贬官外放，任江陵府士曹参军。至于那些气焰嚣张的宦官有没有受到惩戒，已无关紧要，重要的是元稹早年就开始的几乎一马平川的仕途开始了艰难的颠簸，从此，他开始了困顿州郡十余年的贬谪生活。这十年中，随着年龄的增长，他心高气傲、汲汲于高官厚禄的性情有所变化，视野中更多了民生疾苦，述写自身遭遇也更多凄婉流离之感，这一切在和白居易唱和的诗作中表现突出。这一时期，元稹的诗作被人争相传诵，一度传至宫中，甚至一时间到了洛阳纸贵的程度。</p>
+<p>比如这首<a href="https://baike.baidu.com/item/酬乐天见忆，兼伤仲远/12814703" title="">《酬乐天见忆，兼伤仲远》</a>：</p>
+<pre>
+死别重泉閟，生离万里赊。
+瘴侵新病骨，梦到故人家。
+遥泪陈根草，闲收落地花。
+庾公楼怅望，巴子国生涯。
+河任天然曲，江随峡势斜。
+与君皆直戆，须分老泥沙。
+</pre>
+<p>八一五年正月，元稹奉诏还朝，已被外放五年的他以为起用有望，一路意气风发，心情不错，但还是不免多年积聚的怅惘，如其在《西归绝句》中所写：“寒花带雪满山腰，著柳冰珠满碧条。天色渐明回一望，玉尘随马度蓝桥。”回到长安后，元稹与白居易诗酒唱和，并收集他与白居易唱和的作品，想编纂为《元白还往诗集》，但书稿还没编完，又一次莫名其妙地被外放通州（今江苏南通），贬为通州司马。这年三月，元稹又一次孤独上路，“一身骑马向通州”。到达通州后，由于心情郁闷加上旅途劳累，元稹生了一场重病，患上疟疾，差点死去，多亏及时就医才保住了性命。在这样的穷困潦倒中，诗人以诗述怀，与老友白居易往来唱和，以此获得些微的慰藉。这些作品多是元诗中思想与艺术俱佳的精品，奠定了他作为一位重要诗人的地位。</p>
+<p>如沉郁有力的《酬乐天得微之诗知通州事因成四首》，有几分杜诗意味：</p>
+<pre>
+其一
+茅檐屋舍竹篱州，虎怕偏蹄蛇两头。
+暗蛊有时迷酒影，浮尘向日似波流。
+沙含水弩多伤骨，田仰畲刀少用牛。
+知得共君相见否，近来魂梦转悠悠。
+其二
+平地才应一顷余，阁栏都大似巢居。
+入衙官吏声疑鸟，下峡舟船腹似鱼。
+市井无钱论尺丈，田畴付火罢耘锄。
+此中愁杀须甘分，惟惜平生旧著书。
+其三
+哭鸟昼飞人少见，伥魂夜啸虎行多。
+满身沙虱无防处，独脚山魈不奈何。
+甘受鬼神侵骨髓，常忧岐路处风波。
+南歌未有东西分，敢唱沦浪一字歌。
+其四
+荒芜满院不能锄，甑有尘埃圃乏蔬。
+定觉身将囚一种，未知生共死何如。
+饥摇困尾丧家狗，热暴枯鳞失水鱼。
+苦境万般君莫问，自怜方寸本来虚。
+</pre>
+<p>再如与白居易《长恨歌》齐名的《连昌宫词》，写宫外老翁讲述连昌宫的历史，由此想到大唐王朝几十年来的纷繁战乱以及由此造成的动荡不安，顺畅流利，铺成比兴，不着一字批判之语而尽批判之意：</p>
+<pre>
+连昌宫中满宫竹，岁久无人森似束。
+又有墙头千叶桃，风动落花红蔌蔌。
+宫边老翁为余泣，小年进食曾因入。
+上皇正在望仙楼，太真同凭阑干立。
+……
+飞上九天歌一声，二十五郎吹管逐。
+逡巡大遍凉州彻，色色龟兹轰录续。
+李谟擫笛傍宫墙，偷得新翻数般曲。
+平明大驾发行宫，万人歌舞涂路中。
+……
+尔后相传六皇帝，不到离宫门久闭。
+往来年少说长安，玄武楼成花萼废。
+去年敕使因斫竹，偶值门开暂相逐。
+荆榛栉比塞池塘，狐兔骄痴缘树木。
+……
+晨光未出帘影黑，至今反挂珊瑚钩。
+指似傍人因恸哭，却出宫门泪相续。
+自从此后还闭门，夜夜狐狸上门屋。
+……
+</pre>
+<p>八二〇年穆宗即位，因从小就阅读元稹诗文，对其钦慕有加，授他祠部郎中，数月后擢升中书舍人兼翰林承旨学士。八二二年，元稹被擢升为中书门下平章事，即实际上的宰相。据《新唐书》记载，元稹高坐相位后，“朝野杂然轻笑”，正是元稹那些陈芝麻烂谷子的风流情事，让朝堂上的官员以为其“望轻不当”。这是元稹汲汲一生的官职巅峰，但不足三月即被罢免，此后直至八三一年暴病身亡，再也没当过这么高的官。逝世后被追赠尚书右仆射，一生的老友白居易为他撰写了墓志铭。  </p>
+<h3>另：貌似专情的元稹</h3>
+<p>有一首著名的情诗，名为《离思》：“曾经沧海难为水，除却巫山不是云。取次花丛懒回顾，半缘修道半缘君。”</p>
+<p>曾经看到过沧海，别处的水就不值得再看；除了巫山，别处的云都不能称之为云。匆匆地从花丛中穿过，懒得回头顾盼；这一半是因为修道人的清心寡欲，一半是因为曾经拥有过你。我们的爱情有如沧海之水和巫山之云，其深广和美好无与伦比。从今往后，除你之外，不会再有能让我动情的女子。</p>
+<p>此诗作者元稹（779—831）八岁丧父，天资聪颖的他不负母亲厚望，十五岁以明经登第，二十四岁与白居易一起举书判拔萃科，授秘书省校书郎；二十八岁应制“举才识兼茂、明于体用科”考试，授左拾遗，一度官至宰相。</p>
+<p>元稹和妻子韦丛的爱情被人津津乐道，千古传诵的佳句“曾经沧海难为水，除却巫山不是云”就是元稹为悼念亡妻韦丛而写的。</p>
+<p>虽然二十四岁的元稹还是一个穷书生，但是太子少保、东都洛阳留守韦夏卿却很欣赏元稹的才华，相信他会有大好前程，便把年方二十的小女儿韦丛下嫁给他。韦丛贤惠端庄、通晓诗文；出身富贵，却不慕虚荣，对丈夫百般温柔体贴。婚后的元稹忙着科试，家务事由韦丛一人包办。</p>
+<p>七年之后，三十一岁的元稹升任监察御史，韦丛却因病去世，年仅二十七岁。幸福的生活就要开始，爱妻却驾鹤西去，元稹无比悲痛。韦丛营葬之时，元稹因官务缠身无法亲自前往，便事先写了一篇情词痛切的祭文，托人在韦丛灵前代读。下葬那天，元稹情不能已，又写了三首悼亡诗，这就是最负盛名的《遣悲怀三首》：“谢公最小偏怜女，自嫁黔娄百事乖。顾我无衣搜荩箧，泥他沽酒拔金钗。野蔬充膳甘长藿，落叶添薪仰古槐。今日俸钱过十万，与君营奠复营斋。”“昔日戏言身后意，今朝都到眼前来。衣裳已施行看尽，针线犹存未忍开。尚想旧情怜婢仆，也曾因梦送钱财。诚知此恨人人有，贫贱夫妻百事哀。”“闲坐悲君亦自悲，百年都是几多时。邓攸无子寻知命，潘岳悼亡犹费词。同穴窅冥何所望，他生缘会更难期。唯将终夜长开眼，报答平生未展眉。”</p>
+<p>你本是最受父亲偏爱的女儿，嫁给我这个贫士事事不顺利。你见我没有衣衫就在箱子找，因我软语相求，你便拔下金钗为我买酒。你用野蔬豆叶充饥却说食物甘美，做饭烧火都要依靠古槐的枝叶。如今我高官厚禄你却离开人间，让我为你祭奠，为你延请僧道超度你的亡灵。</p>
+<p>往昔曾经戏言我们身后的安排，如今都按你所说的展现在眼前。你穿过的衣裳已经快施舍完了，你的针线盒我珍存着不忍打开。因怀念你，我对待你以前的侍女仆从也格外关怀，我也曾多次因梦到你就去施舍钱财，为你做好事超度亡灵。谁不知夫妻永诀人人都会伤怀，想起我们共同生活时的许多往事令我极度悲伤。</p>
+<p>闲坐无事为你悲伤为我感叹，人生短暂，就算多至百年又有多少时间？邓攸没有后代是命运的安排，潘岳悼念亡妻只是徒然悲鸣。即使能与你合葬也无法倾诉衷情，来世有缘重会，仍为夫妻，是多么虚幻的企望。只能睁着双眼整夜把你思念，报答你平生不得舒展的双眉。</p>
+<p>元稹确实很爱原配夫人韦丛，但是，迎娶韦氏之前，元稹曾与一个名叫崔双文的美女私情款款，如胶似漆。</p>
+<p>原来，及第之初，元稹一直无官，后来到蒲州（今山西永济市）的河中府做了个小官。当时蒲州驻军骚乱，元稹借助友人之力保护处于危难之中的远亲、县尉崔鹏一家。骚乱平定后，就与家境富裕、才貌双全的崔家少女崔双文谈起了恋爱，这个崔双文就是元稹结婚第二年写的传奇小说《莺莺传》、王实甫的元杂剧《西厢记》中的女主角崔莺莺。</p>
+<p>关于与崔双文的恋爱生活，元稹写有《赠双文》《莺莺诗》《会真诗三十韵》。《赠双文》描写了两人幽会之时双文的美色：“艳极翻含怨，怜多转自娇。有时还暂笑，闲坐爱无憀。晓月行看堕，春酥见欲销。何因肯垂手，不敢望回腰。”</p>
+<p>《莺莺诗》描绘了两人夜间幽欢的情景，《会真诗三十韵》更是开诗歌大胆露骨描写之先河，是著名的艳情诗。因为这些诗，元稹给人以轻佻、轻薄之感。宋代苏轼有言：“郊寒岛瘦，元轻白俗。”其中的“元轻”，意思就是说元稹轻佻。</p>
+<p>根据唐代的举士制度，及第者还需要经过吏部考试才能正式任命官职。于是，二十二岁的元稹离开崔双文，再次赴京应试，及第后被授任为秘书省校书郎。然后，因为文才卓著，被新任京兆尹韦夏卿所赏识。求官心切的元稹考虑到崔双文虽然才貌双全，但崔家毕竟没有权势，对他的仕途进取没有多大帮助，所以权衡得失，最后还是抛弃崔双文而娶了韦丛，给后人留下了始乱终弃的话柄。</p>
+<p>而且，韦丛去世前，元稹就曾与四川女诗人、歌伎薛涛有过一段“姐弟恋”。薛涛当时已经四十多岁，比元稹大十一岁左右。薛涛才貌过人，所制“薛涛笺”一直流传至今。</p>
+<p>809年，三十一岁的元稹以监察御史的身份出使四川。他久闻蜀中诗人薛涛的芳名，一到四川，就特地约她在梓州相见。薛涛与元稹一见面，就被元稹俊朗的外貌和出色的才情所吸引。两人议诗论政，过了三个月的甜蜜生活后，元稹就离开了四川，回到京师。也许他想到自己是朝廷大员韦夏卿的女婿，也许是由于两人年龄相差悬殊：元稹正处在男人的风华岁月，而薛涛即便风姿绰约，毕竟大了十一岁左右。更重要的是，薛涛曾经是乐籍出身，相当于一个风尘女子。在权衡利害得失后，元稹“临途诀别，不敢挈行”。同年七月，韦从病逝之后，元稹也没有迎娶薛涛之意。元稹走后，薛涛脱下了自己最喜爱的红裙，换上了一袭灰色的道袍。</p>
+<p>韦丛病逝。两年后，元稹迎娶了朋友李景俭的表妹安仙嫔。安仙嫔只与元稹做了三年夫妻，就不幸病逝了，只留下一个孩子。</p>
+<p>韦丛病逝六年之后，元稹再次回到四川，出任通州（今四川达州）司马，就在薛涛的眼皮底下，与涪州刺史裴郧之女裴淑结婚。</p>
+<p>婚后，元稹的官职频繁调动，夫妻二人总是“两地分居”。元稹以诗劝慰裴淑：“嫁得浮云婿，相随即是家。”其实，没过几年，元稹在越州监察使任又爱上了“篇韵虽不及涛，容华莫之比也”的歌伎刘采春，他们在越州形同鱼水，情同夫妇。</p>
+<p>那时，薛涛还一直对元稹念念不忘。作为元稹好友的杭州刺史白居易自然很了解元稹与薛涛的这点事，于是写诗《赠薛涛》：“峨眉山势接云霓，欲逐刘郎北路迷。若似剡中容易到，春风犹隔武陵溪。”“剡中”就在越州，诗中暗示元稹与刘采春正沉醉于武陵仙境，劝薛涛不要太痴情于元稹，他们已经很难重温旧梦了。</p>
+<p>元稹真是情场得意，难怪他的滥情多受后人诟病。不过，他的诗写得真好，除了情诗，还有其他。比如《行宫》：“寥落古行宫，宫花寂寞红。白头宫女在，闲坐说玄宗。”</p>
+<p>空荡荒凉的古行宫里，鲜艳的宫花寂寞地开着。白发苍苍的宫女闲坐在宫中，回忆着唐玄宗时代的盛世繁华。当年花容月貌、娇姿艳质的宫女，如今红颜憔悴，闲坐无聊，寂寞幽怨，情景凄绝，历史沧桑尽在其中。</p>
+<p>又如《菊花》：“秋丛绕舍似陶家，遍绕篱边日渐斜。不是花中偏爱菊，此花开尽更无花。”</p>
+<p>一丛丛菊花围绕着房屋开放，好似到了陶渊明的家。被眼前的菊花所吸引，专心致志地绕篱观赏，以至于太阳西斜都不知道。不是我在花中只偏爱菊花，只因为菊花凋谢之后就会无花可赏。</p>
+<p>诗歌表达了特殊的爱菊之情，也含有对菊花历尽风霜而后凋的坚贞品格的赞美。</p>
+
+
+<p style='float:right;'>本页共126段，9583个字符，27532 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

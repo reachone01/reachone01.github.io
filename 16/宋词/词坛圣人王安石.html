@@ -1,0 +1,420 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	width:80%;
+	font-size:120%;
+	line-height:150%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	overflow-x:auto;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	font-size:100%;
+	line-height:130%;
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>词坛圣人王安石</h4>
+
+
+<p>“至今商女，时时犹唱，后庭遗曲。”受非议最多的词坛“圣人”——王安石</p>
+<p><h3>1 不按套路出牌的疯狂县令</h3></p>
+<p>公元1047年，这年江南的雨水丰沛，阴雨连绵的天气一直从初春持续到夏季。因雨水过多，许多地方闹了水患，致使田地里的庄稼颗粒无收，百姓叫苦连天。</p>
+<p>受天灾影响，到了秋季，江南各地米价疯狂上涨，一路从每石400文飞涨到1500文。各地官府一面向朝廷求援，希望从别处调来赈灾粮食；另一面极力抑制米价、惩办奸商，这才使得米价重新回到了一石500文左右。</p>
+<p>然而，就在所有官员都在努力赈灾抑价时，位于浙江沿海的鄞县新县令却做出了一项违背常理的举动：他不仅没有抑制哄抬米价的奸商，反倒发出公文，强令米价维持在每石3000文左右！不仅如此，他还私下收受米商贿赂，如有不给的，竟还派人去索要！</p>
+<p>做出如此疯狂之举的鄞县县令不是别人，正是王安石。一开始，几乎所有人都不知道王安石葫芦里卖的是什么药，以为他是个公然不顾朝廷法令、趁荒年打劫百姓的贪官污吏，若不是王家世代为官，王安石差点被治了罪。不过，数月过后，江南其他地方纷纷出现米商囤米不售，又因朝廷没能及时调来赈灾粮食，致使百姓或奔走他乡，或饿死街头，市井一片萧条，而鄞县却依然一副太平景象，这时王安石这一疯狂之举才渐渐被人们理解。</p>
+<p>原来，自鄞县规定每石米价必须维持在3000文后，各地米商纷纷赶来鄞县做生意。鄞县自古为鱼米之乡，百姓生活富足，家中多少有些积蓄。对富人来说，虽然对王安石哄抬米价不无怨言，但能在饥荒年代买到粮食已是不幸中的万幸，谁还在乎钱多钱少？至于那些出不起高价买米的贫困百姓，王安石则用从米商那里收来的“贿赂”救济他们。</p>
+<p>王安石此举表面看是在哄抬米价，实则一举三得——一来，这么做使得鄞县米粮充足，即使朝廷无法从别处调来赈灾粮食，也不必担心买不到粮食；二来，无异于通过官府之手，从富人的口袋中将余钱取来帮助穷人，使得真正需要赈济的穷人渡过难关；三来，随着大量米商的涌入，鄞县米粮充足，而数月后各地新米即将上市，米商为尽快将粮食贩卖出去，必将自动降价，到时候撤销每石3000文的公告，米价便会重新回归合理——如此高明的度荒良策，恐怕除了王安石，很难有第二个人能想到了，而此时的王安石才二十六岁。</p>
+<p>虽然十分年轻，但王安石当官做事雷厉风行，很有一套方法，且常常不按套路出牌。除哄抬米价一事，他在鄞县当县令时还曾有过两项创举：一是以青苗为抵押，在荒年或每年青黄不接时将官粮以低息贷给农民，等农民有了收成，再将本息归还政府；二是建立联保制度，加强地方治安组织——而这两项创举，正是后来“青苗法”和“保甲法”的前身。</p>
+<h3>2 “铁血宰相”的诗词人生</h3>
+<p>从公元1042年进士及第踏入仕途到公元1068年入京主持变法，在这长达二十余年的仕宦生涯中，王安石当过地方县令、通判，在提点刑狱司任过职，并担任过举人考试官和制科考官。而正因为这二十余年丰富的历练和经验，王安石得以接触国家政体的方方面面，并通过自身实践，为日后的变法做好了准备。公元1068年，宋英宗驾崩后，年仅十九岁的宋神宗登上帝位。这个敢作敢为的年轻人对北宋疲弱的现实十分不满，因而大胆启用王安石，开启了北宋历史上长达十几年的熙宁变法！无疑，在这场政治变革中，宰相王安石和年轻皇帝宋神宗是台前幕后最为关键的两个人。和历史上所有变革一样，想要力挽狂澜、革除北宋积贫积弱的旧弊，变法势必触动许多人的利益，也势必招致激烈反对。而在面对如浪潮般涌来的反对之声时，王安石因得神宗的信任与支持，表现出了令人敬佩的“三不足”精神——“天命不足畏，人言不足恤，祖宗不足法”！他大胆起用新人、强力扫除一切阻挠变法的障碍，是一位名副其实的“铁血宰相”。</p>
+<p>或许是因为变法影响太大，人们在提及“王安石”三个字时总是绕不开“变法”二字，殊不知，这位政坛上大名鼎鼎的风云人物，还是北宋文坛一位才华横溢的文学大家——他的文章雄健简练、奇崛峭拔，就连写日常公文也充满才气；他的诗歌风格清新、意境幽远，自创“王荆公体”，被后人评为“荆公绝句妙天下”；而他的词，虽然传世的不多，却一扫当时词坛旖旎糜弱的风气，呈现出一种豪纵沉郁的气象，可以说王安石开创了北宋词坛豪放词风的先河。</p>
+<p>如今仍为人们称道的咏史吊古词《桂枝香·金陵怀古》，就出自王安石之手：</p>
+<pre>
+登临送目，正故国晚秋，天气初肃。
+千里澄江似练，翠峰如簇。
+归帆去棹残阳里，背西风，酒旗斜矗。
+彩舟云淡，星河鹭起，画图难足。
+
+念往昔，繁华竞逐，叹门外楼头，悲恨相续。
+千古凭高对此，谩嗟荣辱。
+六朝旧事随流水，但寒烟衰草凝绿。
+至今商女，时时犹唱，后庭遗曲。
+</pre>
+<p>金陵（今南京）位于长江下游中部地区，地理位置得天独厚，历来为兵家必争之地。千百年来，它曾无数次遭受兵燹之灾，但又屡屡从瓦砾荒烟中重整繁华。到北宋时，已有六个王朝在金陵建都，因此王安石在词中有“六朝旧事”之说。但于王安石，金陵不仅是一座有着厚重历史的千年古城，同时与他的一生也有着不解之缘。</p>
+<p>先是公元1037年，王安石的父亲王益在江宁府，即金陵任通判，王安石随父来到金陵居住。两年后王益卒于江宁，并葬于江宁，此后王安石一家便在江宁定居下来，所以江宁堪称他的第二故乡。</p>
+<p>后来，王安石又曾几度在江宁为官：第一次是公元1067年，即变法前夕，这年英宗驾崩，神宗继位，当时居住在江宁的王安石被任命江宁知府，但不久就被召回京城授予要职；第二次是公元1074年，新法首次受挫，王安石再度回到江宁任知府；第三次则是公元1076年，王安石第二次被罢相后，他第三次回到江宁当地方官，此后一直住在江宁，直至去世。</p>
+<p>金陵城就像一位饱经风霜的千年老人，见证了王安石一生的宦海沉浮，同时它又如一面明镜，让王安石在观照自身的同时也看见了千百年来朝代兴衰的历史。</p>
+<p>作为一个自小就有雄心壮志、十几岁就立下“矫世变俗”志向的人，王安石不同于纯粹的文人，当他在金陵城登高望远之时，他看见的不只是金陵壮丽的秋日景象，而是由眼前“千里澄江”的现实之河联想到了由时间汇聚而成的漫漫历史长河，“彩舟云淡，星河鹭起”的景象逐渐隐去，浮现在他脑海中的，是曾在金陵建都的六个王朝的历历往事。</p>
+<p>然而，往事如烟，六朝旧事就像那东流水早已逝去，但王朝代代更替，可有人真正从前朝的灭亡中吸取教训？——“至今商女，时时犹唱，后庭遗曲”一句，正是这首词的文眼，它道出了王安石透过金陵看到的宋王朝令人担忧的未来！</p>
+<p>除了《桂枝香·金陵怀古》，王安石的另一首写于金陵的怀古词《南乡子·自古帝王州》，也反映了他胸怀家国大事，鉴古思今，对现实忧心的臣子情怀：</p>
+<pre>
+自古帝王州，郁郁葱葱佳气浮。
+四百年来成一梦，堪愁。晋代衣冠成古丘。
+
+绕水恣行游。上尽层城更上楼。
+往事悠悠君莫问，回头。槛外长江空自流。
+</pre>
+<p>从词中可见，帝王们在金陵城建功立业、随后这些功业灰飞烟灭的往事，始终萦绕在王安石心头，久久挥之不去。他为那些在时间之河中覆灭的王朝感到惋惜，多希望当今圣上可以以史为鉴，力挽狂澜，缔造出历史上又一个盛世。然而，他能做的却只是独自一人在水边恣意闲游，眼看着长江滚滚流逝，时光悠悠流逝，新王朝重蹈旧王朝的覆辙。</p>
+<p>《南乡子·自古帝王州》虽然充满了无奈的喟叹，却有着深厚的情怀与大气的格局，仍不失为一首绝佳的豪迈之作。而《浪淘沙令·伊吕两衰翁》一词，作于公元1068年王安石被召入京受重用之际，因此更具昂扬之气：</p>
+<pre>
+伊吕两衰翁。历遍穷通。一为钓叟一耕佣。
+若使当时身不遇，老了英雄。
+
+汤武偶相逢。风虎云龙。兴王只在笑谈中。
+直至如今千载后，谁与争功。
+</pre>
+<p>其实，早在公元1058年秋，当时年仅三十七岁的王安石被调为度支判官，他趁着进京述职，就曾以冷峻的文笔写下《上仁宗皇帝言事书》，在文中总结了自己十几年来的地方官经历，指出国家存在经济困窘、社会风气败坏、国防安全堪忧等隐患，并以晋武帝司马炎、唐玄宗李隆基等人只图安逸、不求改革、终至覆灭的事实，提醒皇帝效法古圣先贤之道，对宋初以来的法度进行全盘改革，革除积弊。</p>
+<p>宋仁宗看到这份《言事书》，内心或许受到了触动，然而他尽管宽厚，却是个相对保守的皇帝，加上当年“庆历新政”失败的教训仍历历在目，遂将王安石的奏疏搁置一旁，未予理睬。王安石一心期待的改革，一等就是十年。他没想到就在自己年届半百之时，有机会获神宗的赏识与信任，得以将酝酿已久的变法付诸行动，于是不由自主地从自身想到了古代的伊尹和吕尚——这两位贤臣，一个曾是水边渔翁，一个曾是田间农夫，倘若不是因为遇见了汤王和文王，就不可能创立名扬千秋的功业——而神宗之于他，难道不正像汤王和文王吗？</p>
+<p>《浪淘沙令·伊吕两衰翁》一词既是王安石对神宗的赞颂与感激，同时也表露了他建立一番奇功伟业的气魄和决心。当然，这位在推行变法上不遗余力、甚至不讲情面的“铁血宰相”，在他刚强的性格背后，其实也藏着一颗惜春伤春的诗意的心，如《伤春怨·雨打江南树》便是这种心态的反映：
+<pre>
+雨打江南树。一夜花开无数。
+绿叶渐成阴，下有游人归路。
+与君相逢处。不道春将暮。
+把酒祝东风，且莫恁、匆匆去。
+</pre>
+<p>一场春雨过后，娇美的花儿一夜之间绽放，然而转眼绿树成荫，美好的季节很快就消逝了。因要与友人分别，王安石想起了时光匆匆、春光易逝，不禁想端起酒杯向东风祈祷，希望它能永远停留。</p>
+<p>这首词十分简短，却将“铁血宰相”性格中的另一面展露无遗——原来，他并非一个只有满腔报国热情的政治家，他的内心，其实也充满着无限的浪漫与温柔。</p>
+<h3>3 骑驴看山、看水的王荆公</h3>
+<p>公元1076年，王安石因变法遭遇重重阻力，且暴露出许多弊端而被罢相，自此从人生的高峰跌落。</p>
+<p>说起这场变法，其利弊得失，历史上从来褒贬不一：有人称它是祸国殃民的恶法，公元1073年中原遭逢大旱时，曾有人趁机呈上《流民图》，说正因王安石乱祖宗之法，才导致了这次天灾；当然，也有人称它是历史上最伟大、最前卫的一场政治变革。</p>
+<p>作为主持这场变法的核心人物，王安石本身也卷入了各类言论，成了历史上一个备受争议的人物——恨他的人斥他为奸臣，而拥护他的人则盛赞他为“圣人”，关于他的各种奇闻逸事，也在民间广为流传。</p>
+<p>比如，有传言称，王安石衣着邋遢、长期不洗脸、不换衣服，而且还有一身怪癖。有一次，宋仁宗邀请众大臣在御花园举行了一场别开生面的鱼宴，当大家都兴致勃勃在池中钓鱼时，王安石却坐在一边，将满满一盘鱼饵吃了个干净。据说因为这件事，宋仁宗对王安石有了看法，认为他是个虚伪做作、搏出位的狡诈之徒，因此不愿重用他。而在苏洵的《辨奸论》中，对王安石也有“衣臣虏之衣，食犬彘之食”的描述。</p>
+<p>另一件事说的是王安石当上宰相后，王夫人娘家一个姓萧的亲戚来王府拜见他。这位萧公子原以为能在相府得到热情款待，却不料中午吃饭时间过去了很久，主人才命人端上来一点小酒，两个胡饼，还有几碟清汤寡水、根本上不了台面的小菜。这位萧公子大失所望，但又不好意思不吃，因而拿起胡饼，在中间随便咬了两口就丢下了。他万万没有想到，就在这时，王安石竟朝他这边伸过手来，将他丢弃的饼渣拿过去，津津有味地吃了起来。还有一件轶事，说的是王安石不近女色。据说有一次，王夫人怕外面传言他惧内，因此主动为他买了个侍妾，但王安石竟不买账，当天就把侍妾打发走了（见《邵氏闻见录》）。据今人研究，许多关于王安石的轶事传闻都无凭无据，甚至连苏洵的《辨奸论》也是假的，很可能是不喜欢王安石的人或反对新法的人捏造出来诋毁他的假证据。</p>
+<p>王安石究竟是怎样一个人？</p>
+<p>往事如烟云般散去，我们也许很难还原历史上那个真实的王安石，但文如其人，通过王安石亲笔写下的诗词，多少可窥探些许这位备受争议的人物的内心世界。</p>
+<p>不论王安石是否如传说那样不修边幅，那么不近人情，至少他写出了<span class="code0">“墙角数枝梅，凌寒独自开。遥知不是雪，为有暗香来”，“春风又绿江南岸，明月何时照我还？”“不畏浮云遮望眼，只缘身在最高层”</span>这些千古传颂的诗句。一个人倘若没有一颗高洁的心，倘若没有深邃的思想、非凡的抱负与情怀，又怎能写得出如此清新高雅、意境深远的诗句？</p>
+<p>自公元1076年第二次被罢相后，王安石就在金陵过起了长达十年的隐居生活。他不喜欢静坐，每天不是躺着，就是随便吃点饭，然后骑着毛驴去山林间转悠一趟，累了就在林中躺下休息（见叶梦得《避暑录话》）。此间，他写下了不少描写山水风光的景物词，这些词作宛若一幅幅生动的写生画，记录了他晚年隐居时的行踪与一幕幕日常生活。</p>
+<p>如《渔家傲·平岸小桥千嶂抱》：</p>
+<pre>
+平岸小桥千嶂抱。柔蓝一水萦花草。
+茅屋数间窗窈窕。尘不到。时时自有春风扫。
+
+午枕觉来闻语鸟。欹眠似听朝鸡早。
+忽忆故人今总老。贪梦好。茫然忘了邯郸道。
+</pre>
+<p>文人一旦隐居，诗词的字里行间总会透出不食人间烟火的隐逸之气，或是远离尘世的清冷之气。王安石的这首词总体基调十分清淡：环绕的青山，小桥流水，一路野花野草，几间竹旁茅屋，有鸟语，有鸡鸣，俨然一幅平易近人的尘世山居图——一个当年在政坛叱咤风云的人物，隐退后能满足于几间茅屋、骑驴代步的生活，可见其性情之真、之平。</p>
+<p>再如《浣溪沙·百亩中庭半是苔》，记述的是王安石隐居山林后落寞的生活场景：</p>
+<pre>
+百亩中庭半是苔，门前白道水萦回。
+爱闲能有几人来？
+小院回廊春寂寂，山桃溪杏两三栽。
+为谁零落为谁开？
+</pre>
+<p>想当年他是宰相时，门庭若市、求谏者无数；如今他退隐山中，虽被封为荆公，却已失去权力，前来看望他的人寥寥无几，以至于门前的道路都长满了青苔。人情冷暖，世态炎凉可见一斑。“山桃溪杏两三栽。为谁零落为谁开”，这是王安石面对满山桃花发出的感慨，同时也是回首一生发出的慨叹。</p>
+<p>而《菩萨蛮·数间茅屋闲临水》一词，写的则是王安石老来卜居茅舍，心却不无牵系家国朝廷的内心状态：</p>
+<pre>
+数间茅屋闲临水，窄衫短帽垂杨里。
+花是去年红，吹开一夜风。
+
+梢梢新月偃，午醉醒来晚。何
+物最关情，黄鹂三两声。
+</pre>
+<p>“数间茅屋”是他的住处，“窄衫短帽”是闲居时王安石的穿着，看花看水看月，则是他日复一日的闲居生活。因无事可做，他常常午觉醒来天就黑了。然而，这位退休宰相的生活果真过得如此具有闲趣吗？</p>
+<p>“何物最关情，黄鹂三两声。”</p>
+<p>为什么黄鹂的鸣叫最能牵引他的心？因为著名隐士戴颙曾说黄鹂的啼鸣为“俗耳针砭，涛肠鼓吹”之音。（见《云仙杂记》）从王安石这些平淡素静的词中展现出来的，是一个活脱脱的有真性情、有政治情怀，安于平淡生活但又时时挂念朝廷的改革家形象。</p>
+<p>也许，他当年为推行变革、为国家大利，曾表现出不近人情的一面，也曾因此得罪人而树敌无数，但如苏轼这样正直的大臣，与他虽是“政敌”，在人格上对他却十分敬重。公元1086年，眼看着神宗皇帝先他而去，而他与这位皇帝为之努力了十数年的新法逐一被废，王安石在万般忧愤与无奈中郁郁死去，享年六十五岁。</p>
+<p>王安石去世后，苏轼曾写有《王安石赠太傅》敕文一篇，文中说：“将有非常之大事，必生希世之异人。使其名高一时，学贯千载：智足以达其道，辩足以行其言；瑰玮之文，足以藻饰万物；卓绝之行，足以风动四方。用能于期岁之间，靡然变天下之俗……”</p>
+<p>敕文中这个“名高一时，学贯千载”“卓绝之行，足以风动四方”的伟岸形象，恐怕才是历史上真正的王安石吧！  <h3></p>
+<p>另：</h3></p>
+<p>“不畏浮云遮望眼，只缘身在最高层”王安石胸怀天下</p>
+<p>王安石（1021—1086）三十岁那年夏天，在浙江鄞县知县任满回故乡江西临川、途经杭州时，写了《登飞来峰》：<span class="code0">“飞来山上千寻塔，闻说鸡鸣见日升。不畏浮云遮望眼，只缘身在最高层。”</span></p>
+<p>飞来峰顶有座高耸入云的塔，听说鸡鸣时分可以看见旭日升起。不怕层层浮云遮住我那远眺的视野，只因为我站在飞来峰顶，登高望远心胸宽广。</p>
+<p>那时的王安石朝气蓬勃、胸怀改革大志、对前途充满信心。他告诉自己：人不能只为眼前的利益，应该放眼大局，立足长远。表现了年轻的政治家拨云见日、高瞻远瞩的思想境界和豪迈气概。</p>
+<p>五十岁拜相之后，王安石坚定不移地推行新法。那一年的新年，王安石见到家家户户忙着准备过春节的热闹欢乐的景象，联想到变法伊始除旧布新的新气象，乐观自信地写了《元日》：<span class="code0">“爆竹声中一岁除，春风送暖入屠苏。千门万户曈曈日，总把新桃换旧符。”</span></p>
+<p>阵阵爆竹声中，旧的一年已经过去，在和暖的春风中迎来了新年，人们欢乐地畅饮着新酿的屠苏酒。初升的太阳照耀着千家万户，他们都忙着把旧的桃符取下，换上新的桃符。据说，王安石有“三不足”：“天变不足畏，祖宗不足法，人言不足恤。”意即对自然界的灾异不必畏惧，对前人制定的法规制度不应盲目效法，对流言蜚语无须顾虑。明末冯梦龙的小说《警世通言》中说，王安石变法失败后告老还乡，沿途所见所闻，都是百姓对变法的不满和怨愤，他因此抑郁悔恨而逝。“因他性子执拗，佛菩萨也劝他不转，人皆呼为‘拗相公’。”王安石的执拗可以从他改诗的传说看出。他有一首著名的绝句，名为《泊船瓜洲》：<span class="code0">“京口瓜洲一水间，钟山只隔数重山。春风又绿江南岸，明月何时照我还？”</span></p>
+<p>行船停泊在瓜洲岸边，我隔江遥望对岸的京口，这里与我居住的钟山也就只隔着几座大山，和煦的春风吹绿了长江南岸的草木，而我何时才能在皎洁的月光照耀下返回家乡呢？“绿”字是吹绿的意思，用得非常巧妙，表现春天到来后千里江岸一片新绿的景物变化。传说，王安石为用好这个字，居然改动了十多次，从“到”“过”“入”“满”等十多个动词中最后才选定了“绿”字。1074年，五十四岁的王安石罢相退居钟山之后，写了一首意味深远、朴素自然的《梅花》：<span class="code0">“墙角数枝梅，凌寒独自开。遥知不是雪，为有暗香来。”</span></p>
+<p>那墙角的几枝梅花，冒着严寒独自盛开。为什么远望就知道洁白的梅花不是雪呢？因为梅花隐隐传来阵阵的香气。梅花不惧严寒，傲雪开放，冰清玉洁，香气远播，王安石的艰难处境与倔强乐观的心态与诗中的“数枝梅”是何其相似！一年后，宋神宗再次起用王安石，旋又罢相，知江宁府，此时的他依然忧国忧民，矢志不移。在《桂枝香·金陵怀古》一词中，他以壮丽的山河为背景，抒发古今盛衰之感，立意高远，笔力峭劲，体气刚健，豪气逼人：<span class="code0">“登临送目，正故国晚秋，天气初肃。千里澄江似练，翠峰如簇。归帆去棹残阳里，背西风、酒旗斜矗。彩舟云淡，星河鹭起，画图难足。念往昔、繁华竞逐，叹门外楼头，悲恨相续。千古凭高，对此谩嗟荣辱。六朝旧事随流水，但寒烟、衰草凝绿。至今商女，时时犹唱，后庭遗曲。”</span>登上高楼极目远望，金陵一带正是一派晚秋景象，天气刚刚开始萧索。千里奔流的长江澄澈得好像一条白练，青翠的山峰峭拔如一束箭镞。归去的小船在夕阳下摇桨疾驶，岸旁迎着西风飘拂的酒旗斜出直矗。彩色的画船出没在淡淡的云烟之中，江中小洲上的白鹭时而停歇时而飞起，这美丽的景色即使用图画也难以描绘。回想往昔，人们无休止地竞逐奢华淫逸的生活，感叹“门外韩擒虎，楼头张丽华”的亡国悲恨接连相续。千古以来凭栏遥望，面对此番景色，可不要感慨历史上的得失荣辱。六朝的风云旧事已经随着流水消逝，只有那郊外的寒烟和衰萎的野草还凝聚着一片苍绿。直到如今，商女们还不知亡国的悲恨，时时演唱着《玉树后庭花》。</p>
+<p>除了关心国家、执着于变法以富国强兵，王安石对生活方面的要求实在不高。</p>
+<p>他很不注意自己的饮食和仪表，衣裳肮脏，须发纷乱，仪表邋遢。苏洵曾经说王安石“衣臣虏之衣，食犬惫之食”，“囚首丧面而谈诗书”。</p>
+<p>王安石做宰相的时候，儿媳家的亲戚萧公子去拜访他，他邀请萧公子第二天到家中吃饭。萧公子如约盛装前往，以为王安石一定会盛宴招待他。过了中午，萧公子觉得很饿，可又不敢离开，又过了很久，王安石才请他入座。但桌上并没有摆上菜肴，喝了几杯酒之后，才上了两块胡饼，还有四份切成块的肉和一碗小菜汤。萧公子很不爽，就故意只吃胡饼中间的一小部分，把四边都留下。王安石见了，就把萧公子吃剩下的饼拿来吃了。有人告诉王安石的夫人，说她丈夫喜欢吃鹿肉丝，吃饭时他不吃别的菜，只把那盘鹿肉丝吃光了。夫人问：“你们把鹿肉丝摆在了什么地方？”对方回答说摆在了王安石的正前面。夫人第二天把菜的位置调换了一下，鹿肉丝放得离王安石最远。结果，王安石只吃了离他近的那些菜，完全不知道桌子上还摆了一盘鹿肉丝。</p>
+<p>王安石的妻子吴氏曾经给他买了一个妾，那女子前去伺候王安石时，王安石问她：“你是谁？”女子说自己是“家欠官债、被迫卖身”而来。王安石听罢，不仅没有收她为妾，还送钱给她，帮助她还清官债，使她与丈夫破镜重圆。</p>
+<p>王安石偶尔也会欣赏身边的事物与自然山水以放松心情，他在《书湖阴先生壁》中描述了朋友湖阴先生杨德逢家中的景色：<span class="code0">“茅檐长扫净无苔，花木成畦手自栽。一水护田将绿绕，两山排闼送青来。”</span></p>
+<p>茅草房庭院因经常打扫，所以干净得没有一丝青苔。花草树木成行满畦，都是主人亲手栽种。庭院外一条清澈的小河环护着水田，两座青山像推开的两扇门，为人们送来一片翠绿。诗中赞颂了湖阴先生善施教化的无私品质，也表现出对田园山水的喜爱之情。山水本是无情之物，可诗人说水“护田”，山“送青”，这就使本来没有生命的山水具有了人的情思，显得柔婉可爱，生动活泼。</p>
+<p>其实，王安石最初做官，并不是因为胸怀天下的大抱负，主要是想养家孝亲。因为他家中没有什么家产，一家上下几十口人都要靠他的俸禄，他根本不可能依照自己的意志生活。做宰相以后，王安石回家为父兄扫墓时，因为想到父兄博学多才、志节高尚却穷老仕途、英年早逝，由此又联想到自己推行新法时的艰难处境，不觉悲思万缕，引发了归老田园、渔樵为生的意愿，写下《壬辰寒食》以抒怀：<span class="code0">“客思似杨柳，春风千万条。更倾寒食泪，欲涨冶城潮。巾发雪争出，镜颜朱早凋。未知轩冕乐，但欲老渔樵。”</span></p>
+<p>身居他乡，乡思像杨柳一样，被春风一吹就有千万条思绪。到了寒食节的时候，我的眼泪就更多，快要淹没冶城了。头发争相变白，明镜中曾经年轻的面容也已早早苍老。我没有感受到做官的快乐，只想在打鱼砍柴中度过余生。</p>
+
+
+<p style='float:right;'>本页共118段，9597个字符，26894 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,478 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	width:90%;
+	font-size:120%;
+	line-height:150%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	margin-left:2em;
+	color:blue;
+	overflow-x:auto;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+
+
+
+
+<h4>晚唐才子白居易</h4>
+
+
+<p>“同是天涯沦落人，相逢何必曾相识”</p>
+<p>晚唐第一大才子——白居易</p>
+<p><h3>1 顾况吃惊，长安扬名</h3></p>
+<p>中晚唐时期，长安有个名气很大的诗人，才名很盛，但更盛的是他的傲气。这个人名叫顾况，诗文俱佳，官居著作郎，“掌撰碑志、祝文、祭文，与佐郎分判局事”（《新唐书·百官志二》），属于京官，经常出入宫廷，有机会见到位高权重的达官显贵，因此有许多年轻才俊带着作品前去谒见，希望可以得到他的引荐。他也愿意帮助有才华的年轻人，但没有一个人入得他的法眼。时间一久，他便在长安城宣称“斯文已绝矣”，觉得再也找不到才华卓著的文人士子。如此一来，前来拜谒他的年轻人越来越少，谁愿意大老远自找奚落呀。</p>
+<p>七八八年一天傍晚，顾况处理了一天公务，下班回到家中已是疲惫不堪，正准备吃饭休息，仆从禀报：“老爷，有一位白净的年轻书生求见。”顾况虽然疲惫，但好久没有年轻人拜访，心想这次不知来个什么样的，虽然不抱希望，但出于礼貌还是要见一见的，遂让仆人请进门来。这位青年人风度儒雅，长相白净，一看就是官宦人家的子弟，顾况首先就不抱什么希望了。青年人礼数周到，作揖拜见：“晚生拜见著作郎，仓促拜访，多有打扰，还请先生多多海涵。这是晚生习作，有劳先生指点！”顾况接过年轻人的名帖和文稿，一看姓名，不禁调笑起来：“白居易，白居易，长安米贵，可不易居啊！”这是顾况一贯的狂傲性格，见面就令人难堪。青年人说：“著作郎见笑，还请多多指点！”</p>
+<p>这时，顾况抬眼匆匆看了一下眼前这个不卑不亢的年轻后生，不再言语，接着看文稿，看完一遍又看了一遍，方才停下来，轻轻拍了一下桌子，缓缓说道：“不得了，不得了，能写出这样的佳作，白居又何妨，白居又何妨啊！白公子，老朽刚才狂语只是一句玩笑话，莫怪啊！”原来他翻开文稿，首先看到的是一首名为《赋得古原草送别》的诗：</p>
+<pre>
+离离原上草，一岁一枯荣。
+野火烧不尽，春风吹又生。
+远芳侵古道，晴翠接荒城。
+又送王孙去，萋萋满别情。
+</pre>
+<p>接着又是《相和歌辞·王昭君二首》：</p>
+<p>其一</p>
+<pre>
+满面胡沙满鬓风，眉销残黛脸销红。
+愁苦辛勤憔悴尽，如今却似画图中。
+</pre>
+<p>其二</p>
+<pre>
+汉使却回凭寄语，黄金何日赎蛾眉。
+君王若问妾颜色，莫道不如宫里时。
+</pre>
+<p>如此年轻的后生，写得这样体制严谨、气象开阔的好诗，实在令顾况惊奇。长安城终于出了一个令顾况刮目相看的年轻诗人，一时间传为美谈，而顾况也是不遗余力地见人便夸赞白居易的才华。很快，长安的文人士子都知道了有一个叫白居易的人是作诗的天才。</p>
+<p>白居易生于官宦家庭，聪明过人，九个月大时就可</p>
+<p>识“之”“无”二字，五岁时便开始学习作诗，受到了良好的教育，十二岁时由于两河藩镇割据，为了避乱，父亲把他及家人送到了越中，在安定的环境中继续学习精进。十五六岁发奋读书，立志出仕为官，匡扶天下。二十岁之后，更是博览群书，发愤图强，文、赋、诗没有他不深入学习和研究的，以至于“口舌成疮，手肘成胝”（《白居易集·与元九书》）。直到八〇〇年以第四名的成绩高中进士，八〇二年参加吏部考试，及第，与好友元稹为同科进士，八〇三年授校书郎，自此正式走上仕途。</p>
+<p>校书郎在唐朝是正九品的小官职，负责“掌校雠典籍，订正讹误”，这在古代立志匡扶天下的文人志士看来无法施展抱负，许多人在这个职位上时间不长就会倦怠。八〇六年，三十四岁的白居易辞去校书郎官职，与好友元稹隐居华阳观，整日议论时事，欣赏文章，好几个月也不出门。这年七月，朝廷又启用他为周至（今陕西周至）县尉，虽然这个官职也不高，但至少可以接触百姓，使得诗人有了初步治民济世的机会。但是在这里，白居易的政治才华并没有出色表现，提起他的周至之任，人们至今仍津津乐道的还是他的一首著名的长诗。</p>
+<p>在周至任上的一天，白居易与好友陈鸿、王质夫等前往马嵬坡附近的仙游寺游玩。三人游饮畅谈，自然说起当年这马嵬坡的兵变，诗人们不像政治家过分关注历史的得失，他们说起唐玄宗和杨贵妃的爱情，遥想当时情景，以及此后唐玄宗日日长梦、郁郁而终的传说，深为帝王宫中人的命运惋惜。王质夫提议道：“此等旷世情事，此等美色误国之大事，正可谓前无古人后无来者，皇帝最心爱的宠妃当着皇帝之面不得不死，令人叹息，而太平繁盛的大唐王朝也竟因此急转直下，不可收拾，令人悲叹。此事已过去四十余年，如今还有传说流传，倘若无人妙笔记录，恐怕再过几十年就没多少人知道了。乐天兄诗歌妙手，情词婉转，可愿以诗记之？”就这样，白居易写了千古动情的《长恨歌》，而好友陈鸿则创作了长篇唐传奇《长恨歌传》。玄宗晚年懒政，从根本上导致了唐朝政权被奸相李林甫、杨国忠相继独揽，同时又由于过分自高自大养虎为患，亲手扶植了阳奉阴违、贼胆包天的安禄山，酿成了安史之乱，使大唐盛世由盛而衰、每况愈下。安史之乱爆发后，玄宗携带后宫及皇亲贵胄狼狈逃往西蜀，至马嵬坡遭遇兵变，杨国忠被杀，杨贵妃被迫赐死。虽然没多久，玄宗以太上皇的身份回到长安，但自此郁郁寡欢，睹物思人，悔恨难抑，传说他夜夜长梦，每梦都是昔日杨贵妃在的时候，每梦痛不欲生，梦醒之后则久久怅然若失，宫中人见之，无不悲伤泪流。如此，没过几年玄宗就积郁而终。《长恨歌》最初意在警示后代帝王以此为鉴莫要贪色误国，然而它最伟大的地方并不在此，而是虽然主旨在于警世，却不因警世而遮盖这个历史故事中人性、人情的一面，所以虽千载已往，依然感人至深：</p>
+<pre>
+汉皇重色思倾国，御宇多年求不得。
+杨家有女初长成，养在深闺人未识。
+天生丽质难自弃，一朝选在君王侧。
+回眸一笑百媚生，六宫粉黛无颜色。
+……
+渔阳鼙鼓动地来，惊破霓裳羽衣曲。
+九重城阙烟尘生，千乘万骑西南行。
+翠华摇摇行复止，西出都门百余里。
+六军不发无奈何，宛转蛾眉马前死。
+花钿委地无人收，翠翘金雀玉搔头。
+君王掩面救不得，回看血泪相和流。
+……
+归来池苑皆依旧，太液芙蓉未央柳。
+芙蓉如面柳如眉，对此如何不泪垂。
+春风桃李花开日，秋雨梧桐叶落时。
+西宫南内多秋草，落叶满阶红不扫。
+梨园弟子白发新，椒房阿监青娥老。
+夕殿萤飞思悄然，孤灯挑尽未成眠。
+迟迟钟鼓初长夜，耿耿星河欲曙天。
+鸳鸯瓦冷霜华重，翡翠衾寒谁与共。
+悠悠生死别经年，魂魄不曾来入梦。
+……
+惟将旧物表深情，钿合金钗寄将去。
+钗留一股合一扇，钗擘黄金合分钿。
+但教心似金钿坚，天上人间会相见。
+临别殷勤重寄词，词中有誓两心知。
+七月七日长生殿，夜半无人私语时。
+在天愿作比翼鸟，在地愿为连理枝。
+天长地久有时尽，此恨绵绵无绝期。
+</pre>
+<h3>2 又一位耿直的左拾遗</h3>
+<p>八〇七年，白居易从周至县尉任上前往京兆府应试考官，及第，授予翰林学士，相当于进入了皇帝的秘书团，负责为皇帝撰拟文字、批答表疏、作应和文章，可以直入内廷，随时应召。一年后改任左拾遗，更可以面见皇帝，上朝议事，针砭时政。在这个位置上，如果善于察言观色、精明能干、巧舌如簧，凭借亲近皇帝的便利，许多人可以快速获得擢升，但从前代诗人陈子昂和杜甫的例子来看，文人担当此职并非好事，因为过于忠实负责、疾恶如仇、言辞恳切，常常不但得不到皇帝的欣赏，反而会招致贬官之祸。白居易此次所任，正是这样一个官职。</p>
+<p>有一年，淄青节度使李师道仗着财大气粗想要私自出钱六百多万，为前朝宰相魏徵的孙子赎回祖传的宅邸，以此在长安城扩大影响，笼络人心。白居易听说此事后，当即上表：“魏徵乃我大唐前朝贤相，太宗皇帝遇之甚厚，特命人用建筑皇宫的材料为魏相修筑宅邸正堂，无奈其子孙孱弱不能守成，遂流落于他人之手。如今国运昌盛，万民太平，陛下应当效仿太宗之法，赎回魏相故宅赐其子孙，彰显陛下敬贤爱民之心。李师道是我大唐朝臣，不应该抢掠陛下美意啊。”宪宗很认可白居易的说法，也很欣赏白居易为国着想的忠心，于是着人照办。李师道只好讪讪作罢。</p>
+<p>如此精彩的进谏还有多次，因而在不长的时间里，白居易以善谏而名满朝堂，他也更加尽忠职守，天下事无所不谏。有一次，白居易上朝进谏，言辞恳切，语气强硬，皇帝不置可否，白居易一时心急，马上更进一步说：“陛下不可以此误国啊。”此话一出，皇帝立马变脸。唐宪宗是一位励精图治、勤勉政事、重用贤良而善于纳谏的明君，所以虽然发怒，也只止于发怒，他知道白居易是一片好意，最后便不了了之。退朝之后，宪宗对宰相李绛说：“白居易是我钦点的拾遗，怎么能这样说话，令我难堪？一定要惩戒！”李绛说：“陛下一代明君，广开言路，善于纳谏，朝臣才敢毫无顾忌地议论得失。这是好事。如果罢黜白居易，等于封住了忠臣良才的口，以后怕是无人再敢进言。这不利于发扬陛下的贤明盛德。”宪宗消了气，对待白居易还和当初一样。这几年，白居易尽责谏言并非信口开河，而是在了解当时民情的基础之上。这些都被他写进了他的大型组诗《新乐府》中，在这些诗中，白居易明确写道：“为君，为臣，为民，为物，为事而作，不为文而作也。”（《新乐府五十首并序》）这一时期，他的创作并非为了文学创作，而是为了国家太平、万民安宁，诗歌创作已经成了他致力于匡扶天下的手段之一，所以这些作品中多有讽喻之意。</p>
+<p>比如，<span class="code0">“宣城太守知不知？一丈毯，千两丝，地不知寒人要暖，少夺人衣作地衣”</span>（《红线毯》）是讽喻权贵不顾民生疾苦，一味巧取豪夺；<span class="code0">“皆云前后征蛮者，</span>千万人行无一回。是时翁年二十四，兵部牒中有名字。夜深不敢使人知，偷将大石捶折臂。张弓簸旗俱不堪，从兹始免征云南”（《新丰折臂翁》）是讽喻连年征兵征战，百姓畏战，不惜自断臂膀以全性命，令人不寒而栗；<span class="code0">“今日宫中年最老，大家遥赐尚书号。小头鞋履窄衣裳，青黛点眉眉细长。外人不见见应笑，天宝末年时世妆。上阳人，苦最多。少亦苦，老亦苦，少苦老苦两如何”（</span>《上阳白发人》）讽喻君王大肆选妃而不能临幸，使众多宫女蹉跎终身不见天日，老来还要被人嘲笑。</p>
+<p>这些被诗人名为《新乐府》的讽喻诗，是一系列思想厚重、情感悲悯的现实主义佳作，上承杜甫“诗史”的传统，如同描绘苦难的画卷，生动而沉痛地记录了中晚唐时期的民间疾苦，其中千古流传的名作比比皆是。如写老翁艰难谋生、令人唏嘘的《卖炭翁》：</p>
+<pre>
+卖炭翁，伐薪烧炭南山中。
+满面尘灰烟火色，两鬓苍苍十指黑。
+卖炭得钱何所营？身上衣裳口中食。
+可怜身上衣正单，心忧炭贱愿天寒。
+夜来城外一尺雪，晓驾炭车辗冰辙。
+
+牛困人饥日已高，市南门外泥中歇。
+翩翩两骑来是谁？黄衣使者白衫儿。
+手把文书口称敕，回车叱牛牵向北。
+一车炭，千余斤，宫使驱将惜不得。
+半匹红绡一丈绫，系向牛头充炭直。
+</pre>
+<p>再如《杜陵叟》：</p>
+<pre>
+杜陵叟，杜陵居，岁种薄田一顷余。
+三月无雨旱风起，麦苗不秀多黄死。
+九月降霜秋早寒，禾穗未熟皆青干。
+长吏明知不申破，急敛暴征求考课。
+典桑卖地纳官租，明年衣食将何如？
+剥我身上帛，夺我口中粟。
+
+虐人害物即豺狼，何必钩爪锯牙食人肉？
+不知何人奏皇帝，帝心恻隐知人弊。
+白麻纸上书德音，京畿尽放今年税。
+昨日里胥方到门，手持敕牒榜乡村。
+十家租税九家毕，虚受吾君蠲免恩。
+</pre>
+<p>八一〇年，白居易左拾遗任满，按惯例需要改任，宪宗觉得他家里不宽裕，就让他自己选择一个官职。白居易奏请出任京兆户曹参军兼任翰林学士，依然居住在长安城，以便照顾家小。皇帝同意了他的请求。可是第二年，白居易母亲去世，按照惯例他必须辞官丁忧，总共三年。这三年间他居住在渭村，开垦了几亩地，自主营生，但因俸禄断绝，贫病交加，虽有好友元稹时常救济，也依然因贫困而导致三岁女儿金銮子早夭，这令白居易痛不欲生，遂写下一首《病中哭金銮子》：“卧惊从枕上，扶哭就灯前……慈泪随声迸，悲肠遇物牵。故衣犹架上，残药尚头边。送出深村巷，看封小墓田。莫言三里地，此别是终天。”白居易由此更加体会到了老百姓生活的艰难不易。</p>
+<p>母丧丁忧结束还朝后，白居易被拜为左赞善大夫，此官仍然是负责谏言，但属于太子官蜀。八一五年，当朝宰相武元衡和御史中丞裴度遭人暗杀，武元衡当场死亡，裴度受了重伤。这件事震惊朝野，一时间人心惶惶，而执掌司法权的宦官集团却保持沉默，无人出来主持公道。白居易气愤难抑，便上书皇帝，要求缉拿凶手，严肃法纪。这时，素来与白居易不和的李吉甫等权臣趁机发难，说白居易官属东宫，却僭越职权，私自越过谏言之官直议朝政大事。宪宗无奈，想将他贬为州刺史，但诏书未下，接着又收到中书舍人王涯落井下石的奏章，说白居易的母亲是因赏花掉到井里去世的，而白居易却还在写有关赏花、新井一类的诗作，有伤风化，而这样不孝之人又如何做一州的刺史教化百姓？就这样，白居易被一贬再贬，从赞善大夫贬为江州（今江西九江）司马。</p>
+<h3>3 多情司马，悠闲刺史</h3>
+<p>贬官为江州司马是白居易一生的重要转折点。此前，白居易始终心怀“达则兼济天下”的理想，总希望能在政治上有一番建树。此次贬官后，白居易多少有些心灰意冷，深刻认识到官场斗争的复杂，所以渐渐放弃了少年时的宏图壮志，避祸远嫌，远离官场是非，独善其身，“不复谔谔直言”（《新唐书·白居易传》），讽喻之诗也逐渐减少。史书上说，白居易之所以巧妙转变，和他在儒学之外深谙佛家典籍有关，“常以忘怀处顺为事，都不以迁谪介意”。</p>
+<p>江州毕竟地处江南，物产丰饶，一年四季绿意盎然，这对于一个遭遇贬谪的文人士大夫，尤其是白居易这样在江南生活过七八年的人来说，总比北方好许多。到了江西就绕不过秀美的庐山。来江州不久，白居易便和几位好友相约登庐山览胜，看到香炉峰风景奇妙，流连忘返，最后竟在香炉峰对面的遗爱寺内置办了一个隐居的草堂。这间草堂周围有几十棵高大的松树，旁边又有修竹无数，白石铺道，溪水环绕，风景殊胜。自此以后，白居易时时来此小住，与这里的几位禅师登高啸咏，谈佛论道，几乎游遍了庐山的绝胜景致。游到高兴的时候，放浪形骸于山水之间，忘乎所以，有的时候好长时间都不回城上任，有时候甚至一个多月才回一趟官府。好在郡守知道他是朝廷暂时贬谪的京官，对此睁一只眼闭一只眼，并不苛责于他。</p>
+<p>四月的一天，城里春光将尽，天气渐热，白居易与几位好友出城游玩，一行人登上庐山，到了大林峰下的大林寺。山间还不是太热，他们惊喜地发现大林寺内的几棵桃树上还繁花似锦。桃花开得早，一般初春时节开放，十几日便纷纷零落。白居易见到这些“隐居”山间的妖艳桃花竞相开放，喜不自胜，不禁感叹造化的奇妙，夜宿大林寺，写就了中晚唐七绝中的那首珍品——《大林寺桃花》：</p>
+<pre>
+人间四月芳菲尽，山寺桃花始盛开。
+长恨春归无觅处，不知转入此中来。
+</pre>
+<p>这些都是江州的美妙风景对白居易失意之心的抚慰，明显可感的是，在这些诗中，多了大自然馈赠的欣喜，多了山水的灵气。这和刚来江州时的白居易相比，还是有了不少变化。八一六年秋，到江州司马任上还没多久，白居易到浔阳江畔饯别朋友，饮酒话别之际，觉得多少有些无趣，这时恰巧听到外面有琵琶声传来。白居易便让船家邀请乐师上船表演。乐师演奏完毕，在场所有人都被深深感动，白居易甚至当场伤感落泪。细问乐师家事，这才知道她年幼时学艺，后来迫不得已嫁给一位商人，但聚少离多，孤单凄凉。这一番话让白居易想起自身的遭际，不免感慨万分，回家后写出了那首著名的《琵琶行》：</p>
+<pre>
+浔阳江头夜送客，枫叶荻花秋瑟瑟。
+主人下马客在船，举酒欲饮无管弦。
+醉不成欢惨将别，别时茫茫江浸月。
+忽闻水上琵琶声，主人忘归客不发。
+
+寻声暗问弹者谁？琵琶声停欲语迟。
+移船相近邀相见，添酒回灯重开宴。
+千呼万唤始出来，犹抱琵琶半遮面。
+转轴拨弦三两声，未成曲调先有情。
+
+弦弦掩抑声声思，似诉平生不得志。
+低眉信手续续弹，说尽心中无限事。
+轻拢慢捻抹复挑，初为霓裳后六幺。
+大弦嘈嘈如急雨，小弦窃窃如私语。
+
+嘈嘈切切错杂弹，大珠小珠落玉盘。
+间关莺语花底滑，四弦一声如裂帛。
+东船西舫悄无言，唯见江心秋月白。
+沉吟放拨插弦中，整顿衣裳起敛容。
+
+自言本是京城女，家在虾蟆陵下住。
+十三学得琵琶成，名属教坊第一部。
+曲罢曾教善才服，妆成每被秋娘妒。
+五陵年少争缠头，一曲红绡不知数。
+
+钿头银篦击节碎，血色罗裙翻酒污。
+今年欢笑复明年，秋月春风等闲度。
+弟走从军阿姨死，暮去朝来颜色故。
+门前冷落鞍马稀，老大嫁作商人妇。
+
+商人重利轻别离，前月浮梁买茶去。
+去来江口守空船，绕船月明江水寒。
+夜深忽梦少年事，梦啼妆泪红阑干。
+我闻琵琶已叹息，又闻此语重唧唧。
+
+同是天涯沦落人，相逢何必曾相识！
+我自去年辞帝京，谪居卧病浔阳城。
+浔阳地僻无音乐，终岁不闻丝竹声。
+住近湓江地低湿，黄芦苦竹绕宅生。
+
+其间旦暮闻何物？杜鹃啼血猿哀鸣。
+春江秋朝花月夜，往往取酒还独倾。
+岂无山歌与村笛？呕哑嘲哳难为听。
+今夜闻君琵琶语，如听仙乐耳暂明。
+
+莫辞更坐弹一曲，为君翻作琵琶行。
+感我此言良久立，却坐促弦弦转急。
+凄凄不似向前声，满座重闻皆掩泣。
+座中泣下谁最多？江州司马青衫湿。
+</pre>
+<p>几年后宪宗驾崩，穆宗即位，召白居易回朝，先后任命为朝散大夫、中书舍人。但此时以牛僧孺、李宗闵为领袖的牛党与以李德裕、郑覃为领袖的李党争斗开始。因其早年得罪李德裕的父亲李吉甫，李党得势之时，白居易在朝中就立足不稳。八二二年，白居易又一次被贬官出京，赴杭州做刺史。但对于诗人来说，南下素有人间天堂之称的苏杭，并非坏事，如他乘船赴杭州途中，见到美妙动人的黄昏江水，夕阳照到的地方金光灿灿，而未照到之处则一片萧瑟冷清，当即作了一首《暮江吟》，情景真切而微妙，含义悠远，历来为人称道：</p>
+<pre>
+一道残阳铺水中，半江瑟瑟半江红。
+可怜九月初三夜，露似真珠月似弓。
+</pre>
+<p>来到杭州的白居易，可以说彻底被这里的清丽山水所征服，一心沉溺于江南美景，诗酒人生从此开始。他似乎再也无心仕途，而是一反常态嗜酒纵乐，蓄养歌姬，每当良辰美景，便邀请杭州的文人名士来到府上，打开酒坛和存满诗稿的箱子，唤出歌姬以歌舞助兴，一边饮酒一边赏舞，吟诗作对，每每都直到酩酊大醉才肯罢休。当然，这样说未免有些夸张，只是为了说明他已经不像以前一心于国事。</p>
+<p>在杭州刺史任上，白居易还是为政有方、心系百姓的。据史书记载，他在短短不到两年的任上，为老百姓做了不少实事，如驱除虎患、疏浚城中六井、修建西湖堤坝等。其中，最为人称道的是修建西湖堤坝。当时的西湖，水比较浅，遇到干旱天气，蓄水不够灌溉农田，而一旦下了大雨，又会泛滥成灾。白居易上任后，在西湖东北一带修建了捍湖大堤。堤坝建成后，白居易亲自写下《钱塘湖石记》一文，刻成石碑立在湖边，指导人们蓄水排洪。这个坝就是今天还在发生作用的“白公堤”，是当今人去杭州的必游景点。当然，白居易也不会错过西湖美景，《钱塘湖春行》就是他记录西湖春游的一首脍炙人口的名作：</p>
+<pre>
+孤山寺北贾亭西，水面初平云脚低。
+几处早莺争暖树，谁家新燕啄春泥。
+乱花渐欲迷人眼，浅草才能没马蹄。
+最爱湖东行不足，绿杨阴里白沙堤。
+</pre>
+<h3>4 醉吟先生</h3>
+<p>早在八一五年，白居易被贬为江州司马时就写了一封长信给他一生的好友元稹，名曰《与元九书》。在这封信中，他言辞恳切地说：“今仆之诗，人之所爱……然百千年后，安知复无如足下者出，而知爱我诗哉？故自八九年来，与足下小通则以诗相戒，小穷则以诗相勉，索居则以诗相慰，同处则以诗相娱。”他们一生互为知己，所以白居易说百年以后，不知道还有几人能像你一样懂我的诗、爱我的诗，这么多年来我们相互交往，仕途稍顺则作诗戒骄戒躁，境遇贫困则作诗自我勉励，独身孤居时作诗相互安慰，相处同游则作诗互为应和。</p>
+<p>在这封信中，白居易对自己的定位是一位诗人，尽管他一生多有政治理想，但无论穷达，诗与他始终相伴。所以杭州刺史任满之后，白居易没再回长安，而是去了洛阳，这里靠近他的家乡新郑。他打算在洛阳安定下来，所以置地买宅，卖马换房，在洛阳的履道里定居下来。他时常邀请几位好友来家里一起品酒论诗，一个冬天风雪飘飞，白居易邀请几位朋友前来喝酒，其中一位刘十九因事未至，白居易便写下一首《问刘十九》记述此事：
+<pre>
+绿蚁新醅酒，红泥小火炉。
+晚来天欲雪，能饮一杯无？
+</pre>
+<p>在洛阳期间，朝廷先后传来诏书，授予他河南尹、同州刺史等官职，都被白居易以生病为由婉拒。后来，他的儿子去世，白居易更加看透尘世无常，解散了家中的歌舞姬，也将蓄养多年的名马良驹拍卖，逐渐走向佛门。八三一年，好友元稹病逝，白居易为其撰写墓志铭，将元家送来的六七十万润笔钱，皆悉数赠予洛阳香山寺，使其修葺一新，自此白居易自号“香山居士”。八三五年自编《白氏文集》，编成后藏于庐山东林寺。八三八年自撰《醉吟先生传》，生动地记载了他的退隐生活：“醉吟先生者，忘其姓字、乡里、官爵，忽忽不知吾为谁也。宦游三十载，将老，退居洛下。所居有池五六亩，竹数千竿，乔木数十株，台檄舟桥，具体而微，先生安焉。家虽贫，不至寒馁；年虽老，未及昏耄。性嗜酒，耽琴淫诗，凡酒徒、琴侣、诗客多与之游……”如此，至八四五年，七十多岁高龄的白居易还经常与一帮年过七十的老友一同饮酒酬唱，一时传为美谈。八四六年，逝于洛阳家中，葬于洛阳香山，享年七十四岁。当朝皇帝唐宣宗得知白居易去世后，还专门写了一首《吊白居易》来悼念他：“缀玉联珠六十年，谁教冥路作诗仙。浮云不系名居易，造化无为字乐天。童子解吟长恨曲，胡儿能唱琵琶篇。文章已满行人耳，一度思卿一怆然。”</p>
+
+
+<p style='float:right;'>本页共165段，8864个字符，25689 Byte(字节)</p>﻿
+
+
+
+
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
