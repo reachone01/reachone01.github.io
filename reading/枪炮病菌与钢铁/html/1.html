@@ -1,0 +1,413 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+﻿<div class='layout'><p>1</p><p></p></div>	
+<div class='layout'><p>PART ONE</p><p>第一部分</p></div>	
+<div class='layout'><p>FROM EDEN TO CAJAMARCA</p><p>从伊甸园到卡哈马卡</p></div>	
+<div class='layout'><p></p><p></p></div>	
+<div class='layout'><p>CHAPTER 1</p><p>第一章</p></div>	
+<div class='layout'><p>UP TO THE?STARTING?LINE</p><p>走上起跑线</p></div>	
+<div class='layout'><p>A?SUITABLE STARTING POINT FROM WHICH TO COMPARE?historical developments on the different continents is around 11,000?B.C.*?This date corresponds approximately to the beginnings of village life in a few parts of the world, the first undisputed peopling of the Americas, the end of the Pleistocene Era and last Ice Age, and the start of what geologists term the Recent Era. Plant and animal domestication began in at least one part of the world within a few thousand years of that date. As of then, did the people of some continents already have a head start or a clear advantage over peoples of other continents?</p><p>用以比较不同大陆的历史发展的合适起点是公元前11000年左右<sup><a name="p1" id="p1"></a><a href="#pl1" title=""><sup>[1]</sup></a></sup>。这个年代大致相当于世界上一些地区村社生活的开始。这时，美洲毫无疑问已第一次有人定居，更新世和上一次冰期已经结束，地质学家所说的全新世已经开始。在那个年代的几千年内，动植物的驯化至少在世界上的一个地方开始了。从那时起，某些大陆上的族群是否已经比其他大陆上的族群领先一步或处于明显优势呢？</p></div>	
+<div class='layout'><p>If so, perhaps that head start, amplified over the last 13,000 years, provides the answer to Yali's question. Hence this chapter will offer a whirlwind tour of human history on all the continents, for millions of years, from our origins as a species until 13,000 years ago. All that will now be summarized in less than 20 pages. Naturally, I shall gloss over details and mention only what seem to me the trends most relevant to this book.</p><p>如果回答是肯定的，那么这种领先优势经过13000年的扩大，也许可以为耶利的问题提供答案。因此，这一章将要对各大陆的人类历史进行一次旋风式的旅行，从我们作为一个物种的起源开始，经过几百万年，直到13000年前。这一切现在将要浓缩在不到25页的篇幅里。当然，我对细节忽略不计，只谈谈在我看来与本书最相关的一些趋势。</p></div>	
+<div class='layout'><p>Our closest living relatives are three surviving species of great ape: the gorilla, the common chimpanzee, and the pygmy chimpanzee (also known as bonobo). Their confinement to Africa, along with abundant fossil evidence, indicates that the earliest stages of human evolution were also played out in Africa. Human history, as something separate from the history of animals, began there about 7 million years ago (estimates range from 5 to 9 million years ago). Around that time, a population of African apes broke up into several populations, of which one proceeded to evolve into modern gorillas, a second into the two modern chimps, and the third into humans. The gorilla line apparently split off slightly before the split between the chimp and the human lines.</p><p>我们活着的近亲是现存的3种类人猿：大猩猩、普通黑猩猩和矮脚黑猩猩（也叫倭黑猩猩）。这3种猩猩只生活在非洲，那里又有丰富的化石证据，这就表明人类初始阶段的演化是在非洲进行的。人类的历史与动物的历史分道扬镳，大约在700万年前开始于非洲<sup>(据估计在500万至900万年之前)</sup>。约当此时，非洲猿的一个种群分成了几个种群，其中一支继续演化成现代大猩猩，一支演化成两种现代黑猩猩，还有一支则演化成人类。大猩猩这一支的分化显然稍早于黑猩猩与人类之间的分化。</p></div>	
+<div class='layout'><p>Fossils indicate that the evolutionary line leading to us had achieved a substantially upright posture by around 4 million years ago, then began to increase in body size and in relative brain size around 2.5 million years ago. Those protohumans are generally known as?Australopithecus africanus, Homo habilis, and?Homo erectus, which apparently evolved into each other in that sequence. Although?Homo erectus, the stage reached around 1.7 million years ago, was close to us modern humans in body size, its brain size was still barely half of ours. Stone tools became common around 2.5 million years ago, but they were merely the crudest of flaked or battered stones. In zoological significance and distinctiveness,?Homo erectus?was more than an ape, but still much less than a modern human.</p><p>一些化石表明，我们的直系祖先到了大约400万年前基本上已能直立，然后在大约200.5万年前身体开始长高，相对脑容量开始增大。这些原人通常叫做非洲南方古猿、能人和直立人，他们显然是按照这个顺序进行演化的。虽然大约在1.7百万年前即已达到了直立人这个阶段，但直立人也只是在身材方面和现代人接近，他的脑容量几乎仍然不到我们的一半。石器在大约2.5百万年前已很普遍，但它们仍然不过是最粗糙的石片和石头砍凿器。就动物学上的含意和鉴别来说，直立人已不再是猿了，但与现代人仍相去甚远。</p></div>	
+<div class='layout'><p>All of that human history, for the first 5 or 6 million years after our origins about 7 million years ago, remained confined to Africa. The first human ancestor to spread beyond Africa was?Homo erectus, as is attested by fossils discovered on the Southeast Asian island of Java and conventionally known as Java man (see Figure 1.1). The oldest Java “man” fossils—of course, they may actually have belonged to a Java woman—have usually been assumed to date from about a million years ago. However, it has recently been argued that they actually date from 1.8 million years ago. (Strictly speaking, the name?Homo erectus?belongs to these Javan fossils, and the African fossils classified as?Homo erectus?may warrant a different name.) At present, the earliest unquestioned evidence for humans in Europe stems from around half a million years ago, but there are claims of an earlier presence. One would certainly assume that the colonization of Asia also permitted the simultaneous colonization of Europe, since Eurasia is a single landmass not bisected by major barriers.</p><p>人类在这方面的全部历史，在人类于大约700万年前起源后的最初500万或600万年中，仍然局限于非洲。首先走出非洲的人类祖先是直立人，这已从东南亚爪哇岛上发现的化石得到证明，这些化石通常称之为爪哇人<sup>(见图1．1)</sup>。年代最久远的爪哇“人”化石——当然，它们实际上可能是爪哇女人的化石——其年代通常被认为约100万年前。然而，最近有人认为，其年代实际上是1.8百万年前。（严格地说，直立人这个名称属于这些爪哇化石，而归入直立人一类的非洲化石也许应该有一个不同的名称。）目前，对于欧洲人类公认的最早证据产生在大约50万年前，但也有人认为时间可能更早。人们当然可以假设，人类既然可以移居亚洲，自然也可以移居欧洲，因为欧亚大陆是一个大陆板块，没有什么重大屏障把它分隔开。</p></div>
+<div class="layout"><span style="float:right; clear:both;"><a href="../imgcn/0101.png"><img src="../imgcn/0101.png" width=100% /></a></span></div>	
+<div class='layout'><p></p><p>图1.1人类在全世界的扩张</p></div>	
+<div class='layout'><p>That illustrates an issue that will recur throughout this book. Whenever some scientist claims to have discovered “the earliest X”—whether X is the earliest human fossil in Europe, the earliest evidence of domesticated corn in Mexico, or the earliest anything anywhere—that announcement challenges other scientists to beat the claim by finding something still earlier. In reality, there must be some truly “earliest X,” with all claims of earlier X's being false. However, as we shall see, for virtually any X, every year brings forth new discoveries and claims of a purported still earlier X, along with refutations of some or all of previous years' claims of earlier X. It often takes decades of searching before archaeologists reach a consensus on such questions.</p><p>这说明了一个将在本书中反复出现的问题。每当某个科学家宣布发现了“最早的Ⅹ”——不管这个Ⅹ是欧洲最早的人类化石，是墨西哥引种归化的玉米的最早证据，或是任何地方最早的任何东西——这一宣布又刺激了其他科学家去发现更早的东西以便更胜一筹。事实上，必定有某个真正“最早的Ⅹ”，而所有宣布的更早的Ⅹ都是假的。然而，我们将会看到，几乎对于任何Ⅹ来说，对所谓更早的Ⅹ每年都会有新的发现和宣布，并驳斥了前几年所宣布的某些或全部更早的Ⅹ。对这类问题，常常要花几十年时间去仔细探究，考古学家们才能达成共识。</p></div>	
+<div class='layout'><p>By about half a million years ago, human fossils had diverged from older?Homo erectus?skeletons in their enlarged, rounder, and less angular skulls. African and European skulls of half a million years ago were sufficiently similar to skulls of us moderns that they are classified in our species,?Homo sapiens, instead of in?Homo erectus. This distinction is arbitrary, since?Homo erectus?evolved into?Homo sapiens. However, these early?Homo sapiens?still differed from us in skeletal details, had brains significantly smaller than ours, and were grossly different from us in their artifacts and behavior. Modern stone-tool-making peoples, such as Yali's great-grandparents, would have scorned the stone tools of half a million years ago as very crude. The only other significant addition to our ancestors' cultural repertoire that can be documented with confidence around that time was the use of fire.</p><p>到了大约50万年前，人类化石的头骨变得较大、较圆、也较少棱角，这已和较早的直立人的骨骼有所不同。50万年前的非洲人和欧洲人的头骨与我们现代人的头骨已相当近似，所以被归入我们智人这一类，而不是归入直立人一类。这种区别是带有任意性的，因为智人是从直立人演化而来的。然而，这些初期的智人在头骨的细节上仍和我们不同，他们的脑容量比我们的小得多，他们的制造物和行为更是明显地和我们不同。现代的制造石器的民族，如耶利的曾祖父这一辈人，会对50万年前的石器嗤之以鼻，认为极其粗糙。对于如今可以有把握证明的我们祖先当时的文化业绩，唯一可以用浓墨重彩加上一笔的是火的使用。</p></div>	
+<div class='layout'><p>No art; bone tool, or anything else has come down to us from early?Homo sapiens?except for their skeletal remains, plus those crude stone tools. There were still no humans in Australia, for the obvious reason that it would have taken boats to get there from Southeast Asia. There were also no humans anywhere in the Americas, because that would have required the occupation of the nearest part of the Eurasian continent (Siberia), and possibly boat-building skills as well. (The present, shallow Bering Strait, separating Siberia from Alaska, alternated between a strait and a broad intercontinental bridge of dry land, as sea level repeatedly rose and fell during the Ice Ages.) However, boat building and survival in cold Siberia were both still far beyond the capabilities of early?Homo sapiens.</p><p>最初的智人除了他们的残骸和那些粗糙的石器外，没有给我们留下艺术品、骨器或其他任何东西。澳大利亚仍然没有人类，这原因显而易见：从东南亚到达那里必须乘船。在美洲也没有人类，因为可能要等到占据欧亚大陆最靠近美洲的地方<sup>(西伯利亚)</sup>先有人烟，可能还需要造船技术。<sup>(现在分隔西伯利亚和阿拉斯加的白令海峡，随着冰期海平面的不断升降，有时是一片海峡，有时是一座洲际陆桥。)</sup>然而，无论是造船或是在寒冷的西伯利亚生存，对最初的智人来说仍然是力所不及的。</p></div>	
+<div class='layout'><p>After half a million years ago, the human populations of Africa and western Eurasia proceeded to diverge from each other and from East Asian populations in skeletal details. The population of Europe and western Asia between 130,000 and 40,000 years ago is represented by especially many skeletons, known as Neanderthals and sometimes classified as a separate species,?Homo neanderthalensis. Despite being depicted in innumerable cartoons as apelike brutes living in caves, Neanderthals had brains slightly larger than our own. They were also the first humans to leave behind strong evidence of burying their dead and caring for their sick. Yet their stone tools were still crude by comparison with modern New Guineans' polished stone axes and were usually not yet made in standardized diverse shapes, each with a clearly recognizable function.</p><p>从50万年前往后，非洲和亚欧大陆西部的人类彼此之间以及和东南亚人类之间，从骨骼的细节来看在继续分化。从13万到40万年前，欧洲和亚洲西部人口的集中体现是特别众多的骨骼化石，他们被认为是尼安德特人，有时被归入一个单独的人种——尼安德特人。尽管尼安德特人在许多漫画里被描绘成住在洞穴里像猿一样的野蛮人，但他们的脑却比我们的还要稍大一些。有强有力的证据表明，他们还是第一批懂得埋葬死者、照顾病人的人。然而，同现代新几内亚人的磨光石斧相比较，他们的石器仍显得粗糙，他们还不曾造出形制标准、形状多样、每件都有其明确功用的工具来。</p></div>	
+<div class='layout'><p>The few preserved African skeletal fragments contemporary with the Neanderthals are more similar to our modern skeletons than to Neanderthal skeletons. Even fewer preserved East Asian skeletal fragments are known, but they appear different again from both Africans and Neanderthals. As for the lifestyle at that time, the best-preserved evidence comes from stone artifacts and prey bones accumulated at southern African sites. Although those Africans of 100,000 years ago had more modern skeletons than did their Neanderthal contemporaries, they made essentially the same crude stone tools as Neanderthals, still lacking standardized shapes. They had no preserved art. To judge from the bone evidence of the animal species on which they preyed, their hunting skills were unimpressive and mainly directed at easy-to-kill, not-at-all-dangerous animals. They were not yet in the business of slaughtering buffalo, pigs, and other dangerous prey. They couldn't even catch fish: their sites immediately on the seacoast lack fish bones and fishhooks. They and their Neanderthal contemporaries still rank as less than fully human.</p><p>现在保存下来的、与尼安德特人同时的少数几个非洲人的骨骼残片，与其说像尼安德特人的骨骼，不如说更像我们现代人的骨骼。我们知道，甚至更少的东亚人的骨骼残片被保存了下来，但他们似乎与非洲人和尼安德特人也不相同。至于当时的生活方式，保存得最好的证据是非洲南部一些遗址上堆积的石头制品和被捕食动物的残骨。虽然这些10万年前的非洲人和与他们同时代的尼安德特人相比，他们的骨骼更像现代人的骨骼，但他们所制造的石器基本上和尼安德特人的石器同样粗糙，仍然缺乏标准的形制。他们也没有任何保存下来的艺术品。从他们捕食的各种动物的骨头这个证据来看，他们的狩猎技巧平常，他们主要捕杀那些易于捕杀、毫无危险的动物。他们还不曾干过猎杀野牛、野猪和其他危险猎物的事。他们甚至不会捕鱼：在他们的紧靠海岸的遗址中没有发现鱼骨和鱼钩。他们和同时代的尼安德特人仍然不能算作完全的人。</p></div>	
+<div class='layout'><p>Human history at last took off around 50,000 years ago, at the time of what I have termed our Great Leap Forward. The earliest definite signs of that leap come from East African sites with standardized stone tools and the first preserved jewelry (ostrich-shell beads). Similar developments soon appear in the Near East and in southeastern Europe, then (some 40,000 years ago) in southwestern Europe, where abundant artifacts are associated with fully modern skeletons of people termed Cro-Magnons. Thereafter, the garbage preserved at archaeological sites rapidly becomes more and more interesting and leaves no doubt that we are dealing with biologically and behaviorally modern humans.</p><p>人类历史终于在大约5万年前开始了，也就是在我所说的“大跃进”时期。这种大跃进的最早的明确迹象是在东非遗址出土的标准石器和第一件保存完好的首饰<sup>(鸵鸟蛋壳做的珠子项链)</sup>。同样的情况不久又出现在近东和东南欧，然后<sup>(约4万年前)</sup>又出现在西南欧，那里大量的人工制品与称作克罗马努人的完全现代人的骨骼一起被发现了。此后，保留在考古遗址中的人类遗物变得越来越令人关注，使人毫不怀疑我们正在与之打交道的是在生物学上和行为上的现代人。</p></div>	
+<div class='layout'><p>Cro-Magnon garbage heaps yield not only stone tools but also tools of bone, whose suitability for shaping (for instance, into fishhooks) had apparently gone unrecognized by previous humans. Tools were produced in diverse and distinctive shapes so modern that their functions as needles, awls, engraving tools, and so on are obvious to us. Instead of only singlepiece tools such as hand-held scrapers, multipiece tools made their appearance. Recognizable multipiece weapons at Cro-Magnon sites include harpoons, spear-throwers, and eventually bows and arrows, the precursors of rifles and other multipiece modern weapons. Those efficient means of killing at a safe distance permitted the hunting of such dangerous prey as rhinos and elephants, while the invention of rope for nets, lines, and snares allowed the addition of fish and birds to our diet. Remains of houses and sewn clothing testify to a greatly improved ability to survive in cold climates, and remains of jewelry and carefully buried skeletons indicate revolutionary aesthetic and spiritual developments.</p><p>在克罗马努人的遗物堆积中不仅有石器，而且还有骨器。骨器易于成形<sup>(如做成鱼钩)</sup>这一点显然是以前的人所没有认识到的。有些工具做成了各种不同的特殊形状，就像现代的工具一样，有针，有锥子，有雕刻工具，还有其他等等，对它们的功用我们全都一目了然。出土的不仅仅是单件工具，如手持的刮削器，出土的还有多件组合的复合工具。在克罗马努人遗址上可以认出来的复合武器包括鱼叉、梭镖投掷器，最后还有弓箭，这些都是步枪和其他现代复合武器的前身。这些能在安全距离内进行捕杀的有效手段可以用来猎取犀牛、大象之类的危险猎物，而发明了用来结网、做钓鱼线和陷阱的绳子，就使我们的饮食又增加了鱼和鸟这样的美味。房屋和缝制服装的残迹，证明了人类在寒冷气候下生存的能力大大提高了，而残留的首饰和仔细埋葬的骸骨，则表明了革命性的审美观和精神层次上的发展。</p></div>	
+<div class='layout'><p>Of the Cro-Magnons' products that have been preserved, the best known are their artworks: their magnificent cave paintings, statues, and musical instruments, which we still appreciate as art today. Anyone who has experienced firsthand the overwhelming power of the life-sized painted bulls and horses in the Lascaux Cave of southwestern France will understand at once that their creators must have been as modern in their minds as they were in their skeletons.</p><p>在一直保存完好的克罗马努人的物品中，最著名的是他们的艺术作品：壮丽的洞穴壁画、雕像和乐器，这些东西我们今天仍然当作艺术品来欣赏。任何人只要到法国西南部拉斯考洞穴去一趟，看看那里画的和实物一样大小的野牛和野马，直接体验一下壁画所产生的那种难以抗拒的力量，他立刻就会了解，壁画的创作者不仅在形骸上而且在心灵上必定都已现代化了。</p></div>	
+<div class='layout'><p>Obviously, some momentous change took place in our ancestors' capabilities between about 100,000 and 50,000 years ago. That Great Leap Forward poses two major unresolved questions, regarding its triggering cause and its geographic location. As for its cause, I argued in my book?The Third Chimpanzee?for the perfection of the voice box and hence for the anatomical basis of modern language, on which the exercise of human creativity is so dependent. Others have suggested instead that a change in brain organization around that time, without a change in brain size, made modern language possible.</p><p>显然，从大约10万年到5万年前，我们祖先的能力发生了某种重大的变化。那次大跃进提出了两个未解决的主要问题，即其触发原因及发生地点问题。至于原因问题，我曾在《第三种黑猩猩》一书中主张，是喉的完善为现代语言提供了解剖学的基础，而发挥人的创造力是要大大依靠语言的。而另外一些人则提出，在当时脑容量不变的情况下脑组织发生的变化，使现代语言成为可能。</p></div>	
+<div class='layout'><p>As for the site of the Great Leap Forward, did it take place primarily in one geographic area, in one group of humans, who were thereby enabled to expand and replace the former human populations of other parts of the world? Or did it occur in parallel in different regions, in each of which the human populations living there today would be descendants of the populations living there before the leap? The rather modern-looking human skulls from Africa around 100,000 years ago have been taken to support the former view, with the leap occurring specifically in Africa. Molecular studies (of so-called mitochondrial DNA) were initially also interpreted in terms of an African origin of modern humans, though the meaning of those molecular findings is currently in doubt. On the other hand, skulls of humans living in China and Indonesia hundreds of thousands of years ago are considered by some physical anthropologists to exhibit features still found in modern Chinese and in Aboriginal Australians, respectively. If true, that finding would suggest parallel evolution and multiregional origins of modern humans, rather than origins in a single Garden of Eden. The issue remains unresolved.</p><p>至于这个大跃进发生的地点问题，它是不是发生在某一个地理区域，发生在某一群人当中，因而使他们能够扩张自己的势力范围，并取代了世界上其他地方以前的那些人？或者，它是不是在不同地区同时发生，而今天生活在这每一个地区的人可能就是大跃进前生活在该地区的人的后代？在非洲出土的、看上去相当现代的、大约10万年前人的头骨，一直被用来支持前一种观点，认为大跃进明确地发生在非洲。<sup>(对所谓线粒体DNA的)</sup>分子研究起初也是用现代人发源于非洲这种说法来解释的，虽然这些分子发现的含义目前仍然值得怀疑。另一方面，千百万年前生活在中国和印度尼西亚的人的头骨，则被一些体质人类学家认为分别显示了仍可在现代中国人和澳大利亚土著居民身上发现的一些特征。果真如此，那么这一发现可能表明现代人的平行演化和发源于多个地区，而不是发源于一个伊甸园，这个问题仍然没有解决。</p></div>	
+<div class='layout'><p>The evidence for a localized origin of modern humans, followed by their spread and then their replacement of other types of humans elsewhere, seems strongest for Europe. Some 40,000 years ago, into Europe came the Cro-Magnons, with their modern skeletons, superior weapons, and other advanced cultural traits. Within a few thousand years there were no more Neanderthals, who had been evolving as the sole occupants of Europe for hundreds of thousands of years. That sequence strongly suggests that the modern Cro-Magnons somehow used their far superior technology, and their language skills or brains, to infect, kill, or displace the Neanderthals, leaving behind little or no evidence of hybridization between Neanderthals and Cro-Magnons.</p><p>主张现代人发源于一个局部地区，接着向外扩散，到后来又取代了其他地方的人，这方面最强有力的证据似乎是在欧洲。大约4万年前，克罗马努人带着他们现代人的体格、优良的武器和其他先进的文化特征进入欧洲。不出几千年，尼安德特人不复存在，虽然几千年来，他们作为欧洲唯一的居民，一直在这块土地上繁衍生息。这个结果有力地表明了，现代的克罗马努人以某种方式利用他们的远为优良的技术和他们的语言技能或智慧，用病菌传染、杀害或取代了尼安德特人，而又很少或根本没有任何证据可以证明尼安德特人和克罗马努人之间的混合现象。</p></div>	
+<div class='layout'><p>THE GREAT LEAP?Forward coincides with the first proven major extension of human geographic range since our ancestors' colonization of Eurasia. That extension consisted of the occupation of Australia and New Guinea, joined at that time into a single continent. Many radiocarbon-dated sites attest to human presence in Australia / New Guinea between 40,000 and 30,000 years ago (plus the inevitable somewhat older claims of contested validity). Within a short time of that initial peopling, humans had expanded over the whole continent and adapted to its diverse habitats, from the tropical rain forests and high mountains of New Guinea to the dry interior and wet southeastern corner of Australia.</p><p>这种大跃进同我们的祖先在欧亚大陆定居以来第一次被证实的人类地理的重大扩张，在时间上不谋而合。这次扩张包括占据澳大利亚和新几内亚，这两个地方在当时还连在一起成为一个大陆。许多用碳-14测定的遗址证明，从4万年到3万年前<sup>(还有那照例必有的对正确性提出质疑而认为时间多少要早一些的主张)</sup>，人类已在澳大利亚／新几内亚出现了。从开始有人居住的很短时间内，人类已扩散到整个大陆，并对那里形形色色的栖息地，从新几内亚的热带雨林和高山地区，到澳大利亚干燥的内陆和潮湿的东南角，都已能适应。</p></div>	
+<div class='layout'><p>During the Ice Ages, so much of the oceans' water was locked up in glaciers that worldwide sea levels dropped hundreds of feet below their present stand. As a result, what are now the shallow seas between Asia and the Indonesian islands of Sumatra, Borneo, Java, and Bali became dry land. (So did other shallow straits, such as the Bering Strait and the English Channel.) The edge of the Southeast Asian mainland then lay 700 miles east of its present location. Nevertheless, central Indonesian islands between Bali and Australia remained surrounded and separated by deepwater channels. To reach Australia / New Guinea from the Asian mainland at that time still required crossing a minimum of eight channels, the broadest of which was at least 50 miles wide. Most of those channels divided islands visible from each other, but Australia itself was always invisible from even the nearest Indonesian islands, Timor and Tanimbar. Thus, the occupation of Australia / New Guinea is momentous in that it demanded watercraft and provides by far the earliest evidence of their use in history. Not until about 30,000 years later (13,000 years ago) is there strong evidence of watercraft anywhere else in the world, from the Mediterranean.</p><p>在冰川时代，海洋中大量的水被锁闭在冰川中，因此全世界海平面要比现在低几百英尺。结果，现在亚洲和印度尼西亚的苏门答腊、婆罗洲、爪哇和巴厘这些岛屿之间的浅海当时成了干燥的陆地。<sup>(其他一些水浅的海峡如白令海峡和英吉利海峡情况也是如此。)</sup>东南亚大陆边缘比现在的位置要往东700英里。然而，在巴厘岛和澳大利亚之间的印度尼西亚中部诸岛仍然为一些深水海峡所包围和分隔。那时候，要从亚洲大陆到达澳大利亚／新几内亚，仍然需要渡过至少8个海峡，其中最宽的一个海峡至少有50英里宽。被大多数这样的海峡分隔开的岛屿彼此隔海相望，但从澳大利亚看不见印度尼西亚，即使最近的岛屿——帝汶岛和塔宁巴岛。因此，对澳大利亚／新几内亚的占有是一个重大事件，因为那需要有水运工具，因此这一点显然提供了关于历史上使用水运工具的最早证据。直到大约3万年后<sup>(13000年前)</sup>才有了除地中海外世界上任何其他地方出现了水运工具的有力证据。</p></div>	
+<div class='layout'><p>Initially, archaeologists considered the possibility that the colonization of Australia / New Guinea was achieved accidentally by just a few people swept to sea while fishing on a raft near an Indonesian island. In an extreme scenario the first settlers are pictured as having consisted of a single pregnant young woman carrying a male fetus. But believers in the fluke-colonization theory have been surprised by recent discoveries that still other islands, lying to the east of New Guinea, were colonized soon after New Guinea itself, by around 35,000 years ago. Those islands were New Britain and New Ireland, in the Bismarck Archipelago, and Buka, in the Solomon Archipelago. Buka lies out of sight of the closest island to the west and could have been reached only by crossing a water gap of about 100 miles. Thus, early Australians and New Guineans were probably capable of intentionally traveling over water to visible islands, and were using watercraft sufficiently often that the colonization of even invisible distant islands was repeatedly achieved unintentionally.</p><p>起先，一些考古学家认为，向澳大利亚／新几内亚移居可能是意外的结果：有几个人在印度尼西亚的一个岛屿旁的木筏上捕鱼时被卷入海中。有一个极端的设想把首批移民描绘为其中有一个怀有男性胎儿的年轻孕妇。但是，相信这种偶然移民论的人却由于最近的一些发现而大吃一惊，这些发现表明，到了大约35000年前，在新几内亚东面还有一些岛屿紧接在新几内亚本土之后也有人移居了。这些岛屿是俾斯麦群岛中的新不列颠岛和新爱尔兰岛，以及所罗门群岛中的布喀岛。布喀岛即使从西边最近的岛屿也无法看到，因此到达这个岛屿的唯一办法就是渡过大约100英里宽的水口。因此，早期的澳大利亚人和新几内亚人可能是有意识地渡水前往一些看得见的岛屿，同时由于经常使用水运工具，他们不断地在无意中抵达了甚至看不见的、遥远的岛屿。</p></div>	
+<div class='layout'><p>The settlement of Australia / New Guinea was perhaps associated with still another big first, besides humans' first use of watercraft and first range extension since reaching Eurasia: the first mass extermination of large animal species by humans. Today, we regard Africa as?the?continent of big mammals. Modern Eurasia also has many species of big mammals (though not in the manifest abundance of Africa's Serengeti Plains), such as Asia's rhinos and elephants and tigers, and Europe's moose and bears and (until classical times) lions. Australia / New Guinea today has no equally large mammals, in fact no mammal larger than 100-pound kangaroos. But Australia / New Guinea formerly had its own suite of diverse big mammals, including giant kangaroos, rhinolike marsupials called diprotodonts and reaching the size of a cow, and a marsupial “leopard.” It also formerly had a 400-pound ostrichlike flightless bird, plus some impressively big reptiles, including a one-ton lizard, a giant python, and land-dwelling crocodiles.</p><p>除了人类自到达欧亚大陆以来第一次使用水运工具和扩大活动范围外，对澳大利亚／新几内亚移民还与另一个重大的第一次联系在一起：人类第一次大规模灭绝大型动物物种。今天，我们把非洲看作是大型哺乳动物的大陆。现代欧亚大陆也有许多种大型哺乳动物<sup>(虽然数量显然没有非洲塞伦格蒂大平原上的那样多)</sup>，如亚洲犀、大象和老虎，以及欧洲的驼鹿、熊和<sup>(在古典时期前的)</sup>狮子。今天的澳大利亚／新几内亚没有同样的大型哺乳动物，事实上连大于100磅重的袋鼠的哺乳动物也没有了。但澳大利亚／新几内亚以前也曾有过它自己的一批多种多样的大型哺乳动物，包括大袋鼠，和其状如犀、其大如牛、叫做古草食有袋动物的有袋类动物，以及有袋类的“豹”。它以前还有一种体重400磅状如鸵鸟的不会飞的鸟，以及一些大得吓人的爬虫，包括一种一吨重的蜥蜴、一种巨蟒和陆栖鳄鱼。</p></div>	
+<div class='layout'><p>All of those Australian / New Guinean giants (the so-called megafauna) disappeared after the arrival of humans. While there has been controversy about the exact timing of their demise, several Australian archaeological sites, with dates extending over tens of thousands of years, and with prodigiously abundant deposits of animal bones, have been carefully excavated and found to contain not a trace of the now extinct giants over the last 35,000 years. Hence the megafauna probably became extinct soon after humans reached Australia.</p><p>澳大利亚／新几内亚的所有这些巨型动物在人类到达后全都消失了。虽然对于这些动物灭亡的确切时间一直存在争议，但有几个澳大利亚考古遗址，其年代绵延几万年之久，动物遗骨沉积惊人地丰富，在经过仔细地发掘之后，竟没有发现有关过去35000年中现已灭绝的巨型动物的一丝痕迹。因此，这种巨型动物大概在人类到达澳大利亚不久后就灭绝了。</p></div>	
+<div class='layout'><p>The near-simultaneous disappearance of so many large species raises an obvious question: what caused it? An obvious possible answer is that they were killed off or else eliminated indirectly by the first arriving humans. Recall that Australian / New Guinean animals had evolved for millions of years in the absence of human hunters. We know that Galápagos and Antarctic birds and mammals, which similarly evolved in the absence of humans and did not see humans until modern times, are still incurably tame today. They would have been exterminated if conservationists had not imposed protective measures quickly. On other recently discovered islands where protective measures did not go into effect quickly, exterminations did indeed result: one such victim, the dodo of Mauritius, has become virtually a symbol for extinction. We also know now that, on every one of the well-studied oceanic islands colonized in the prehistoric era, human colonization led to an extinction spasm whose victims included the moas of New Zealand, the giant lemurs of Madagascar, and the big flightless geese of Hawaii. Just as modern humans walked up to unafraid dodos and island seals and killed them, prehistoric humans presumably walked up to unafraid moas and giant lemurs and killed them too.</p><p>如此众多的大型动物几乎同时消失这一点引出了一个显而易见的问题：是什么造成了这种情况？一个显而易见的可能答案是：它们被首批到达的人类杀光了或间接消灭了。请记住：澳大利亚／新几内亚的动物曾经在没有人类猎杀的情况下演化了几百万年。我们知道，加拉帕戈斯群岛和南极的鸟类和哺乳动物同样也是在没有人类的情况下演化的，并且直到现代才看见了人，所以今天仍然温顺得不可救药。如果不是环境保护主义者采取了保护性措施，它们可能已经很快灭绝了。在其他一些最近才发现的岛上，由于保护措施没有很快实施，消灭动物的事的确发生了：一个这样的受害者就是毛里求斯岛的渡渡鸟，渡渡鸟实际上已成了一种绝种的象征。我们现在还知道，在史前时代已有人移居的、如今得到详细研究的每一个海洋岛屿上，人类的移居导致了一阵灭绝动物的行动，这个行动的受害者包括新西兰的恐鸟、马达加斯加岛的大狐猴和夏威夷的不能飞翔的巨型野鹅。正像现代人向不知害怕的渡渡鸟和海岛海豹走过去并把它们杀死一样，史前人大概也是向不知害怕的恐鸟和大狐猴走过去并把它们杀死的。</p></div>	
+<div class='layout'><p>Hence one hypothesis for the demise of Australia's and New Guinea's giants is that they met the same fate around 40,000 years ago. In contrast, most big mammals of Africa and Eurasia survived into modern times, because they had coevolved with protohumans for hundreds of thousands or millions of years. <strong>They thereby enjoyed ample time to evolve a fear of humans, as our ancestors' initially poor hunting skills slowly improved.</strong> The dodo, moas, and perhaps the giants of Australia / New Guinea had the misfortune suddenly to be confronted, without any evolutionary preparation, by invading modern humans possessing fully developed hunting skills.</p><p>因此，关于澳大利亚和新几内亚的巨型动物消失的一个假设是，它们在大约4万年前遭到了同样的命运。相形之下，倒是非洲和欧亚大陆的大多数大型哺乳动物活到了现代，因为它们已和原人一起共同进化了几万年或几百万年。<strong>因此，由于我们祖先开始时并不高明的狩猎技巧提高得很慢，它们就有了充裕的时间来逐步形成对人类的恐惧。</strong>对渡渡鸟、恐鸟，也许还有澳大利亚／新几内亚的巨型动物来说，它们的不幸是在毫无演化准备的情况下，突然遭遇了入侵的、狩猎技巧已经充分发展起来的现代人。</p></div>	
+<div class='layout'><p>However, the overkill hypothesis, as it is termed, has not gone unchallenged for Australia / New Guinea. Critics emphasize that, as yet, no one has documented the bones of an extinct Australian / New Guinean giant with compelling evidence of its having been killed by humans, or even of its having lived in association with humans. Defenders of the overkill hypothesis reply: you would hardly expect to find kill sites if the extermination was completed very quickly and long ago, such as within a few millennia some 40,000 years ago. The critics respond with a countertheory: perhaps the giants succumbed instead to a change in climate, such as a severe drought on the already chronically dry Australian continent. The debate goes on.</p><p>然而，就澳大利亚／新几内亚的情况而言，对这种所谓过度猎杀的假设也并非没有人提出异议。一些持批评意见的人强调指出，迄今还不曾有人用文献证明这是澳大利亚／新几内亚某种绝种的巨型动物的遗骨，也没有令人信服的证据表明它是被人杀死的，或甚至曾经同人类生活在一起。为过度猎杀的假设进行辩护的人则回答说：如果这种灭绝行动完成得十分迅速，而且是在很久以前，例如大约4万年前的几千年内就完成了，那么你几乎不可能找到猎杀的遗址。那些持批评意见的人则回敬以一种相反的理论：这些巨型动物是死于气候的变化，例如在本已长期干旱的澳洲大陆发生了严重的旱灾。这方面的争论仍在继续。</p></div>	
+<div class='layout'><p>Personally, I can't fathom why Australia's giants should have survived innumerable droughts in their tens of millions of years of Australian history, and then have chosen to drop dead almost simultaneously (at least on a time scale of millions of years) precisely and just coincidentally when the first humans arrived. The giants became extinct not only in dry central Australia but also in drenching wet New Guinea and southeastern Australia. They became extinct in every habitat without exception, from deserts to cold rain forest and tropical rain forest. Hence it seems to me most likely that the giants were indeed exterminated by humans, both directly (by being killed for food) and indirectly (as the result of fires and habitat modification caused by humans). But regardless of whether the overkill hypothesis or the climate hypothesis proves correct, the disappearance of all of the big animals of Australia / New Guinea had, as we shall see, heavy consequences for subsequent human history. Those extinctions eliminated all the large wild animals that might otherwise have been candidates for domestication, and left native Australians and New Guineans with not a single native domestic animal.</p><p>就我个人来说，我无法理解的是，澳大利亚巨型动物在其澳大利亚的几千万年的历史中何以历经无数的干旱而不死绝，后来却决定几乎同时倒毙<sup>(至少在几百万年这个时间范围内)</sup>，而时间又正好和第一批人类到达的时间碰巧一致。这些巨型动物灭绝的地方不仅有澳大利亚中部的干旱地区，而且还有潮湿的新几内亚/澳大利亚东南部地区。它们灭绝于一个个栖息地，从沙漠地带到冷雨林和热带雨林，无一例外。因此，在我看来，极有可能的是，这些巨型动物确实是被人消灭的，直接地<sup>(被杀来当食物)</sup>和间接地<sup>(由于人为引起的火灾和栖息地的改变)</sup>。但是，过度猎杀的假设也好，气候变化的假设也好，不管哪一个假设证明是正确的，我们将会看到，澳大利亚／新几内亚所有大型动物的消失对其后的人类历史带来了严重的后果。这些动物绝种了，本来可以用来驯化的所有大型野生动物也就被消灭了，这就使澳大利亚土著和新几内亚人再也没有一种属于本地的家畜了。</p></div>	
+<div class='layout'><p>THUS, THE COLONIZATION?of Australia/New Guinea was not achieved until around the time of the Great Leap Forward. Another extension of human range that soon followed was the one into the coldest parts of Eurasia. While Neanderthals lived in glacial times and were adapted to the cold, they penetrated no farther north than northern Germany and Kiev. That's not surprising, since Neanderthals apparently lacked needles, sewn clothing, warm houses, and other technology essential to survival in the coldest climates. Anatomically modern peoples who did possess such technology had expanded into Siberia by around 20,000 years ago (there are the usual much older disputed claims). That expansion may have been responsible for the extinction of Eurasia's woolly mammoth and woolly rhinoceros.</p><p>因此，人类移居澳大利亚／新几内亚差不多到大跃进的时候才实现。随后接着发生的人类活动范围的又一次扩张，是进入欧亚大陆的最寒冷地区。虽然尼安德特人生活在冰川时代，对寒冷的气候已经适应，但他们再没有向北进一步深入，只到德意志北部和基辅为止。这并不奇怪，因为尼安德特人显然没有针，没有缝制的衣服、温暖的住房以及其他为在最寒冷气候中生存所必不可少的技术。从解剖学看，确实掌握了这种技术的现代民族，在大约2万年前进入西伯利亚<sup>(对此通常都有一些认为时间还要早得多的说法)</sup>。这一扩张可能就是欧亚大陆长毛象和长毛犀绝种的原因。</p></div>	
+<div class='layout'><p>With the settlement of Australia / New Guinea, humans now occupied three of the five habitable continents. (Throughout this book, I count Eurasia as a single continent, and I omit Antarctica because it was not reached by humans until the 19th century and has never had any self-supporting human population.) That left only two continents, North America and South America. They were surely the last ones settled, for the obvious reason that reaching the Americas from the Old World required either boats (for which there is no evidence even in Indonesia until 40,000 years ago and none in Europe until much later) in order to cross by sea, or else it required the occupation of Siberia (unoccupied until about 20,000 years ago) in order to cross the Bering land bridge.</p><p>随着人类在澳大利亚／新几内亚的定居，现在人类已占据了可以居住的5个大陆中的3个。<sup>(在本书中，我始终把欧亚大陆算作一个大陆，我没有把南极大陆计算在内，因为南极大陆直到19世纪才有人到达，而且从来没有任何自给自足的居民。)</sup>这样就只剩下两个大陆：北美洲和南美洲。它们无疑是最后两个有人定居的大陆，这原因很明显，因为从旧世界到达美洲要么用船<sup>(甚至在印度尼西亚直到4万年前才有证据表明已有了船，而欧洲要晚得多才有船)</sup>去渡海，要么得先占有西伯利亚<sup>(直到大约2万年前才有人居住)</sup>以便通过白令陆桥。</p></div>	
+<div class='layout'><p>However, it is uncertain when, between about 14,000 and 35,000 years ago, the Americas were first colonized. The oldest unquestioned human remains in the Americas are at sites in Alaska dated around 12,000?B.C., followed by a profusion of sites in the United States south of the Canadian border and in Mexico in the centuries just before 11,000?B.C.?The latter sites are called Clovis sites, named after the type site near the town of Clovis, New Mexico, where their characteristic large stone spearpoints were first recognized. Hundreds of Clovis sites are now known, blanketing all 48 of the lower U.S. states south into Mexico. Unquestioned evidence of human presence appears soon thereafter in Amazonia and in Patagonia. These facts suggest the interpretation that Clovis sites document the Americas' first colonization by people, who quickly multiplied, expanded, and filled the two continents.</p><p>然而，不能肯定的是，在大约14000年前到35000年前这段时间里，美洲究竟于何时第一次有人移居。美洲最古老的没有争议的人类遗存是公元前12000年左右的阿拉斯加遗址，随后是加拿大边界以南的美国和墨西哥的大量遗址，时间是公元前11000年以前的几百年。后一种遗址称为克罗维遗址，是按照新墨西哥州克罗维城附近的那种类型的遗址命名的。这些遗址上具有代表性的巨大的石制矛头第一次得到确认。现在已知有数以百计的克罗维遗址散布在北美南部的美国本土全部48个州，往南直到墨西哥。在那以后不久，关于存在人类的没有争议的证据出现在亚马孙河地区和巴塔哥尼亚高原。这些事实提供了这样的解释，即克罗维遗址用实际材料证明了美洲第一次有人移居，这些人迅速繁衍、扩张，布满了这两个洲。</p></div>	
+<div class='layout'><p>One might at first be surprised that Clovis descendants could reach Patagonia, lying 8,000 miles south of the U.S.-Canada border, in less than a thousand years. However, that translates into an average expansion of only 8 miles per year, a trivial feat for a hunter-gatherer likely to cover that distance even within a single day's normal foraging.</p><p>人们开始时会感到惊讶：克罗维的子孙们竟能在不到1000年的时间里到达美加边界以南8000英里处的巴塔哥尼亚高原。然而，说得简单一点，就是平均每年只向前推进8英里，这对于那些以狩猎和采集为生的人来说简直是小事一桩，因为他们平常在寻找食物时，在一天之内也可能走这么远的距离。</p></div>	
+<div class='layout'><p>One might also at first be surprised that the Americas evidently filled up with humans so quickly that people were motivated to keep spreading south toward Patagonia. That population growth also proves unsurprising when one stops to consider the actual numbers. If the Americas eventually came to hold hunter-gatherers at an average population density of somewhat under one person per square mile (a high value for modern hunter-gatherers), then the whole area of the Americas would eventually have held about 10 million hunter-gatherers. But even if the initial colonists had consisted of only 100 people and their numbers had increased at a rate of only 1.1 percent per year, the colonists' descendants would have reached that population ceiling of 10 million people within a thousand years. A population growth rate of 1.1 percent per year is again trivial: rates as high as 3.4 percent per year have been observed in modern times when people colonized virgin lands, such as when the HMS?Bounty?mutineers and their Tahitian wives colonized Pitcairn Island.</p><p>人们开始时同样会感到惊讶：美洲显然很快就布满了人，所以他们就有目的地不断往南朝巴塔哥尼亚高原推进。如果人们停下来考虑一下实际人数，这种人口增长也就不足为奇了。如果美洲最终容纳以狩猎采集为生者的人数，达到平均人口密度稍低于每平方英里一个人<sup>(对于现代的以狩猎采集为生的人来说，这是一个很高的值)</sup>，那么整个美洲地区最终就能容纳1000万以狩猎采集为生的人。但是，即使最初的移民只有100个人，而他们的人数以每年百分之一点一增加，那么，不出1000年，人口最高可达1000万人。每年百分之一点一的人口增长率又是小事一桩：在现代，当人们向处女地移民，就像英国皇家海军“邦蒂”号上的反叛者和他们的塔希提妻子向皮特凯恩岛移民那样，曾经观察到的人口增长率高达每年4.3%。</p></div>	
+<div class='layout'><p>The profusion of Clovis hunters' sites within the first few centuries after their arrival resembles the site profusion documented archaeologically for the more recent discovery of New Zealand by ancestral Maori. A profusion of early sites is also documented for the much older colonization of Europe by anatomically modern humans, and for the occupation of Australia / New Guinea. That is, everything about the Clovis phenomenon and its spread through the Americas corresponds to findings for other, unquestioned virgin-land colonizations in history.</p><p>克罗维猎人在到达后的开头几百年内留下的大量遗址，类似于得到考古证明的有关毛利人祖先在较晚近时期发现新西兰后所留下的大量遗址。解剖学上的现代人在更早得多的时候已经向欧洲移民以及在澳大利亚/新几内亚定居，有关这方面的大量遗址也已得到了证明。这就是说，关于克罗维现象及其在美洲扩展的每一件事，都是和对历史上其他一些没有争议的向处女地移民的发现是一致的。</p></div>	
+<div class='layout'><p>What might be the significance of Clovis sites' bursting forth in the centuries just before 11,000?B.C., rather than in those before 16,000 or 21,000?B.C. Recall that Siberia has always been cold, and that a continuous ice sheet stretched as an impassable barrier across the whole width of Canada during much of the Pleistocene Ice Ages. We have already seen that the technology required for coping with extreme cold did not emerge until after anatomically modern humans invaded Europe around 40,000 years ago, and that people did not colonize Siberia until 20,000 years later. Eventually, those early Siberians crossed to Alaska, either by sea across the Bering Strait (only 50 miles wide even today) or else on foot at glacial times when Bering Strait was dry land. The Bering land bridge, during its millennia of intermittent existence, would have been up to a thousand miles wide, covered by open tundra, and easily traversable by people adapted to cold conditions. The land bridge was flooded and became a strait again most recently when sea level rose after around 14,000?B.C.?Whether those early Siberians walked or paddled to Alaska, the earliest secure evidence of human presence in Alaska dates from around 12,000?B.C.</p><p>克罗维遗址突然出现在公元前11000年前的几百年中，而不是出现在公元前16000或21000年前的几百年中，这可能会有什么意义呢？请记住：西伯利亚终年严寒，在更新世冰期的很大一部分时间里，连绵不断的冰原在整个加拿大成了无法通行的障碍。我们已经看到，对付严寒所需要的技术，要到解剖学上的现代人在大约4万年前大批进入欧洲之后才出现，而人类向西伯利亚移民还要晚2万年。最后，这些早期的西伯利亚人到了对面的阿拉斯加，或是由海路渡过白令海峡<sup>(甚至在今天也只有50英里宽)</sup>，或是在白令海峡还是干燥陆地的冰川时代徒步走过去的。白令陆桥在其几千年的间歇存在期间可能宽达1000英里，覆盖着一望无际的苔原，适应了寒冷条件的人是容易越过的。最近一次，当大约公元前14000年后海平面上升时，陆桥被水淹没，又一次成了海峡。不管这些早期的西伯利亚人是徒步走到阿拉斯加的还是划船过去的，阿拉斯加有了人迹的最早的可靠证据可以追溯到公元前12000年左右。</p></div>	
+<div class='layout'><p>Soon thereafter, a north-south ice-free corridor opened in the Canadian ice sheet, permitting the first Alaskans to pass through and come out into the Great Plains around the site of the modern Canadian city of Edmonton. That removed the last serious barrier between Alaska and Patagonia for modern humans. The Edmonton pioneers would have found the Great Plains teeming with game. They would have thrived, increased in numbers, and gradually spread south to occupy the whole hemisphere.</p><p>在那以后不久，加拿大的冰原上出现了一条由北向南的没有冰雪的走廊，使首批阿拉斯加人得以从中通过，来到了现代加拿大城市埃德蒙顿周围的北美大平原。这就为现代人消除了阿拉斯加和巴塔哥尼亚高原之间最后的严重障碍。埃德蒙顿的这些开路先锋们可能发现大平原上到处都是猎物。他们就在这里繁衍生息，他们的人数增加了，于是逐步地向南扩散，最后占据了整个西半球。</p></div>	
+<div class='layout'><p>One other feature of the Clovis phenomenon fits our expectations for the first human presence south of the Canadian ice sheet. Like Australia / New Guinea, the Americas had originally been full of big mammals. About 15,000 years ago, the American West looked much as Africa's Serengeti Plains do today, with herds of elephants and horses pursued by lions and cheetahs, and joined by members of such exotic species as camels and giant ground sloths. Just as in Australia / New Guinea, in the Americas most of those large mammals became extinct. Whereas the extinctions took place probably before 30,000 years ago in Australia, they occurred around 17,000 to 12,000 years ago in the Americas. For those extinct American mammals whose bones are available in greatest abundance and have been dated especially accurately, one can pinpoint the extinctions as having occurred around 11,000?B.C.?Perhaps the two most accurately dated extinctions are those of the Shasta ground sloth and Harrington's mountain goat in the Grand Canyon area; both of those populations disappeared within a century or two of 11,100?B.C.?Whether coincidentally or not, that date is identical, within experimental error, to the date of Clovis hunters' arrival in the Grand Canyon area.</p><p>克罗维现象的另一个特征和我们关于加拿大冰原以南首次出现了人类这一推测不谋而合。和澳大利亚/新几内亚一样，美洲原来也是到处都有大型哺乳动物。大约在15000年前，美洲西部的情形很像今天非洲塞伦格蒂大平原，有成群的大象和被狮子及猎豹追逐的野马，还有许多诸如骆驼和巨型地懒之类的奇异动物。正和在澳大利亚/新几内亚一样，在美洲大多数这样的大型哺乳动物也灭绝了。这些动物的灭绝在澳大利亚大概发生于3万年前，而在美洲则发生在大约17000年到12000年前。这些已经灭绝的美洲哺乳动物留有大量的骨骼，其年代也已得到精确的测定，因此可以确认它们的灭绝发生在公元前11000年左右。也许，灭绝时间测定得最精确的两种动物是沙斯塔的地懒和大峡谷地区哈林顿的石山羊；这两种动物的种群在公元前11100年前后的一两百年内就消失了。不管是否是由于巧合，这个年代同克罗维的猎人到达大峡谷的年代是一致的，即使有误差，也是在实验的许可范围之内。</p></div>	
+<div class='layout'><p>The discovery of numerous skeletons of mammoths with Clovis spearpoints between their ribs suggests that this agreement of dates is not a coincidence. Hunters expanding southward through the Americas, encountering big animals that had never seen humans before, may have found those American animals easy to kill and may have exterminated them. A countertheory is that America's big mammals instead became extinct because of climate changes at the end of the last Ice Age, which (to confuse the interpretation for modern paleontologists) also happened around 11,000?B.C.</p><p>在许多毛象骨骼的肋骨之间都嵌着克罗维人的矛头，这一发现表明，上述年代的一致并非巧合。克罗维的猎人们在美洲向南推进，遇到了以前从未见过人的大型动物。他们可能发现这些美洲动物很容易杀死，于是就把它们消灭了。一种相反的理论说，美洲的大型动物之所以灭绝，是由于上一次冰期结束时发生的气候变化，而这一气候变化<sup>(对现代古人类学家来说，是解释混乱)</sup>也是发生在公元前11000年左右。</p></div>	
+<div class='layout'><p>Personally, I have the same problem with a climatic theory of megafaunal extinction in the Americas as with such a theory in Australia / New Guinea. The Americas' big animals had already survived the ends of 22 previous Ice Ages. Why did most of them pick the 23rd to expire in concert, in the presence of all those supposedly harmless humans? Why did they disappear in all habitats, not only in habitats that contracted but also in ones that greatly expanded at the end of the last Ice Age? Hence I suspect that Clovis hunters did it, but the debate remains unresolved. Whichever theory proves correct, most large wild mammal species that might otherwise have later been domesticated by Native Americans were thereby removed.</p><p>关于美洲大型动物灭绝的气候理论和关于澳大利亚/新几内亚大型动物灭绝的气候理论，就我个人而言，是同一个问题。美洲的这些大型动物已经熬过了前面的二十二次冰期。为什么它们中的大多数却要在面对所有这些可能无害的人类时选定第二十三次冰期一齐死去呢？为什么它们在所有栖息地都消失了，不仅在那些缩小了的栖息地消失了，而且也在上一次冰期结束时大大扩大了的栖息地消失了？因此，我推测这是克罗维猎人干的，但这一争论仍然没有解决。不管哪种理论证明是正确的，本来可以由美洲土著驯养的大多数种类的大型野生哺乳动物从此被消灭了。</p></div>	
+<div class='layout'><p>Also unresolved is the question whether Clovis hunters really were the first Americans. As always happens whenever anyone claims the first anything, claims of discoveries of pre-Clovis human sites in the Americas are constantly being advanced. Every year, a few of those new claims really do appear convincing and exciting when initially announced. Then the inevitable problems of interpretation arise. Were the reported tools at the site really tools made by humans, or just natural rock shapes? Are the reported radiocarbon dates really correct, and not invalidated by any of the numerous difficulties that can plague radiocarbon dating? If the dates are correct, are they really associated with human products, rather than just being a 15,000-year-old lump of charcoal lying next to a stone tool actually made 9,000 years ago?</p><p>同样没有解决的问题是：克罗维猎人是否真是最早的美洲人。事情总是这样：每当有人宣布发现了什么最早的东西时，就会不断地有人作出新的宣布，说是在美洲发现了克罗维人以前的人类遗址。每一年，这些新的宣布中总有几项在当初作出时的确显得令人信服而又激动人心。接着，关于如何去解释这些发现，这个不可避免的问题产生了。所报道的在遗址中发现的石器真的是人工打造的，或者不过是天然的特定形状的石块？所报道的用碳-14测定法测定的年代真的很正确，而不会由于可能困扰碳-14测定法的许多难题中的任何一个难题而变得毫无价值呢？如果这些年代是正确的，那么它们是不是真的和人类的制品有关，而不恰好是一块15000年的木炭落在了实际上是在9000年前打造的一个石器旁边？</p></div>	
+<div class='layout'><p>To illustrate these problems, consider the following typical example of an often quoted pre-Clovis claim. At a Brazilian rock shelter named Pedra Furada, archaeologists found cave paintings undoubtedly made by humans. They also discovered, among the piles of stones at the base of a cliff, some stones whose shapes suggested the possibility of their being crude tools. In addition, they came upon supposed hearths, whose burnt charcoal yielded radiocarbon dates of around 35,000 years ago. Articles on Pedra Furada were accepted for publication in the prestigious and highly selective international scientific journal?Nature.</p><p>为了说明这些问题，请考虑一下下面的一个常被引用的所谓比克罗维更早的发现的典型例子。在巴西的一个叫做佩德罗弗拉达的岩棚上，一些考古学家发现了一些无疑是人画出来的洞穴壁画。他们还发现，在一处悬崖的底下有一堆堆石头，其中有些石头的形状表明它们可能是一些粗糙的石器。此外，他们还在无意中发现了一些被认为是炉灶的东西，里面烧过的木炭用碳-14测定法测得的年代是大约35000年前。关于佩德罗弗拉达的论文被发表在权威的有高度选择性的国际科学杂志《自然》上。</p></div>	
+<div class='layout'><p>But none of those rocks at the base of the cliff is an obviously humanmade tool, as are Clovis points and Cro-Magnon tools. If hundreds of thousands of rocks fall from a high cliff over the course of tens of thousands of years, many of them will become chipped and broken when they hit the rocks below, and some will come to resemble crude tools chipped and broken by humans. In western Europe and elsewhere in Amazonia, archaeologists have radiocarbon-dated the actual pigments used in cave paintings, but that was not done at Pedra Furada. Forest fires occur frequently in the vicinity and produce charcoal that is regularly swept into caves by wind and streams. No evidence links the 35,000-year-old charcoal to the undoubted cave paintings at Pedra Furada. Although the original excavators remain convinced, a team of archaeologists who were not involved in the excavation but receptive to pre-Clovis claims recently visited the site and came away unconvinced.</p><p>但是，在那悬崖底下的那些石头中，没有一块石头像克罗维人的矛头和克罗马努人的石器那样一眼就可看出是人类制造的工具。如果几十万块石头在几万年的过程中从高高的悬崖上落下，其中有许多在撞击下面的石头时变成了屑片和碎裂开来，有些会碰巧像人工削凿成的粗糙的石器。在西欧和亚马孙河地区的其他地方，考古学家们用碳-14测定法测定了当时在洞穴壁画上所使用的颜料，但在佩德罗弗拉达没有这样做。在周围地区经常发生森林火灾，大火把木头烧成了木炭，而木炭又经常被风和溪水卷进洞穴。没有任何证据可以把35000年前的木炭同佩德罗弗拉达的无庸置疑的洞穴壁画联系起来。尽管原来的发掘者们仍然深信不疑，但一群虽未参加发掘但能迅速接受比克罗维人更早这种说法的考古学家不久前访问了这个遗址，又带着满腹狐疑走了。</p></div>	
+<div class='layout'><p>The North American site that currently enjoys the strongest credentials as a possible pre-Clovis site is Meadowcroft rock shelter, in Pennsylvania, yielding reported human-associated radiocarbon dates of about 16,000 years ago. At Meadowcroft no archaeologist denies that many human artifacts do occur in many carefully excavated layers. But the oldest radiocarbon dates don't make sense, because the plant and animal species associated with them are species living in Pennsylvania in recent times of mild climates, rather than species expected for the glacial times of 16,000 years ago. Hence one has to suspect that the charcoal samples dated from the oldest human occupation levels consist of post-Clovis charcoal infiltrated with older carbon. The strongest pre-Clovis candidate in South America is the Monte Verde site, in southern Chile, dated to at least 15,000 years ago. It too now seems convincing to many archaeologists, but caution is warranted in view of all the previous disillusionments.</p><p>当前北美有一处最可信的被认为可能是克罗维人之前的遗址，这就是美国宾夕法尼亚州的梅多克罗夫特岩棚。据报道，这里的人类遗址用碳-14测定法测定的年代为大约16000年前。在梅多克罗夫特，没有一个考古学家否认确实在许多仔细发掘的堆积层中发现了许多人类制品。但是，这些用碳-14测定法测定的最早的年代是讲不通的，因为与这些年代相联系的动植物是最近生活在气候温和的宾夕法尼亚的一些物种，而不是可能生活在16000年前冰川时代的那些物种。因此，人们不得不怀疑，被测定的为人类使用的年代最远的木炭样品可能是克罗维人之后的木炭，不过混进了一些时间较早的碳罢了。在南美，最有可能证明是克罗维人之前的遗址的是智利南部的蒙特维第遗址，年代至少在15000年以前。现在有许多考古学家也似乎认为可信，但鉴于以前的种种失望，还是小心为妙。</p></div>	
+<div class='layout'><p>If there really were pre-Clovis people in the Americas, why is it still so hard to prove that they existed? Archaeologists have excavated hundreds of American sites unequivocally dating to between 2000 and 11,000?B.C., including dozens of Clovis sites in the North American West, rock shelters in the Appalachians, and sites in coastal California. Below all the archaeological layers with undoubted human presence, at many of those same sites, deeper older layers have been excavated and still yield undoubted remains of animals—but with no further evidence of humans. The weaknesses in pre-Clovis evidence in the Americas contrast with the strength of the evidence in Europe, where hundreds of sites attest to the presence of modern humans long before Clovis hunters appeared in the Americas around 11,000?B.C.?Even more striking is the evidence from Australia / New Guinea, where there are barely one-tenth as many archaeologists as in the United States alone, but where those few archaeologists have nevertheless discovered over a hundred unequivocal pre-Clovis sites scattered over the whole continent.</p><p>如果美洲的确曾经存在过比克罗维人更早的人，为什么仍然这样地难以证明他们的存在呢？考古学家们在美洲已经发掘了数以百计的、年代明显在公元前2000年至11000年之间的遗址，其中包括北美西部的几十个克罗维人的遗址，阿巴拉契亚山脉中的一些岩棚，以及加利福尼亚州沿海的一些遗址。在许多这样的遗址中，在所有那些明确显示存在过人类的考古层下面，又对更深的、时间更久远的堆积层进行了发掘，结果仍然只发现动物的遗骸——但找不到关于存在过人类的进一步证据。在美洲找到的比克罗维人更早的证据的弱点，同在欧洲找到的证据的优点形成了鲜明的对比，因为欧洲的数以百计的遗址证明了远在克罗维猎人于公元前11000年出现在美洲之前，现代人就已在欧洲存在了。甚至更加引人注目的是来自澳大利亚/新几内亚的证据，那里的考古学家人数几乎不到美国的十分之一，但就是很少的这几个考古学家却发现了散布在整个大陆上的一百多个明确属于克罗维人之前的遗址。</p></div>	
+<div class='layout'><p>Early humans certainly didn't fly by helicopter from Alaska to Meadowcroft and Monte Verde, skipping all the landscape in between. Advocates of pre-Clovis settlement suggest that, for thousands or even tens of thousands of years, pre-Clovis humans remained at low population densities or poorly visible archaeologically, for unknown reasons unprecedented elsewhere in the world. I find that suggestion infinitely more implausible than the suggestion that Monte Verde and Meadowcroft will eventually be reinterpreted, as have other claimed pre-Clovis sites. My feeling is that, if there really had been pre-Clovis settlement in the Americas, it would have become obvious at many locations by now, and we would not still be arguing. However, archaeologists remain divided on these questions.</p><p>早期人类当然不会乘直升机从阿拉斯加飞往梅多克罗夫特和蒙特维第，而置沿途整个风景于不顾。主张在克罗维人之前就已有人类定居的人提出，由于世界上其他地方前所未闻的原因，克罗维人以前的人类在几千年甚至几万年中人口密度一直很低，或在考古上始终行踪难觅。我发现，这种意见比另一种意见更其严重地不合情理，这后一种意见是：对蒙特维第和梅多克罗夫特的遗址最终将会予以重新解释，就像已经对其他一些所谓的克罗维人之前的遗址重新予以解释那样。我觉得，如果美洲的确在克罗维人之前就有人定居了，那么到现在可能已在许多地方找到明显的证据了，而我们也不必继续争论下去了。然而，对这些问题考古学家们的意见仍然存在分歧。</p></div>	
+<div class='layout'><p>The consequences for our understanding of later American prehistory remain the same, whichever interpretation proves correct. Either: the Americas were first settled around 11,000?B.C.?and quickly filled up with people. Or else: the first settlement occurred somewhat earlier (most advocates of pre-Clovis settlement would suggest by 15,000 or 20,000 years ago, possibly 30,000 years ago, and few would seriously claim earlier); but those pre-Clovis settlers remained few in numbers, or inconspicuous, or had little impact, until around 11,000?B.C.?In either case, of the five habitable continents, North America and South America are the ones with the shortest human prehistories.</p><p>不管哪种解释证明是正确的，都不会影响我们对美洲后期史前史的了解。要么是：美洲在公元前11000年左右首次有人类定居，并很快地布满各地；要么是：人类首次定居发生的时间要稍早一些<sup>(大多数主张在克罗维人之前就已有人类定居的人提出，定居的时间不迟于15000年或20000年前，可能是30000年前，几乎没有人认真地认为时间会更早)</sup>；但直到公元前11000年左右，这些比克罗维人更早的移民人数仍然很少，或者不引人注目，或者几乎没有发生过任何影响。不管是哪种情况，在可以住人的5个大陆中，北美洲和南美洲是人类史前史最短的两个大陆。</p></div>	
+<div class='layout'><p>WITH THE OCCUPATION?of the Americas, most habitable areas of the continents and continental islands, plus oceanic islands from Indonesia to east of New Guinea, supported humans. The settlement of the world's remaining islands was not completed until modern times: Mediterranean islands such as Crete, Cyprus, Corsica, and Sardinia between about 8500 and 4000?B.C.; Caribbean islands beginning around 4000?B.C.; Polynesian and Micronesian islands between 1200?B.C.?and?A.D.?1000; Madagascar sometime between?A.D.?300 and 800; and Iceland in the ninth century?A.D.?Native Americans, possibly ancestral to the modern Inuit, spread throughout the High Arctic around 2000?B.C.?That left, as the sole uninhabited areas awaiting European explorers over the last 700 years, only the most remote islands of the Atlantic and Indian Oceans (such as the Azores and Seychelles), plus Antarctica.</p><p>随着人类在美洲的定居，各个大陆和陆边岛屿以及从印度尼西亚到新几内亚东面的洋中岛，凡是可居住的大多数地区都有人类在生活。在世界上其余岛屿的定居直到现代才完成：地中海诸岛如克里特岛、塞浦路斯岛、科西嘉岛和撒丁岛约在公元前8500年到4000年之间；加勒比海诸岛从公元前4000年左右开始；波利尼西亚群岛和密克罗尼西亚群岛在公元前1200年到公元1000年之间；马达加斯加岛在公元300年到800年之间；冰岛在公元9世纪。美洲印第安人可能是现代伊努伊特人的祖先，他们大约在公元前2000年遍布北极附近地区。这样，在过去的700年中，唯一的无人居住、等待欧洲探险者光顾的地区就只剩下大西洋和印度洋中那些最偏远的岛屿<sup>(如亚速尔群岛和塞舌尔群岛)</sup>和南极大陆了。</p></div>	
+<div class='layout'><p>What significance, if any, do the continents' differing dates of settlement have for subsequent history? Suppose that a time machine could have transported an archaeologist back in time, for a world tour at around 11,000?B.C.?Given the state of the world then, could the archaeologist have predicted the sequence in which human societies on the various continents would develop guns, germs, and steel, and thus predicted the state of the world today?</p><p>各个大陆人类定居的年代有先后之分，这对其后的历史究竟有何影响？假使有一架时间机器把一个考古学家送回过去，让他在公元前11000年左右来一次环游世界。考虑到当时世界的情况，这个考古学家是否能够预测到各个大陆上人类社会会接二连三地发展出枪炮、病菌和钢铁，并从而预测到今天世界的情况呢？</p></div>	
+<div class='layout'><p>Our archaeologist might have considered the possible advantages of a head start. If that counted for anything, then Africa enjoyed an enormous advantage: at least 5 million more years of separate protohuman existence than on any other continent. In addition, if it is true that modern humans arose in Africa around 100,000 years ago and spread to other continents, that would have wiped out any advantages accumulated elsewhere in the meantime and given Africans a new head start. Furthermore, human genetic diversity is highest in Africa; perhaps more-diverse humans would collectively produce more-diverse inventions.</p><p>我们的这位考古学家也许考虑过可能的领先优势。如果这种领先优势能够说明什么问题的话，那么非洲就是处于巨大的优势了：非洲大陆出现独立的原人比任何其他大陆至少要早500万年。此外，如果现代人类的确是在大约10万年前出现在非洲，然后向其他大陆扩散，那么其他地方在这期间积累起来的优势都会被一扫而光，从而使非洲人取得新的领先优势。而且，人类遗传的多样性以非洲为最高；也许更多样的人类集体会带来更多样的发明创造。</p></div>	
+<div class='layout'><p>But our archaeologist might then reflect: what, really, does a “head start” mean for the purposes of this book? We cannot take the metaphor of a footrace literally. If by head start you mean the time required to populate a continent after the arrival of the first few pioneering colonists, that time is relatively brief: for example, less than 1,000 years to fill up even the whole New World. If by head start you instead mean the time required to adapt to local conditions, I grant that some extreme environments did take time: for instance, 9,000 years to occupy the High Arctic after the occupation of the rest of North America. But people would have explored and adapted to most other areas quickly, once modern human inventiveness had developed. For example, after the ancestors of the Maori reached New Zealand, it apparently took them barely a century to discover all worthwhile stone sources; only a few more centuries to kill every last moa in some of the world's most rugged terrain; and only a few centuries to differentiate into a range of diverse societies, from that of coastal hunter-gatherers to that of farmers practicing new types of food storage.</p><p>不过，我们的这位考古学家那时可能会想：就本书的论题来说，究竟什么是“领先优势”？我们切不可拘泥于这个与赛跑有关的比喻的字面意义。如果说，领先优势的意思就是在最初几个开路先锋的移民到达后人类大批居住于一个大陆所需要的时间，那么这个时间是比较短的：例如，在不到1000年的时间里就布满了甚至整个新大陆。如果说，你认为领先优势的意思就是适应当地条件所需要的时间，那么我承认，适应极端的环境的确需要时间；例如，在人类于北美的其余地方定居后还要花9000年时间才在北极附近地区定居下来。但是，一旦现代人的创造力得到发展，人们就能探索并很快适应其他大部分地区。例如，毛利人的祖先在到达新西兰后，他们显然花了几乎不到100年时间就发现了各种有价值的石材资源；又花了仅仅几百年时间就在世界上一些最高低不平的地区把恐鸟全部杀死；又花了仅仅几百年时间分化成一系列形形色色的社会，从沿海狩猎采集社会到进行新型粮食贮藏的农民社会。</p></div>	
+<div class='layout'><p>Our archaeologist might therefore look at the Americas and conclude that Africans, despite their apparently enormous head start, would have been overtaken by the earliest Americans within at most a millennium. Thereafter, the Americas' greater area (50 percent greater than Africa's) and much greater environmental diversity would have given the advantage to Native Americans over Africans.</p><p>因此，我们的考古学家也许会在察看了美国后作出结论说，尽管非洲人拥有巨大的领先优势，但他们可能会在最多1000年内被最早的美洲人迎头赶上。从那以后，美洲的较大面积<sup>(比非洲的面积大5%)</sup>和大得多的环境多样性可能会使美洲土著获得对非洲人的优势。</p></div>	
+<div class='layout'><p>The archaeologist might then turn to Eurasia and reason as follows. Eurasia is the world's largest continent. It has been occupied for longer than any other continent except Africa. Africa's long occupation before the colonization of Eurasia a million years ago might have counted for nothing anyway, because protohumans were at such a primitive stage then. Our archaeologist might look at the Upper Paleolithic flowering of southwestern Europe between 20,000 and 12,000 years ago, with all those famous artworks and complex tools, and wonder whether Eurasia was already getting a head start then, at least locally.</p><p>这位考古学家接着可能会转向欧亚大陆并作如下的推论。欧亚大陆是世界上最大的大陆。除非洲外，它比任何其他大陆人类定居的时间都长。人类在100万年前才在欧亚大陆定居，而非洲在这之前很久就有人定居了。但这可能不说明任何问题，因为原人当时还处在一种相当原始的阶段。我们的考古学家可能会看一眼旧石器晚期西南欧的一片繁荣景象，那里有所有那些著名的艺术品和复杂的工具，然后他也许想要知道，当时的欧亚大陆是否已至少局部地取得了领先的优势。</p></div>	
+<div class='layout'><p>Finally, the archaeologist would turn to Australia / New Guinea, noting first its small area (it's the smallest continent), the large fraction of it covered by desert capable of supporting few humans, the continent's isolation, and its later occupation than that of Africa and Eurasia. All that might lead the archaeologist to predict slow development in Australia / New Guinea.</p><p>最后，这位考古学家可能会再转向澳大利亚/新几内亚，首先注意到它的面积很小<sup>(它是最小的一个大陆)</sup>，它的很大一部分是只能养活很少人的沙漠，这个大陆是与世隔绝的，人类在那里定居比在非洲和欧亚大陆都要晚。所有这一切可能会使这位考古学家预测到澳大利亚/新几内亚的缓慢发展。</p></div>	
+<div class='layout'><p>But remember that Australians and New Guineans had by far the earliest watercraft in the world. They were creating cave paintings apparently at least as early as the Cro-Magnons in Europe. Jonathan Kingdon and Tim Flannery have noted that the colonization of Australia / New Guinea from the islands of the Asian continental shelf required humans to learn to deal with the new environments they encountered on the islands of central Indonesia—a maze of coastlines offering the richest marine resources, coral reefs, and mangroves in the world. As the colonists crossed the straits separating each Indonesian island from the next one to the east, they adapted anew, filled up that next island, and went on to colonize the next island again. It was a hitherto unprecedented golden age of successive human population explosions. Perhaps those cycles of colonization, adaptation, and population explosion were what selected for the Great Leap Forward, which then diffused back westward to Eurasia and Africa. If this scenario is correct, then Australia / New Guinea gained a massive head start that might have continued to propel human development there long after the Great Leap Forward.</p><p>但是请不要忘记：澳大利亚人和新几内亚人是世界上最早发展水运工具的人。他们创作洞穴壁画显然至少和欧洲的克罗马努人一样早。乔纳森·金登和蒂姆·弗兰纳里指出，人类从亚洲大陆架岛屿到澳大利亚/新几内亚来定居，需要学会应付他们在印度尼西亚中部岛屿上碰到的那种新环境——具有世界上最丰富的海洋资源、珊瑚礁和红树林的犬牙交错的海岸线。当这些移民渡过每个印度尼西亚岛屿和它东面的另一个岛屿之间的海峡时，他们又一次适应并布满了这个岛，接着再向下一个岛屿移民。这是一个迄今为止人口连续爆炸的、史无前例的黄金时代。也许，这种周而复始的移民、适应性变化和人口爆炸，是专为大跃进做准备的。大跃进在这里发生后，再向西传播回欧亚大陆和非洲。如果这个设想是正确的，那么澳大利亚/新几内亚就是取得了一种巨大的领先优势，这种优势本来是可以在大跃进之后很久继续推动那里的人类发展的。</p></div>	
+<div class='layout'><p>Thus, an observer transported back in time to 11,000?B.C.?could not have predicted on which continent human societies would develop most quickly, but could have made a strong case for any of the continents. With hindsight, of course, we know that Eurasia was the one. But it turns out that the actual reasons behind the more rapid development of Eurasian societies were not at all the straightforward ones that our imaginary archaeologist of 11,000?B.C.?guessed. The remainder of this book consists of a quest to discover those real reasons.</p><p>因此，一个被送回到公元前11000年的观察者可能不会预测到哪个大陆上的人类社会会发展最快，但他可以提出充分的理由说明任何一个大陆都有这样的机会。当然，从事后来看，欧亚大陆就是这样的一个大陆。但结果表明，欧亚大陆社会发展较快的真实原因根本不是我们所虚构的公元前11000年时的考古学家所猜测的那种直截了当的原因。本书以下篇幅所要研究的就是去发现那些真正的原因。</p></div>	
+<div class='layout'><p> </p><p>注释：</p></div>	
+<div class='layout'><p> </p><p><a name="pl1" id="pl1"></a><a href="#p1" title=""><sup>1</sup></a>. 对于过去15000年左右的一些年代，本书自始至终所引用的都是所谓已经碳－14测定的年代，而不是普通的未经碳－14测定的年代。这两种年代的差异将在第五章中予以说明。测定过的年代被认为更符合历书上的年代。习惯于未经测定的年代的读者们如果发现我引用了明显错误的年代，即我所引用的年代早于他们所熟悉的年代，那么他们就必须记住这个差异。例如，对于北美克罗维考古地层通常引用的年代是公元前9000年左右（11000年前），而我所引用的年代则是公元前11000年左右（13000年前），因为通常引用的这个年代是未经核定的。</p></div>	
+	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>
