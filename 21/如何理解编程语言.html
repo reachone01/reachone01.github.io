@@ -1,0 +1,574 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>如何理解编程语言</title>
+
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:40em;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h3{
+	font-size:1.1em;
+	font-weight:bold;
+	text-indent:0em;
+	color:#990000;
+}
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:5px;
+	margin-left:2em;
+	background-color:RGB(240,240,240);
+    color:blue;
+	margin-left:2em;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+pre{
+    margin-left:2em;
+    width:115%;
+    overflow-x:auto;
+	}
+a:visited, a:link{
+    color:blue;
+}
+a:visited{
+    color:#CC0000;
+}a:hover{
+    color:green;
+	}
+	blockquote
+	{
+	background-color:#eee;
+	color:blue;
+	
+	}
+	blockquote p{
+	height:80%;
+	padding:0;
+	margin:0;
+	}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+    <p>We'll start with the assumption that you don't have a choice – you have to learn a programming language chosen by someone else. What do you nevertheless need to understand about the landscape of all programming languages, and how your language fits into it?</p>
+    <p>我们首先假设你没有选择的余地——你必须学习别人选择的编程语言。然而，你必须了解<strong>所有编程语言的整体格局</strong>，以及您的语言如何融入其中？</p>
+    <p>You may object: isn't understanding your language just learning to understand, and write, programs in it? Well: no, not only that. It's also useful to understand something about the decisions that were taken in designing it: how, and why, it differs from other languages. If someone else chose this language for you to learn, why did they choose this one? Why will learning this language, in particular, be valuable to you?</p>
+    <p>你可能会反对：理解你的语言不就是学习理解和编写其中的程序吗？嗯：不，不仅如此。了解一些语言的设计决策也很有用：它与其他语言有什么不同，以及为什么不同。如果其他人选择了这种语言让你学习，他们为什么选择这种语言？为什么学习这种语言尤其对你有价值？</p>
+    <p>Questions you might ask (ask your instructor, ask your favourite search engine) include:</p>
+    <p>你可能会问的问题包括：</p>
+    <p>① What kind of task was this language developed for? When, and by whom?</p>
+    <p>开发这种语言是为了什么样的任务？何时，由谁？</p>
+    <p>② Who uses it now, and for what?</p>
+    <p>现在谁使用它，为什么？</p>
+    <p>③ What kind of community is there of people who use this language?</p>
+    <p>使用这种语言的人是什么样的社区？</p>
+    <p>④ Where do they hang out online?</p>
+    <p>他们在哪里上网？</p>
+    <p>⑤ Is your language compiled or interpreted?</p>
+    <p>你的语言是编译的还是解释的？</p>
+    <p>⑥ What kind of type discipline does it impose?</p>
+    <p>它规定了什么样的类型系统？</p>
+    <p>⑦ What high-level structure do programs in your language have?</p>
+    <p>用你的语言编写的程序有什么层次结构？</p>
+    <p>What conventions do people obey? You'd be surprised how important things like how words are capitalised can be, in terms of helping experts in the language quickly understand your program, and in terms of making you look like someone who knows the language! There are also conventions about many other things, from how long parts of the program tend to get before an expert would decide to split them up, to which libraries are used.</p>
+    <p>人们遵守什么约定或惯例？你会惊讶于这些约定的重要性，比如单词的大写方式有多么重要，它能帮助语言专家快速理解你的程序，还可以让你看起来像一个懂这门语言的人！还有许多其他事情也有约定，从程序的各个部分有多长专家才会决定对它们进行切分，到使用哪些库。</p>
+    <p>Let's discuss some of these questions. We'll start from the more concrete questions, and come to the more sociological ones later.</p>
+    <p>让我们讨论其中一些问题。我们将从更具体的问题开始，稍后再讨论更社会学的问题。</p>
+    <blockquote class="pgc-blockquote-abstract">
+        <p>目录：</p>
+        <p>1 Compilation or Interpretation 编译或解释</p>
+        <p>2 Types 类型</p>
+        <p>3 Structure 结构</p>
+        <p>4 History, Community and Motivation 历史、社区和动机</p>
+        <p>5 Paradigms 范式</p>
+    </blockquote>
+    <h3>1 Compilation or Interpretation 编译或解释</h3>
+    <p>A question which can seem silly to people who already know the answer – and to which, therefore, theymay forget to tell you the answer – is: once I have writtenmy program, how do I get it to run? There are two main answers:</p>
+    <p>对于已经知道答案的人来说，一个看似愚蠢的问题——因此，他们可能会忘记告诉你答案——是：一旦我写了我的程序，如何让它运行？主要有两种答案：</p>
+    <p>① You just run it.</p>
+    <p>直接运行。</p>
+    <p>② You compile it, then run it.</p>
+    <p>先编译，再运行。</p>
+    <p>This is a simplification, although it's a useful one because the presence or absence of a compilation activity tends to make a big difference to how it feels to program in a language. Let us give the simplified explanation first, before addressing the ways in which it's an over-simplification.</p>
+    <p>这是一种简化，尽管它是一种有用的简化，因为编译活动的存在与否往往会对语言编程的感觉产生很大的影响。让我们先给出简化的解释，然后再讨论过度简化的方式。</p>
+    <p>&quot;You just run it&quot; applies to languages, for example Python, JavaScript (NB nothing to do with Java, despite the similar name!), PHP and Perl, which are interpreted. Thatmeans that there is some other program, called an interpreter, which reads your program and does what it says. If there is a problem somewhere in your program which means that part of the program cannot be interpreted, the interpreter will give some kind of errormessage, and stop,when it gets to that part. However, by then it may already have run the earlier parts of the program.</p>
+    <p>“直接运行”适用于解释型语言，例如Python、JavaScript（注意，尽管名称相似，但与Java无关！），PHP和Perl。这意味着还有另一个程序，称为解释器，它可以读取你的程序，并解释执行你的程序。如果程序中的某个地方出现了问题，这意味着程序的某个部分无法被解释，解释器将给出某种错误消息，并在到达该部分时停止。然而，到那时它可能已经运行了程序的前面部分。</p>
+    <p>&quot;You compile it, then run it&quot; applies to languages, for example Java, Haskell and all variants of C (C++, C, Objective-C, etc. ), which are compiled. That means that there is some other program, called a compiler, which reads your program and translates it into a more primitive form. Some kinds of error in your program can be detected in the process of compilation. If no such errors are discovered, then you end up with a compiled program, saved as a separate file, which you can then run, as above.</p>
+    <p>“先编译，后运行”适用于语言，例如Java、Haskell和所有编译的C（C++、C、Objective-C等）变体。这意味着还有其他程序，称为编译器，它读取您的程序并将其转换为更底层的形式。在编译过程中可以检测到程序中的某些错误。如果没有发现这样的错误，那么您将得到一个编译过的程序，保存为一个单独的文件，然后可以运行该程序，如上所述。</p>
+    <p>Because some of the work has been done by the compiler, the compiled program usually runs faster than an interpreted program with the same functionality. What is often more important is that, because the compiler has checked for certain kinds of error, you get a guarantee: if your program compiles correctly, then you can be sure that that kind of error is absent. The main kind of error-checking the compiler does is called type-checking.</p>
+    <p>因为有些工作是由编译器完成的，所以编译后的程序通常比具有相同功能的解释程序运行得更快。更重要的是，因为编译器已经检查了某些类型的错误，所以您可以得到一个保证：如果您的程序编译正确，那么您可以确保没有这种错误。编译器进行的主要错误检查称为类型检查。</p>
+    <blockquote class="pgc-blockquote-abstract">
+        <p>In 1978, Robin Milner published a theorem about the core of the programming language he defined, which is called ML; this language has influenced Haskell and many later programming languages. The theorem can be summarised as &quot;well-typed programs cannot 'go wrong' &quot;. That is, he proved that if the compiler accepted your program, then your program was definitely free of certain kinds of error. When I first worked with ML, some of my colleagues used to describe it as &quot;the language of pure thought&quot; and say that if your program compiled, there was no need to test it: it was certainly correct! Unfortunately this is an exaggeration: but still, it is remarkably useful to have a compiler that is good at noticing when you have made a mistake, even if it can be frustrating to be told so.</p>
+        <p>1978年，罗宾·米尔纳发表了一个关于他定义的编程语言核心的定理，称为ML；这种语言影响了Haskell和许多后来的编程语言。这个定理可以概括为“好类型的程序不能‘出错’”。也就是说，他证明了如果编译器接受了你的程序，那么你的程序绝对没有某些错误。当我第一次使用ML时，我的一些同事曾将其描述为“纯粹思想的语言”，并表示如果你的程序编译了，就没有必要测试它：它肯定是正确的！不幸的是，这是一种夸张：但尽管如此，拥有一个善于发现错误的编译器是非常有用的，即使被告知错误会让人沮丧。</p>
+    </blockquote>
+    <p>To find out exactly how you get from having a file containing a program in your language, to the result of running the program, you need a basic tutorial in the language.</p>
+    <p>要确切地了解如何使用您的语言创建包含程序的文件，以及运行程序的结果，您需要一个该语言的基本教程。</p>
+    <p>In Python, for example, you can save your program in a file called myprogram. py, and then run it by typing at a command line.</p>
+    <p>例如，在Python中，您可以将程序保存在名为myprogram.py的文件中，然后在命令行中键入</p>
+    <pre language="javascript" code_block="true"><code>python myprogram.py</code></pre>
+    <p>In Java, you define a class called MyProgram in a file called MyProgram. java, and then compile and run the program by typing first</p>
+    <p>在Java中，在一个名为MyProgram.java的文件中定义一个名为MyProgram的类，然后首先通过命令</p>
+    <pre language="javascript" code_block="true"><code>javac MyProgram.java</code></pre>
+    <p>to compile it, and then</p>
+    <p>来编译它，然后执行命名</p>
+    <pre language="javascript" code_block="true"><code>java MyProgram</code></pre>
+    <p>to run it.</p>
+    <p>来运行它。</p>
+    <p>Sometimes the lines between interpreted and compiled languages get blurred: I admitted to an over-simplification. Strictly speaking, whether a language is compiled or interpreted is a property of the implementation of the language, not of the language itself. Even in languages which are usually interpreted, like Python, it is often possible to compile a program into a form (a . pyc file) which can be run faster than the original and which has been checked for certain kinds of problem. And even languages which are compiled, like Haskell, can sometimes be used in interactive situations (e. g. the Haskell REPL) which feel very much like interpretation.</p>
+    <p>有时解释语言和编译语言之间的界限变得模糊：我承认过度简化了。严格来说，语言是编译还是解释是语言实现的属性，而不是语言本身的属性。即使在通常被解释的语言中，如Python，也经常可以将程序编译成一个格式（.pyc文件），该格式可以比原始格式运行得更快，并且已经检查过某些类型的问题。甚至像Haskell这样编译过的语言有时也可以用于交互式场景（例如HaskellREPL），这种场景非常像解释。</p>
+    <p>Moreover, in some languages, like C and C++, another stage, called linking, is made explicit. This connects the compiled program with any libraries that must be available before it can be run. All programs have to get connected to the libraries they depend on at some stage, of course, but this isn't always something the programmer has to do deliberately. For example, in Java, linking is done by the Java Virtual Machine when the class is loaded: that is, it's part of what the run command, java MyProgram, causes to happen.</p>
+    <p>此外，在一些语言中，如C和C++，另一个阶段称为链接，是显式的。这将编译的程序与运行之前必须可用的任何库连接起来。当然，所有程序都必须在某个阶段连接到它们所依赖的库，但这并不总是程序员必须刻意去做的事情。例如，在Java中，当类被加载时，链接由Java虚拟机完成：也就是说，这是运行命令java MyProgram命令时所发生的情况之一。</p>
+    <h3>2 Types 类型</h3>
+    <p>If you have ever been reminded to &quot;show the units&quot; in your answer to a problem in a mathematics or science class, you have met types. Arguably, if you've ever watched a baby using a shape-sorter, you have, too! The type of a value in a program tells you something about what you can legitimately do with it. What do you need to know about a value in order to know that it makes sense to use it in a particular context?</p>
+    <p>如果你曾在数学或科学课上被提醒在回答问题时“显示单位”，那么你已经遇到了类型。可以说，如果你曾经看过一个婴儿使用形状分类器，那也就同样遇见过类型！程序中某个值的类型告诉你可以合法地使用它做什么。为了知道在特定的上下文中使用某个值是否合理，你需要了解关于该值的哪些信息呢？</p>
+    <blockquote class="pgc-blockquote-abstract">
+        <p>Type-checking is the process of checking that the shapes of the pieces of a program fit together properly: for example, that a function that has been designed to accept only integers is never given strings as its input. If this is done as part of compilation, it is called static type-checking; if it is done at run-time, it is called dynamic type-checking. Many languages use a mixture of static and dynamic type-checking.</p>
+        <p>类型检查是检查程序各部分的形态是否正确匹配的过程：例如，一个设计为只接受整数的函数从未被赋予字符串作为其输入。如果这是编译的一部分，则称为静态类型检查；如果在运行时完成，则称为动态类型检查。许多语言混合使用静态和动态类型检查。</p>
+    </blockquote>
+    <p>Almost every programming language has types of integers and strings, for example. You'll be familiar with integers from school mathematics; &quot;string&quot; is the computer science term for a piece of text, or sequence of characters. By long tradition, the first string we experiment with is &quot;Hello, World!&quot;. A Hello World program in a language is a programwhich prints out &quot;Hello,World!&quot;when you run it. Our program(as belows) will do slightly more.</p>
+    <p>例如，几乎每种编程语言都有整数和字符串类型。你将熟悉学校数学中的整数；“字符串”是计算机科学中对一段文本或字符序列的术语。根据悠久的传统，我们实验的第一个字符串是“Hello，World！”。一种语言的Hello World程序是当你运行它时打印“Hello，World！”的程序。而我们下面的程序的功能会稍微多一些。</p>
+<p></p>
+<pre style="line-height:130%; background-color:#F6F6F6; font-size:120%; padding:8px; margin-left:2em; color:black; ">
+#Python example
+<font color=#00F></font>x = 5
+<font color=#00F></font>y = 2
+<font color=#00F></font>z = "Hello,<font color=#00F></font> World!"
+<font color=#00F></font>print(<font color=#00F></font>x)
+<font color=#00F></font>print(<font color=#00F></font>y)
+<font color=#00F></font>print(<font color=#00F></font>z)
+<font color=#00F></font>print(<font color=#00F></font>x/y)
+<font color=#00F></font>print(<font color=#00F></font>x/z)
+</pre>
+
+    <p>No types are given explicitly in this program, but they are there: if you try running it, you will get an error at the last line, something like</p>
+    <p>这个程序中没有明确给出类型，但它们是存在的：如果你尝试运行它，你会在最后一行得到一个错误，类似</p>
+    <blockquote class="pgc-blockquote-abstract">
+        <p>TypeError: unsupported operand type(s) for /:</p>
+        <p>’int’ and ’str’</p>
+    </blockquote>
+    <p>Once you think about what the program is doing on that line, this is easy to understand, whether or not you “speak” Python. Variables x and y hold integers; variable z holds a string. We don’t have to say that: the language’s type inference works it out. Any of x, y and z can be printed. It makes sense to divide an integer by an integer (even though, note, the result is not an integer any longer). However, it does not make sense to divide an integer by a string. The interpreter does not even try: instead, it tells you that you have got something wrong.</p>
+    <p>无论您是否“使用”Python，只要思考一下程序在这一行做了什么，这就很容易理解。变量x和y保持整数；变量z保存一个字符串。我们不必明确指定这些类型：语言的类型推断可以解决问题。可以打印x、y和z中的任何一个。将整数除以整数是有意义的（尽管注意，结果不再是整数）。然而，用字符串除整数是没有意义的。解释器甚至不会尝试：相反，它会告诉你你做错了什么。</p>
+    <p>Languages differ in how they treat information about the types of values. If we write the same program in Java, it looks like this:</p>
+    <p>不同语言在处理有关值的类型的信息方面有所不同。如果我们用Java编写相同的程序，它看起来像这样：</p>
+<p></p>
+<pre style="line-height:130%; background-color:#F6F6F6; font-size:120%; padding:8px; margin-left:2em; color:black; ">
+<font color=#CCC>// Java example</font>
+<font color=#00F></font><font color=#00F>int</font> x = 5;
+<font color=#00F></font><font color=#00F>int</font> y = 2;
+<font color=#00F></font>String z = "Hello,<font color=#00F></font> World!";
+<font color=#00F></font>System.out.println(<font color=#00F></font>x);
+<font color=#00F></font>System.out.println(<font color=#00F></font>y);
+<font color=#00F></font>System.out.println(<font color=#00F></font>z);
+<font color=#00F></font>System.out.println(<font color=#00F></font>x/y);
+<font color=#00F></font>System.out.println(<font color=#00F></font>x/z);
+</pre>
+
+    <p>(as usual, we omit the lines that show this code placed inside a method inside a class). This is very similar to the Python example: compiling it will give an error at the final line, because you can't divide an integer by a string. Whereas in the Python case, the earlier, unproblematic print statements were carried out before the interpreter encountered the nonsensical instruction to print x/z, in the Java case, since compilation does not succeed, none of the instructions can be carried out until the problem is fixed and the program is recompiled.</p>
+    <p>（像往常一样，我们省略了用于显示这段代码是属于某一个类的方法的代码行）。这与Python示例非常相似：编译它会在最后一行出现错误，因为不能用字符串除整数。在Python中，在解释器遇到打印x/z的无意义指令之前执行了早期的无问题打印语句，而在Java中，由于编译不成功，在问题解决并重新编译程序之前，不能执行任何指令。</p>
+    <p>Apart from the System. out. println verbiage, the biggest difference between this version and the Python one is that here we have to give the types of the variables x, y, z in the program text. (There is still some type inference going on, though: for example, we do not have to say what type the expression x/y has. By the way, if you're learning Java: what type does it have? Removing the last line and wrapping this code in a method in a class, compile and run it. Did it print what you expected?)</p>
+    <p>除System.out.println语句外，此版本与Python版本之间的最大的区别是，我们必须在程序文本中给出变量x，y，z的类型。（不过，仍然有一些类型推断在进行：例如，我们不必说表达式x/y有什么类型。顺便说一句，如果你正在学习Java：它有什么类型？删除最后一行并将此代码包装在类中的方法中，编译并运行它。它是否打印了你期望的内容？）</p>
+    <p>In Haskell, it is rather unidiomatic1 to write anything of the sort, but we can, if we insist:</p>
+    <p>在Haskell中，写任何这样的东西都是相当不理想的，但如果我们坚持，我们可以：</p>
+<p></p>
+<pre style="line-height:130%; background-color:#F6F6F6; font-size:120%; padding:8px; margin-left:2em; color:black; ">
+<font color=#CCC>// Haskell example</font>
+<font color=#00F></font>f _ =
+<font color=#00F></font> <font color=#00F> </font> <font color=#00F> </font><font color=#00F>do </font>print x
+<font color=#00F></font> <font color=#00F> </font> <font color=#00F> </font> <font color=#00F> </font> <font color=#00F> </font>print y
+<font color=#00F></font> <font color=#00F> </font> <font color=#00F> </font> <font color=#00F> </font> <font color=#00F> </font>print z
+<font color=#00F></font> <font color=#00F> </font> <font color=#00F> </font> <font color=#00F> </font> <font color=#00F> </font>print<font color=#00F> </font>(<font color=#00F></font>x/y)
+<font color=#00F></font> <font color=#00F> </font> <font color=#00F> </font> <font color=#00F> </font> <font color=#00F> </font>print<font color=#00F> </font>(<font color=#00F></font>x/z)
+<font color=#00F></font> <font color=#00F> </font> <font color=#00F> </font>where x = 5
+<font color=#00F></font> <font color=#00F> </font> <font color=#00F> </font> <font color=#00F> </font> <font color=#00F> </font>y = 2
+<font color=#00F></font> <font color=#00F> </font> <font color=#00F> </font> <font color=#00F> </font> <font color=#00F> </font>z = "Hello,<font color=#00F></font> World!"
+</pre>
+
+    <p>As with Java, we won’t be able to compile this – let alone invoke function f to run the code – until we get rid of the nonsensical line about x/z. Just as in the Python example, we did not have to write any types; they are inferred. Here, however, type inference is done as part of the compilation phase. We cannot execute any of the program until the types of all of it make sense.</p>
+    <p>与Java一样，我们无法编译这个代码——更不用说调用函数f来运行代码了——除非我们去掉关于x/z那行无意义的代码。就像在Python示例中一样，我们不必编写任何类型；它们被推断出来。然而，在这里，类型推断是编译阶段的一部分。我们不能执行任何程序，除非所有程序的类型都是合理的。</p>
+    <p>We cannot really think without types: even programs written in apparently untyped languages have implicit type information. Even if, in your language, you are not forced to write down information about what you expect types to be, it is wise to clarify your expectations in your own head. Sometimes it is useful to write them down, even if you don’t have to: it can help you, and other readers of your program, understand what’s going on. One of the ways in which our Haskell example was unusual was that it did not specify the type of function f.</p>
+    <p>没有类型我们就无法真正思考：即使是用显然没有类型的语言编写的程序也有隐含的类型信息。即使在你的语言中，你没有被迫写下关于你期望的类型的信息，在你自己的头脑中阐明你的期望也是明智的。有时，即使你不必这样做，也可以把它们写下来：它可以帮助你和你的程序的其他读者了解发生了什么。我们的Haskell示例的一个不寻常之处在于它没有指定函数f的类型。</p>
+    <p>All the examples above used built-in types for strings and integers. All major languages have these types built in. To write real programs you also have to be able to define your own types, and languages differ in how you do that.</p>
+    <p>上面的所有示例都使用了字符串和整数的内置类型。所有主要语言都内置了这些类型。要编写真正的程序，您还必须能够定义自己的类型，并且不同的语言在如何定义方面也有所不同。</p>
+    <p>All the examples also demonstrated polymorphism: that is, we could use the same function to print things of several different types. Printing is the commonest situation where language designers feel obliged to provide polymorphism. Whether, and how, you can write your own polymorphic functions – that is, functions that work on arguments of several different types – is another axis on which programming languages differ. Indeed, it is a particularly interesting one, as there are different kinds of polymorphism. Try searching</p>
+    <p>所有的例子都展示了多态性：也就是说，我们可以使用相同的函数来打印几种不同类型的东西。打印是语言设计者觉得有义务提供多态性的最常见情况。是否以及如何编写自己的多态函数——也就是说，处理几种不同类型参数的函数——是编程语言不同的另一个方面。事实上，这是一个特别有趣的问题，因为有不同种类的多态性。</p>
+    <h3>3 Structure 结构</h3>
+    <p>In a beginners’ programming course, the way in which large programs are structured may be invisible to you. You will probably only write small programs to start with; you may, perhaps, write only a few lines of code, and be told where to put them.</p>
+    <p>在初学者编程课程中，你可能看不到大型程序的结构。你可能只会从编写小程序开始；你可能只写了几行代码，然后被告知应该放在哪里。</p>
+    <p>All serious programs, though, have to have structure. They have to be split up into parts, so that teams of people can work on different parts of the program without getting in one another’s way. The structure of a program is what makes it possible to make a change to a program, without having to understand everything about the entire program. This helps with finding and fixing bugs quickly and confidently, for example.</p>
+    <p>然而，所有正式的程序都必须有结构。他们必须被拆分成多个部分，这样团队就可以在不妨碍彼此的情况下完成项目的不同部分。程序的结构是可以对程序进行更改的，而无需了解整个程序的所有内容。例如，这有助于快速自信地发现和修复错误。</p>
+    <p>The functions are as black box machines transforming input into output. When you define a function (or method, or procedure) in your programming language, you are structuring the program so that the lines of code that define what this machine does (the body of the function) are together. While this section of code may not be completely self-contained – it may depend on other parts of the program, e. g. by calling other functions – the aim is that a reader can understand what the function will do, just by reading its body code. This sounds very basic, but it could not always be taken for granted.</p>
+    <p>函数是将输入转换为输出的黑匣子机器。当你用编程语言定义一个函数（或方法或过程）时，就是在结构化程序，以便将定义这台机器所做的事情（函数的主体）的代码行组织在一起。虽然这段代码可能不是完全独立的，它可能依赖于程序的其他部分，例如通过调用其他函数，但目的是让读者只需阅读函数的主体代码就可以理解该函数的功能。这听起来很基本，但并不总是理所当然的。</p>
+    <p>An intimately related issue is the scope of names.</p>
+    <p>一个密切相关的问题是名称的作用域。</p>
+    <blockquote class="pgc-blockquote-abstract">
+        <p>Many things in programs – variables, functions and classes, for example – are given names. The scope of a name for a thing means where, in the program text, the name can be used to refer to the thing. If the name can be used anywhere in the program, it is said to have global scope.</p>
+        <p>程序中的许多元素——例如变量、函数和类——都有名字。元素名称的作用域意味着，在程序文本中，该名称可以用于引用该元素的位置。如果该名称可以在程序中的任何位置使用，则称其具有全局作用域。</p>
+    </blockquote>
+    <p>Global scope may sound convenient, but there is an important disadvantage: if you need to understand the role this named thing plays – e. g. to work out whether a change you have in mind will break anything – you have to read the whole program. Therefore, programming languages allow named things to have smaller scopes. For example, a variable might be local to a function, so that it can only be referred to inside that function's definition. The details are subtle and vary between languages.</p>
+    <p>全球作用域可能听起来很方便，但有一个重要的缺点：如果你需要了解这个命名的元素所起扮演的角色——例如，为了弄清楚你所设想的改变是否会破坏任何东西——你必须阅读整个程序。因此，编程语言允许命名的事物具有更小的作用域。例如，变量可能是函数的局部变量，因此只能在该函数的定义中引用。这些细节很微妙，而且不同的语言中也有所不同。</p>
+    <p>Your language may provide classes, modules, packages, or several of these. Very likely these higher-level structures will be used to provide librarieswhichmake it easier for you to write programs.</p>
+    <p>您的语言可能提供类、模块、包或其中的几个。很可能这些更高层次的结构将用于提供库，使您更容易编写程序。</p>
+    <blockquote class="pgc-blockquote-abstract">
+        <p>A software library provides functionality designed to be used in many other programs. A standard library for a language is one that is maintained along with the basic software implementing the language, and distributed with it, so that it is always available to someone programming in the language.</p>
+        <p>软件库旨在为其它程序提供功能。一种语言的标准库是与实现该语言的基本软件一起维护的库，并与之一起分发，以便使用该语言编程的人始终可以使用该库。</p>
+    </blockquote>
+    <p>Standard libraries provide things which are frequently needed, such as code for finding a pattern in a string, collections that can be sorted efficiently, user interface components, etc. If your language has a standard library, becoming familiar with it is an integral part of learning to program well in the language.</p>
+    <p>标准库提供了经常需要的东西，例如在字符串中查找模式的代码、可以高效排序的集合、用户界面组件等。如果您的语言有标准库，那么熟悉它是学习用该语言编程的一个组成部分。</p>
+    <p>Many libraries, and much of the other software implementing major programming languages, are open-source.</p>
+    <p>许多库以及实现主要编程语言的许多其他软件都是开源的。</p>
+    <blockquote class="pgc-blockquote-abstract">
+        <p>Software is open-source when it is made available under licensing conditions that allow anyone to view the source code, modify it, and redistribute their modified version. Typically, there are conditions, such as that the modified software must itself be made available with the same licence.</p>
+        <p>当软件在一定条件下允许任何人查看、修改和重新发布源代码时，它就是开源的。通常，会有一些约束，比如被修改过的软件自身必须在同样的许可条件下进行发布。</p>
+    </blockquote>
+    <h3>4 History, Community and Motivation 历史、社区和动机</h3>
+    <p>How old is your language? Who designed it? What is it used for? If you are doing a beginners' programming course, one question is: are you using a language that is used mostly for teaching, or one that is also widely used by professional developers? You may have come across educational languages such as Scratch, or some language for turtle graphics based on Logo; you may now be learning Alice.</p>
+    <p>你的语言多古老？是谁设计的？它是用来做什么的？如果你正在学习初学者编程课程，一个问题是：你使用的是一种主要用于教学的语言，还是一种也被专业开发人员广泛使用的语言？你可能会遇到教育语言，比如Scratch，或者一些基于Logo的海龟图形语言；你现在可能正在学习Alice（一种面向儿童的编程语言）。</p>
+    <p>Similar questions apply to the tooling you are using: for example, you might be using the education-focused IDE BlueJ, for Java. The lines between categories do get blurred, and successful languages outgrow their niches: for example BASIC, the name of a language designed in the early 1960s, stands for Beginner's Allpurpose Symbolic Instruction Code, but its Visual Basic dialect went on to be very widely used by experts as well as beginners.</p>
+    <p>类似的问题也适用于您正在使用的工具：例如，您可能正在使用面向Java教育的IDE BlueJ。类别之间的界限确实变得模糊，成功的语言已经超出了它们最初的定位：例如，BASIC，一种在20世纪60年代早期设计的语言，代表Beginner's Allpurpose Symbolic Instruction Code，但它的Visual BASIC方言版本继续被专家和初学者广泛使用。</p>
+    <p>Most likely, your language is used by some professional developers. To do what? Reading its Wikipedia page, or searching will find you some information (and possibly some examples of the language wars). In the process, you may find out something about the community surrounding your language. Perhaps your language is a scripting language, often used for automating sequences of tasks that would otherwise have to be done manually by humans.</p>
+    <p>很可能，您的语言被一些专业开发人员使用。如果想了解他们是怎样使用它的？阅读它的维基百科页面，或者搜索会发现一些信息（可能还有一些语言战争的例子）。在这个过程中，你可能会发现围绕你的语言的社区的一些东西。也许您的语言是一种脚本语言，通常用于自动化任务序列（否则这些任务必须由人工完成）。</p>
+    <p>These are interpreted languages: Python is usually considered a scripting language, although these days it is also used for many other purposes. Or perhaps your language is mostly used for web services, or in AI, or data science, or embedded programming, or statistics.</p>
+    <p>这样的语言是解释型语言：Python通常被认为是一种脚本语言，尽管现在它也被用于许多其他用途。或者，您的语言主要用于web服务、AI、数据科学、嵌入式编程或统计。</p>
+    <h3>5 Paradigms 范式</h3>
+    <p>We have left until last something which comparative discussions of programming languages sometimes take first. Traditionally, programming languages have been divided into groups according to the main way in which people writing in those languages tend to think – that is, according to paradigm. The four main paradigms usually identified are:</p>
+    <p>我们将编程语言的比较讨论放在最后，有时会先讨论。传统上，编程语言根据人们用这些语言写作的主要思维方式（即根据范式）被分为若干组。通常确定的四种主要范式是：</p>
+    <p>① Imperative. The program orders the computer to do one thing, then another thing. Data is stored in the form of mutable state, i. e. variables which have values that can be changed. Example language: C.</p>
+    <p>命令式。程序命令计算机做一件事，然后做另一件事。<strong>数据以可变状态的形式存储</strong>，即具有可更改值的变量。示例语言：C。</p>
+    <p>② Object-oriented. The program is organised in terms of objects. Each object wraps up (encapsulates) some data, and can respond to certain requests (messages), thereby fulfilling some responsibilities. Example language: Java.</p>
+    <p>面向对象。该程序是按对象组织的。每个对象包装（封装）一些数据，并可以响应某些请求（消息），从而履行一些职责。示例语言：Java。</p>
+    <p>③ Functional. The programmer thinks of functions not just as bits of code, but as concrete things in their own right – as data –which can be passed around the program. For example, a function can be passed as an argument to another function, just as an integer might be. (People sometimes say functions are “firstclass citizens”. ) Mutable state is avoided. Example language: Haskell.</p>
+    <p>函数式。程序员不仅把函数看作是代码的一部分，而且把它们本身看作是可以在程序中传递的具体事物——数据。例如，一个函数可以作为参数传递给另一个函数，就像整数一样。（人们有时说函数是“头等公民”。）函数时编程语言避免了可变状态。示例语言：Haskell。</p>
+    <p>④ Logic. Writing a program involves specifying facts, and rules about how facts follow from other facts, and then asking a question. Example language: Prolog.</p>
+    <p>逻辑式。编写一个程序需要指定事实，以及关于事实如何从其他事实中遵循的规则，然后提出一个问题。示例语言：Prolog。</p>
+    <p>However, real life is nothing like as neat as this, and some people argue that it isn't useful to think in terms of paradigms. As you program in more than one language, you naturally import your favourite ways of thinking – influenced by your past programming experience – into each language you adopt. Some languages – Python is an example, in fact – have a mixture of features that makes them hard to classify. And sometimes a language that begins neatly in one paradigm may change, over time, to make it easier to program in a style that began elsewhere. For example, Java version 8 introduced new features that made it more practical to program in a functional style.</p>
+    <p>然而，现实生活并不像这样整洁，有些人认为用范式来思考是没有用的。当你用不止一种语言编程时，你自然会把你最喜欢的思维方式——受你过去编程经验的影响——导入到你所采用的每一种语言中。事实上，有些语言（Python就是一个例子）具有多种特性，这使得他们很难被分类。有时，一种始于某种范式的语言可能会随着时间的推移而改变，从而更容易以始于其他范式的风格进行编程。例如，Java 8引入了新的特性，使以函数式编程更加实用。</p>
+    <p>Does this mean you can just pick your favourite way to program and then program that way in any language? To some extent you can, but it's unlikely to be the best approach. For example, you can write a C program in a functional style, but, because C doesn't support functional programming very well, your program is not likely to be good. It will be all too easy to make mistakes, and all too hard for any reader (including you, later) to understand the program. Try to go with the grain of your chosen language (whether or not it was chosen by you): learn from the way experts in that language typically write. That is, learn to write idiomatically in your language. At the same time, be alert to the good features of different programming styles you come across, and be ready to make use of them where appropriate.</p>
+    <p>这是否意味着你可以选择你最喜欢的编程方式，然后用任何语言进行编程？在某种程度上你可以，但这不太可能是最好的方法。例如，您可以用函数式风格编写一个C程序，但因为C不太支持函数式编程，所以您的程序不太可能是好的。犯错太容易了，任何读者（包括你）都很难理解这个程序。试着按照你所选择的语言（无论它是否由你选择）：学习该语言的专家通常的写作方式。也就是说，学会用你的语言习惯地写作。同时，要注意您遇到的不同编程风格的良好特性，并准备在适当的时候使用它们。</p>
+    <p>To help you get a feel for what is considered good, idiomatic code in your language, find a fairly large, highly reputable body of code. Look at it and remember to come back to it at intervals as you learn the language. Don't worry if you can't understand it in detail at this stage. Consult it if you ever wonder about such things as &quot;how long should a function be?&quot;, &quot;how should I capitalise the name of a type?&quot;, etc.</p>
+    <p>为了帮助您了解在您的语言中什么是好的、惯用的代码，请找到一个相当大的、信誉良好的代码库。看着它，记住在你学习语言的过程中，每隔一段时间再来一遍。如果你在这个阶段不能详细理解，不要担心。如果你对诸如“一个函数应该有多长？”，“一个类型的名称应该如何大写？”等问题有疑问，就可以参考它。</p>
+    <p>Standard libraries, for example, are written by experts who expect their code to be inspected by many other experts, so they tend to be good – though not especially beginner-friendly – code.</p>
+    <p>例如，标准库是由专家编写的，他们希望自己的代码能得到其他专家的检查，所以它们往往是好的代码——尽管不是特别适合初学者。</p>
+    <p>Java: the OpenJDK version of the Java Development Kit has source code at http://hg. openjdk. java. net/jdk/jdk/. Look for the &quot;browse&quot; entry in the left-hand menu.</p>
+    <p>Java：Java开发工具包的OpenJDK版本的源代码位于http://hg. openjdk. java. net/jdk/jdk/。在左侧菜单中查找“浏览”条目。</p>
+    <p>Haskell: if you use Hoogle (https://hoogle. haskell. org/) to look up a function, there is a link to its source code to the right of its name.</p>
+    <p>Haskell：如果你用Hoogle(https://hoogle. haskell. org/）查找函数，其名称右侧有一个指向其源代码的链接。</p>
+    <p>Python: if you use the documentation available from https://docs. python. org/3/library/ for the standard library, you will see links to source code near the top of most pages.</p>
+    <p>Python：如果您使用https://docs. python. org/3/library/提供的标准库，您将在大多数页面的顶部看到指向源代码的链接。</p>
+    <p>Your language-specific book or documentation should provide plenty of examples of simpler code.</p>
+    <p>您的语言专用书籍或文档应该提供大量简单代码的示例。</p>
+    <p>ref:</p>
+    <p>Perdita Stevens - How to Write Good Programs_ A Guide for Students-Cambridge University Press (2020)</p>
+    <p>-End-</p>
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换
+\s*<br />\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+
+
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+\s*</p>\s*
+\s*<p>\s*
+------------------
+</p>
+
+<p>
+_____________________________________________________________________________________
+
+4 把第和章两个字去掉
+第(\S*)章
+------------------
+$1
+_____________________________________________________________________________________
+
+7 正则表达式参考：
+https://www.toutiao.com/i6370960744082571778/
+_____________________________________________________________________________________
+
+8
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+9 将标注序号更改为上标，红色，需一个个替换，英文html中有[1]
+(\[\d\])
+------------------
+<sup>$1</sup>
+_____________________________________________________________________________________
+10 替换章不是以1-9。?！…”“结尾的段落
+([^1-90。?！…”：？“章])</p>
+<p>
+------------------
+$1
+-->
+
+
