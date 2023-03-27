@@ -1,0 +1,386 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<div class='layout'><p>5 Debtor to the Ages and the World</p><p>第五章 负疚于社会和历史的人</p></div>	
+<div class='layout'><p>IN THE ENGLISH LANGUAGE we used to talk about being ‘heirs of the ages.' Two wars and a vast economic crisis have diminished somewhat the self-confidence it used to bespeak but this shift has certainly not increased our sense of indebtedness to the past. Oriental nations turn the coin to the other side: they are debtors to the ages. Much of what Westerners name ancestor worship is not truly worship and not wholly directed toward ancestors: it is a ritual avowal of man's great indebtedness to all that has gone before. Moreover, he is indebted not only to the past; every day-by-day contact with other people increases his indebtedness in the present. From this debt his daily decisions and actions must spring. It is the fundamental starting point. Because Westerners pay such extremely slight attention to their debt to the world and what it has given them in care, education, well-being or even in the mere fact of their ever having been born at all, the Japanese feel that our motivations are inadequate. Virtuous men do not say, as they do in America, that they owe nothing to any man. They do not discount the past. Righteousness in Japan depends upon recognition of one's place in the great network of mutual indebtedness that embraces both one's forebears and one's contemporaries.</p><p>在英语里时常可以听到“历史的产物”这种说法。经历了两次世界大战和大萧条时期，虽然我们以往所表现出来的自信受到一定程度的打击，但是这些变化并不足以使我们对过去有任何负疚之感。东方的民族却完全不同，他们是一种对以往怀抱负疚感的人。西方人称之为祖先崇拜，实际上根本不是崇拜，也不完全是对祖先的，只不过是人们用某种形式表达他们对过去一切的深切感激。更重要的是，他们不仅认为能从传统中得益，而且每天与他人日常接触也增加着现实中的受人之恩。正是这种负疚他人之感才是人们思维行动的源泉，最基本的动机。也是鉴于西方人相当忽视社会给予他们的抚养、教育、财富，以至于简单地说出这些恩惠，日本人才觉得我们忘恩负义。他们觉得具有高尚品德的人绝不会说美国人常爱说的 “不欠任何人的情”这句话，他们绝不否定过去。日本人所谓的“信义”，就是建立在承认自己与他人即从祖先到同代人都有恩惠关系这一基础上的。</p></div>	
+<div class='layout'><p>It is simple to put in words this contrast between East and West but it is difficult to appreciate what a difference it makes in living. Until we understand it in Japan we shall not be able to plumb either the extreme sacrifice of self with which we became familiar during the war or the quick resentments which Japanese are capable of in situations where we think resentments are not called for. To be a debtor can make a man extremely quick to take offense and the Japanese prove it. It also puts upon him great responsibilities.</p><p>能够看到东西方之间这一不同点是容易的，不容易的是认识由这个不同点所造成的不同的生活方式。不了解日本的这一特点，我们就难以理解我们通过这场战争认识到的绝对自我献身精神，也不会弄明白为什么在我们能够坦然处之的场合日本人却大动肝火。负疚于他人恩惠的人都很易动怒，日本人就是如此，原因在于他们承担着必须报答的沉重义务。</p></div>	
+<div class='layout'><p>Both the Chinese and the Japanese have many words meaning ‘obligations.' The words are not synonyms and their specific meanings have no literal translation into English because the ideas they express are alien to us. The word for ‘obligations' which covers a person's indebtedness from greatest to least is on. In Japanese usage it is translated into English by a whole series of words from ‘obligations' and ‘loyalty' to ‘kindness' and ‘love,' but these words distort its meaning. If it really meant love or even obligation the Japanese would certainly be able to speak of on to their children, but that is an impossible usage of the word. Nor does it mean loyalty, which is expressed by other Japanese words, which are in no way synonymous with on. On is in all its uses a load, an indebtedness, a burden, which one carries as best one may. A man receives on from a superior and the act of accepting an on from any man not definitely one's superior or at least one's equal gives one an uncomfortable sense of inferiority. When they say, ‘I wear an on to him' they are saying, ‘I carry a load of obligations to him,' and they call this creditor, this benefactor, their ‘on man.'</p><p>在汉语和日语中都有大量用来形容英文中“义务”的词。这些词并不是同义词，鉴于每个词所表达的含义对我们来说过于陌生，很难将他们译成令人满意的英语。这里所说的“义务”是针对一个人从小到大所受到的所有恩惠，即所谓“恩”。如果按日本人的本意，应被译成“义务”、“忠诚”、“仁慈”以及“爱”等一连串的词，然而按照这种译法仍然无法表达原意。如果把它译为“爱”而不是“义务”的话，那么日本的孩子就对长辈有“恩”了，但是实际上根本不能这样说；也不能说它单指忠诚，因为日语中有专门表示忠诚的词汇，这些词与“恩”又绝非同义词。“恩”在实际上更接近于一种人们尽力予以承担的负担、负疚或者包袱。“恩”是上级或长辈至少是同辈同级施与的，如果接受了这些人以外的人所给的恩，都会使人产生一种不愉快的自卑感。如果有人说“我欠他的恩”，那么他就等于说“我承担对他的义务”一样，后者便是他的“债权人”、“地主”或者“恩人”。</p></div>	
+<div class='layout'><p>‘Remembering one's on' may be a pure outpouring of reciprocal devotion. A little story in a Japanese second-grade school reader entitled ‘Don't forget the on' uses the word in this sense. It is a story for little children in their ethics classes.</p><p>“不忘恩”有时也指相互间纯然献身爱的感情流露。日本小学二年级读物中有一个《不要忘恩负义》的小故事，就是用这个说法表达这种感情的。这个故事是在上伦理课时由老师讲给孩子们听的。</p></div>	
+<div class='layout'><p>Hachi is a cute dog. As soon as he was born he was taken away by a stranger and was loved like a child of the house. For that reason, even his weak body became healthy and when his master went to his work every morning, he would accompany him (master) to the street car station and in the evening around the time when he (master) came home, he went again up to the station to meet him.</p><p>八重是一只可爱的小狗。它刚刚出生，一个人就抱走了它，待它如同对家里的小孩一样好。很快，它瘦小的身体就强壮起来。每天早晨上班的时间一到，它就跟随着主人到街上的电车站去，晚上主人该下班时，它又到车站去接他。</p></div>	
+<div class='layout'><p>In due time, the master passed away. Hachi, whether he knew of this or not, kept looking for his master every day. Going to the usual station he would look to see if his master was in the crowd of people who came out whenever the street car arrived.</p><p>后来主人死了，八重大概不如道主人已死，每天还是去接它的主人，像往常一样走到那个车站，看着从每辆开过来的车上走下来的人群里有没有它的主人。</p></div>	
+<div class='layout'><p>In this way days and months passed by. One year passed, two years passed, three years passed, even when ten years had passed, the aged Hachi's figure can be seen every day in front of the station, still looking for his master.</p><p>日子就这样一天天地过去了，一年、二年、三年……十年过去了，人们每天还能在车站见到老八重寻找主人的身影。 引自《寻常小学修身》卷二，昭和十年十二月。——译注</p></div>	
+<div class='layout'><p>The moral of this little tale is loyalty which is only another name for love. A son who cares deeply for his mother can speak of not forgetting the on he has received from his mother and mean that he has for her Hachi's single-minded devotion to his master. The term, however, refers specifically not to his love, but to all that his mother did for him as a baby, her sacrifices when he was a boy, all that she has done to further his interests as a man, all that he owes her from the mere fact that she exists. It implies a return upon this indebtedness and therefore it means love. But the primary meaning is the debt, whereas we think of love as something freely given unfettered by obligation.</p><p>第五章负疚于社会和历史的人这个小故事宣传的道德是忠诚，而忠诚也是对爱的另一种表述。正如八重一心一意侍奉主人一样，儿子对母亲的周到照顾也被看做他没有忘记从母亲那里得到的“恩”。但这个词主要指的不是爱，而是指他在年幼时母亲给的无微不至的关怀，他在少年时母亲为他担惊受怕和让他长大所做的一切，亦就是她作为母亲这一个简单的事实使他处于负疚于她的地位。这个词意味着要回报所有这一切，所以本身也含有爱的意思。但是最基本的含义还是报答，而不同于我们所理解的不附加任何负疚之感的无偿赠送的爱。</p></div>	
+<div class='layout'><p>On is always used in this sense of limitless devotion when it is used of one's first and greatest indebtedness, one's ‘Imperial on.' This is one's debt to the Emperor, which one should receive with unfathomable gratitude. It would be impossible, they feel, to be glad of one's country, of one's life, of one's great and small concerns without thinking also of receiving these benefits. In all Japanese history this ultimate person among living men to whom one was indebted was the highest superior within one's horizon. It has been at different periods the local seigneur, the feudal lord, and the Shogun. Today it is the Emperor. Which superior it was is not nearly so significant as the centuries-long primacy in Japanese habit of ‘remembering the on.' Modern Japan has used every means to center this sentiment upon the Emperor. Every partiality they have for their own way of living increases each man's Imperial on; every cigarette distributed to the Army on the front lines in the Emperor's name during the war underscored the on each soldier wore for him; every sip of sake doled out to them before going into battle was a further Imperial on. Every kamikaze pilot of a suicide plane was, they said, repaying his Imperial on; all the troops who, they claimed, died to a man defending some island of the Pacific were said to be discharging their limitless on to the Emperor.</p><p>当用“恩”形容人们最重要、最重大的“皇恩”时，它又是指无限的献身精神。人们都怀着无限感激之情领受天皇赐给他们的洪恩。他们认为，如果不铭记和领受这种恩情，就不能热爱他们的祖国、生活乃至个人的事业和工作。在整个日本的历史过程中，对处在这个至尊地位的人的感恩之情是他们所知道的最高美德。虽然在不同的历史时期，这个主宰曾经依次是地方上的头领、封建领主或幕府将军，现在则是天皇。但是，比起谁是主宰，意义更重大的是，这种“感恩”的观念在日本人习性中占据着最高的地位，它已经经历了许多世纪。近代日本利用一切手段，把这段感情集中到天皇身上，使日本生活方式中的每一个细节都有助于培养个人对皇恩的感情。战争期间在前线分给部队的每一包香烟都以天皇的名义，提醒每个战士铭记这个“恩”；战斗开始前分配给他们的每一勺米酒也都是皇恩的体现；每一名神风飞行员的自杀式飞行都说自己是为了报答皇恩；在太平洋一个岛屿上驻守的整个部队战斗到全部阵亡也被说成仅为报答皇恩。</p></div>	
+<div class='layout'><p>A man wears an on also to lesser people than the Emperor. There is of course the on one has received from one's parents. This is the basis of the famous Oriental filial piety which places parents in such a strategic position of authority over their children. It is phrased in terms of the debt their children owe them and strive to repay. It is therefore the children who must work hard at obedience rather than as in Germany—another nation where parents have authority over their children—where the parents must work hard to exact and enforce this obedience. The Japanese are very realistic in their version of Oriental filial piety and they have a saying about on one receives from parents which can be freely translated ‘Only after a person is himself a parent does he know how indebted he is to his own parents.' That is, the parental on is the actual daily care and trouble to which fathers and mothers are put. The Japanese limitation of ancestor veneration to recent and remembered forebears brings this emphasis on actual dependency in childhood very much to the fore in their thinking, and of course it is a very obvious truism in any culture that every man and woman was once a helpless infant who would not have survived without parental care; for years until he was an adult he was provided with a home and food and clothing. Japanese feel strongly that Americans minimize all this, and that, as one writer says, ‘In the United States remembering on to parents is hardly more than being good to your father and mother.' No person can leave on to his children, of course, but devoted care of one's children is a return on one's indebtedness to one's parents when one was oneself helpless. One makes part payment on on to one's own parents by giving equally good or better rearing to one's children. The obligations one has to one's children are merely subsumed under ‘on to one's parents.'</p><p>对天皇以下的人也讲“恩”，从父母得到的当然也是“恩”了。这一点基于东方人闻名于世的孝道。孝道使父母处在有主宰子女命运大权的地位上。不仅在语言上有关于子女报恩的说法，而且在实际行动上的确必须尽力报答，子女必须加倍努力报答才算尽职尽责，而不是像另一个父母对子女拥有绝对权威的国家——德国——那样，须由父母努力工作才算实践和完成这项义务。日本人对东方的孝道的理解是很实际的，他们有一种解释父母之“恩”的说法，可以译成“养儿方知父母恩” 。因此可以说，所谓父母的“恩”就是养育之恩，亦就是父母花在孩子身上的一切心血。日本的祖先崇拜中的祖先，仅仅限于较晚近的，或者被记得住的祖辈人，这种思想也反映出他们在孩提时代依赖前辈的日常照料的程度。当然，生长在一切文明背景下的男男女女都曾经有过离不开父母的婴孩时期，都必须在父母的养育下才能成长，都需要有提供衣、食、住的家庭才能长大成人，这是一个非常普通的道理。日本人深深感到美国人对所有这些过于忽视了，曾有一位作家这样写道：“牢记养育之恩在美国竟然被轻描淡写地说成对父母好一点。”他们当然也不会对自己的儿女无情无义，全力以赴去照顾孩子，那就等于报答自己在襁褓之中时照顾自己的父母的恩情；所以如果对自己的儿女照顾得与父母照顾自己时一样好或者更好些，就是对父母之恩的一种报答。他们对于子女的责任从属于“父母之恩”的范围之内。</p></div>	
+<div class='layout'><p>One has particular on too to one's teacher and to one's master (nushi). They have both helped bring one along the way and one wears an on to them which may at some future time make it necessary to accede to some request of theirs when they are in trouble or to give preference, perhaps to a young relative of theirs, after they are dead. One should go to great lengths to pay the obligation and time does not lessen the debt. It increases rather than decreases with the years. It accumulates a kind of interest. An on to anyone is a serious matter. As their common saying has it: ‘One never returns one ten-thousandth of an on' It is a heavy burden and ‘the power of the on' is regarded as always righdy overriding one's mere personal preferences.</p><p>人们对自己的老师和主人的“恩”也怀有特别的负疚之情，原因是这两种人在他们的成长过程中都曾给予帮助，所以要感谢这些人的“恩”。老师或主人如果在以后某个时刻遇到困难，他们应当满足其要求；如果本人去世了，就对其晚辈亲属给予关照。时间不会减轻义务的分量，反而会加重它，就如同时间增加利息一样。对任何人来说，“恩”都是必须严肃报答的事，正如日本人常说的那句话：“倾心尽力，难报万一。”这真是个沉重的负担，“恩”的分量远远比个人的意志更为重要。</p></div>	
+<div class='layout'><p>The smooth working of this ethics of indebtedness depends upon each man's being able to consider himself a great debtor without feeling too much resentment in discharging the obligations he is under. We have already seen how thoroughly hierarchal arrangements have been organized in Japan. The attendant habits diligently pursued make it possible for the Japanese to honor their moral indebtedness to a degree that would not cross the mind of an Occidental. This is easier to do if the superiors are regarded as well-wishers. There is interesting evidence from their language that superiors were indeed credited with being ‘loving' to their dependents. Ai means ‘love' in Japan and it was this word ai which seemed to the missionaries of the last century the only Japanese word it was possible to use in their translations of the Christian concept of ‘love.' They used it in translating the Bible to mean God's love for man and man's love for God. But ai means specifically the love of a superior for his dependents. A Westerner might perhaps feel that it meant ‘paternalism,' but in its Japanese usage it means more than that. It was a word that meant affection. In contemporary Japan ai is still used in this strict sense of love from above to below, but, perhaps partly due to the Christian usage, and certainly as a consequence of official efforts to break down caste distinctions, it may today be used also of love between equals.</p><p>由于这种报恩的伦理观念深入人心，所以当每个人履行他自己的这种义务时并没有什么不快，反而觉得理应如此。前面我们已经谈到日本是如何按照阶级制度组织起来的；正是由于这种等级制度所带来的一些传统习惯，日本人对道德债务的尊重才达到了西方人无法想象的程度。再加上总是认为上级长辈都是心地善良的好人，这就更便于报答了。他们的语言里有一个饶有趣味的说法，证明他们的确将上级长者恭维为“爱戴”下级晚辈者。“爱”字在日语中的确意为“仁爱”，“爱”这个字也是二十世纪传教士们从日语中找到的惟一符合基督教“博爱”这个概念的字。他们便用它来翻译《圣经》中主对人类的爱以及人们对主的爱，这个“爱”字更偏重上级长辈对下级晚辈的爱，西方人可能会觉得它类似“庇护”之意，但是日本人在使用它的时候还包括一些更广泛的含意，比如还含有欣赏的意思。在当代日语中，“爱”字仍旧专指自上而下的爱，但同时或许加上了基督教的色彩以及官方竭力消除等级界限的意愿，现在也可以用来形容同辈之间的爱了。</p></div>	
+<div class='layout'><p>In spite of all cultural alleviations, however, it is nevertheless a fortunate circumstance in Japan when on is ‘worn' with no offense. People do not like to shoulder casually the debt of gratitude which on implies. They are always talking of ‘making a person wear an on' and often the nearest translation is ‘imposing upon another'—though in the United States ‘imposing' means demanding something of another, and in Japan the phrase means giving him something or doing him a kindness. Casual favors from relative strangers are the ones most resented, for with neighbors and in old-established hierarchal relationships a man knows and has accepted the complications of on. But with mere acquaintances and near-equals men chafe. They would prefer to avoid getting entangled in all the consequences of on. The passivity of a street crowd in Japan when an accident occurs is not just lack of initiative. It is a recognition that any nonofficial interference would make the recipient wear an on. One of the best-known laws of pre-Meiji days was: ‘Should a quarrel or dispute occur, one shall not unnecessarily meddle with it,' and a person who helps another person in such situations in Japan without clear authorization is suspected of taking an unjustifiable advantage. The fact that the recipient will be greatly indebted to him acts, not to make any man anxious to avail himself of this advantage to himself but to make him very chary of helping. Especially in unformalized situations the Japanese are extremely wary of getting entangled in on. Even the offer of a cigarette from a person with whom a man has previously had no ties makes him uncomfortable and the polite way for him to express thanks is to say: ‘Oh, this poisonous feeling (kino doku).' ‘It's easier to bear,' a Japanese said to me, ‘if you come right out and acknowledge how bad it makes you feel. You had never thought of doing anything for him and so you are shamed by receiving the on.' ‘Kino doku' therefore is translated sometimes as ‘Thank you,' i.e., for the cigarettes, sometimes as ‘I'm sorry,' i.e., for the indebtedness, sometimes as ‘I feel like a heel,' i.e., because you beat me to this act of generosity. It means all of these and none.</p><p>尽管存在着各种文化上的调节和补救办法，在日本毫无负担地“承受”他人之恩也是一件少见的事。大家都不愿意平白无故地领受含有“恩”的意味的人情。他们常说“使人受恩”这句话，在美国其意义往往近似于“强求某人某事”。但在日本，这句话则表示给予别人什么东西或者好意。相对来说，受到某个关系较疏的人的偶然的恩惠是最令人不安的事了。人们承认只能接受属于“恩”的范围之内的老邻居或老上级给的好处，最好不与同事或同辈发生这种关系。总的说来，谁也不愿卷入能导致“恩”的所有纠葛之中。在日本，街上发生某种意外事件时，人群的冷漠反应并非仅仅因为缺少热情，同时也因为官方和警官以外的任何私人的介入都会使受惠者额外地承担一份“恩”。明治前有一条最著名的法令就是：“一旦发生吵架或是争论，无关的人不要干涉。”在日本发生这类事情时，一个人如若没有明确的权限而帮助了他人，别人就会认为他有乘机占便宜的嫌疑；接受帮助的人对他的见义勇为还要欠一大笔恩情。为了避开这种恶嫌，人们在助人之时总是畏缩不前。日本人总是刻意避免带有“恩”的意味的偶然场合，以至于从没有交往过的人那里接受一支香烟都会觉得不快，他们在此情形下往往颇有礼貌地说：“哦，太过意不去了。”有一个日本人曾对我说：“如果你设身处地地感受一下那样做会使你多难受就容易懂得了，你从来未对他做过任何事，当然太不好意思受他的‘恩’了。”在有人敬烟时说的“过意不去”，可以被译成“谢谢”之类的话；如果在受其他恩惠时又可译为“对不起”等；当有人为你慷慨解囊时，它又可以被译为“我感到惭愧得无地自容” 。“过意不去”包含如此广泛的含意，而各个意思又彼此不同。</p></div>	
+<div class='layout'><p>The Japanese have many ways of saying ‘Thank you' which express this same uneasiness in receiving on. The least ambivalent, the phrase that has been adopted in modern city department stores, means ‘Oh, this difficult thing' (arigato). The Japanese usually say that this ‘difficult thing' is the great and rare benefit the customer is bestowing on the store in buying. It is a compliment. It is used also when one receives a present and in countless circumstances. Other just as common words for ‘thank you' refer like kino doku to the difficulty of receiving. Shopkeepers who run their own shops most commonly say literally: ‘Oh, this doesn't end,' (sumimaseri), i.e., ‘I have received on from you and under modern economic arrangements I can never repay you; I am sorry to be placed in such a position.' In English sumimasen is translated ‘Thank you,' ‘I'm grateful,' or ‘I'm sorry,' ‘I apologize.' You use the word, for instance, in preference to all other thank-you's if anyone chases the hat you lost on a windy street. When he returns it to you politeness requires that you acknowledge your own internal discomfort in receiving. ‘He is offering me an on and I never saw him before. I never had a chance to offer him the first on. I feel guilty about it but I feel better if I apologize to him. Sumimasen is probably the commonest word for thank-you in Japan. I tell him that I recognize that I have received on from him and it doesn't end with the act of taking back my hat. But what can I do about it? We are strangers.'</p><p>日语中还有许多表达“谢谢”的说法，其中也都含有受他人之“恩”时的不安感。其中最常见的话是现代化城市里大百货公司里广泛采用的那个说法“谢谢”，其意为“哦，太为难了”。这里的所谓“为难”，是因为顾客买了东西，给了商店很大、很少见的恩惠；实际这是一句恭维话，也可以用在接受礼物等其他无数场合。除此之外，还有一些与“不好意思”类似的感谢的话，都表示出受人恩惠是为难的。私人小店老板最爱说的一句话是“哦，对不起”，意思是说，“受您恩惠了，一时又无法报答，力不从心，感到很遗憾”。“对不起”在译成英语时常被译成“谢谢你”、 “十分感谢”。比如你的帽子在街上被风刮掉，有人替你拣起来时，你就可以用这句话表达你的谢意。当他把帽子递给你时，作为礼貌，你要表达自己内心的不安。“他给我这个‘恩’，而我从未见过他，我永远不会再有先给他‘恩’的机会了；我觉得非常不安，对他道个歉会使我感到好受一点。对他道一句日语中最常用的那句话‘对不起’吧，说完了就表示我明白受了他的‘恩’，而且这并不因为他把帽子还给我而了结，不过我实在无能为力，因为我们并不相识啊！”</p></div>	
+<div class='layout'><p>The same attitude about indebtedness is expressed even more strongly from the Japanese standpoint by another word for thank-you, katajikenai, which is written with the character ‘insult,' ‘loss of face.' It means both ‘I am insulted' and ‘I am grateful.' The all-Japanese dictionary says that by this term you say that by the extraordinary benefit you have received you are shamed and insulted because you are not worthy of the benefaction. In this phrase you explicitly acknowledge your shame in receiving on, and shame, haji, is, as we shall see, a thing bitterly felt in Japan. Katajikenai, ‘I am insulted,' is still used by conservative shopkeepers in thanking their customers, and customers use it when they ask to have their purchases charged. It is the word found constantly in pre-Meiji romances. A beautiful girl of low class who serves in the court and is chosen by the lord as his mistress, says to him Katajikenai; that is, ‘I am shamed in unworthily accepting this on; I am awed by your graciousness.' Or the samurai in a feudal brawl who is let go scot-free by the authorities says Katajikenai, ‘I have lost face that I accept this on; it is not proper for me to place myself in such a humble position; I am sorry; I humbly thank you.'</p><p>另外一个表达日本式感谢的词是“诚惶诚恐”，它更强烈地带有感恩的意思，这个词汉字写作“辱蒙……、辱承……”，其意既是指“受辱”，又是说“感谢”。根据日语词典的解释，这句话表示人们得到特别的恩惠时，感到自己不值得被施与，就会产生内疚或者受辱的念头，用这句话可以明确地表达出不好意思接受“恩”。另外，“耻辱”也是日本人最难接受的一种感情。“不胜感谢”（我受了侮辱）这句话至今在一些老式店主感谢他们的顾客时仍然可以听到，而顾客要求增添货物时也常常用上这句话。这句话在明治维新以前的浪漫故事中也常常出现。比如有一位出身卑微的美丽姑娘到皇宫去当侍女，后来她被主人封为嫔妃后就会对主人说“不胜感激”，表示“我太不值得蒙受如此洪恩了，您的仁慈使我惊恐不安”。此外，封建割据时代的武士，当主人饶恕了他的什么过失行为时也往往说“不胜感激”，表示“我受到这样的恩惠使我无地自容。我真不应心甘情愿如此卑贱，我太对不起您了，我万分恭敬地感激您”。</p></div>	
+<div class='layout'><p>These phrases tell, better than any generalizations, the ‘power of the on.' One wears it constantly with ambivalence. In accepted structuralized relations the great indebtedness it implies often stimulates a man only to put forward in repayment all that is in him. But it is hard to be a debtor and resentments come easily. How easily is described vividly in the famous novel Botchan by one of Japan's best-known novelists, Soseki Natsume. Botchan, the hero, is a Tokyo boy who is teaching school for the first time in a small town in the provinces. He finds very soon that he despises most of his fellow teachers, certainly he does not get along with them. But there is one young teacher he warms to and while they are out together this new-found friend whom he calls Porcupine treats him to a glass of ice water. He pays one sen and a half for it, something like one-fifth of a cent.</p><p>以上这些说法比任何说教都更充分地说明了“恩的作用”，人们一边竭力恪守它，同时又深深憎恶它。在种种现有的关系结构中，最重要的一种负疚，往往是激励一个人尽力报答的第一项义务。同时，欠了别人恩惠的人，又很容易转爱为恨。这种自然而然产生出来的怨恨，在日本最著名的小说家夏目漱石的那篇脍炙人口的小说《哥儿》中间被活灵活现地表现出来。主人公哥儿是一个在东京长大的青年，他第一次离家是到外地的一个小城去当老师。在那儿，他很快就对其他老师产生轻视，所以也很难与他们友好相处，但是他与其中一位年轻教师成为了朋友。一次，他俩一同外出，那个被他称为“刺猬”的新朋友端给他一杯冰水。“刺猬”为这杯水花了一个半铜钱，也就是相当于五分之一美分。</p></div>	
+<div class='layout'><p>Not long afterward another teacher reports to Botchan that Porcupine has spoken slightingly of him. Botchan believes the trouble-maker's report and is instantly concerned about the on he had received from Porcupine.</p><p>不久以后，有一个老师告诉哥儿说，“刺猬”讲了他的坏话。他听信了这个挑拨是非者的谗言，马上想到了他从刺猬那里得到过“恩”。</p></div>	
+<div class='layout'><p>‘To wear an on from such a fellow even if it is for so trifling a thing as ice water, affects my honor. One sen or half a sen, I shall not die in peace if I wear this on . . . The fact that I receive somebody's on without protesting is an act of good-will taking him at his par value as a decent fellow. Instead of insisting on paying for my own ice water, I took the on and expressed gratitude. That is an acknowledgement which no amount of money can purchase. I have neither title nor official position but I am an independent fellow, and to have an independent fellow accept the favor of on is far more than if he gave a million yen in return. I let Porcupine blow one sen and a half, and gave him my thanks which is more costly than a million yen.'</p><p>就为那一杯冰水这件小事欠了这等小人的“恩”，这使我太丢脸了。为了这一个半铜钱之恩，我将死不瞑目……我毫无防备之心地接受他人之“恩”，恰好说明了我的心地善良，把他看成一个高尚君子，才没再坚持自己付那杯水的钱。我用接受“恩”表示我对人的诚意，这是多么宝贵的啊！我虽然无官无爵，但我是个独立自主的人，让这样一个独立的人接受他的“恩”，比送给他一百万元钱还难得，我让“刺猬”替我花了一个半铜钱，就给予他我的感谢，这感谢比一百万元钱还要贵重。</p></div>	
+<div class='layout'><p>The next day he throws a sen and a half on Porcupine's desk, for only after having ceased to wear the on for the glass of ice water can he begin to settle the current issue between them: the insulting remark he has been told of. That may involve blows, but the on has to be wiped out first because the on is no longer between friends.</p><p>第二天一早，他就在“刺猬”的桌子上扔了一个半铜钱，表示付清一杯冰水的“恩”；也就表示可以随意解决俩人之间出现的新问题了，也就是解决别人告诉他的受了侮辱的事情。或许还得付诸决斗呢，但必须先把“恩”偿还清楚，表示二人再不是朋友关系了。</p></div>	
+<div class='layout'><p>Such acute sensitivity about trifles, such painful vulnerability occurs in American records of adolescent gangs and in case-histories of neurotics. But this is Japanese virtue. Not many Japanese would carry the matter to this extreme, they think, but of course many people are lax. Japanese commentators writing about Botchan describe him as ‘hot-tempered, pure as crystal, a champion of the right.' The author too identifies himself with Botchan and the character is indeed always recognized by critics as a portrait of himself. The story is a tale of high virtue because the person who receives on can lift himself out of the debtor's position only by regarding his gratitude as worth ‘a million yen' and acting accordingly. He can take it only from ‘a decent fellow.' In Botchan's anger he contrasts his on to Porcupine with an on he had received long since from his old nurse. She was blindly partial to him and felt that none of the rest of his family appreciated him. She used to bring him secretly little gifts of candy and colored pencils and once she gave him three yen. ‘Her constant attention to me chilled me to the marrow.' But though he was ‘insulted' at the offer of the three yen he had accepted it as a loan and he had never repaid it in all the years between. But that, he says to himself, contrasting the way he feels about his on to Porcupine, was because ‘I regard her as part of myself.' This is the clue to Japanese reactions to on. They can be borne, with whatever mixed feelings, so long as the ‘on man' is actually oneself; he is fixed in ‘my' hierarchal scheme, or he is doing something I can imagine myself doing, like returning my hat on a windy day, or he is a person who admires me. Once these identifications break down, the on is a festering sore. However trivial the debt incurred it is virtue to resent it.</p><p>对这么无足轻重的小事竟然如此敏感，给予如此激烈的报复，这种情况只能在美国的少年犯罪集团案例中或精神病人的病例上可以查到，而这在日本人却是一种美德。尽管并非所有日本人都如此绝对地看问题，但对于他们来说的确有许多行为是无法容忍的。日本的评论家就认为哥儿是一个“血气方刚，像水晶一样纯的有正义感的斗士 ”，作者本人也对他的主人公倾注了无限的同情，评论家们发现书中这位主人公的性格与作者本人十分相似。这个故事所颂扬的是一种高尚的情操，即主人公在接受别人的“恩”之后能够认识到自己的感谢比得上“一百万元钱”，并且用这种情操支配自己的行动，才能脱去负债者的地位。他只接受“可敬之人”的恩惠。哥儿在极其愤怒时还将“刺猬”给他的“恩”与他童年对老保姆的“恩”相比较。后者对他盲目地溺爱，觉得他是全家最好的人，还经常送他糖果和彩色铅笔之类的小礼物，有一次甚至给过他三块钱。“她对我无微不至的照顾使我终身难忘”，虽然他感到接受了那三块钱会使他蒙受“耻辱”，然而他还是把它当做一笔借款接受下来，虽然直到他再想起此事时还未还。他对他自己说，这和他欠“刺猬”的恩是截然不同的，因为“我把她视若我自己的一部分”，这才是日本人对“恩”的理解的真谛。他们在怀着各种复杂感情的同时，实际上是把“恩人”看成自己的一部分了。彼此或者是互为存在的，他人已经在“自我”这个体系中占有一定的位置；或者他所要做的事也是我想做的事，比如在刮风的时候他帮我捡起被风吹落的帽子；或者他是一个很欣赏我的人。所有诸如此类的状况如果一旦被打破，“恩”就会变成难以忍受的痛苦，无论这种恩惠多么微不足道，憎恨它都是正确的态度。</p></div>	
+<div class='layout'><p>Every Japanese knows that if one makes the on too heavy under any circumstances whatsoever one will get into trouble. A good illustration is from the ‘Consulting Department' of a recent magazine. The Department is a kind of ‘Advice to the Lovelorn' and is a feature of the Tokyo Psychoanalytic Journal. The advice offered is hardly Freudian but it is thoroughly Japanese. An elderly man wrote asking for counsel:</p><p>每一个日本人都晓得，无论在哪种情况之下用哪种名义做好事，稍一过分就会引火烧身。最近一份杂志的“征询栏”中的一个例子就十分充分地说明了这一点，这个栏目有些类似于美国杂志的“对失恋者的忠告”。这个故事是发表在《东京精神分析杂志》上的，只不过这里的劝言并不是根据弗洛伊德理论写出来，而是纯粹日本式的。这是由一位上年纪的人写信求助引起的——</p></div>	
+<div class='layout'><p>I am the father of three boys and one girl. My wife died sixteen years ago. Because I was sorry for my children, I did not remarry, and my children considered this fact as my virtue. Now my children are all married. Eight years ago when my son married, I retired to a house a few blocks away. It is embarrassing to state, but for three years I have played with a girl in the dark [a prostitute under contract in a public house]. She told me her circumstances and I felt sorry for her. I bought her freedom for a small sum, took her to my home, taught her etiquette, and kept her as a maid. Her sense of responsibility is strong and she is admirably economical. However, my sons and daughter-in-law and my daughter and son-in-law look down on me for this and treat me as a stranger. I do not blame them; it is my fault.</p><p>我有三男一女共四个孩子。十六年前我的妻子过世了。当时心疼孩子们，我就没再续弦，孩子们也都为这事感激我。现在孩子们都已经成家立业。几年前我儿子结婚时，我就搬到相隔几条街的另一座房子里去养老。心里太闷，我就和一个暗娼来往了三年（她没有执照，不能公开活动）。听她讲了她的苦衷之后，我心里觉得怪对不住她的，就花了点钱替她赎了身，还带她回家，教她些礼节，让她留在身边侍候我。她知道感恩，也很会持家。可我那些儿子儿媳、女儿女婿却为这事看不起我，还拿我当个外人看。我心里明白不能怪他们，这到底是我的错。</p></div>	
+<div class='layout'><p>The parents of the girl did not seem to understand the situation and since she is of marriageable age they wrote wanting her returned. I have met the parents and explained the circumstances. They are very poor but are not golddiggers. They have promised to consider her as dead and to consent that she continue in her situation. She herself wants to remain by my side till my death. But our ages are as father and daughter and therefore I sometimes consider sending her home. My children consider that she is after my property.</p><p>可谁知她的双亲也不领情。眼看她到了结婚的年龄，就来信催她回家。我去见了他们，跟他们解释了一番。他们是穷人，又没有别的可发家的财路。后来好歹他们同意让她在这儿待着，说是就当她已经死了。她本人也愿意服侍我到死。可说到底我们的岁数差得太多，就跟父女俩差不多。有时候我真想把她送回家去算了。孩子们也都觉得她是贪图我的财产。</p></div>	
+<div class='layout'><p>I have a chronic illness and I think I have only one or two years to live. I would appreciate your showing me what course to take. Let me say in conclusion that though the girl was once only a ‘girl in the dark,' that was because of circumstances. Her character is good and her parents are not golddiggers.</p><p>我有慢性病，说不定也只有一两年的寿数了。我想求您帮我想个办法。反正我觉得，她虽说当过暗娼，可那是为了糊口，她心挺善，她父母也决不是那种为了钱的人。</p></div>	
+<div class='layout'><p>The Japanese doctor regards this as a clear case of the old man's having put too heavy an on upon his children. He says:</p><p>回答此问题的日本医生认为，此事再清楚不过地说明，老人给自己儿女的恩惠太多了。他写道——</p></div>	
+<div class='layout'><p> You have described an event of daily occurrence…… Let me preface my remarks by saying that I gather from your letter that you are asking from me the answer you want and that this makes me have some antagonism to you. I of course appreciate your long unmarriedness, but you have used this to make your children wear the on and also to justify yourself in your present line of action. I don't like this. I'm not saying that you are sly, but your personality is very weak. It would have been better to have explained to your children that you had to live with a woman,—if you couldn't help having one,—and not to have let them wear the on (for your remaining unmarried). The children naturally are against you because you have laid such emphasis on this on. After all human beings don't lose their sexual desires and you can't help having desire. But one tries to overcome the desire. Your children expected you to because they expected you to live up to the ideal they had formed of you. On the contrary, they were betrayed and I can see how they feel, though it is egoistic on their part. They are married and sexually satisfied and they're selfish to deny this to their father. You're thinking this way and your children the other way (as above). The two ways of thinking don't meet.</p><p>你所说的事在日常生活中十分常见……我想说的是：从来信中可以看到，你问我的原因不过是想得到“你想要得到的”答案，这一点使我略感不快。当然我很佩服你能长期鳏居，可是你这样做只是想换得你的孩子们接受你的“恩”，而且仍旧用它衡量你现在的所作所为，这是我不能同意的。我想要批评的并不是你暗中寻乐这件事，而是你性格上的脆弱。如果你的确觉得你有那种需要，你就应该告诉你的孩子们，你早该有一个女人与你共同生活了，而不应该非让他们接受你的“恩”（以长期不再婚为代价）。正是由于你过于重视这个“恩”，你的孩子们才起来反对你。既然性欲乃人类之天性，你当然也不在例外，但人总要克制。你的子女就是如此希望你的，他们想象你能够过纯理想式的生活。与此相反，你却让他们感到失望，我能体会到他们的感情。这里当然也有他们的自私之处：他们自己都结了婚，性欲得到满足，却不许他们的父亲有这种要求。你从你的角度看问题，他们从他们的角度看问题，二者自然会产生矛盾了。</p></div>	
+<div class='layout'><p>You say that the girl and her parents are good people. That is what you want to think. One knows that people's good and evil depend on the circumstances, the situation, and because they are not at the moment seeking an advantage one can't say they're ‘good people.' I think the girl's parents are dumb to let her serve as concubine of a man about to die. If they're going to consider their daughter's being a concubine, they ought to seek some profit or advantage from it. It's only your fantasy to see it otherwise.</p><p>你说那个姑娘和她的双亲都是好人，这不过是按你自己的想法去看的。我们知道，人所谓好与坏是因环境、场所的不同而不同的。照我的想法，那女人的双亲似乎故意让她给一个快死的人当妾，既然他们明知道女儿在给人家当妾，却仍同意她那样做，那么他们一定想从中谋取什么利益或者好处。你所以不这样认为，是因为你沉溺在自己的幻想中。</p></div>	
+<div class='layout'><p>I don't wonder the children are worried about the girl's parents seeking some property; I really think they are. The girl is young and may not have this in mind, but her parents should have.</p><p>我可以理解为什么你的孩子们会担心姑娘的双亲对你的财产有所企图，我自己也有同样的担心。姑娘可能由于年轻没有考虑到这些问题，但她的父母一定会考虑到。</p></div>	
+<div class='layout'><p>There are two courses open to you:</p><p>在你面前摆着两条你可以选择的路：</p></div>	
+<div class='layout'><p>  1) As ‘a complete man' (one so well rounded that nothing is impossible to him) cut off the girl and settle with her. But I don't think you could do that; your human feelings wouldn't permit.</p><p>一、做一个“完人”（什么都能做到的人）。这就是断绝与姑娘的关系，为她安排好将来。不过我猜你不会这样做，因为你的感情不允许。</p></div>	
+<div class='layout'><p>  2) ‘Come back to being a common man' (give up your pretensions) and break up the children's illusion about you as an ideal man.</p><p>二、“回去当个凡夫俗子”（扔掉你的骄傲），打破你曾给孩子们的那个理想式人物的幻影。</p></div>	
+<div class='layout'><p>About the property, make a will immediately and state what the girl's and the children's shares are.</p><p>至于财产，马上立个遗嘱，写明姑娘和孩子们各得多少。</p></div>	
+<div class='layout'><p>In conclusion, remember that you are old, you are getting childish, as I can see by your handwriting. Your thinking is emotional rather than rational. You want this girl as a mother substitute, though you phrase this as wanting to save her from the gutter. I don't think any infant can live if its mother leaves—therefore, I advise you to take the second course.</p><p>总而言之，别忘记你已经上了年纪，变得有点孩子气了，我从你写的字上面就可以看到这一点。你是在用感情，而不是用理智考虑问题。你想用那个姑娘代替母亲，虽然你口中说的却是只“想把她从贫民窑中解救出来”。正因为我知道任何婴儿都离不开母亲，所以我劝你走第二条路。</p></div>	
+<div class='layout'><p>This letter says several things about on. A person once having elected to make even his children wear an extra heavy on can change his course of action only at his own risk. He should know that he will suffer for it. In addition, no matter what the cost to him of the on his children received, he may not lay it up for himself as merit to be drawn upon; it is wrong to use it ‘to justify yourself in your present line of action.' His children are ‘naturally' resentful; because their father started something he couldn't maintain, they were ‘betrayed.' It is foolish for a father to imagine that just because he has devoted himself entirely to them while they needed his care, the now-grown children are going to be extra solicitous for him. Instead they are conscious only of the on they have incurred and ‘naturally they are against you.'</p><p>这封信从几个方面论及“恩”。人如果选择让别人，即便是自己的孩子承担额外沉重的“恩”，预先应当估计到将会碰到麻烦，不然就得改变自己的方针，应当估计到将会为此而痛苦。此外，他不论为了让他的孩子们接受“恩”付出过多么大的代价，他都不能把这些记在自己的功德簿上，将它作为来日达到自己某种欲望的补偿，这种条件是不能成立的。“为使现在的行为正当化”而利用“恩”是错误的。因此，他的孩子们的怨恨是“理所当然的”，因为他们的父亲做事情虎头蛇尾，所以他们感到“失望”。如果作为父亲的以为在孩子需要照顾的时候把自己完全奉献给他们，所以等他们长大成人后就应该格外关心他，那他更是太愚蠢了。实际上他们只关心得到“恩”，所以后来“自然要反对”他了。</p></div>	
+<div class='layout'><p>Americans do not judge such a situation in this light. We think that a father who dedicated himself to his motherless children should in later years merit some warm spot in their hearts, not that they are ‘naturally against him.' In order to appreciate it as the Japanese see it, we can, however, regard it as a financial transaction for in that sphere we have comparable attitudes. It would be perfectly possible for us to say to a father who has lent money to his children in a formal transaction which they have to live up to with interest, ‘they are naturally against you.' In these terms too we can understand why a person who has accepted a cigarette speaks of his ‘shame' instead of saying a straightforward ‘Thank you.' We can understand the resentment with which they speak of a person's making another wear an on. We can at least get a clue to Botchan's grandiose magnification of the debt of a glass of ice water. But Americans are not accustomed to applying these financial criteria to a casual treat at the soda counter or to the years' long devotion of a father to his motherless children or to the devotion of a faithful dog like Hachi. Japan does. Love, kindness, generosity, which we value just in proportion as they are given without strings attached, necessarily must have their strings in Japan. And every such act received makes one a debtor. As their common saying has it: ‘It requires (an impossible degree of) inborn generosity to receive on.'</p><p>美国人在这种情况下不这样想。我们认为，为了丧母的孩子付出一腔心血的父亲到了晚年有资格受到孩子们的体贴照料，而不认为孩子“自然要反对”他，自然要翻脸。为了使人理解日本人的心理，我们不妨把这件事看成一桩金钱交易，在这种情况下我们是会采取同样做法的。我们完全有理由对按照正式买卖交易并附加利息的办法借钱给自己孩子的父亲说：“他们自然会反对你。”从这件事里，我们也更加理解为什么接受人家一根烟的人要说他感到“丢脸”，而不直截了当地道声“谢谢”；为什么日本人会对“使人感恩”愤愤不平。最后我们也明白了哥儿把一杯冰水的债无限扩大的根本原因了。不过，美国人可能永远不会理解，在卖苏打水的柜台旁偶然请人喝一杯、父亲在许多年里照顾自己那些失去母亲的孩子以及像八重那样一条忠实的狗的价值该如何用金钱计算出来，而日本人却能够将所有这些计算清楚。对于爱心、善举以及慷慨大方一类的事，在美国，越是没有附加条件则越受尊重；而在日本，一定会有附加条件，菊与刀第五章负疚于社会和历史的人这些都可以带有金钱交易那样的意义。任何受到这些好处的人都会成为负债的人。正如他们的一句俗语所说的：“要（过分）受人之恩，就必须天生慷慨大方。”</p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,397 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<div class='layout'><p>6 Repaying One-Ten-Thousandth</p><p>第六章 报答不尽万分之一的恩</p></div>	
+<div class='layout'><p>ON IS A DEBT and must be repaid, but in Japan all repayments are regarded as falling into another category entirely. The Japanese find our morals, which confuse these two categories in our ethics and in our neutral words like obligation and duty, as strange as we would find financial dealings in some tribe whose language did not separate ‘debtor' from ‘creditor' in money transactions. To them the primary and ever-present indebtedness called on is worlds apart from the active, bowstring-taut repayment which is named in a whole series of other concepts. A man's indebtedness (on) is not virtue; his repayment is. Virtue begins when he dedicates himself actively to the job of gratitude.</p><p>“恩”即负债，因此是必须偿还的。在日本，“恩”与“报恩”属于完全不同的范畴。日本人常常认为，我们（西方人）的道德观念中的责任和义务在伦理上和在词义上都是模糊不清的，而且总是把这两种不同类型的概念搞混。这就像一些部族，还没有在语言上区分开贸易交往中的“债务人”与“债权人”的时候就开始进行金融交易一样可笑。依照他们的观点，最主要的并且是始终存在的债务被称为“恩”，它完全区别于用其他一整套术语所表示的长期或者临时的各式各样的债。人的债务（恩）并不是什么美德，还债才是美德。美德表现在积极的报恩行为中。</p></div>	
+<div class='layout'><p>It will help Americans to understand this matter of virtue in Japan if we keep in mind the parallel with financial transactions and think of it as having behind it the sanctions against defaulting which property transactions have in America. Here we hold a man to his bond. We do not count extenuating circumstances when a man takes what is not his. We do not allow it to be a matter of impulse whether or not a man pays a debt to a bank. And the debtor is just as responsible for the accrued interest as he is for the original money he borrowed. Patriotism and love of our families we regard as quite different from all this. Love, with us, is a matter of the heart and is best when freely given. Patriotism, in the sense of putting our country's interests above everything else, is regarded as rather quixotic or certainly as not compatible with fallible human nature until the United States is attacked by the armed forces of an enemy. Lacking the basic Japanese postulate of great indebtedness automatically incurred by every man and woman born, we think that a man should pity and help his needy parents, should not beat his wife, and should provide for his children. But these things are not quantitatively reckoned like a debt of money and they are not rewarded as success in business is. In Japan they are regarded quite as financial solvency is in America and the sanctions behind them are as strong as they are in the United States behind being able to pay one's bills and the interest on one's mortgage. They are not matters that must be attended to only at crises such as a proclamation of war or the serious illness of a parent; they are one's constant shadow like a small New York farmer's worry about his mortgage or a Wall Street financier's as he watches the market climb when he has sold short.</p><p>我们如果能联想一下在美国金融交易中与此相类似的情况，想象一下有时在贸易交往中发生的对不履行合同的人给予处罚的事，将有助于美国人理解日本人的这种美德观。在经济交易中，我们美国人认为人们有履行契约的义务，不去斟酌谁取得了不是自己的东西。我们在处理偿还银行贷款这种事情时决不会感情用事，而且很明确贷款的债务人不但要还所借的款项，而且也要偿还利息。在美国人眼里，爱国心和对家族的爱则完全属于另外一码事。爱是感情问题，不受任何约束的自由的爱是最崇高的爱。除非美国受到敌国的武力威胁，否则从把自己国家的利益放在首位的观念出发的爱国心也会被认为是唐·吉诃德式的，是和常犯错误的人的本性不合的。日本人认为人生来就自动承受了很大的债务，我们则没有这种观念。我们认为，人应该尊敬和帮助父母，不应该打自己的妻子，还要尽到养育自己孩子的义务；但是这些事情都不是像负债那样用数量去计算的，所以在报答的时候也无法与某种生意上的成功相比拟。在日本，这种事情就像美国人看待还债一样，而且其背后的强制力，与要求付款的账单背后的强制力一样强大。这不是仅在公开宣战或亲人病重这类危急时刻才需要留意的事情，而是像纽约州的小农为抵债而苦恼，或华尔街的银行家抛空股票，后来眼看着行情上涨而干着急一样，是时刻缠身的魔影。</p></div>	
+<div class='layout'><p>The Japanese divide into distinct categories, each with its different rules, those repayments on on which are limitless both in amount and in duration and those which are quantitatively equivalent and come due on special occasions. The limitless repayments on indebtedness are called gimu and they say of it: ‘One never repays one ten-thousandth of (this) on.' One's gimu groups together two different types of obligations: repayment of one's on to parents, which is ko, and repayment of one's on to the Emperor, which is chu. Both these obligations of gimu are compulsory and are man's universal lot; indeed Japan's elementary schooling is called ‘gimu education' because no other word so adequately renders the meaning of ‘required.' The accidents of life may modify the details of one's gimu, but gimu is automatically incumbent upon all men and is above all fortuitous circumstances.</p><p>日本人把应该报答的恩惠分成不同的种类，对每一类都各有一套规定。一类是无论在数量上和时间上都是无限的；另一类是在数量上对等，而且在特定时机可以报答完毕的。无限报恩被称为“义务”，日本人在谈到它时常常说：“报答不尽万分之一的恩。”人的义务又分为两种：一种是报答父母之恩，亦称为“孝”；一种是报答天皇之恩，亦称为“忠”。这两种责任或义务都是强制性的，是人不可避免的。日本的小学教育被称为“义务教育”，因为没有其他词更接近于“必修”这个本意了。义务渗透在生活中的每一件事上，它的枝节部分或有所损益，但义务本身自动地加在所有人的身上，并且居于一切具体事情之上。</p></div>	
+<div class='layout'><p>SCHEMATIC TABLE OFJAPANESE OBLIGATIONS AND THEIR RECIPROCALS</p><p>日本人的义务和报答义务一览表</p></div>	
+<div class='layout'><p>I On: obligations passively incurred. One ‘receives an on'; one ‘wears an on,' i.e., on are obligations from the point of view of the passive recipient.</p><p>Ⅰ 恩：被动蒙受的义务。某人“受到了恩”，或“承恩”，对接受者来说，这是被动接受的义务。</p></div>	
+<div class='layout'><p>ko on. On received from the Emperor.</p><p>皇恩：接受天皇所赐的恩</p></div>	
+<div class='layout'><p>oya on. On received from parents.</p><p>父母之恩：接受父母给的恩</p></div>	
+<div class='layout'><p>nushi no on. On received from one's lord.</p><p>主恩：接受主君给的恩</p></div>	
+<div class='layout'><p>shi no on. On received from one's teacher.</p><p>师恩：接受老师给的恩</p></div>	
+<div class='layout'><p>on received in all contacts in the course of one's life.</p><p>人的一生是不断受恩的过程。</p></div>	
+<div class='layout'><p>NOTE: All these persons from whom one receives on become one's on jin, ‘on man.'</p><p>注：所有这些给予恩的人都是自己的恩人。</p></div>	
+<div class='layout'><p>II Reciprocals of on. One ‘pays' these debts, one ‘returns these obligations' to the on man, i.e., these are obligations regarded from the point of view of active repayment</p><p>Ⅱ “恩”的报答义务。向恩人“偿还”债务，或曰“偿还义务”，这是指从积极报答的意义上所说的义务。</p></div>	
+<div class='layout'><p>A. Gimu. The fullest repayment of these obligations is still no more than partial and there is no time limit.</p><p>1 义务。指无论如何尽力报答都不能全部还清的债，在时间上也是无限的。</p></div>	
+<div class='layout'><p>chu. Duty to the Emperor, the law, Japan.</p><p>忠：对天皇、法律和日本国家的义务</p></div>	
+<div class='layout'><p>ko. Duty to parents and ancestors (by implication, to descendants).</p><p>孝：对父母和祖先（包括后代）的义务</p></div>	
+<div class='layout'><p>nimmu. Duty to one's work.</p><p>任务：对自己工作的义务</p></div>	
+<div class='layout'><p>B. Giri. These debts are regarded as having to be repaid with mathematical equivalence to the favor received and there are time limits.</p><p>2 情义。指偿还和所接受的恩惠等量的债即可，时间上也是有限的。</p></div>	
+<div class='layout'><p>  1. Giri-to-the-world.</p><p>① 对社会的义理</p></div>	
+<div class='layout'><p>Duties to liege lord.</p><p>对主君的义务</p></div>	
+<div class='layout'><p>Duties to affinal family.</p><p>对近亲的义务</p></div>	
+<div class='layout'><p>Duties to non-related persons due to on received, e.g., on a gift of money, on a favor, on work contributed (as a ‘work party').</p><p>对他人的义务指没有亲属关系但受其恩惠，如受其所赠钱财，受其照顾，接受其帮工，如“协作生产”等情况。</p></div>	
+<div class='layout'><p>Duties to persons not sufficiently closely related (aunts, uncles, nephews, nieces) due to on received not from them but from common ancestors.</p><p>对远亲（伯父、伯母、堂兄弟姐妹）的义务虽然没有直接得其恩，但从共同的祖先处受到恩。</p></div>	
+<div class='layout'><p>  2. Giri-to-one's-name. This is a Japanese version of die Ehre.</p><p>② 对名誉的义理，即相当于普鲁士人的“名誉”。</p></div>	
+<div class='layout'><p>One's duty to ‘clear' one's reputation of insult or imputation of failure, i.e., the duty of feuding or vendetta. (N.B. This evening of scores is not reckoned as aggression.)</p><p>人有“清洗”自己受到污辱或失败的名誉的义务，即报复或复仇的义务。（注：这种报复并不被看做非法攻击。）</p></div>	
+<div class='layout'><p>One's duty to admit no (professional) failure or ignorance.</p><p>不承认自己的失败和无知（在自己专业上）的义务。</p></div>	
+<div class='layout'><p>One's duty to fulfill the Japanese proprieties, e.g., observing all respect behavior, not living above one's station in life, curbing all displays of emotion on inappropriate occasions, etc.</p><p>履行日本礼仪的义务，例如检点自己的行为做法，不做与自己身份不相称的事，控制不在某种场合流露感情，等等。</p></div>	
+<div class='layout'><p>Both forms of gimu are unconditional. In thus making these virtues absolute Japan has departed from the Chinese concepts of duty to the State and of filial piety. The Chinese ethical system has been repeatedly adopted in Japan ever since the seventh century and chu and ko are Chinese words. But the Chinese did not make these virtues unconditional. China postulates an overriding virtue which is a condition of loyalty and piety. It is usually translated ‘benevolence' (jen) but it means almost everything Occidentals mean by good interpersonal relations. A parent must have jen. If a ruler does not have it it is righteous for his people to rebel against him. It is a condition upon which one's gift of loyalty is predicated. The Emperor's tenure and that of his officials depended on their doing jen. Chinese ethics applies this touchstone in all human relations.</p><p>这两种义务都是无条件必须履行的。由于日本人把这些美德看得如此绝对，因此已经超出了中国的“忠君孝亲”的观念。日本从七世纪开始完全接受了中国的伦理体系，“忠”和“孝”就都是汉字。但是中国人并没有认为这些道德是绝对的，在中国，忠孝之上还有“仁”作为条件。“仁”是道德的最高阶段，这个道德（仁）本身被解释作“仁慈”（慈善、博爱），而它实际意思上几乎包括了西方人所说的友好和睦的一切人际关系。不但做父母的需要仁，一位统治者若是对他的百姓不施仁政，也会受到人民的反叛，“仁”是忠孝的基本条件。帝王以及他的大小官吏的在位或在职时间的长短都取决于是否施仁政，这种伦理观念是中国一切人际关系的基石。</p></div>	
+<div class='layout'><p>This Chinese ethical postulate was never accepted in Japan. The great Japanese student, Kanichi Asakawa, speaking of this contrast in medieval times, says: ‘In Japan these ideas were obviously incompatible with her imperial sovereignty and were therefore never accepted in entirety even as theories.'* In fact jen became in Japan an outlaw virtue and was entirely demoted from the high estate it had in Chinese ethics. In Japan it is pronounced jin (it is written with the same character the Chinese use) and ‘doing jin' or its variant ‘doing jingi' is very far indeed from being a virtue required even in the highest quarters. It has been so thoroughly banished from their ethical system that it means something done outside the law. It may indeed be a praiseworthy act like putting one's name on a subscription list for public charity or granting mercy to a criminal. But it is emphatically a work of supererogation. It means that the act was not required of you.</p><p>而这个中国道德的基石却从未被日本所接受。伟大的日本学者朝河贯一在谈到这两个国家中世纪的这个不同点时说道：“这些观念显然是与日本的天皇制不相容的，因此即便是在伦理上也从未被完全继承下来。” 引自《入来院文书》，1929年，第380页，注19。在日本，“仁”实际上变成了伦理体系以外的“德”，这样，它就根本不具有在中国伦理道德中的那种优越的地位。它在日语中被读成为“jin”（写出来则与中国汉字相同）。所谓“施仁”或其另一说法“施仁义”，对最高统治阶层来说的确不是必备的修养。它不但被置于伦理道德的体系之外，而且还用来指法律要求之外的行为。比如说，有人的名字若出现在公益捐赠者光荣榜上，或者有人对罪犯宽宏大量，这些事虽然都值得称赞，但毕竟属于额外的事，就是说没有人要求他这样做。</p></div>	
+<div class='layout'><p>‘Doing jingi' is used in another sense of ‘outside the law,' too; it is used of virtue among gangsters. The honor among thieves of the raiding and slashing swashbucklers of the Tokugawa period—they were one-sword men as contrasted with the two-sworded swashbuckling samurai—was ‘doing jingi'; when one of these outlaws asked shelter of another who was a stranger, that stranger, as an insurance against future vengeance from the petitioner's gang, would grant it and thereby ‘do jingi.' In modern usage ‘doing jingi' has fallen even lower. It occurs frequently in discussions of punishable acts: ‘Common laborers,' their newspapers say, ‘still do jingi and they must be punished. Police should see to it that jingi is stopped in the holes and comers where it flourishes in Japan.' They mean of course the ‘honor among thieves' which flourishes in racketeering and gangsterdom. Especially the small labor contractor in modern Japan is said to ‘do jingi' when, like the Italian labor padrone at American ports at the turn of the century, he enters into outside-the-law relationships with unskilled laborers and gets rich off farming them out at a profit. The degradation of the Chinese concept of jen could hardly go farther.* The Japanese, having entirely reinterpreted and demoted the crucial virtue of the Chinese system and put nothing else in its place that might make gimu conditional, filial piety became in Japan a duty one had to fulfill even if it meant condoning a parent's vice and injustice. It could be abrogated only if it came into conflict with one's obligation to the Emperor, but certainly not when one's parent was unworthy or when he was destroying one's happiness.</p><p>“施仁”之所以被纳入“法律要求之外”的范围，还有另外一层含义，即它也被用来形容绿林好汉之间的“德”。德川幕府时专门从事抢劫和扶弱铲霸的盗匪之间就崇尚“施仁”，为了与佩双刀的武士相区别，他们都佩单刀。如果一个属于这种盗匪的人请求另一个属于同类的陌生人提供藏身之地，后者为了不受要求藏匿者的同伴的报复就会答应，这就是所谓“施仁义”。在现代语言中，“施仁”就更不足称道了，它时常指那些应该受到处罚的行为，成为受人谴责的众矢之的。日本的报纸上登着“劣等劳工还在讲施仁义，他们迟早会受到惩罚。警察应该制止依然遍布在日本的犄角旮旯里的仁义”。很明显，这指的是“盗匪之间的美德”仍在欺诈勒索的黑社会里盛行。特别是现在日本的小包工头往往被形容成“施仁”的人，他们就像二十世纪初美国各港口城市的意大利籍劳工的监护人一样，与非熟练技术工人结成法律之外的关系，依靠向他们高价出租土地而发财，这真把中国人观念中的“仁”贬低到无以复加的地步。只有日本人的“知仁”这种说法在定义上与中国的接近。佛教教导人们“知仁”，这是劝人弃恶从善。正如日本词典所写的那样，“知仁与其说是指理想的行为，不如说是指理想的人”。日本人在彻底重新诠释和贬低这个中国伦理体系的最高道德规范的同时，还把孝道捧到某种至高的地位，以至于在日本，哪怕父母犯了罪或做了不公正的事情时，人也必须尽孝的职责。只有在与对天皇的义务发生冲突时，孝才退居次要的地位。但是无论父母的为人多么令人卑视，也无论他们怎样拼命地破坏儿女的幸福，还是要对他们尽守孝道。</p></div>	
+<div class='layout'><p>In one of their modern movies a mother comes upon some money her married son, a village schoolmaster, has collected from the villagers to redeem a young schoolgirl about to be sold by her parents to a house of prostitution because they are starving in a rural famine. The schoolmaster's mother steals the money from her son although she is not poor; she runs a respectable restaurant of her own. Her son knows that she has taken it but he has to shoulder the blame himself. His wife discovers the truth, leaves a suicide note taking all responsibility for the loss of the money, and drowns herself and their baby. Publicity follows but the mother's part in the tragedy is not even called in question. The son has fulfilled the law of filial piety and goes off alone to Hokkaido to build his character so that he can strengthen himself for like tests in coming years. He is a virtuous hero. My Japanese companion vigorously protested my obvious American verdict that the person responsible for the whole tragedy was the thieving mother. Filial piety, he said, was often in conflict with other virtues. If the hero had been wise enough, he might have found a way to reconcile them without loss of self-respect. But it would have been no possible occasion for self-respect if he blamed his mother even to himself.</p><p>有一部现代日本影片，讲的是一个母亲与他已成家的当小学教师的儿子之间的故事。那位教师为了救赎因为饥荒要被父母卖给妓院的一个女学生，从乡亲们那里凑了一笔钱。他的母亲正开着一家生意兴隆的饭馆，日子过得挺富裕，却从儿子那儿把钱偷走了。儿子明知是她偷的钱，却自己承担了恶名。他的妻子在发现真相后，写下一封遗书说自己偷了钱，然后怀着胎儿跳河自杀了。真相大白之后，竟然大家都不认为这场悲剧的责任在于那位母亲。她的儿子就这样成全了孝道，最后只身到北海道去了，想进一步锤炼自己，应付未来生活的考验。他是一个道德英雄。我的日本同事对我认为整个悲剧该由偷窃的母亲负责这种典型的美国式观点竭力表示反对。他说，孝道常常会与其他道德相冲突。当然如果这位主人公更明智一点，应该在不失尊敬的条件下找到一种解决方案，然而如果他即使只在心里谴责了他母亲，也就没有被尊敬的余地了。</p></div>	
+<div class='layout'><p>Both novels and real life are full of the heavy duties of filial piety after a young man is married. Except in ‘modan' (modern) circles it is taken for granted in respectable families that the parents select their son's wife, usually through the good offices of go-betweens. The family, not the son, is chiefly concerned about the matter of a good selection, not only because of the money transactions involved but because the wife will be entered in the family genealogy and will perpetuate the family line through her sons. It is the custom for the go-betweens to arrange a seemingly casual meeting between the two young principals in the presence of their parents but they do not converse. Sometimes the parents choose to make for their son a marriage of convenience in which case the girl's father will profit financially and the boy's parents by alliance with a good family. Sometimes they choose to select the girl for her personally acceptable qualities. The good son's repayment of parental on does not allow him to question his parents' decision. After he is married his repayment continues. Especially if the son is the family heir he will live with his parents and it is proverbial that the mother-in-law does not like her daughter-in-law. She finds all manner of fault with her, and she may send her away and break up the marriage even when the young husband is happy with his wife and asks nothing better than to live with her. Japanese novels and personal histories are just as apt to stress the suffering of the husband as of the wife. The husband of course is doing ko in submitting to the break-up of his marriage.</p><p>不论是在故事情节中还是现实生活中，青年人一旦结了婚，就必须承担起孝敬父母的沉重负担。除了所谓“现代的”阶层之外，一般良家父母有通过媒人介绍选择儿媳的当然权力。他们最关心选择的合适与否的并不是儿子本人而是他的家族。这不仅是因为与金钱交易有关，而且因为儿媳妇将成为整个家族的成员，还要生儿育女、传宗接代。一般是先由介绍人安排两位年轻人似乎在偶然的情况下相遇，双方的家长到场，但青年男女并不交谈。男方的家长有时候为儿子定下一桩所谓适当的婚事，使姑娘的父亲能得到钱财方面的利益，自己则通过与地位较高的家庭联姻而提高了地位；有时也因为女方本人有某些长处。为了做一个能报答父母养育之恩的好儿子，就不能违背父母之命。而且婚后还要接着报答，特别是长子必须与父母住在一起，虽然谁都知道婆婆与儿媳是天敌。婆婆处处挑儿媳妇的毛病，可以赶她回家，破坏一门亲事；年轻的丈夫再喜爱妻子，再愿意与她白头偕老也没有用处。日本的小说及传记最爱渲染儿子和媳妇忍受这种苦衷的主题，在这种情况下，当丈夫的自然只能离婚来成全“孝”。</p></div>	
+<div class='layout'><p>One ‘modan' Japanese now in America took into her own rooms in Tokyo a pregnant young wife whose mother-in-law had forced her to leave her grieving young husband. She was sick and brokenhearted but she did not blame her husband. Gradually she became interested in the baby she was soon to bear. But when the child was born, the mother came accompanied by her silent and submissive son to claim the baby. It belonged of course to the husband's family and the mother-in-law took it away. She disposed of it immediately to a foster home.</p><p>有一位现在旅居美国的“现代”式日本妇女，以前在东京时就曾在自己家里收留过一个怀着孕的少妇。那位少妇就是在婆婆的逼迫下，离开她年轻的丈夫的。丈夫也和她难舍难分，她虚弱无力又悲恸欲绝，却还为她丈夫辩护。后来，快生孩子又给了她新的乐趣。谁知孩子刚一坠地，婆婆就在儿子的陪同下来要孩子，那儿子一声不响，非常驯顺。自然，孩子归丈夫家，婆婆到底把孩子抱走了，并马上送给别人寄养。</p></div>	
+<div class='layout'><p>All this is on occasion included in filial piety, and is proper repayment of indebtedness to parents. In the United States all such stories are taken as instances of outside interference with an individual's rightful happiness. Japan cannot consider this interference as ‘outside' because of her postulate of indebtedness. Such stories in Japan, like our stories of honest men who pay off their creditors by incredible personal hardships, are tales of the truly virtuous, of persons who have earned their right to respect themselves, who have proved themselves strong enough to accept proper personal frustrations. Such frustrations, however virtuous, may naturally leave a residue of resentment and it is well worth noting that the Asiatic proverb about the Hateful Things, which in Burma, for instance, fists ‘fire, water, thieves, governors and malicious men,' in Japan itemizes ‘earthquake, thunder and the Old Man (head of the house; the father).'</p><p>这些都是孝道所要求人们做到的，都是对父母之恩的必要的报答。然而在美国，这些离奇的故事会被看成干涉他人应有幸福的典型例证。日本人却不认为这种干涉是“离奇”的，因为他们觉得报恩是天经地义的。日本所发生的这种事，正如我们中间的那些诚实的人不顾难以想象的艰难还清了欠下的旧账一样，是值得赞颂的美德；这些人是赢得了荣誉的人，是经受住极大个人挫折的坚强的人。这些事虽然令人敬佩，却不免留下怨恨，因此亚洲人关于“忌讳”的说法非常有意思，比如缅甸人的忌讳包括：火灾、洪水、盗贼、知事（官吏）和恶人；而日本人则概括为：地震、雷电和老头（指一家之主的父亲）。</p></div>	
+<div class='layout'><p>Filial piety does not, as in China, encompass the line of ancestors for centuries back nor the vast proliferating living clan descended from them. Japan's veneration is of recent ancestors. A gravestone must be relettered annually to keep its identity and when living persons no longer remember an ancestor his grave is neglected. Nor are tablets for them kept in the family shrine. The Japanese do not value piety except to those remembered in the flesh and they concentrate on the here and now. Many writers have commented on their lack of interest in disembodied speculation or in forming images of objects not present, and their version of filial piety serves as another instance of this when it is contrasted with China's. The greatest practical importance of their version, however, is in the way it limits the obligations of ko among living persons.</p><p>日本的孝道与中国的内容不尽相同，它既不包括延伸几世纪之久的一系列祖先的名字，也不包括与自己祖先相同的无数现在的旁系，他们只对较近的祖辈尽其孝责。他们每年都要整修墓碑，使人看清上面的字，但被人们遗忘的祖先的墓地就荒芜了，人们也不把这些祖先的牌位安置在神龛中。他们只对那些能记得清清楚楚的才行孝。他们只重视眼前的现实。许多著述中已经论及日本人对脱离实际的臆想毫无兴趣，他们也不喜欢幻想那些乌有之物。他们的孝道观与中国人的显然不同，也正好证明了这一点。还应看到，他们孝的观念中最有现实意义的一点就是把孝的对象局限于生者。</p></div>	
+<div class='layout'><p>For filial piety, both in China and Japan, is far more than deference and obedience to one's own parents and forebears. All that care of the child which Westerners phrase as being contingent on maternal instinct and on paternal responsibility, they phrase as contingent on piety to one's ancestors. Japan is very explicit about it: one repays one's debts to one's forebears by passing on to one's children the care one oneself received. There is no word to express ‘obligation of the father to his children' and all such duties are covered by ko to the parents and their parents. Filial piety enjoins all the numerous responsibilities which rest upon the head of a family to provide for his children, educate his sons and younger brothers, see to the management of the estate, give shelter to relatives who need it and a thousand similar everyday duties. The drastic limitation of the institutionalized family in Japan sharply limits the number of persons toward whom any man has this gimu. If a son dies it is an obligation of filial piety to bear the burden of supporting his widow and her children. So also is the occasional providing of shelter to a widowed daughter and her family. But it is not a gimu to take in a widowed niece; if one does so, one is fulfilling a quite different obligation. It is gimu to rear and educate your own children. But if one educates a nephew, it is customary to adopt him legally as one's own son; it is not a gimu if he retains the status of nephew.</p><p>无论中国的还是日本的孝道，都远远超出只对自己的父母或祖先表示尊重和服从。用西方人的观点，对子女的照顾是母爱的本能和父亲的责任感所决定；而用日本人的话说，却是由对祖辈的孝顺决定的。日本人对此非常绝对地认为，人们用照顾自己的孩子报答长辈对自己的恩。他们甚至没有专门形容“父亲对孩子的责任”的话，而把这一责任包括在对父辈的孝之内。孝道囊括了无穷无尽的职责，对一家之主来说，他的孝包括负责子女的衣食住行、教育儿子和弟弟、照管家庭产业、收容生活有困难的亲属以及诸如此类数以千计的日常生活中的“义务”。典型的日本家庭对所有有资格享受这种义务的人进行严格的规定，如果一位身为家长的人的儿子去世，依照孝道，他必须担负起照顾儿子的未亡人和子女的责任；也是根据这一原则，有时家长还得收留自己守寡的女儿及子女；但这种义务不要求收留寡居的侄女，如果有人这样做，那一定是为了履行其他责任。同样的，抚养和教育自己的孩子属于“义务”所要求的范围，如果有人负担起侄子的教育，通常情况下他已经按照法律手续收其为养子，“义务”不要求人们对侄儿履行责任。</p></div>	
+<div class='layout'><p>Filial piety does not require that assistance even to one's immediate needy relatives in the descending generations be given with deference and loving-kindness. Young widows in the family are called ‘cold-rice relatives,' meaning that they eat rice when it is cold, are at the beck and call of every member of the inner family, and must accept with deep obedience any decisions about their affairs. They are poor relations, along with their children, and when in particular cases they fare better than this it is not because the head of the family owes them this better treatment as a gimu. Nor is it a gimu incumbent upon brothers to carry out their mutual obligations with warmth; men are often praised for having fully lived up to obligations to a younger brother when it is freely admitted that the two hate each other like poison.</p><p>孝道也不要求人们在哺育晚辈直系亲属时，以尊敬和慈爱之心相待。回娘家守寡的女儿常常被称为“剩饭亲戚”，意思是她们只能吃到剩米饭，还要听从家庭的核心成员的随意差使和呼唤，必须绝对服从他们对自己事务的发落和决定，他们连同带去的孩子都是穷亲戚。在偶然情况下，他们受到较好待遇，这也决不是由于家长有“义务”使他们如此。义务也不要求兄弟之间在履行同辈的义务时必须全力以赴，相反，却常常听到人们赞赏地谈论一对兄弟公开地彼此恨之入骨时，当哥哥的却主动承担了对弟弟的全部责任。</p></div>	
+<div class='layout'><p>Greatest antagonism is between mother-in-law and daughter-in-law. The daughter-in-law comes into the household as a stranger. It is her duty to learn how her mother-in-law likes to have things done and then to learn to do them. In many cases the mother-in-law quite explicitly takes the position that the young wife is not nearly good enough for her son and in other cases it can be inferred that she has considerable jealousy. But, as the Japanese saying goes, ‘The hated daughter-in-law keeps on bearing beloved grandsons' and ko is therefore always present. The young daughter-in-law is on the surface endlessly submissive but generation after generation these mild and charming creatures grow up into mothers-in-law as exacting and as critical as their own mothers-in-law were before them. They cannot express their aggressions as young wives but they do not therefore become genuinely mild human beings. In later life they turn, as it were, an accumulated weight of resentment against their own daughters-in-law. Japanese girls today openly talk about the great advantage of marrying a son who is not an heir so that they will not have to live with a dominating mother-in-law.</p><p>婆婆与儿媳妇之间掩藏着最深刻的敌意。儿媳作为外来者进入这个家庭，首先要了解婆婆如何料理家务然后照着去做。绝大多数婆婆都直截了当地说媳妇配不上自己的儿子，其余的也对媳妇心怀嫉妒。然而正如日本人所说的，“可恨的儿媳妇总能生出可爱的孙子”，因此媳妇的孝也自在其中了。年轻的儿媳妇表面上绝对服从，几十年过去以后，这些昔日温柔迷人的媳妇们也熬成了婆婆，她们也会变得如同自己的婆婆那样狠毒。身为年轻妻子的时候她们不许表现出尖酸好斗，但她们的性格并不一定真正温顺，实际上正相反，她们到了晚年的时候，就会把满腹的积怨发泄在自己的儿媳妇身上。今日的日本姑娘公开地谈论嫁给非长子的巨大好处，因为这样她们就可以不与发号施令的婆婆住在一起了。</p></div>	
+<div class='layout'><p>To ‘work for ko' is not necessarily to achieve lovingkindness in the family. In some cultures this is the crux of the moral law in the extended family. But not in Japan. As one Japanese writer says, ‘Just because he esteems the family highly, the Japanese has anything but a high estimation of the individual members or of the family tie between them.'* That is not always true, of course, but it gives the picture. The emphasis is upon obligations and repaying the debt and the elders take great responsibility upon themselves, but one of these responsibilities is to see to it that those below them make the requisite sacrifices. If they resent these, it makes little difference. They must obey their elders' decisions or they have failed in gimu.</p><p>为了做到“尽孝”的目标，并不要求人们在家族里表现出仁爱，在某些其他文化背景下的社会的基层单位——家庭中，仁爱则是核心的道德原则。日本人却不是这样，正如一位日本作家所说的，“正因为日本人最珍视家庭，他们才忽略了对家庭每一个个别成员以及彼此之间的纽带关系的高度重视”引自野原：《日本真相》，伦敦，1936年，第45页。。当然这不一定完全正确，但有助于我们对问题的理解。重要的问题是报答和义务。在长辈所承担的繁多义务中，有一项就是监督晚辈为义务做出必要的牺牲，晚辈们即便不满也无济于事；他们若要尽到“义务”，就必须服从长辈们的决定。</p></div>	
+<div class='layout'><p>The marked resentments between members of the family which are so typical of filial piety in Japan are absent in the other great obligation which like filial piety is a gimu: fealty to the Emperor. Japanese statesmen planned well in secluding their Emperor as a Sacred Chief and in removing him from the hurlyburly of life; only so in Japan could he serve to unify all people in unambivalent service to the State. It was not enough to make him a father to his people, for the father in the household, despite all the obligations rendered him, was a figure of whom one might have ‘anything but a high estimation.' The Emperor had to be a Sacred Father removed from all secular considerations. A man's fealty to him, chu, the supreme virtue, must become an ecstatic contemplation of a fantasied Good Father untainted by contacts with the world. Early Meiji statesmen wrote after they had visited the nations of the Occident that in all these countries history was made by the conflict between ruler and people and that this was unworthy of the Spirit of Japan. They returned and wrote into the Constitution that the Ruler was to ‘be sacred and inviolable' and not reckoned responsible for any acts of his Ministers. He was to serve as supreme symbol of Japanese unity, not as responsible head of a State. Since the Emperor had not served as an executive ruler for some seven centuries it was simple to perpetuate his back-stage role. Meiji statesmen needed only to attach to him, in the minds of all Japanese, that unconditional highest virtue, chu. In feudal Japan chu had been obligation to the Secular Chief, the Shogun, and its long history warned Meiji statesmen what it was necessary to do in the new dispensation to accomplish their objective, the spiritual unification of Japan. In those centuries the Shogun had been Generalissimo and chief administrator and in spite of the chu that was due him plots against this supremacy and against his life were frequent. Fealty to him often came into conflict with obligations to one's own feudal overlord, and the higher loyalty frequently was less compelling than the lower. Fealty to one's own overlord was, after all, based on face to face ties and fealty to the Shogun might well seem cold in comparison. Retainers too fought in troubled times to unseat the Shogun and to establish their own feudal lord in his place. The prophets and leaders of the Meiji Restoration had for a century fought against the Tokugawa Shogunate with the slogan that chu was due to the Emperor secluded in the shadowy background, a figure whose lineaments every person could draw for himself according to his own desires. The Meiji Restoration was the victory for this party and it was precisely this shifting of chu from Shogun to symbolic Emperor which justified the use of the term ‘restoration' for the year 1868. The Emperor remained secluded. He invested Their Excellencies with authority but he did not himself run the government or the army or personally dictate policies. The same sort of advisors, though they were better chosen, went on running the government. The real upheaval was in the spiritual realm, for chu became every man's repayment to the Sacred Chief—high priest and symbol of the unity and perpetuity of Japan.</p><p>怨恨之情在尊奉孝道的典型日本家庭成员之间十分普遍，然而在孝忠天皇这项与孝道并列却更为重大的义务中却不存在。日本的政治家们如此巧妙地用“神权君主”的称号把他们的天皇与人民隔离开来，因此天皇从纷繁庸碌的世俗生活中脱离出来。也只有如此，才能使天皇在日本起到无与伦比的统一人民、为国服务的作用，这是单单赋予他一个人民之父名称所达不到的。因为如果是家庭中的父亲，儿女虽然尽一切义务报答他的恩情，却很容易把他当成“并非享有超出寻常的尊敬的普通人”的一员。天皇被当做超脱一切世俗问题纷扰的“神权君主”，人们对他的孝敬，也就成为最高的美德——“忠”，并且满足了人们对不受世事玷污的“慈父”的理想。明治初年的政治家在游历西方诸国之后写道，所有这些西方国家都充满了统治者与人民之间的冲突，这当然是不符合“大和精神”的。他们回国后在日本的《宪法》中规定：天皇是“神圣不可侵犯的”，他可以不为“大臣们”的行为负责；他被当做日本人民统一的最高象征，而不是负有责任的国家元首。由于天皇在大约七百年的时间里一直未执政，所以继续让他担任幕后角色并不困难。明治政治家只不过让全体日本人民把心目中至高无上的“忠”的美德奉献给他。在日本封建社会里，“忠”一直是对“幕府将军”等世俗首脑的义务。日本长期的历史教训提醒着明治政治家们，在新的条件下如何克服日本精神不统一这个敌人。在那些世纪里，掌权的幕府将军既是军事统率，又是行政首脑；人们在对他们效忠的同时，也经常酝酿出反对他们绝对统治甚至谋害他们的阴谋。对将军的效忠还往往与对封建君主的义务相矛盾，结果对较高级别的忠常常让位给对较低级别的忠，对自己主人的孝忠毕竟关系更直接一些，与此相比对将军的忠就更疏远一点。在动乱时期，家臣还不得不经常为把自己的封建主捧上幕府将军的宝座而战。明治维新的启蒙思想家和领导者在长达一个世纪之久的推翻幕府的斗争中，提出的口号是效忠居于幕后的天皇，这样一来任何人都可以按照自己的愿望随意勾画天皇的形象。正是由于把效忠从幕府将军的身上转到象征性的天皇的身上，一八六八年明治维新派的胜利才被称为“王政复古”。此后的天皇依然不参政，他把权力授予“阁下”们；他本人既不操纵政府也不指挥军队，甚至不直接制定政策，而是让一些顾问（必须经过严格的挑选）出面管理政府。真正发生变革的是在精神领域，“忠”成了每个人对“神权君主”这个最高司祭、日本统一和永恒象征的必持之信念。</p></div>	
+<div class='layout'><p>The ease with which chu was transferred to the Emperor was aided of course by the traditional folklore that the Imperial House was descended from the Sun Goddess. But this folkloristic claim to divinity was not so crucial as Westerners thought it was. Certainly Japanese intellectuals who entirely rejected these claims did not therefore question chu to the Emperor, and even the mass of the populace who accepted divine birth did not mean by that what Westerners would mean. Kami, the word rendered as ‘god,' means literally ‘head,' i.e., pinnacle of the hierarchy. The Japanese do not fix a great gulf between human and divine as Occidentals do, and any Japanese becomes kami after death. Chu in the feudal eras had been due to heads of the hierarchy who had no divine qualifications. Far more important in transferring chu to the Emperor was the unbroken dynasty of a single imperial house during the whole history of Japan. It is idle for Westerners to complain that this continuity was a hoax because the rules of succession did not conform to those of the royal families of England or of Germany. The rules were Japan's rules and according to her rules the succession had been unbroken ‘from ages eternal.' Japan was no China with thirty-six different dynasties in recorded history. She was a country which, in all the changes she had embraced, had never torn her social fabric in shreds; the pattern had been permanent. It was this argument, and not divine ancestry, which the anti-Tokugawa forces exploited during the hundred years before the Restoration. They said that chu, which was due him who stood at the apex of the hierarchy, was due the Emperor alone. They built him up as high priest of the nation and that role does not necessarily mean divinity. It was more crucial than descent from a goddess.</p><p>“忠”之所以被顺利转移到天皇身上，不用说也受益于皇室系“天照大神”之后代这个民间传说。但是，这个带神圣意味的传说所起的作用，并不像西方人所想象的那么重要。比如日本的知识分子就不承认这一说法，但是他们也照样对天皇“效忠”；其他普通民众虽然确定相信神裔说，但是他们的想法也同西方人所认为的不一样。“神”这个词还可以译为“上帝”，照字面直译应为“首”，即最高统治者。日本人并不像西方人那样，在人与神之间划出一条巨大的鸿沟，每一个日本人死后都会变成“神”。历史上，人们效忠的封建统治者也不具有神格。把“忠”转移到天皇身上，最重要的意义在于没有打断日本历史都由同一个皇室统治的传说。西方人尽管认为，所谓皇室的连绵接续纯粹是一个骗局，常常不符合王位或帝位继承的规则，但这也无济于事。日本的规则是十分独特的，根据他们的规则，天皇的统治是“万世”一系的。与中国仅记载下来的朝代就达三十六个不同，日本这个国家历经了各种动乱，虽然使它的社会组织支离破碎，它的基本结构被保存下来。维新前一百年里，反德川幕府的势力就是利用这一点，而不是依靠天皇神裔说。他们认为，“忠”应该贡献给位于统治中心点上的人，也就是只给天皇个人。他们把天皇捧到国家最高司祭的高位上，然而这个角色并不意味着是神，这一点比做为神的后裔更为关键。</p></div>	
+<div class='layout'><p>Every effort has been made in modern Japan to personalize chu and to direct it specifically to the figure of the Emperor himself. The first Emperor after the Restoration was an individual of consequence and dignity and during his long reign he easily became a personal symbol to his subjects. His infrequent public appearances were staged with all the appurtenances of worship. No murmur rose from the assembled multitudes as they bowed before him. They did not raise their eyes to gaze upon him. Windows were shuttered everywhere above the first story for no man might look down from a height upon the Emperor. His contacts with his high counselors were similarly hierarchal. It was not said that he summoned his administrators; a few specially privileged Excellencies ‘had access' to him. Rescripts were not issued on controversial political issues; they were on ethics or thrift or they were designed as landmarks to indicate an issue closed and hence to reassure his people. When he was on his deathbed all Japan became a temple where devotees devoted themselves to intercession in his behalf.</p><p>现代日本不惜付出任何代价使“忠”个性化，特别是使“忠面对天皇个人。明治维新后的第一位天皇就是这种努力的结果，他在他的长时间在位之初，就成为臣民们的人格象征。他不经常公开露面，每一次露面都要郑重准备，以得到人们的崇拜”。每次都有成千上万的人默默地向他躹躬致敬，没有人敢抬头直视他；二层楼以上的窗户必须紧紧关闭，以防有人居高临下地看见天皇。枢机大臣们与他见面时也遵从类似的礼节，甚至不直接说他召见行政长官，而说成是几位有特殊身份的阁下有幸“拜谒”天皇。天皇诏书也从不论及引起人们争论的政治问题，内容是关于伦理、节俭的或者是发布已经解决了的问题，以便加强人民的信心。他临终时，整个日本一下子变成一座巨大的寺院，全体国民都在虔诚地为他祈祷。</p></div>	
+<div class='layout'><p>The Emperor was in all these ways made into a symbol which was placed beyond all reach of domestic controversy. Just as loyalty to the Stars and Stripes is above and beyond all party politics so the Emperor was ‘inviolable.' We surround our handling of the flag with a degree of ritual which we regard as completely inappropriate for any human being. The Japanese, however, capitalized to the hilt on the humanness of their supreme symbol. They could love and he could respond. They were moved to ecstasy that he ‘turned his thoughts to them.' They dedicated their lives to ‘ease his heart.' In a culture based as fully as Japan's has been on personal ties, the Emperor was a symbol of loyalty far surpassing a flag. Teachers in training were flunked if they phrased man's highest duty as love of country; it had to be phrased as repayment to the Emperor in person.</p><p>通过以上种种方式，天皇被置于超脱世俗矛盾的地位，变成一种象征。正像我们认为忠于“星条旗”是远远超越一切党派政治之争那样，他们认为天皇也是神圣“不可侵犯”的。我们认为围站着注视升旗是一种崇高的礼仪，但如果把这种礼仪用在其他国家人民身上就显然不合适了。然而日本人就把他们心目中的最高人物夸大到顶点，这样，他们才能热爱他。他们一想到天皇“一心为国民”就会感激涕零，日本人为了“让陛下放心”，宁可牺牲生命。日本的文化是一种以个人纽带为基础的典型文化，天皇作为效忠的对象远比旗帜更为重要。学校教师如果只强调人的最高职责是爱国的话就会被认为是不敬，因为首先应该强调报答天皇陛下的皇恩。</p></div>	
+<div class='layout'><p>Chu provides a double system of subject-Emperor relationship. The subject faces upward directly to the Emperor without intermediaries; he personally ‘eases his heart' by his actions. The subject receiving the commands of the Emperor, however, hears these orders relayed through all the intermediaries that stand between them. ‘He speaks for the Emperor' is a phrase that invokes chu and is probably a more powerful sanction than any other modern State can invoke. Lory describes an incident of peacetime Army maneuvers when an officer took a regiment out with orders not to drink from their canteens without his permission. Japanese Army training placed great emphasis on ability to march fifty and sixty miles without intermission under difficult conditions. On this day twenty men fell by the way from thirst and exhaustion. Five died. When their canteens were examined they were found to be untouched. ‘The officer had given the command. He spoke for the Emperor.'*</p><p>“忠”包含了天皇和臣民之间关系的双重含义：臣民与天皇没有中间环节，直接联系起来；臣民用自己个人的行动去“宽慰天皇的心”，但是臣民在接受天皇命令时却通过所有位于中间的中介人。“这是天皇的命令”是号召“忠”的口号，这个口号可能比所有现有国家的一切口号都更有号召力。洛利曾描述过平时进行的一次军事演习。负责的指挥官下达了一项特殊的禁令，即在未经他许可时任何人不许喝壶里的水。日本军事训练中特别爱强调在艰苦条件下连续行走五六十英里不休息。在那次训练中，共有二十个人因口渴和精疲力竭倒在路上，其中五人死亡。到了检查水壶的时候，竟发现没有一个壶里的水被喝过，因为“指挥官下了命令，他是代表天皇讲话”引自希利斯·洛利：《日本军官》，1943年，第40页。。</p></div>	
+<div class='layout'><p>In civil administration chu sanctions everything from death to taxes. The tax collector, the policeman, the local conscription officials are instrumentalities through which a subject renders chu. The Japanese point of view is that obeying the law is repayment upon their highest indebtedness, their ko-on. The contrast with folkways in the United States could hardly be more marked. To Americans any new laws, from street stop-lights to income taxes, are resented all over the country as interferences with individual liberty in one's own affairs. Federal regulations are doubly suspect for they interfere also with the freedom of the individual state to make its own laws. It is felt that they are put over on the people by Washington bureaucrats and many citizens regard the loudest outcry against these laws as less than what is rightly due to their self-respect. The Japanese judge therefore that we are a lawless people. We judge that they are a submissive people with no ideas of democracy. It would be truer to say that the citizens' self-respect, in the two countries, is tied up with different attitudes; in our country it depends on his management of his own affairs and in Japan it depends on repaying what he owes to accredited benefactors. Both arrangements have their own difficulties: ours is that it is difficult to get regulations accepted even when they are to the advantage of the whole country, and theirs is that, in any language, it is difficult to be in debt to such a degree that one's whole life is shadowed by it. Every Japanese has probably at some point invented ways of living within the law and yet circumventing what is asked of him. They also admire certain forms of violence and direct action and private revenge which Americans do not. But these qualifications, and any others that can be urged, still do not bring in question the hold that chu has upon the Japanese.</p><p>在政府行政机构中，“忠”在从生老病死到税收等一切事务中都能起作用。税务员、警察以及地方征兵官吏都是“忠”的工具。日本人认为遵守法律是最高的义务，亦即报答“皇恩”，这完全与美国的习俗形成鲜明对照。在美国人看来，从街上的停车信号灯到所得税征收法，各种法律规定都被视作对个人私事和个人自由的干涉，受到众人的怨恨。联邦的法律另外还要加上对州立法权侵犯的罪名，人们会说，那是华盛顿的官僚政客们强加给人民的。许多公民都认为，无论如何拼命攻击这些法律，也无法弥补他们自尊心已受到的伤害。日本人因此觉得我们是些无法无天的民众，我们则反唇相讥把他们说成是毫无民主意识的盲从的人群。更客观地说，两国人民的自尊心与各自不同的文化背景有关。在我国，它建立在个人管理自己事务的基础上，而在日本则建筑在个人向社会承担报恩责任的基础上。结果二者各有各的为难之处：我们的难处是使那些对全国都有益处的立法也变得难以被接受，他们的则是每个人都背上如此沉重的负担，以至于整个一生都笼罩在阴影之下，做人真是太难了。每个日本人大概因此都摸索出了一套既不违背法律又尽量避免做过多要求他做的事的生活方式。此外，他们还崇尚美国人肯定不赞成的某些暴力、直接行动及其个人报复等行为，但是这些特点及其他诸种表现如果比起日本人的效“忠”精神来，都显得十分微不足道。</p></div>	
+<div class='layout'><p>When Japan capitulated on August 14, 1945, the world had an almost unbelievable demonstration of its working. Many Westerners with experience and knowledge of Japan had held that it would be impossible for her to surrender; it would be naive, they insisted, to imagine that her armies scattered over Asia and the Pacific Islands would peacefully yield up their arms. Many of Japan's armed forces had suffered no local defeat and they were convinced of the righteousness of their cause. The home islands, too, were full of bitter-enders and an occupying army, its advance guard being necessarily small, would run the risk of massacre when it moved beyond range of naval guns. During the war the Japanese had stopped at nothing and they are a warlike people. Such American analysts reckoned without chu. The Emperor spoke and the war ceased. Before his voice went upon the radio bitter opponents had thrown a cordon around the palace and tried to prevent the proclamation. But, once read, it was accepted. No field commander in Manchuria or Java, no Tojo in Japan, put himself in opposition. Our troops landed at the airfields and were greeted with courtesy. Foreign correspondents, as one of them wrote, might land in the morning fingering their small arms but by noon they had put these aside and by evening they were shopping for trinkets. The Japanese were now ‘easing the Emperor's heart' by following the ways of peace; a week earlier it had been by dedicating themselves to repulse the barbarian even with bamboo spears.</p><p>日本在一九四五年八月十四日，全世界都目击了这个“忠”所起的令人难以置信的作用。许多西方人士根据目睹和了解到的日本人的以往做法，推测他们根本不会投降。这些西方人坚持说，想让那些遍布整个亚洲和太平洋诸岛的日本军队自动放下手中的武器是多么天真的幻想；日军仍有许多局部胜利，他们确信他们的战争目的正确。此外，在日本本土诸岛上，也遍布着决心血战到底的人。因此，占领军先头部队不得不分散成小部队，当行进到舰炮的射程范围外时，有全部被消灭的危险。在战争进程中，日本人简直处处进攻，他们的确不愧为好战者。然而这些美国观察家们却忽略了“忠”的作用：天皇诏令一发，一场战争就停止了，仅仅在他的声音就要通过无线电台传出来之前，激烈的反对派还在皇宫周围的警戒线外转着圈拼命阻止宣布投降。但是诏书一经宣布，就被一切人迅速接受了。无论是在满洲或爪哇的官兵，还是东条英机本人都没有违反诏令。我们的伞兵在机场降落时受到了极其礼貌的接待。正如一位外国记者报道的，在早晨着陆的记者团，其随身携带的小型防身武器还能派上用场，然而中午就完全不需要了，到了晚上他们甚至可以上街买日用品了。这一次，日本人是用走向和平来“宽慰天皇的心”的；仅仅在一星期之前，他们还是哪怕用竹矛为武器也要消灭“夷狄”以“使陛下安心”呢！</p></div>	
+<div class='layout'><p>There was no mystery about it except to those Westerners who could not grant how various are the emotions that sway men's conduct. Some had proclaimed that there was no alternative to practical extermination. Some had proclaimed that Japan could save itself only if the liberals seized power and overthrew the government. Either of these analyses made sense in terms of a Western nation fighting an all-out and popularly supported war. They were wrong, however, because they attributed to Japan courses of action which are essentially Occidental. Some Western prophets still thought after months of peaceful occupation that all was lost because no Western-type revolution had occurred or because ‘the Japanese did not know they were defeated.' This is good Occidental social philosophy based on Occidental standards of what is right and proper. But Japan is not the Occident. She did not use that last strength of Occidental nations: revolution. Nor did she use sullen sabotage against the enemy's occupying army. She used her own strength: the ability to demand of herself as chu the enormous price of unconditional surrender before her fighting power was broken. In her own eyes this enormous payment nevertheless bought something she supremely valued: the right to say that it was the Emperor who had given the order even if that order was capitulation. Even in defeat the highest law was still chu.</p><p>对此，只有那些不承认支配行为的感情有许多不同种类的西方人才会感到难以理解。曾有人预言，日本事实上只有死路一条了；另一些人则声称，日本的惟一出路在于自由派推翻政府掌握权力。持这两种看法的观察家都在套用一般西方国家在面临一场举国投入的全民战争所遵循的模式。他们都犯了用西方的眼光看待日本的毛病，所以都说错了。一些西方人甚至在和平占领几个月之后，仍抱定日本一切都完了的看法，因为他们没有看到西方式的革命发生，且日本人并“不认识自己战败的事实”。这种以西方善恶观念为基础的社会哲学虽然优秀，可惜日本并非西方。它并没有使用西方国家的最终武器——革命，也没有策划反对敌对占领军的阴谋，它所使用的是它自己的武器：为了“忠”，在尚未丧失战斗能力的情况下无条件投降的巨大克制能力。在他们自己看来，这种巨大的克制力和自我牺牲恰恰获得了他们最重视的报恩的结果。因此有权利说执行了天皇的命令，哪怕命令的内容是投降。他们在失败的时候，仍然遵守“忠”这个最高的法则。</p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>
