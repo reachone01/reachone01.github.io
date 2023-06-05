@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<div class='layout'><p>2</p><p>2</p></div>	
+<div class='layout'><p>Chapter 2 CONSCIOUSNESS: THE WAY OUT OF PAIN</p><p>第二章 意识：离苦之道</p></div>	
+<div class='layout'><p>CREATE NO MORE PAIN IN THE PRESENT</p><p>不要为当下创造新痛</p></div>	
+<div class='layout'><p>Nobody's life is entirely free of pain and sorrow. Isn't it a question of learning to live with them rather than trying to avoid them?</p><p>没有人能够完全免于生命的痛苦和悲伤。那么问题难道不是在于如何与它们并存而不是试图躲避吗？</p></div>	
+<div class='layout'><p>The greater part of human pain is unnecessary. It is self-created as long as the unobserved mind runs your life.</p><p>人类的痛苦中，有绝大部分都是不必要的。它是你那个没有受到观察的心智主宰你的生命时，所自编自导出来的。</p></div>	
+<div class='layout'><p>The pain that you create now is always some form of nonacceptance, some form of unconscious resistance to what is. On the level of thought, the resistance is some form of judgment. On the emotional level, it is some form of negativity. The intensity of the pain depends on the degree of resistance to the present moment, and this in turn depends on how strongly you are identified with your mind. The mind always seeks to deny the Now and to escape from it. In other words, the more you are identified with your mind, the more you suffer. Or you may put it like this: the more you are able to honor and accept the Now, the more you are free of pain, of suffering — and free of the egoic mind.</p><p>你现在所创造的痛苦，十之八、九都是对“本然如是”（what is）某种形式的不接纳和无意识的抗拒。抗拒以批判的形式，呈现在思想的层面上；而在情感的层面上，它又以负面情感的形式呈现。痛苦的强度，根据你对当下这一刻抗拒的程度而定，而抗拒的程度，又决定于你与心智认同的强度。心智总是想尽办法去否认当下、逃避当下。换言之，你越认同你的心智，你受的苦就越多。再换一个说法就是：你能够尊重和接受当下的程度越高，你免于痛苦和受苦——免于我执心智的程度就越大。</p></div>	
+<div class='layout'><p>Why does the mind habitually deny or resist the Now? Because it cannot function and remain in control without time, which is past and future, so it perceives the timeless Now as threatening. Time and mind are in fact inseparable.</p><p>心智为什么要习惯性地否认或抗拒当下呢？因为它无法在没有时间，也就是在没有过去和未来的情况下运作和掌控。所以它把无时间性的当下视为威胁。事实上，时间和心智是不可分的。</p></div>	
+<div class='layout'><p>Imagine the Earth devoid of human life, inhabited only by plants and animals. Would it still have a past and a future? Could we still speak of time in any meaningful way? The question "What time is it?" or "What's the date today?" — if anybody were there to ask it— would be quite meaningless. The oak tree or the eagle would be bemused by such a question. "What time?" they would ask. "Well, of course, it's now. The time is now. What else is there?"</p><p>想像一个只有植物和动物栖息，而没有人类的地球。那里会有过去和未来吗？我们还能煞有介事地谈论时间吗？假如有个人在那里问“现在几点钟？”或“今天几号？”这样的问题，就显得格外荒唐了。地上的橡树或天上的飞鹰，会被这样的问题问得茫然不知所措。“什么时间？”他们会问，“那还用说吗？就是现在呗。”“时间就在现在，不然还会在哪？”</p></div>	
+<div class='layout'><p>Yes, we need the mind as well as time to function in this world, but there comes a point where they take over our lives, and this is where dysfunction, pain, and sorrow set in.</p><p>没错，我们在世上运作是需要心智和时间。可是它们已经到了接管我们生命的点上了。这也是人类得失能、痛苦、和悲伤所生起之处。</p></div>	
+<div class='layout'><p>The mind, to ensure that it remains in control, seeks continuously to cover up the present moment with past and future, and so, as the vitality and infinite creative potential of Being, which is inseparable from the Now, becomes covered up by time, your true nature becomes obscured by the mind. An increasingly heavy burden of time has been accumulating in the human mind. All individuals are suffering under this burden, but they also keep adding to it every moment whenever they ignore or deny that precious moment or reduce it to a means of getting to some future moment, which only exists in the mind, never in actuality. The accumulation of time in the collective and individual human mind also holds a vast amount of residual pain from the past.</p><p>心智持续地以过去和未来，掩饰当下这一刻，以确保它的主控性。因此， 与当下密不可分的存在，它的生命力和无限的创造潜力，就被时间给遮盖了。而你的真性也被心智所蒙蔽。人类的心智，不断地累积起一副时间的重担。所有人都在这个重担之下受苦，可是他们还是透过忽视或否认那宝贵的一刻，或者把它贬为只存在于心智里，而且不实际的一个达到未来的手段，并且不停地加重它的负荷。人类集体与个人心智所累聚的时间里，也残留着大量的旧痛。</p></div>	
+<div class='layout'><p>If you no longer want to create pain for yourself and others, if you no longer want to add to the residue of past pain that still lives on in you, then don't create any more time, or at least no more than is necessary to deal with the practical aspects of your life. How to stop creating time? Realize deeply that the present moment is all you ever have. Make the Now the primary focus of your life. Whereas before you dwelt in time and paid brief visits to the Now, have your dwelling place in the Now and pay brief visits to past and future when required to deal with the practical aspects of your life situation. Always say "yes" to the present moment. What could be more futile, more insane, than to create inner resistance to something that already is? What could be more insane than to oppose life itself, which is now and always now? Surrender to what is. Say "yes" to life — and see how life suddenly starts working for you rather than against you.</p><p>如果你不想再为自己和别人创造痛苦，如果你不想再继续添增旧痛的残余，那么就别再创造超过你生活实际面所必须的时间量，就是要深深地体认出当下这一刻才是你所有的。把现在变成你生命首要的焦点。把你之前以时间为家，偶而在“现在”做客，改为以“现在”为家，而只在生活的实际面有需要时，偶而造访一下过去和未来。始终对当下这一刻说：“yes”。还有什么行为是比“抗拒事实”更徒劳、更疯狂的？还有什么比反对生命本身更疯狂的？因为生命就是当下，且始终都是当下。向“所是”臣服，对生命说“yes”你就会看到，生命突然之间开始为你效劳，而不再处处与你为敌了。</p></div>	
+<div class='layout'><p>§</p><p>∽</p></div>	
+<div class='layout'><p>The present moment is sometimes unacceptable, unpleasant, or awful.</p><p>当下往往令人难以接受、令人不愉快或糟透了。</p></div>	
+<div class='layout'><p>It is as it is. Observe how the mind labels it and how this labeling process, this continuous sitting in judgment, creates pain and unhappiness. By watching the mechanics of the mind, you step out of its resistance patterns, and you can then allow the present moment to be. This will give you a taste of the state of inner freedom from external conditions, the state of true inner peace. Then see what happens, and take action if necessary or possible.</p><p>当下本然如是。观察你的心智如何给它贴标签，以及贴标签的过程。这种持续不断地入席批判，创造了痛苦和不快乐。你透过对心智机制的观察，而由它的抗拒模式之中解套，然后你就能容许当下这一刻的临在了。这让你品尝到不受外境束缚的内在自由的状态，也就是真正的内在和平状态。然后接下来看看它如何发展，而你是否需要采取什么行动。</p></div>	
+<div class='layout'><p>Accept — then act. Whatever the present moment contains, accept it as if you had chosen it. Always work with it, not against it. Make it your friend and ally, not your enemy. This will miraculously transform your whole life.</p><p>先接受——再行动。不论当下这一刻的内容如何，把它当做你的选择，接受它。配合它，不要违逆它。把它当成是你的盟友，而不是敌人。你的整个生命将会发生神奇的转化。</p></div>	
+<div class='layout'><p>§</p><p>∽</p></div>	
+<div class='layout'><p>PAST PAIN: DISSOLVING THE PAIN-BODY</p><p>旧痛：瓦解痛苦之身</p></div>	
+<div class='layout'><p>As long as you are unable to access the power of the Now, every emotional pain that you experience leaves behind a residue of pain that lives on in you. It merges with the pain from the past, which was already there, and becomes lodged in your mind and body. This, of course, includes the pain you suffered as a child, caused by the unconsciousness of the world into which you were born.</p><p>在你还不能汲取当下的力量之前，你所经验的每一个情感的痛苦，都会留下一个依附你而生的余痛。它与那个已经在你里面的旧痛合并，寄居在你的心智和身体里面。当然这也包括你孩提时期，因为这个世界的无意识所招致的痛苦。</p></div>	
+<div class='layout'><p>This accumulated pain is a negative energy field that occupies your body and mind. If you look on it as an invisible entity in its own right, you are getting quite close to the truth. It's the emotional pain-body. It has two modes of being: dormant and active. A pain-body may be dormant 90 percent of the time; in a deeply unhappy person, though, it may be active up to mo percent of the time. Some people live almost entirely through their pain-body, while others may experience it only in certain situations, such as intimate relationships, or situations linked with past loss or abandonment, physical or emotional hurt, and so on. Anything can trigger it, particularly if it resonates with a pain pattern from your past. When it is ready to awaken from its dormant stage, even a thought or an innocent remark made by someone close to you can activate it.</p><p>这个经年累月所积聚的痛苦，就是盘踞在你的身体和心智里的负能场。如果你把它当成一个名符其实的隐形实体来看的话，会更接近事实。它就是我们情绪的痛苦之身。它有两个存在模式：潜伏的和活跃的。一个痛苦之身也许有百分之九十的时间是潜伏的，但对一个非常不快乐的人来说，它也许高达百分之百的活跃。有些人终其一生都在他们的痛苦之身中渡过，有人却只在某种情境——如亲密关系中，或者与过去的失落、遗弃、生理或情感的伤害等关联的情境之下——体验到它。任何事都能触发它，特别是与你过去的痛苦模式相互呼应的事件。</p></div>	
+<div class='layout'><p>Some pain-bodies are obnoxious but relatively harmless, for example like a child who won't stop whining. Others are vicious and destructive monsters, true demons. Some are physically violent; many more are emotionally violent. Some will attack people around you or close to you, while others may attack you, their host. Thoughts and feelings you have about your life then become deeply negative and self-destructive. Illnesses and accidents are often created in this way. Some pain-bodies drive their hosts to suicide.</p><p>有些痛苦之身就像一个啼哭不停的孩子一样，虽然惹人讨厌，却也相对的无害。有的则是邪恶而且破坏力十足的恶魔怪兽。有些有肢体暴力倾向，比较多的是情绪性的暴力。有些会攻击他身边或亲近的人，有些则攻击他们的主人。然后，你在生活中的一些思想和感情，就会变得极度的消极和具有自我毁灭倾向。疾病和意外，经常是以这种方式创造出来的。有的痛苦之身甚至会驱使它们的主人走上自杀的绝路。</p></div>	
+<div class='layout'><p>When you thought you knew a person and then you are suddenly confronted with this alien, nasty creature for the first time, you are in for quite a shock. However, it's more important to observe it in yourself than in someone else. Watch out for any sign of unhappiness in yourself, in whatever form — it may be the awakening pain-body. This can take the form of irritation, impatience, a somber mood, a desire to hurt, anger, rage, depression, a need to have some drama in your relationship, and so on. Catch it the moment it awakens from its dormant state.</p><p>你自以为很了解的一个人，会突然之间，摇身一变成了一个古怪、邪恶的怪物，让你震惊不已。然而更重要的是，要在你自己的内在觉察到它，而不是去观察别人。注意你内在任何不快乐的迹象，无论它以任何形式出现——它也许就是正在苏醒的痛苦之身，它采取的形式包括恼怒、暴怒、不耐烦、心情郁闷、想伤害的欲望、生气、愤怒、沮丧，一个想在关系中制造戏码的需要等。务必趁早在它刚由潜伏状态中苏醒的那一刻逮捕它。</p></div>	
+<div class='layout'><p>The pain-body wants to survive, just like every other entity in existence, and it can only survive if it gets you to unconsciously identify with it. It can then rise up, take you over, "become you," and live through you. It needs to get its "food" through you. It will feed on any experience that resonates with its own kind of energy, anything that creates further pain in whatever form: anger, destructiveness, hatred, grief, emotional drama, violence, and even illness. So the pain-body, when it has taken you over, will create a situation in your life that reflects back its own energy frequency for it to feed on. Pain can only feed on pain. Pain cannot feed on joy. It finds it quite indigestible.</p><p>痛苦之身就像存在中每一个实体一样想要存活。只有当你无意识的跟它认同时，它才能存活。接下来，它就要骑到你的头上，掌控你，“变成你”，透过你活着。它需要透过你取得“食物”。它以任何与它同类能量相呼应的经验，任何以各种形式：怒气、毁灭、恨、哀伤、情感的戏码、暴力、甚至于疾病所创造出来的痛苦为食。因此一旦痛苦之身掌控了你之后，便会在你的生命中，创造一个可以和它能量场共振的情境，好让它取食存活。痛苦只能以痛苦为食。痛苦不能以喜乐为食。它对喜乐食不下咽。</p></div>	
+<div class='layout'><p>Once the pain-body has taken you over, you want more pain. You become a victim or a perpetrator. You want to inflict pain, or you want to suffer pain, or both. There isn't really much difference between the two. You are not conscious of this, of course, and will vehemently claim that you do not want pain. But look closely and you will find that your thinking and behavior are designed to keep the pain going, for yourself and others. If you were truly conscious of it, the pattern would dissolve, for to want more pain is insanity, and nobody is consciously insane.</p><p>一旦痛苦之身掌控了你之后，你就会想要更多的痛苦。你不是变成受害者就是迫害者；你不是想施加痛苦，就是想承受痛苦，或者两者都要。其实这两者之间没有什么差别。你不但没有意识到这一点，还会义正言辞地宣称自己不想要痛苦。不过，仔细看看便不难发觉，你的思考和行为，如何被你设计成要让自己和别人继续痛苦的模式。如果你是真正地意识到它的话，此一模式便会瓦解。因为想要更多的痛苦，就是疯狂的行径，而没有人会有意识地疯狂。</p></div>	
+<div class='layout'><p>The pain-body, which is the dark shadow cast by the ego, is actually afraid of the light of your consciousness. It is afraid of being found out. Its survival depends on your unconscious identification with it, as well as on your unconscious fear of facing the pain that lives in you. But if you don't face it, if you don't bring the light of your consciousness into the pain, you will be forced to relive it again and again. The pain-body may seem to you like a dangerous monster that you cannot bear to look at, but I assure you that it is an insubstantial phantom that cannot prevail against the power of your presence.</p><p>痛苦之身是我执所投射的阴影，它其实会害怕你意识的光照。它害怕被发现。它的存活，依赖着你与它无意识地认同，以及你无意识地恐惧去面对那活在你里面的痛。可是如果你不面对它，你不把意识的光照入痛苦里，你就会在胁迫之下，一而再地让它复活。痛苦之身也许是你眼中一只危险的怪兽，让你没有勇气看它。不过我要跟你担保的是，它是一个虚而不实的幽灵，在你临在的威力下，是不堪一击的。</p></div>	
+<div class='layout'><p>Some spiritual teachings state that all pain is ultimately an illusion, and this is true. The question is: Is it true for you? A mere belief doesn't make it true. Do you want to experience pain for the rest of your life and keep saying that it is an illusion? Does that free you from the pain? What we are concerned with here is how you can realize this truth — that is, make it real in your own experience.</p><p>有些修行的教义声称，所有痛苦究竟只是幻相，这是真的。问题是：它对你是真的吗？单凭一个信念并不会让它成真。你想让自己的下半生都在痛苦中，而又口口声声地说它是幻相吗？这样做能让你免于痛苦吗？我们所关切的是，如何让你体认真相——也就是说，如何让它在你的经验中落实。</p></div>	
+<div class='layout'><p>So the pain-body doesn't want you to observe it directly and see it for what it is. The moment you observe it, feel its energy field within you, and take your attention into it, the identification is broken. A higher dimension of consciousness has come in. I call it presence. You are now the witness or the watcher of the pain-body. This means that it cannot use you anymore by pretending to be you, and it can no longer replenish itself through you. You have found your own innermost strength. You have accessed the power of Now.</p><p>痛苦之身，它不要你直接地观察它，不要你以它本然的样子看它。当你观察它的时候，去感觉它在你内在的能量场，把你的注意力贯注在里面的那一刻，认同就断了。一个更高向度的意识层面就会进来。我称之为临在。你现在是痛苦之身的见证人和观察者。这意谓着，它不能再冒充你的身份利用你，它再也不能透过你来滋养自肥。你已经找到了自己最内在的力量。你已经汲取了当下的力量。</p></div>	
+<div class='layout'><p>What happens to the pain-body when we become conscious enough to break our identification with it?</p><p>当我们拥有足够的意识，切断与痛苦之身的认同时，结果会怎么样？</p></div>	
+<div class='layout'><p>Unconsciousness creates it; consciousness transmutes it into itself. St. Paul expressed this universal principle beautifully:. "Everything is shown up by being exposed to the light, and whatever is exposed to the light itself becomes light." Just as you cannot fight the darkness, you cannot fight the pain-body. Trying to do so would create inner conflict and thus further pain. Watching it is enough. Watching it implies accepting it as part of what is at that moment.</p><p>无意识创造它；意识却把它转型成它自己。圣保禄以优美的文句，表达了这个宇宙的原理：“在光照之下，一切无所遁形；在光照之下，一切化成光。”就像你无法对抗黑暗一样，你也无法对抗痛苦之身。试图这么做，只会增加冲突和更多的痛苦。观察它就足够了。观察它隐含了接受它是当下这一刻本然的一部份。</p></div>	
+<div class='layout'><p>The pain-body consists of trapped life-energy that has split off from your total energy field and has temporarily become autonomous through the unnatural process of mind identification. It has turned in on itself and become anti-life, like an animal trying to devour its own tail. Why do you think our civilization has become so life-destructive? But even the life-destructive forces are still life-energy.</p><p>痛苦之身包含了受困的生命能量，它是从你整个能量场中分裂出来的，它透过反自然的心智认同，取得了临时的自治权。它已经像是一只反噬自己尾巴的动物一样，把矛头向内转，变得反生命了。你认为人类的文明，何以会变得如此的自取灭亡？可是即使这种自毁的力量，仍然是生命的一种能量。</p></div>	
+<div class='layout'><p>When you start to disidentify and become the watcher, the pain-body will continue to operate for a while and will try to trick you into identifying with it again. Although you are no longer energizing it through your identification, it has a certain momentum, just like a spinning wheel that will keep turning for a while even when it is no longer being propelled. At this stage, it may also create physical aches and pains in different parts of the body, but they won't last. Stay present, stay conscious. Be the ever-alert guardian of your inner space. You need to be present enough to be able to watch the pain-body directly and feel its energy. It then cannot control your thinking. The moment your thinking is aligned with the energy field of the pain-body, you are identified with it and again feeding it with your thoughts.</p><p>当我们开始撤除认同，变成观察者的时候，痛苦之身会继续运作一段时间，并且千方百计地诱使你再度与它认同。虽然你已经不再藉由认同赋予它能量，它仍然具有某些动能，就像一个没有了驱动力的滑轮一样，还会再跑个几圈。这个阶段里，它还会在身体的不同部位，创造一些疼痛和痛苦，不过它很快就会消失。停留在临在里，停留在意识中。戒备森严地守护着你内在的空间。你需要有足够的临在，才能直接地观察痛苦之身，同时感觉它的能量。这一来它再也无法控制你的思考。当你的思考和痛苦之身的能量场并联的时候，你就是和它认同，你再度以你的思想喂养它了。</p></div>	
+<div class='layout'><p>For example, if anger is the predominant energy vibration of the pain-body and you think angry thoughts, dwelling on what someone did to you or what you are going to do to him or her, then you have become unconscious, and the pain-body has become "you." Where there is anger, there is always pain underneath. Or when a dark mood comes upon you and you start getting into a negative mind-pattern and thinking how dreadful your life is, your thinking has become aligned with the pain-body, and you have become unconscious and vulnerable to the pain-body's attack. "Unconscious," the way that I use the word here, means to be identified with some mental or emotional pattern. It implies a complete absence of the watcher.</p><p>举例来说吧，如果愤怒是痛苦之身的主控能量，而你思考了一个愤怒的思想，你沉缅在某个人对你的所做所为，和你打算如何对待他或她的时候，那么你就变成无意识了。痛苦之身便趁虚而入，变成了“你”。愤怒的底层必然有痛在。再比如说，你被一个阴沉的心情所攫获，于是你开始进入一个负面的心智模式里，思考着自己的生命有多可怕。你就已经变成无意识，而成为痛苦之身攻击的靶子。我这里使用的“无意识”，指的是与某个心理或情感的模式认同。它隐含的意思是：观察者的完全缺席。</p></div>	
+<div class='layout'><p>Sustained conscious attention severs the link between the pain-body and your thought processes and brings about the process of transmutation. It is as if the pain becomes fuel for the flame of your consciousness, which then burns more brightly as a result. This is the esoteric meaning of the ancient art of alchemy:, the transmutation of base metal into gold, of suffering into consciousness. The split within is healed, and you become whole again. Your responsibility then is not to create further pain.</p><p>持续不懈地进行有意识的专注，切断了痛苦之身和思想过程之间的连结，并且引发了转化过程。就好像把痛苦当成了意识之火的燃料一样，其结果是，意识之光燃烧得更加明亮。这就是古代炼金术的秘密：贱金属转化为黄金，受苦转化为意识。你内在的分裂疗愈了,你再度变成完整。此后你的责任就是:不要再创造痛苦。</p></div>	
+<div class='layout'><p>Let me summarize the process. Focus attention on the feeling inside you. Know that it is the pain-body. Accept that it is there. Don't think about it — don't let the feeling turn into thinking. Don't judge or analyze. Don't make an identity for yourself out of it. Stay present, and continue to be the observer of what is happening inside you. Become aware not only of the emotional pain but also of "the one who observes," the silent watcher. This is the power of the Now, the power of your own conscious presence. Then see what happens.</p><p>我把整个过程做一个总结：把注意力焦集在你内在的感觉上。知道这是痛苦之身。接受它在那里。不要思考它——不要让感觉变成思考。不做批判或分析。不要从它身上为自己编造身份。保持临在，对你内在发生的一切，继续当一个观察者。觉察你情感痛苦的同时，也觉察那个“进行观察的”，那个沉默的观察者。这就是当下的力量，你有意识临在的力量。接下来的就静观其变了。</p></div>	
+<div class='layout'><p>§</p><p></p></div>	
+<div class='layout'><p>For many women, the pain-body awakens particularly at the time preceding the menstrual flow. I will talk about this and the reason for it in more detail later. Right now, let me just say this: If you are able to stay alert and present at that time and watch whatever you feel within, rather than be taken over by it, it affords an opportunity for the most powerful spiritual practice, and a rapid transmutation of all past pain becomes possible.</p><p>对许多女性来说，痛苦之身特别会在经期之前的时间觉醒。这方面我稍后再详谈。目前我先这样说：如果你能够在那个时候保持警觉和临在，观察任何内在的感觉，而不被它所掌控，它便提供给你一个最有力量的灵修机会，所有旧痛就可能发生一次急遽的转化。</p></div>	
+<div class='layout'><p>EGO IDENTIFICATION WITH THE PAIN-BODY</p><p>我执与痛苦之身认同</p></div>	
+<div class='layout'><p>The process that I have just described is profoundly powerful yet simple. It could be taught to a child, and hopefully one day it will be one of the first things children learn in school. Once you have understood the basic principle of being present as the watcher of what happens inside you — and you "understand" it by experiencing it — you have at your disposal the most potent transformational tool.</p><p>我在前面所描述的过程，威力十足却极其简单。连小孩子都可以学，希望有一天它成为孩子求学过程中，所学的第一件事。当你了解了临在的基本原则，就是对你内在所发生的事情，做一个观察者的时候——你借着经验它而“了解”它——一个最具潜力的转化工具，便可以任你使唤了。</p></div>	
+<div class='layout'><p>This is not to deny that you may encounter intense inner resistance to disidentifying from your pain. This will be the case particularly if you have lived closely identified with your emotional pain-body for most of your life and the whole or a large part of your sense of self is invested in it. What this means is that you have made an unhappy self out of your pain-body and believe that this mind-made fiction is who you are. In that case, unconscious fear of losing your identity will create strong resistance to any disidentification. In other words, you would rather be in pain — be the pain-body — than take a leap into the unknown and risk losing the familiar unhappy self.</p><p>这并不意谓着否认你在撤离认同时所遭遇到的强烈内在抗拒。这种情况特别发生在一个大半生都与情感的痛苦之身做密切的认同，而且整个或大部份的自我都投资在上面的人身上。这意谓着，你由痛苦之身制造了一个不快乐的自己，而且还相信这个心造的假象就是你的本来面目。在这种情况下，对丧失身份的无意识恐惧，会对任何认同的撤离创造出强势的抗拒。换言之，你宁可置身痛苦——当痛苦之身——也不要跃入未知，甘冒风险，失去你所熟悉的不快乐的自己。</p></div>	
+<div class='layout'><p>If this applies to you, observe the resistance within yourself. Observe the attachment to your pain. Be very alert. Observe the peculiar pleasure you derive from being unhappy. Observe the compulsion to talk or think about it. The resistance will cease if you make it conscious. You can then take your attention into the pain-body, stay present as the witness, and so initiate its transmutation.</p><p>如果你吻合以上的情况，那么观察你内在的抗拒。观察你对痛苦的执着。务必非常警觉。观察你苦中作乐的怪癖。观察你强迫性地谈论它或思考它的习惯。抗拒会因为你对它的觉察而终止。然后，你才能把注意力带到痛苦之身上面，以见证者的身份，停留在临在里，因而启动了转化。</p></div>	
+<div class='layout'><p>Only you can do this. Nobody can do it for you. But if you are fortunate enough to find someone who is intensely conscious, if you can be with them and join them in the state of presence, that can be helpful and will accelerate things. In this way, your own light will quickly grow stronger. When a log that has only just started to burn is placed next to one that is burning fiercely, and after a while they are separated again, the first log will be burning with much greater intensity. After all, it is the same fire. To be such a fire is one of the functions of a spiritual teacher. Some therapists may also be able to fulfill that function, provided that they have gone beyond the level of mind and can create and sustain a state of intense conscious presence while they are working with you.</p><p>这件事只有你能做。任何人都无法代劳。如果你有幸找到一些意识特强的人，和他们共处，加入他们的临在状态，这对你会有所助益，并且加速转化的过程。在这种方式之下，你个人的意识之光，会快速增强。把一块刚生出火苗的木材，摆在另一块烈火熊熊的木材旁边合烧之后再分开，原先的火苗会变成烈焰。毕竟火还是一样的火。成为这样一个火是一个精神导师的职能之一。一些治疗师也可能能够完成这一功能，前提是他们已经超越了精神层面，并且能够在与你合作时创造和维持一种强烈的意识状态。</p></div>	
+<div class='layout'><p>THE ORIGIN OF FEAR</p><p>恐惧的起源</p></div>	
+<div class='layout'><p>You mentioned fear as being part of our basic underlying emotional pain. How does fear arise, and why is there so much of it in people's lives? And isn't a certain amount of fear just healthy self protection? </p><p>你提到说恐惧是我们情感的痛苦里基底的一部份。恐惧是怎么发生的？为什么人们生命中有这么多的恐惧？适量的恐惧，不是一种健康的自我保护吗？</p></div>	
+<div class='layout'><p>If I didn't have a fear of fire, I might put my hand in it and get burned.</p><p>如果我对火没有一份恐惧感的话，我很可能以手探火而受到灼伤。</p></div>	
+<div class='layout'><p>The reason why you don't put your hand in the fire is not because of fear, ifs because you know that you'll get burned. You don't need fear to avoid unnecessary danger — just a minimum of intelligence and common sense. For such practical matters, it is useful to apply the lessons learned in the past. Now if someone threatened you with fire or with physical violence, you might experience something like fear. This is an instinctive shrinking back from danger, but not the psychological condition of fear that we are talking about here. The psychological condition of fear is divorced from any concrete and true immediate danger. It comes in many forms: unease, worry, anxiety, nervousness, tension, dread, phobia, and so on. This kind of psychological fear is always of something that might happen, not of something that is happening now. You are in the here and now, while your mind is in the future. This creates an anxiety gap. And if you are identified with your mind and have lost touch with the power and simplicity of the Now, that anxiety gap will be your constant companion. You can always cope with the present moment, but you cannot cope with something that is only a mind projection — you cannot cope with the future.</p><p>你不以手探火的理由是，你知道自己会烧伤，而不是因为恐惧。你不需要用恐惧来避免不必要的危险——起码的智力和常识就绰绰有余。应用你过去的教训，就足以应付这一类实际的事物了。如果现在有人用火或肢体暴力威胁你，你或许会经验到恐惧。这是避险求存的本能，不是我们谈的心理制约式的恐惧。心理制约式的恐惧，与任何实质的、真实的、即时的危险是不同的。它以许多形式：不安、忧愁、焦虑、神经贸、张力、害怕、恐惧症等出现。这种心理恐惧，总是出于可能发生的事件，而不是正在发生的事件。你在此时此地，心智却跑到未来。这就创造出一个焦虑的间隙。如果你和你的心智认同，而与当下的力量和单纯失去了联系，这个焦虑的间隙就会如影随形地跟着你。你通常能够因应当下的情境，但是对于一个只是心智投射出来的事物，你却无能为力——因为你无法去因应未来的情境。</p></div>	
+<div class='layout'><p>Moreover, as long as you are identified with your mind, the ego runs your life, as I pointed out earlier. Because of its phantom nature, and despite elaborate defense mechanisms, the ego is very vulnerable and insecure, and it sees itself as constantly under threat. This, by the way, is the case even if the ego is outwardly very confident. Now remember that an emotion is the body's reaction to your mind. What message is the body receiving continuously from the ego, the false, mind-made self? Danger, I am under threat. And what is the emotion generated by this continuous message? Fear, of course.</p><p>更严重的是，你与心智认同一天，我执就会主导你的生命一天。这一点我在前面已经指出过。纵然有精密繁杂的防卫机制，我执由于它幽灵的本性使然，使它相当脆弱且缺乏安全感，而且它自认为置身在不断的威胁之下。即使我执以十足的自信示人，也不外是这样的情况。你记得我说情绪是身体对心智的反应，身体不断地由我执——虚假心造的自我——接收的讯息是什么？危险，我受到威胁了。那么情感由这个持续的讯息里，又产生了什么？当然是恐惧。</p></div>	
+<div class='layout'><p>Fear seems to have many causes. Fear of loss, fear of failure, fear of being hurt, and so on, but ultimately all fear is the ego's fear of death, of annihilation. To the ego, death is always just around the corner. In this mind-identified state, fear of death affects every aspect of your life. For example, even such a seemingly trivial and "normal" thing as the compulsive need to be right in an argument and make the other person wrong — defending the mental position with which you have identified — is due to the fear of death. If you identify with a mental position, then if you are wrong, your mind-based sense of self is seriously threatened with annihilation. So you as the ego cannot afford to be wrong. To be wrong is to die. Wars have been fought over this, and countless relationships have broken down.</p><p>恐惧的肇因似乎很多。恐惧失落、恐惧失败、恐惧受伤等等。可是所有的恐惧，归根究底只是我执对死亡和毁灭的恐惧。对我执而言，死亡如影随形。在心智认同状态下，对死亡的恐惧影响着你生命的每一个面向。举例来说，即使在争辩时对于我是你非——保卫你所认同的心智地位——这种强迫性的需求，乍看似枝微末节的“正常”事件，却是导源于对死亡的恐惧。如果你认同了一个心智地位，一旦你辩输了，你以心智为根据地的自我感，便遭受到了毁灭性的严重威胁。因此，对那个等同于我执的你，是容不下任伺错误的。错误与死亡无异。战争因为这个而起，无数的关系也因为这个而破裂。</p></div>	
+<div class='layout'><p>Once you have disidentified from your mind, whether you are right or wrong makes no difference to your sense of self at all, so the forcefully compulsive and deeply unconscious need to be right, which is a form of violence, will no longer be there. You can state dearly and firmly how you feel or what you think, but there will be no aggressiveness or defensiveness about it. Your sense of self is then derived from a deeper and truer place within yourself, not from the mind. Watch out for any kind of defensiveness within yourself. What are you defending? An illusory identity, an image in your mind, a fictitious entity. By making this pattern conscious, by witnessing it, you disidentify from it. In the light of your consciousness, the unconscious pattern will then quickly dissolve. This is the end of all arguments and power games, which are so corrosive to relationships. Power over others is weakness disguised as strength. True power is within, and it is available to you now.</p><p>一旦你撤离了对心智的认同，对错与否对你的自我感实在无关痛痒。那个是非对错的强烈的强迫欲望，和深度的无意识需求——也是一种暴力形式——便消逝无形了。你大可明确而坚定地陈述你如何的感受或想法，但是其中却不含丝毫的攻击性或防卫性。而你的自我感便不再源自于你的心智，而来自你内在一个更深、更真实的地方。小心你内在任何种类的防卫机制。你防卫的是什么？一个虚幻的身份、一个心智里的形象、一个虚构的实体。透过你对这个模式的意识，透过你的见证，你撤离了认同。在意识的光照下，无意识的模式就会快速地瓦解。这就是腐蚀人际关系所有争辩和权力游戏的终结。想驾凌于他人之上的权力欲望，只是以力量来掩饰软弱。真正的力量在内在，你当下就可以即取即用的。</p></div>	
+<div class='layout'><p>So anyone who is identified with their mind and, therefore, disconnected from their true power, their deeper self rooted in Being, will have fear as their constant companion. The number of people who have gone beyond mind is as yet extremely small, so you can assume that virtually everyone you meet or know lives in a state of fear. Only the intensity of it varies. It fluctuates between anxiety and dread at one end of the scale and a vague unease and distant sense of threat at the other. Most people become conscious of it only when it takes on one of its more acute forms.</p><p>因此，任何与心智认同的人，便因此断绝了根植于本体的深层自我，和真实力量的连系，从此便将与恐惧常相左右。已经超越了心智的人，可谓凤毛麟角。所以你大可假设，几乎你所遇到的和认识的每一个人，都活在恐惧的状态下。差别只在于恐惧的程度而已。我们都在恐惧的两极之间起起落落，一端是焦虑和害怕，另一端则是若隐若现的不安和隐而未现的威胁感。多数人只有在恐惧以较剧烈的形式出现时，才会意识到它的存在。</p></div>	
+<div class='layout'><p>THE EGO'S SEARCH FOR WHOLENESS</p><p>追寻圆满的我执</p></div>	
+<div class='layout'><p>Another aspect of the emotional pain that is an intrinsic part of the egoic mind is a deep-seated sense of lack or incompleteness, of not being whole. In some people, this is conscious, in others unconscious. If it is conscious, it manifests as the unsettling and constant feeling of not being worthy or good enough. If it is unconscious, it will only be felt indirectly as an intense craving, wanting and needing. In either case, people will often enter into a compulsive pursuit of ego-gratification and things to identify with in order to fill this hole they feel within. So they strive after possessions, money, success, power, recognition, or a special relationship, basically so that they can feel better about themselves, feel more complete. But even when they attain all these things, they soon find that the hole is still there, that it is bottomless. Then they are really in trouble, because they cannot delude themselves anymore. Well, they can and do, but it gets more difficult.</p><p>情感痛苦的另一个层面，是根深柢固的匮乏感或不完整、不圆满感。这是我执心智本质的一部份。它是某些人的意识，也是某些人的无意识。如果它是有意识的，它便以一种游移不定，和持续的无价值感或自卑感彰显于外。如果是无意识的，它只会以一种强烈的渴求、匮乏和需要，被间接地感觉到。在任何一种情形下，当事人为了填补内在所感觉到的空洞，经常会强迫性地追求我执的满足感和可供认同的事物。所以，他们要为财产、金钱、成功、权力、认可、或者一份特别的关系努力奋斗。这么做基本上会使他们对自己的感觉好一点，感觉完整一些。可是即使在他们获得这一切之后，很快就会发现，那个无底洞还在。这一来麻烦可大了，因为他们无法再以梦幻自欺了。其实他们可以继续的自欺欺人。只不过这会使问题更加棘手。</p></div>	
+<div class='layout'><p>As long as the egoic mind is running your life, you cannot truly be at ease; you cannot be at peace or fulfilled except for brief intervals when you obtained what you wanted, when a craving has just been fulfilled. Since the ego is a derived sense of self, it needs to identify with external things. It needs to be both defended and fed constantly. The most common ego identifications have to do with possessions, the work you do, social status and recognition, knowledge and education, physical appearance, special abilities, relationships, personal and family history, belief systems, and often also political, nationalistic, racial, religious, and other collective identifications. None of these is you.</p><p>只要我执心智主宰着你的生命，你便无法真正活得自在；你无法获得平安或是自我实现，除了在你得偿夙愿时的那个短暂的片刻。由于我执是自我感的变异，它需要与外境认同。它需要不断地兼顾防卫和觅食的两大功能。最常见的我执认同是与财产、工作、社会地位、认可、知识和教育、外貌、特殊能力、关系、个人和家族史、信念系统有关，经常还包括政治的、国家的、种族的、宗教的、和其他的集体身份。但是以上皆非你。</p></div>	
+<div class='layout'><p>Do you find this frightening? Or is it a relief to know this? All of these things you will have to relinquish sooner or later. Perhaps you find it as yet hard to believe, and I am certainly not asking you to believe that your identity cannot be found in any of those things. You will know the troth of it for yourself. You will know it at the latest when you feel death approaching. Death is a stripping away of all that is not you. The secret of life is to "die before you die" — and find that there is no death.</p><p>你觉得吓人吗？还是你知道之后，反而松了一口气？所有这一切，你迟早非抛弃不可。或许你发现这一点很难相信。我当然不是要求你相信你的身份不能在这些东西里面找到。其中的真理，你将会亲身经历。当你感到无常来临的时候，你就会知道。死亡会把所有不是你的袭卷一空。生命的秘密就是“先身体之死而死”——并且发现原来根本没有死亡。</p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

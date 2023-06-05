@@ -1,0 +1,467 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<div class='layout'><p>3</p><p>3</p></div>	
+<div class='layout'><p>Chapter 3 MOVING DEEPLY INTO THE NOW</p><p>第三章 深入当下</p></div>	
+<div class='layout'><p>DON'T SEEK YOUR SELF IN THE MIND</p><p>不要在心智里寻找自我</p></div>	
+<div class='layout'><p>I feel that there is still ct great deal I need to learn about the workings of my mind before I can get anywhere near full consciousness or spiritual enlightenment.</p><p>我觉得在我达到全意识或灵性的开悟之前，有关心智的运作，还有更多需要我去了解的。</p></div>	
+<div class='layout'><p>No, you don't. The problems of the mind cannot be solved on the level of the mind. Once you have understood the basic dysfunction, there isn't really much else that you need to learn or understand. Studying the complexities of the mind may make you a good psychologist, but doing so won't take you beyond the mind, just as the study of madness isn't enough to create sanity. You have already understood the basic mechanics of the unconscious state: identification with the mind, which creates a false self, the ego, as a substitute for your true self rooted in Being. You become as a "branch cut off from the vine," as Jesus puts it.</p><p>不，你不需要。心智的问题，无法在心智的层面得到解决。一旦你了解了心智的根本失能之后，你需要去学或了解的实在不多。研究心智的复杂，也许会让你当一个好心理学家。不过这么做并不能使你超越心智。就像研究疯狂不足以创造理智一样。你已经了解无意识的基本机制：心智认同。它创造一个虚假的自我——我执，作为植根于本体里真我的代用品。正如耶稣说的，“你成了葡萄树上砍断的枝桠。”</p></div>	
+<div class='layout'><p>The ego's needs are endless. It feels vulnerable and threatened and so lives in a state of fear and want. Once you know how the basic dysfunction operates, there is no need to explore all its countless manifestations, no need to make it into a complex personal problem. The ego, of course, loves that. It is always seeking for something to attach itself to in order to uphold and strengthen its illusory sense of self, and it will readily attach itself to your problems. This is why, for so many people, a large part of their sense of self is intimately connected with their problems. Once this has happened, the last thing they want is to become free of them; that would mean loss of self. There can be a great deal of unconscious ego investment in pain and suffering.</p><p>我执的需求是无底的。它感觉到自己的脆弱和饱受威胁，所以它活在一个恐惧和匮乏的状态里。一旦你知道它基本的失能如何运作之后，就不需要再探索它无以数计的外显活动，也不需要把它变成复杂的个人问题。我执当然喜爱这么做。它老是在寻求执着物，好强化和抬高它虚幻的自我感。而它随时准备执着在你的问题上面。这也是为什么有这么多人，他们大部份的自我感，是与他们的问题密切地联系着的原因。这种情形一日发生，他们最不愿意见到的是摆脱它们；因为这意谓着自我的丧失。无意识的我执在痛苦和受苦上，会做巨额的投资。</p></div>	
+<div class='layout'><p>So once you recognize the root of unconsciousness as identification with the mind, which of course includes the emotions, you step out of it. You become present. When you are present, you can allow the mind to be as it is without getting entangled in it. The mind in itself is not dysfunctional. It is a wonderful tool. Dysfunction sets in when you seek your self in it and mistake it for who you are. It then becomes the egoic mind and takes over your whole life.</p><p>所以当你一体会到心智认同是无意识的根源时，情感当然也包含在内，你就走出来了。你变得临在。当你临在的时候，你可以任凭心智天马行空而与它无所瓜葛。心智本身并无功能失调。它是一个很棒的工具。失调产生在你由心智里寻找自我，并且把心智误认为你的本来面目的时候。然后，它就变成了我执的心智，接管你整个生命了。</p></div>	
+<div class='layout'><p>END THE DELUSION OF TIME</p><p>终止时间幻相</p></div>	
+<div class='layout'><p>It seems almost impossible to disidentify from the mind. We are all immersed in it. How do you teach a fish to fly?</p><p>撤离心智的认同几乎是不可能的事。我们都习染其中，你如何缘木求鱼？</p></div>	
+<div class='layout'><p>Here is the key: End the delusion of time. Time and mind are inseparable. Remove time from the mind and it stops — unless you choose to use it.</p><p>窍门在这里：终止时间的幻相。时间和心智狼狈为奸，一体不分。把时间从心智里移除，它就停止了——除非你选择要用它。</p></div>	
+<div class='layout'><p>To be identified with your mind is to be trapped in time: the compulsion to live almost exclusively through memory and anticipation. This creates an endless preoccupation with past and future and an unwillingness to honor and acknowledge the present moment and allow it to be. The compulsion arises because the past gives you an identity and the future holds the promise of salvation, of fulfillment in whatever form. Both are illusions.</p><p>与心智认同，就是自陷于时间的泥沼：几乎一意孤行地只活在记忆和期盼里的驱迫力。这创造了你对过去和未来的执迷不悟，对当下这一刻缺乏尊重、认知和容许它存在的意愿。驱迫力的产生，是因为过去给予你一个身份，而未来又以各种形式掌握了救赎和实现的应许。两者都是幻相。</p></div>	
+<div class='layout'><p>But without a sense of time, how would we function in this world? There would be no goals to strive toward anymore. I wouldn't even know who I am, because my past makes me who I am today. I think time is something very precious, and we need to learn to use it wisely rather than waste it.</p><p>可是没有了时间感，要如何在世间运作？人生没有可以奔赴的目标，我连自己是谁都不知道了。因为过去塑造了今天的我。我认为时间是宝贵的，我们需要学习明智地使用它，而不是废掉它。</p></div>	
+<div class='layout'><p>Time isn't precious at all, because it is an illusion. What you perceive as precious is not time but the one point that is out of time: the Now. That is precious indeed. The more you are focused on time — past and future — the more you miss the Now, the most precious thing there is.</p><p>时间既不宝也不贵，因为它是个幻相。你所认知的宝贵，不是时间，而是时间之外的那一点：当下。当下才是既宝又贵的。你专注在时间上——过去和未来——的程度越大，你磋跎掉最宝贵的当下的程度就越多。</p></div>	
+<div class='layout'><p>Why is it the most precious thing? Firstly, because it is the only thing. It's all there is. The eternal present is the space within which your whole life unfolds, the one factor that remains constant. Life is now. There was never a time when your life was not now, nor will there ever be. Secondly, the Now is the only point that can take you beyond the limited confines of the mind. It is your only point of access into the timeless and formless realm of Being.</p><p>为什么说它是最宝贵的呢？首先，因为它是唯一的。它是存在的全部。永恒的现在，就是你整个生命展现其中的空间，那个如如不动的因素。生命就是当下。过去从来没有一个不是当下的时间，未来也不会有。第二，当下是唯一一个能带你超越有限心智局限的点。它是你唯一的一个通往无时间、无形式的本体界的点。</p></div>	
+<div class='layout'><p>§</p><p></p></div>	
+<div class='layout'><p>NOTHING EXISTS OUTSIDE THE NOW</p><p>当下之外一无所有</p></div>	
+<div class='layout'><p>Aren't past and future just as real, sometimes even more real, than the present? After all, the past determines who we are, as well as how we perceive and behave in the present. And our future goals determine which actions we take in the present.</p><p>难道过去和未来不像现在一样真实，甚至比现在还真实吗？毕竟过去决定了现在的我们，也决定了我们现在的感知和行为。而且未来的目标，也决定了我们现在要采取的行动。</p></div>	
+<div class='layout'><p>You haven't yet grasped the essence of what I am saying because you are trying to understand it mentally. The mind cannot understand this. Only you can. Please just listen.</p><p>你一直没有抓住我话中的精神，因为你试图做心智上的了解。心智无法了解。只有你能。请你单纯地倾听。</p></div>	
+<div class='layout'><p>Have you ever experienced, done, thought, or felt anything outside the Now? Do you think you ever will? Is it possible for anything to happen or be outside the Now? The answer is obvious, is it not?</p><p>你可曾在当下之外，经验过、做过、思想过、或感觉过任何事吗？你认为你以后会吗？任何事有可能发生或存在当下之外吗？答案不言自明，不是吗？</p></div>	
+<div class='layout'><p>Nothing ever happened in the past; it happened in the Now.</p><p>过去不曾发生过什么；它发生在当下。</p></div>	
+<div class='layout'><p>Nothing will ever happen in the future; it will happen in the Now.</p><p>未来不会发生什么；它会发生在当下。</p></div>	
+<div class='layout'><p>What you think of as the past is a memory trace, stored in the mind, of a former Now. When you remember the past, you reactivate a memory trace — and you do so now. The future is an imagined Now, a projection of the mind. When the future comes, it comes as the Now. When you think about the future, you do it now. Past and future obviously have no reality of their own. Just as the moon has no light of its own, but can only reflect the light of the sun, so are past and future only pale reflections of the light, power, and reality of the eternal present. Their reality is "borrowed" from the Now.</p><p>你认为的过去，是一个记忆的轨迹，是一个储存在心智里的前任当下。当你记起过去时，你重新启动了一个记忆的轨迹——而且，你现在就在制造轨迹。未来是一个想像的当下，一个心智的投射。当未来到的时候，它就是当下。当你想到未来时，你是在当下想的。过去和未来显然没有它们自己的实相。正如同月亮本身不发光，它只能反射太阳的光一样。过去和未来也一样，只是永恒的现在的光、它的力量、和它实相惨淡的反射而已。它们的实相是向当下“借贷”来的。</p></div>	
+<div class='layout'><p>The essence of what I am saying here cannot be understood by the mind. The moment you grasp it, there is a shift in consciousness from mind to Being, from time to presence. Suddenly, everything feels alive, radiates energy, emanates Being.</p><p>我话里的精髓无法透过心智来了解。当你领会到的那一刻，你的意识便由心智转移至本体，由时间转移至临在了。生命中的一切，突然之间生机活现，散发出能量和本体之光。</p></div>	
+<div class='layout'><p>§</p><p></p></div>	
+<div class='layout'><p>THE KEY TO THE SPIRITUAL DIMENSION</p><p>通往灵性的向度之钥</p></div>	
+<div class='layout'><p>In life-threatening emergency situations, the shift in consciousness from time to presence sometimes happens naturally. The personality that has a past and a future momentarily recedes and is replaced by an intense conscious presence, very still but very alert at the same time. Whatever response is needed then arises out of that state of consciousness.</p><p>在生命交关的当头，意识往往自然地由时间转移至临在。那个拥有过去和未来的人格暂时引退，而由一个强烈的意识临在所取代。它非常宁静，同时又非常警觉。情境所需要的反应，当即由意识状态里引发。</p></div>	
+<div class='layout'><p>The reason why some people love to engage in dangerous activities, such as mountain climbing, car racing, and so on, although they may not be aware of it, is that it forces them into the Now — that intensely alive state that is free of time, free of problems, free of thinking, free of the burden of the personality. Slipping away from the present moment even for a second may mean death. Unfortunately, they come to depend on a particular activity to be in that state. But you don't need to climb the north face of the Eiger. You can enter that state now.</p><p>有些人乐在冒险性活动，比如：爬山、赛车等，原因就是这类活动把他们逼人当下——也许他们没有觉察到——把他们逼人摆脱了时间、问题、思考和人格重负的生龙活虎的状态里。即使是短短的一秒钟，偏离当下也许就会粉身碎骨。可惜的是，他们居然仰赖一个特殊的活动，让自己进入这种状态里。可是你不需要去爬险峰峻岭，你当下就可以进入那个状态里。</p></div>	
+<div class='layout'><p>§</p><p></p></div>	
+<div class='layout'><p>Since ancient times, spiritual masters of all traditions have pointed to the Now as the key to the spiritual dimension. Despite this, it seems to have remained a secret. It is certainly not taught in churches and temples. If you go to a church, you may hear readings from the Gospels such as "Take no thought for the morrow; for the morrow shall take thought for the things of itself," or "Nobody who puts his hands to the plow and looks back is fit for the Kingdom of God." Or you might hear the passage about the beautiful flowers that are not anxious about tomorrow but live with ease in the timeless Now and are provided for abundantly by God. The depth and radical nature of these teachings are not recognized. No one seems to realize that they are meant to be lived and so bring about a profound inner transformation.</p><p>自古以来所有的灵性上师，都开示当下是通往灵性的向度之钥。尽管如此明示，它依然是不为人知的秘密。这把钥匙不在教堂和寺庙里传授宣导。上教堂的时候，你也许会听到福音书里的章句，比如，“不为明日计量，明日自有安排”，或“凡以手扶犁而频频回顾者，不配进神的国。”再者就是有关那野地的花，不为明日担忧，自在地活在没有时间的当下，而神却赐予丰富的供养。这些章句之中所深蕴的奥义和激进的本质，却不为世人所识。似乎没有人明白它们是被安排要人活出来的，好让一个深沉的内在转变得以发生。</p></div>	
+<div class='layout'><p>§</p><p></p></div>	
+<div class='layout'><p>The whole essence of Zen consists in walking along the razor's edge of Now — to be so utterly, so completely present that no problem, no suffering, nothing that is not who you are in your essence, can survive in you. In the Now, in the absence of time, all your problems dissolve. Suffering needs time; it cannot survive in the Now.</p><p>禅的整个精髓，就包含在这种游走于刀锋边缘的当下——彻底而完全地临在。任何问题、任何受苦、任何在你本质里不属于你本来面目的，都无法在你的里面存活。在没有时间的当下里，你所有的问题都瓦解一空。受苦需要时间；它在当下无法存活。</p></div>	
+<div class='layout'><p>The great Zen master Rinzai, in order to take his students' attention away from time, would often raise his finger and slowly ask: "What, at this moment, is lacking?" A powerful question that does not require an answer on the level of the mind. It is designed to take your attention deeply into the Now. A similar question in the Zen tradition is this: "If not now, when?"</p><p>伟大的临济禅师为了把门徒从时间带离出来，经常竖起一根手指头，然后好整以暇地问道：“当下，缺什么？”这样一个不需要、心智提供答案的话头，果然力道十足。它要门徒参的是深入当下。禅的传统里还有一个类似的话头是：“如非当下，何时？”</p></div>	
+<div class='layout'><p>§</p><p></p></div>	
+<div class='layout'><p>The Now is also central to the teaching of Sufism, the mystical branch of Islam. Sufis have a saying: "The Sufi is the son of time present." And Rumi, the great poet and teacher of Sufism, declares: "Past and future veil God from our sight; burn up both of them with fire."Meister Eckhart, the thirteenth-century spiritual teacher, summed it all up beautifully "Time is what keeps the light from reaching us. There is no greater obstacle to God than time."</p><p>当下也是回教神秘的苏菲教派教诲的核心。苏菲派的名句“苏菲是当下之子。”鲁米这位伟大的苏菲诗人和导师宣称，“过去和未来挡着我们，使我们见不到神；把它们付之一炬。”</p></div>	
+<div class='layout'><p>§</p><p></p></div>	
+<div class='layout'><p>ACCESSING THE POWER OF THE NOW</p><p></p></div>	
+<div class='layout'><p>A moment ago, when you talked about the eternal present and the unreality of past and future, I found myself looking at that tree outside the window. I had looked at it a few times before, but this time it was different. The external perception had not changed much, except that the colors seemed brighter and more vibrant. But there was now an added dimension to it. This is hard to explain. I don't know how, but I was aware of something invisible that I felt was the essence of that tree, its inner spirit, if you like. And somehow I was part of that. I realize now that I hadn't truly seen the tree before, just a flat and dead image of it. When I look at the tree now, some of that awareness is still present, but I can feel it slipping away. You see, the experience is already receding into the past. Can something like this ever be more than affecting glimpse?</p><p>十三世纪的灵性导师艾克哈特大师划下了完美的句点：“时间遮挡了光，它是我们和神之间最大的障碍。”汲取当下的力量你刚才在谈永恒的现在和过去与未来的非实相性的时候，我发现自己正望着窗外那棵树。那棵树我注视过几次，不过这一次跟以前不一样。外在的知觉改变不多，只不过它的颜色更鲜艳、更奔放。可是还多了一个向度。我很难解释。我说不出所以然来，不过我觉察到某种无形之物，我感觉是树的本质，也可以说是树的内在精神。而我是它的一部份。我现在才明白，我从来都没有看见这棵树，我看到的只是一个无生命的平板图像。我现在再看它的时候，部份觉知还在，不过我能感觉它逐渐溜逝。这个经验已经在向过去隐逝了。这类的事件，会不会只是浮光掠影？</p></div>	
+<div class='layout'><p>You were free of time for a moment. You moved into the Now and therefore perceived the tree without the screen of mind. The awareness of Being became part of your perception. With the timeless dimension comes a different kind of knowing, one that does not "kill" the spirit that lives within every creature and every thing. A knowing that does not destroy the sacredness and mystery of life but contains a deep love and reverence for all that is. A knowing of which the mind knows nothing.</p><p>你最短暂地由时间里解脱了。你进入了当下，所以没有透过心智的屏障，去感知那棵树。本体的觉如，变成你感知的一部份。伴随无时间向度而来的，是一种不同的明白。一种不会“扼杀”活在众生和万物内在精神的明白。一种不会摧毁生命的神秘和神性，对万有皆是怀着一份很深的爱和敬意的明白。一种心智一无所知的明白。</p></div>	
+<div class='layout'><p>The mind cannot know the tree. It can only know facts or information about the tree. My mind cannot know you, only labels, judgments, facts, and opinions about you. Being alone knows directly.</p><p>心智无法知道树。它只知道有关树的事实和资讯。我的心智无法知道你，它只知道有关你的标签、判断、事实和意见。只有本体直接地知道。</p></div>	
+<div class='layout'><p>There is a place for mind and mind knowledge. It is in the practical realm of day-to-day living. However, when it takes over all aspects of your life, including your relationships with other human beings and with nature, it becomes a monstrous parasite that, unchecked, may well end up killing all life on the planet and finally itself by killing its host.</p><p>心智和心智知识有它的定位。它的定位在日常生活的实际面上。然而当它接管了包括你的人际关系，和自然的关系在内的所有生命层面的时候，它就变成了一只寄生怪兽，如果不加箝制的话，到头来会摧毁地球上所有的生命。最后再跟它的宿主同归于尽。</p></div>	
+<div class='layout'><p>You have had a glimpse of how the timeless can transform your perceptions. But an experience is not enough, no matter how beautiful or profound. What is needed and what we are concerned with is a permanent shift in consciousness.</p><p>你已经一窥无时间如何转换你的知觉。不过一次经验并不够，无论它多美、多深奥。我们需要和关切的是意识恒久的转移。</p></div>	
+<div class='layout'><p>So break the old pattern of present-moment denial and present-moment resistance. Make it your practice to withdraw attention from past and future whenever they are not needed. Step out of the time dimension as much as possible in everyday life. If you find it hard to enter the Now directly, start by observing the habitual tendency of your mind to want to escape from the Now. You will observe that the future is usually imagined as either better or worse than the present. If the imagined future is better, it gives you hope or pleasurable anticipation. If it is worse, it creates anxiety. Both are illusory. Through self-observation, more presence comes into your life automatically. The moment you realize you are not present, you are present. Whenever you are able to observe your mind, you are no longer trapped in it. Another factor has come in, something that is not of the mind: the witnessing presence.</p><p>打破否认当下、抗拒当下的旧模式。每当你不再需要过去和未来的时候，就把你的注意力撤回。把它落实在生活里，起居作息尽可能地远离时间的向度。如果你发现直接进入当下有困难，不妨先从观察心智想逃避当下的习性开始。你将会观测到未来是以比现在更好或更坏的方式想像出来的。如果想像的结果是更好，它就给你希望或快乐的预期。如果更坏，就创造了焦虑。两者都是虚幻。透过自我观测，更多的临在会自动地进入你的生命里。当你体认到你没有临在的一刻，你就是临在了。当你有能力观测你的心智的时候，你便不再受困于它了。这时候另一个因素进来了，一个不同于心智，一个见证者的临在进来了。</p></div>	
+<div class='layout'><p>Be present as the watcher of your mind — of your thoughts and emotions as well as your reactions in various situations. Be at least as interested in your reactions as in the situation or person that causes you to react. Notice also how often your attention is in the past or future. Don't judge or analyze what you observe. Watch the thought, feel the emotion, observe the reaction. Don't make a personal problem out of them. You will then feel something more powerful than any of those things that you observe: the still, observing presence itself behind the content of your mind, the silent watcher.</p><p>以一个心智的观察者临在——观察你的思想、你的情感、和你在不同情境下的反应。对引发你反应的情境或人物，起码要像你对自己的反应一样有兴趣。注意你的关注力如何经常地往返于过去和未来。不要对你观测所得做批判或分析。观察你的思想、感觉你的情感、观测你的反应。不要把它们变成你的个人问题。然后，你就会感觉到一个比所有被观测对象更有力量的沉默观察者，在心智内容之后，那个宁静的、观测的临在本身。</p></div>	
+<div class='layout'><p>§</p><p></p></div>	
+<div class='layout'><p>Intense presence is needed when certain situations trigger a reaction with a strong emotional charge, such as when your self-image is threatened, a challenge comes into your life that triggers fear, things "go wrong," or an emotional complex from the past is brought up. In those instances, the tendency is for you to become "unconscious." The reaction or emotion takes you over — you "become" it. You act it out. You justify, make wrong, attack, defend . . . except that it isn't you, it's the reactive pattern, the mind in its habitual survival mode.</p><p>当某种情境触发了一个蓄有强烈情感的反应时，深刻的临在就需要了。例如你的自我形象遭受威胁，一个引发恐惧、事情“走错了”的挑战进入你的生命，或者过往的一个情结被带了出来。在这些情况下，你会习惯性地变成“无意识”。你的反应或情感会掌控你——你“变成了”它。你把它逼真地演出。你辩护、找碴、攻击、防卫……只不过它不是你。它是反应模式，是惯性求存模式下的心智。</p></div>	
+<div class='layout'><p>Identification with the mind gives it more energy;, observation of the mind withdraws energy from it. Identification with the mind creates more time; observation of the mind opens up the dimension of the timeless. The energy that is withdrawn from the mind turns into presence. Once you can feel what it means to be present, it becomes much easier to simply choose to step out of the time dimension whenever time is not needed for practical purposes and move more deeply into the Now. This does not impair your ability to use time — past or future — when you need to refer to it for practical matters. Nor does it impair your ability to use your mind. In fact, it enhances it. When you do use your mind, it will be sharper, more focused.</p><p>认同赋予心智更多能量；观测心智却把它的能量收回。心智认同创造了更多的时间；观测心智敞开了无时间的向度。由心智收回的能量变成了临在。一旦你能感觉到临在的意义，每当你达成了实用性的目标，不再需要时间的时候，你就可以更轻易地走出时间的向度，而深入当下了。这么做不会损及你运用时间过去或未来——的能力，当你为了实用性的事物，有需于它的时候，随时可以参照它。它也不会损害你使用心智的能力。事实上，它反而强化你的心智。当你有用于心智的时候，它反而更敏锐、更专注。</p></div>	
+<div class='layout'><p>LETTING GO OF PSYCHOLOGICAL TIME</p><p>放掉心理时间</p></div>	
+<div class='layout'><p>Learn to use time in the practical aspects of your life — we may call this "clock time" — but immediately return to present-moment awareness when those practical matters have been dealt with. In this way, there will be no build-up of "psychological time," which is identification with the past and continuous compulsive projection into the future.</p><p>学习在生活的实际面上利用时间——或叫“钟表时间”——不过当实务处理完毕之后，就立刻回到当下的觉知里。在这种方式之下没有“心理时间”的累积。心理时间就是认同过去，和对未来做持续且强迫性地投射。</p></div>	
+<div class='layout'><p>Clock time is not just making an appointment or planning a trip. It includes learning from the past so that we don't repeat the same mistakes over and over. Setting goals and working toward them. Predicting the future by means of patterns and laws, physical, mathematical and so on, learned from the past and taking appropriate action on the basis of our predictions.</p><p>钟表时间不只是安排约会或一趟旅行。它还包括了从过去学习，以免重蹈覆辙，包括了设定目标并朝目标努力。藉着物理、数学的模式、定律预测未来，由过去学得经验，并依据预测采取适当的行动。</p></div>	
+<div class='layout'><p>But even here, within the sphere of practical living, where we cannot do without reference to past and future, the present moment remains the essential factor, Any lesson from the past becomes relevant and is applied now. Any planning as well as working toward achieving a particular goal is done now.</p><p>即使在实际的生活范畴里，也不能免于对过去和未来的参照。当下这一刻依然是最重要的因素：过去的任何教训都产生了关联，且应用于当下。任何计划和朝一个特定目标的努力，都是在当下完成的。</p></div>	
+<div class='layout'><p>The enlightened person's main focus of attention is always the Now, but they are still peripherally aware of time. In other words, they continue to use clock time but are free of psychological time.</p><p>开悟的人总是以当下做为他们注意力的主要焦点，不过仍然对过去和未来有概略的觉如。换言之，他们继续使用钟表时间，但却摆脱了心理时间。</p></div>	
+<div class='layout'><p>Be alert as you practice this so that you do not unwittingly transform clock time into psychological time. For example, if you made a mistake in the past and learn from it now, you are using clock time. On the other hand, if you dwell on it mentally, and self-criticism, remorse, or guilt come up, then you are making the mistake into "me" and "mine": you make it part of your sense of self, and it has become psychological time, which is always linked to a false sense of identity. Nonforgiveness necessarily implies a heavy burden of psychological time.</p><p>做这个练习的时候要保持警觉，以免不知不觉地把钟表时间转变成心理时间。例如，你现在从过去的一个错误里学到了教训，你就是在使用钟表时间。换个角度来说，如果你在心里缅怀这个错误，而引发自我批判、懊恼、或愧疚，那么你就是把错误变成“是我”（me）或“我的”（mine）了：你把它变成你自我感的一部分。它变成了心理时间，而心理时间总是关联着一个虚假的身份。不宽恕必然隐含着一个心理时间的重担。</p></div>	
+<div class='layout'><p>If you set yourself a goal and work toward it, you are using clock time. You are aware of where you want to go, but you honor and give your fullest attention to the step that you are taking at this moment. If you then become excessively focused on the goal, perhaps because you are seeking happiness, fulfillment, or a more complete sense of self in it, the Now is no longer honored. It becomes reduced to a mere stepping stone to the future, with no intrinsic value. Clock time then turns into psychological time. Your life's journey is no longer an adventure, just an obsessive need to arrive, to attain, to "make it." You no longer see or smell the flowers by the wayside either, nor are you aware of the beauty and the miracle of life that unfolds all around you when you are present in the Now.</p><p>如果你为自己拟定了一个目标，并且朝着它努力，你就是在利用钟表时间。你觉知自己方向的同时，却又尊重并对当前的步骤付予全副的注意力。如果你过度地专注于这个目标，或许是因为你要透过这个目标，追求幸福、满足、或是一份更完整的自我感，当下就不再受到你的尊重。它被贬低成一个本身不具价值，而只是通往未来的踏脚石。钟表时间又被你转变成心理时间了。你的人生不再是一趟冒险之旅，只是一连串需要去达到、去获得、去“做到”的执迷不悟；如此，你就再也看不到，也闻不到野花的芳香。对于展现在你眼前的生命之美和奇迹而视若无睹。</p></div>	
+<div class='layout'><p>§</p><p></p></div>	
+<div class='layout'><p>I can see the supreme importance of the Now, but I cannot quite go along with you when you say that time is a complete illusion.</p><p>我能明白当下的首要性。不过你说时间是完全的幻相，这一点我不太苟同。</p></div>	
+<div class='layout'><p>When I say "time is an illusion," my intention is not to make a philosophical statement. I am just reminding you of a simple fact — a fact so obvious that you may find it hard to grasp and may even find it meaningless — but once fully realized, it can cut like a sword through all the mind-created layers of complexity and "problems." Let me say it again: the present moment is all you ever have. There is never a time when your life is not "this moment." Is this not a fact?</p><p>当我说“时间是幻相”的时候，我不是做哲学的陈述。我只是要提醒你一个简单的事实——一个明显得让你难以掌握，甚至觉得毫无意义的事实——可是一旦你全然地体会之后，它就会像一把利剑一样，切入你心造的层层裹覆和“问题”里。我再重覆一遍：当下就是你所拥有的全部。你生命中从来没有一个不是“此时此刻”的时间。这难道不是事实吗？</p></div>	
+<div class='layout'><p>THE INSANITY OF PSYCHOLOGICAL TIME</p><p>丧心病狂的心理时间</p></div>	
+<div class='layout'><p>You will not have any doubt that psychological time is a mental disease if you look at its collective manifestations. They occur, for example, in the form of ideologies such as communism, national socialism or any nationalism, or rigid religious belief systems, which operate under the implicit assumption that the highest good lies in the future and that therefore the end justifies the means. The end is an idea, a point in the mind-projected future, when salvation in whatever form happiness, fulfillment, equality, liberation, and so on — will be attained. Not infrequently, the means of getting there are the enslavement, torture, and murder of people in the present.</p><p>如果你看到心理时间的集体外显行为的话，你绝不会怀疑它是一种心理疾病。它们以共产主义、国家社会主义、或任何民族主义的意识型态，或者以僵固的宗教信念系统的形式发生。它在一个隐含的假设之下操作。这个假设是：有一个在未来的至善，因此为达目的可以不择手段。而这个目的是一个理念，是心智投射到未来的一个点。在那个点上，救赎会以各种形式——快乐、实现、平等、自由等等——达成。因此，屡见不鲜的例子，就是在现在进行对人民的奴役、折磨、和谋杀，做为达到那里的手段。</p></div>	
+<div class='layout'><p>For example, it is estimated that as many as 50 million people were murdered to further the cause of communism, to bring about a "better world" in Russia, China, and other countries. This is a chilling example of how belief in a future heaven creates a present hell. Can there be any doubt that psychological time is a serious and dangerous mental illness?</p><p>举例来说，据估计为了推行共产主义，为了在俄国、中国、和其他国家实现一个“更美好的世界”，而惨遭屠杀的有五千万人之多。（注二）以一个未来的天堂信念，创造出一个当前的地狱，这样的例子令人不寒而栗。说心理时间是一种严重且危险的心理疾病，不就无庸置疑了吗？</p></div>	
+<div class='layout'><p>How does this mind pattern operate in your life? Are you always trying to get somewhere other than where you are? Is most of your doing just a means to an end? Is fulfillment always just around the corner or confined to short-lived pleasures, such as sex, food, drink, drugs, or thrills and excitement? Are you always focused on becoming, achieving, and attaining, or alternatively chasing some new thrill or pleasure? Do you believe that if you acquire more things you will become more fulfilled, good enough, or psychologically complete? Are you waiting for a man or woman to give meaning to your life?</p><p>这种心智模式如何在你的生命之中运作？你是不是老想着离开你现在的地方，去别的地方？你多数的做为，是否只是一个达到目的的手段？你的实现是否总是触手可及？或者像性、饮食、药物、刺激和兴奋一样，只限于短暂的享乐？你是否始终都专注在变成、达到、获得、或轮番地追逐新奇的刺激、享乐？你是否相信，如果自己获取更多之后，就会变得更满足、变得更好、或心理上的更完整呢？你在等待一个男人或女人，来赋予你生命的意义吗？</p></div>	
+<div class='layout'><p>In the normal, mind-identified or unenlightened state of consciousness, the power and infinite creative potential that lie concealed in the Now are completely obscured by psychological time. Your life then loses its vibrancy, its freshness, its sense of wonder. The old patterns of thought, emotion, behavior, reaction, and desire are acted out in endless repeat performances, a script in your mind that gives you an identity of sorts but distorts or covers up the reality of the Now. The mind then creates an obsession with the future as an escape from the unsatisfactory present.</p><p>在一个正常的心智认同或无明的意识状态下，当下所蕴含的力量和无限的创造潜能，完全被心理时间给蒙蔽了。生命也因此失去了它的跃动、新鲜、和神奇感。思想、情感、行为反应、和欲望的旧模式，没完没了地演出你心智里的剧本，它给了你某种身份，却扭曲或掩盖了当下的实相。然后心智为了逃避不满意的现在，又创造了一个对未来的执迷。</p></div>	
+<div class='layout'><p>NEGATIVITY AND SUFFERING HAVE THEIR ROOTS IN TIME</p><p>负面情感和受苦其来有自</p></div>	
+<div class='layout'><p>But the belief that the future will be better than the present is not always an illusion. The present can be dreadful, and things can get better in the future, and often they do.</p><p>可是总不能把明天会更好的信念一概视为幻相。现在时有可厌之处，而未来也有改善的余地，而且这是常情。</p></div>	
+<div class='layout'><p>Usually, the future is a replica of the past. Superficial changes are possible, but real transformation is rare and depends upon whether you can become present enough to dissolve the past by accessing the power of the Now. What you perceive as future is an intrinsic part of your state of consciousness now. If your mind carries a heavy burden of past, you will experience more of the same. The past perpetuates itself through lack of presence. The quality of your consciousness at this moment is what shapes the future — which, of course, can only be experienced as the Now.</p><p>一般而言，未来只是过去的复制。浮面的改变或有可能，不过真正的转变实属罕见，而且端赖于你临在的程度，是否足以取得当下的力量以瓦解过去。你所感知的未来，其实只是你当下意识状态本质的一部份。如果你的心智挑着过去的重担，你未来还会挑着同一个更重的担子。过去透过临在的缺席，使自己存续。你这一刻的意识品质塑造了你的未来而未来，当然只能在当下里经验。</p></div>	
+<div class='layout'><p>You may win $10 million, but that kind of change is no more than skin deep. You would simply continue to act out the same conditioned patterns in more luxurious surroundings. Humans have learned to split the atom. Instead of killing ten or twenty people with a wooden club, one person can now kill a million just by pushing a button. Is that real change?</p><p>你也许中了一千万，不过这种改变充其量也仅只肤浅罢了。你只是换在一个更豪华的环境里，执行同样一套制约模式。人类已经学会了原子分裂的技术，以往要用棍棒杀十几二十个人的，现在只要一个人按个钮就可以毁掉一百万人。这算真正的改变吗？</p></div>	
+<div class='layout'><p>If it is the quality of your consciousness at this moment that determines the future, then what is it that determines the quality of your consciousness? Your degree of presence. So the only place where true change can occur and where the past can be dissolved is the Now.</p><p>如果未来是由你这一刻的意识品质来决定，那么你的意识品质又由什么来决定？你临在的程度。因此，让真正的改变可以发生的，让过去可以瓦解的唯一的一个地方就是当下。</p></div>	
+<div class='layout'><p>§</p><p></p></div>	
+<div class='layout'><p>All negativity is caused by an accumulation of psychological time and denial of the present. Unease, anxiety, tension, stress, worry — all forms of fear — are caused by too much future, and not enough presence. Guilt, regret, resentment, grievances, sadness, bitterness, and all forms of nonforgiveness are caused by too much past, and not enough presence.</p><p>所有的负面情感，都是由心理时间的累积，和对当卜的否定造成的。不安、焦虑、张力、压力、忧愁——所有恐惧的形式都由太多的未来，和不足的当下所造成。愧疚、懊悔、憎恨、怨怒、哀伤、悲苦、和各种形式的不宽恕，都是由于过去太多，而当下不足所造成。</p></div>	
+<div class='layout'><p>Most people find it difficult to believe that a state of consciousness totally free of all negativity is possible. And yet this is the liberated state to which all spiritual teachings point. It is the promise of salvation, not in an illusory future but right here and now.</p><p>多数人难以相信可能有一个完全摆脱了所有负面情感的意识状态。然而这却是所有灵性教诲都指出的一个解脱状态。它是一个救赎的应许，它不在一个幻相的未来，它就在此时此刻。</p></div>	
+<div class='layout'><p>You may find it hard to recognize that time is the cause of your suffering or your problems. You believe that they are caused by specific situations in your life, and seen from a conventional viewpoint, this is true. But until you have dealt with the basic problem-making dysfunction of the mind — its attachment to past and future and denial of the Now — problems are actually interchangeable. If all your problems or perceived causes of suffering or unhappiness were miraculously removed for you today, but you had not become more present, more conscious, you would soon find yourself with a similar set of problems or causes of suffering, like a shadow that follows you wherever you go. Ultimately, there is only one problem: the time-bound mind itself.</p><p>你也许发觉很难承认时间就是你的问题或受苦的肇因。你相信它们是由你生命中的特定情境所造成的，从一个传统的观点来看这是真的。可是在你没有把心智不断制造问题的根本失能处理好之前——它对过去和未来的执着、对当下的否定所有的问题，其实都会互相变换。如果你所有的问题或受苦、不快乐的肇因都在今天为你奇迹式地移除了，可是你并没有变得更临在，更有意识，你会很快地发现同样的一组问题或受苦的肇因，如影随形地跟着你。归根究底，问题只有一个：被时间所捆绑的心智本身。</p></div>	
+<div class='layout'><p>I cannot believe that I could ever reach a point where I am completely free of my problems.</p><p>我无法相信我可以达到一个完全摆脱问题的点上。</p></div>	
+<div class='layout'><p>You are right. You can never reach that point because you are at that point now.</p><p>你说对了。你是无法达到这个点，因为你当下就是在这个点上。</p></div>	
+<div class='layout'><p>There is no salvation in time. You cannot be free in the future. Presence is the key to freedom, so you can only be free now.</p><p>时间里没有救赎。你无法由未来里解脱。临在是自由之钥。因此，你只能在当下是自由的。</p></div>	
+<div class='layout'><p>FINDING THE LIFE UNDERNEATH YOUR LIFE SITUATION</p><p>在你生命情境的底层找到生命</p></div>	
+<div class='layout'><p>I don't see how I can be free now. As it happens, I am extremely unhappy with my life at the moment. This is a fact, and I would be deluding myself if I tried to convince myself that all is well when it definitely isn't. To me, the present moment is very unhappy; it is not liberating at all. What keeps me going is the hope or possibility of some improvement in the future.</p><p>我看不出自己如何能在当下自由。事情演变至今，目前的生命让我极端不快乐。这是事实。如果我试图说服自己说一切美好，而实际上却完全不是这回事。那我岂不是在自欺吗？对我而言，当下这一刻非常不快乐，毫无解脱可言。维系着我的是未来会有所改善的希望或可能性。</p></div>	
+<div class='layout'><p>You think that your attention is in the present moment when it's actually taken up completely by time. You cannot be both unhappy and fully present in the Now.</p><p>你自认为你把注意力摆在当下，而实际上，它却完全被时间所盘据。你不可能同时不快乐又全然地临在于当下。</p></div>	
+<div class='layout'><p>What you refer to as your "life" should more accurately be called your "life situation." It is psychological time: past and future. Certain things in the past didn't go the way you wanted them to go. You are still resisting what happened in the past, and now you are resisting what is. Hope is what keeps you going, but hope keeps you focused on the future, and this continued focus perpetuates your denial of the Now and therefore your unhappiness.</p><p>你所指的“生命”，更精确的说法应该是“生命情境”。它是心理时间：过去和未来。过去的某些事件，并没有如你所愿地发展，你仍在抗拒过去发生了的事件。而现在，你又在抗拒本然。希望维系着你，可是希望却持续地让你专注于未来。而这种持续的专注，又让你对当下的否定和不快乐延续不止。</p></div>	
+<div class='layout'><p>It is true that my present life situation is the result of things that happened in the past, but it is still my present situation, and being stuck in it is what makes me unhappy.</p><p>当前的生命情境，是过去的结果，这是真的。不过，它仍然是我的现状。而受困其中就是造成我不快乐的原因。</p></div>	
+<div class='layout'><p>Forget about your life situation for a while and pay attention to your life.</p><p>暂时忘掉你的生命情境，专注在你的生命上面。</p></div>	
+<div class='layout'><p>What is the difference?</p><p>差别何在？</p></div>	
+<div class='layout'><p>Your life situation exists in time.</p><p>生命情境存在于时间里</p></div>	
+<div class='layout'><p>Your life is now.</p><p>生命是当下</p></div>	
+<div class='layout'><p>Your life situation is mind-stuff.</p><p>生命情境是心智-物</p></div>	
+<div class='layout'><p>Your life is real.</p><p>生命是真实的</p></div>	
+<div class='layout'><p>Find the "narrow gate that leads to life." It is called the Now. Narrow your life down to this moment. Your life situation may be full of problems — most life situations are — but find out if you have any problem at this moment. Not tomorrow or in ten minutes, but now. Do you have a problem now?</p><p>找到通往“生命的窄门”。它的名字叫当下。把你的生命归约至此时此刻。你的生命情境也许充满了问题多数生命情境都是——可是，找找看你在此时此刻有什么问题？既不是明天，,也不是十分钟之后,而是当下。你当下有问题吗? </p></div>	
+<div class='layout'><p>When you are full of problems, there is no room for anything new to enter, no room for a solution. So whenever you can, make some room, create some space, so that you find the life underneath your life situation.</p><p>当你满脑子问题的时候，你就容不下任何新的事物进来，也容不下任何解决方案。所以你要随时腾出空间、挪出位置，你才能找到生命情境底层的生命。</p></div>	
+<div class='layout'><p>Use your senses fully. Be where you are. Look around. Just look, don't interpret. See the light, shapes, colors, textures. Be aware of the silent presence of each thing. Be aware of the space that allows everything to be. Listen to the sounds; don't judge them. Listen to the silence underneath the sounds. Touch something — anything — and feel and acknowledge its Being. Observe the rhythm of your breathing; feel the air flowing in and out, feel the life energy inside your body. Allow everything to be, within and without. Allow the "isness" of all things. Move deeply into the Now.</p><p>充分地运用你的感知。活在当下。环顾四周。只看，不要诠释。看见光、看见造型、颜色、和纹理。觉察一事一物那一份宁静的临在。觉察那容许万有皆是的空间。倾听四周的声音，不做批判。倾听声音之下的宁静。找个东西触摸——任何东西——去感觉和认知它的本体。观测你呼吸的韵律；感觉空气的进出、感觉你身体里面的生命能。容许一切存在，或内或外。容许万物的“如是”。深入当下。</p></div>	
+<div class='layout'><p>You are leaving behind the deadening world of mental abstraction, of time. You are getting out of the insane mind that is draining you of life energy, just as it is slowly poisoning and destroying the Earth. You are awakening out of the dream of time into the present.</p><p>你抛下了心理的抽象和时间的荒原。你走出了逐步榨干你生命能的疯狂心智。这个正在慢性地毒化和摧毁世界的心智。你由时间的梦幻里觉醒，进入了当下。</p></div>	
+<div class='layout'><p>§</p><p></p></div>	
+<div class='layout'><p>ALL PROBLEMS ARE ILLUSIONS OF THE MIND</p><p>所有问题都是心智的幻相</p></div>	
+<div class='layout'><p>It feels as if a heavy burden has been lifted. A sense of lightness. I feel clear . . . but my problems are still there waiting for me, aren't they? They haven't been solved. Am I not just temporarily evading them?</p><p>感觉好像卸下了心头的重担似地。有一股轻活感。我感觉清澈无碍……可是我的问题还在等我，对不对？问题仍然悬而未决，我岂不是一时地逃避？</p></div>	
+<div class='layout'><p>If you found yourself in paradise, it wouldn't be long before your mind would say "yes, but . . . "Ultimately, this is not about solving your problems. Ifs about realizing that there are no problems. Only situations — to be dealt with now, or to be left alone and accepted as part of the "isness' of the present moment until they change or can be dealt with. Problems are mind-made and need time to survive. They cannot survive in the actuality of the Now.</p><p>如果你发现自己置身乐园，用不了多久你的心智就会说“没错，可是……”。说穿了，这无关乎解决你的问题，而在于体会根本没有问题。有的只是情境——不是当下处理掉，就是放下它。把它接纳为当下“是然”的。部分。静观其变，或音等到你能够处理的时候。问题是心创造的，它需要时间来维生。它在当下的实存里无法存活。</p></div>	
+<div class='layout'><p>Focus your attention on the Now and tell me what problem you have at this moment.</p><p>先专注在当下，再告诉我你的问题是什么。</p></div>	
+<div class='layout'><p>§</p><p></p></div>	
+<div class='layout'><p>I am not getting any answer because it is impossible to have a problem when your attention is fully in the Now. A situation that needs to be either dealt with or accepted — yes. Why make it into a problem? Why make anything into a problem? Isn't life challenging enough as it is? What do you need problems for? The mind unconsciously loves problems because they give you an identity of sorts. This is normal, and it is insane. "Problem" means that you are dwelling on a situation mentally without there being a true intention or possibility of taking action now and that you are unconsciously making it part of your sense of self. You become so overwhelmed by your life situation that you lose your sense of life, of Being. Or you are carrying in your mind the insane burden of a hundred things that you will or may have to do in the future instead of focusing your attention on the one thing that you can do now.</p><p>我得不到你任何答覆。因为当你全然地贯注在当下的时候，是不可能有问题的。情境需要的是处理或接受——没错。何苦把它变成为问题？为什么凡事都要变成问题？生命的挑战还不够你受的吗？你需要问题来干什么？心智无意识地喜爱问题，因为问题给你某种身份。这是正常的，这种正常是疯狂。“问题”的意思是：你心理上沉缅于一个情境，当下却没有采取行动的真正意图或可能性。而你无意识地把它变成你自我感的一部分。你被生命的情境压得喘不过气来，因而丧失了生命感和本体感。或者是你的心智顶了一个千斤重担，里面有数百件等着你在未来将要或也许非做不可的事，而不是把注意力摆在当下，你能做的一件事上面。</p></div>	
+<div class='layout'><p>When you create a problem, you create pain. All it takes is a simple choice, a simple decision: no matter what happens, I will create no more pain for myself. I will create no more problems. Although it is a simple choice, it is also very radical. You won't make that choice unless you are truly fed up with suffering, unless you have truly had enough. And you won't be able to go through with it unless you access the power of the Now. If you create no more pain for yourself, then you create no more pain for others. You also no longer contaminate the beautiful Earth, your inner space, and the collective human psyche with the negativity of problem-making.</p><p>创造问题的时候，你就创造了痛苦。这整件事只需要一个简单的选择，一个单纯的决定：不管怎么样，我不再为自己创造任何痛苦了。我不再创造任何问题了。这是一个虽简单却激进的决定。除非你真的受够了苦，除非你真的苦到了尽头，你才会做出这个决定。也除非你取得当下的力量，你就无法承受得了它。你不再为自己创造痛苦，就再也不会为别人创造痛苦。这个美好的地球、你内在的和平、和集体人类心灵，就不会遭到你制造问题的负面情感所污染了。</p></div>	
+<div class='layout'><p>§</p><p></p></div>	
+<div class='layout'><p>If you have ever been in a life-or-death emergency situation, you will know that it wasn't a problem. The mind didn't have time to fool around and make it into a problem. In a true emergency, the mind stops; you become totally present in the Now, and something infinitely more powerful takes over. This is why there are many reports of ordinary people suddenly becoming capable of incredibly courageous deeds. In any emergency, either you survive or you don't. Either way, it is not a problem.</p><p>如果你有过生死交关的经历，你就知道它不是问题。心智在那个关头上，没有时间把它搅和成为问题。在真正的危急当中，心智停顿了。你变得完全地临在当下。另一个威力无比的东西接掌局面。一个普通人在千钧一发之际，完成了英勇的事迹。类似的报导很多，原因就在这里。在任何危急的关头，不后即死。而这两者都不是问题。</p></div>	
+<div class='layout'><p>Some people get angry when they hear me say that problems are illusions. I am threatening to take away their sense of who they are. They have invested much time in a false sense of self. For many years, they have unconsciously defined their whole identity in terms of their problems or their suffering. Who would they be without it?</p><p>有人听到我说问题只是幻相的时候就会生气。我是取走他们自我感的威胁。他们在虚假的自我感上，投注了巨额的时间。多少年来，他们无意识地以问题或受苦来定义他们的整个身份。如果问题没了，他们又是谁？</p></div>	
+<div class='layout'><p>A great deal of what people say, think, or do is actually motivated by fear, which of course is always linked with having your focus on the future and being out of touch with the Now. As there are no problems in the Now, there is no fear either.</p><p>人们所思、所言、或所做之中，有极大部分的动机其实是来自恐惧。而恐惧当然总是和投注未来和断绝当下的联系脱不了关系。当下既然没有问题，恐惧也就不存在了。</p></div>	
+<div class='layout'><p>Should a situation arise that you need to deal with now, your action will be clear and incisive if it arises out of present-moment awareness. It is also more likely to be effective. It will not be a reaction coming from the past conditioning of your mind but an intuitive response to the situation. In other instances, when the time-bound mind would have reacted, you will find it more effective to do nothing — just stay centered in the Now.</p><p>万一真的发生了一个情境，需要你当下处理的，如果你的行动来自于当下的觉知，你的行动必然清楚果决。也很可能效率十足。它不再是反应自心智过去的制约，而是针对情境的本能反应。换在别的情况下，受时间所局限的心智本该做反应的时候，你会发现它在无为——如如不动地处于当下的中心的时候更具效率。</p></div>	
+<div class='layout'><p>A QUANTUM LEAP IN THE EVOLUTION OF CONSCIOUSNESS</p><p>在意识的进化中做量子跃进</p></div>	
+<div class='layout'><p>I have had glimpses of this state off freedom from mind and time that you describe, but past and future are so overwhelmingly strong that I cannot keep them out for long.</p><p>你描述的心智和时间的解脱状态，我有过惊鸿一瞥的经验。可是过去和未来来势汹汹，我无法长期抗战。</p></div>	
+<div class='layout'><p>The time-bound mode of consciousness is deeply embedded in the human psyche. But what we are doing here is part of a profound transformation that is taking place in the collective consciousness of the planet and beyond: the awakening of consciousness from the dream of matter, form, and separation. The ending of time. We are breaking mind patterns that have dominated human life for eons. Mind patterns that have created unimaginable suffering on a vast scale. I am not using the word evil. It is more helpful to call it unconsciousness or insanity.</p><p>被时间所局限的意识模式深深地嵌植在人类的心灵里。可是我们正在做的是，在地球和地球之外的集体意识中，所进行的一项深沉转化的一部分：意识从物质、形式和孤离的梦幻中觉醒。时间的终结。我们正在打破主宰了人类生命亿万年之久的心智模式。心智模式在一个庞大的层面上，创造出想像所未及的痛苦。我不用恶这个字。把它叫做无意识或疯狂，更有助于我们的了解。</p></div>	
+<div class='layout'><p>This breaking up of the old mode of consciousness or rather unconsciousness: is it something we have to do or will it happen anyway? I mean, is this change inevitable?</p><p>打破意识或者说无意识的旧模式：是我们势必要做的一件事，还是它迟早都会发生？我的意思是，这是个无法回避的改变吗？</p></div>	
+<div class='layout'><p>That's a question of perspective. The doing and the happening is in fact a single process; because you are one with the totality of consciousness, you cannot separate the two. But there is no absolute guarantee that humans will make it. The process isn't inevitable or automatic. Your cooperation is an essential part of it. However you look at it, it is a quantum leap in the evolution of consciousness, as well as our only chance of survival as a race.</p><p>这是一个视角的问题。做为或发生，事实上是一个单一的过程；因为你和整体意识是合一的，这两者你无法把它们一分为二。人类能否成功，没有绝对的保证。这个过程既非无法回避，也不是自动化作业。你的合作扮演了极重要的部分。不管你怎么看，它却是意识进化上一次量子跃进。也是人种存续绝无仅有的一次机会。</p></div>	
+<div class='layout'><p>THE JOY OF BEING</p><p>本体的喜悦</p></div>	
+<div class='layout'><p>To alert you that you have allowed yourself to be taken over by psychological time, you can use a simple criterion. Ask yourself: Is there joy, ease, and lightness in what I am doing? If there isn't, then time is covering up the present moment, and life is perceived as a burden or a struggle.</p><p>你可以使用一个简单的标准来警示自己是否破心理时间掌控。问自己：“我正在做的事情里有喜悦、有容易、和轻快吗？”如果没有的话，那么时间就掩盖了当下这一刻。而你也把生命感知成一具重担或挣扎求存了。</p></div>	
+<div class='layout'><p>If there is no joy, ease, or lightness in what you are doing, it does not necessarily mean that you need to change what you are doing. It may be sufficient to change the how. "How" is always more important than "what." See if you can give much more attention to the doing than to the result that you want to achieve through it. Give your fullest attention to whatever the moment presents. This implies that you also completely accept what is, because you cannot give your full attention to something and at the same time resist it.</p><p>如果你眼前的工作里没有喜悦、容易、或轻快，并不表示你需要改变你的工作内容。只要改变工作的方法就足够了。“如何”始终都比“什么”重要。试试看，你能否更专注在做为的上面，而不是透过做为所要达成的结果上面？对当下呈现的一切，给予全副的注意力。这隐含着你也完全地接受了本然。因为你不可能对某件事给予全副注意的同时又抗拒它。</p></div>	
+<div class='layout'><p>As soon as you honor the present moment, all unhappiness and struggle dissolve, and life begins to flow with joy and ease. When you act out of present-moment awareness, whatever you do becomes imbued with a sense of quality, care, and love — even the most simple action.</p><p>当你尊重当下的时候，所有的不快乐和挣扎都瓦解了。生命开始流动着喜悦和容易。当你的行动出之于当下的觉知时，不管你做什么，都会注入一份品质、关怀、和爱——即便是最单纯的一个行动也不例外。</p></div>	
+<div class='layout'><p>§</p><p></p></div>	
+<div class='layout'><p>So do not be concerned with the fruit of your action — just give attention to the action itself. The fruit will come of its own accord. This is a powerful spiritual practice. In the Bhagavad Gita, one of the oldest and most beautiful spiritual teachings in existence, non-attachment to the fruit of your action is called Karma Yoga. It is described as the path of "consecrated action."</p><p>所以不要关心行动的成果——只管专注在行动本身。成果会自然来到。这是一个威力十足的灵修法门。当今最古老、最优美的薄伽梵歌（Bhagavad Gita），把不执着行动的成果称为行动瑜伽（Karma Yoga）。它被描述为通往“圣行”的道路。</p></div>	
+<div class='layout'><p>When the compulsive striving away from the Now ceases, the joy of Being flows into everything you do. The moment your attention turns to the Now, you feel a presence, a stillness, a peace. You no longer depend on the future for fulfillment and satisfaction — you don't look to it for salvation. Therefore, you are not attached to the results. Neither failure nor success has the power to change your inner state of Being. You have found the life underneath your life situation.</p><p>当那股挣扎着要离开当下的驱迫力停息的时候，本体的喜悦便流入你做的每一件事里。你的专注投入当下的那一刻，你便感觉到一种临在、宁静和和平。你的实现和满足不再仰赖于未来——你不再由未来寻求救赎。因此你不再执着于结果。成败与否都不具有改变你内在本体状态的力量。你已经找到生命情境底层的生命了。</p></div>	
+<div class='layout'><p>In the absence of psychological time, your sense of self is derived from Being, not from your personal past. Therefore, the psychological need to become anything other than who you are already is no longer there. In the world, on the level of your life situation, you may indeed become wealthy, knowledgeable, successful, free of this or that, but in the deeper dimension of Being you are complete and whole now.</p><p>缺少了心理时间，你的自我感便来自你的本体，而不是个人的过往。因此那个只想变成你本然之外的心理需求已经不在了。在世间，在生命情境的层面上，你也许富有、学识丰富、成功、免于这个或那个，可是在本体更深的向度里，你当下就是完整和圆满的。</p></div>	
+<div class='layout'><p>In that state of wholeness, would we still be able or willing to pursue external goals ?</p><p>在这种圆满的状态下，我们还能够或愿意追逐外在的目标吗？</p></div>	
+<div class='layout'><p>Of course, but you will not have illusory expectations that anything or anybody in the future will save you or make you happy. As far as your life situation is concerned, there may be things to be attained or acquired. That's the world of form, of gain and loss. Yet on a deeper level you are already complete, and when you realize that, there is a playful, joyous energy behind what you do. Being free of psychological time, you no longer pursue your goals with grim determination, driven by fear, anger, discontent, or the need to become someone. Nor will you remain inactive through fear of failure, which to the ego is loss of self. When your deeper sense of self is derived from Being, when you are free of "becoming" as a psychological need, neither your happiness nor your sense of self depends on the outcome, and so there is freedom from fear. You don't seek permanency where it cannot be found: in the world of form, of gain and loss, birth and death. You don't demand that situations, conditions, places, or people should make you happy, and then suffer when they don't live up to your expectations.</p><p>当然会。不过，你不再妄想任何人或任何事，在未来会救你或让你快乐了。就生命的情境而言，有些事是需要被达成或获致的。这是一个有形、有得有失的世界。可是在一个更深的层面里，你已经最完整的。你体认出这一点之后，你所做的事里就充满了喜悦、欢乐的能量。摆脱了心理时间，你不再受着恐惧、愤怒、不满、或变成别人的需求所驱使，而抱持着严峻的决心，去追求你的目标了。你也不会因为害怕失败对我执来说，是自我的丧失——而无所做为了。当你深层的自我感，是来自本体的时候；当你摆脱了心理需求的“变成”之后，你的快乐和自我感，便不再仰赖于结果。你就从恐惧中解脱了。你不再缘木求鱼，在一个形式、得失、生死构成的世间追求永恒。你不会对情境、情状、地方、或人，要求他们应该让你快乐，也不会因为他们不吻合你的期望而受苦。</p></div>	
+<div class='layout'><p>Everything is honored, but nothing matters. Forms are born and die, yet you are aware of the eternal underneath the forms. You know that "nothing real can be threatened."When this is your state of Being, how can you not succeed? You have succeeded already.</p><p>你尊重一切，却不在乎一切。形式有生、有死，而你却觉知了形式之下的永恒。你知道“凡真实的必不受威胁。”（注三）当这是你的本体状态的时候，你如何能够不成功？你已经成功了。</p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

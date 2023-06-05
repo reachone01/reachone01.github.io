@@ -1,0 +1,431 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<div class='layout'><p>4</p><p>4</p></div>	
+<div class='layout'><p>Chapter 4 MIND STRATEGIES FOR AVOIDING THE NOW</p><p>第四章 心智回避当下策略</p></div>	
+<div class='layout'><p>LOSS OF NOW: THE CORE DELUSION</p><p>当下的失落：核心幻相</p></div>	
+<div class='layout'><p>Even if I completely accept that ultimately time is an illusion, what difference is that going to make in my life? I still have to live in a world that is completely dominated by time.</p><p>即使我完全接受时间终究是一个幻相，对我的生命有什么差别？我还是得活在一个完全被时间、主导的世界里。</p></div>	
+<div class='layout'><p>Intellectual agreement is just another belief and won't make much difference to your life. To realize this truth, you need to live it. When every cell of your body is so present that it feels vibrant with life, and when you can feel that life every moment as the joy of Being, then it can be said that you are free of time.</p><p>理智上的同意，只是另一个信念，对你的生命无甚差别。你要落实在生命里，才能体会这个真理。当你的每一个细胞都临在，都感觉到生命的颤动时，当你无时无刻都感觉这样的生命就是本体的喜悦时，这时候，你才能说你从时间里解脱了。</p></div>	
+<div class='layout'><p>But I still have to pay the bills tomorrow, and I am still going to grow old and die just like everybody else. So how can I ever say that I am free of time?</p><p>可是我明天就得付帐单，而且我跟所有人一样会老、会死。我怎么能说我从时间里解脱了？</p></div>	
+<div class='layout'><p>Tomorrow's bills are not the problem. The dissolution of the physical body is not a problem. Loss of Now is the problem, or rather: the core delusion that turns a mere situation, event, or emotion into a personal problem and into suffering. Loss of Now is loss of Being.</p><p>明天的帐单不是问题。肉身的幻灭不是问题。当下的失落才是问题。或者说：核心幻相把一个单纯的情境、事件、或情感，变成一个个人问题和受苦的时候，才是问题。当下的失落，就是本体的失落。</p></div>	
+<div class='layout'><p>To be free of time is to be free of the psychological need of past for your identity and future for your fulfillment. It represents the most profound transformation of consciousness that you can imagine. In some rare cases, this shift in consciousness happens dramatically and radically, once and for all. When it does, it usually comes about through total surrender in the midst of intense suffering. Most people, however, have to work at it.</p><p>由时间中解脱，就是摆脱了从过去寻找身份，从未来寻找实现的心理需求。它代表一个你想像不到的，最深沉的意识转化。在某些空见的案例中，意识以一劳、水逸的方式，做戏剧性且激进的转移。它通常是在强烈的受苦中，透过全然的臣服而发生。不过大多数人都必须凭下工夫才能达到。</p></div>	
+<div class='layout'><p>When you have had your first few glimpses of the timeless state of consciousness, you begin to move back and forth between the dimensions of time and presence. First you become aware of just how rarely your attention is truly in the Now. But to know that you are not present is a great success: that knowing is presence — even if initially it only lasts for a couple of seconds of dock time before it is lost again. Then, with increasing frequency, you choose to have the focus of your consciousness in the present moment rather than in the past or future, and whenever you realize that you had lost the Now, you are able to stay in it not just for a couple of seconds, but for longer periods as perceived from the external perspective of dock time. So before you are firmly established in the state of presence, which is to say before you are fully conscious, you shift back and forth for a while between consciousness and unconsciousness, between the state of presence and the state of mind identification. You lose the Now, and you return to it, again and again. Eventually, presence becomes your predominant state.</p><p>当你初尝无时间的意识状态时，你开始在时间和当下的两个向度之间穿梭。你首先觉察到的是：你的注意力真正地投注在当下的时候，可谓少之又少。不过知道你不是临在，就是很大的成功：这一份明白就是临在——即使一开始只维持了几秒钟就消失了。随着频率的增加，你会选择把意识的焦点，放在现在而不是过去或未来。每当你体会到自己失去了当下的时候，你处于当下的时段会更长，而不只是短暂的几秒钟而已。也就是说，在你全然的意识之前，有一段时间你会在意识和无意识、临在和心智认同的状态之间往返。你一再地失去当下，也一再地回到当下。到最后，临在变成了你的主要状态。</p></div>	
+<div class='layout'><p>For most people, presence is experienced either never at all or only accidentally and briefly on rare occasions without being recognized for what it is. Most humans alternate not between consciousness and unconsciousness but only between different levels of unconsciousness.</p><p>对多数人而言，若不是完全没有临在的经验，就是在稀有的情况下，不明所以地发生意外的或短暂的经验。多数人类不是在意识和无意识之间交替，而只是在无意识的不同层面里替换。</p></div>	
+<div class='layout'><p>ORDINARY UNCONSCIOUSNESS AND DEEP UNCONSCIOUSNESS</p><p>一般无意识和深层无意识</p></div>	
+<div class='layout'><p>What do you mean by different levels of unconsciousness?</p><p>你说无意识的不同层面是什么意思？</p></div>	
+<div class='layout'><p>As you probably know, in sleep you constantly move between the phases of dreamless sleep and the dream state. Similarly, in wakefulness most people only shift between ordinary unconsciousness and deep unconsciousness. What I call ordinary unconsciousness means being identified with your thought processes and emotions, your reactions, desires, and aversions. It is most people's normal state. In that state, you are run by the egoic mind, and you are unaware of Being. It is a state not of acute pain or unhappiness but of an almost continuous low level of unease, discontent, boredom, or nervousness — a kind of background static. You may not realize this because it is so much a part of "normal" living, just as you are not aware of a continuous low background noise, such as the hum of an air conditioner, until it stops. When it suddenly does stop, there is a sense of relief. Many people use alcohol, drugs, sex, food, work, television, or even shopping as anesthetics in an unconscious attempt to remove the basic unease. When this happens, an activity that might be very enjoyable if used in moderation becomes imbued with a compulsive or addictive quality, and all that is ever achieved through it is extremely short-lived symptom relief.</p><p>你或许知道，在睡眠中你会不断地在有梦和无梦阶段里活动。同样的道理，一般人在清醒的时候，也是介于深层无意识和一般无意识中转移。我说的一般无意识，指的是认同你的思想过程、情感、反应、欲望、和喜恶。这是多数人的常态。在这种状态下的你，受着我执心智的主导，而不觉知于你的本体。这个状态里没有剧痛或不快乐，只有持续的、轻微的不安、不足、沉闷或紧张——一种衬底的“静电干扰”。你也许体会不出来，因为它早就是你“正常”的生活的一部分了。就如同你无法察觉持续而低调的背景噪音一样。比如空调的嗡嗡声，除非它停止运转。当它突然静止的时候，你会有一种如释重负感。许多人利用酒精、毒品、性、食物、工作、电视、甚至购物当做麻醉剂，以无意识的方式企图驱除这种基底的不安。</p></div>	
+<div class='layout'><p>The unease of ordinary unconsciousness turns into the pain of deep unconsciousness — a state of more acute and more obvious suffering or unhappiness — when things "go wrong," when the ego is threatened or there is a major challenge, threat, or loss, real or imagined, in your life situation or conflict in a relationship. It is an intensified version of ordinary unconsciousness, different from it not in kind but in degree.</p><p>当这种情况发生的时候，一个原本在适量下会非常开心的活动，开始搀入驱迫性的或瘾头的品质。而你透过它们所获致的，只不过是极其短暂的症候缓解。当事情“走错了”的时候，当我执遭到威胁的时候，当生命的情境出现想像或真实的重大挑战、威胁、或失落的时候，当关系里出现冲突的时候，一般无意识里的不安，就转变成深层无意识里的痛了一个有剧痛和更明显的受苦或不快乐的状态。它是一般无意识的强化版。其间的差异不在类别，而在程度。</p></div>	
+<div class='layout'><p>In ordinary unconsciousness, habitual resistance to or denial of what is creates the unease and discontent that most people accept as normal living. When this resistance becomes intensified through some challenge or threat to the ego, it brings up intense negativity such as anger, acute fear, aggression, depression, and so on. Deep unconsciousness often means that the pain-body has been triggered and that you have become identified with it. Physical violence would be impossible without deep unconsciousness. It can also occur easily whenever and wherever a crowd of people or even an entire nation generates a negative collective energy field.</p><p>在一般的无意识中，对本然的习惯性抗拒或否定，创造了多数人视为正常生活的不安和不足。我执受到威胁或挑战的时候，这种抗拒就会强化，而引发出强烈的负面情感，例如：愤怒、剧烈的恐惧、攻击、沮丧等等。深度的无意识通常意谓着痛苦之身被激发了，而你已经认同了它。缺少深层的无意识，肢体暴力便不可能发生。一个群众，甚至于一整个国家，一旦产生一个集体负能场的时候，肢体暴力便会随时随地轻易地发生。</p></div>	
+<div class='layout'><p>The best indicator of your level of consciousness is how you deal with life's challenges when they come. Through those challenges, an already unconscious person tends to become more deeply unconscious, and a conscious person more intensely conscious. You can use a challenge to awaken you, or you can allow it to pull you into even deeper sleep. The dream of ordinary unconsciousness then turns into a nightmare.</p><p>勘定你意识层面最佳的指标，就是你如何应付生命的挑战。透过这些挑战，一个已经无意识的人会变得更加无意识，而有意识者的意识会更加深刻。一次挑战可以唤醒你，也可以把你拖进更深的睡梦里。如此，一般无意识的梦就变成了一场噩梦。</p></div>	
+<div class='layout'><p>If you cannot be present even in normal circumstances, such as when you are sitting alone in a room, walking in the woods, or listening to someone, then you certainly won't be able to stay conscious when something "goes wrong" or you are faced with difficult people or situations, with loss or the threat of loss. You will be taken over by a reaction, which ultimately is always some form of fear, and pulled into deep unconsciousness. Those challenges are your tests. Only the way in which you deal with them will show you and others where you are at as far as your state of consciousness is concerned, not how long you can sit with your eyes closed or what visions you see.</p><p>如果你连在正常的环境里都无法临在的话，例如独坐幽室、树林独步，或者倾听他人谈话，那么当你的事情“走错了”，或者面对难缠的人物或情境，陷于失落或失落的威胁时，你也必然不能保持在意识中。你会被一个反应所掌控，这个反应追究到底，只是被拉入深层无意识中某种形式的恐惧罢了。这些挑战就是你的测试。只有从你处理它们的方式中，才能对你和他人显示出你的意识处于同种状态。这与你闭目养神的能耐，或观想的内容毫无关系。</p></div>	
+<div class='layout'><p>So it is essential to bring more consciousness into your life in ordinary situations when everything is going relatively smoothly. In this way, you grow in presence power. It generates an energy field in you and around you of a high vibrational frequency. No unconsciousness, no negativity, no discord or violence can enter that field and survive, just as darkness cannot survive in the presence of light.</p><p>这样看来，当你一切顺遂的时候，把更多的意识带人你生命中的一般情境中，就显得至关重要了。你以这样的方式，使临在的力量茁壮。它在你的内外产生了一个高波能场。任何无意识、任何负面情感、任何争端、任何暴力，一进入这个能场必无法自存。正如同黑暗无法在光的临在下存在一样。</p></div>	
+<div class='layout'><p>When you learn to be the witness of your thoughts and emotions, which is an essential part of being present, you may be surprised when you first become aware of the background "static" of ordinary unconsciousness and realize how rarely, if ever, you are truly at ease within yourself. On the level of your thinking, you will find a great deal of resistance in the form of judgment, discontent, and mental projection away from the Now. On the emotional level, there will be an undercurrent of unease, tension, boredom, or nervousness. Both are aspects of the mind in its habitual resistance mode.</p><p>当你学会做你思想和情感的见证之后这是临在的本质部分你也许会讶异自己有生以来第一次觉察到一般无意识中的“静电干扰”，而且体会到你内在真实贴切的自在感居然如此稀少。你会在你的思考层面上，找到一大堆以批判、不满、和心理投射为形式的抗拒；而在情感层面，也会隐含着一股不安、张力、沉闷、或神经质的暗流。两者都是心智在习惯性的抗拒模式下，产生的不同面向。</p></div>	
+<div class='layout'><p>WHAT ARE THEY SEEKING?</p><p>他们找什么？</p></div>	
+<div class='layout'><p>Carl Jung tells in one of his books of a conversation he had with a Native American chief who pointed out to him that in his perception most white people have tense faces, staring eyes, and a cruel demeanor. He said: "They are always seeking something. What are they seeking? The whites always want something. They are always uneasy and restless. We don't know what they want. We think they are mad."</p><p>卡尔容格在他的一本书中谈到，自己和一位美国原住民酋长的对话。酋长明白地跟他表示，他对白人的观感都是表情严峻、眼神凝注、神态冷酷。他说“他们不停地找，到底要找些什么？白人什么都要。他们老是毛躁不安的样子。我们不知道他们要的是什么。我们认为他们疯了。”</p></div>	
+<div class='layout'><p>The undercurrent of constant unease started long before the rise of Western industrial civilization, of course, but in Western civilization, which now covers almost the entire globe, including most of the East, it manifests in an unprecedentedly acute form. It was already there at the time of Jesus, and it was there 60o years before that at the time of Buddha, and long before that. Why are you always anxious? Jesus asked his disciples. "Can anxious thought add a single day to your life?" And the Buddha taught that the root of suffering is to be found in our constant wanting and craving.</p><p>这股不安的暗流，当然早在西方工业化之前，就已经蠢动了。可是在占据了大半个地球的西方文化，包括大部分的东方在内，它更以前所未见的急症形式彰显于外。它在耶稣的时代，在耶稣之前六百年的佛陀时代，甚至于更早的时代就已经存在了。你为什么老是愁眉苦脸的？耶稣曾经这么间他的门徒。“忧愁可曾延长你一天的寿命？”而佛陀也开示说，受苦的根源就在我们无止境的匮乏和渴求里。</p></div>	
+<div class='layout'><p>Resistance to the Now as a collective dysfunction is intrinsically connected to loss of awareness of Being and forms the basis of our dehumanized industrial civilization. Freud, by the way, also recognized the existence of this undercurrent of unease and wrote about it in his book Civilization and Its Discontents, but he did not recognize the true root of the unease and failed to realize that freedom from it is possible. This collective dysfunction has created a very unhappy and extraordinarily violent civilization that has become a threat not only to itself but also to all life on the planet.</p><p>以集体的失能来看，抗拒当下与本体觉知的失落密不可分。它替去人性化的工业文明奠基。佛洛依德也体会到这一股不安之流的存在，并且在他的《文明与不满》（Civilization and Its Discontents)</sup>一书中谈到。可是他没有认知到不安的真正根源，他也无能体会的是，人类有可能从其中解脱。这个集体失能症，已经创造出一个非常不快乐和非比寻常的暴力文化，不仅对它本身，连地球上所有的生命，都受到威胁了。</p></div>	
+<div class='layout'><p>DISSOLVING ORDINARY UNCONSCIOUSNESS</p><p>瓦解一般无意识</p></div>	
+<div class='layout'><p>So how can we be free of this affliction?</p><p>我们如何免于遭到感染？</p></div>	
+<div class='layout'><p>Make it conscious. Observe the many ways in which unease, discontent, and tension arise within you through unnecessary judgment, resistance to what is, and denial of the Now. Anything unconscious dissolves when you shine the light of consciousness on it. Once you know how to dissolve ordinary unconsciousness, the light of your presence will shine brightly, and it will be much easier to deal with deep unconsciousness whenever you feel its gravitational pull. However, ordinary unconsciousness may not be easy to detect initially because it is so normal.</p><p>把它变成意识。观测不安、不足、和张力如何以多种方式，透过不必要的批判、抗拒本然，否定当下。从你内在升起的任何无意识，都会在你意识的光照之下瓦解。你知道如何瓦解无意识之后，你临在的光照就会更亮。每当你感到无意识吸力的时候，你就更容易对治它。一般无意识一开始很难侦测，因为我们太习以为常了。</p></div>	
+<div class='layout'><p>Make it a habit to monitor your mental-emotional state through self-observation. 'Am I at ease at this moment?" is a good question to ask yourself frequently. Or you can ask: "What's going on inside me at this moment?" Be at least as interested in what goes on inside you as what happens outside. If you get the inside right, the outside will fall into place. Primary reality is within, secondary reality without. But don't answer these questions immediately. Direct your attention inward. Have a look inside yourself. What kind of thoughts is your mind producing? What do you feel? Direct your attention into the body. Is there any tension? Once you detect that there is a low level of unease, the background static, see in what way you are avoiding, resisting, or denying life — by denying the Now. There are many ways in which people unconsciously resist the present moment. I will give you a few examples. With practice, your power of self-observation, of monitoring your inner state, will become sharpened.</p><p>习惯性地透过自我观测，监视你的心智情感状态。“我此刻自在吗？”一是一个可以经常问自己的好问题。或者问自己“我的内在现在怎么回事？”你对内在的发生，起码要像对外在的发生一样有兴趣。如果你的内在没问题了，外在便各归其位。首要的实相在内，次要的在外。不过，你不要立刻回答这些问题。先把注意力转向内。探视一下你的内在。看你的心智正在制造什么样的思想？你感觉到了什么？把注意力转到身体上。有张力吗？一旦你侦测出轻度的不安、衬底的静电干扰时，再看你自己用何种方式透过当下的否定来回避、抗拒，或者否定生命。人们无意识地抗拒当下的花招很多。我会举几个例子说明。勤加练习，你的自我观测力，你对内在状态的侦测力就会更加锐利。</p></div>	
+<div class='layout'><p>FREEDOM FROM UNHAPPINESS</p><p>由不快乐之中解脱</p></div>	
+<div class='layout'><p>Do you resent doing what you are doing? It may be your job, or you may have agreed to do something and are doing it, but part of you resents and resists it. Are you carrying unspoken resentment toward a person close to you? Do you realize that the energy you thus emanate is so harmful in its effects that you are in fact contaminating yourself as well as those around you? Have a good look inside. Is there even the slightest trace of resentment, unwillingness? If there is, observe it on both the mental and the emotional levels. What thoughts is your mind creating around this situation? Then look at the emotion, which is the body's reaction to those thoughts. Feel the emotion. Does it feel pleasant or unpleasant? Is it an energy that you would actually choose to have inside you? Do you have a choice?</p><p>你憎恨你正在做的事吗？也许是你的工作，也许是你同意别人要做而且正在做的事。可是你的一部分却憎恨它、抗拒它。你是否对一个你所亲近的人怀了无言的憎恨呢？你是否明白你所释放出来的能量，会产生有害的影响，因而污染了你和你周围的人呢？好好地探视一下你的内在。是否有一丝憎恨和不情愿的痕迹？如果有的话，从心智和情感两个层面来观测它。你在这个情境四周创造了什么思想？然后再看你的情感。那是你的身体对这个思想的反应。感觉这个情感。你感觉愉不愉快？它是你选择要在里面拥有的一个能量吗？你有选择吗？</p></div>	
+<div class='layout'><p>Maybe you are being taken advantage of, maybe the activity you are engaged in is tedious, maybe someone close to you is dishonest, irritating, or unconscious, but all this is irrelevant. Whether your thoughts and emotions about this situation are justified or not makes no difference. The fact is that you are resisting what is. You are making the present moment into an enemy. You are creating unhappiness, conflict between the inner and the outer. Your unhappiness is polluting not only your own inner being and those around you but also the collective human psyche of which you are an inseparable part. The pollution of the planet is only an outward reflection of an inner psychic pollution: millions of unconscious individuals not taking responsibility for their inner space.</p><p>也许你是被人占了便宜。也许你进行的活动是琐屑无谓的。也许你亲近的人是不诚实、烦人、或者无意识的，可是这一切都不相关。无论你对这个情境的思想和情感是否被合理化都没有差别。事实是，你在抗拒本然。你把当下变成了敌人。你在创造内外之间的冲突和不快乐。你的不快乐不仅污染了你内在的存在和周围的人，也污染了与你不可分割的集体人类心灵。地球的污染只不过是内在心灵污染的处境反映而已：不为自己的内在空间负责的无意识个人数以百万计。</p></div>	
+<div class='layout'><p>Either stop doing what you are doing, speak to the person concerned and express fully what you feel, or drop the negativity that your mind has created around the situation and that serves no purpose whatsoever except to strengthen a false sense of self. Recognizing its futility is important. Negativity is never the optimum way of dealing with any situation. In fact, in most cases it keeps you stuck in it, blocking real change. Anything that is done with negative energy will become contaminated by it and in time give rise to more pain, more unhappiness. Furthermore, any negative inner state is contagious: Unhappiness spreads more easily than a physical disease. Through the law of resonance, it triggers and feeds latent negativity in others, unless they are immune — that is, highly conscious.</p><p>你或者停止你手头的工作，和当事人谈谈，充分表达你的感觉。或者丢掉心智在情境周围所创造的负面情感。它除了强化了一个虚假的自我感以外一无是处。重要的是认知它的徒劳无益。负面情感绝对不是处理任何情境的最佳方式。事实上，在多半情况下；它使你卡在里面，阻挡了真正的改变。使用负面能量所做的任何事，都会受到它的污染。时机一日一成熟，就会引发更多的痛苦和不快乐。更重要的是，任何负面的内在状态都有传染性：不快乐的传染速度比疾病还快。它透过共振法则，引发且滋养了潜伏在别人里面的负能。除非他们免疫——也就是具有高度的意识。</p></div>	
+<div class='layout'><p>Are you polluting the world or cleaning up the mess? You are responsible for your inner space; nobody else is, just as you are responsible for the planet. As within, so without: If humans clear inner pollution, then they will also cease to create outer pollution.</p><p>你在污染世界还是在清理脏乱？你要对你的内在负责；不是别人。正如你对地球有责任一样。诚于中，形于外：如果人类清除了内在的污染，那么他们也将停止创造外在的污染。</p></div>	
+<div class='layout'><p>How can we drop negativity, as you suggest?</p><p>依你之见，要如何丢掉负面情感？</p></div>	
+<div class='layout'><p>By dropping it. How do you drop a piece of hot coal that you are holding in your hand? How do you drop some heavy and useless baggage that you are carrying? By recognizing that you don't want to suffer the pain or carry the burden anymore and then letting go of it.</p><p>就是丢掉。你要如何丢掉一块烫手的热煤？你如何丢掉一个沉重而无用的包袱？就是透过认知说你不想再受苦，或者不想挑个沉重的包袱，然后就放下它。</p></div>	
+<div class='layout'><p>Deep unconsciousness, such as the pain-body, or other deep pain, such as the loss of a loved one, usually needs to be transmuted through acceptance combined with the light of your presence — your sustained attention. Many patterns in ordinary unconsciousness, on the other hand, can simply be dropped once you know that you don't want them and don't need them anymore, once you realize that you have a choice, that you are not just a bundle of conditioned reflexes. All this implies that you are able to access the power of Now. Without it, you have no choice.</p><p>深层的无意识，例如痛苦之身或如痛失亲人等其他剧痛，通常需要结合接纳和临在之光——你持续的专注——才能转化。另一方面来说，许多一般的无意识模式，在你知道自己不想要、不需要它们时，在你体认自己还有选择时，体认自己不是一堆制约反应时，就会自行剥落。所有这些都暗示了你能够取得当下的力量。缺少这个力量，你便毫无选择。</p></div>	
+<div class='layout'><p>If you call some emotions negative, aren't you creating a mental polarity of good and bad, as you explained earlier?</p><p>如果你把某些情感称为负面的，你不是明知故犯地创造了一个好与坏的二元对立吗？</p></div>	
+<div class='layout'><p>No. The polarity was created at an earlier stage when your mind judged the present moment as bad; this judgment then created the negative emotion.</p><p>不是。创造二元对立的是在一个更早的阶段。就是你的心智把当下宣判为坏的的时候；这个判决又创造了负面情感。</p></div>	
+<div class='layout'><p>But if you call some emotions negative, aren't you really saying that they shouldn't be there, that it's not okay to have those emotions? My understanding is that we should give ourselves permission to have whatever feelings come up, rather than judge them as bad or say that we shouldn't have them. It's okay to feel resentful; it's okay to be angry, irritated, moody, or whatever — otherwise, we get into repression, inner conflict, or denial. Everything is okay as it is.</p><p>可是那些你称做负面情感的，你的本意不就是它们不该存在吗？也就是说，不可以有这种情感。我的了解是：我们应该允许自己让任何情感流露，而不是批判它们坏，或说我们不该存有这种感情。你可以感觉憎恨、你可以生气、恼怒、郁闷，或表达任何情感——否则我们就会走入压抑、内在冲突、或否定里。每一个情感都可以如实地呈现才对。</p></div>	
+<div class='layout'><p>Of course. Once a mind pattern, an emotion or a reaction is there, accept it. You were not conscious enough to have a choice in the matter. That's not a judgment, just a fact. If you had a choice, or realized that you do have a choice, would you choose suffering or joy, ease or unease, peace or conflict? Would you choose a thought or feeling that cuts you off from your natural state of well-being, the joy of life within? Any such feeling I call negative, which simply means bad. Not in the sense that "You shouldn't have done that" but just plain factual bad, like feeling sick in the stomach.</p><p>那当然。一个心智模式、一个情感、或一个反应存在的时候就接受它。你的觉知度还不足以在这种事上做选择。这是事实，不是批判。如果你有选择，或者体会到自己真的有选择，你会选择受苦还是喜悦？选择自在还是不安？选择和平还是冲突？你会选择断绝你与自然的幸福状态，与生命内在的喜悦连系的思想或感情吗？任何这样的情感，我都称它为负面的。简单地说就是坏的。不是“你不该这么做。”的坏，而是就事论事的坏，就像说胃不舒服一样。</p></div>	
+<div class='layout'><p>How is it possible that humans killed in excess of 100 million fellow humans in the twentieth century alone? Humans inflicting pain of such magnitude on one another is beyond anything you can imagine. And that's not taking into account the mental, emotional and physical violence, the torture, pain, and cruelty they continue to inflict on each other as well as on other sentient beings on a daily basis.</p><p>人类怎么可能仅仅在二十世纪之内，就屠杀了上亿人口？（注四）人类彼此施加如此巨大的痛苦，简直到了匪夷所思的地步。这还不包括他们每天不断地加诸同胞和其他有觉众生的心理、情感、和肢体的暴力、虐待、痛苦、和残暴。</p></div>	
+<div class='layout'><p>Do they act in this way because they are in touch with their natural state, the joy of life within? Of course not. Only people who are in a deeply negative state, who feel very bad indeed, would create such a reality as a reflection of how they feel. Now they are engaged in destroying nature and the planet that sustains them. Unbelievable but true. Humans are a dangerously insane and very sick species. That's not a judgment. Ifs a fact. It is also a fact that the sanity is there underneath the madness. Healing and redemption are available right now.</p><p>他们这样的行为方式，是发之于他们与自然状态和内在生命喜悦的连系吗？当然不是。只有那些处于深度负面状态，感觉非常糟糕的人才会创造出这样的实相出来，做为他们所感所觉的反射。如今他们又在对生养他们的地球和大自然进行破坏。说来难以置信却是真的。人类是一个丧心病狂而且病入膏肓的物种。这么说不是批判。这是事实。还有一个事实就是：人类的理性就在疯狂的底层。而治疗和救赎当下就可以取得。</p></div>	
+<div class='layout'><p>Coming back specifically to what you said — it is certainly true that, when you accept your resentment, moodiness, anger, and so on, you are no longer forced to act them out blindly, and you are less likely to project them onto others. But I wonder if you are not deceiving yourself. When you have been practicing acceptance for a while, as you have, there comes a point when you need to go on to the next stage, where those negative emotions are not created anymore. If you don't, your "acceptance" just becomes a mental label that allows your ego to continue to indulge in unhappiness and so strengthen its sense of separation from other people, your surroundings, you're here and now. As you know, separation is the basis for the ego's sense of identity. True acceptance would transmute those feelings at once. And if you really knew deeply that everything is "okay," as you put it, and which of course is true, then would you have those negative feelings in the first place? Without judgment, without resistance to what is, they would not arise. You have an idea in your mind that "everything is okay," but deep down you don't really believe it, and so the old mental-emotional patterns of resistance are still in place. That's what makes you feel bad.</p><p>再把话题拉回你的问题上当你接受了自己的憎恨、郁闷、生气等，你就不再会被迫地付诸盲行，也不太可能投射到他人身上，这么说确实是真的。不过我质疑的一点是：你是否在自欺？当你在练习过一段时间的接纳之后，你会达到一个点，届时你就需要进入下一个阶段。在那个阶段里，那些负面的情感再也不被创造了。如果你停顿的话，你的“接纳”就变成了一个心理标签，好让你的我执继续沉溺在不快乐里，因而强化了它和众人、和环境、和你此时此地的孤离。你知道孤离是我执身份感的基础。真正的接纳会让这些情感即时转化。如果你真的深知一切都如你所说的“OK”的话，这当然是真的，那么你当初还会有这些负面的情感吗？对本然没有批判、没有抗拒，它们就不会生起。你心里有一个“万事OK”的理念，可是内心深处并不真的相信。所以那个抗拒的心智情感的旧模式还在原处。这就是让你感觉糟糕的东西。</p></div>	
+<div class='layout'><p>That's okay, too.</p><p>连这个也ok。</p></div>	
+<div class='layout'><p>Are you defending your right to be unconscious, your right to suffer? Don't worry: nobody is going to take that away from you. Once you realize that a certain kind of food makes you sick, would you carry on eating that food and keep asserting that it is okay to be sick?</p><p>你在为自己的无意识权和受苦权辩护吗？你放心：没有人抢得走它们。一日而体会了某种食物会致病的时候，你还会一面吃一面主张生病没关系吗？</p></div>	
+<div class='layout'><p>WHEREVER YOU ARE, BE THERE TOTALLY</p><p>全然地处于当下</p></div>	
+<div class='layout'><p>Can you give some more examples of ordinary unconsciousness?</p><p>你可以多举几个一般无意识的例子吗？</p></div>	
+<div class='layout'><p>See if you can catch yourself complaining, in either speech or thought, about a situation you find yourself in, what other people do or say, your surroundings, your life situation, even the weather. To complain is always nonacceptance of what is. It invariably carries an unconscious negative charge. When you complain, you make yourself into a victim. When you speak out, you are in your power. So change the situation by taking action or by speaking out if necessary or possible; leave the situation or accept it. All else is madness.</p><p>试试看，你能否逮到自己抱怨的时候？无论是言辞或思想的抱怨：你对自己处身的情境、别人的话语或行为、你的环境、你的生命情境、甚至于天气。抱怨就是对本然的不接纳，它必然携带了一个无意识的负能。你一抱怨就让自己沦为受害者了。表达出来，你就收回了主权。采取行动，改变情境，有必要或者可能的话表达出来；离开情境或者接受它。其余的全是疯狂。</p></div>	
+<div class='layout'><p>Ordinary unconsciousness is always linked in some way with denial of the Now. The Now, of course, also implies the here. Are you resisting your here and now? Some people would always rather be somewhere else. Their "here" is never good enough. Through self-observation, find out if that is the case in your life. Wherever you are, be there totally. If you find your here and now intolerable and it makes you unhappy, you have three options: remove yourself from the situation, change it, or accept it totally. If you want to take responsibility for your life, you must choose one of those three options, and you must choose now. Then accept the consequences. No excuses. No negativity. No psychic pollution. Keep your inner space clear.</p><p>一般的无意识总是和否定当下有某种关联。当下当然也隐含了此地。你抗拒你的此时此地吗？有些人宁可到别的地方。他们的“此地”永远不够好。透过自我观测，找出这是否是你生命的案例。无论你在何地，全然地处于当下。如果你发现自己的此时此地让你忍无可忍，使你不快乐，你有三个抉择：从情境里离开、改变它、或者完全接受它。如果你想为生命负责的话，你必须三选一。而且你必须当下选择。然后承担后果。不准有借口。不准有负面情感。不准有心灵污染。保持你内在空间的干净。</p></div>	
+<div class='layout'><p>If you take any action — leaving or changing your situation — drop the negativity first, if at all possible. Action arising out of insight into what is required is more effective than action arising out of negativity.</p><p>如果你采取了行动——离开或改变你的情境——可能的话，先丢掉你的负面情感。由洞察情境所需而采取的行动，比发之于负面情感的行动更有效。</p></div>	
+<div class='layout'><p>Any action is often better than no action, especially if you have been stuck in an unhappy situation for a long time. If it is a mistake, at least you learn something, in which case ifs no longer a mistake. If you remain stuck, you learn nothing. Is fear preventing you from taking action? Acknowledge the fear, watch it, take your attention into it, be fully present with it. Doing so cuts the link between the fear and your thinking. Don't let the fear rise up into pour mind. Use the power of the Now. Fear cannot prevail against it.</p><p>任何行动都优于不行动，尤其是当你长时期卡在一个不快乐的情境里的时候。如果是个错误，至少你学到教训了，它便不再是个错误。如果你困坐愁城就一无所得。阻止你采取行动的是恐惧吗？承认这份恐惧，观察它，把你的注意力带进恐惧里，全然地与它同在。这么做就切断了恐惧和思考之间的联系。切勿让恐惧升入你的心智里。发挥当下的力量。恐惧必败无疑。</p></div>	
+<div class='layout'><p>If there is truly nothing that you can do to change your here and now, and you can't remove yourself from the situation, then accept your here and now totally by dropping all inner resistance. The false, unhappy self that loves feeling miserable, resentful, or sorry for itself can then no longer survive. This is called surrender. Surrender is not weakness. There is great strength in it. Only a surrendered person has spiritual power. Through surrender, you will be free internally of the situation. You may then find that the situation changes without any effort on your part. In any case, you are free.</p><p>如果你对改变现状真的无能为力，你又无法离开它，那么就放下所有的内在抗拒，彻底接受此时此地。那个喜欢感觉悲惨、憎恨、或自艾自怜的虚假的、不快乐的自我便无法存活了。这就叫臣服。臣服不是软弱。它蕴含着极大的力量。只有一个臣服了的人才拥有灵性的力量。透过臣服，你的内在便由情境中解脱了。你也许发现，情境在不费吹灰之力下改变了。任何情况下你都自由了。</p></div>	
+<div class='layout'><p>Or is there something that you "should" be doing but are not doing it? Get up and do it now. Alternatively, completely accept your inactivity, laziness, or passivity at this moment, if that is your choice. Go into it fully. Enjoy it. Be as lazy or inactive as you can. If you go into it fully and consciously, you will soon come out of it. Or maybe you won't. Either way, there is no inner conflict, no resistance, no negativity.</p><p>或者有什么是你“应该”做却没有做的事？站起来，现在就做。再不然就完全接受你此刻的无所事事、懒散、或被动，如果这是你的选择。全然地进入它。享受它。尽你所能地懒散或无所事事。如果你是完全而且有意识地进入它，你很快就会走出来。或许你不会。不管哪种方式，你的内在冲突、你的抗拒、你的负面情感都没有了。</p></div>	
+<div class='layout'><p>Are you stressed? Are you so busy getting to the future that the present is reduced to a means of getting there? Stress is caused by being "here" but wanting to be "there," or being in the present but wanting to be in the future. It's a split that tears you apart inside. To create and live with such an inner split is insane. The fact that everyone else is doing it doesn't make it any less insane. If you have to, you can move fast, work fast, or even run, without projecting yourself into the future and without resisting the present. As you move, work, run — do it totally. Enjoy the flow of energy, the high energy of that moment. Now you are no longer stressed, no longer splitting yourself in two. Just moving, running, working — and enjoying it. Or you can drop the whole thing and sit on a park bench. But when you do, watch your mind. It may say: "You should be working. You are wasting time." Observe the mind. Smile at it.</p><p>你有压力吗？你是否忙着奔向未来，而把现在当做达到未来的手段？压力是由人往“这里”，心在“那里”；或者人在现在，心在未来所造成的。它是把你内在一分为二的裂痕。创造并活在这样的内分裂里就是疯狂。大家都这么做的事实，并不能减少它丝毫的疯狂性。必要的时候你可以加快你走路、工作的速度，甚至用跑的。而不抗拒当下，不把你自己投射到未来。走路、工作、或跑步的时候，全然地做。享受能量的流动，享受那一刻的高能量。你现在没有压力了，没有内分裂了。剩下的只有走路、工作、跑步——和享受。或者不管这一套，只是坐在公园的板凳上。独坐的时候，观察你的心智。它也许会说：“你应该工作，你在浪费时间。”观测它。一笑置之。</p></div>	
+<div class='layout'><p>Does the past take up a great deal of your attention? Do you frequently talk and think about it, either positively or negatively? The great things that you have achieved, your adventures or experiences, or your victim story and the dreadful things that were done to you, or maybe what you did to someone else? Are your thought processes creating guilt, pride, resentment, anger, regret, or self-pity? Then you are not only reinforcing a false sense of self but also helping to accelerate your body's aging process by creating an accumulation of past in your psyche. Verify this for yourself by observing those around you who have a strong tendency to hold on to the past.</p><p>过去是否占据了你相当大的注意力？你是否经常谈论它、思考它？正面的也好，负面的也好。你曾经成就过的伟业、你的冒险或经历、或者你的受害者故事、以及别人加诸你的恶行、也或许是你加诸别人的？你的思想过程是否在创造愧疚、自傲、怨憎、生气、后悔或自怜？那么，你不仅在强化一个虚假的自我感，同时也藉着在、心灵中累积过去，而加速了身体的老化过程。观测你四周那些紧抓着过去不放的人，就可以得到证实了。</p></div>	
+<div class='layout'><p>Die to the past every moment. You don't need it. Only refer to it when it is absolutely relevant to the present. Feel the power of this moment and the fullness of Being. Feel your presence.</p><p>无时无刻地死于过去。你不需要它。只有在它与现在绝对有关的时候才参考它。感觉当下的力量和本体的圆满俱足。感觉你的临在。</p></div>	
+<div class='layout'><p>§</p><p>∽</p></div>	
+<div class='layout'><p>Are you worried? Do you have many "what if" thoughts? You are identified with your mind, which is projecting itself into an imaginary future situation and creating fear. There is no way that you can cope with such a situation, because it doesn't exist. It's a mental phantom. You can stop this health- and life-corroding insanity simply by acknowledging the present moment. Become aware of your breathing. Feel the air flowing in and out of your body. Feel your inner energy field. All that you ever have to deal with, cope with, in real life — as opposed to imaginary mind projections — is this moment. Ask yourself what "problem" you have right now, not next year, tomorrow, or five minutes from now. What is wrong with this moment? You can always cope with the Now, but you can never cope with the future — nor do you have to. The answer, the strength, the right action or the resource will be there when you need it, not before, not after.</p><p>你忧愁吗？你是否有很多“万一”的想法？那么你就是和那个把自己投射在一个虚幻的未来情境，并且创造恐惧的心智认同。你根本无法应付这样的一个情境，因为它不存在。它是个心理幽灵。单纯地承认当下这一刻，就可以阻止这种腐蚀健康和生命的丧心病狂。觉察你的呼吸。感觉空气在你身体的进出。感觉你内在的能场。你在真实的生命里势必要对治、应付的——对立于想像的、心智投射——是当下这一刻。问自己当下里你有什么“问题”，而不是明年、明天、或五分钟之后。这一刻有什么不对的？你随时可以应付当下，可是你永远也无法应付未来——也无此必要。未来的答案、力量、正确的行动、或资源，会在你需要的时候应时而生，不在之前，也不在之后。</p></div>	
+<div class='layout'><p>"One day I'll make it." Is your goal taking up so much of your attention that you reduce the present moment to a means to an end? Is it taking the joy out of your doing? Are you waiting to start living? If you develop such a mind pattern, no matter what you achieve or get, the present will never be good enough; the future will always seem better. A perfect recipe for permanent dissatisfaction and nonfulfillment, don't you agree?</p><p>“有朝一日我会办到。”你的目标是否占据了你太多的关注，使你把当下贬成一个达到目的的手段？你的目标是否夺走了你做为中的喜悦？你在等待展开生活吗？你是否养成了一个心智模式，让你无论这一列达成或者得到什么，都觉得未来的会比现在更好。这是一个让你永远不满意和不满足的妙方。你不同意吗？</p></div>	
+<div class='layout'><p>Are you a habitual "waiter"? How much of your life do you spend waiting? What I call "small-scale waiting" is waiting in line at the post office, in a traffic jam, at the airport, or waiting for someone to arrive, to finish work, and so on. "Large-scale waiting" is waiting for the next vacation, for a better job, for the children to grow up, for a truly meaningful relationship, for success, to make money, to be important, to become enlightened. It is not uncommon for people to spend their whole life waiting to start living.</p><p>你是一个惯性的“等待者”吗？你生命有多大的部分被你虚掷在等待里？我所说的“小型等待”指的是在邮局排队、塞车、待机、或者等人、等工作完成之类的事件。至于“大型等待”则是等待下一次渡假、等待一个更好的工作、等待孩子长大、等待一个真正有意义的关系、等待成功、赚钱、当一个举足轻重的人物、变成开悟。花了一辈子的时间等待展开生活的人不在少数。</p></div>	
+<div class='layout'><p>Waiting is a state of mind. Basically, it means that you want the future; you don't want the present. You don't want what you've got, and you want what you haven't got. With every kind of waiting, you unconsciously create inner conflict between your here and now, where you don't want to be, and the projected future, where you want to be. This greatly reduces the quality of your life by making you lose the present.</p><p>等待是一个心智状态。基本上它意谓着你要未来，你不要现在。你不要你已经拥有的，你要还没有到手的。你用每一种类型的等待，在你不想存在的此时此刻，和你想去投射出来的未来之间创造了内在的冲突。你生命的品质便因为等待所造成的当下失落而大打折扣。</p></div>	
+<div class='layout'><p>There is nothing wrong with striving to improve your life situation. You can improve your life situation, but you cannot improve your life. Life is primary. Life is your deepest inner Being. It is already whole, complete, perfect. Your life situation consists of your circumstances you're your experiences. There is nothing wrong with setting goals and striving to achieve things. The mistake lies in using it as a substitute for the feeling of life, for Being. The only point of access for that is the Now. You are then like an architect who pays no attention to the foundation of a building but spends a lot of time working on the superstructure.</p><p>努力改善你的生命情境原本无可厚非。可是生命情境可以改善，生命却无法改善。生命是一切的源出。生命是你内在最深处的本体。它已经是圆满俱足的。而生命情境包括了你的环境和经验。设定目标，获取成就没有错。错误在于以它做为本体和生命感的代用品。通往生命和本体唯一的点是当下。否则你就像不管地基如何，却耗费大量时间在地面结构的建筑师。</p></div>	
+<div class='layout'><p>For example, many people are waiting for prosperity. It cannot come in the future. When you honor, acknowledge, and fully accept your present reality — where you are, who you are, what you are doing right now — when you fully accept what you have got, you are grateful for what you have got, grateful for what is, grateful for Being. Gratitude for the present moment and the fullness of life now is true prosperity. It cannot come in the future. Then, in time, that prosperity manifests for you in various ways.</p><p>例如，许多人都在等待繁荣。繁荣不会在未来实现。当你尊重、承认、完全接受你现在的实相——你在何处、你是谁、你正在做什么当你完全接受你所有的，你就会对你所有的、对本然、对本体心存感恩。对当下、对当下生命的圆满俱足心怀感恩，这才是真正的繁荣。繁荣无法在未来到来。时机一到繁荣自会以各种方式为你彰显。</p></div>	
+<div class='layout'><p>If you are dissatisfied with what you have got, or even frustrated or angry about your present lack, that may motivate you to become rich, but even if you do make millions, you will continue to experience the inner condition of lack, and deep down you will continue to feel unfulfilled. You may have many exciting experiences that money can buy, but they will come and go and always leave you with an empty feeling and the need for further physical or psychological gratification. You won't abide in Being and so feel the fullness of life now that alone is true prosperity.</p><p>如果你对现有的不满意，甚至对目前的匮乏感到沮丧和生气，也许你会受到激励而变得富有。不过即使你真的赚进了几百万，你会继续经验匮乏的内在情况。而你内在深处也会继续感到不满足。你也许拥有许多金钱买来的刺激经验，不过这些总会来来去去，最后留给你的是一股空虚感，和寻求更多满足身心的需求。在本体里你不用忍受，当下就可以感觉生命的圆满俱足，这才是真正的繁荣。</p></div>	
+<div class='layout'><p>So give up waiting as a state of mind. When you catch yourself slipping into waiting . . . snap out of it. Come into the present moment. Just be, and enjoy being. If you are present, there is never any need for you to wait for anything. So next time somebody says, "Sorry to have kept you waiting," you can reply, "That's all right, I wasn't waiting. I was just standing here enjoying myself— in joy in my self."</p><p>放弃等待的心智状态。当你抓到自己溜进等待状态里的时候……立刻跳出来。进入当下这一刻。只要在，享受存在。如果你临在，便绝不会有等待任何事的需要。下一次有人告诉你，“抱歉，让你久等。”的时候，你可以回答他，“没关系，我没等。我站在这儿自得其乐乐在其中。”</p></div>	
+<div class='layout'><p>These are just a few of the habitual mind strategies for denying the present moment that are part of ordinary unconsciousness. They are easy to overlook because they are so much a part of normal living: the background static of perpetual discontent. But the more you practice monitoring your inner mental-emotional state, the easier it will be to know when you have been trapped in past or future, which is to say unconscious, and to awaken out of the dream of time into the present. But beware: The false, unhappy self, based on mind identification, lives on time. It knows that the present moment is its own death and so feels very threatened by it. It will do all it can to take you out of it. It will try to keep you trapped in time.</p><p>上述只是少数几个心智用来否定当下的习惯性策略。这是一般无意识的一部分。由于它们早已经是正常生活的一部分恒常的不满所形成的静电干扰——所以很容易被人忽略。可是你侦测内在心理情感状态的练习做得越多，你就越容易知道你何时掉进过去或未来里。也就是说陷入无意识里。然后你就可以从时间的梦幻里醒来，进入当下了。你要小心：以心智认同为基础的虚假的、不快乐的自我，是靠时间来苟延残喘的。已知道当下就是它的死牢，所以大感威胁。它会极尽一切地把你拉出当下，企图用时间来困住你。</p></div>	
+<div class='layout'><p>THE INNER PURPOSE OF YOUR LIFE'S JOURNEY</p><p>人生之旅的内在目的</p></div>	
+<div class='layout'><p>I can see the truth of what you are saying, but I still think that we must have purpose on our life's journey; otherwise we just drift, and purpose means future, doesn't it? How do we reconcile that with living in the present?</p><p>我明白你所说的真实性。可是我认为我们的人生、之旅必须有目的，否则只有随波逐流了。而。的又意谓着未来对不对？如何把人生的目的和活在当下两者做一个折衷？</p></div>	
+<div class='layout'><p>When you are on a journey, it is certainly helpful to know where you are going or at least the general direction in which you are moving, but don't forget: the only thing that is ultimately real about your journey is the step that you are taking at this moment. That's all there ever is.</p><p>旅行的时候知道你的目的地，或者至少有个大方向当然有用。不过你别忘了：你在这一刻所迈出的一步，才是旅途中彻底真实的一件事。这一步是你所有的一切。</p></div>	
+<div class='layout'><p>Your life's journey has an outer purpose and an inner purpose. The outer purpose is to arrive at your goal or destination, to accomplish what you set out to do, to achieve this or that, which, of course, implies future. But if your destination, or the steps you are going to take in the future, take up so much of your attention that they become more important to you than the step you are taking now, then you completely miss the journey's inner purpose, which has nothing to do with where you are going or what you are doing, but everything to do with how. It has nothing to do with future but everything to do with the quality of your consciousness at this moment. The outer purpose belongs to the horizontal dimension of space and time; the inner purpose concerns a deepening of your Being in the vertical dimension of the timeless Now. Your outer journey may contain a million steps; your inner journey only has one: the step you are taking right now. As you become more deeply aware of this one step, you realize that it already contains within itself all the other steps as well as the destination. This one step then becomes transformed into an expression of perfection, an act of great beauty and quality. It will have taken you into Being, and the light of Being will shine through it. This is both the purpose and the fulfillment of your inner journey, the journey into yourself.</p><p>你的人生之旅有内外两个目的。外在的目的，就是抵达你的目标或目的地，去完成你设定要做的，去成就这个或那个。这其中当然隐含着未来。可是如果你的目的地或是未来要采取的步骤，占用了你太多的关注，甚至比你现在的步骤还要重要，那么你就完全错失了人生之旅的内在目的了。而内在之旅与你要去哪里或者做什么毫无关系。却关系着你的如何做。它与未来无关，却关系着你当下的意识品质。外在目的属于时空的平行向度；内在目的却有关无时间性当下的垂直向度里，你本体的纵深。外在之旅也许包含了百万个步骤；内在之旅却只有一步：你当下迈出的这一步。你对当前这一步的觉知逐渐深入的时候，你就能体会出这一步里同时包含了那一百万步和目的地。如此一来，这一步便被转变成一个完美的化身，一个兼具大美和品质的行动。它将把你带进本体，而本体之光也将穿越它。这就是你内在之旅——自我之旅的目的和实现。</p></div>	
+<div class='layout'><p>§</p><p>∽</p></div>	
+<div class='layout'><p>Does it matter whether we achieve our outer purpose, whether we succeed or fail in the world?</p><p>外在、之旅的达成与否重要吗？世俗的成败重要吗？</p></div>	
+<div class='layout'><p>It will matter to you as long as you haven't realized your inner purpose. After that, the outer purpose is just a game that you may continue to play simply because you enjoy it. It is also possible to fail completely in your outer purpose and at the same time totally succeed in your inner purpose. Or the other way around, which is actually more common: outer riches and inner poverty, or to "gain the world and lose your soul," as Jesus puts it. Ultimately, of course, every outer purpose is doomed to "fail" sooner or later, simply because it is subject to the law of impermanence of all things. The sooner you realize that your outer purpose cannot give you lasting fulfillment, the better. When you have seen the limitations of your outer purpose, you give up your unrealistic expectation that it should make you happy, and you make it subservient to your inner purpose.</p><p>尚未体会到内在目的之前，当然对你重要。体会了之后，外在的目的就成了一场游戏。你也许因为单纯地乐在其中而继续玩下去。也可能会有外在目的彻底失败，而内在目的却大获全胜的情况。或者相反的情况，这也是较常见的一种：外在富裕而内在贫乏。或者如耶稣所说的“赚得了全世界，却失去了灵魂。”究竟而言，每一个外在的目的迟早“必败”无疑。道理简单，它依附着世间的无常之法。外在的目的无法给你恒久的满足，你越早体会这一点越好。当你看穿外在目的的局限之后，你会放弃不实际的期望，不再寄望它会带给你快乐。你就会把它摆在次于内在目的的地位。</p></div>	
+<div class='layout'><p>THE PAST CANNOT SURVIVE IN YOUR PRESENCE</p><p>过去无法在你的临在里存活</p></div>	
+<div class='layout'><p>You mentioned that thinking or talking about the past unnecessarily is one of the ways in which we avoid the present. But apart from the past that we remember and perhaps identify with, isn't there another level of past within us that is much more deep-seated? I am talking about the unconscious past that conditions our lives, especially through early childhood experiences, perhaps even past-life experiences. And then there is our cultural conditioning, which has to do with where we live geographically and the historical time period in which we live. All these things determine how we see the world, how we react, what we think, what kind of relationships we have, how we live our lives. How could we ever become conscious of all that or get rid of it? How long would that take? And even if we did, what would there be left?</p><p>你说不必要的思考或谈论过去，是我们回避当下的方式。除开我们记忆或认同的过去之外，是不是还有一个层面的过去，是我们内在更根深抵固的部分？我指的是制约了我们生命的无意识过去。尤其是孩提的经验或前世的经验。此外还有文化的制约，这与我们生存其间的地理环境和历史时期有关。这一切决定了我们的世界观、决定了我们如何反应、如何思考、建立什么样的人际关系、怎么样过我们的生活。我们该如何意识到这一切，或如何摆脱这一切？要多久的时间？还有，即使我们做到了，剩下来的又是什么？</p></div>	
+<div class='layout'><p>What is left when illusion ends?</p><p>幻相终结之后还剩下什么？</p></div>	
+<div class='layout'><p>There is no need to investigate the unconscious past in you except as it manifests at this moment as a thought, an emotion, a desire, a reaction, or an external event that happens to you. Whatever you need to know about the unconscious past in you, the challenges of the present will bring it out. If you delve into the past, it will become a bottomless pit: There is always more. You may think that you need more time to understand the past or become free of it, in other words, that the future will eventually free you of the past. This is a delusion. Only the present can free you of the past. More time cannot free you of time. Access the power of Now. That is the key.</p><p>你不需要去探究无意识的过去。除非它在此刻以思想、情感、欲望、反应，或者发生在你身上的外在事件彰显于外的时候。当前的挑战会把你无意识的过去中，你需要知道的部分给带出来。如果你沉缅在过去，过去就像一个无底洞一样：没完没了。你也许以为你需要多一点时间才能了解过去，或者自过去解脱。换言之，你以为未来迟早会把你从过去里解脱出来。这是一个幻觉。只有当下能把你从过去里解脱。时间再多也无法把你从时间里解脱。汲取当下的力量。当下就是钥匙。</p></div>	
+<div class='layout'><p>What is the power of Now?</p><p>什么是当下的力量？</p></div>	
+<div class='layout'><p>None other than the power of your presence, your consciousness liberated from thought forms.</p><p>除了你临在的力量外，除了从思想形式里解放出来的意识之外别无他物。</p></div>	
+<div class='layout'><p>So deal with the past on the level of the present. The more attention you give to the past, the more you energize it, and the more likely you are to make a "self" out of it. Don't misunderstand: Attention is essential, but not to the past as past. Give attention to the present; give attention to your behavior, to your reactions, moods, thoughts, emotions, fears, and desires as they occur in the present. There's the past in you. If you can be present enough to watch all those things, not critically or analytically but nonjudgmentally, then you are dealing with the past and dissolving it through the power of your presence. You cannot find yourself by going into the past. You find yourself by coming into the present.</p><p>所以你要从当下的层面来对治过去。你给过去的关注越多，你补充给它的能量就越多。你越可能由它身上制造出一个“自我”出来。你别误会：专注极其重要，不过不是对过去而言。把专注给现在；给发生在现在的行为、反应、心情、思想、情感、恐惧、欲望。你的里面有过去。如果你有足够的临在，不加批判、不做分析地观察那些五花八门的过去的话，那么你就是透过当下的力量对治它、瓦解它了。回到过去里，你找不到自己。进入当下，你才能找到自己。</p></div>	
+<div class='layout'><p>Isn't it helpful to understand the past and so understand why we do certain things, react in certain ways, or why we unconsciously create our particular kind of drama, patterns in relationships, and so on?</p><p>了解过去不是可帮助我们了解自己为什么做某些事、做某些反应、或者无意识地创造特别的剧码、关系的模式等等吗？</p></div>	
+<div class='layout'><p>As you become more conscious of your present reality, you may suddenly get certain insights as to why your conditioning functions in those particular ways; for example, why your relationships follow certain patterns, and you may remember things that happened in the past or see them more dearly. That is fine and can be helpful, but it is not essential. What is essential is your conscious presence. That dissolves the past. That is the transformative agent. So don't seek to understand the past, but be as present as you can. The past cannot survive in your presence. It can only survive in your absence.</p><p>当你对当下的实相更有意识的时候，你也许会在突然间洞察到为什么你的制约会以那些特定的方式运作。比如说，为什么你的关系遵循着某一个模式。你也许记起过去发生的事件，或者看得更清楚了。这么做很好，而且有用。不过并不是不可或缺的。不可或缺的是你有意识的临在。它足以瓦解过去。它是转化的触媒。因此不必费心了解过去，尽可能地临在。过去在你的临在里无法存活。它只能在你缺席的时候活下去。</p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>
