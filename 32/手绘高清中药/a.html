@@ -1,0 +1,641 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//chrome
+			//chrome63.0.3239.132对DTD XHTML 1.0不再支持body.scrollTop属性，只支持documentElement.scrollTop 
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//chrome
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//chrome
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:linked container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:65.29%;
+	line-height:1.6em;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+
+#goTopBtn, #goBottom, #shangy, #xiay, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #ftsize1, #ftsize3  {
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#ftsize1{
+	bottom:240px;
+}
+#ftsize2{
+	bottom:214px;
+}
+#ftsize3{
+	bottom:188px;
+}
+
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+	}
+.code0, .code2, .code4{
+	font-size:95%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+	//background-color:#D9D1CA;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	background-color:#ffe;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+  <p align="left">太好看了！最美本草：73幅手绘高清中药美图鉴赏（建议收藏）↓</p>
+
+<p>老刘讲中医知识&nbsp;2019-03-06 19:58:37↓</p>
+
+<p>大家好，我是中医老刘↓</p>
+
+<p>今天给大家分享一些手绘中药本草图！这些手绘药用植物，均出自专业绘图大家之手，其色彩艳丽、生动逼真，客观地反映了植物的原貌和特点，供中药学人员收藏和赏玩。↓</p>
+
+<p>1、山里红 Crataegus pinnatifida↓</p>
+
+<p><img width="640" height="493" src="01.jpg" /></p>
+<p><img src="001.jpg" /></p>
+<p>2、萹蓄 Polygonum aviculare L.↓</p>
+
+<p><img width="640" height="497" src="02.jpg" /></p>
+<p><img width="100%" src="002.jpg" /></p>
+<p>3、薄荷 Mentha haplocalyx↓</p>
+
+<p><img width="640" height="768" src="03.jpg" /></p>
+<p><img src="003.jpg" /></p>
+<p>4.半夏  Pinellia ternata↓</p>
+
+<p><img width="640" height="477" src="04.jpg" /></p>
+
+<p>5、百合 Lilium brownii var. viridulum↓</p>
+
+<p><img width="640" height="1022" src="05.jpg" /></p>
+
+<p>6、八宝景天 Hylotelephium erythrostictum↓</p>
+
+<p><img width="640" height="367" src="06.jpg" /></p>
+
+<p>7、板栗 Castanea mollissima↓</p>
+
+<p><img width="640" height="419" src="07.jpg" /></p>
+
+<p>8、白茅根 Imperata cylindrica↓</p>
+
+<p><img width="640" height="903" src="08.jpg" /></p>
+
+<p>9、车前 Plantago asiatica↓</p>
+
+<p><img width="640" height="586" src="09.jpg" /></p>
+
+<p>10、菖蒲 Acorus calamus↓</p>
+
+<p><img width="640" height="804" src="10.jpg" /></p>
+
+<p>11、侧柏 Platycladus orientalis↓</p>
+
+<p><img width="640" height="742" src="11.jpg" /></p>
+
+<p>12、苍耳 Xanthium sibiricum↓</p>
+
+<p><img width="640" height="664" src="12.jpg" /></p>
+
+<p>13、地黄 Rehmannia glutinosa↓</p>
+
+<p><img width="640" height="473" src="13.jpg" /></p>
+
+<p>14、臭椿 Ailanthus altissima var. altissima↓</p>
+
+<p><img width="640" height="444" src="14.jpg" /></p>
+
+<p>15、柽柳 Tamarix chinensis↓</p>
+
+<p><img width="640" height="435" src="15.jpg" /></p>
+
+<p>16、橘  Citrus reticulata Blanco↓</p>
+
+<p><img width="640" height="686" src="16.jpg" /></p>
+
+<p>17、花椒 Zanthoxylum bungeanum↓</p>
+
+<p><img width="640" height="835" src="17.jpg" /></p>
+
+<p>18、胡桃 Juglans regia↓</p>
+
+<p><img width="640" height="599" src="18.jpg" /></p>
+
+<p>19、桂花 Osmanthus fragrans↓</p>
+
+<p><img width="640" height="740" src="19.jpg" /></p>
+
+<p>20、构树 Broussonetia papyrifera↓</p>
+
+<p><img width="640" height="414" src="20.jpg" /></p>
+
+<p>21、枸杞 Lycium chinense↓</p>
+
+<p><img width="640" height="534" src="21.jpg" /></p>
+
+<p>22、凤仙花 （透骨草）Impatiens balsamina↓</p>
+
+<p><img width="640" height="828" src="22.jpg" /></p>
+
+<p>23、杜梨 Pyrus betulifolia↓</p>
+
+<p><img width="640" height="367" src="23.jpg" /></p>
+
+<p>24、冬葵 Malva crispa↓</p>
+
+<p><img width="640" height="680" src="24.jpg" /></p>
+
+<p>25、黄精 Polygonatum sibiricum↓</p>
+
+<p><img width="640" height="881" src="25.jpg" /></p>
+
+<p>26、黄柏（关黄柏）Phellodendron amurense↓</p>
+
+<p><img width="640" height="377" src="26.jpg" /></p>
+
+<p>27、蒺藜 Tribulus terrester↓</p>
+
+<p><img width="580" height="653" src="27.jpg" /></p>
+
+<p>28、鸡冠花 Celosia cristata↓</p>
+
+<p><img width="640" height="838" src="28.jpg" /></p>
+
+<p>29、苣荬菜（北败醬）Sonchus arvensis↓</p>
+
+<p><img width="640" height="641" src="29.jpg" /></p>
+
+<p>30、决明 Cassia tora↓</p>
+
+<p><img width="640" height="457" src="30.jpg" /></p>
+
+<p>31、荆条 Vitex negundo var. heterophylla↓</p>
+
+<p><img width="640" height="1036" src="31.jpg" /></p>
+
+<p>32、忍冬（金银花）Lonicera japonica↓</p>
+
+<p><img width="640" height="888" src="32.jpg" /></p>
+
+<p>33、梨  Pyrus bretschneideri↓</p>
+
+<p><img width="640" height="802" src="33.jpg" /></p>
+
+<p>34、栝楼 Trichosanthes kirilowii↓</p>
+
+<p><img width="640" height="850" src="34.jpg" /></p>
+
+<p>35、款冬 Tussilago farfara↓</p>
+
+<p><img width="640" height="695" src="35.jpg" /></p>
+
+<p>36、苦楝 Melia azedarach L↓</p>
+
+<p><img width="640" height="767" src="36.jpg" /></p>
+
+<p>37、萝藦 Metaplexis japonica↓</p>
+
+<p><img width="640" height="507" src="37.jpg" /></p>
+
+<p>38、枫香树 （路路通）Liquidambar formosana↓</p>
+
+<p><img width="640" height="456" src="38.jpg" /></p>
+
+<p>39、菱  Trapa bispinosa↓</p>
+
+<p><img width="640" height="489" src="39.jpg" /></p>
+
+<p>40、美洲凌霄（凌霄花） Campsis grandiflora↓</p>
+
+<p><img width="640" height="652" src="40.jpg" /></p>
+
+<p>41、桑  Morus alba↓</p>
+
+<p><img width="640" height="536" src="41.jpg" /></p>
+
+<p>42、青葙 Celosia argentea↓</p>
+
+<p><img width="640" height="428" src="42.jpg" /></p>
+
+<p>43、茜草 Rubia cordifolia↓</p>
+
+<p><img width="640" height="880" src="43.jpg" /></p>
+
+<p>44、裂叶牵牛（牵牛子）Pharbitis nil (L.) Choisy↓</p>
+
+<p><img width="640" height="715" src="44.jpg" /></p>
+
+<p>45、漆树 Anacardiaceae↓</p>
+
+<p><img width="503" height="706" src="45.jpg" /></p>
+
+<p>46、马齿苋 Portulaca oleracea↓</p>
+
+<p><img width="640" height="554" src="46.jpg" /></p>
+
+<p>47、木芙蓉 Hibiscus mutabilis↓</p>
+
+<p><img width="640" height="672" src="47.jpg" /></p>
+
+<p>48、女贞 Ligustrum lucidum↓</p>
+
+<p><img width="640" height="932" src="48.jpg" /></p>
+
+<p>49、薜荔 Ficus pumila Linn.↓</p>
+
+<p><img width="640" height="811" src="49.jpg" /></p>
+
+<p>50、石竹 Dianthus chinensis L.↓</p>
+
+<p><img width="640" height="889" src="50.jpg" /></p>
+
+<p>51、石榴 Punica granatum↓</p>
+
+<p><img width="640" height="888" src="51.jpg" /></p>
+
+<p>52、射干 Belamcanda chinensis↓</p>
+
+<p><img width="640" height="433" src="52.jpg" /></p>
+
+<p>53、芍药 Paeonia lactiflora↓</p>
+
+<p><img width="640" height="701" src="53.jpg" /></p>
+
+<p>54、商陆 Phytolacca acinosa↓</p>
+
+<p><img width="640" height="935" src="54.jpg" /></p>
+
+<p>55、仙人掌 Opuntia stricta var. dillenii↓</p>
+
+<p><img width="640" height="399" src="55.jpg" /></p>
+
+<p>56、瓦松 Orostachys fimbriatus↓</p>
+
+<p><img width="503" height="536" src="56.jpg" /></p>
+
+<p>57、菟丝子 Cuscuta chinensis Lam.↓</p>
+
+<p><img width="640" height="426" src="57.jpg" /></p>
+
+<p>58、播娘蒿（葶苈子）Subtrib. Descurainiinae↓</p>
+
+<p><img width="640" height="694" src="58.jpg" /></p>
+
+<p>59、天仙子 Hyoscyamus niger↓</p>
+
+<p><img width="640" height="339" src="59.jpg" /></p>
+
+<p>60、柿（柿蒂） Diospyros kaki↓</p>
+
+<p><img width="640" height="490" src="60.jpg" /></p>
+
+<p>61、红蓼（水红花子）Polygonum orientale L↓</p>
+
+<p><img width="640" height="880" src="61.jpg" /></p>
+
+<p>62、酸枣 （酸枣仁）Ziziphus jujuba↓</p>
+
+<p><img width="640" height="804" src="62.jpg" /></p>
+
+<p>63、桃（桃仁）Amygdalus persica↓</p>
+
+<p><img width="640" height="487" src="63.jpg" /></p>
+
+<p>64、天葵（天葵子）Semiaquilegia adoxoides↓</p>
+
+<p><img width="640" height="593" src="64.jpg" /></p>
+
+<p>65、水烛香蒲（蒲黄）Typha angustifolia L.↓</p>
+
+<p><img width="640" height="920" src="65.jpg" /></p>
+
+<p>66、旋覆花 Inula japonica↓</p>
+
+<p><img width="640" height="714" src="66.jpg" /></p>
+
+<p>67、鸭跖草 Commelina communis↓</p>
+
+<p><img width="640" height="815" src="67.jpg" /></p>
+
+<p>68、益母草 Leonurus artemisia↓</p>
+
+<p><img width="640" height="680" src="68.jpg" /></p>
+
+<p>69、皂角 Gleditsia sinensis↓</p>
+
+<p><img width="640" height="445" src="69.jpg" /></p>
+
+<p>70、早开堇菜 Viola prionantha↓</p>
+
+<p><img width="640" height="533" src="70.jpg" /></p>
+
+<p>71、鱼腥草 Sect. Robertiana↓</p>
+
+<p><img width="640" height="867" src="71.jpg" /></p>
+
+<p>72、柚  Citrus maxima↓</p>
+
+<p><img width="640" height="671" src="72.jpg" /></p>
+
+<p>73、银杏 Ginkgo biloba↓</p>
+
+<p><img width="640" height="921" src="73.jpg" /></p>
+
+<p>好了，今天的中医知识就讲到这里，希望对大家有所帮助！ ↓</p>
+</div>
+
+
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+</script>
+</div>
+
+</body>
+</html>
+
+<!--
+_____________________________________________________________________________________
+
+1 段落替换
+\s*↓</p>
+
+<p>\s*
+------------------
+↓</p>
+
+<p>
+_____________________________________________________________________________________
+2 汉字中间的空格替换：
+([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])
+([^\s\*^{}"^u4e00-u9fa5])\s+([^\s\*^{}"^u4e00-u9fa5])
+
+
+------------------
+$1$2
+_____________________________________________________________________________________
+3 段落前的空格替换
+\s*↓</p>\s*
+\s*<p>\s*
+------------------
+↓</p>
+
+<p>
+_____________________________________________________________________________________
+
+4 把第和章两个字去掉
+第(\S*)章
+------------------
+$1
+_____________________________________________________________________________________
+
+7 正则表达式参考：
+https://www.toutiao.com/i6370960744082571778/
+_____________________________________________________________________________________
+
+8
+<p class="picsay">
+<p class="picsay">
+<p class="code0">
+<p class="code2">
+<p class="code4">
+_____________________________________________________________________________________
+9 将标注序号更改为上标，红色，需一个个替换，英文html中有[1]
+(\[\d\])
+------------------
+<sup>$1</sup>
+_____________________________________________________________________________________
+10 替换章不是以1-9。?！…”“结尾的段落
+([^1-90。?！…”：？“章])↓</p>
+<p>
+------------------
+$1
+-->
+
+
