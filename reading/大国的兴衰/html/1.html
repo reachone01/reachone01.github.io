@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<div class='layout'><p>1</p><p></p></div>	
+<div class='layout'><p>STRATEGY & ECONOMICS IN THE PREINDUSTRIAL WORLD</p><p></p></div>	
+<div class='layout'><p>In the year 1500, the date chosen by numerous scholars to mark the divide between modern and premodern times,1 it was by no means obvious to the inhabitants of Europe that their continent was poised to dominate much of the rest of the earth. The knowledge which contemporaries possessed about the great civilizations of the Orient was fragmentary and all too often erroneous, based as it was upon travelers' tales which had lost nothing in their retelling. Nevertheless, the widely held image of extensive eastern empires possessing fabulous wealth and vast armies was a reasonably accurate one, and on first acquaintance those societies must have seemed far more favorably endowed than the peoples and states of western Europe. Indeed, placed alongside these other great centers of cultural and economic activity, Europe's relative weaknesses were more apparent than its strengths. It was, for a start, neither the most fertile nor the most populous area in the world; India and China took pride of place in each respect. Geopolitically, the“continent” of Europe was an awkward shape, bounded by ice and water to the north and west, being open to frequent landward invasion from the east, and vulnerable to strategic circumvention in the south. In 1500, and for a long time before and after that, these were not abstract considerations. It was only eight years earlier that Granada, the last Muslim region of Spain, had succumbed to the armies of Ferdinand and Isabella; but that signified the end of a regional campaign, not of the far larger struggle between Christendom and the forces of the Prophet. Over much of the western world there still hung the shock of the fall of Constantinople in 1453, an event which seemed the more pregnant because it by no means marked the limits of the Ottoman Turks' advance. By the end of the century they had taken Greece and the Ionian Islands, Bosnia, Albania, and much of the rest of the Balkans;and worse was to come in the 1520s when their formidable janissary armies pressed toward Budapest and Vienna. In the south, where Ottoman galleys raided Italian ports, the popes were coming to fear that Rome's fate would soon match that of Constantinople. </p><p>公元1500年被许多学者当作近代和现代的分界线，这个时候欧洲的居民们绝对看不出他们的大陆即将统治其余的大部分地球。当时人们对东方伟大文明的知识是支离破碎的，而且常常是错误的。这些知识主要来源于旅行者的故事，他们在重述这些故事时常常添油加醋。尽管如此，许多人对拥有神话般的财富和庞大军队的广袤的东方帝国的想像，还是相当准确的。当初次接触这些社会时，它们必定显得比西欧的人民和国家得天独厚。的确，若拿其他重要文化和经济活动中心同这些社会比较，欧洲的相对弱势就比其实力更加明显。首先它既不是世界上最肥沃的地区，也不是人口最稠密的地区。印度和中国对它们在这两方面的地位都引以为自豪。从地缘政治学方面讲，欧洲“大陆”的形状隐含着困难和危险，它的北部和西部与冰天雪地和大海相连，东面容易招致频繁的陆路入侵，而南面则易受到战略包围。在1500年及以前很长时间和在这以后，这些都不是抽象的想像。仅仅8年以前，西班牙最后一个穆斯林地区格拉纳达才向斐迪南和伊莎贝拉的军队投降，但这仅表示地区性战役的结束，而不是基督教世界和先知［1］的军队之间更大规模战争的结束。1453年君士坦丁堡的陷落所造成的震动，仍然笼罩着大部分西方世界，这一事件似乎孕育着更多的东西，因为它绝不表明奥斯曼土耳其人向前推进的极限。到该世纪末，他们已夺取了希腊和伊奥尼亚群岛、波斯尼亚、阿尔巴尼亚和巴尔干半岛其他大部分地区。到16世纪20年代，情况变得更糟，当时可怕的土耳其军队迫近布达佩斯和维也纳。在南部，奥斯曼的战船袭击意大利港口，教皇开始担心罗马可能很快就会遭受君士坦丁堡的命运。</p></div>	
+<div class='layout'><p></p><p></p></div>	
+<div class='layout'><p>Whereas these threats seemed part of a coherent grand strategy directed by SultanMehmet II and his successors, the response of the Europeans was disjointed andsporadic. Unlike the Ottoman and Chinese empires, unlike the rule which theMoguls were soon to establish in India, there never was a united Europe in which allparts acknowledged one secular or religious leader. Instead, Europe was ahodgepodge of petty kingdoms and principalities, marcher lordships and city-states. Some more powerful monarchies were arising in the west, notably Spain, France,and England, but none was to be free of internal tensions and all regarded theothers as rivals, rather than allies in the struggle against Islam. </p><p>虽然这些威胁似乎是穆罕默德二世苏丹及其继任者们新领导的一个整体性大战略的一部分，但欧洲人的反应是分散的、时断时续的。不像奥斯曼帝国和中华帝国，也不像莫卧儿王朝不久在印度建立的统治，从来没有一个各部分都承认一个世俗领袖或宗教领袖的统一欧洲。不，欧洲是一些小王国和公国、边境贵族领地和城邦的大杂烩。在西方出现了一些比较强大的君主国，主要是西班牙、法国和英国，但没有一个国家能摆脱国内紧张状态，而且每个国家都把其他国家看成竞争对手，而不是反对伊斯兰世界的盟国。</p></div>	
+<div class='layout'><p>Nor could it be said that Europe had pronounced advantages in the realms of culture, mathematics, engineering, or navigational and other technologies whencompared with the great civilizations of Asia. A considerable part of the Europeancultural and scientific heritage was, in any case, “borrowed” from Islam, just asMuslim societies had borrowed for centuries from China through the media ofmutual trade, conquest, and settlement. In retrospect, one can see that Europe wasaccelerating both commercially and technologically by the late fifteenth century;but perhaps the fairest general comment would be that each of the great centers ofworld civilization about that time was at a roughly similar stage of development,some more advanced in one area, but less so in others. Technologically and,therefore, militarily, the Ottoman Empire, China under the Ming dynasty, a littlelater northern India under the Moguls, and the European states system with itsMuscovite offshoot were all far superior to the scattered societies of Africa, America,and Oceania. While this does imply that Europe in 1500 was one of the mostimportant cultural power centers, it was not at all obvious that it would one dayemerge at the very top. Before investigating the causes of its rise, therefore, it isnecessary to examine the strengths and the weaknesses of the other contenders. </p><p>同亚洲的伟大文明比较起来，也不能说欧洲在文化、数学、工程学或者航海和其他技术方面具有显著的优势。总之，欧洲文化和科学遗产的相当大一部分是从伊斯兰世界“借用”来的，恰如穆斯林社会几百年里通过通商、征伐和殖民从中国借用一样。回顾历史，你可以看到，到15世纪末，欧洲在贸易和技术方面的发展加快了。然而，或许最恰当的一般评价应是：在这前后每个大的世界文明中心都处在大致相似的发展阶段，有些文明中心在一个领域先进一些，而在别的领域却要落后一些。奥斯曼帝国、明朝时期的中国，稍后是莫卧儿王朝时期的北印度和欧洲国家体系及其俄国人旁支，在技术上，因而也在军事上要比非洲、美洲和大洋洲分散的社会先进得多。虽然这意味着1500年的欧洲是最重要的文化实力中心之一，但绝对看不出有一天它将出现在顶峰。因此在研究欧洲兴起的原因以前，有必要考查其他竞争者的实力和弱点。</p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>
