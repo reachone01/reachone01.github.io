@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<div class='layout'><p>3 Finance, Geography, and the Winning of Wars, 1660– 1815</p><p></p></div>	
+<div class='layout'><p></p><p>最初由路易十四，后来又由拿破仑统治的法国，比历史上任何国家都更接近于控制整个欧洲。 </p></div>	
+<div class='layout'><p>The signing of the Treaty of the Pyrenees did not, of course, bring to an end the rivalries of the European Great Powers, or their habit of settling these rivalries through war. But the century and a half of international struggle which occurred after 1660 was different, in some very important respects, from that which had taken place in the preceding hundred years; and, as such, these changes reflected a further stage in the evolution of international politics. </p><p>《比利牛斯和约》的签订，当然并没有结束欧洲列强之间的你争我夺，也没有改变他们通过战争消除争端的积习。但在1660年以后一个半世纪里进行的国际纷争，在某些非常重要的方面与前一个世纪是不同的，这些变化本身反映了国际政治演进中的一个阶段。 </p></div>	
+<div class='layout'><p>The most significant feature of the Great Power scene after 1660 was the maturing of a genuinely multipolar system of European states, each one of which increasingly tended to make decisions about war and peace on the basis of “national interests” rather than for transnational, religious causes. This was not, to be sure, an instant or absolute change: the European states prior to 1660 had certainly maneuvered with their secular interests in mind, and religious prejudice still fueled many international quarrels of the eighteenth century. Nevertheless, the chief characteristic of the 1519–1659 era—that is, an Austro-Spanish axis of Habsburg powers fighting a coalition of Protestant states, plus France—now disappeared, and was replaced by a much looser system of short-term, shifting alliances. Countries which had been foes in one war were often to find themselves partners in the next, which placed an emphasis upon calculated Realpolitik rather than deeply held religious conviction in the determination of policy. </p><p>1660年以后，列强舞台上最重要的特征是欧洲列国之间名副其实的多极政体的形成，各国不再为跨国利益、宗教信仰而战了，他们对战争或和平的决断，越来越多地受“国家利益”所左右。这一变化当然不是转瞬之间完成的，也不是绝对的。1660年以前，欧洲各国的活动当然也考虑到它们的世俗利益，同时宗教偏见仍然给18世纪的许多国际纠纷火上加油。1519—1659年，时代的主要特点是奥地利-西班牙的哈布斯堡政权轴心国同新教国家及法国作战，不过这一特征现在已经消失了，取而代之的是短暂多变的、松散得多的联盟体系。各国在一场战争中曾是对手，而在下场战争中又经常成为盟友。这说明它们在决定政策时首先考虑的是现实政治，而不是虔诚信仰的宗教信念。 </p></div>	
+<div class='layout'><p>The fluctuations in both diplomacy and war that were natural to this volatile, multipolar system were complicated by something which was not new, but was common to all ages: the rise of certain states and the decline of others. During this century and a half of international rivalry between Louis XIV’s assumption of full authority in France in 1660–1661 and Napoleon Bonaparte’s surrender after Waterloo in 1815, certain leading nations of the previous period (the Ottoman Empire, Spain, the Netherlands, Sweden) fell back into the second rank, and Poland was eclipsed altogether. The Austrian Habsburgs, by various territorial and structural adjustments in their hereditary lands, managed to remain in the first order; and in the north of Germany, Brandenburg-Prussia pulled itself up to that status from unpromising beginnings. In the west, France after 1660 swiftly expanded its military might to become the most powerful of the European states—to many observers, almost as overwhelming as the Habsburg forces had appeared a half-century earlier. France’s capacity to dominate west-central Europe was held in check only by a combination of maritime and continental neighbors during a series of prolonged wars (1689–1697; 1702–1714; 1739–1748; 1756–1763); but it was then refashioned in the Napoleonic era to produce a long line of Gallic military victories which were brought to an end only by a coalition of four other Great Powers. Even in its defeat in 1815, France remained one of the leading states. Between it in the west and the two Germanic countries of Prussia and the Habsburg Empire in the east, therefore, a crude trilateral equilibrium slowly emerged within the European core as the eighteenth century unfolded. </p><p>对于这样一个反复无常、多极的体系来说，外交和战争上的风云变幻是再自然不过的事了。一些国家崛起，另一些国家衰落，这不是什么新鲜事，而是各个时代所共有的现象，这使该体系更加复杂化。从1660—1661年路易十四在法国攫取最高权力，到1815年拿破仑·波拿巴滑铁卢战败投降，在这一个半世纪的国际对抗中，先前的一些主要国家（奥斯曼帝国、西班牙、荷兰、瑞典）沦为二等国家，波兰也跟着黯然失色。奥地利哈布斯堡王朝在对其世袭领地进行各种各样的疆域和结构调整后，勉强保持了一流大国的地位；在北德意志，勃兰登堡-普鲁士迈出前途渺茫的第一步后，也跻身一流大国之列。为了成为欧洲最强大的国家，在西部，1660年后法国迅速扩张其军事力量，在许多观察家看来，其军事力量几乎同半个世纪前哈布斯堡的军事力量不相上下。仅仅由于法国的海上与大陆上的邻国在一系列旷日持久的战争中（1689—1697年；1702—1714年；1739—1748年；1756—1763年）结成同盟，才遏制了法国控制西欧的力量。但在拿破仑时期，法国重整军备，取得了一系列高卢式的军事胜利，只是因为另外四大强国的联盟才功败垂成。即使在1815年战败之际，法国仍不失为主要国家中的一员。当18世纪开始时，在欧洲的中心地带，西部的法国与东部的两个德意志国家，即普鲁士和哈布斯堡帝国之间，缓慢形成了一个大体三足鼎立的局面。 </p></div>	
+<div class='layout'><p>But the really significant alterations in the Great Power system during that century occurred on the flanks of Europe, and even farther afield. Certain of the western European states steadily converted their small, precarious enclaves in the tropics into much more extensive domains, especially in India but also in the East Indies, southern Africa, and as far away as Australia. The most successful of these colonizing nations was Britain, which, domestically “stabilized” after James II was replaced by William and Mary in 1688, steadily fulfilled its Elizabethan potential as the greatest of the European maritime empires. Even its loss of control over the prosperous North American colonies in the 1770s—from which there emerged an independent United States of formidable defensive strength and considerable economic power—only temporarily checked this growth of British global influence. Equally remarkable were the achievements of the Russian state, which expanded eastward and southward, across the steppes of Asia, throughout the eighteenth century. Moreover, although sited on the western and eastern margins of Europe, both Britain and Russia had an interest in the fate of the center—with Britain being involved in German affairs because of its dynastic links to Hanover (following George I’s accession in 1714) and Russia being determined to have the chief voice in the fate of neighboring Poland. More generally, the governments in London and St. Petersburg wanted a balance of power on the European continent, and were willing to intervene repeatedly in order to secure an equilibrium which accorded with their interests. In other words, the European states system was becoming one of five Great Powers—France, the Habsburg Empire, Prussia, Britain, and Russia—as well as lesser countries like Savoy and declining states such as Spain. 1</p><p>但是，在这个世纪里，在大国体系中真正具有重大意义的变化是发生在欧洲的侧翼，甚至更远一些的地方。一些西欧国家一步一步地把他们在热带地区，特别是印度和东印度、南部非洲乃至远及澳大利亚的一小块的、不稳定的领地扩展成大片领地。在这些殖民国家中干得最漂亮的要算英国。英国国内局势自从1688年威廉和玛丽取代詹姆斯二世之后已“稳定”下来，于是又开始按部就班地发挥伊丽莎白时期作为欧洲最强大海洋帝国的潜力了。即使是18世纪70年代失去其对富庶的北美殖民地的控制，一个独立的、有强大防卫能力和可观的经济实力的美利坚合众国的出现，也只是暂时地阻止了英国影响在全球的增长。可以与之相比的是俄国取得的成就，在整个18世纪，它向东、向南扩张，跨过亚细亚大草原。而且英、俄两国虽然坐落在欧洲东西两个边缘，但都对中欧的命运极感兴趣。英国卷入德意志事务是因为它同汉诺威有王朝间的联系（从1714年乔治一世继位起），而俄国则决心要在其邻国波兰的命运问题上发号施令。从宏观上说，伦敦和圣彼得堡的政府想要在欧洲大陆建立一种均势，并愿为此而一再插手，以便求得符合自己利益的平衡。换句话说，欧洲列强体系开始变成五大国——法国、哈布斯堡帝国、普鲁士、英国和俄国——以及一些诸如萨伏依一类的小国和像西班牙那样正在衰落的国家的体系。 </p></div>	
+<div class='layout'><p>Why was it that those five Powers in particular—while obviously not possessing exactly the same strengths—were able to remain in (or to enter) the “major league” of states? Purely military explanations are not going to get us very far. It is hard to believe, for example, that the rise and fall of Great Powers in this period was caused chiefly by changes in military and naval technology, such as might benefit one country more than another. * There were, of course, many small-scale improvements in weaponry: the flintlock rifle (with ring bayonet) eliminated the pikeman from the battlefield; artillery became much more mobile, especially after the newer types designed by Gribeauval in France during the 1760s; and the stubby, shorter-ranged naval gun known as the carronade (first built by the Carrón Company, of Scotland, in the late 1770s) enhanced the destructive power of warships. There were also improvements in tactical thought and, in the background, steady increases in population and in agricultural output which would permit the organization of far larger military units (the division; the corps) and their easier sustenance upon rich farmlands by the end of the eighteenth century. Nonetheless, it is fair to say that Wellington’s army in 1815 was not significantly different from Marlborough’s in 1710, nor Nelson’s fleet much more advanced technologically than that which had faced Louis XIV’s warships. 2</p><p>为什么这些实力明显不相等的国家，特别是5个大国能够保持（或加入）这样一个国家“大联盟”呢?纯粹从军事上加以解释是不能令人满意的。例如，人们很难相信这段时期内大国的兴衰主要归因于陆军和海军技术更新，比如说一国比另一国获益更大的技术更新［1］。当然，在武器装备上是有许多小的改进：如燧发枪（带枪刺）在战场上取代了长矛；炮兵更加机动灵活了，特别是继18世纪60年代由法国的格里博瓦发明新式大炮以后；被称作加农炮的一种口径大、炮管短的海军舰炮（最初由苏格兰的加农公司于18世纪70年代末制造）提高了战舰的摧毁能力。战术思想也得到改进，在人口和农业生产稳步增长的背景下，组建更加庞大的军事单位（师、军）成为可能，到18世纪末，肥沃的农田可以轻而易举地供养师、军这类庞大的军事单位。然而，公平地说，1815年威灵顿的大军同1710年马尔巴勒的大军并无多大差别，而纳尔逊的舰队也不比迎战路易十四战舰的舰队在技术上先进多少。 </p></div>	
+<div class='layout'><p>Indeed, the most significant changes occurring in the military and naval fields during the eighteenth century were probably in organization, because of the enhanced activity of the state. The exemplar of this shift was undoubtedly the France of Louis XIV (1661–1715), where ministers such as Colbert, Le Tellier, and others were intent upon increasing the king’s powers at home as well as his glories abroad. The creation of a French war ministry, with intendants checking upon the financing, supply, and organization of troops while Martinet as inspector general imposed new standards of training and discipline; the erection of barracks, hospitals, parade grounds, and depots of every sort on land, to sustain the Sun King’s enormous army, together with the creation of a centrally organized, enormous fleet at sea—all this forced the other powers to follow suit, if they did not wish to be eclipsed. The monopolization and bureaucratization of military power by the state is clearly a central part of the story of “nation-building”; and the process was a reciprocal one, since the enhanced authority and resources of the state in turn gave to their armed forces a degree of permanence which had often not existed a century earlier. Not only were there “professional,” “standing” armies and “royal” navies, but there was also a much more developed infrastructure of war academies, barracks, ship-repair yards, and the like, with administrators to run them. Power was now national power, whether expressed through the enlightened despotisms of eastern Europe, the parliamentary controls of Britain, or the later demagogic forces of revolutionary France. 3 On the other hand, such organizational improvements could be swiftly copied by other states (the most dramatic example being Peter the Great’s transformation of Russia’s army in the space of a couple of decades after 1698), and by themselves provided no guarantee of maintaining a country’s Great Power position. </p><p>事实上，由于国家力量的增强，18世纪发生在陆军和海军领域最重大的变化，大概要数组织上的变化了。这一变化的典型毫无疑问非路易十四的法国（1661—1715年）莫属了。他的大臣们柯尔培尔、勒泰利埃等人都一心一意地想要在国内加强王权，在国外为国王增添光荣。法国建立了陆军部，由其行政长官来检查部队的资金筹措、供给和组织，马蒂奈作为总监制定了训练和军纪的新条令，在陆上新建了各式各样的军营、医院、阅兵场和弹药库，以维持太阳王的庞大陆军，并在海上组建了一个集中指挥的庞大舰队。所有这一切，都迫使其他不想黯然失色的国家起而效尤。国家对军队的垄断并使其官僚化，显然是“立国”的中心部分。其发展是一个相互影响的进程，这是由于国家权力的扩大和收入的增加必然会使军队有一定程度的常备性，这在一个世纪以前是没有过的。现在不仅有“职业性”的“常备”军和“皇家”海军，还有更加发达的军事学院、军营、船坞等基础设施以及管理它们的行政长官。现在，权力是国家的权力，无论它表现为东欧开明的专制政体、英国的议会制还是稍后大革命中法国的民众力量。另一方面，其他国家可以很快地模仿这些组织机构上的改进（最突出的例子要算彼得大帝在1698年后短短的几十年中对俄国军队进行的改革），而在没有维持大国地位的保证时，这些国家自己也会对其组织机构再进行改革。 </p></div>	
+<div class='layout'><p>Much more important than any of these strictly military developments in explaining the relative position occupied by the Great Powers in the years 1660– 1815 were two other factors, finance and geography. Taken together—for the two elements frequently interacted—it is possible to gain some larger sense of what at first sight appears as a bewildering pattern of successes and failures produced by the many wars of this period. </p><p>比起用纯粹军事上的发展进步来解释1660—1815年间大国的力量对比来说，另外两个因素：财政因素和地理因素更为重要。这两个因素往往交织在一起，把它们合起来看，就可能对这个时期多次战争造成的、乍看起来令人眼花缭乱的成败模式产生清楚一些的认识。</p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>
