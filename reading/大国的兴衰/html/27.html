@@ -1,0 +1,365 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<div class='layout'><p>Alliances and the Drift to War, 1890–1914</p><p>联盟与战争趋势（1890～1914）</p></div>	
+<div class='layout'><p>The third and final element in understanding the way the Great Power system was changing in these decades is to examine the volatile alliance diplomacy from Bismarck’s demise to the outbreak of the First World War. For although the 1890s saw some relatively small-scale conflicts (the Sino-Japanese War, the Spanish- American War, the Boer War), and later one large if still localized encounter in the Russo-Japanese War, the general tendency after that time was for what Felix Gilbert has termed the “rigidification” of the alliance blocs. 174 This was accompanied by the expectation on the part of most governments that if and when the next great war occurred, they would be members of a coalition. This would enhance and complicate assessments of relative national power, since allies brought disadvantages as well as benefits. </p><p>在理解大国体系这几十年间正在变化的方式时，第三个即最后一个因素，就是考察自俾斯麦去世到第一次世界大战爆发期间多变的结盟外交。尽管在19世纪90年代有一些规模较小的冲突（中日甲午战争、美西战争和布尔战争），稍后又有规模较大但仍是局部性冲突的日俄战争，从此以后，总的趋势——按费利克斯·吉尔伯特的说法——是联盟集团的“固定化”。同时，就大多数政府而言，它们期待如果下一次大战爆发，它们将是某一同盟的成员。这样就增加了对相对国力估量的重要性，并使这种估量复杂化，因为盟国既会带来好处，也会带来不利。</p></div>	
+<div class='layout'><p>The tendency toward alliance diplomacy did not, of course, affect the distant United States at this time, and it impinged upon Japan only in a regional way, through the Anglo-Japanese alliances of 1902 and 1905. But alliance diplomacy increasingly affected all the European Great Powers, even the insular British, because of the mutual fears and rivalries which arose in these years. This creation of fixed military alliances in peacetime—rarely if ever seen before—was begun by Bismarck in 1879, when he sought to “control” Vienna’s foreign policy, and to warn off St. Petersburg, by establishing the Austro-German alliance. In the German chancellor’s secret calculations, this move was also intended to induce the Russians to abandon their “erratic policy”175 and to return to the Three Emperor’s League— which, for a time, they did; but the longer-lasting legacy of Bismarck’s action was that Germany bound itself to come to Austria-Hungary’s aid in the event of a Russian attack. By 1882, Berlin had also concluded a similar mutual treaty with Rome in the event of a French attack, and within another year, both Germany and Austria-Hungary had offered another secret alliance, to aid Rumania against Russian aggression. Scholars of this diplomacy insist that Bismarck had chiefly short-term and defensive aims in view—to give comfort to nervous friends in Vienna, Rome, and Bucharest, to keep France diplomatically isolated, to prepare “fallback” positions should the Russians invade the Balkans. No doubt that is true; but the fact is that he had given pledges, and further, that even if the exact nature of these secret treaties was not publicly known, it caused both France and Russia to worry about their own isolation and to suspect that the great wire-puller in Berlin had built up a formidable coalition to overwhelm them in wartime. </p><p>当然，结盟外交的趋势在那时尚未影响到遥远的美国。对于日本来说，英日两国1902年和1905年结盟的影响，也仅是局部的。但在这些年中，由于彼此间的恐惧和敌视，结盟外交对欧洲所有列强的影响日益加深，即使居住在英国的英国人也不例外。和平时期固定的军事同盟——在以往即使有也很少见——是1879年由俾斯麦开始建立的，当时他通过缔结奥德同盟，谋求“控制”维也纳的外交政策并吓退彼得堡。依照德国的私下盘算，此举还旨在使俄国放弃其“反复无常”的政策，重新参加三皇同盟——俄国人一度参加过。但是俾斯麦遗留下来的长期存在的影响是，奥匈帝国一旦受到俄国的进攻，德国保证予以援助。1882年，柏林和罗马签订了一个类似对付法国进攻的互助条约。1883年，德国和奥匈帝国又提出了一个秘密盟约，内容是帮助罗马尼亚抵抗俄国的进攻。研究这种外交政策的学者们坚持，俾斯麦考虑的目标主要是短期的、防御性的，其目的是：安抚其紧张的维也纳、罗马、布加勒斯特盟友；使法国在外交上处于孤立的地位；为防俄国侵犯巴尔干准备可以“固守”的阵地。这无疑是正确的，但事实是俾斯麦已经做出保证，即使这些秘密条约的确切性不为世人所知，它们也足以使法国和俄国为其各自的孤立状态担忧，使它们猜想柏林强大的幕后操纵者已经建立起一个难以对付的同盟，以便在战时击溃它们。</p></div>	
+<div class='layout'><p>Although Bismarck’s own “secret wire” to St. Petersburg (the so-called Reinsurance Treaty of 1887) prevented a formal break between Germany and Russia, there was something artificial and desperate in these baroque, doublecrossing efforts by the chancellor to prevent the steady drift toward a Franco- Russian alliance in the late 1880s. The respective aspirations of France to recover Alsace-Lorraine and Russia to expand in eastern Europe were chiefly deterred by fear of Germany. There was no other continental alliance partner of note for either of them; and there beckoned the mutual benefits of French loans and weaponry for Russia, and Russian military aid for France. While ideological differences between the bourgeois French and the reactionary czarist regime slowed this drift for a while, the retirement of Bismarck in 1890 and the more threatening movements of Wilhelm II’s government clinched the issue. By 1894, the Triple Alliance of Germany, Austria-Hungary, and Italy had been balanced by the Franco-Russian Dual Alliance, a political and military commitment which would last as long as the Triple Alliance did. 176</p><p>尽管俾斯麦通往圣彼得堡的“秘密线路”（史称1887年《再保险条约》）防止了德俄关系的正式破裂，但首相在其防止19世纪80年代末法俄稳步走向同盟的这些复杂阴谋中，仍有许多主观武断和冒险的因素。对于法国收回阿尔萨斯-洛林的愿望和俄国向东扩张的图谋，德国是主要的威慑力量。法国和俄国在欧洲大陆没有其他可供选择的同盟伙伴。于是，通过法国向俄国提供贷款和武器，俄国向法国提供军事援助的方式，两国的互利关系形成了。尽管资产阶级的法国和反动的沙皇俄国之间存在的思想意识分歧使结盟一度发展缓慢，但是1890年俾斯麦的下台和威廉二世政府更具威胁的行动，确定了法俄同盟。到1894年，形成了德奥意三国同盟和法俄同盟的对峙局面，双方势均力敌。只要三国同盟存在，法俄间承担的政治和军事义务就将继续下去。</p></div>	
+<div class='layout'><p>In more ways than one, this new development appeared to stabilize the European scene. A rough equilibrium existed between the two alliance blocs, making the results of a Great Power conflict more incalculable, and thus less likely, than before. Having escaped from their isolation, France and Russia turned away to African and Asian concerns. This was aided, too, by the lessening of tensions in Alsace and in Bulgaria; by 1897, indeed, Vienna and St. Petersburg had agreed to put the Balkans on ice. 177 Furthermore, Germany was also turning toward Weltpolitik, while Italy, in its inimitable fashion, was becoming embroiled in Abyssinia. South Africa, the Far East, the Nile Valley, and Persia held people’s attention by the mid-1890s. It was also the age of the “new navalism,”178 with all the powers endeavoring to build up their fleets in the belief that navies and colonies naturally went hand in hand. Not surprisingly, therefore, this was the decade when the British Empire, although generally aloof from European entanglements, felt itself under the heaviest pressure, from old rivals like France and Russia, and then newer challengers like Germany, Japan, and the United States. In such circumstances, the importance of the military clauses of the European alliance blocks seemed less and less relevant, since a general war there would not be triggered off by happenings such as the Anglo- French clash at Fashoda (1898), the Boer War, or the scramble for concessions in China. </p><p>从多方面看，事态的这一新发展似乎稳定了欧洲局势，因为两个同盟集团之间势均力敌，使列强冲突的结果比以前更难预测，因而冲突的可能性比以往更小。摆脱了孤立状态后，法国和俄国转而关心非洲和亚洲的事务。阿尔萨斯和保加利亚危机的和缓也有助于法国和俄国的行动。到1897年，维也纳和圣彼得堡实际上已经同意将巴尔干问题搁置起来。此外，德国也转向世界政治，而意大利则以其独特的方式卷入了阿比西尼亚的纠纷。南非、远东、尼罗河流域和波斯在19世纪90年代中期吸引了世人的注意力。当时是一个新的“海军至上主义”时期，因为人们相信海军和殖民地是紧密联系在一起的，于是所有国家都努力建立自己的舰队。因此，在这10年中，尽管大英帝国一般超然于欧洲纠纷之外，但仍感到承受着最沉重的压力是不足为奇的；这种压力一方面来自像法国和俄国这样的传统竞争对手，后来又来自像德国、日本和美国这样的新挑战者。在这样的形势下，欧洲各同盟集团的军事条款的重要性，看来越来越不切合实际了，因为像英法1898年的法绍达冲突、布尔战争和在中国抢夺租借地等事件，不会在欧洲引起一场全面战争。</p></div>	
+<div class='layout'><p>Yet, over the slightly longer term, these imperial rivalries were to affect the relations of the Great Powers, even in their European context. By the turn of the century, the pressures upon the British Empire were such that some circles around Colonial Secretary Joseph Chamberlain called for an end to “splendid isolation” and an alliance with Berlin, while fellow ministers such as Balfour and Lansdowne were beginning to accept the need for diplomatic compromises. A whole series of concessions to the United States over the isthmian canal, the Alaska boundary, seal fisheries, etc. —disguised under the term “the Anglo-American rapprochement”—took Britain out of a strategically untenable position in the western hemisphere and, more important still, drastically altered what nineteenth-century statesmen had taken for granted: that Anglo-American relations would always be cool, grudging, and occasionally hostile. 179 In forging the Anglo-Japanese Alliance of 1902, British statesmen also hoped to ease a difficult strategical burden in China, albeit at the cost of supporting Japan under certain circumstances. 180 And by 1902–1903, there were influential British circles who thought it possible to compromise over colonial issues with France, which had shown at the earlier Fashoda crisis that it would not go to war over the Nile. </p><p>然而，以较长的眼光来看，帝国主义的竞争必将影响列强的关系，甚至影响它们在欧洲的关系。进入20世纪之际，大英帝国承受着要求妥协的压力，以张伯伦为代表的一些人主张结束“光荣孤立”政策，并与柏林结盟；同时，贝尔福和兰斯多恩等大臣也开始认为需要外交上的妥协。在英美建立友好关系的掩盖下，英国在诸如巴拿马运河、阿拉斯加边界和捕猎海豹等问题上，对美国做出了一系列让步。这样，英国就摆脱了在西半球战略上的不稳固状态，更重要的是它迅速改变了19世纪政治家们视为当然的情况，即英美关系永远是冷淡的、猜疑的，偶尔还是敌对的。在签订1902年《英日同盟协定》时，英国的政治家们也是出于减轻它在中国战略负担的考虑，尽管这在某种情况下要以支持日本为代价。到了1902～1903年，一些有影响的英国人士认为，与法国在殖民地问题上妥协也是有可能的。早在法绍达危机时，它已显示出不愿为尼罗河问题进行战争的这种妥协情绪。</p></div>	
+<div class='layout'><p>While all these arrangements seemed at first to concern only extra-European affairs, they bore indirectly upon the standing of the Great Powers in Europe. The resolution of Britain’s strategical dilemmas in the western hemisphere, plus the support it would gain from the Japanese fleet in the Far East, eased some of the pressures upon the Royal Navy’s maritime dispositions and enhanced its prospects of consolidating in wartime; and settling Anglo-French rivalries would mean an even greater boost to Britain’s naval security. All this also affected Italy, whose coastlines were simply far too vulnerable to allow itself to be placed in a camp opposite to an Anglo-French combination; in any case, by the early years of the twentieth century, France and Italy had their own good (financial and North African) reasons for improving relations. 181 However, if Italy was drifting away from the Triple Alliance, that was bound to affect its half-submerged quarrels with Austria-Hungary. Finally, even the distant Anglo-Japanese alliance was to have repercussions upon the European states system, since it made it unlikely that any third power would intervene when Japan decided in 1904 to challenge Russia over the future of Korea and Manchuria; moreover, when that war broke out, the specific clauses* of the Anglo-Japanese treaty and the Franco-Russian alliance strongly induced the two “seconds,” Britain and France respectively, to work with each other to avoid being drawn openly into the conflict. It was not surprising, therefore, that the outbreak of hostilities in the Far East swiftly caused London and Paris to bring their colonial hagglings to an end and to conclude the entente of April 1904. 182 The years of Anglo-French rivalry, originally provoked by the British occupation of Egypt in 1882, were now over. </p><p>虽然这些努力乍看起来好像首先关心的只是欧洲以外的事务，但它们却对欧洲列强的地位产生了间接的影响。英国在西半球战略困境的解决和在远东得到日本海军的支持，减轻了英国皇家海军在战时部署兵力的压力，加强了它在战时巩固其地位的可能。英法对抗的解决，意味着英国海军的安全得到了进一步的加强。所有这些势必影响到意大利，由于意大利的海岸线极易受到攻击，它不允许自己参加与英法联盟为敌的阵营。总之，在20世纪初期，法国和意大利有充分的理由（经济上和北非事务上）改善它们的关系。然而，如果意大利脱离三国同盟，就必然会影响它和奥匈帝国尚未公开化的争吵。最后，即使遥远的英日同盟也会对欧洲国家体系产生影响，因为当日本就朝鲜和中国东北前途问题向俄国挑战时，英日同盟使任何第三国的介入都成为不可能的。此外，当日俄战争爆发时，由于有英日条约和法俄同盟的特殊条约，英法两国共同努力以避免公开卷入这场冲突。因此，远东战争的爆发促成两国迅速结束对殖民地的争夺，并且签订1904年4月的协定也就不足为奇了。由英国1882年占领埃及而挑起的英法多年对抗结束了。[10]</p></div>	
+<div class='layout'><p>Even this might not have caused the famous “diplomatic revolution”183 of 1904– 1905 if not for two other factors. The first was the growing suspicion held by the British and French toward Germany, whose aims, although unclear, looked ambitious and dangerous, as Chancellor Bülow and his imperial master Wilhelm II proclaimed the coming of the “German century. ” By 1902–1903 the High Seas Fleet, with a range and construction which suggested that it was being built chiefly with Britain in mind, was causing the British Admiralty to contemplate countermoves. In addition, while German aims toward Austria-Hungary were regarded with unease by Paris, its ambitions in Mesopotamia were disliked by British imperialists. Both countries observed with increasing anger Bülow’s diplomatic efforts to encourage a Far East war in 1904 and to get them entangled in it—from which event Berlin would be the principal beneficiary. 184</p><p>但是，如果没有另外两个因素，即使这样也不可能引起1904～1905年著名的“外交革命”。首先是英法两国对德国的疑惧不断加深。当比洛首相与德皇威廉二世宣称“德国世纪”正在到来时，尽管其目标尚未明确，但也足以看出其野心和危险。1902～1903年，德国“公海舰队”的航程和结构显示出它的建造主要是针对英国的，这使得英国海军部筹划对抗措施。其次，德国争取奥匈帝国的行动引起了法国的不安，而对美索不达米亚的野心又令英帝国主义者不满。英法两国以日益焦灼的心情注视着比洛的外交努力——极力促成1904年远东战争的爆发并使英法卷入，从而使德国成为最大的受益者。</p></div>	
+<div class='layout'><p>An even greater influence upon the European balances and relationships resulted from the impressive Japanese naval and military victories during the war, coinciding with the widespread unrest in Russia during 1905. With Russia unexpectedly reduced to a second-class power for some years to come, the military equilibrium in Europe swung decisively in favor of Berlin—against which France would now have worse prospects than in 1870. If ever there was a favorable time for Germany to strike westward, it probably would have been in the summer of 1905. But the Kaiser’s concern over social unrest at home, his desire to improve relations with Russia, and his uncertainty about the British, who were redeploying their battleships from China to home waters and considering French pleas for aid if Germany did attack, all had their effect. Rather than plunge into war, Berlin opted instead for diplomatic victories, forcing its archfoe French Foreign Minister Delcassé from office, and insisting upon an international conference to check French pretensions in Morocco. Yet the results of the Algeciras meeting, which saw most of the conference participants supporting France’s claim to a special position in Morocco, were a devastating confirmation of just how far Germany’s diplomatic influence had declined since Bismarck’s day, even as its industrial, naval, and military power had grown. 185</p><p>对欧洲的均势和国家间的关系产生更大影响的是，日本在日俄战争中军事上的辉煌胜利和1905年俄国的普遍骚乱。随着俄国出人意料地在以后的若干年降为二流国家，欧洲军事力量对比的天平决定性地向德国一方倾斜，在这种形势下的前景比1870年时更糟。如果说德国有向西进攻的良机，那大概就是1905年夏天了。但是德皇对国内社会动荡的关心和改善与俄国关系的愿望，以及它对英国的疑虑（此时英国正在从中国到其领海的广大海域重新部署海军舰队，并且考虑当德国真的进攻法国时对法国的援助问题），都影响着德国的政策。与进行战争相比，柏林更愿在外交上取得胜利——迫使其最主要的对手、法国外长德尔卡塞辞职，并且坚持召开国际会议以阻止法国对摩洛哥的要求。然而，阿尔赫西拉斯[11]会议的结果是，与会国大多数支持法国在摩洛哥拥有特殊地位的要求，这明显地反映了自俾斯麦时代以来，尽管德国的工业、海军和陆军实力不断上升，但其外交影响却已经下降得多么厉害。</p></div>	
+<div class='layout'><p>The first Moroccan crisis returned international rivalries from Africa to the continent of Europe. This trend was soon reinforced by three more important events. The first was the 1907 Anglo-Russian entente over Persia, Tibet, and Afghanistan, in itself a regional affair but with wider implications for not only did it eliminate those Asian quarrels between London and St. Petersburg which all powers had taken for granted throughout the nineteenth century, and so ease Britain’s defense of India, but it also caused nervous Germans to talk about being “encircled” in Europe. And while there were still many Britons, especially in the Liberal government, who did not see themselves as part of an anti-German coalition, their cause was weakened by the second event: the heated Anglo-German “naval race” of 1908–1909, following a further increase in Tirpitz’s shipbuilding program and British fears that they would lose their naval lead even in the North Sea. When British efforts over the next three years to try to reduce this competition met with a German demand for London’s neutrality in the event of a European war, the suspicious British backed away. They and the French had been nervously watching the Balkan crisis of 1908–1909, in which Russian indignation at Austria-Hungary’s formal annexation of the provinces of Bosnia-Herzegovina led to a German demand that Russia accept the fait accompli or suffer the consequences. 186 Weakened by their recent war with Japan, the Russians submitted. But this diplomatic bullying produced in Russia a patriotic reaction, an increase in defense expenditures, and a determination to cling closer to one’s allies. </p><p>第一次摩洛哥危机使国际竞争从非洲又回到欧洲大陆，这一趋势很快因三个更重要的事件而加强。首先是1907年英俄签订了关于波斯、中国西藏和阿富汗问题的协议。签订协议是区域性的事件，但从更广泛的意义上看，它不仅解决了英俄在亚洲的纠纷——在19世纪，所有国家都认为英俄在亚洲的纠纷是理所当然的——从而缓解了英国在印度的防务压力，而且也促成紧张的德国人去讨论自己在欧洲“被包围”的问题。尽管仍有许多英国人，特别是在自由党政府中的人，尚未把自己看作反德同盟的成员，但他们的目标却被第二个事件所削弱，这就是1908～1909年英德两国激烈的海军竞赛，其结果是，德国蒂尔皮茨的海军建设计划进一步得到加强，英国则害怕自己将失去在北海的海军优势，当英国试图在今后3年内限制这种竞赛时，德国却要求，如果欧洲发生战争，英国应保持中立，于是多疑的英国人逐渐退却了。他们和法国人一起紧张地注视着1908～1909年的巴尔干危机。在这次危机中，俄国人对奥匈帝国正式吞并波斯尼亚—黑塞哥维那地区之举非常愤怒，这又使德国对俄国提出要求，要它接受既成事实，否则后果自负。在日俄战争中被削弱的俄国人最终还是屈从了。然而，这一外交恫吓，激起了俄国人民的爱国主义反应，使俄国增加防务费用，并且决定更紧密地依靠自己的盟国。</p></div>	
+<div class='layout'><p> Despite occasional attempts at a détente between one capital and another after 1909, therefore, the tendency toward “rigidification” increased. The second crisis over Morocco in 1911, when the British strongly intervened for France and against Germany, produced an upsurge of patriotic emotion in both of the latter countries and enormous increases in their army sizes as nationalists talked openly of the coming conflict, while in Britain the crisis had caused the government to confront its divergent military and naval plans in the event of joining a European war. 187 One year later, the failure of the diplomatic mission to Berlin by the British minister, Lord Haldane, and the further increases in the German fleet had driven London into the compromising November 1912 Anglo-French naval agreement. By that time, too, an opportunistic attack upon Turkey by Italian forces had been imitated by the states of the Balkan League, which virtually drove the Ottoman Empire out of Europe before its members then fell out over the spoils. This revival of the age-old “Eastern Question” was the most serious event of all, partly because the passionate strivings for advantage by the rivaling Balkan states could not really be controlled by the Great Powers, and partly because certain of the newer developments seemed to threaten the vital interests of some of those Powers: the rise of Serbia alarmed Vienna, the prospect of increasing German military influence over Turkey terrified St. Petersburg. When the assassination of Archduke Ferdinand in June 1914 provoked Austria-Hungary’s actions against Serbia, and then the Russian countermoves, there was indeed much truth in the old cliché that the archduke’s death was merely the spark which lit the tinderbox. 188</p><p>因此，尽管在1909年以后一国与另一国之间试图缓和，但“固有矛盾”的趋势却在加强。在1911年第二次摩洛哥危机时，英国坚决地进行干涉，站在法国一边对抗德国，这次危机使法国和德国人民的爱国主义激情高涨，当民族主义者们公开谈论即将到来的冲突时，两国都大量扩军；而在英国，这次危机促使英国政府正视陆军同海军关于一旦参加欧战在作战计划上的分歧。一年后，英国外交大臣霍尔丹勋爵访德外交使命的失败，以及德国海军力量的进一步加强，使英国和法国于1911年11月签署了妥协性的海军协议。这时意大利则趁机向土耳其发动了机会主义的进攻。巴尔干同盟的国家纷纷效尤，这个同盟在其成员国为战利品争吵之前，实际上把奥斯曼帝国赶出了欧洲。旧的“东方问题”的再现，是所有事件中最严重的事，这一方面是由于列强不能真正控制对抗中的巴尔干国家狂热追求自身利益，另一方面也由于事态的发展威胁着某些强国的重要权益。例如，塞尔维亚的兴起引发了维也纳的恐慌；德国对土耳其军事影响的不断扩大，使圣彼得堡深为不安。当斐迪南大公于1914年7月遇刺激起奥匈帝国反对塞尔维亚的行动时，俄国采取了对抗措施。通常认为，大公之死只不过是引爆火药桶的导火索，这是很有道理的。</p></div>	
+<div class='layout'><p>The June 1914 assassination is one of the best-known examples in history of a particular event triggering a general crisis, and then a world war. Austria-Hungary’s demands upon Serbia, its rejection of the conciliatory Serbian reply, and its attack upon Belgrade led to the Russian mobilization in aid of its Serbian ally. But that, in turn, led the Prussian General Staff to press for the immediate implementation of the Schlieffen Plan, that is, its preemptive westward strike, via Belgium, against France—which had the further effect of bringing in the British. </p><p>1914年7月的暗杀，是历史上引起全面危机进而爆发世界大战的特殊事件中最突出的例子。奥匈帝国对塞尔维亚的苛求，对塞尔维亚和解性答复的拒绝以及对贝尔格莱德的进攻，导致了俄国援助盟友塞尔维亚的全国总动员。但这又转过来促使德国参谋总部强烈要求实施“施利芬计划”，即向西通过比利时对法国发动先发制人的进攻。德国此举又引起了英国人的卷入。</p></div>	
+<div class='layout'><p>While each of the Great Powers in this crisis acted according to its perceived national interests, it was also true that their decision to go to war had been affected by the existing operations plans. From 1909 onward the Germans committed themselves to Austria-Hungary, not just diplomatically but militarily, to a degree which Bismarck had never contemplated. Furthermore, the German operations plan now involved an immediate and massive assault upon France, via Belgium, whatever the specific cause of the war. By contrast, Vienna’s military planners still dithered between the various fronts, but the determination to get a first blow in at Serbia was growing. Boosted by French funds, Russia pledged itself to an everswifter mobilization and westward strike should war come; while, with even less cause, the French in 1911 adopted the famous Plan XVII, involving a headlong rush into Alsace-Lorraine. And whereas the likelihood that Italy would fight alongside its Triple Alliance partners was now much decreased, a British military intervention in Europe had become the more probable in the event of a German attack upon Belgium and France. Needless to say, in each of the general staffs there was the unquestioned assumption that speed was of the essence; that is, as soon as a clash seemed likely, it was vital to mobilize one’s own forces and to get them up to and over the border before the foe had a chance to do the same. If this was especially true in Berlin, where the army had committed itself to delivering a knockout blow in the west and then returning to the east to meet the slower-moving Russians, the same sort of thinking prevailed elsewhere. If and when a really great crisis occurred, the diplomats were not going to have much time before the strategic planners took over. 189</p><p>尽管在危机中，列强的行动是按照它们各自理解的民族利益进行的，但它们卷入战争的决定也肯定受到各自作战计划的影响。1909年以来，德国向奥匈帝国做出的外交和军事上的保证，已达到了俾斯麦从未想到过的程度。此外，不论战争的具体起因是什么，德国的作战计划包括通过比利时立即向法国发动大规模进攻。相比之下，维也纳制订军事计划的人，尚在几条战线的抉择中犹豫，但首先打击塞尔维亚的决心逐步加强。在法国贷款的支持下，俄国保证如果战争爆发，它将比以往更加迅速地进行动员向西进攻；同时，法国于1911年制订了著名的17号计划，其中包括快速进入阿尔萨斯-洛林，即使理由不甚充分。意大利与三国同盟的盟国一同作战的可能性大为减小，而德国进攻比利时和法国时，英国在欧洲大陆的军事介入则愈加可能。不用说，在各国的参谋总部中，无疑都认为“速度”是最重要的。这就是说，只要冲突有可能发生，最重要的就是动员并武装自己的战斗力量，抢在对手之前到达和越过边界。在柏林尤其如此。在那里，陆军的任务是对西方实施毁灭性打击，然后回到东方，攻击行动较慢的俄国人，而且这一类想法在其他地方也颇流行。如果一场真正的大危机到来，在战略计划的策划者们接管权力之前，外交家们是没有太多时间进行活动的。</p></div>	
+<div class='layout'><p>The point about all of these war plans was not merely that they appear, in retrospect, like a line of dominoes which would tumble when the first one fell. What was also important was that since a coalition war was much more likely than in, say, 1859 or 1870, the prospects that the conflict would be prolonged were also that much greater, although few contemporaries appear to have realized it. The notorious miscalculation that the war begun in July/August 1914 would be “over by Christmas” has usually been explained away by the failure to anticipate that quickfiring artillery and machine guns made a guerre de manoeuvre impossible and forced the masses of troops into trenches, from where they could rarely be dislodged; and that the later resort to prolonged artillery bombardments and enormous infantry offensives provided no solution, since the shelling merely churned up the ground and gave the enemy notice of where the attack would take place. 190 In much the same way, it is argued that the admiralties of Europe also misread the war that was to come, preparing themselves for a decisive battle-fleet encounter and not properly appreciating that the geographical contours of the North Sea and Mediterranean and the newer weapons of the mine, torpedo, and submarine would make fleet operations in the traditional style very difficult indeed. 191 Both at sea and on land, therefore, a swift victory was unlikely for technical reasons. </p><p>追溯一下，所有这些战争计划的要点是，不仅它们像一排多米诺骨牌，第一张牌倒下，其余的随之倒下，而且下面一点也很重要：由于同盟间的战争，比如与1859年或1870年相比，持久战的可能也就大得多，尽管当时很少有人认识到这一点。关于1914年7～8月开始的战争将在“圣诞节结束”这一有名的错误计划，现在通常用以下理由来解释：速射大炮和机枪使军队不可能打运动战，并且使部队进入堑壕，这样他们很难被赶走；依靠远程火炮和大批步兵进攻也无法解决问题，因为炮轰仅能猛烈冲击战场，但却使敌人注意到进攻在何处发生。同样，有人争辩说，欧洲各国的海军部对即将爆发的战争的认识有误，它们只准备进行海上的舰队决战，但没有正确认识北海和地中海的地理环境，而水雷、鱼雷和潜艇等新式武器，也使舰队实在难以再用传统的作战方式。因此，不论是海上还是陆地，由于技术上的原因，速战是不可能的。</p></div>	
+<div class='layout'><p>All of this is, of course, true, but it needs to be put in the context of the alliance system itself. 192 After all, had the Russians been allowed to attack Austria-Hungary alone, or had the Germans been permitted a rerun of their 1870 war against France while the other powers remained neutral, the prospects of victory (even if a little delayed) seem incontestable. But these coalitions meant that even if one belligerent was heavily beaten in a campaign or saw that its resources were inadequate to sustain further conflict, it was encouraged to remain in the war by the hope—and promises—of aid from its allies. Looking ahead a little, France could hardly have kept going after the disastrous Nivelle offensive and the 1917 mutinies, Italy could hardly have avoided collapse after its defeat at Caporetto in 1917, and the Austro- Hungarian Empire could hardly have continued after the dreadful losses of 1916 (or even the 1914 failures in Galicia and Serbia) had not each of them received timely support from its allies. Thus, the alliance system itself virtually guaranteed that the war would not be swiftly decided, and meant in turn that victory in this lengthy duel would go—as in the great coalition wars of the eighteenth century—to the side whose combination of both military/naval and financial/industrial/technological resources was the greatest. </p><p>所有这些当然都是正确的，但它需要置于同盟体系的背景中加以考察。总之，如果允许俄国单独进攻奥匈帝国，如果允许德国再次发动像1870年那样的反法战争而其他国家保持中立，那么俄国和德国的胜利似乎是不容置疑的（即使时间稍长一些）。但是，这些同盟意味着，即使一个交战国在一次战役中遭受重创，或者其资源已不足以再维持冲突，但是从盟国得到援助的希望和诺言可激励它继续战斗。设想一下，如果不是得到盟国及时的支持，法国在尼韦勒的灾难性进攻和1917年兵变之后，是难以继续作战的；意大利1917年在卡波雷托失败后是无法避免其崩溃的；奥匈帝国1916年惊人的损失（甚至1914年后在加里西亚和塞尔维亚的失败）之后是很难继续进行战争的。因此，实际上同盟体系本身肯定使战争不会很快有结果，这也意味着在这场持久的决战中，就如同在18世纪大规模同盟战争中一样，胜利将属于海陆军和金融、工业以及技术资源最丰富的一方。</p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>
