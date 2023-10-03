@@ -1,0 +1,646 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<div class='layout'><p>5</p><p></p></div>	
+<div class='layout'><p>CHAPTER FIVE: DIAGON ALLEY</p><p>第５章对角巷</p></div>	
+<div class='layout'><p>Harry woke early the next morning. Although he could tell it was daylight, he kept his eyes shut tight.</p><p>第二天一大早哈利就醒了。他明明知道天已经亮了，可还是把眼睛闭得紧紧的。</p></div>	
+<div class='layout'><p>"It was a dream, he told himself firmly. "I dreamed a giant called Hagrid came to tell me I was going to a school for wizards. When I open my eyes I'll be at home in my cupboard."</p><p>「这是一个梦，」他确定无疑地对自己说，「我梦见一个叫海格的巨人，他来对我说，要我进一所魔法学校。等我一睁眼，我准在家里，在碗柜里。」</p></div>	
+<div class='layout'><p>There was suddenly a loud tapping noise.</p><p>突然传来一阵啪啪的响声。</p></div>	
+<div class='layout'><p>And there's Aunt Petunia knocking on the door, Harry thought, his heart sinking. But he still didn't open his eyes. It had been such a good dream.</p><p>「又是佩妮姨妈在捶门了。」哈利心想，他的心一沉。可他没有睁开眼。因为那个梦实在太好了。</p></div>	
+<div class='layout'><p>Tap. Tap. Tap.</p><p>啪，啪，啪。</p></div>	
+<div class='layout'><p>"All right," Harry mumbled, "I'm getting up."</p><p>「好了，」哈利嘟哝说，「我这就起来。」</p></div>	
+<div class='layout'><p>He sat up and Hagrid's heavy coat fell off him. The hut was full of sunlight, the storm was over, Hagrid himself was asleep on the collapsed sofa, and there was an owl rapping its claw on the window, a newspaper held in its beak.</p><p>他坐了起来，海格的厚外衣从身上滑了下来。小屋里充满了阳光，暴风雨已经过去了。海格睡在坍塌的沙发上。一只猫头鹰正用爪子敲打窗户，嘴里衔着一份报纸。</p></div>	
+<div class='layout'><p>Harry scrambled to his feet, so happy he felt as though a large balloon was swelling inside him. He went straight to the window and jerked it open. The owl swooped in and dropped the newspaper on top of Hagrid, who didn't wake up. The owl then fluttered onto the floor and began to attack Hagrid's coat.</p><p>哈利感到特别高兴，仿佛胸中揣着的一个气球渐渐鼓起来，使他飘飘欲仙。他径直走到窗前，用力推开窗户。猫头鹰飞了进来，把报纸扔到海格身上，但他还是没有醒。猫头鹰扑腾着翅膀飞到地上，开始抓海格的外衣。</p></div>	
+<div class='layout'><p> "Don't do that." Harry tried to wave the owl out of the way, but it snapped its beak fiercely at him and carried on savaging the coat.</p><p>「别抓。」哈利摆手想让猫头鹰走开，可是猫头鹰用它的利喙朝哈利猛啄过去，之后又去抓海格的外衣。</p></div>	
+<div class='layout'><p>"Hagrid!" said Harry loudly. "There's an owl</p><p>「海格！」哈利大声喊道，「这里有一只猫头鹰……」</p></div>	
+<div class='layout'><p>"Pay him," Hagrid grunted into the sofa.</p><p>「把钱付给它。」海格在沙发里哼哼唧唧地说。</p></div>	
+<div class='layout'><p>"What?"</p><p>「什么？」</p></div>	
+<div class='layout'><p>"He wants payin' fer deliverin' the paper. Look in the pockets." </p><p>「它要你付送报费。你在外衣袋里找找。」</p></div>	
+<div class='layout'><p>Hagrid's coat seemed to be made of nothing but pockets -- bunches of keys, slug pellets, balls of string, peppermint humbugs, teabags... finally, Harry pulled out a handful of strange-looking coins.</p><p>海格的外衣上面除了口袋，大概就没有别的什么了——口袋里装着成串的钥匙、小弹丸、线团、薄荷硬糖、茶袋……最后哈利终于掏出了一把稀奇古怪的硬币。</p></div>	
+<div class='layout'><p>"Give him five Knuts," said Hagrid sleepily.</p><p>「给它五个纳特。」海格睡意朦胧地说。</p></div>	
+<div class='layout'><p>"Knuts?"</p><p>「『纳特』？」</p></div>	
+<div class='layout'><p>"The little bronze ones."</p><p>「那些小铜板。」</p></div>	
+<div class='layout'><p>Harry counted out five little bronze coins, and the owl held out his leg so Harry could put the money into a small leather pouch tied to it. Then he flew off through the open window.</p><p>哈利数出五个铜板，猫头鹰伸出一只腿，要他把硬币放进绑在腿上的一只小皮囊里。随后它从敞开的窗口飞出去了。</p></div>	
+<div class='layout'><p>Hagrid yawned loudly, sat up, and stretched.</p><p>海格打了个大哈欠，坐起来伸了伸懒腰。</p></div>	
+<div class='layout'><p>"Best be Off, Harry, lots ter do today, gotta get up ter London an' buy all yer stuff fer school."</p><p>「咱们最好还是早点走吧，哈利，今天还有好多事要做呢，要去伦敦给你买上学需要的所有东西。」</p></div>	
+<div class='layout'><p>Harry was turning over the wizard coins and looking at them. He had just thought of something that made him feel as though the happy balloon inside him had got a puncture.</p><p>哈利摆弄着巫师的钱币，沉思起来。他不知想起了什么，觉得胸中那只快乐的气球被戳破了。</p></div>	
+<div class='layout'><p>"Um -- Hagrid?"</p><p>「唔，海格？」</p></div>	
+<div class='layout'><p>"Mm?" said Hagrid, who was pulling on his huge boots.</p><p>「怎么？」海格说，正在套他的大靴子。</p></div>	
+<div class='layout'><p>"I haven't got any money -- and you heard Uncle Vernon last night ... he won't pay for me to go and learn magic."</p><p>「我一个钱也没有，昨天晚上你已经听弗农姨父说过了，他不会花钱让我去学魔法的。」</p></div>	
+<div class='layout'><p>"Don't worry about that," said Hagrid, standing up and scratching his head. "D'yeh think yer parents didn't leave yeh anything?"</p><p>「这个你不用担心，」海格说，站起来搔了搔头，「你以为你父母什么也没有给你留下吗？」</p></div>	
+<div class='layout'><p>"But if their house was destroyed --"</p><p>「可要是连他们的房子全都毁了……」</p></div>	
+<div class='layout'><p>"They didn' keep their gold in the house, boy! Nah, first stop fer us is Gringotts. Wizards' bank. Have a sausage, they're not bad cold -- an' I wouldn' say no teh a bit o' yer birthday cake, neither."</p><p>「他们是不会把黄金放在家里的，孩子！我们第一站去古灵阁。巫师银行。来一根香肠吧，冷的吃着味道也可以——加上一块你的生日蛋糕更不错。」</p></div>	
+<div class='layout'><p>"Wizards have banks?"</p><p>「巫师还有银行？」</p></div>	
+<div class='layout'><p>"Just the one. Gringotts. Run by goblins."</p><p>「只有一家。古灵阁。是妖精们开的。」</p></div>	
+<div class='layout'><p>Harry dropped the bit of sausage he was holding.</p><p>哈利手里的香肠掉到了地上。</p></div>	
+<div class='layout'><p>"Goblins?"</p><p>「妖精？」</p></div>	
+<div class='layout'><p>"Yeah -- so yeh'd be mad ter try an' rob it, I'll tell yeh that. Never mess with goblins, Harry. Gringotts is the safest place in the world fer anything yeh want ter keep safe -- 'cept maybe Hogwarts. As a matter o' fact, I gotta visit Gringotts anyway. Fer Dumbledore. Hogwarts business." Hagrid drew himself up proudly. "He usually gets me ter do important stuff fer him. Fetchin' you gettin' things from Gringotts -- knows he can trust me, see.</p><p>「是的，所以，听我说，你要是想抢银行，那你就是发疯了。绝对不能把妖精们惹恼了，哈利。如果你想找一个安全可靠的地方存放东西，那么，我想除了霍格沃茨之外就是古灵阁了。其实，不管怎样我都要去一趟古灵阁，去替邓布利多办一件霍格沃茨的公事。」海格很得意地挺起胸来，「重要的事情他总是要我去办，比如说去接你，去古灵阁取东西，都要我去，他知道他可以信任我，明白吗？」</p></div>	
+<div class='layout'><p>"Got everythin'? Come on, then."</p><p>「东西都带好了吗？那就走吧。」</p></div>	
+<div class='layout'><p>Harry followed Hagrid out onto the rock. The sky was quite clear now and the sea gleamed in the sunlight. The boat Uncle Vernon had hired was still there, with a lot of water in the bottom after the storm.</p><p>哈利跟着海格来到外面的礁石上。这时天晴气爽，海水闪烁着阳光。弗农姨父租的那条船还泊在原处，暴风雨过后，船底积了许多水。</p></div>	
+<div class='layout'><p>"How did you get here?" Harry asked, looking around for another boat. </p><p>「您是怎么到这里来的？」哈利问，四下里搜寻另外一条船。</p></div>	
+<div class='layout'><p>"Flew," said Hagrid.</p><p>「飞过来的。」海格说。</p></div>	
+<div class='layout'><p>"Flew?"</p><p>「飞？」</p></div>	
+<div class='layout'><p>"Yeah -- but we'll go back in this. Not s'pposed ter use magic now I've got yeh."</p><p>「是的，不过我们得坐这条船回去。找到你以后，我就不能用法术了。」</p></div>	
+<div class='layout'><p>They settled down in the boat, Harry still staring at Hagrid, trying to imagine him flying.</p><p>他们在船上坐定，哈利还在目不转睛地盯着海格，竭力想象他飞行的样子。</p></div>	
+<div class='layout'><p>"Seems a shame ter row, though," said Hagrid, giving Harry another of his sideways looks. "If I was ter -- er -- speed things up a bit, would yeh mind not mentionin' it at Hogwarts?"</p><p>「划船好像有点丢人，不过，」海格说着，又朝哈利斜瞟了一眼，「我要是让……让……船开快一点，你能在霍格沃茨不提这件事吗？」</p></div>	
+<div class='layout'><p>"Of course not," said Harry, eager to see more magic. </p><p>「当然可以。」哈利说，他心急火燎想看到更多的法术。</p></div>	
+<div class='layout'><p>Hagrid pulled out the pink umbrella again, tapped it twice on the side of the boat, and they sped off toward land.</p><p>海格抽出他那把粉红色的伞，敲了两下船帮，他们就飞快地向岸边驶去了。</p></div>	
+<div class='layout'><p>"Why would you be mad to try and rob Gringotts?" Harry asked.</p><p>「您为什么说疯子才会去抢古灵阁呢？」哈利问。</p></div>	
+<div class='layout'><p>"Spells -- enchantments," said Hagrid, unfolding his newspaper as he spoke. "They say there's dragons guardin' the highsecurity vaults. And then yeh gotta find yer way -- Gringotts is hundreds of miles under London, see. Deep under the Underground. Yeh'd die of hunger tryin' ter get out, even if yeh did manage ter get yer hands on summat."</p><p>「因为他们会咒语——会施妖术。」海格一边说，一边翻开报纸。「他们说那些防范最严密的金库都由龙把守。要到那里还得先找到路——古灵阁在伦敦地下好几百英里的地方呢，明白吗？比地铁还要深。如果你真有办法偷到了一点东西，在没有找到出来的路之前，你早就饿死了。」</p></div>	
+<div class='layout'><p>Harry sat and thought about this while Hagrid read his newspaper, the Daily Prophet. Harry had learned from Uncle Vernon that people liked to be left alone while they did this, but it was very difficult, he'd never had so many questions in his life.</p><p>海格开始看他的《预言家日报》，哈利还坐在那里思前想后。哈利从弗农姨父那里知道人读报的时候总喜欢清静，可这实在太难了，他平生从来没有像现在这样有这么多问题想问。</p></div>	
+<div class='layout'><p>"Ministry o' Magic messin' things up as usual," Hagrid muttered, turning the page.</p><p>「魔法部总是把事情搞得一团糟。」海格翻过报纸，抱怨说。</p></div>	
+<div class='layout'><p>"There's a Ministry of Magic?" Harry asked, before he could stop himself.</p><p>「还有魔法部？」哈利忍不住问。</p></div>	
+<div class='layout'><p>"'Course," said Hagrid. "They wanted Dumbledore fer Minister, 0 ' course, but he'd never leave Hogwarts, so old Cornelius Fudge got the job. Bungler if ever there was one. So he pelts Dumbledore with owls every morning, askin' fer advice."</p><p>「当然了，」海格说，「他们当然希望邓布利多当他们的部长，可是他决意不离开霍格沃茨。这么一来，老康奈利福吉就担任了这一职务。他是天下最没头脑的人了，总是砸锅。所以他每天早晨总派许多猫头鹰到邓布利多那里去要邓布利多出点子。」</p></div>	
+<div class='layout'><p>"But what does a Ministry of Magic do?"</p><p>「可这个魔法部做些什么呢？」</p></div>	
+<div class='layout'><p>"Well, their main job is to keep it from the Muggles that there's still witches an' wizards up an' down the country."</p><p>「哦，他们的主要工作是不让麻瓜们发现这个国家还有那么多男女巫师。」</p></div>	
+<div class='layout'><p>"Why?"</p><p>「为什么？」</p></div>	
+<div class='layout'><p>"Why? Blimey, Harry, everyone'd be wantin' magic solutions to their problems. Nah, we're best left alone."</p><p>「为什么？我的天哪，哈利，人人都希望用法术来解决遇到的难题。我们最好还是别去惹这些事。」</p></div>	
+<div class='layout'><p>At this moment the boat bumped gently into the harbor wall. Hagrid folded up his newspaper, and they clambered up the stone steps onto the street.</p><p>这时船轻轻地碰到了码头。海格卷起报纸，两人踏上石阶向大街走去。</p></div>	
+<div class='layout'><p>Passersby stared a lot at Hagrid as they walked through the little town to the station. Harry couldn't blame them. Not only was Hagrid twice as tall as anyone else, he kept pointing at perfectly ordinary things like parking meters and saying loudly, "See that, Harry? Things these Muggles dream up, eh?"</p><p>当他们俩穿过小城向车站走去时，一路上过往的人都目不转睛地盯着海格。哈利并不怪他们，这不仅因为海格比普通人要高大一倍，而且他还不停地对一些诸如汽车停车计费器之类很平常的东西指指点点，大声说：「你看见那玩艺儿了吗，哈利？这又是麻瓜们搞出来的什么名堂，嗯？」</p></div>	
+<div class='layout'><p>"Hagrid," said Harry, panting a bit as he ran to keep up, "did you say there are dragons at Gringotts?"</p><p>「海格，」哈利说，为了追上海格的脚步，他已经有些气喘吁吁了，「您是说古灵阁有龙吗？」</p></div>	
+<div class='layout'><p>"Well, so they say," said Hagrid. "Crikey, I'd like a dragon."</p><p>「是的，他们这么说。」海格说，「哟，我也想要一条龙呢。」</p></div>	
+<div class='layout'><p>"You'd like one?"</p><p>「您也想要一条龙？」</p></div>	
+<div class='layout'><p>"Wanted one ever since I was a kid -- here we go."</p><p>「我从小就想要了……走这边。」</p></div>	
+<div class='layout'><p>They had reached the station. There was a train to London in five minutes' time. Hagrid, who didn't understand "Muggle money," as he called it, gave the bills to Harry so he could buy their tickets.</p><p>他们来到了车站，再过五分钟有一趟开往伦敦的列车。海格说他不会用麻瓜的钱，就把钞票塞到了哈利手中，让他去买车票。</p></div>	
+<div class='layout'><p>People stared more than ever on the train. Hagrid took up two seats and sat knitting what looked like a canary-yellow circus tent.</p><p>在火车上人们就更盯着他们看了。海格占据了两个座位。落座之后还编织起一顶淡黄色的、像马戏团帐篷一样的东西。</p></div>	
+<div class='layout'><p>"Still got yer letter, Harry?" he asked as he counted stitches. </p><p>「给你的信带了吗？」他一边数针，一边问。</p></div>	
+<div class='layout'><p>Harry took the parchment envelope out of his pocket.</p><p>哈利从衣袋里掏出一个羊皮纸信封。</p></div>	
+<div class='layout'><p>"Good," said Hagrid. "There's a list there of everything yeh need."</p><p>「好，」海格说，「里边有一张必备用品的单子。」</p></div>	
+<div class='layout'><p>Harry unfolded a second piece of paper he hadn't noticed the night before, and read:</p><p>哈利打开昨天夜里没有留意的第二页信纸，读道：</p></div>	
+<div class='layout'><p>HOGWARTS SCHOOL of WITCHCRAFT and WIZARDRY</p><p>霍格沃茨魔法学校</p></div>	
+<div class='layout'><p>UNIFORM</p><p>（制服）</p></div>	
+<div class='layout'><p>First-year students will require:</p><p>一年级新生需要：</p></div>	
+<div class='layout'><p>1. Three sets of plain work robes (black)</p><p>1．三套素面工作袍（黑色）</p></div>	
+<div class='layout'><p>2. One plain pointed hat (black) for day wear</p><p>2．一顶日间戴的素面尖顶帽（黑色）</p></div>	
+<div class='layout'><p>3. One pair of protective gloves (dragon hide or similar)</p><p>3．一双防护手套（龙皮或同类材料制作）</p></div>	
+<div class='layout'><p>4. One winter cloak (black, silver fastenings)</p><p>4．一件冬用斗篷（黑色，银扣）</p></div>	
+<div class='layout'><p>Please note that all pupils' clothes should carry name tags</p><p>请注意：学生全部服装均须缀有姓名标牌</p></div>	
+<div class='layout'><p>COURSE BOOKS</p><p>（课本）</p></div>	
+<div class='layout'><p>All students should have a copy of each of the following:</p><p>全部学生均需准备下列图书：</p></div>	
+<div class='layout'><p>The Standard Book of Spells (Grade 1) by Miranda Goshawk</p><p>《标准咒语（初级）》米兰达戈沙克著</p></div>	
+<div class='layout'><p>A History of Magic by Bathilda Bagshot</p><p>《魔法史》巴希达巴沙特著</p></div>	
+<div class='layout'><p>Magical Theory by Adalbert Waffling</p><p>《魔法理论》阿德贝沃夫林著</p></div>	
+<div class='layout'><p>A Beginners' Guide to Transfiguration by Emetic Switch</p><p>《初学变形指南》埃默瑞斯威奇著</p></div>	
+<div class='layout'><p>One Thousand Magical Herbs and Fungi by Phyllida Spore</p><p>《千种神奇草药及蕈类》菲利达斯波尔著</p></div>	
+<div class='layout'><p>Magical Drafts and Potions by Arsenius Jigger</p><p>《魔法药剂与药水》阿森尼吉格著</p></div>	
+<div class='layout'><p>Fantastic Beasts and Where to Find Them by Newt Scamander</p><p>《怪兽及其产地》纽特斯卡曼著</p></div>	
+<div class='layout'><p>The Dark Forces: A Guide to Self-Protection by Quentin Trimble</p><p>《黑暗力量：自卫指南》昆丁特林布著</p></div>	
+<div class='layout'><p>OTHER EQUIPMENT</p><p>（其他装备）</p></div>	
+<div class='layout'><p>1 wand </p><p>一支魔杖</p></div>	
+<div class='layout'><p>1 cauldron (pewter, standard size 2) set</p><p>一只大锅（锡镀制，标准尺寸2号）</p></div>	
+<div class='layout'><p>1 glass or crystal phials</p><p>一套玻璃或水晶小药瓶</p></div>	
+<div class='layout'><p>1 telescope set</p><p>一架望远镜</p></div>	
+<div class='layout'><p>1 brass scales</p><p>一台黄铜天平</p></div>	
+<div class='layout'><p>Students may also bring an owl OR a cat OR a toad</p><p>学生可携带一只猫头鹰或一只猫或一只蟾蜍</p></div>	
+<div class='layout'><p>PARENTS ARE REMINDED THAT FIRST YEARS ARE NOT ALLOWED THEIR OWN BROOMSTICKS</p><p>在此特别提请家长注意，一年级新生不准自带飞天扫帚<sup>1</sup></p></div>	
+<div class='layout'><p>"Can we buy all this in London?" Harry wondered aloud.</p><p>「这些东西我们在伦敦都能买到吗？」哈利大声问。</p></div>	
+<div class='layout'><p>"If yeh know where to go," said Hagrid.</p><p>「只要你知道门径就行。」海格说。</p></div>	
+<div class='layout'><p>Harry had never been to London before. Although Hagrid seemed to know where he was going, he was obviously not used to getting there in an ordinary way. He got stuck in the ticket barrier on the Underground, and complained loudly that the seats were too small and the trains too slow.</p><p>哈利以前从未来过伦敦。海格尽管知道路，但他过去显然不是以常人的方法来的。他在地铁验票口被卡住了，接着又大声抱怨座位太窄，车速太慢。</p></div>	
+<div class='layout'><p>"I don't know how the Muggles manage without magic," he said as they climbed a broken-down escalator that led up to a bustling road lined with shops.</p><p>「我真不知道这些麻瓜们不懂法术怎么办事。」当他们顺着出了故障的自动扶梯爬到店铺林立、人群熙熙攘攘的大街时，海格又说。</p></div>	
+<div class='layout'><p>Hagrid was so huge that he parted the crowd easily; all Harry had to do was keep close behind him. They passed book shops and music stores, hamburger restaurants and cinemas, but nowhere that looked as if it could sell you a magic wand. This was just an ordinary street full of ordinary people. </p><p>海格人高马大，毫不费事就从人群中挤了过去，哈利只消紧跟在他背后就可以了。他们经过书店、唱片店、汉堡专卖店、电影院，就是找不到一家卖魔杖的商店。这只是一条普普通通的街道，挤满了普通人。</p></div>	
+<div class='layout'><p>Could there really be piles of wizard gold buried miles beneath them? Were there really shops that sold spell books and broomsticks? Might this not all be some huge joke that the Dursleys had cooked up? If Harry hadn't known that the Dursleys had no sense of humor, he might have thought so; yet somehow, even though everything Hagrid had told him so far was unbelievable, Harry couldn't help trusting him.</p><p>当真会有成堆的巫师的金币埋藏在他们脚下吗？真会有出售咒语书和飞天扫帚的商店吗？这一切可不可能是德思礼夫妇开的一个大玩笑呢？要不是哈利知道德思礼夫妇毫无幽默感，他也许就会这么想。可是到目前为止，海格所讲的一切都太离奇，令人难以置信，可他还是不能不相信他。</p></div>	
+<div class='layout'><p>"This is it," said Hagrid, coming to a halt, "the Leaky Cauldron. It's a famous place."</p><p>「就是这里，」海格停下来说，「破釜酒吧。这是一个很有名的地方。」</p></div>	
+<div class='layout'><p>It was a tiny, grubby-looking pub. If Hagrid hadn't pointed it out, Harry wouldn't have noticed it was there. The people hurrying by didn't glance at it. Their eyes slid from the big book shop on one side to the record shop on the other as if they couldn't see the Leaky Cauldron at all. In fact, Harry had the most peculiar feeling that only he and Hagrid could see it. Before he could mention this, Hagrid had steered him inside.</p><p>这是一家肮脏的狭小酒吧。要不是海格指出来，哈利很可能不会注意。匆忙过往的人们连看也不看它一眼。他们的目光只落在一边的一家大书店和另一边的一家唱片店上，他们好像根本看不见破釜酒吧。哈利有一种很奇怪的感觉，似乎只有他和海格能看见这家酒吧。他还没来得及说话，海格就已经把他推到店里去了。</p></div>	
+<div class='layout'><p>For a famous place, it was very dark and shabby. A few old women were sitting in a corner, drinking tiny glasses of sherry. One of them was smoking a long pipe. A little man in a top hat was talking to the old bartender, who was quite bald and looked like a toothless walnut. The low buzz of chatter stopped when they walked in. Everyone seemed to know Hagrid; they waved and smiled at him, and the bartender reached for a glass, saying, "The usual, Hagrid?"</p><p>作为一个出名的地方，这里实在是太黑太脏了。几个老太婆坐在屋角里拿着小杯喝雪利酒，其中一个正在抽一杆长烟袋。一个戴大礼帽的小男人正在跟一个头发几乎脱光、长得像瘪胡桃似的酒吧老板聊天。他们刚一进门，嘁嘁喳喳的说话声就突然停了下来。这里好像人人都认识海格，他们向他微笑、招手。酒吧老板拿起一只杯子说：「照老规矩，海格？」</p></div>	
+<div class='layout'><p>"Can't, Tom, I'm on Hogwarts business," said Hagrid, clapping his great hand on Harry's shoulder and making Harry's knees buckle.</p><p>「不了，汤姆，我正在给霍格沃茨办事呢。」海格用他的巨掌拍了拍酒吧老板的肩膀，差点儿没把他压趴下。</p></div>	
+<div class='layout'><p>"Good Lord," said the bartender, peering at Harry, "is this -- can this be --?"</p><p>「我的天哪，」酒吧老板仔细端详着哈利，说道，「这位是……这位莫非是……」</p></div>	
+<div class='layout'><p>The Leaky Cauldron had suddenly gone completely still and silent.</p><p>破釜酒吧里顿时悄然无声。</p></div>	
+<div class='layout'><p>"Bless my soul," whispered the old bartender, "Harry Potter... what an honor."</p><p>「哎呀！」酒吧老板小声说，「哈利波特……荣幸之至。」</p></div>	
+<div class='layout'><p>He hurried out from behind the bar, rushed toward Harry and seized his hand, tears in his eyes.</p><p>他连忙从吧台后边出来，朝哈利跑过去，抓起他的手，热泪盈眶。</p></div>	
+<div class='layout'><p>"Welcome back, Mr. Potter, welcome back."</p><p>「欢迎回来，波特先生，欢迎你回来。」</p></div>	
+<div class='layout'><p>Harry didn't know what to say. Everyone was looking at him. The old woman with the pipe was puffing on it without realizing it had gone out. Hagrid was beaming.</p><p>哈利不知说什么好。大家都在看他。那个抽长烟袋的老太婆一个劲地抽，根本没发现烟袋已经熄灭了。海格一直在笑。</p></div>	
+<div class='layout'><p>Then there was a great scraping of chairs and the next moment, Harry found himself shaking hands with everyone in the Leaky Cauldron.</p><p>接着椅子噼噼啪啪地响了起来，哈利突然发现自己竟跟破釜酒吧的人一一握起手来。</p></div>	
+<div class='layout'><p>"Doris Crockford, Mr. Potter, can't believe I'm meeting you at last."</p><p>「我是科多利，波特先生，真是不敢相信，总算见到您了。」</p></div>	
+<div class='layout'><p>"So proud, Mr. Potter, I'm just so proud."</p><p>「太荣幸了，波特先生，太荣幸了。」</p></div>	
+<div class='layout'><p>"Always wanted to shake your hand -- I'm all of a flutter."</p><p>「早就盼着跟您握手了——我的心怦怦直跳。」</p></div>	
+<div class='layout'><p>"Delighted, Mr. Potter, just can't tell you, Diggle's the name, Dedalus Diggle."</p><p>「太高兴了，波特先生，简直没法说明我的心情，我叫迪歌。」</p></div>	
+<div class='layout'><p>"I've seen you before!" said Harry, as Dedalus Diggle's top hat fell off in his excitement. "You bowed to me once in a shop."</p><p>「我以前见过您，」当迪歌过分激动、礼帽掉下来时，哈利大喊道，「有一次在商店里，你朝我鞠躬。」</p></div>	
+<div class='layout'><p>"He remembers!" cried Dedalus Diggle, looking around at everyone. "Did you hear that? He remembers me!" </p><p>「他居然还记得！」迪歌看着在场的每个人喊道，「你们听见没有？他还记得我呢！」</p></div>	
+<div class='layout'><p>Harry shook hands again and again -- Doris Crockford kept coming back for more.</p><p>于是哈利就一遍又一遍地握手——科多利总跑过来要求再跟他握一次。</p></div>	
+<div class='layout'><p>A pale young man made his way forward, very nervously. One of his eyes was twitching.</p><p>一个面色苍白的年轻人走过来，神情显得非常紧张，他的一只眼睛在抽动。</p></div>	
+<div class='layout'><p>"Professor Quirrell!" said Hagrid. "Harry, Professor Quirrell will be one of your teachers at Hogwarts."</p><p>「奇洛教授！」海格说道，「哈利，奇洛教授是在霍格沃茨教你的老师之一呢。」</p></div>	
+<div class='layout'><p>"P-P-Potter," stammered Professor Quirrell, grasping Harry's hand, "c-can't t-tell you how p- pleased I am to meet you."</p><p>「波——波——波特，」奇洛教授结结巴巴地说，抓起哈利的手，「见到你有说——说不出的——高——高兴。」</p></div>	
+<div class='layout'><p>"What sort of magic do you teach, Professor Quirrell?"</p><p>「您教哪一类魔法，奇洛教授？」</p></div>	
+<div class='layout'><p>"D-Defense Against the D-D-Dark Arts," muttered Professor Quirrell, as though he'd rather not think about it. "N-not that you n-need it, eh, P-P-Potter?" He laughed nervously. "You'll be g-getting all your equipment, I suppose? I've g-got to p-pick up a new b-book on vampires, m-myself." He looked terrified at the very thought.</p><p>「对付黑——黑——黑魔法的防——防御术。」奇洛教授含糊不清地说，似乎他觉得还是不提为好。「这你已经用——用不——不着学了，是吧，波——波——波特先生？」他神经质地哈哈大笑起来。「你这是准——准备去买你需要的东西吧？我也要——要去买——买一本关于吸血鬼的新——新书。」似乎想起这件事就把他吓坏了。</p></div>	
+<div class='layout'><p>But the others wouldn't let Professor Quirrell keep Harry to himself. It took almost ten minutes to get away from them all. At last, Hagrid managed to make himself heard over the babble.</p><p>可是其余的人不会让奇洛教授跟哈利说个没完。哈利花了大概十来分钟的时间才把他们摆脱掉。在一片喋喋不休的说话声中，海格提高嗓门叫哈利：</p></div>	
+<div class='layout'><p>"Must get on -- lots ter buy. Come on, Harry."</p><p>「该走了，还有好多东西要买呢。走吧，哈利。」</p></div>	
+<div class='layout'><p>Doris Crockford shook Harry's hand one last time, and Hagrid led them through the bar and out into a small, walled courtyard, where there was nothing but a trash can and a few weeds.</p><p>科多利最后一次跟哈利握过手，海格就领着他穿过吧台，来到四面有围墙的小天井。这里除了一只垃圾桶和一些杂草，此外什么也没有。</p></div>	
+<div class='layout'><p> Hagrid grinned at Harry. "Told yeh, didn't I? Told yeh you was famous. Even Professor Quirrell was tremblin' ter meet yeh -- mind you, he's usually tremblin'."</p><p>海格朝哈利咧嘴一笑，「我不是对你说过了吗，是不是？对你说过你很有名气。连奇洛教授在你面前都要发抖——不过，我要提醒你，他经常发抖。」</p></div>	
+<div class='layout'><p>"Is he always that nervous?"</p><p>「他总是这么神经紧张吗？」</p></div>	
+<div class='layout'><p> "Oh, yeah. Poor bloke. Brilliant mind. He was fine while he was studyin' outta books but then he took a year off ter get some firsthand experience.... They say he met vampires in the Black Forest, and there was a nasty bit o' trouble with a hag -- never been the same since. Scared of the students, scared of his own subject now, where's me umbrella?"</p><p>「哦，是的。倒霉的家伙。头脑聪明极了，上学的时候书也读得很好。可后来他休了一年学，为了要获得一些第一手的实践经验……据说，他在黑森林里遇到了吸血鬼，一个老巫婆又使他遭到了很大麻烦，从那以后，他就完全变成了另外一个人。害怕学生，害怕自己教的科目……哦，我的伞呢？」</p></div>	
+<div class='layout'><p>Vampires? Hags? Harry's head was swimming. Hagrid, meanwhile, was counting bricks in the wall above the trash can.</p><p>吸血鬼？老巫婆？搞得哈利都晕头转向了。这时海格正在数垃圾箱上边的墙砖。</p></div>	
+<div class='layout'><p>"Three up... two across he muttered. "Right, stand back, Harry."</p><p>「往上数三块……再往横里数两块……」他小声念叨，「好了，往后站，哈利。」</p></div>	
+<div class='layout'><p>He tapped the wall three times with the point of his umbrella.</p><p>他用伞头在墙上轻轻敲了三下。</p></div>	
+<div class='layout'><p>The brick he had touched quivered -- it wriggled -- in the middle, a small hole appeared -- it grew wider and wider -- a second later they were facing an archway large enough even for Hagrid, an archway onto a cobbled street that twisted and turned out of sight.</p><p>他敲过的那块砖抖动起来，开始移动，中间的地方出现一个小洞，洞口越变越大，不多时他们面前就出现了一条足以让海格通过的宽阔的拱道，通向一条蜿蜒曲折、看不见尽头的鹅卵石铺砌的街道。</p></div>	
+<div class='layout'><p>"Welcome," said Hagrid, "to Diagon Alley."</p><p>「欢迎，」海格说，「欢迎你来到对角巷。」</p></div>	
+<div class='layout'><p>He grinned at Harry's amazement. They stepped through the archway. Harry looked quickly over his shoulder and saw the archway shrink instantly back into solid wall.</p><p>见哈利惊讶不已，海格朝他咧嘴一笑。他们沿拱道走去，哈利忙侧身回头一看，只见拱道一下子变窄了，然后又变成了原来坚实的墙壁。</p></div>	
+<div class='layout'><p>The sun shone brightly on a stack of cauldrons outside the nearest shop. Cauldrons -- All Sizes - Copper, Brass, Pewter, Silver -- Self-Stirring -- Collapsible, said a sign hanging over them.</p><p> 耀眼的阳光投射在最近一家商店门外的一摞锅上。锅的上方悬挂着一块牌： 铜制、黄铜制、锡镀制、银制大锅，型号齐全，自动搅拌，可折叠。</p></div>	
+<div class='layout'><p>"Yeah, you'll be needin' one," said Hagrid, "but we gotta get yer money first."</p><p>「哦，你需要买一只，」海格说，「不过我们先得去取钱。」</p></div>	
+<div class='layout'><p>Harry wished he had about eight more eyes. He turned his head in every direction as they walked up the street, trying to look at everything at once: the shops, the things outside them, the people doing their shopping. </p><p>哈利恨不能再多长八只眼睛。他们走在街上，他一路东张西望，希望把一切都看个通通透透：所有的店铺、店铺前的物件、购物的人们。</p></div>	
+<div class='layout'><p>A plump woman outside an Apothecary was shaking her head as they passed, saying, "Dragon liver, seventeen Sickles an ounce, they're mad...."</p><p>一个胖女人站在药店外边，当他们经过时，她摇着头说：「龙肝，十七西可一盎司，他们疯了……」</p></div>	
+<div class='layout'><p>A low, soft hooting came from a dark shop with a sign saying Eeylops Owl Emporium -- Tawny, Screech, Barn, Brown, and Snowy. </p><p>从一家晦暗的商店里传出一阵低沉轻柔的呜呜声，门前的招牌上写着：咿啦猫头鹰商店——灰林枭、鸣角枭、草枭、褐枭、雪枭。</p></div>	
+<div class='layout'><p>Several boys of about Harry's age had their noses pressed against a window with broomsticks in it.</p><p>几个与哈利年龄相仿的男孩鼻尖紧贴着橱窗玻璃，橱窗里摆着飞天扫帚。</p></div>	
+<div class='layout'><p> "Look," Harry heard one of them say, "the new Nimbus Two Thousand -- fastest ever --" </p><p>「看哪，」哈利听见一个男孩说，「那是新型的光轮2000……最高速……」</p></div>	
+<div class='layout'><p>There were shops selling robes, shops selling telescopes and strange silver instruments Harry had never seen before, windows stacked with barrels of bat spleens and eels' eyes, tottering piles of spell books, quills, and rolls of parchment, potion bottles, globes of the moon....</p><p>还有的商店出售长袍，有的出售望远镜和哈利从来见过的稀奇古怪的银器。还有的橱窗里摆满了一篓篓蝙蝠脾脏和鳗鱼眼珠，堆满了符咒书、羽毛笔、一卷卷羊皮纸、药瓶、月球仪……</p></div>	
+<div class='layout'><p>"Gringotts," said Hagrid.</p><p>「古灵阁到了。」海格说。</p></div>	
+<div class='layout'><p>They had reached a snowy white building that towered over the other little shops. Standing beside its burnished bronze doors, wearing a uniform of scarlet and gold, was -</p><p>他们来到一幢高高耸立在周围店铺之上的雪白的楼房前，亮闪闪的青铜大门旁，站着一个穿一身猩红镶金制服的身影，那不就是……</p></div>	
+<div class='layout'><p>"Yeah, that's a goblin," said Hagrid quietly as they walked up the white stone steps toward him. </p><p>「不错，那就是一个妖精。」当他们沿着白色石阶朝那人走去时，海格镇定地小声说。</p></div>	
+<div class='layout'><p>The goblin was about a head shorter than Harry. He had a swarthy, clever face, a pointed beard and, Harry noticed, very long fingers and feet. </p><p>这个妖精大约比哈利矮一头，生着一张透着聪明的黝黑面孔，尖尖的胡子，哈利发现他的手和脚都特别长。</p></div>	
+<div class='layout'><p>He bowed as they walked inside. Now they were facing a second pair of doors, silver this time, with words engraved upon them:</p><p>他们进门时，那妖精向他们鞠躬行礼。之后他们面前出现了第二道门，是银色的，两扇门上镌刻着如下的文字：</p></div>	
+<div class='layout'><p>Enter, stranger, but take heed</p><p>请进，陌生人，不过你要当心</p></div>	
+<div class='layout'><p>Of what awaits the sin of greed,</p><p>贪得无厌会是什么下场，</p></div>	
+<div class='layout'><p>For those who take, but do not earn,</p><p>一味索取，不劳而获，</p></div>	
+<div class='layout'><p>Must pay most dearly in their turn.</p><p>必将受到最严厉的惩罚，</p></div>	
+<div class='layout'><p>So if you seek beneath our floors</p><p>因此如果你想从我们的地下金库取走</p></div>	
+<div class='layout'><p>A treasure that was never yours,</p><p>一份从来不属于你的财富，</p></div>	
+<div class='layout'><p>Thief, you have been warned, beware</p><p>窃贼啊，你已经受到警告，</p></div>	
+<div class='layout'><p>Of finding more than treasure there.</p><p>当心招来的不是宝藏，而是恶报。</p></div>	
+<div class='layout'><p>"Like I said, Yeh'd be mad ter try an' rob it," said Hagrid.</p><p>「就像我说的，你要是想抢银行，那你就是疯了。」海格说。</p></div>	
+<div class='layout'><p>A pair of goblins bowed them through the silver doors and they were in a vast marble hall. About a hundred more goblins were sitting on high stools behind a long counter, scribbling in large ledgers, weighing coins in brass scales, examining precious stones through eyeglasses. There were too many doors to count leading off the hall, and yet more goblins were showing people in and out of these. Hagrid and Harry made for the counter.</p><p>两个妖精向他们鞠躬，把他们引进了一间高大的大理石厅堂。大约有百十来个妖精坐在一排长柜台后边的高凳上，有的用铜天平称钱币，有的用目镜检验宝石，一边往大账本上草草地登记。厅里有数不清的门，分别通往不同的地方，许多妖精指引来人出入这些门。海格和哈利朝柜台走去。</p></div>	
+<div class='layout'><p>"Morning," said Hagrid to a free goblin. "We've come ter take some money outta Mr. Harry Potter's safe."</p><p>「早，」海格对一个闲着的妖精说，「我们要从哈利波特先生的保险库里取一些钱。」</p></div>	
+<div class='layout'><p>"You have his key, Sir?"</p><p>「您有他的钥匙吗，先生？」</p></div>	
+<div class='layout'><p>"Got it here somewhere," said Hagrid, and he started emptying his pockets onto the counter, scattering a handful of moldy dog biscuits over the goblin's book of numbers. The goblin wrinkled his nose. Harry watched the goblin on their right weighing a pile of rubies as big as glowing coals.</p><p>「带来了。」海格说着，把衣袋里所有的东西都掏出来放到柜台上，不小心将一把发霉的狗饼干撒在了妖精的账本上。妖精皱了皱鼻子。哈利看着右边那个妖精正在称一堆跟烧红的煤块一般大小的红宝石。</p></div>	
+<div class='layout'><p>"Got it," said Hagrid at last, holding up a tiny golden key.</p><p>「找到了。」海格终于说，举起一把小金钥匙。</p></div>	
+<div class='layout'><p> The goblin looked at it closely. "That seems to be in order."</p><p>妖精认真仔细地查看了一番，「应当没有问题。」</p></div>	
+<div class='layout'><p>"An' I've also got a letter here from Professor Dumbledore," said Hagrid importantly, throwing out his chest. "It's about the YouKnow-What in vault seven hundred and thirteen."</p><p>「我这里还有一封邓布利多教授写的信，」他郑重其事地说着，挺起胸来，「是关于713号地下金库里的『那件东西』的。」</p></div>	
+<div class='layout'><p>The goblin read the letter carefully.</p><p>妖精仔细看了信。</p></div>	
+<div class='layout'><p>"Very well," he said, handing it back to Hagrid, "I will have Someone take you down to both vaults. Griphook!"</p><p>「很好，」他说着，把信交还给海格，「我找人带你们去这两个地下金库。拉环！」拉环是另外一个妖精。</p></div>	
+<div class='layout'><p>Griphook was yet another goblin. Once Hagrid had crammed all the dog biscuits back inside his pockets, he and Harry followed Griphook toward one of the doors leading off the hall.</p><p>海格把狗饼干全装回里边口袋里之后，就和哈利跟随拉环从其中一扇门走出了大厅。</p></div>	
+<div class='layout'><p>"What's the You-Know-What in vault seven hundred and thirteen?" Harry asked.</p><p>「713号地下金库里的『那件东西』是什么？」哈利问。</p></div>	
+<div class='layout'><p>"Can't tell yeh that," said Hagrid mysteriously. "Very secret. Hogwarts business. Dumbledore's trusted me. More'n my job's worth ter tell yeh that."</p><p>「这我不能告诉你。」海格神神秘秘地说，「这是绝对机密，是关于霍格沃茨的事。邓布利多信任我。这是我的工作，不值得讲给你听。」</p></div>	
+<div class='layout'><p>Griphook held the door open for them. Harry, who had expected more marble, was surprised. They were in a narrow stone passageway lit with flaming torches. It sloped steeply downward and there were little railway tracks on the floor. Griphook whistled and a small cart came hurtling up the tracks toward them. They climbed in -- Hagrid with some difficulty -- and were off.</p><p>拉环为他们俩打开门。哈利本以为又会看到许多大理石，但他吃了一惊。眼前是一道狭窄的石廊，燃烧的火把将它照得通明。石廊是一道陡峭的下坡，下面有一条小铁路。拉环吹了一声口哨，一辆小推车沿着铁道朝他们猛冲过来。他们爬上车——海格可费了不少劲——就出发了。</p></div>	
+<div class='layout'><p>At first they just hurtled through a maze of twisting passages. Harry tried to remember, left, right, right, left, middle fork, right, left, but it was impossible. The rattling cart seemed to know its own way, because Griphook wasn't steering.</p><p>起初，他们沿着迷宫似的蜿蜒曲折的甬道向前疾驰，哈利想记住走过的路，左拐，右拐，右拐，左拐，中间的岔路口，再右拐，左拐，根本记不住。咔哒咔哒响的小推车似乎认识路，根本不用拉环去驾车。</p></div>	
+<div class='layout'><p>Harry's eyes stung as the cold air rushed past them, but he kept them wide open. Once, he thought he saw a burst of fire at the end of a passage and twisted around to see if it was a dragon, but too late - - they plunged even deeper, passing an underground lake where huge stalactites and stalagmites grew from the ceiling and floor.</p><p>冰冷空气呼啸而过，把哈利的眼睛都吹痛了，但是他还是竭力睁大眼睛。一次，他似乎看到甬道尽头有一团火，便转过身去，想看看那里是不是有一条龙。但是，已经来不及了，他们已经冲到地底下更深的地方，经过一片地下湖，上边挂满了巨大的钟乳石和石笋，一直垂到地上。</p></div>	
+<div class='layout'><p>I never know," Harry called to Hagrid over the noise of the cart, "what's the difference between a stalagmite and a stalactite?"</p><p>「我一直弄不清，」哈利在咔哒咔哒的车声中，对海格喊道，「钟乳石和石笋有什么区别？」</p></div>	
+<div class='layout'><p>"Stalagmite's got an 'm' in it," said Hagrid. "An' don' ask me questions just now, I think I'm gonna be sick."</p><p>「钟乳石这个字中有个字母Ｍ。」海格说，「现在别向我提问题，我觉得要吐了。」</p></div>	
+<div class='layout'><p>He did look very green, and when the cart stopped at last beside a small door in the passage wall, Hagrid got out and had to lean against the wall to stop his knees from trembling.</p><p>他的脸色铁青，当小推车终于在甬道的一扇小门前停下来时，海格爬下车之后就紧靠在甬道墙上，这样才使双膝不至于发抖。</p></div>	
+<div class='layout'><p>Griphook unlocked the door. A lot of green smoke came billowing out, and as it cleared, Harry gasped. Inside were mounds of gold coins. Columns of silver. Heaps of little bronze Knuts.</p><p>拉环打开门锁。一股浓浓的绿烟从门里冒出来，浓烟散尽之后，哈利倒抽了一口气。里边是成堆的金币、银条和堆积如山的青铜纳特。</p></div>	
+<div class='layout'><p>"All yours," smiled Hagrid.</p><p>「这全都是你的。」海格笑着说。</p></div>	
+<div class='layout'><p>All Harry's -- it was incredible. The Dursleys couldn't have known about this or they'd have had it from him faster than blinking. How often had they complained how much Harry cost them to keep? And all the time there had been a small fortune belonging to him, buried deep under London.</p><p>全都是哈利的，真令人难以置信。德思礼夫妇对此肯定一无所知，否则用不了一眨眼的工夫，他们就会把这一切全部据为己有。他们不是经常抱怨收养哈利要花费许多钱吗？可他一直拥有一笔属于他的小小财富，深埋在伦敦地下呢。</p></div>	
+<div class='layout'><p>Hagrid helped Harry pile some of it into a bag.</p><p>海格帮着哈利把钱装进袋子里。</p></div>	
+<div class='layout'><p>"The gold ones are Galleons," he explained. "Seventeen silver Sickles to a Galleon and twenty-nine Knuts to a Sickle, it's easy enough. Right, that should be enough fer a couple o' terms, we'll keep the rest safe for yeh." He turned to Griphook. "Vault seven hundred and thirteen now, please, and can we go more slowly?"</p><p>「金币是加隆，」他解释说，「十七个银西可合一个加隆，二十九个纳特合一个西可，够简单了吧。好了，足够两学期用的了，剩下的我替你保管着。」他转身对拉环说：「现在带我们去713号地下金库吧，不过能不能麻烦你让车开得慢一些？」</p></div>	
+<div class='layout'><p>"One speed only," said Griphook.</p><p>「车速只有一个。」拉环说。</p></div>	
+<div class='layout'><p>They were going even deeper now and gathering speed. The air became colder and colder as they hurtled round tight corners. They went rattling over an underground ravine, and Harry leaned over the side to try to see what was down at the dark bottom, but Hagrid groaned and pulled him back by the scruff of his neck.</p><p>他们下到越来越深的地方，加快了速度。在急转弯的地方空气变得更寒冷刺骨。小推车咔哒咔哒响着来到一处山涧之上。哈利将身子探出车外，想看看黑洞洞的山涧里究竟有什么东西。海格哼了一声，揪住哈利的脖领，把他拽了回来。</p></div>	
+<div class='layout'><p>Vault seven hundred and thirteen had no keyhole.</p><p>713号地下金库没有钥匙孔。</p></div>	
+<div class='layout'><p>"Stand back," said Griphook importantly. He stroked the door gently with one of his long fingers and it simply melted away.</p><p>「往后站。」拉环郑重其事地说。他伸出一个长长的手指轻轻敲门，那门竟轻轻地一点一点地消失了。</p></div>	
+<div class='layout'><p>"If anyone but a Gringotts goblin tried that, they'd be sucked through the door and trapped in there," said Griphook.</p><p>「除了古灵阁的妖精之外，其他任何人要这么做，都会被门吸进去，陷在门里出不来。」拉环说。</p></div>	
+<div class='layout'><p>"How often do you check to see if anyone's inside?" Harry asked.</p><p>「你多长时间才来查看一次，看里边是否有人呢？」</p></div>	
+<div class='layout'><p>"About once every ten years," said Griphook with a rather nasty grin.</p><p>「大概十年一次吧。」拉环说，不怀好意地咧嘴一笑。</p></div>	
+<div class='layout'><p>Something really extraordinary had to be inside this top security vault, Harry was sure, and he leaned forward eagerly, expecting to see fabulous jewels at the very least -- but at first he thought it was empty. Then he noticed a grubby little package wrapped up in brown paper lying on the floor. Hagrid picked it up and tucked it deep inside his coat. Harry longed to know what it was, but knew better than to ask.</p><p>在这个超级保险的地下金库里，毫无疑问会存放着非同一般的东西。这一点哈利很肯定，于是他凑过去急于想看看，至少里边会有神奇的珠宝，可是他最初的感觉是里边什么也没有。之后，他发现地上有一个用棕色纸包着的脏兮兮的小包。海格把它捡了起来，深深地塞到外衣里边的口袋里。哈利很想知道那里边究竟是什么，但他明白问了也没用。</p></div>	
+<div class='layout'><p>"Come on, back in this infernal cart, and don't talk to me on the way back, it's best if I keep me mouth shut," said Hagrid.</p><p>「走，回去上那辆该死的车吧，回去的路上别跟我说话，我最好还是把嘴闭上。」海格说。</p></div>	
+<div class='layout'><p>One wild cart ride later they stood blinking in the sunlight outside Gringotts. Harry didn't know where to run first now that he had a bag full of money. He didn't have to know how many Galleons there were to a pound to know that he was holding more money than he'd had in his whole life -- more money than even Dudley had ever had.</p><p>又乘小车狂奔了一通之后，他们终于站在了吉灵阁外边阳光耀眼的街上了。哈利背着满满的一口袋钱，不知道先去哪里好。他用不着去计算一英镑合多少加隆，他知道他一辈子也没有过这么多钱，甚至达力也从来没有过。</p></div>	
+<div class='layout'><p>"Might as well get yer uniform," said Hagrid, nodding toward Madam Malkin's Robes for All Occasions. "Listen, Harry, would yeh mind if I slipped off fer a pick-me-up in the Leaky Cauldron? I hate them Gringotts carts." He did still look a bit sick, so Harry entered Madam Malkin's shop alone, feeling nervous.</p><p>「咱们还是先去给你买制服吧。」海格用头指着摩金夫人长袍专卖店说道，「哈利，我想去破釜酒吧喝上一杯提神饮料，你不介意吧？古灵阁那小推车太可恨了。」他看上去脸色确实还不好，所以哈利独自踏进了摩金夫人的长袍店，觉得很紧张。</p></div>	
+<div class='layout'><p>Madam Malkin was a squat, smiling witch dressed all in mauve.</p><p>摩金夫人是一个矮矮胖胖的女巫，笑容可掬，穿着一身紫衣。</p></div>	
+<div class='layout'><p>"Hogwarts, clear?" she said, when Harry started to speak. "Got the lot here -- another young man being fitted up just now, in fact. "</p><p>「是要买霍格沃茨学校的制服吗，亲爱的？」不等哈利开口说话，她就说了。「我们这里多得很，说实在的，现在就有一个年轻人在里边试衣服呢。」</p></div>	
+<div class='layout'><p>In the back of the shop, a boy with a pale, pointed face was standing on a footstool while a second witch pinned up his long black robes. Madam Malkin stood Harry on a stool next to him) slipped a long robe over his head, and began to pin it to the right length.</p><p>在店堂后边有一个面色苍白、瘦削的年轻人站在脚凳上，一个女巫正用别针别起他的黑袍。摩金夫人让哈利站到年轻人旁边的另一张脚凳上，给他套上一件长袍，用别针别出适合他的身长。</p></div>	
+<div class='layout'><p>"Hello," said the boy, "Hogwarts, too?"</p><p>「喂，」男孩说，「也是去上霍格沃茨吗？」</p></div>	
+<div class='layout'><p>"Yes," said Harry.</p><p>「是的。」哈利说。</p></div>	
+<div class='layout'><p>"My father's next door buying my books and mother's up the street looking at wands," said the boy. He had a bored, drawling voice. "Then I'm going to drag them off to took at racing brooms. I don't see why first years can't have their own. I think I'll bully father into getting me one and I'll smuggle it in somehow."</p><p>「我爸爸在隔壁帮我买书，妈妈到街上找魔杖去了。」他说话慢慢吞吞，拖着长腔，叫人讨厌。「然后我要拖他们去看飞天扫帚，我搞不懂为什么一年级新生就不能有自己的飞天扫帚。我想，我要逼着爸爸给我买一把，然后想办法偷偷带进去。」</p></div>	
+<div class='layout'><p>Harry was strongly reminded of Dudley.</p><p>这使哈利立刻联想起达力。</p></div>	
+<div class='layout'><p>"Have you got your own broom?" the boy went on.</p><p>「你有自己的飞天扫帚吗？」男孩继续说。</p></div>	
+<div class='layout'><p>"No," said Harry.</p><p>「没有。」哈利说。</p></div>	
+<div class='layout'><p>"Play Quidditch at all?"</p><p>「打过魁地奇吗？」</p></div>	
+<div class='layout'><p>"No," Harry said again, wondering what on earth Quidditch could be.</p><p>「没有。」哈利又说，弄不清魁地奇到底是什么。</p></div>	
+<div class='layout'><p>"I do -- Father says it's a crime if I'm not picked to play for my house, and I must say, I agree. Know what house you'll be in yet?"</p><p>「我打过。爸爸说，要是我没有被选入我们学院的代表队，那就太丢人了。我要说，我同意这种看法。你知道你被分到哪个学院了吗？」</p></div>	
+<div class='layout'><p>"No," said Harry, feeling more stupid by the minute.</p><p>「不知道。」哈利说，越来越觉得自己太笨了。</p></div>	
+<div class='layout'><p>"Well, no one really knows until they get there, do they, but I know I'll be in Slytherin, all our family have been -- imagine being in Hufflepuff, I think I'd leave, wouldn't you?" </p><p>「当然，在没有到校之前没有人真正知道会被分到哪个学院。不过，我知道我会被分到斯莱特林，因为我们全家都是从那里毕业的。如果被分到赫奇帕奇，我想我会退学，你说呢？」</p></div>	
+<div class='layout'><p>"Mmm," said Harry, wishing he could say something a bit more interesting.</p><p>哈利嗯了一声，希望他能说点更有趣的话题。</p></div>	
+<div class='layout'><p>"I say, look at that man!" said the boy suddenly, nodding toward the front window. </p><p>「喂，你瞧那个人！」男孩突然朝前面的窗户点头说。</p></div>	
+<div class='layout'><p>Hagrid was standing there, grinning at Harry and pointing at two large ice creams to show he couldn't come in.</p><p>海格正好站在窗口，朝哈利咧嘴笑着并指了指两个大冰淇淋，说明他不能进店。</p></div>	
+<div class='layout'><p>"That's Hagrid," said Harry, pleased to know something the boy didn't. "He works at Hogwarts."</p><p>「那是海格。」哈利说，能知道一些男孩不知道的事，觉得很开心。「他在霍格沃茨工作。」</p></div>	
+<div class='layout'><p>"Oh," said the boy, "I've heard of him. He's a sort of servant, isn't he?"</p><p>「哦，」男孩说，「我听说过他。他是做仆人的，是吧？」</p></div>	
+<div class='layout'><p>"He's the gamekeeper," said Harry. He was liking the boy less and less every second.</p><p>「他是狩猎场的看守。」哈利说。他越来越不喜欢这个男孩了。</p></div>	
+<div class='layout'><p>"Yes, exactly. I heard he's a sort of savage -- lives in a hut on the school grounds and every now and then he gets drunk, tries to do magic, and ends up setting fire to his bed."</p><p>「对，一点不错。我听说，这个人很粗野，住在校园里的一间小木屋里，时不时地喝醉酒，玩弄些法术，结果把自己的床也烧了。」</p></div>	
+<div class='layout'><p>"I think he's brilliant," said Harry coldly.</p><p>「我认为他很聪明。」哈利冷冷地说。</p></div>	
+<div class='layout'><p>"Do you?" said the boy, with a slight sneer. "Why is he with you? Where are your parents?"</p><p>「是吗？」男孩略带嘲弄的意味说，「为什么他来陪你，你的父母呢？」</p></div>	
+<div class='layout'><p>"They're dead," said Harry shortly. He didn't feel much like going into the matter with this boy.</p><p>「他们都去世了。」哈利简单地说，不想跟这个男孩谈论这件事。</p></div>	
+<div class='layout'><p>"Oh, sorry," said the other,. not sounding sorry at all. "But they were our kind, weren't they?"</p><p>「哦，对不起。」男孩说，可他的话里听不出丝毫歉意。「他们也是跟我们一类的人，是吧？」</p></div>	
+<div class='layout'><p>"They were a witch and wizard, if that's what you mean."</p><p>「他们是男女巫师，我想你大概是指这个吧。」</p></div>	
+<div class='layout'><p>"I really don't think they should let the other sort in, do you? They're just not the same, they've never been brought up to know our ways. Some of them have never even heard of Hogwarts until they get the letter, imagine. I think they should keep it in the old wizarding families. What's your surname, anyway?"</p><p>「我确实认为他们不应该让另类入学，你说呢？他们不一样，他们从小就没有接受过我们这样的教育，不了解我们的世界。想想看，他们当中有些人在没有接到信之前甚至没听说过霍格沃茨这个学校。我想学校应当只限于招收古老巫术家族出身的学生。对了，你姓什么？」</p></div>	
+<div class='layout'><p>But before Harry could answer, Madam Malkin said, "That's you done, my dear," and Harry, not sorry for an excuse to stop talking to the boy, hopped down from the footstool.</p><p> 哈利还没来得及回答，只听摩金夫人说：「已经试好了，亲爱的。」 哈利庆幸自己能找到借口不再跟那男孩聊下去，便从脚凳上跳下来。</p></div>	
+<div class='layout'><p>"Well, I'll see you at Hogwarts, I suppose," said the drawling boy.</p><p>「好，那么我们就到霍格沃茨再见了。」男孩拖长声调说。</p></div>	
+<div class='layout'><p>Harry was rather quiet as he ate the ice cream Hagrid had bought him (chocolate and raspberry with chopped nuts).</p><p>哈利在吃海格买给他的冰淇淋（巧克力加覆盆子和碎果仁冰淇淋）时一直不吭声。</p></div>	
+<div class='layout'><p>"What's up?" said Hagrid.</p><p>「怎么了？」海格问。</p></div>	
+<div class='layout'><p>"Nothing," Harry lied. </p><p>「没什么。」哈利撒谎了。</p></div>	
+<div class='layout'><p>They stopped to buy parchment and quills. Harry cheered up a bit when he found a bottle of ink that changed color as you wrote. When they had left the shop, he said, "Hagrid, what's Quidditch?"</p><p>他们停下来买羊皮纸和鹅毛笔。哈利发现了一瓶写字时会变色的墨水，心情便好了起来。当他们走出店铺时，哈利问：「海格，什么是魁地奇？」</p></div>	
+<div class='layout'><p>"Blimey, Harry, I keep forgettin' how little yeh know -- not knowin' about Quidditch!"</p><p>「哎呀，我的天哪，哈利，我忘记你知道得太少了，竟然连什么是魁地奇都不知道。」</p></div>	
+<div class='layout'><p> "Don't make me feel worse," said Harry. He told Hagrid about the pate boy in Madam Malkin's. "--and he said people from Muggle families shouldn't even be allowed in."</p><p>「劳驾，别让我的情绪变得更坏好不好？」他向海格说起在摩金夫人店里碰到的那个面色苍白的男孩。「……他还说甚至不应该准许麻瓜家庭出身的人入学……」</p></div>	
+<div class='layout'><p>"Yer not from a Muggle family. If he'd known who yeh were -- he's grown up knowin' yer name if his parents are wizardin' folk. You saw what everyone in the Leaky Cauldron was like when they saw yeh. Anyway, what does he know about it, some o' the best I ever saw were the only ones with magic in 'em in a long line 0' Muggles -- look at yer mum! Look what she had fer a sister!"</p><p>「你又不是麻瓜家庭出来的。如果他父母是男女巫师——你在破釜酒吧就已经看到了——那么他就该是听着你的名字长大的。其实，他又知道多少，我看见许多最优秀的巫师都是出自麻瓜家庭里惟一懂法术的人——看看你母亲！看看她有一个什么样的姐姐！」</p></div>	
+<div class='layout'><p>"So what is Quidditch?"</p><p>「那魁地奇到底是什么呢？」</p></div>	
+<div class='layout'><p>"It's our sport. Wizard sport. It's like -- like soccer in the Muggle world -- everyone follows Quidditch -- played up in the air on broomsticks and there's four balls -- sorta hard ter explain the rules." </p><p>「那是我们的一种运动，一种巫师们玩的球类运动。它像——麻瓜世界的足球——人人都喜欢玩魁地奇——骑飞天扫帚在空中打，有四个球——至于玩球的规则嘛，解释起来还真有点儿困难。」</p></div>	
+<div class='layout'><p>And what are Slytherin and Hufflepuff?</p><p>「那么斯莱特林和赫奇帕奇又是什么呢？」</p></div>	
+<div class='layout'><p>"School houses. There's four. Everyone says Hufflepuff are a lot o' duffers, but --"</p><p>「那是学院的名字。学校一共有四个学院。都说赫奇帕奇有许多饭桶，不过……」</p></div>	
+<div class='layout'><p>"I bet I'm in Hufflepuff" said Harry gloomily.</p><p>「我想，我一定会被分到赫奇帕奇了。」哈利怏怏不乐地说。</p></div>	
+<div class='layout'><p>"Better Hufflepuff than Slytherin," said Hagrid darkly. "There's not a single witch or wizard who went bad who wasn't in Slytherin. You-Know-Who was one."</p><p>「宁愿进赫奇帕奇，也不要进斯莱特林。」海格脸色阴沉地说，「没有一个后来变坏的男女巫师不是从斯莱特林出来的，神秘人就是其中的一个。」</p></div>	
+<div class='layout'><p>"Vol-, sorry - You-Know-Who was at Hogwarts?"</p><p>「伏……对不起……神秘人也在霍格沃茨上过学？」</p></div>	
+<div class='layout'><p>"Years an' years ago," said Hagrid.</p><p>「很多很多年以前了。」海格说。</p></div>	
+<div class='layout'><p>They bought Harry's school books in a shop called Flourish and Blotts where the shelves were stacked to the ceiling with books as large as paving stones bound in leather; books the size of postage stamps in covers of silk; books full of peculiar symbols and a few books with nothing in them at all. Even Dudley, who never read anything, would have been wild to get his hands on some of these. Hagrid almost had to drag Harry away from Curses and Countercurses (Bewitch Your Friends and Befuddle Your Enemies with the Latest Revenges: Hair Loss, Jelly-Legs, Tongue- Tying and Much, Much More) by Professor Vindictus Viridian.</p><p>他们在一家名叫丽痕的书店里买了哈利上学要用的课本。这里的书架上摆满了书，一直到天花板上，有大到像铺路石板的皮面精装书；也有邮票大小的绢面书；有的书里写满了各种奇特的符号，还有少数则是无字书。即使从来不读书的达力要是有幸能得到其中的一两本，也一定会欣喜若狂的。哈利拿起一本温迪克教授著的《诅咒与反诅咒》（用最新的复仇术捉弄你的朋友，蛊惑你的敌人：脱发、打折腿、绑舌头及其他许许多多手法），海格好不容易才把哈利从这本书前拖开。</p></div>	
+<div class='layout'><p>"I was trying to find out how to curse Dudley."</p><p>「我想找出办法来诅咒达力。」</p></div>	
+<div class='layout'><p>"I'm not sayin' that's not a good idea, but yer not ter use magic in the Muggle world except in very special circumstances," said Hagrid. "An' anyway, yeh couldn' work any of them curses yet, yeh'll need a lot more study before yeh get ter that level."</p><p>「这主意不坏，但你不能在麻瓜世界使用魔法，除非在很特殊的情况下。」海格说，「不过，你现在用不上那些咒语，你还需要学习很多东西，才能达到那个水平。」</p></div>	
+<div class='layout'><p>Hagrid wouldn't let Harry buy a solid gold cauldron, either ("It says pewter on yer list"), but they got a nice set of scales for weighing potion ingredients and a collapsible brass telescope. Then they visited the Apothecary, which was fascinating enough to make up for its horrible smell, a mixture of bad eggs and rotted cabbages. Barrels of slimy stuff stood on the floor; jars of herbs, dried roots, and bright powders lined the walls; bundles of feathers, strings of fangs, and snarled claws hung from the ceiling. While Hagrid asked the man behind the counter for a supply of some basic potion ingredients for Harry, Harry himself examined silver unicorn horns at twenty-one Galleons each and minuscule, glittery-black beetle eyes (five Knuts a scoop).</p><p>海格也不让哈利买一只纯金锅（购物单上开的是锡镀锅），不过他们买了一台计量药品的质量很好的天平和一架可折叠的黄铜望远镜。随后他们光顾了一家药店，那里散发出一股臭鸡蛋和烂卷心菜叶的刺鼻气味。但药店却十分神奇，地上放着一桶桶黏糊糊的东西，顺墙摆着一罐罐药草、干草根和颜色鲜亮的各种粉末，天花板上挂着成捆的羽毛、成串的尖牙和毛爹爹的爪子。当海格向柜台后边的营业员买一份标准剂量的各种药粉时，哈利正在细看一个用独角野牛角制成的号角，每个价值二十一加隆，以及乌黑、亮闪闪的甲虫小眼珠（五纳特一勺）。</p></div>	
+<div class='layout'><p>Outside the Apothecary, Hagrid checked Harry's list again.</p><p>他们走出药店后，海格又核对了一遍哈利的购物单。</p></div>	
+<div class='layout'><p>"Just yer wand left - A yeah, an' I still haven't got yeh a birthday present."</p><p>「就剩下你的魔杖了……哦，对了，我还没给你买一份生日礼物呢。」</p></div>	
+<div class='layout'><p>Harry felt himself go red.</p><p>哈利觉得自己脸红了。</p></div>	
+<div class='layout'><p>"You don't have to --"</p><p>「您不必了……」</p></div>	
+<div class='layout'><p>"I know I don't have to. Tell yeh what, I'll get yer animal. Not a toad, toads went outta fashion years ago, yeh'd be laughed at - an' I don' like cats, they make me sneeze. I'll get yer an owl. All the kids want owls, they're dead useful, carry yer mail an' everythin'."</p><p>「我知道不用买。是这样，我要送你一只动物，不是蟾蜍，蟾蜍好多年前就不时兴了，人家会笑话你的。我也不喜欢猫，猫总惹我打喷嚏。我给你弄一只猫头鹰。孩子们都喜欢猫头鹰，它能替你送信，送包裹。」</p></div>	
+<div class='layout'><p>Twenty minutes later, they left Eeylops Owl Emporium, which had been dark and full of rustling and flickering, jewel-bright eyes. Harry now carried a large cage that held a beautiful snowy owl, fast asleep with her head under her wing. He couldn't stop stammering his thanks, sounding just like Professor Quirrell.</p><p>二十分钟后，他们离开了黑洞洞的咿啦猫头鹰商店，离开了噗噗的拍翅声和宝石般闪光的眼睛，哈利这时手里提着一只大鸟笼，里边装着一只漂亮的雪枭，头埋在翅膀底下睡得正香。哈利忍不住结结巴巴地一再道谢，听起来像奇洛教授在说话。</p></div>	
+<div class='layout'><p>"Don' mention it," said Hagrid gruffly. "Don' expect you've had a lotta presents from them Dursleys. Just Ollivanders left now - only place fer wands, Ollivanders, and yeh gotta have the best wand."</p><p>「不用谢，」海格声音沙哑地说，「德思礼夫妇是不会送给你礼物的。现在就剩下奥利凡德没去了，只有奥利凡德一家卖魔杖，到那里你一定能买到一根最好的魔杖。」</p></div>	
+<div class='layout'><p>A magic wand... this was what Harry had been really looking forward to.</p><p>魔杖——这正是哈利梦寐以求的。</p></div>	
+<div class='layout'><p>The last shop was narrow and shabby. Peeling gold letters over the door read Ollivanders: Makers of Fine Wands since 382 B.C. A single wand lay on a faded purple cushion in the dusty window.</p><p>最后一家商店又小又破，门上的金字招牌已经剥落，上边写着：奥利凡德：自公元前三百八十二年即制作精良魔杖。尘封的橱窗里，褪色的紫色软垫上孤零零地摆着一根魔杖。</p></div>	
+<div class='layout'><p>A tinkling bell rang somewhere in the depths of the shop as they stepped inside. It was a tiny place, empty except for a single, spindly chair that Hagrid sat on to wait. Harry felt strangely as though he had entered a very strict library; he swallowed a lot of new questions that had just occurred to him and looked instead at the thousands of narrow boxes piled neatly right up to the ceiling. For some reason, the back of his neck prickled. The very dust and silence in here seemed to tingle with some secret magic.</p><p>他们进店时，店堂后边的什么地方传来了阵阵叮叮当当的铃声。店堂很小，除了一张长椅之外，别的什么也没有。海格坐到长椅上等候，哈利有一种奇怪的感觉，仿佛来到了一家管理严格的图书馆。他强压住脑海里刚刚产生的许许多多新问题，开始看几乎码到天花板的几千个狭长的纸盒。不知为什么，他突然感到心里发毛。这里的尘埃和肃静似乎都使人感到暗藏着神秘的魔法。</p></div>	
+<div class='layout'><p>"Good afternoon," said a soft voice. Harry jumped. Hagrid must have jumped, too, because there was a loud crunching noise and he got quickly off the spindly chair.</p><p>「下午好。」一个轻柔的声音说，把哈利吓了一跳。海格也吓得不轻，因为这时突然传来一阵响亮的咔嚓咔嚓的声音，他连忙从长椅上站起来。</p></div>	
+<div class='layout'><p>An old man was standing before them, his wide, pale eyes shining like moons through the gloom of the shop.</p><p>一个老头站在他们面前，他那对颜色很浅的大眼睛在暗淡的店铺里像两轮闪亮的月亮。</p></div>	
+<div class='layout'><p>"Hello," said Harry awkwardly.</p><p>「你好。」哈利拘谨地说。</p></div>	
+<div class='layout'><p>"Ah yes," said the man. "Yes, yes. I thought I'd be seeing you soon. Harry Potter." It wasn't a question. "You have your mother's eyes. It seems only yesterday she was in here herself, buying her first wand. Ten and a quarter inches long, swishy, made of willow. Nice wand for charm work."</p><p>「哦，是的，」老头说，「是的，是的，我知道我很快就会见到你，哈利波特，这不成问题。你的眼睛跟你母亲的一样。当年她到这里来买走她的第一根魔杖，这简直像昨天的事。十又四分之一英寸长，柳条做的，挥起来飕飕响，是一根施魔法的好魔杖。」</p></div>	
+<div class='layout'><p>Mr. Ollivander moved closer to Harry. Harry wished he would blink. Those silvery eyes were a bit creepy.</p><p>奥利凡德先生走到哈利跟前，哈利希望他能眨眨眼，他那对银白色的眼睛使哈利汗毛直竖。</p></div>	
+<div class='layout'><p>"Your father, on the other hand, favored a mahogany wand. Eleven inches. Pliable. A little more power and excellent for transfiguration. Well, I say your father favored it -- it's really the wand that chooses the wizard, of course."</p><p>「你父亲就不一样了，他喜欢桃花心木魔杖。十一英寸长，柔韧，力量更强些，用于变形术是最好不过了。我说你父亲喜欢它——实际上，当然是魔杖在选择它的巫师呢。」</p></div>	
+<div class='layout'><p>Mr. Ollivander had come so close that he and Harry were almost nose to nose. Harry could see himself reflected in those misty eyes.</p><p>奥利凡德先生凑得离哈利越来越近，鼻子都要贴到哈利脸上了。哈利已经看到老头混浊的眼睛里映出了自己的影子。</p></div>	
+<div class='layout'><p> "And that's where..." Mr. Ollivander touched the lightning scar on Harry's forehead with a long, white finger.</p><p>「哦，这就是……」奥利凡德先生用苍白的长手指抚摸着哈利额上那道闪电形的伤疤。</p></div>	
+<div class='layout'><p>"I'm sorry to say I sold the wand that did it," he said softly. "Thirteen-and-a-half inches. Yew. Powerful wand, very powerful, and in the wrong hands... well, if I'd known what that wand was going out into the world to do...."</p><p>「很对不起，这是我卖出的一根魔杖干的。」他柔声细语说，「十三英寸半长，紫杉木的。力量很强，强极了，却落到了坏人手里……要是早知道这根魔杖做成后，会做出这样的事……」</p></div>	
+<div class='layout'><p>He shook his head and then, to Harry's relief, spotted Hagrid.</p><p>他摇摇头，接着一眼认出了海格，这使哈利松了一口气。</p></div>	
+<div class='layout'><p>"Rubeus! Rubeus Hagrid! How nice to see you again.... Oak, sixteen inches, rather bendy, wasn't it?"</p><p>「鲁伯！鲁伯海格！又见到您了，真是太高兴啦……橡木的，十六英寸长，有点儿弯，对吧？」</p></div>	
+<div class='layout'><p>"It was, sir, yes," said Hagrid.</p><p>「不错，先生。」海格说。</p></div>	
+<div class='layout'><p>"Good wand, that one. But I suppose they snapped it in half when you got expelled?" said Mr. Ollivander, suddenly stern.</p><p>「那可是一根很好的魔杖啊。可我想，他们在开除你的时候，准被他们撅折了吧？」奥利凡德先生说，突然变得严肃起来。</p></div>	
+<div class='layout'><p>"Er -- yes, they did, yes," said Hagrid, shuffling his feet. "I've still got the pieces, though," he added brightly.</p><p>「啊，不错，是被他们撅折了，是的。」海格慢慢地移动着脚步说道。「撅折的魔杖我还留着呢。」他又高兴地说。</p></div>	
+<div class='layout'><p>"But you don't use them?" said Mr. Ollivander sharply.</p><p>「可你不用它了吧？」奥利凡德先生急忙问。</p></div>	
+<div class='layout'><p>"Oh, no, sit," said Hagrid quickly. </p><p>「哦，不用了，先生。」海格忙回答。</p></div>	
+<div class='layout'><p>Harry noticed he gripped his pink umbrella very tightly as he spoke.</p><p>哈利注意到海格在回答时紧紧抓住了那柄粉红伞。</p></div>	
+<div class='layout'><p>"Hmmm," said Mr. Ollivander, giving Hagrid a piercing look. "Well, now -- Mr. Potter. Let me see." He pulled a long tape measure with silver markings out of his pocket. "Which is your wand arm?"</p><p>「唔……」奥利凡德先生说着，用锐利的目光扫了他一眼。「好了，波特先生，来吧。让我看看。」他从衣袋里掏出一长条印有银色刻度的卷尺。「你用哪只胳膊使魔杖？」</p></div>	
+<div class='layout'><p>"Er -- well, I'm right-handed," said Harry.</p><p>「哦……哦，我习惯用右手。」哈利说。</p></div>	
+<div class='layout'><p>"Hold out your arm. That's it." He measured Harry from shoulder to finger, then wrist to elbow, shoulder to floor, knee to armpit and round his head. As he measured, he said, "Every Ollivander wand has a core of a powerful magical substance, Mr. Potter. We use unicorn hairs, phoenix tail feathers, and the heartstrings of dragons. No two Ollivander wands are the same, just as no two unicorns, dragons, or phoenixes are quite the same. And of course, you will never get such good results with another wizard's wand."</p><p>「把胳膊抬起来。好。」他为哈利量尺寸，先从肩头到指尖，之后，又从腕到肘，肩到地板，膝到腋下，最后量头围。他一边量，一边说：「每一根奥利凡德魔杖都具有超强的魔法物质，这也就是它的精髓所在，波特先生。我们用的是独角兽毛、凤凰尾羽和龙的神经。每一根奥利凡德魔杖都是独一无二的，因为没有两只完全相同的独角兽、龙或凤凰。当然，你如果用了本应属于其他巫师的魔杖，就绝不会有这样好的效果了。」</p></div>	
+<div class='layout'><p>Harry suddenly realized that the tape measure, which was measuring between his nostrils, was doing this on its own. Mr. Ollivander was flitting around the shelves, taking down boxes.</p><p>当量到两鼻孔间的距离时，哈利突然发现竟是卷尺在自动操作。奥利凡德先生正在货架间穿梭，忙着选出一些长匣子往下搬。</p></div>	
+<div class='layout'><p>"That will do," he said, and the tape measure crumpled into a heap on the floor. "Right then, Mr. Potter. Try this one. Beechwood and dragon heartstring. Nine inches. Nice and flexible. just take it and give it a wave."</p><p>「好了。」他说，卷尺滑落到地上卷成一团。「那么，波特先生，试试这一根。山毛榉木和蛇神经做的，九英寸长。不错，很柔韧。你挥一下试试。」</p></div>	
+<div class='layout'><p>Harry took the wand and (feeling foolish) waved it around a bit, but Mr. Ollivander snatched it out of his hand almost at once.</p><p>哈利接过魔杖（心里觉得有点冒傻气），他刚挥了一下，奥利凡德先生就立刻把魔杖从他手里夺了过去。</p></div>	
+<div class='layout'><p>"Maple and phoenix feather. Seven inches. Quite whippy. Try --"</p><p>「槭木的，凤凰羽毛，七英寸长，弹性不错，试试看……」</p></div>	
+<div class='layout'><p>Harry tried -- but he had hardly raised the wand when it, too, was snatched back by Mr. Ollivander.</p><p>哈利刚要试，可还没来得及举起来，魔杖就又被奥利凡德先生夺走了。</p></div>	
+<div class='layout'><p>"No, no -here, ebony and unicorn hair, eight and a half inches, springy. Go on, go on, try it out."</p><p>「不，不……试试这根，用黑檀木和独角兽毛做的，八英寸半长，弹性很强。来吧，来吧，试试这根。」</p></div>	
+<div class='layout'><p>Harry tried. And tried. He had no idea what Mr. Ollivander was waiting for. The pile of tried wands was mounting higher and higher on the spindly chair, but the more wands Mr. Ollivander pulled from the shelves, the happier he seemed to become.</p><p>哈利试了一根又一根。他一点也不明白奥利凡德先生认为什么样的才合适。试过的魔杖都堆放在长椅上，越堆越高。但奥利凡德先生从货架上抽出的魔杖越多，他似乎显得越高兴。</p></div>	
+<div class='layout'><p>"Tricky customer, eh? Not to worry, we'll find the perfect match here somewhere -- I wonder, now - - yes, why not -- unusual combination -- holly and phoenix feather, eleven inches, nice and supple."</p><p>「一位挑剔的顾客吧，嗯？不要紧，我想，这里总能找到一款最理想，最完美，最适合你的……让我想想看……哦，有了，怎么会没有呢……非凡的组合，冬青木，凤凰羽毛，十一英寸长。不错，也柔韧。」</p></div>	
+<div class='layout'><p>Harry took the wand. He felt a sudden warmth in his fingers. He raised the wand above his head, brought it swishing down through the dusty air and a stream of red and gold sparks shot from the end like a firework, throwing dancing spots of light on to the walls. </p><p>哈利接过魔杖，感到指尖突然一热。他把魔杖高举过头顶，飕的一声向下一挥，划过尘土飞扬的空气，只见一道红光，魔杖头上像烟花一样金星四射，跳动的光斑投到四壁上。</p></div>	
+<div class='layout'><p>Hagrid whooped and clapped and Mr. Ollivander cried, "Oh, bravo! Yes, indeed, oh, very good. Well, well, well... how curious... how very curious... "</p><p>海格拍手喝彩，奥利凡德先生大声喊起来：「哦，好极了，哦，真的，太好了。哎呀，哎呀，哎呀……太奇妙了……真是太奇妙了……」</p></div>	
+<div class='layout'><p>He put Harry's wand back into its box and wrapped it in brown paper, still muttering, "Curious... curious..</p><p>他把哈利的魔杖装到匣子里，用棕色纸包好，嘴里还不停地说：「奇妙……奇妙……」</p></div>	
+<div class='layout'><p>"Sorry," said Harry, "but what's curious?"</p><p>「对不起，」哈利说，「什么地方让您觉得奇妙？」</p></div>	
+<div class='layout'><p>Mr. Ollivander fixed Harry with his pale stare.</p><p>奥利凡德先生用苍白无色的眼睛注视着哈利。</p></div>	
+<div class='layout'><p>"I remember every wand I've ever sold, Mr. Potter. Every single wand. It so happens that the phoenix whose tail feather is in your wand, gave another feather -- just one other. It is very curious indeed that you should be destined for this wand when its brother why, its brother gave you that scar."</p><p>「我卖出的每根魔杖我都记得，波特先生。每根魔杖我都记得。是这样，同一只凤凰的两根尾羽，一根做了这根魔杖，另一根尾羽做了另外一根魔杖。你注定要用这根魔杖，而它的兄弟……咳，正是它的兄弟给你落下了那道伤疤。」</p></div>	
+<div class='layout'><p>Harry swallowed.</p><p>哈利倒抽了一口气。</p></div>	
+<div class='layout'><p>"Yes, thirteen-and-a-half inches. Yew. Curious indeed how these things happen. The wand chooses the wizard, remember.... I think we must expect great things from you, Mr. Potter.... After all, He- Who-Must-Not-Be-Named did great things -- terrible, yes, but great."</p><p>「不错，十三英寸半长，紫杉木的。怎么会有这样的事，真是太奇妙了。记住，是魔杖选择巫师……我想，你会成就一番大事业的，波特先生……不管怎么说，我不能提名的那个神秘人就做了大事……尽管可怕，但还是大事。」</p></div>	
+<div class='layout'><p>Harry shivered. He wasn't sure he liked Mr. Ollivander too much. He paid seven gold Galleons for his wand, and Mr. Ollivander bowed them from his shop.</p><p>哈利顿感毛骨悚然。他不敢肯定自己是否喜欢这位奥利凡德先生了。他付给奥利凡德先生七个加隆买下魔杖，奥利凡德先生鞠躬把他们送出店门。</p></div>	
+<div class='layout'><p>The late afternoon sun hung low in the sky as Harry and Hagrid made their way back down Diagon Alley, back through the wall, back through the Leaky Cauldron, now empty. Harry didn't speak at all as they walked down the road; he didn't even notice how much people were gawking at them on the Underground, laden as they were with all their funny-shaped packages, with the snowy owl asleep in its cage on Harry's lap. Up another escalator, out into Paddington station; Harry only realized where they were when Hagrid tapped him on the shoulder.</p><p>傍晚，哈利和海格踏上回对角巷的路时，太阳已快下山了。他们穿过墙，经过已空无一人的破釜酒吧，走上大路。一路上，哈利一言不发，在地铁上他甚至没有留意他们提着大大小小、奇形怪状的包裹。他怀里还抱着一只熟睡的雪枭，这招来了不少好奇的目光。他们乘另一部自动扶梯，来到帕丁顿车站。海格拍拍哈利的肩膀，哈利这才猛地意识到他们在什么地方了。</p></div>	
+<div class='layout'><p>"Got time fer a bite to eat before yer train leaves," he said.</p><p>「开车前，我们还有时间吃点儿东西。」他说。</p></div>	
+<div class='layout'><p>He bought Harry a hamburger and they sat down on plastic seats to eat them. Harry kept looking around. Everything looked so strange, somehow.</p><p>他给哈利买了个汉堡，他们就坐在塑料椅上吃起来。哈利一直在东张西望，不管怎么说，总觉得周围的一切都很奇怪。</p></div>	
+<div class='layout'><p>"You all right, Harry? Yer very quiet," said Hagrid.</p><p>「你没什么吧，哈利？你一句话也不说。」海格说。</p></div>	
+<div class='layout'><p>Harry wasn't sure he could explain. He'd just had the best birthday of his life -- and yet -- he chewed his hamburger, trying to find the words.</p><p>哈利不知道自己能不能讲清楚。他刚刚过了一个生平最好的生日，可是……他嚼着汉堡，一边寻思该怎么说。</p></div>	
+<div class='layout'><p>"Everyone thinks I'm special," he said at last. "All those people in the Leaky Cauldron, Professor Quirrell, Mr. Ollivander... but I don't know anything about magic at all. How can they expect great things? I'm famous and I can't even remember what I'm famous for. I don't know what happened when Vol-, sorry -- I mean, the night my parents died."</p><p>「人人都觉得我很特别，」他终于说，「破釜酒吧的那些人、奇洛教授、奥利凡德先生……可是我对魔法一窍不通。他们怎么能期望我成就大事呢？我有名气，可那些让我出名的事，我甚至一点儿也不记得了。在伏……对不起……我是说，我父母去世的那天夜里，我根本不知道发生了什么事。」</p></div>	
+<div class='layout'><p>Hagrid leaned across the table. Behind the wild beard and eyebrows he wore a very kind smile.</p><p>海格隔着桌子探过身来。他那蓬乱的胡须和眉毛下边露出慈祥的微笑。</p></div>	
+<div class='layout'><p>"Don' you worry, Harry. You'll learn fast enough. Everyone starts at the beginning at Hogwarts, you'll be just fine. just be yerself. I know it's hard. Yeh've been singled out, an' that's always hard. But yeh'll have a great time at Hogwarts -- I did -- still do, 'smatter of fact."</p><p>「别担心，哈利。你很快就会学会的。在霍格沃茨，人人都是从基础开始学的。你会很好的。打起精神来。我知道这对于你很难。你一直孤零零一个人，总是很难过的。不过你在霍格沃茨一定会很愉快，像我……说实话……过去和现在都很愉快。」</p></div>	
+<div class='layout'><p>Hagrid helped Harry on to the train that would take him back to the Dursleys, then handed him an envelope.</p><p>海格把哈利送上可以回德思礼家的火车，然后递给他一封信。</p></div>	
+<div class='layout'><p>"Yer ticket fer Hogwarts, " he said. "First o' September -- King's Cross -- it's all on yer ticket. Any problems with the Dursleys, send me a letter with yer owl, she'll know where to find me.... See yeh soon, Harry."</p><p>「这是你去霍格沃茨的车票。」他说，「九月一日——国王十字车站——票上都有。德思礼夫妇要是欺负你，就写封信让猫头鹰给我送来，它知道到什么地方去找我……下次再见了，哈利。」</p></div>	
+<div class='layout'><p>The train pulled out of the station. Harry wanted to watch Hagrid until he was out of sight; he rose in his seat and pressed his nose against the window, but he blinked and Hagrid had gone.</p><p>火车驶出了车站。哈利想目送海格离去，他跪到座位上，鼻子紧贴着车窗，一眨眼工夫，海格就不见了。</p></div>	
+<div class='layout'><p> </p><p>1 指男女巫师乘骑的扫帚。</p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,534 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<div class='layout'><p>15</p><p></p></div>	
+<div class='layout'><p>CHAPTER FIFTEEN: THE FORIBIDDEN FOREST</p><p>第15章 禁林</p></div>	
+<div class='layout'><p>Things couldn't have been worse.</p><p></p></div>	
+<div class='layout'><p>Filch took them down to Professor McGonagall's study on the first floor, where they sat and waited without saying a word to each other. Hermione was trembling. Excuses, alibis, and wild cover- up stories chased each other around Harry's brain, each more feeble than the last. He couldn't see how they were going to get out of trouble this time. They were cornered. How could they have been so stupid as to forget the cloak? There was no reason on earth that Professor McGonagall would accept for their being out of bed and creeping around the school in the dead of night, let alone being up the tallest astronomy tower, which was out-of-bounds except for classes. Add Norbert and the invisibility cloak, and they might as well be packing their bags already.</p><p>费尔奇把他们领到二楼麦格教授的书房，他们坐在那里，一句话也不说。赫敏浑身发抖。哈利的脑海里飞快地设想出许多为自己辩解的借口和理由，还编了一些谎话想蒙混过关，但发现它们一个比一个站不住脚。他不知道这次他们有什么办法摆脱困境。他们走投无路了。唉，他们怎么就这么糊涂，居然把隐形衣给忘了！无论他们摆出什么理由，麦格教授都不会原谅他们深更半夜不睡觉，在学校里鬼鬼祟祟地游荡，而且还爬到了最高的天文塔上，那里除了平常上课是不能上去的。再加上诺伯和隐形衣，他们早就该收拾行李回家了。</p></div>	
+<div class='layout'><p>Had Harry thought that things couldn't have been worse? He was wrong. When Professor McGonagall appeared, she was leading Neville.</p><p>哈利认为事情糟得不能再糟吗？他错了。当麦格教授回来时，她后面跟着纳威。</p></div>	
+<div class='layout'><p>"Harry!" Neville burst Out, the moment he saw the other two. "I was trying to find you to warn you, I heard Malfoy saying he was going to catch you, he said you had a drag --"</p><p>「哈利！」纳威一看见他们两个，就脱口而出，「我一直在找你们，想给你们提个醒儿，我听见马尔福说他要来抓你，他说你有一条龙——」</p></div>	
+<div class='layout'><p>Harry shook his head violently to shut Neville up, but Professor McGonagall had seen. She looked more likely to breathe fire than Norbert as she towered over the three of them.</p><p>哈利拼命摆手，不让纳威再说下去，可是被麦格教授看见了。她高高耸立在他们三个人面前，似乎比诺伯更有可能喷出火来。</p></div>	
+<div class='layout'><p>"I would never have believed it of any of you. Mr. Filch says you were up in the astronomy tower. It's one o'clock in the morning. Explain yourselves."</p><p>「我真不敢相信是你们几个人。费尔奇说你们到天文塔上去了。别忘了现在是凌晨一点钟。自己解释一下吧。」</p></div>	
+<div class='layout'><p>It was the first time Hermione had ever failed to answer a teacher's question. She was staring at her slippers, as still as a statue.</p><p>这是赫敏第一次回答不出老师的提问。她低头盯着自己的拖鞋，像雕像一样一动不动。</p></div>	
+<div class='layout'><p>"I think I've got a good idea of what's been going on," said Professor McGonagall. "It doesn't take a genius to work it out. You fed Draco Malfoy some cock-and-bull story about a dragon, trying to get him out of bed and into trouble. I've already caught him. I suppose you think it's funny that Longbottom here heard the story and believed it, too?"</p><p>「我认为我完全明白这是怎么回事，」麦格教授说，「要弄清楚这件事，并不需要脑筋有多么灵光。你们凭空编出一套谎话告诉德拉科马尔福，说有一条龙什么的，想把他从床上骗出来，害他倒霉。我已经抓住他了。没想到隆巴顿也听到了这套谎话并且信以为真，我猜你们觉得这很有趣吧？」</p></div>	
+<div class='layout'><p>Harry caught Neville's eye and tried to tell him without words that this wasn't true, because Neville was looking stunned and hurt. Poor, blundering Neville -- Harry knew what it must have cost him to try and find them in the dark, to warn them.</p><p>哈利捕捉到纳威的目光，想用无声的语言告诉他不是这么回事，因为纳威显得既吃惊又委屈。可怜的、莽莽撞撞的纳威——哈利知道，纳威在黑夜里跑出来寻找他们，要给他们提个醒，这需要多么大的勇气啊。</p></div>	
+<div class='layout'><p>"I'm disgusted," said Professor McGonagall. "Four students out of bed in one night! I've never heard of such a thing before! You, Miss Granger, I thought you had more sense. As for you, Mr. Potter, I thought Gryffindor meant more to you than this. All three of you will receive detentions -- yes, you too, Mr. Longbottom, nothing gives you the right to walk around school at night, especially these days, it's very dangerous -- and fifty points will be taken from Gryffindor."</p><p>「我感到很气愤，」麦格教授说，「一晚上有四个学生不睡觉！这种事情我以前还从未听说过！你，格兰杰小姐，我原以为你头脑更清醒一些。至于你，波特先生，我原以为你是十分看重格兰芬多荣誉的。你们三个都要被关禁闭——是的，还有你，隆巴顿先生，不管是怎么回事，你都无权半夜三更在学校里乱逛，这是非常危险的——格兰芬多被扣掉五十分。」</p></div>	
+<div class='layout'><p>"Fifty?" Harry gasped -- they would lose the lead, the lead he'd won in the last Quidditch match.</p><p>「五十？」哈利觉得喘不过气来——他们的领先地位保不住了，这名次还是他在上次魁地奇比赛中好不容易赢来的。</p></div>	
+<div class='layout'><p>"Fifty points each," said Professor McGonagall, breathing heavily through her long, pointed nose.</p><p>「每人五十分。」麦格教授说，长长的尖鼻子喷着粗气。</p></div>	
+<div class='layout'><p>"Professor -- please</p><p>「教授——求求您——」』</p></div>	
+<div class='layout'><p>"You can't --"</p><p>「您不能——」</p></div>	
+<div class='layout'><p>"Don't tell me what I can and can't do, Potter. Now get back to bed, all of you. I've never been more ashamed of Gryffindor students."</p><p>「不用你来告诉我说我能做什么，不能做什么，波特。好了，你们都上床去吧。我从未像现在这样为格兰芬多的学生感到脸红。」</p></div>	
+<div class='layout'><p>A hundred and fifty points lost. That put Gryffindor in last place. In one night, they'd ruined any chance Gryffindor had had for the house cup. Harry felt as though the bottom had dropped out of his stomach. How could they ever make up for this?</p><p>一下子丢掉了一百五十分。这样一来，格兰芬多就落到最后一名了。仅仅一个晚上，他们就摧毁了格兰芬多赢得学院杯的所有希望。哈利觉得心里一下子空落落的。这样大的损失，他们还有没有可能弥补呢？</p></div>	
+<div class='layout'><p>Harry didn't sleep all night. He could hear Neville sobbing into his pillow for what seemed like hours. Harry couldn't think of anything to say to comfort him. He knew Neville, like himself, was dreading the dawn. What would happen when the rest of Gryffindor found out what they'd done?</p><p>哈利整夜无法入睡。他可以听见纳威伏在枕头上哭泣，哭了很长时间。哈利不知道说什么话来安慰他。他知道纳威像他自己一样，都很害怕黎明的到来。当格兰芬多的其他学生知道了他们做的好事，会怎么样呢？</p></div>	
+<div class='layout'><p>At first, Gryffindors passing the giant hourglasses that recorded the house points the next day thought there'd been a mistake. How could they suddenly have a hundred and fifty points fewer than yesterday? And then the story started to spread: Harry Potter, the famous Harry Potter, their hero of two Quidditch matches, had lo st them all those points, him and a couple of other stupid first years.</p><p>第二天，格兰芬多的学生们经过记录学院杯比分的巨大沙漏时，还以为出了什么差错。他们怎么可能突然比昨天少了一百五十分呢？随后，事情就慢慢传开了：哈利·波特，大名鼎鼎的哈利·波特，两次魁地奇比赛的英雄，竟然害得他们丢掉了这么多分数，他，还有另外两个愚蠢的一年级学生。</p></div>	
+<div class='layout'><p>From being one of the most popular and admired people at the school, Harry was suddenly the most hated. Even Ravenclaws and Hufflepuffs turned on him, because everyone had been longing to see Slytherin lose the house cup. Everywhere Harry went, people pointed and didn't trouble to lower their voices as they insulted him. Slytherins, on the other hand, clapped as he walked past them, whistling and cheering, "Thanks Potter, we owe you one!"</p><p>哈利原是学校里最受欢迎、最受敬佩的人物之一，现在一下子变成了众矢之的。就连拉文克劳和赫奇帕奇的学生们也没有好脸色给他，因为大家本来一直希望看到斯莱特林输掉学院杯。哈利不管走到哪里，人们都对他指指点点，而且说一些侮辱他的话时也并不把声音放低。另一方面，每当他从斯莱特林们身边走过时，他们总是又鼓掌，又吹口哨，欢呼喝彩。「谢谢你，波特，你帮了我们一个大忙！」</p></div>	
+<div class='layout'><p>Only Ron stood by him.</p><p>只有罗恩和他站在一边。</p></div>	
+<div class='layout'><p>"They'll all forget this in a few weeks. Fred and George have lost loads of points in all the time they've been here, and people still like them."</p><p>「过几个星期，他们就会把这些忘得一干二净的。弗雷德和乔治自从入学以来，就一直在丢分，人们照样很喜欢他们。」</p></div>	
+<div class='layout'><p>"They've never lost a hundred and fifty points in one go, though, have they?" said Harry miserably.</p><p>「但他们从来没有一下子丢掉一百五十分，是吗？」哈利忧伤地说。</p></div>	
+<div class='layout'><p>"Well -- no," Ron admitted.</p><p>「嗯——那倒没有。」罗恩承认。</p></div>	
+<div class='layout'><p>It was a bit late to repair the damage, but Harry swore to himself not to meddle in things that weren't his business from now on. He'd had it with sneaking around and spying. He felt so ashamed of himself that he went to Wood and offered to resign from the Quidditch team.</p><p>损失已经造成，后悔也来不及了，哈利对自己发誓，从今往后，他再也不去多管闲事了。他再也不偷偷摸摸地乱转，暗中监视什么了。他为自己感到非常羞愧，就去找到伍德，表示要退出魁地奇队。</p></div>	
+<div class='layout'><p>"Resign?" Wood thundered. "What good'll that do? How are we going to get any points back if we can't win at Quidditch?"</p><p>「退出？」伍德大声斥责道，「那有什么用？如果我们赢不了魁地奇比赛，又怎么可能把分数挣回来呢？」</p></div>	
+<div class='layout'><p>But even Quidditch had lost its fun. The rest of the team wouldn't speak to Harry during practice, and if they had to speak about him, they called him "the Seeker."</p><p>可是，对哈利来说，就连魁地奇也失去了原有的乐趣。训练时，其他队员都不跟他说话，如果不得不提到他，他们就管他叫「找球手」。</p></div>	
+<div class='layout'><p>Hermione and Neville were suffering, too. They didn't have as bad a time as Harry, because they weren't as well-known, but nobody would speak to them, either. Hermione had stopped drawing attention to herself in class, keeping her head down and working in silence.</p><p>赫敏和纳威也很痛苦。他们的日子不像哈利那样难熬，因为他们没有他那么出名，但是也没有人愿意跟他们说话。赫敏在班上不再抛头露面，总是低着头，默默地学习着。</p></div>	
+<div class='layout'><p>Harry was almost glad that the exams weren't far away. All the studying he had to do kept his mind off his misery. He, Ron, and Hermione kept to themselves, working late into the night, trying to remember the ingredients in complicated potions, learn charms and spells by heart, memorize the dates of magical discoveries and goblin rebellions....</p><p>哈利简直很高兴快要考试了。他必须埋头复习，这就使他暂时忘却了烦恼。他、罗恩和赫敏三个人总是单独在一起，每天复习到深夜，努力记住复杂的魔药配方，记住那些魔法和咒语，记住重大魔术发明和妖精叛乱的日期……</p></div>	
+<div class='layout'><p>Then, about a week before the exams were due to start, Harry's new resolution not to interfere in anything that didn't concern him was put to an unexpected test. Walking back from the library on his own one afternoon, he heard somebody whimpering from a classroom up ahead. As he drew closer, he heard Quirrell's voice.</p><p>然而，就在考试前的一个星期，哈利不再多管闲事的决心受到了一次意外的考验。那天下午，他独自一个人从图书馆出来，听见有人在前面的教室里抽抽搭搭地哭泣。他走近几步，听出是奇洛的声音。</p></div>	
+<div class='layout'><p>"No -- no -- not again, please --"</p><p>「不行——不行——不能再干了，求求你——」</p></div>	
+<div class='layout'><p>It sounded as though someone was threatening him. Harry moved closer.</p><p>听上去似乎有人在威胁他。哈利再走近几步。</p></div>	
+<div class='layout'><p>"All right -- all right --" he heard Quirrell sob.</p><p>「好吧——好吧——」他听见奇洛在抽泣。</p></div>	
+<div class='layout'><p>Next second, Quirrell came hurrying out of the classroom straightening his turban. He was pale and looked as though he was about to cry. He strode out of sight; Harry didn't think Quirrell had even noticed him. He waited until Quirrell's footsteps had disappeared, then peered into the classroom. It was empty, but a door stood ajar at the other end. Harry was halfway toward it before he remembered what he'd promised himself about not meddling.</p><p>接着，奇洛匆匆走出教室，一边整理着他的围巾。他脸色苍白，好像快要哭出声来似的，大步地走出了哈利的视线。哈利觉得奇洛根本就没有注意到自己。他一直等到奇洛的脚步声昕不见了，才朝教室里望去。里面空无一人，但另一边的那扇门开了一道缝。哈利正要走过去，突然想起他对自己的保证，再也不能多管闲事了。</p></div>	
+<div class='layout'><p>All the same, he'd have gambled twelve Sorcerer's Stones that Snape had just left the room, and from what Harry had just heard, Snape would be walking with a new spring in his step -- Quirrell seemed to have given in at last.</p><p>不过，他愿意拿十二块魔法石打赌：刚才离开教室的人是斯内普，从脚步声听，斯内普的步子陡然变得轻快了——看来奇洛终于投降了。</p></div>	
+<div class='layout'><p>Harry went back to the library, where Hermione was testing Ron on Astronomy. Harry told them what he'd heard.</p><p>哈利返回图书馆，赫敏正在那里为罗恩测验天文学。哈利把他刚才听到的告诉了他们。</p></div>	
+<div class='layout'><p>"Snape's done it, then!" said Ron. "If Quirrell's told him how to break his Anti-Dark Force spell --"</p><p>「这么说，斯内普终于得手了！」罗恩说，「如果奇洛告诉了他怎样解除他的反黑魔法咒语——」</p></div>	
+<div class='layout'><p>"There's still Fluffy, though," said Hermione.</p><p>「别忘了还有路威呢。」赫敏说。</p></div>	
+<div class='layout'><p>"Maybe Snape's found out how to get past him without asking Hagrid," said Ron, looking up at the thousands of books surrounding them. "I bet there's a book somewhere in here telling you how to get past a giant three-headed dog. So what do we do, Harry?"</p><p>「说不定斯内普已经知道了怎样通过路威，根本用不着去问海格。」罗恩说道，抬头看着他们周围的无数本书，「我敢说这里肯定藏着一本书，可以告诉你怎样通过一条三个脑袋的大狗。那么我们怎么办呢，哈利？」</p></div>	
+<div class='layout'><p>The light of adventure was kindling again in Ron's eyes, but Hermione answered before Harry could.</p><p>渴望冒险的光芒又在罗恩的眼睛里闪烁了，可是赫敏赶在哈利前面答话了。</p></div>	
+<div class='layout'><p>"Go to Dumbledore. That's what we should have done ages ago. If we try anything ourselves we'll be thrown out for sure."</p><p>「去找邓布利多。我们早就应该这么做了。如果我们再要单独行动，肯定会被学校开除的。」</p></div>	
+<div class='layout'><p>"But we've got no proof!" said Harry. "Quirrell's too scared to back us up. Snape's only got to say he doesn't know how the troll got in at Halloween and that he was nowhere near the third floor -- who do you think they'll believe, him or us? It's not exactly a secret we hate him, Dumbledore'll think we made it up to get him sacked. Filch wouldn't help us if his life depended on it, he's too friendly with Snape, and the more students get thrown out, the better, he'll think. And don't forget, we're not supposed to know about the Stone or Fluffy. That'll take a lot of explaining."</p><p>「可是我们没有证据！」哈利说，「奇洛怕得要命，肯定不会出来为我们作证。斯内普只要说他不知道万圣节前夕那个巨怪是怎么进来的，他根本没在四楼附近——你们说他们会相信谁，是斯内普还是我们？我们恨斯内普，这已经不是什么秘密，邓布利多会认为我们编出这套鬼话，是想害得斯内普被开除。费尔奇如果生命受到威胁，也不会帮助我们的。他和斯内普的关系太密切了，而且他还会认为被开除的学生越多越好。还有，别忘了，我们是不应该知道魔法石和路威的。那要解释起来就太麻烦了。」</p></div>	
+<div class='layout'><p>Hermione looked convinced, but Ron didn't.</p><p>赫敏似乎被他说服了，可是罗恩没有。</p></div>	
+<div class='layout'><p>"If we just do a bit of poking around --"</p><p>「如果我们到处侦察一下——」</p></div>	
+<div class='layout'><p>"No," said Harry flatly, "we've done enough poking around."</p><p>「不行，」哈利干脆地说，「我们已经侦察得够多的了。」</p></div>	
+<div class='layout'><p>He pulled a map of Jupiter toward him and started to learn the names of its moons.</p><p>他把一张木星天文图拉到面前，开始复习木星卫星的名字。</p></div>	
+<div class='layout'><p>The following morning, notes were delivered to Harry, Hermione, and Neville at the breakfast table. They were all the same:</p><p>第二天早晨，哈利、赫敏和纳威在早饭桌上都收到了纸条。三张纸条一模一样：</p></div>	
+<div class='layout'><p>Your detention will take place at eleven o'clock tonight. Meet Mr. Filch in the entrance hall.</p><p>你的禁闭从今晚十一点开始。在门厅找费尔奇先生。</p></div>	
+<div class='layout'><p>Professor McGonagall </p><p>麦格教授</p></div>	
+<div class='layout'><p>Harry had forgotten they still had detentions to do in the furor over the points they'd lost. He half expected Hermione to complain that this was a whole night of studying lost, but she didn't say a word. Like Harry, she felt they deserved what they'd got.</p><p>哈利自从丢了分数以后，就一直遭到人们的白眼和唾弃，他几乎忘记了他们还要被关禁闭的事。他本来以为赫敏会抱怨一番，说又要耽误一晚上的复习时间了，但她什么也没说。她和哈利一样，觉得他们理应受到这样的惩罚。</p></div>	
+<div class='layout'><p>At eleven o'clock that night, they said good-bye to Ron in the common room and went down to the entrance hall with Neville. Filch was already there -- and so was Malfoy. Harry had also forgotten that Malfoy had gotten a detention, too.</p><p>那天夜里十一点，他们在公共休息室里与罗恩告别，然后和纳威一起下楼来到门厅。费尔奇已经等在那里了——还有马尔福。哈利同样忘记了马尔福也是要关禁闭的。</p></div>	
+<div class='layout'><p> "Follow me," said Filch, lighting a lamp and leading them outside. I bet you'll think twice about breaking a school rule again, won't you, eh?" he said, leering at them. "Oh yes... hard work and pain are the best teachers if you ask me.... It's just a pity they let the old punishments die out... hang you by your wrists from the ceiling for a few days, I've got the chains still in my office, keep 'em well oiled in case they're ever needed.... Right, off we go, and don't think of running off, now, it'll be worse for you if you do."</p><p>「跟我来。」费尔奇说着，点亮了一盏灯，领他们出去，「我认为，以后你们再想要违反校规，就要三思而行了，是不是，嗯？」他斜眼看着他们，继续说道：「哦，是啊……如果你们问我的话，我得说干活和吃苦是最好的老师……真遗憾他们废除了过去那种老式的惩罚方式……吊住你们的手腕，把你们悬挂在天花板上，一吊就是好几天。我办公室里还留着那些链条呢，经常给它们上上油，说不定哪一天就派上了用场……好了，走吧，可别想着逃跑。如果逃跑，你们更没有好果子吃。」</p></div>	
+<div class='layout'><p>They marched off across the dark grounds. Neville kept sniffing. Harry wondered what their punishment was going to be. It must be something really horrible, or Filch wouldn't be sounding so delighted.</p><p>他们大步穿过漆黑的场地。纳威不停地抽着鼻子。哈利不知道他们将会受到什么惩罚。肯定是非常可怕的，不然费尔奇的口气不会这么欢快。</p></div>	
+<div class='layout'><p>The moon was bright, but clouds scudding across it kept throwing them into darkness. Ahead, Harry could see the lighted windows of Hagrid's hut. Then they heard a distant shout.</p><p>月光很皎洁，但不断有云飘过来遮住月亮，使他们陷入一片黑暗。哈利可以看见海格小屋里那些映着灯光的窗户。接着，他们听见远处传来一声喊叫。</p></div>	
+<div class='layout'><p>"Is that you, Filch? Hurry up, I want ter get started."</p><p>「是你吗，费尔奇？快点，我要出发了。」</p></div>	
+<div class='layout'><p>Harry's heart rose; if they were going to be working with Hagrid it wouldn't be so bad. His relief must have showed in his -face, because Filch said, "I suppose you think you'll be enjoying yourself with that oaf? Well, think again, boy -- it's into the forest you're going and I'm much mistaken if you'll all come out in one piece."</p><p>哈利的心欢腾起来，如果他们要和海格一起劳动，那就不算太糟。他一定在脸上表现出了这种宽慰的心情，只听费尔奇说：「你大概以为你会和那个蠢货一起玩个痛快吧？再好好想想吧，小子——你是要去禁林！如果你能安然无恙地出来，就算我估计错了。」</p></div>	
+<div class='layout'><p>At this, Neville let out a little moan, and Malfoy stopped dead in his tracks.</p><p>听了这话，纳威忍不住哼了一声，马尔福猛地停住了脚步。</p></div>	
+<div class='layout'><p>"The forest?" he repeated, and he didn't sound quite as cool as usual. "We can't go in there at night -- there's all sorts of things in there -- werewolves, I heard."</p><p>「禁林？」他跟着说了一句，声音远不像平时那样冷静了，「我们不能在半夜里进去——那里面什么都有——我听说有狼人。」</p></div>	
+<div class='layout'><p>Neville clutched the sleeve of Harry's robe and made a choking noise.</p><p>纳威紧紧抓住哈利的衣袖，发出一声哽咽。</p></div>	
+<div class='layout'><p>"That's your problem, isn't it?" said Filch, his voice cracking with glee. "Should've thought of them werewolves before you got in trouble, shouldn't you?"</p><p>「那只能怪你自己，是不是？」费尔奇说，声音喜滋滋的，「你在惹麻烦之前，就应该想到这些狼人的，是不是？」</p></div>	
+<div class='layout'><p>Hagrid came striding toward them out of the dark, Fang at his heel. He was carrying his large crossbow, and a quiver of arrows hung over his shoulder.</p><p>海格从黑暗中大步向他们走来，牙牙跟在后面。海格带着他巨大的石弓，肩上挂着装得满满的箭筒。</p></div>	
+<div class='layout'><p>"Abou' time," he said. "I bin waitin' fer half an hour already. All right, Harry, Hermione?"</p><p>「时间差不多了，」他说，「我已经等了半小时。怎么样，哈利，赫敏？」</p></div>	
+<div class='layout'><p>"I shouldn't be too friendly to them, Hagrid," said Filch coldly, they're here to be punished, after all."</p><p>「不应该对他们这么客气，海格，」费尔奇冷冰冰地说，「毕竟，他们到这里来是接受惩罚的。」</p></div>	
+<div class='layout'><p>"That's why yer late, is it?" said Hagrid, frowning at Filch. "Bin lecturin' them, eh? 'Snot your place ter do that. Yeh've done yer bit, I'll take over from here."</p><p>「所以你迟到了，是吗？」海格冲费尔奇皱着眉头，说道，「一直在教训他们，嗯？这里可不是你教训人的地方。你的任务完成了，从现在起由我负责。」</p></div>	
+<div class='layout'><p>"I'll be back at dawn," said Filch, "for what's left of them," he added nastily, and he turned and started back toward the castle, his lamp bobbing away in the darkness.</p><p>「我天亮的时候回来，」费尔奇说道，「收拾他们的残骸。」他恶狠狠地说罢，然后转身朝城堡走去，那盏灯摇摇摆摆地消失在黑暗中。</p></div>	
+<div class='layout'><p> Malfoy now turned to Hagrid. "I'm not going in that forest," he said, and Harry was pleased to hear the note of panic in his voice.</p><p>这时马尔福转向了海格。「我不进那个禁林。」他说。哈利高兴地听出他声音里透着一丝惊恐。</p></div>	
+<div class='layout'><p>"Yeh are if yeh want ter stay at Hogwarts," said Hagrid fiercely. "Yeh've done wrong an' now yehve got ter pay fer it."</p><p>「如果你还想待在霍格沃茨，你就非去不可。」海格毫不留情地说，「你做了错事，现在必须付出代价。」</p></div>	
+<div class='layout'><p>"But this is servant stuff, it's not for students to do. I thought we'd be copying lines or something, if my father knew I was doing this, he'd</p><p>「进这里干事是佣人的差使，不是学生干的。我还以为我们最多写写检查什么的。如果我父亲知道我在干这个，他会——」</p></div>	
+<div class='layout'><p>tell yer that's how it is at Hogwarts," Hagrid growled. "Copyin' lines! What good's that ter anyone? Yeh'll do summat useful or Yeh'll get out. If yeh think yer father'd rather you were expelled, then get back off ter the castle an' pack. Go on"'</p><p>「——告诉你霍格沃茨就是这样的。」海格粗暴地说，「写写检查！这对你有什么好处？你得做点有用的事，不然就得滚蛋。如果你认为你父亲情愿让你被开除，你就尽管回城堡收拾行李去吧。走吧！」</p></div>	
+<div class='layout'><p>Malfoy didn't move. He looked at Hagrid furiously, but then dropped his gaze.</p><p>马尔福没有动弹。他愤怒地看着海格，但随即又垂下了目光。</p></div>	
+<div class='layout'><p>"Right then," said Hagrid, "now, listen carefully, 'cause it's dangerous what we're gonna do tonight, an' I don' want no one takin' risks. Follow me over here a moment."</p><p>「好吧，」海格说，「现在仔细听着，我们今天晚上要做的事情非常危险，我不愿意让任何一个人遇到危险。先跟我到这边来。」</p></div>	
+<div class='layout'><p>He led them to the very edge of the forest. Holding his lamp up high, he pointed down a narrow, winding earth track that disappeared into the thick black trees. A light breeze lifted their hair as they looked into the forest.</p><p>他领着他们来到禁林边缘，把灯高高举起，指着一条逐渐隐入黑色密林深处的羊肠小路。他们往禁林里望去，一阵微风吹拂着他们的头发。</p></div>	
+<div class='layout'><p>"Look there," said Hagrid, "see that stuff shinin' on the ground? Silvery stuff? That's unicorn blood. There's a unicorn in there bin hurt badly by summat. This is the second time in a week. I found one dead last Wednesday. We're gonna try an' find the poor thing. We might have ter put it out of its misery."</p><p>「你们往那边瞧，」海格说，「看见地上那个闪光的东西吗？银白色的？那就是独角兽的血。禁林里的一只独角兽被什么东西打伤了，伤得很重。这已经是一个星期里的第二次了。上星期三我就发现死了一只。我们要争取找到那个可怜的独角兽，使它摆脱痛苦。」</p></div>	
+<div class='layout'><p>"And what if whatever hurt the unicorn finds us first?" said Malfoy, unable to keep the fear out of his voice.</p><p>「如果伤害独角兽的那个东西先发现了我们，怎么办呢？」马尔福问，他的声音里含着无法抑制的恐惧。</p></div>	
+<div class='layout'><p>"There's nothin' that lives in the forest that'll hurt yeh if yer with me or Fang," said Hagrid. "An' keep ter the path. Right, now, we're gonna split inter two parties an' follow the trail in diff'rent directions. There's blood all over the place, it must've bin staggerin' around since last night at least."</p><p>「只要你和我或者牙牙在一起，禁林里的任何生物都不会伤害你。」海格说道，「不要离开小路。好了，现在我们要兵分两路，分头顺着血迹寻找。到处都是血迹，显然，它至少从昨天晚上起，就一直跌跌撞撞地到处徘徊。」</p></div>	
+<div class='layout'><p>"I want Fang," said Malfoy quickly, looking at Fang's long teeth.</p><p>「我要牙牙，」马尔福看着牙牙长长的牙齿，忙不迭地说。</p></div>	
+<div class='layout'><p>"All right, but I warn yeh, he's a coward," said Hagrid. " So me, Harry, an' Hermione'll go one way an' Draco, Neville, an' Fang'll go the other. Now, if any of us finds the unicorn, we'll send up green sparks, right? Get yer wands out an' practice now -- that's it -- an' if anyone gets in trouble, send up red sparks, an' we'll all come an' find yeh -- so, be careful -- let's go."</p><p>「好吧，不过我提醒你，它可是个胆小鬼。」海格说，「那么，我、哈利和赫敏走一条路，马尔福、纳威和牙牙走另一条路。如果谁找到了独角兽，就发射绿色火花，明白吗？把你们的魔杖拿出来，练习一下——对了——如果有谁遇到了麻烦，就发射红色火花，我们都会过来找你——行了，大家多加小心——我们走吧。」</p></div>	
+<div class='layout'><p>The forest was black and silent. A little way into it they reached a fork in the earth path, and Harry, Hermione, and Hagrid took the left path while Malfoy, Neville, and Fang took the right.</p><p>禁林里黑黢黢的，一片寂静。他们往里走了一段，就到了岔路口，哈利、赫敏和海格走左边的路，马尔福、纳威和牙牙走右边的路。</p></div>	
+<div class='layout'><p>They walked in silence, their eyes on the ground. Every now and then a ray of moonlight through the branches above lit a spot of silver-blue blood on the fallen leaves.</p><p>他们默默地走着，眼睛盯着地上。时不时地，一道月光从上面的树枝间洒下来，照亮了落叶上一块银蓝色的血迹。</p></div>	
+<div class='layout'><p>Harry saw that Hagrid looked very worried.</p><p>哈利看出海格显得很焦虑。</p></div>	
+<div class='layout'><p>"Could a werewolf be killing the unicorns?" Harry asked.</p><p>「会是狼人杀死了独角兽吗？」哈利问。</p></div>	
+<div class='layout'><p>"Not fast enough," said Hagrid. "It's not easy ter catch a unicorn, they're powerful magic creatures. I never knew one ter be hurt before."</p><p>「不会有这么快，」海格说，「抓住一只独角兽是很不容易的，它们这种动物具有很强的魔法。我以前从没听说过独角兽受到伤害。」</p></div>	
+<div class='layout'><p>They walked past a mossy tree stump. Harry could hear running water; there must be a stream somewhere close by. There were still spots of unicorn blood here and there along the winding path.</p><p>他们走过一个布满苔藓的树桩。哈利可以听见潺潺的流水声，显然，附近什么地方有一道溪流。在蜿蜒曲折的小路上，仍然散落着斑斑点点的独角兽血迹。</p></div>	
+<div class='layout'><p>"You all right, Hermione?" Hagrid whispered. "Don' worry, it can't've gone far if it's this badly hurt, an' then we'll be able ter -- GET BEHIND THAT TREE!"</p><p>「你没事吧，赫敏？」海格低声问。「不要担心，既然它伤得这样重，就不可能走得很远，我们很快就能——不好，快躲到那棵树后面去！」</p></div>	
+<div class='layout'><p>Hagrid seized Harry and Hermione and hoisted them off the path behind a towering oak. He pulled out an arrow and fitted it into his crossbow, raising it, ready to fire. The three of them listened. Something was slithering over dead leaves nearby: it sounded like a cloak trailing along the ground. Hagrid was squinting up the dark path, but after a few seconds, the sound faded away.</p><p>海格一把抓住哈利和赫敏，提着他们离开小路，藏到一棵高耸的栎树后面。他抽出一枚箭，装在石弓上，举起来准备射击。三个人侧耳细听。什么东西在近旁的落叶上嗖嗖地滑行，那声音就像是斗篷在地面上拖曳。海格眯着眼注视着漆黑的小路，几秒钟后，声音渐渐消失了。</p></div>	
+<div class='layout'><p>"I knew it, " he murmured. "There's summat in here that shouldn' be."</p><p>「我知道了，」他喃喃地说，「有一样东西，它原本是不属于这里的。」</p></div>	
+<div class='layout'><p>"A werewolf?" Harry suggested.</p><p>「狼人？」哈利问道。</p></div>	
+<div class='layout'><p>"That wasn' no werewolf an' it wasn' no unicorn, neither," said Hagrid grimly. "Right, follow me, but careful, now."</p><p>「不是狼人，也不是独角兽。」海格肯定地说，「好了，跟我来吧，现在可得小心了。」</p></div>	
+<div class='layout'><p>They walked more slowly, ears straining for the faintest sound. Suddenly, in a clearing ahead, something definitely moved.</p><p>他们走得比刚才更慢了，竖着耳朵，捕捉最细微的声音。突然，在前面的空地上，他们清清楚楚地看见一个什么东西在动。</p></div>	
+<div class='layout'><p>"Who's there?" Hagrid called. "Show yerself -- I'm armed!"</p><p>「谁在那儿？」海格喊道，「快出来——我带着武器呢！」</p></div>	
+<div class='layout'><p>And into the clearing came -- was it a man, or a horse? To the waist, a man, with red hair and beard, but below that was a horse's gleaming chestnut body with a long, reddish tail. Harry and Hermione's jaws dropped.</p><p>那东西应声走进了空地——它到底是人，还是马？腰部以上是人，红色的头发和胡子，腰部以下却是棕红色的发亮的马身，后面还拖着一条长长的红尾巴。哈利和赫敏吃惊地张大嘴巴。</p></div>	
+<div class='layout'><p> "Oh, it's you, Ronan," said Hagrid in relief. "How are yeh?" He walked forward and shook the centaur's hand.</p><p>「哦，原来是你，罗南。」海格松了一口气，说，「你好吗？」他走上前，和马人握了握手。</p></div>	
+<div class='layout'><p>"Good evening to you, Hagrid," said Ronan. He had a deep, sorrowful voice. "Were you going to shoot me?"</p><p>「晚上好，海格。」罗南说。他的声音低沉而忧伤。「你想用弓箭射我？」</p></div>	
+<div class='layout'><p>"Can't be too careful, Ronan," said Hagrid, patting his crossbow. "There's summat bad loose in this forest. This is Harry Potter an' Hermione Granger, by the way. Students up at the school. An' this is Ronan, you two. He's a centaur.))</p><p>「不得不提高警惕，罗南，」海格说，一边拍了拍他的箭筒，「这片森林里有个坏家伙在到处活动。噢，对了，这是哈利·波特和赫敏格兰杰，是上面那所学校里的学生。我来给你们俩介绍一下，这位是罗南，是一个马人。」</p></div>	
+<div class='layout'><p>"We'd noticed," said Hermione faintly.</p><p>「我们已经注意到了。」赫敏小声地说。</p></div>	
+<div class='layout'><p>"Good evening," said Ronan. "Students, are you? And do you learn much, up at the school?"</p><p>「晚上好，」罗南说，「你们是学生？在学校里学到的东西多吗？」</p></div>	
+<div class='layout'><p>"Erm --"</p><p>「嗯——学到一点儿。」赫敏腼腆地说。</p></div>	
+<div class='layout'><p>"A bit," said Hermione timidly.</p><p></p></div>	
+<div class='layout'><p>"A bit. Well, that's something." Ronan sighed. He flung back his head and stared at the sky. "Mars is bright tonight."</p><p>「学到一点儿，好，那就很不错了。」罗南叹了口气，他仰起头，凝视着天空，「今晚的火星很明亮。」</p></div>	
+<div class='layout'><p>"Yeah," said Hagrid, glancing up, too. "Listen, I'm glad we've run inter yeh, Ronan, 'cause there's a unicorn bin hurt -- you seen anythin'?"</p><p>「是啊，」海格说着，也抬头看了一眼天空，「听我说，罗南，我很高兴我们碰见了你，因为有一只独角兽受伤了——你看见了什么没有？」</p></div>	
+<div class='layout'><p> Ronan didn't answer immediately. He stared unblinkingly upward, then sighed again. "Always the innocent are the first victims," he said. "So it has been for ages past, so it is now."</p><p>罗南没有马上回答。他眼睛一眨不眨地向上凝望着，接着又叹了口气，「总是无辜者首先受害。」他说，「几百年以来是这样，现在还是这样。」</p></div>	
+<div class='layout'><p>"Yeah," said Hagrid, "but have yeh seen anythin', Ronan? Anythin' unusual?"</p><p>「是啊，」海格说，「可是你有没有看见什么，罗南？有没有看见什么异常的东西？」</p></div>	
+<div class='layout'><p>"Mars is bright tonight," Ronan repeated, while Hagrid watched him impatiently. "Unusually bright."</p><p>「今晚的火星很明亮。」罗南又重复了一句，海格不耐烦地看着他。「异常明亮。」罗南说。</p></div>	
+<div class='layout'><p>"Yeah, but I was meanin' anythin' unusual a bit nearer home, said Hagrid. "So yeh haven't noticed anythin' strange?"</p><p>「不错，可我的意思是，在靠近咱们家的地方，有没有什么反常的情况。」海格说，「你没有注意到一些奇怪的动静吗？」</p></div>	
+<div class='layout'><p>Yet again, Ronan took a while to answer. At last, he said, "The forest hides many secrets."</p><p>罗南还是迟迟没有回答。最后，他说：「森林里藏着许多秘密。」</p></div>	
+<div class='layout'><p>A movement in the trees behind Ronan made Hagrid raise his bow again, but it was only a second centaur, black-haired and -bodied and wilder-looking than Ronan.</p><p>罗南身后的树丛里突然有了动静，海格又举起了石弓，结果那只是第二个马人，黑头发、黑身体，看上去比罗南粗野一些。</p></div>	
+<div class='layout'><p>"Hullo, Bane," said Hagrid. "All right?"</p><p>「你好，贝恩，」海格说，「近来好吗？」</p></div>	
+<div class='layout'><p>"Good evening, Hagrid, I hope you are well?"</p><p>「晚上好，海格，我希望你一切都好。」</p></div>	
+<div class='layout'><p>"Well enough. Look, I've jus' bin askin' Ronan, you seen anythin' odd in here lately? There's a unicorn bin injured -- would yeh know anythin' about it?"</p><p>「还可以吧。你瞧，我刚才正问罗南呢，你最近在这儿有没有看见什么古怪的东西？有一只独角兽受了伤——你知道一些情况吗？」</p></div>	
+<div class='layout'><p>Bane walked over to stand next to Ronan. He looked skyward. "Mars is bright tonight," he said simply.</p><p>贝恩走过来站在罗南身边，抬头望着天空。「今晚的火星很明亮。」他就说了这么一句。</p></div>	
+<div class='layout'><p>"We've heard," said Hagrid grumpily. "Well, if either of you do see anythin', let me know, won't yeh? We'll be off, then."</p><p>「这句话我们已经听过了。」海格暴躁地说，「好吧，如果你们谁看见了什么，就赶紧来告诉我，好吗？那么我们走吧。」</p></div>	
+<div class='layout'><p>Harry and Hermione followed him out of the clearing, staring over their shoulders at Ronan and Bane until the trees blocked their view.</p><p>哈利和赫敏跟在他后面走出空地，一边不住地扭头望望罗南和贝恩，直到树木挡住了视线。</p></div>	
+<div class='layout'><p>"Never," said Hagrid irritably, "try an' get a straight answer out of a centaur. Ruddy stargazers. Not interested in anythin' closer'n the moon."</p><p>「唉，从马人那里总是得不到直截了当的回答。」海格恼火地说，「总是仰头看着星星，真讨厌。他们除了月亮周围的东西，对任何事情都不感兴趣。」</p></div>	
+<div class='layout'><p>"Are there many of them in here?" asked Hermione.</p><p>「这里的马人多吗？」赫敏问。</p></div>	
+<div class='layout'><p>"Oh, a fair few... Keep themselves to themselves mostly, but they're good enough about turnin' up if ever I want a word. They're deep, mind, centaurs... they know things... jus' don' let on much."</p><p>「哦，有那么几个……他们大部分都跟自己的同类待在一起，不过他们的心眼不错，每当我想跟他们说说话的时候，他们总能及时出现。这些马人深奥莫测……他们知道许多事情……却总是守口如瓶。」</p></div>	
+<div class='layout'><p>"D'you think that was a centaur we heard earlier?" said Harry.</p><p>「你说，我们先前听见的动静会不会也是一个马人？」哈利问。</p></div>	
+<div class='layout'><p>"Did that sound like hooves to you? Nah, if yeh ask me, that was what's bin killin' the unicorns -- never heard anythin' like it before."</p><p>「你觉得那像是马蹄声吗？如果你问我的话，我认为不是，那就是杀死独角兽的家伙——那种声音我以前从来没有听见过。」</p></div>	
+<div class='layout'><p>They walked on through the dense, dark trees. Harry kept looking nervously over his shoulder. He had the nasty feeling they were being watched. He was very glad they had Hagrid and his crossbow with them. They had just passed a bend in the path when Hermione grabbed Hagrid's arm.</p><p>他们继续在茂密、漆黑的树林间穿行。哈利总是紧张地扭头张望。他有一种很不舒服的感觉，好像有人在监视他们。他很高兴有海格和他的石弓陪着他们。可是，刚拐过小路上的一个弯道，赫敏突然一把抓住海格的胳膊。</p></div>	
+<div class='layout'><p>"Hagrid! Look! Red sparks, the others are in trouble!"</p><p>「海格！快看！红色火花，其他人有麻烦了！」</p></div>	
+<div class='layout'><p>"You two wait here!" Hagrid shouted. "Stay on the path, I'll come back for yeh!"</p><p>「你们俩在这儿等着！」海格喊道，「待在小路上别动。我去去就来。」</p></div>	
+<div class='layout'><p>They heard him crashing away through the undergrowth and stood looking at each other, very scared, until they couldn't hear anything but the rustling of leaves around them.</p><p>他们听见他噼里啪啦地穿过低矮的灌木丛。哈利和赫敏站在那里对望着，心里非常害怕。渐渐地，海格走远了，他们只能听见周围树叶在风中沙沙作响的声音。</p></div>	
+<div class='layout'><p>"You don't think they've been hurt, do you?" whispered Hermione.</p><p>「你说，他们不会受伤吧，嗯？」赫敏小声问道。</p></div>	
+<div class='layout'><p>"I don't care if Malfoy has, but if something's got Neville... it's our fault he's here in the first place."</p><p>「马尔福受伤我倒不在乎，可是如果纳威出了什么意外……都是我们拖累了他，害他到这里来受罚的啊。」</p></div>	
+<div class='layout'><p>The minutes dragged by. Their ears seemed sharper than usual. Harry's seemed to be picking up every sigh of the wind, every cracking twig. What was going on? Where were the others?</p><p>时间一分一秒过得很慢。他们的耳朵似乎比平常敏锐得多。哈利简直能捕捉到风的每一声叹息，以及每根树枝折断的声音。出了什么事？其他人在哪里？</p></div>	
+<div class='layout'><p>At last, a great crunching noise announced Hagrid's return. Malfoy, Neville, and Fang were with him. Hagrid was fuming. Malfoy, it seemed, had sneaked up behind Neville and grabbed him as a joke. Neville had panicked and sent up the sparks.</p><p>最后，随着一阵嘎吱嘎吱的巨大响动，他们知道是海格回来了，马尔福、纳威和牙牙也跟他在一起。海格怒气冲冲的。情况似乎是这样的：马尔福搞了个恶作剧。他悄悄藏到纳威后面，然后一把抱住了他。纳威吓坏了，就发射了红色火花。</p></div>	
+<div class='layout'><p>"We'll be lucky ter catch anythin' now, with the racket you two were makin'. Right, we're changin' groups -- Neville, you stay with me an' Hermione, Harry, you go with Fang an' this idiot. I'm sorry," Hagrid added in a whisper to Harry, "but he'll have a harder time frightenin' you, an' we've gotta get this done."</p><p>「你们俩闹出了这么大的动静，现在，我们要抓住那东西就全凭运气了。好吧。我们把队伍换一换——纳威，你跟我和赫敏在一起。哈利，你和牙牙，还有这个白痴一组。对不起，」海格又小声地对哈利说，「不过他要吓唬你可没那么容易，我们还是赶紧把事情办完吧。」</p></div>	
+<div class='layout'><p>So Harry set off into the heart of the forest with Malfoy and Fang. They walked for nearly half an hour, deeper and deeper into the forest, until the path became almost impossible to follow because the trees were so thick. Harry thought the blood seemed to be getting thicker. There were splashes on the roots of a tree, as though the poor creature had been thrashing around in pain close by. Harry could see a clearing ahead, through the tangled branches of an ancient oak.</p><p>于是，哈利和马尔福、牙牙一起朝禁林中心走去。他们走了将近半个小时，越来越深入森林内部，后来树木变得极为茂密，小路几乎走不通了。哈利觉得地上的血迹也越来越密了。一棵树根上溅了许多血，似乎那个可怜的动物曾在附近痛苦地扭动挣扎过。哈利透过一棵古老栎树纠结缠绕的树枝，可以看见前面有一片空地。</p></div>	
+<div class='layout'><p>"Look --" he murmured, holding out his arm to stop Malfoy.</p><p>「看——」他低声说，举起胳膊拦住马尔福。</p></div>	
+<div class='layout'><p>Something bright white was gleaming on the ground. They inched closer.</p><p>一个洁白的东西在地上闪闪发光。他们一点点地向它靠近。</p></div>	
+<div class='layout'><p>It was the unicorn all right, and it was dead. Harry had never seen anything so beautiful and sad. Its long, slender legs were stuck out at odd angles where it had fallen and its mane was spread pearly-white on the dark leaves.</p><p>没错，那正是独角兽，它已经死了。哈利从未见过这样美丽、这样凄惨的情景。它修长的腿保持着它摔倒时的姿势，很不自然地伸直着；它的鬃毛铺在漆黑的落叶上，白得像珍珠一样。</p></div>	
+<div class='layout'><p>Harry had taken one step toward it when a slithering sound made him freeze where he stood. A bush on the edge of the clearing quivered.... Then, out of the shadows, a hooded figure came crawling across the ground like some stalking beast. Harry, Malfoy, and Fang stood transfixed. The cloaked figure reached the unicorn, lowered its head over the wound in the animal's side, and began to drink its blood.</p><p>哈利刚朝它跨近一步，突然一阵簌簌滑动的声音使他停住了脚步，呆呆地站在原地。空地边缘的一丛灌木在抖动……接着，从阴影里闪出一个戴着兜帽的身影，它在地上缓缓爬行，像一头渐渐逼近的野兽。哈利、马尔福和牙牙都呆若木鸡地站在那里。那个穿着斗篷的身影来到独角兽身边，低下头去，对准那尸体一侧的伤口，开始喝它的血。</p></div>	
+<div class='layout'><p>"AAAAAAAAAARGH!"</p><p>「啊啊啊啊——！」</p></div>	
+<div class='layout'><p>Malfoy let out a terrible scream and bolted -- so did Fang. The hooded figure raised its head and looked right at Harry -- unicorn blood was dribbling down its front. It got to its feet and came swiftly toward Harry -- he couldn't move for fear.</p><p>马尔福发出一声可怕的尖叫，撒腿就跑——牙牙也没命地逃走了。那戴着兜帽的身影抬起头，一眼就看见了哈利——独角兽的血滴落在它胸前。它站起身，飞快地向哈利走来——哈利吓得动弹不得。</p></div>	
+<div class='layout'><p>Then a pain like he'd never felt before pierced his head; it was as though his scar were on fire. Half blinded, he staggered backward. He heard hooves behind him, galloping, and something jumped clean over Harry, charging at the figure.</p><p>就在这时，一阵剧痛穿透哈利的头部，这是他以前从未有过的感觉，就好像他的伤疤突然着了火一般——他视线模糊、踉踉跄跄地后退。他听见身后有马蹄小跑的声音，什么东西从他头顶上越过，朝那个身影扑去。</p></div>	
+<div class='layout'><p>The pain in Harry's head was so bad he fell to his knees. It took a minute or two to pass. When he looked up, the figure had gone. A centaur was standing over him, not Ronan or Bane; this one looked younger; he had white-blond hair and a palomino body.</p><p>哈利的头疼得太厉害了，他扑通跪倒在地上。过了一两分钟才缓过劲来。当他抬起头来时，那个带兜帽的身影已经不见了。一个马人站在他的身边，不是罗南，也不是贝恩，这个马人显得更年轻些。他的头发是白金色的，长着一副银鬃马的身体。</p></div>	
+<div class='layout'><p>"Are you all right?" said the centaur, pulling Harry to his feet.</p><p>「你没事吧？」马人把哈利拉起来，问道。</p></div>	
+<div class='layout'><p>"Yes -- thank you -- what was that?"</p><p>「没事——谢谢你——刚才那是什么东西？」</p></div>	
+<div class='layout'><p>The centaur didn't answer. He had astonishingly blue eyes, like pale sapphires. He looked carefully at Harry, his eyes lingering on the scar that stood out, livid, on Harry's forehead.</p><p>马人没有回答。他的眼睛蓝得惊人，像淡淡的蓝宝石。他仔细地打量哈利，目光停留在哈利前额上那道鲜明而突出的伤疤上。</p></div>	
+<div class='layout'><p>"You are the Potter boy," he said. "You had better get back to Hagrid. The forest is not safe at this time -- especially for you. Can you ride? It will be quicker this way.</p><p>「你就是波特家的那个男孩，」他说，「你最好回到海格身边去。森林里这个时候不太安全——特别是对你来说。你会骑马吗？这样可以快一些。」</p></div>	
+<div class='layout'><p>"My name is Firenze," he added, as he lowered himself on to his front legs so that Harry could clamber onto his back.</p><p>「我叫费伦泽。」他又补充了一句，一边弯下前腿，把身体放低，让哈利爬到他的背上。</p></div>	
+<div class='layout'><p>There was suddenly a sound of more galloping from the other side of the clearing. Ronan and Bane came bursting through the trees, their flanks heaving and sweaty.</p><p>突然，从空地的另一边又传来了更多的马蹄声。罗南和贝恩从树丛中冲了出来，腹胁处剧烈地起伏着，汗珠淋漓。</p></div>	
+<div class='layout'><p>"Firenze!" Bane thundered. "What are you doing? You have a human on your back! Have you no shame? Are you a common mule?"</p><p>「费伦泽！」贝恩怒吼道，「你在做什么？你让一个人骑在你背上！你不觉得丢脸吗？难道你是一头普通的骡子？」</p></div>	
+<div class='layout'><p>"Do you realize who this is?" said Firenze. "This is the Potter boy. The quicker he leaves this forest, the better."</p><p>「你们有没有看清这是谁？」费伦泽说，「这是波特家的那个男孩。得让他赶紧离开这片森林，越快越好。」</p></div>	
+<div class='layout'><p>"What have you been telling him?" growled Bane. "Remember, Firenze, we are sworn not to set ourselves against the heavens. Have we not read what is to come in the movements of the planets?"</p><p>「你都跟他说了些什么？」贝恩气冲冲地说，「记住，费伦泽，我们是发过誓的，绝对不能违抗天意。难道我们没有看出行星的运行所显示的预兆吗？」</p></div>	
+<div class='layout'><p>Ronan pawed the ground nervously. "I'm sure Firenze thought he was acting for the best, " he said in his gloomy voice.</p><p>罗南不安地用蹄子刨着地上的土。「我相信费伦泽认为他这么做完全是出于好意。」罗南用他那忧伤的声音说道。</p></div>	
+<div class='layout'><p>Bane kicked his back legs in anger.</p><p></p></div>	
+<div class='layout'><p>"For the best! What is that to do with us? Centaurs are concerned with what has been foretold! It is not our business to run around like donkeys after stray humans in our forest!"</p><p>「出于好意！那件事和我们有什么关系？马人关心的是星象的预言！我们没必要像驴子一样，跟着在我们森林里迷路的人类后面乱跑！」</p></div>	
+<div class='layout'><p>Firenze suddenly reared on to his hind legs in anger, so that Harry had to grab his shoulders to stay on.</p><p>费伦泽气得突然用后腿直立起来，哈利只好紧紧抓住他的肩膀，才没有被摔下来。</p></div>	
+<div class='layout'><p>"Do you not see that unicorn?" Firenze bellowed at Bane. "Do you not understand why it was killed? Or have the planets not let you in on that secret? I set myself against what is lurking in this forest, Bane, yes, with humans alongside me if I must."</p><p>「你们没有看见那只独角兽吗？」费伦泽咆哮着对贝恩说，「你们不明白它为什么被杀死了吗？还是行星没有向你们透露这个秘密？我一定要抵抗那个潜伏在我们森林里的家伙，贝恩。是的，如果必要的话，我要和人类站在一边。」</p></div>	
+<div class='layout'><p>And Firenze whisked around; with Harry clutching on as best he could, they plunged off into the trees, leaving Ronan and Bane behind them.</p><p>费伦泽说完，轻盈地转过身去；哈利紧紧地贴在他身上，他们向树林深处冲去，把罗南和贝恩撇在后面。</p></div>	
+<div class='layout'><p>Harry didn't have a clue what was going on.</p><p>哈利完全不明白是怎么回事。</p></div>	
+<div class='layout'><p>"Why's Bane so angry?" he asked. "What was that thing you saved me from, anyway?"</p><p>「贝恩为什么这么生气？」他问，「还有，刚才那是什么东西，你把我从它手里救了出来？」</p></div>	
+<div class='layout'><p>Firenze slowed to a walk, warned Harry to keep his head bowed in case of low-hanging branches, but did not answer Harry's question. They made their way through the trees in silence for so long that Harry thought Firenze didn't want to talk to him anymore. They were passing through a particularly dense patch of trees, however, when Firenze suddenly stopped.</p><p>费伦泽放慢脚步，提醒哈利把头低下，躲开那些低垂的树枝，但他对哈利的问题却避而不答。他们默默地在树林间穿行，许久没有说话，哈利还以为费伦泽不愿意再跟他说话了呢。然而，就在他们穿过一片特别茂密的树丛时，费伦泽突然停下了脚步。</p></div>	
+<div class='layout'><p>"Harry Potter, do you know what unicorn blood is used -for?"</p><p>「哈利·波特，你知道独角兽的血可以做什么用吗？」</p></div>	
+<div class='layout'><p>"No," said Harry, startled by the odd question. "We've only used the horn and tail hair in Potions."</p><p>「不知道，」哈利听到这个古怪的问题，不由吃了一惊，说道，「我们在魔药课上只用了它的角和尾巴毛。」</p></div>	
+<div class='layout'><p>"That is because it is a monstrous thing, to slay a unicorn," said Firenze. "Only one who has nothing to lose, and everything to gain, would commit such a crime. The blood of a unicorn will keep you alive, even if you are an inch from death, but at a terrible price. You have slain something pure and defenseless to save yourself, and you will have but a half-life, a cursed life, from the moment the blood touches your lips."</p><p>「这是因为杀死一只独角兽是一件极其残暴的事。」费伦泽说，「只有自己一无所有，又想得到一切的人，才会犯下这样的滔天大罪。独角兽的血可以延续你的生命，即使你已经奄奄一息，但是你必须为此付出惨重的代价。你为了挽救自己的生命，屠杀了一个纯洁的、柔弱无助的生命，所以从它的血碰到你嘴唇的那一刻起，你拥有的将是一条半死不活的生命，一条被诅咒的生命。」</p></div>	
+<div class='layout'><p>Harry stared at the back of Firenze's head, which was dappled silver in the moonlight.</p><p>哈利望着费伦泽的后脑勺，它在月光下闪着银色的斑点。</p></div>	
+<div class='layout'><p>"But who'd be that desperate?" he wondered aloud. "If you're going to be cursed forever, deaths better, isn't it?"</p><p>「可是，那个亡命徒是谁呢？」哈利大声说出自己的疑问，「如果一辈子都要受到诅咒，那还不如死掉，是吗？」</p></div>	
+<div class='layout'><p>"It is," Firenze agreed, "unless all you need is to stay alive long enough to drink something else -- something that will bring you back to full strength and power -- something that will mean you can never die. Mr. Potter, do you know what is hidden in the school at this very moment?"</p><p>「不错，」费伦泽表示赞同，「除非你只是用它拖延你的生命，好让你能够喝到另一种东西——一种使你完全恢复精力和法术的东西——一种使你长生不老的东西。波特先生，你知道此刻是什么东西藏在学校里吗？」</p></div>	
+<div class='layout'><p>"The Sorcerer's Stone! Of course -- the Elixir of Life! But I don't understand who --"</p><p>「魔法石！当然啦——长生不老药！但我不明白是谁——」</p></div>	
+<div class='layout'><p>"Can you think of nobody who has waited many years to return to power, who has clung to life, awaiting their chance?"</p><p>「你难道想不到吗，有谁默默地等了这么多年，渴望东山再起？有谁紧紧抓住生命不放，等候时机？」</p></div>	
+<div class='layout'><p>It was as though an iron fist had clenched suddenly around Harry's heart. Over the rustling of the trees, he seemed to hear once more what Hagrid had told him on the night they had met: "Some say he died. Codswallop, in my opinion. Dunno if he had enough human left in him to die."</p><p>一时间，好像一只铁爪突然攫住了哈利的心脏。在风吹树叶的沙沙声中，他仿佛又一次听见海格在他们初次见面的那天晚上说的话：「有人说他死了。我认为纯粹是胡说八道。他身上恐怕已经没有多少人性了，所以也就不可能去死。」</p></div>	
+<div class='layout'><p>"Do you mean," Harry croaked, "that was Vol-"</p><p>「难道你是说，」哈利用低沉而沙哑的声音说，「是伏地——」</p></div>	
+<div class='layout'><p>"Harry! Harry, are you all right?"</p><p>「哈利！哈利，你没事吧？」</p></div>	
+<div class='layout'><p>Hermione was running toward them down the path, Hagrid puffing along behind her.</p><p>赫敏沿着小路向他们跑来，海格气喘吁吁地跟在后面。</p></div>	
+<div class='layout'><p>"I'm fine," said Harry, hardly knowing what he was saying. "The unicorn's dead, Hagrid, it's in that clearing back there."</p><p>「我很好，」哈利说，他简直不知道自己在说什么，「独角兽死了，海格，就在那边的空地上。」</p></div>	
+<div class='layout'><p>"This is where I leave you," Firenze murmured as Hagrid hurried off to examine the unicorn. "You are safe now."</p><p>「我就把你留在这儿吧，」费伦泽在海格赶去查看独角兽的尸体时低声说，「你现在没有危险了。」</p></div>	
+<div class='layout'><p>Harry slid off his back.</p><p>哈利从他背上滑下来。</p></div>	
+<div class='layout'><p>"Good luck, Harry Potter," said Firenze. "The planets have been read wrongly before now, even by centaurs. I hope this is one of those times."</p><p>「祝你好运，哈利·波特。」费伦泽说道，「以前，命运星辰就曾被人误解过，即使马人也免不了失误，我希望这次也是这样。」</p></div>	
+<div class='layout'><p>He turned and cantered back into the depths of the forest, leaving Harry shivering behind him.</p><p>他转过身，撇下浑身发抖的哈利，慢慢跑回了森林深处。</p></div>	
+<div class='layout'><p>Ron had fallen asleep in the dark common room, waiting for them to return. He shouted something about Quidditch fouls when Harry roughly shook him awake. In a matter of seconds, though, he was wide-eyed as Harry began to tell him and Hermione what had happened in the forest.</p><p>罗恩在黑暗的公共休息室里等他们回来，不知不觉睡着了。当哈利粗暴地摇醒他时，他嘴里嚷嚷着一些魁地奇比赛犯规之类的话。不过，几秒钟后，他就完全清醒过来，睁大眼睛，专心地听哈利对他和赫敏讲述森林里发生的事情了。</p></div>	
+<div class='layout'><p>Harry couldn't sit down. He paced up and down in front of the fire. He was still shaking.</p><p>哈利激动得坐不下来。他在炉火前踱来踱去，身上仍然在发抖。</p></div>	
+<div class='layout'><p>"Snape wants the stone for Voldemort... and Voldemort's waiting in the forest... and all this time we thought Snape just wanted to get rich...."</p><p>「斯内普要替伏地魔弄到魔法石……伏地魔在森林里等着……我们还以为斯内普只是想靠魔法石发财……」</p></div>	
+<div class='layout'><p>"Stop saying the name!" said Ron in a terrified whisper, as if he thought Voldemort could hear them.</p><p>「别再说那个名字了！」罗恩惊慌地小声说，仿佛担心伏地魔会听见似的。</p></div>	
+<div class='layout'><p>Harry wasn't listening.</p><p>哈利不听他的。</p></div>	
+<div class='layout'><p>"Firenze saved me, but he shouldn't have done so.... Bane was furious... he was talking about interfering with what the planets say is going to happen.... They must show that Voldemort's coming back.... Bane thinks Firenze should have let Voldemort kill me.... I suppose that's written in the stars as well."</p><p>「费伦泽救了我，他不应该这样做……贝恩非常恼火……说什么这样会扰乱命运星辰预示的事情……星象一定显示了伏地魔要卷土重来……贝恩认为费伦泽应该让伏地魔杀死我……我猜想那也在星象中显示着呢。」</p></div>	
+<div class='layout'><p>"Will you stop saying the name!" Ron hissed.</p><p>「你能不能别再说那个名字！」罗恩压低了声音说。</p></div>	
+<div class='layout'><p>"So all I've got to wait for now is Snape to steal the Stone," Harry went on feverishly, "then Voldemort will be able to come and finish me off... Well, I suppose Bane'll be happy."</p><p>「所以我现在只能等着斯内普去偷魔法石，」哈利极度兴奋地继续往下说，「然后伏地魔就上这儿来，把我干掉……好，我想这下子贝恩该高兴了。」</p></div>	
+<div class='layout'><p>Hermione looked very frightened, but she had a word of comfort.</p><p>赫敏显得非常害怕，但她仍然想出话来安慰哈利。</p></div>	
+<div class='layout'><p>"Harry, everyone says Dumbledore's the only one You-Know-Who was ever afraid of With Dumbledore around, You-Know-Who won't touch you. Anyway, who says the centaurs are right? It sounds like fortune-telling to me, and Professor McGonagall says that's a very imprecise branch of magic."</p><p>「哈利，大家都说，神秘人一直害怕的只有邓布利多。有邓布利多在这里，神秘人不会伤你一根毫毛的。而且，谁说马人的话就一定正确？我觉得那一套听上去像是算命，麦格教授说，那是一类很不精确的魔法。」</p></div>	
+<div class='layout'><p>The sky had turned light before they stopped talking. They went to bed exhausted, their throats sore. But the night's surprises weren't over.</p><p>天色渐渐亮了，他们才停止了谈话，嗓子又干又痛，精疲力竭地上床睡觉。然而，这晚上还有一个意外在等着他呢。</p></div>	
+<div class='layout'><p>When Harry pulled back his sheets, he found his invisibility cloak folded neatly underneath them. There was a note pinned to it:</p><p>哈利拉开床单时，发现他的隐形衣叠得整整齐齐的，放在床单下面。隐形衣上还别了一张纸条，写着：</p></div>	
+<div class='layout'><p>Just in case.</p><p>以防万一。</p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

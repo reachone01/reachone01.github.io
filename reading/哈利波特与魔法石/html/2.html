@@ -1,0 +1,455 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //sougou
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+function changePage(){ 
+	var page = document.getElementById("container");
+	page.style.background="black";
+	page.style.color="white";
+	page.style.fontSize="22px";
+	page.style.fontFamily="MV boli";
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000" style="color:red;">红色</option><option value="#006600" style="color:green;">绿色</option><option value="#0000ff" style="color:blue;">蓝色</option><option value="#660000" style="color:#006600;">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fontsize id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select>><br>字体类型<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontFamily=this.options[this.selectedIndex].value;"> <option value="宋体" >宋体</option> <option value="MV boli" style="font-family:MV boli">MV boli</option> <option value="隶书" style="font-family:隶书">隶书</option> <option value="黑体" style="font-family:黑体">黑体</option><option value="楷体" style="font-family:楷体">楷体</option><option value="幼圆" style="font-family:幼圆">幼圆</option><option value="华文中宋" style="font-family:华文中宋">华文中宋</option><option value="华文行楷" style="font-family:华文行楷">华文行楷</option><option value="微软雅黑" style="font-family:微软雅黑">微软雅黑</option><option value="Arial" style="font-family:Arial">Arial</option><option value="Vrinda" style="font-family:Vrinda">Vrinda</option><option value="Tahoma" style="font-family:Tahoma">Tahoma</option><option value="Courier" style="font-family:Courier">Courier</option><option value="Times" style="font-family:Times">Times</option><option value="Georgia" style="font-family:Georgia">Georgia</option><option value="Lucida" style="font-family:Lucida">Lucida</option></select><br><a onClick="changePage()" target="_self" id="changepage">黑底白字</a></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:85.29%;
+	line-height:1.6em;
+	overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+h2{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:0px;
+	text-indent:0em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.code0, .code2, .code4{
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.code0{
+	color:red;
+	text-indent:0em;
+}
+.code2{
+	color:#930;
+	text-indent:2em;
+}
+.code4{
+	color:blue;
+	text-indent:4em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h3{
+text-indent:3%;
+font-size:1em;
+height:2.0em;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<div class='layout'><p>2</p><p></p></div>	
+<div class='layout'><p>CHAPTER TWO: THE VANISHING GLASS</p><p>第２章 悄悄消失的玻璃</p></div>	
+<div class='layout'><p>Nearly ten years had passed since the Dursleys had woken up to find their nephew on the front step, but Privet Drive had hardly changed at all. The sun rose on the same tidy front gardens and lit up the brass number four on the Dursleys' front door; it crept into their living room, which was almost exactly the same as it had been on the night when Mr. Dursley had seen that fateful news report about the owls. Only the photographs on the mantelpiece really showed how much time had passed. Ten years ago, there had been lots of pictures of what looked like a large pink beach ball wearing different-colored bonnets -- but Dudley Dursley was no longer a baby, and now the photographs showed a large blond boy riding his first bicycle, on a carousel at the fair, playing a computer game with his father, being hugged and kissed by his mother. The room held no sign at all that another boy lived in the house, too.</p><p>自从德思礼夫妇一觉醒来在大门口台阶上发现他们的外甥以来，快十年过去了，女贞路却几乎没有变化。太阳依旧升到屋前整洁的花园上空，照亮德思礼家大门上的四号铜牌；阳光悄悄爬进他们的起居室，这里和德思礼先生当年收看关于猫头鹰的重大新闻的那个晚上一模一样。只有壁炉台上的照片显示出流逝了多少时光。十年前，这里摆放着许多照片，看上去就像戴着五颜六色婴儿帽的一只粉红色的大海滩气球，只是达力已不再是婴儿了，照片上是一个大头男孩骑着他的第一辆自行车，在博览会上乘坐旋转木马，跟父亲玩电脑游戏，被母亲拥着亲吻。这个房间里没有任何迹象表明这栋房子里还住着另一个男孩。</p></div>	
+<div class='layout'><p>Yet Harry Potter was still there, asleep at the moment, but not for long. His Aunt Petunia was awake and it was her shrill voice that made the first noise of the day.</p><p>哈利波特还住在这里，此刻他正在睡觉，但不会太久。他的佩妮姨妈已经醒了，每天这里发出的第一声噪音就是她的尖叫声。</p></div>	
+<div class='layout'><p>"Up! Get up! Now!"</p><p>「起来！起床了！赶快！」</p></div>	
+<div class='layout'><p>Harry woke with a start. His aunt rapped on the door again.</p><p>哈利被惊醒了。他的姨妈又在拍打他的房门。</p></div>	
+<div class='layout'><p>"Up!" she screeched. Harry heard her walking toward the kitchen and then the sound of the frying pan being put on the stove. He rolled onto his back and tried to remember the dream he had been having. It had been a good one. There had been a flying motorcycle in it. He had a funny feeling he'd had the same dream before.</p><p>「起来！」她尖叫道。哈利听见她朝厨房走去，接着就是煎锅放到炉子上的声音。他翻身背对着门，尽力回忆刚才做过的梦。那是一个好梦。梦里有一辆会飞的摩托车。他感到很有趣，似乎以前也做过同样的梦。</p></div>	
+<div class='layout'><p>His aunt was back outside the door.</p><p>姨妈又来到门外。</p></div>	
+<div class='layout'><p>"Are you up yet?" she demanded.</p><p>「你起来了吗？」她追问。</p></div>	
+<div class='layout'><p>"Nearly," said Harry.</p><p>「快了。」哈利说。</p></div>	
+<div class='layout'><p>"Well, get a move on, I want you to look after the bacon. And don't you dare let it burn, I want everything perfect on Duddy's birthday."</p><p>「快了，那就赶紧，我要你看着熏咸肉。你敢把它煎糊了试试。我要达力生日这一天一切都顺顺当当。」</p></div>	
+<div class='layout'><p>Harry groaned.</p><p>哈利咕哝了一声。</p></div>	
+<div class='layout'><p>"What did you say?" his aunt snapped through the door.</p><p>「你说什么？」姨妈又在厉声问。</p></div>	
+<div class='layout'><p>"Nothing, nothing..."</p><p>「没什么，没什么……」</p></div>	
+<div class='layout'><p>Dudley's birthday -- how could he have forgotten? Harry got slowly out of bed and started looking for socks. He found a pair under his bed and, after pulling a spider off one of them, put them on. Harry was used to spiders, because the cupboard under the stairs was full of them, and that was where he slept.</p><p>达力的生日，他怎么会忘记呢？哈利慢慢吞吞地从床上爬起来，开始找袜子。他从床底下找到一双袜子，从其中一只袜子上抓下一只蜘蛛，然后把袜子穿上。哈利对蜘蛛早就习惯了，因为楼梯下边的碗柜里到处是蜘蛛，而他就睡在那里。</p></div>	
+<div class='layout'><p>When he was dressed he went down the hall into the kitchen. The table was almost hidden beneath all Dudley's birthday presents. It looked as though Dudley had gotten the new computer he wanted, not to mention the second television and the racing bike. Exactly why Dudley wanted a racing bike was a mystery to Harry, as Dudley was very fat and hated exercise -- unless of course it involved punching somebody. Dudley's favorite punching bag was Harry, but he couldn't often catch him. Harry didn't look it, but he was very fast.</p><p>他穿好了衣服，顺着走廊来到厨房里。餐桌几乎被达力的生日礼物堆得满满的。看来达力收到了他想要的新电脑，至于第二台电视机，还有跑车就更不在话下了。达力为什么想要一辆赛车，这对于哈利来说，是一个谜，因为达力胖乎乎的，而且讨厌锻炼。当然，除非这种锻炼包括拳脚相加。他最喜欢的拳击吊球就是哈利，可他并不是经常能抓住他。哈利看起来很单薄，但他动作机敏。</p></div>	
+<div class='layout'><p>Perhaps it had something to do with living in a dark cupboard, but Harry had always been small and skinny for his age. He looked even smaller and skinnier than he really was because all he had to wear were old clothes of Dudley's, and Dudley was about four times bigger than he was. Harry had a thin face, knobbly knees, black hair, and bright green eyes. He wore round glasses held together with a lot of Scotch tape because of all the times Dudley had punched him on the nose. The only thing Harry liked about his own appearance was a very thin scar on his forehead that was shaped like a bolt of lightning. He had had it as long as he could remember, and the first question he could ever remember asking his Aunt Petunia was how he had gotten it.</p><p>也许和哈利长年住在黑洞洞的碗柜里有些关系，他显得比他的同龄人瘦小。他看上去甚至比他实际的身材还要瘦小，因为他只能穿达力的旧衣服，而达力要比他高大三四倍。哈利有一张消瘦的面孔、膝盖骨突出的膝盖、乌黑的头发和一对翠绿的眼睛。他戴着一副用许多透明胶带粘在一起的圆框眼镜，因为达力总用拳头揍他的鼻子。哈利对自己的外表最喜欢的就是额头上那道像闪电似的淡淡的疤痕。这道疤痕从他记事起就有了，他记得他问佩妮姨妈的第一个问题就是这道伤疤是怎么落下的。</p></div>	
+<div class='layout'><p>"In the car crash when your parents died," she had said. "And don't ask questions."</p><p>「是在你父母被撞死的那场车祸中落下的。」她这么说，「不许问问题。」</p></div>	
+<div class='layout'><p>Don't ask questions -- that was the first rule for a quiet life with the Dursleys.</p><p>不许问问题——要与德思礼一家相安无事，这是规章的第一条。</p></div>	
+<div class='layout'><p>Uncle Vernon entered the kitchen as Harry was turning over the bacon.</p><p>弗农姨父来到厨房时，哈利正在翻熏咸肉。</p></div>	
+<div class='layout'><p>"Comb your hair!" he barked, by way of a morning greeting.</p><p>「把你的头发梳一梳！」他咆哮着，这是他早晨见面打招呼的方式。</p></div>	
+<div class='layout'><p> About once a week, Uncle Vernon looked over the top of his newspaper and shouted that Harry needed a haircut. Harry must have had more haircuts than the rest of the boys in his class put together, but it made no difference, his hair simply grew that way -- all over the place.</p><p>几乎每周一次，弗农姨父从他的报纸上方看看哈利，对哈利大喊大叫说他该去理发了。哈利理发的次数要比他班上所有的同学理发次数的总和还要多，可一点也不起作用，他的头发照旧疯长。</p></div>	
+<div class='layout'><p>Harry was frying eggs by the time Dudley arrived in the kitchen with his mother. Dudley looked a lot like Uncle Vernon. He had a large pink face, not much neck, small, watery blue eyes, and thick blond hair that lay smoothly on his thick, fat head. Aunt Petunia often said that Dudley looked like a baby angel -- Harry often said that Dudley looked like a pig in a wig.</p><p>哈利正在煎蛋的时候，达力和他母亲一起来到厨房。达力更像弗农姨父：一张粉红色的银盆大脸，脖子很短，一对水汪汪的蓝眼睛，浓密的金发平整地贴在他那厚实的胖乎乎的脑袋上。佩妮姨妈常说达力长得像小天使，可哈利却说他像一头戴假发的猪。</p></div>	
+<div class='layout'><p>Harry put the plates of egg and bacon on the table, which was difficult as there wasn't much room. </p><p>哈利把一盘盘煎蛋和熏咸肉放到餐桌上，这可不容易，因为桌上已经没有多余的地方了。</p></div>	
+<div class='layout'><p>Dudley, meanwhile, was counting his presents. His face fell. "Thirty-six," he said, looking up at his mother and father. "That's two less than last year."</p><p>这时达力正在清点他的礼品，他的脸沉了下来。「三十六，」他抬头看着父母亲说，「比去年少两件。」</p></div>	
+<div class='layout'><p>"Darling, you haven't counted Auntie Marge's present, see, it's here under this big one from Mommy and Daddy."</p><p>「亲爱的，你还没算上玛姬姑妈送给你的礼物呢。你看，在你妈妈爸爸送给你的大包下边呢。」</p></div>	
+<div class='layout'><p>"All right, thirty-seven then," said Dudley, going red in the face. Harry, who could see a huge Dudley tantrum coming on, began wolfing down his bacon as fast as possible in case Dudley turned the table over.</p><p>「好吧，那就三十七件。」达力说，他的脸涨得通红。哈利看得出达力就要大发雷霆了，于是趁达力还没有把餐桌掀翻，连忙狼吞虎咽，把他的一份熏咸肉一扫而光。</p></div>	
+<div class='layout'><p>Aunt Petunia obviously scented danger, too, because she said quickly, "And we'll buy you another two presents while we're out today. How's that, popkin? Two more presents. Is that all right''</p><p>佩妮姨妈显然也嗅出了危险的信号，连忙说：「今天我们上街的时候，再去给你买两件礼物。怎么样，宝贝。再买两件礼物，这样好了吧？」</p></div>	
+<div class='layout'><p>Dudley thought for a moment. It looked like hard work. Finally he said slowly, "So I'll have thirty ... thirty..."</p><p>达力想了一会儿，这似乎是一件很困难的工作。最后他总算慢慢吞吞地说：「那我就有三十……三十……」</p></div>	
+<div class='layout'><p>"Thirty-nine, sweetums," said Aunt Petunia.</p><p>「三十九件，我的心肝宝贝。」佩妮姨妈说。</p></div>	
+<div class='layout'><p>"Oh." Dudley sat down heavily and grabbed the nearest parcel. "All right then."</p><p>「哦，」达力重重地坐下来，抓起离他最近的一只礼包，「那好吧。」</p></div>	
+<div class='layout'><p>Uncle Vernon chuckled. "Little tyke wants his money's worth, just like his father. 'Atta boy, Dudley!" He ruffled Dudley's hair.</p><p>弗农姨父咯咯地笑了，「这小机灵鬼是在算他的进账呢，这一点跟他老爸一模一样。有你的，好小子，达力！」他揉了揉达力的头发。</p></div>	
+<div class='layout'><p>At that moment the telephone rang and Aunt Petunia went to answer it while Harry and Uncle Vernon watched Dudley unwrap the racing bike, a video camera, a remote control airplane, sixteen new computer games, and a VCR. He was ripping the paper off a gold wristwatch when Aunt Petunia came back from the telephone looking both angry and worried.</p><p>这时电话铃响了，佩妮姨妈跑去接电话。哈利和弗农姨父看着达力拆包，一辆赛车、一台摄像机、一架遥控飞机、十六盘新出的电脑游戏光盘和一台磁带录像机。他正在撕开一块金表的包装时，佩妮姨妈接完电话回来了，显得又生气，又着急。</p></div>	
+<div class='layout'><p>"Bad news, Vernon," she said. "Mrs. Figg's broken her leg. She can't take him." She jerked her head in Harry's direction.</p><p>「坏消息，弗农，」她说，「费格太太把腿摔断了，不能来接他了。」她朝哈利那边点了一下头。</p></div>	
+<div class='layout'><p>Dudley's mouth fell open in horror, but Harry's heart gave a leap. Every year on Dudley's birthday, his parents took him and a friend out for the day, to adventure parks, hamburger restaurants, or the movies. Every year, Harry was left behind with Mrs. Figg, a mad old lady who lived two streets away. Harry hated it there. The whole house smelled of cabbage and Mrs. Figg made him look at photographs of all the cats she'd ever owned.</p><p>达力吓得张口结舌，哈利却高兴得心里怦怦直跳。每年达力生日那一天，他的父母总带着他和另一位朋友出去玩一天，上游乐园，吃汉堡包或是看电影。把哈利留给费格太太，一个住在离这里有两条街的疯老婆子。哈利讨厌费格太太住的地方，满屋子都是卷心菜味；费格太太还非要他看她过去养过的几只猫咪的照片。</p></div>	
+<div class='layout'><p>"Now what?" said Aunt Petunia, looking furiously at Harry as though he'd planned this. Harry knew he ought to feel sorry that Mrs. Figg had broken her leg, but it wasn't easy when he reminded himself it would be a whole year before he had to look at Tibbles, Snowy, Mr. Paws, and Tufty again.</p><p>「现在怎么办？」佩妮姨妈气急败坏地看着哈利，仿佛这一切都是哈利一手策划的。哈利知道他应当为费格太太摔断腿感到难过，但是当他想到要整整一年之后他才会再见到踢踢、雪儿、爪子先生和毛毛（都是猫的名字），他又觉得难过不起来了。</p></div>	
+<div class='layout'><p>"We could phone Marge," Uncle Vernon suggested.</p><p>「咱们给玛姬挂个电话吧。」弗农姨父建议说。</p></div>	
+<div class='layout'><p>"Don't be silly, Vernon, she hates the boy."</p><p>「别犯傻了，弗农，她讨厌这孩子。」</p></div>	
+<div class='layout'><p>The Dursleys often spoke about Harry like this, as though he wasn't there -- or rather, as though he was something very nasty that couldn't understand them, like a slug.</p><p>德思礼夫妇经常这样当面谈论哈利，仿佛哈利根本不在场，甚至认为他是一个非常讨厌的听不懂他们讲话的东西，比如像一条鼻涕虫。</p></div>	
+<div class='layout'><p>"What about what's-her-name, your friend -- Yvonne?"</p><p>「她叫什么来着，你的那位朋友……伊芬，怎么样？」</p></div>	
+<div class='layout'><p>"On vacation in Majorca," snapped Aunt Petunia.</p><p>「上马约卡岛<sup>1</sup>度假去了。」她厉声说。</p></div>	
+<div class='layout'><p>"You could just leave me here," Harry put in hopefully (he'd be able to watch what he wanted on television for a change and maybe even have a go on Dudley's computer).</p><p>「你们可以把我留在家里。」哈利满怀希望地插嘴说。（这样他就可以看他想看的电视节目，改变一下口味，说不定还能试着玩一把达力的电脑。）</p></div>	
+<div class='layout'><p>Aunt Petunia looked as though she'd just swallowed a lemon.</p><p>佩妮姨妈看起来像刚刚吞下了一只柠檬。</p></div>	
+<div class='layout'><p>"And come back and find the house in ruins?" she snarled.</p><p>「好让我们回来看到整个房子都给毁了？」她大吼道。</p></div>	
+<div class='layout'><p>"I won't blow up the house," said Harry, but they weren't listening.</p><p>「我不会把房子炸掉的。」哈利说。可他们根本不听。</p></div>	
+<div class='layout'><p>"I suppose we could take him to the zoo," said Aunt Petunia slowly, "... and leave him in the car...."</p><p>「我想我们可以带他到动物园去，」佩妮姨妈慢吞吞地说，「……然后把他留在车上……」</p></div>	
+<div class='layout'><p>"That car's new, he's not sitting in it alone...."</p><p>「那是辆新车，不能让他一个人待在车上……」</p></div>	
+<div class='layout'><p>Dudley began to cry loudly. In fact, he wasn't really crying -- it had been years since he'd really cried -- but he knew that if he screwed up his face and wailed, his mother would give him anything he wanted.</p><p>达力大哭起来。其实，他并没有真哭，他已经有好多年没有真的哭过了。他知道，只要他一哭丧着脸，嗷嗷地号叫，母亲就会满足他的任何要求。</p></div>	
+<div class='layout'><p>"Dinky Duddydums, don't cry, Mummy won't let him spoil your special day!" she cried, flinging her arms around him.</p><p>「我的好心肝宝贝，别哭，妈妈不会让他搅乱你的好日子的！」她喊着，一下子把他搂到怀里。</p></div>	
+<div class='layout'><p>"I... don't... want... him... t-t-to come!" Dudley yelled between huge, pretend sobs. "He always sp- spoils everything!" He shot Harry a nasty grin through the gap in his mother's arms.</p><p>「我……不……想让……他……去……去！」达力一边抽抽搭搭地假哭，一边断断续续地大喊大叫，「他总是把什么都弄坏了！」他躲在母亲臂弯里不怀好意地朝哈利撇嘴一笑。</p></div>	
+<div class='layout'><p>Just then, the doorbell rang -- </p><p>正在这时，门铃响了。</p></div>	
+<div class='layout'><p>"Oh, good Lord, they're here!" said Aunt Petunia frantically -- and a moment later, Dudley's best friend, Piers Polkiss, walked in with his mother. Piers was a scrawny boy with a face like a rat. He was usually the one who held people's arms behind their backs while Dudley hit them. Dudley stopped pretending to cry at once.</p><p>「哎呀，天哪，他们来了！」佩妮姨妈慌慌张张地说。过了一会儿，达力最要好的朋友皮尔波奇斯和他的母亲一起进来了。皮尔瘦骨嶙峋，脸像老鼠脸。像他这种人总是在达力打人的时候，把挨打人的双手反剪在背后，牢牢抓住。达力立刻不装哭了。</p></div>	
+<div class='layout'><p>Half an hour later, Harry, who couldn't believe his luck, was sitting in the back of the Dursleys' car with Piers and Dudley, on the way to the zoo for the first time in his life. His aunt and uncle hadn't been able to think of anything else to do with him, but before they'd left, Uncle Vernon had taken Harry aside.</p><p>哈利简直不敢相信自己这么走运。半小时后，他和皮尔、达力坐在德思礼的私家车后座，生平第一次向通往动物园的路上驶去了。他姨父姨妈想不出任何别的办法安置他，不过在动身前，弗农姨父把哈利叫到一旁。</p></div>	
+<div class='layout'><p>"I'm warning you," he had said, putting his large purple face right up close to Harry's, "I'm warning you now, boy -- any funny business, anything at all -- and you'll be in that cupboard from now until Christmas."</p><p>「我警告你，」他把红得发紫的大脸凑到哈利跟前说，「我现在警告你，小子，只要你干出一点点蠢事……干出任何事……那你就在你的碗柜里待着，等圣诞节再出来吧。」</p></div>	
+<div class='layout'><p>"I'm not going to do anything," said Harry, "honestly..</p><p>「我什么事也不会做的，」哈利说，「真的……」</p></div>	
+<div class='layout'><p>But Uncle Vernon didn't believe him. No one ever did.</p><p>但弗农姨父不相信他。从来没有人相信他的话。</p></div>	
+<div class='layout'><p>The problem was, strange things often happened around Harry and it was just no good telling the Dursleys he didn't make them happen.</p><p>问题是哈利周围常常会发生一些怪事，即使你磨破嘴皮对德思礼夫妇说那些事与哈利无关，也是白费唇舌。</p></div>	
+<div class='layout'><p>Once, Aunt Petunia, tired of Harry coming back from the barbers looking as though he hadn't been at all, had taken a pair of kitchen scissors and cut his hair so short he was almost bald except for his bangs, which she left "to hide that horrible scar." Dudley had laughed himself silly at Harry, who spent a sleepless night imagining school the next day, where he was already laughed at for his baggy clothes and taped glasses. Next morning, however, he had gotten up to find his hair exactly as it had been before Aunt Petunia had sheared it off He had been given a week in his cupboard for this, even though he had tried to explain that he couldn't explain how it had grown back so quickly.</p><p>每次哈利理发回来总像根本没有理过一样，有一次佩妮姨妈实在按捺不住，就从厨房里拿出一把剪刀几乎把他的头发剪光了，只留下前面一绺头发「盖住他那道可怕的伤疤」。这把达力笑得前仰后合，可哈利却整夜睡不着，思前想后，不知明天该怎么去上学，同学们本来就拿他那身松松垮垮的衣服和用胶带粘牢的眼镜当笑话。可到了第二天一早他起床的时候，竟发现自己的头发又恢复到了佩妮姨妈剪它以前的样子。尽管他拼命辩白，自己也弄不清头发为什么这么快就长出来了，可是为这件事他还是被他们在碗柜里关了一个星期。</p></div>	
+<div class='layout'><p>Another time, Aunt Petunia had been trying to force him into a revolting old sweater of Dudley's (brown with orange puff balls) -- The harder she tried to pull it over his head, the smaller it seemed to become, until finally it might have fitted a hand puppet, but certainly wouldn't fit Harry. Aunt Petunia had decided it must have shrunk in the wash and, to his great relief, Harry wasn't punished.</p><p>还有一次，佩妮姨妈硬要哈利穿一件旧的套头毛衣（这件毛衣很难看，是棕色的，缀有橙色的小毛球）。她越是往哈利头上套，毛衣就缩得越小，最后缩得只能给掌上木偶穿，哈利穿当然是不合适了。佩妮姨妈断定是洗的时候缩水了，也就没有处罚哈利，使他大大松了一口气。</p></div>	
+<div class='layout'><p>On the other hand, he'd gotten into terrible trouble for being found on the roof of the school kitchens. Dudley's gang had been chasing him as usual when, as much to Harry's surprise as anyone else's, there he was sitting on the chimney. The Dursleys had received a very angry letter from Harry's headmistress telling them Harry had been climbing school buildings. But all he'd tried to do (as he shouted at Uncle Vernon through the locked door of his cupboard) was jump behind the big trash cans outside the kitchen doors. Harry supposed that the wind must have caught him in mid- jump.</p><p>另一次，哈利在学校伙房的屋顶被发现了，这可给他惹出了很大的麻烦。达力和他的一伙跟往常一样追着哈利跑，结果哈利竟坐到了伙房的烟囱上，这使他受到的惊吓并不比别人小。德思礼夫妇收到女校长的一封信，女校长很生气，告诉他们哈利爬到学校楼顶上去了。但他当时只是（正如他在上了锁的碗柜里朝他姨父大喊大叫时所说的）在向伙房外边的大垃圾箱后面跳。哈利猜想大概是风半路上把他托上去了。</p></div>	
+<div class='layout'><p>But today, nothing was going to go wrong. It was even worth being with Dudley and Piers to be spending the day somewhere that wasn't school, his cupboard, or Mrs. Figg's cabbage-smelling living room.</p><p>今天不会出什么差错了。他觉得只要不待在学校、不待在他的碗柜里或费格太太满屋卷心菜味的起居室里，即使跟达力或皮尔一起在什么地方消磨一天也是值得的。</p></div>	
+<div class='layout'><p>While he drove, Uncle Vernon complained to Aunt Petunia. He liked to complain about things: people at work, Harry, the council, Harry, the bank, and Harry were just a few of his favorite subjects. This morning, it was motorcycles.</p><p>弗农姨父一边开车，一边对佩妮姨妈抱怨。他总喜欢怨天尤人，工作中遇到的人、哈利，开会、哈利，银行、哈利，这是他喜欢抱怨的少数几个话题。今天早上他抱怨的是摩托车。</p></div>	
+<div class='layout'><p>"... roaring along like maniacs, the young hoodlums," he said, as a motorcycle overtook them.</p><p>「像疯子一样，一路吼个没完，这些小兔崽子。」当一辆摩托车超车时，他说。</p></div>	
+<div class='layout'><p>I had a dream about a motorcycle," said Harry, remembering suddenly. "It was flying."</p><p>「我梦见过一辆摩托车，」哈利突然想起自己的梦，说，「那车还飞呢。」</p></div>	
+<div class='layout'><p>Uncle Vernon nearly crashed into the car in front. He turned right around in his seat and yelled at Harry, his face like a gigantic beet with a mustache: "MOTORCYCLES DON'T FLY!"</p><p>弗农姨父差点撞到前面的车上。他从座位上转过身来，他的脸活像一个留着大胡子的大甜菜头。他朝哈利大喊大叫，说：「摩托车不会飞！」</p></div>	
+<div class='layout'><p>Dudley and Piers sniggered.</p><p>达力和皮尔吃吃地笑起来。</p></div>	
+<div class='layout'><p>I know they don't," said Harry. "It was only a dream."</p><p>「我知道摩托车不会飞，」哈利说，「那只是一个梦。」</p></div>	
+<div class='layout'><p>But he wished he hadn't said anything. If there was one thing the Dursleys hated even more than his asking questions, it was his talking about anything acting in a way it shouldn't, no matter if it was in a dream or even a cartoon -- they seemed to think he might get dangerous ideas.</p><p>他想，要是什么也没有说就好了。比问问题更让德思礼夫妇恼火的就是他总说些违反常规的事情，不管是做梦梦到的，还是从动画片里看来的——他们认为他总有可能产生危险的想法。</p></div>	
+<div class='layout'><p>It was a very sunny Saturday and the zoo was crowded with families. The Dursleys bought Dudley and Piers large chocolate ice creams at the entrance and then, because the smiling lady in the van had asked Harry what he wanted before they could hurry him away, they bought him a cheap lemon ice pop. It wasn't bad, either, Harry thought, licking it as they watched a gorilla scratching its head who looked remarkably like Dudley, except that it wasn't blond.</p><p>这是一个阳光灿烂的周末，动物园挤满了举家出游的游客。在入口的地方，德思礼夫妇给达力和皮尔各买了一支大巧克力冰淇淋；他们还没来得及把哈利带走，冰淇淋车上一位笑盈盈的小姐就已经在问哈利想吃点什么，他们只好给哈利买了一支便宜的柠檬冰棍。其实冰棍也不坏，哈利心里想。他一面舔冰棍，一面观赏一只正在搔头的大猩猩，这只大猩猩跟达力长得像极了，只不过它的毛发不是金色的。</p></div>	
+<div class='layout'><p>Harry had the best morning he'd had in a long time. He was careful to walk a little way apart from the Dursleys so that Dudley and Piers, who were starting to get bored with the animals by lunchtime, wouldn't fall back on their favorite hobby of hitting him. They ate in the zoo restaurant, and when Dudley had a tantrum because his knickerbocker glory didn't have enough ice cream on top, Uncle Vernon bought him another one and Harry was allowed to finish the first.</p><p>好长时间以来，这是哈利最开心的一个早晨了。他特地小心翼翼地和德思礼夫妇保持一小段距离，防备达力和皮尔到吃午饭的时候，看动物看烦了，回过头来玩他们的拿手好戏——追打他。他们在动物园餐厅吃午饭，达力嫌给他来的一份彩宝圣代不够大，于是又大发脾气。弗农姨父赶紧给他点了一份大的，把原先那份让哈利吃掉了。</p></div>	
+<div class='layout'><p>Harry felt, afterward, that he should have known it was all too good to last.</p><p>哈利事后想想，他觉得自己应当明白好事不会持续太久的。</p></div>	
+<div class='layout'><p>After lunch they went to the reptile house. It was cool and dark in there, with lit windows all along the walls. Behind the glass, all sorts of lizards and snakes were crawling and slithering over bits of wood and stone. Dudley and Piers wanted to see huge, poisonous cobras and thick, man-crushing pythons. Dudley quickly found the largest snake in the place. It could have wrapped its body twice around Uncle Vernon's car and crushed it into a trash can -- but at the moment it didn't look in the mood. In fact, it was fast asleep.</p><p>吃过午饭，他们来到了爬虫馆。馆里阴冷、晦暗，沿四面墙都是明亮的玻璃窗。隔着玻璃只见各色蜥蜴和蛇在木块上或石块上爬来爬去，溜溜达达。达力和皮尔想看看有剧毒的大眼镜蛇和攻击性很强的巨蟒。达力很快就找到了馆里最大的一条巨蟒。它能用它的身体缠绕弗农姨父的汽车两圈，然后把它挤压成一堆废铁。不过这时看来它并没有这种心思，它睡得正香呢。</p></div>	
+<div class='layout'><p>Dudley stood with his nose pressed against the glass, staring at the glistening brown coils."Make it move," he whined at his father.</p><p>达力用鼻子紧贴着玻璃盯着这盘亮闪闪的棕色巨蟒。「让它动呀。」达力哼哼唧唧地央求他父亲。</p></div>	
+<div class='layout'><p> Uncle Vernon tapped on the glass, but the snake didn't budge.</p><p>弗农姨父敲了敲玻璃，巨蟒却纹丝不动。</p></div>	
+<div class='layout'><p>"Do it again," Dudley ordered. </p><p>「再敲一遍。」达力命令说。</p></div>	
+<div class='layout'><p>Uncle Vernon rapped the glass smartly with his knuckles, but the snake just snoozed on.</p><p>弗农姨父用指节狠狠地敲玻璃，可大蟒继续打盹。</p></div>	
+<div class='layout'><p>"This is boring," Dudley moaned. He shuffled away.</p><p>「真烦人。」达力抱怨了一句，拖着脚慢慢吞吞地走开了。</p></div>	
+<div class='layout'><p>Harry moved in front of the tank and looked intently at the snake. He wouldn't have been surprised if it had died of boredom itself -- no company except stupid people drumming their fingers on the glass trying to disturb it all day long. It was worse than having a cupboard as a bedroom, where the only visitor was Aunt Petunia hammering on the door to wake you up; at least he got to visit the rest of the house.</p><p>哈利在巨蟒待的大柜子前边挪动着脚步，仔细打量这条巨蟒。如果它怏怏不乐最终在这里死去，哈利不会觉得奇怪。因为它没有伙伴，只有一些愚蠢的家伙整天用手指敲玻璃想把它弄醒。这比拿碗柜当卧室更糟糕，尽管每天来光顾他的只有佩妮姨妈，捶门要他起床，可至少他还能在整栋房子里到处走走。</p></div>	
+<div class='layout'><p>The snake suddenly opened its beady eyes. Slowly, very slowly, it raised its head until its eyes were on a level with Harry's.</p><p>巨蟒突然睁开亮晶晶的小眼睛，慢慢地、慢慢地抬起头来，直到与哈利的眼睛一般高。</p></div>	
+<div class='layout'><p>It winked.</p><p>它眨了眨眼。</p></div>	
+<div class='layout'><p>Harry stared. Then he looked quickly around to see if anyone was watching. They weren't. He looked back at the snake and winked, too.</p><p>哈利大为惊骇。他即刻飞快地四下里扫了一眼，看是否有人在注意他们。没有人注意。他回过头来看着巨蟒，也对它眨了眨眼。</p></div>	
+<div class='layout'><p> The snake jerked its head toward Uncle Vernon and Dudley, then raised its eyes to the ceiling. It gave Harry a look that said quite plainly: "I get that all the time.</p><p>巨蟒猛地把头转向弗农姨父和达力那边，然后又抬眼看着天花板。它的眼神显然在对哈利说：「我总是碰到像他们这样的人。」</p></div>	
+<div class='layout'><p>"I know," Harry murmured through the glass, though he wasn't sure the snake could hear him. "It must be really annoying."</p><p>「我知道。」哈利隔着玻璃小声说，尽管他不能肯定巨蟒能否听到他说话。「那一定让你很烦。」</p></div>	
+<div class='layout'><p>The snake nodded vigorously.</p><p>巨蟒用力点点头。</p></div>	
+<div class='layout'><p>"Where do you come from, anyway?" Harry asked.</p><p>「别的不说，你是从哪里来的？」哈利问。</p></div>	
+<div class='layout'><p>The snake jabbed its tail at a little sign next to the glass. Harry peered at it.</p><p>巨蟒甩着尾巴猛地拍了一下玻璃窗上的一块小牌子。哈利仔细看了一下。</p></div>	
+<div class='layout'><p>Boa Constrictor, Brazil.</p><p>蟒蛇，巴西。</p></div>	
+<div class='layout'><p>"Was it nice there?"</p><p>「那边不错吧？」</p></div>	
+<div class='layout'><p>The boa constrictor jabbed its tail at the sign again and Harry read on: This specimen was bred in the zoo. </p><p>巨蟒又甩尾巴猛地拍了一下那块牌子，哈利继续读道：这是本动物园内繁殖的样品。</p></div>	
+<div class='layout'><p>Oh, I see -- so you've never been to Brazil?</p><p>「哦，我明白了——这么说你从来没有到过巴西？」</p></div>	
+<div class='layout'><p>As the snake shook its head, a deafening shout behind Harry made both of them jump.</p><p>当巨蟒正在摇头回答时，哈利背后突然传来震耳欲聋的喊叫，哈利和巨蟒都吓了一跳。</p></div>	
+<div class='layout'><p>"DUDLEY! MR. DURSLEY! COME AND LOOK AT THIS SNAKE! YOU WON'T BELIEVE WHAT IT'S DOING!"</p><p>「达力！德思礼先生！快来看这条蛇！你决不会相信它在做什么！」</p></div>	
+<div class='layout'><p>Dudley came waddling toward them as fast as he could.</p><p>达力摇摇摆摆地赶紧朝他们走过来。</p></div>	
+<div class='layout'><p>"Out of the way, you," he said, punching Harry in the ribs. Caught by surprise, Harry fell hard on the concrete floor. What came next happened so fast no one saw how it happened -- one second, Piers and Dudley were leaning right up close to the glass, the next, they had leapt back with howls of horror.</p><p>「别挡道。」他说，朝哈利胸口就是一拳。哈利惊讶不已，重重地摔在水泥地上。随后发生的事，因为来得太突然，谁也说不清楚是怎么回事。只见皮尔和达力一下子紧贴在玻璃上，马上又惊恐万状，大喊大叫，连蹦带跳往后退去。</p></div>	
+<div class='layout'><p>Harry sat up and gasped; the glass front of the boa constrictor's tank had vanished. The great snake was uncoiling itself rapidly, slithering out onto the floor. People throughout the reptile house screamed and started running for the exits.</p><p>哈利坐起来，大口喘气。蟒蛇柜前的玻璃不见了。巨蟒迅速地伸展开盘着的身体，溜到地板上。整个爬虫馆的人都尖叫着，向出口跑去。</p></div>	
+<div class='layout'><p>As the snake slid swiftly past him, Harry could have sworn a low, hissing voice said, "Brazil, here I come.... Thanksss, amigo."</p><p>巨蟒溜过哈利身旁时，哈利清清楚楚地听到一个咝咝的声音轻轻地说：「我是从巴西来到这里的……多谢，我走了。」</p></div>	
+<div class='layout'><p>The keeper of the reptile house was in shock.</p><p>爬虫馆的管理员深感震惊。</p></div>	
+<div class='layout'><p>"But the glass," he kept saying, "where did the glass go?"</p><p>「可这玻璃，」他不停地叨叨，「这玻璃到哪里去了？」</p></div>	
+<div class='layout'><p>The zoo director himself made Aunt Petunia a cup of strong, sweet tea while he apologized over and over again. Piers and Dudley could only gibber. As far as Harry had seen, the snake hadn't done anything except snap playfully at their heels as it passed, but by the time they were all back in Uncle Vernon's car, Dudley was telling them how it had nearly bitten off his leg, while Piers was swearing it had tried to squeeze him to death. But worst of all, for Harry at least, was Piers calming down enough to say, "Harry was talking to it, weren't you, Harry?"</p><p>动物园园长再三道歉，并亲自给佩妮姨妈泡了一杯加糖的浓茶。皮尔和达力只在一旁胡言乱语，东拉西扯。其实就哈利所看到的，除了巨蟒从他们身边溜过时，跟他们闹着玩，拍打了一下他们的脚后跟，别的什么也没有做。可是当他们坐上弗农姨父的汽车后，达力讲起他的腿如何如何差点儿被巨蟒咬断，皮尔则赌咒发誓说这条巨蟒想把他缠死。而且，最糟糕的是当皮尔镇静下来以后，他突然说：「哈利还跟它说话呢，是不是，哈利？」</p></div>	
+<div class='layout'><p>Uncle Vernon waited until Piers was safely out of the house before starting on Harry. He was so angry he could hardly speak. He managed to say, "Go -- cupboard -- stay -- no meals," before he collapsed into a chair, and Aunt Petunia had to run and get him a large brandy.</p><p>弗农姨父一直等到皮尔安全离开他们家之后才开始跟哈利算账。他气得几乎连话都说不出来了。他勉强说了一句：「去——碗柜——待着——不准吃饭。」就倒在扶手椅里了，佩妮姨妈连忙跑去给他端来一大杯白兰地。</p></div>	
+<div class='layout'><p>Harry lay in his dark cupboard much later, wishing he had a watch. He didn't know what time it was and he couldn't be sure the Dursleys were asleep yet. Until they were, he couldn't risk sneaking to the kitchen for some food.</p><p>哈利在黑洞洞的碗柜里躺了好久，一直盼望能有一块手表。他不知道现在是几点钟，而且也不能肯定德思礼一家是不是睡了。等他们睡了，他就可以冒险，偷偷溜到厨房去找点东西吃。</p></div>	
+<div class='layout'><p>He'd lived with the Dursleys almost ten years, ten miserable years, as long as he could remember, ever since he'd been a baby and his parents had died in that car crash. He couldn't remember being in the car when his parents had died. Sometimes, when he strained his memory during long hours in his cupboard, he came up with a strange vision: a blinding flash of green light and a burn- ing pain on his forehead. This, he supposed, was the crash, though he couldn't imagine where all the green light came from. He couldn't remember his parents at all. His aunt and uncle never spoke about them, and of course he was forbidden to ask questions. There were no photographs of them in the house.</p><p>他还是个婴儿时，他的父母死于车祸。他记得，从那时起到现在，他已经在弗农姨父家生活近十年了，那是十年苦难的生活。他已经不记得父母身亡时，他自己也在车上。有时躺在碗柜里长时间拼命回忆，会出现一种奇妙的幻象：一道耀眼的闪电般的绿光，前额上一阵火辣辣的疼痛。他猜想，这就是那场车祸，但他不知道那道绿光是从哪里来的。他一点也不记得他的父母了。姨父姨妈从来不提他们，当然，也不准他问。家里也没有他们的照片。</p></div>	
+<div class='layout'><p>When he had been younger, Harry had dreamed and dreamed of some unknown relation coming to take him away, but it had never happened; the Dursleys were his only family. Yet sometimes he thought (or maybe hoped) that strangers in the street seemed to know him. Very strange strangers they were, too. A tiny man in a violet top hat had bowed to him once while out shopping with Aunt Petunia and Dudley. After asking Harry furiously if he knew the man, Aunt Petunia had rushed them out of the shop without buying anything. A wild-looking old woman dressed all in green had waved merrily at him once on a bus. A bald man in a very long purple coat had actually shaken his hand in the street the other day and then walked away without a word. The weirdest thing about all these people was the way they seemed to vanish the second Harry tried to get a closer look.</p><p>在哈利年纪还小的时候，他经常做梦，梦见一位亲戚突然来把他接走，可是他的梦从来没有实现。德思礼一家是他惟一的亲戚。可有时候他觉得（也许是盼望）街上的陌生人似乎认识他。而且，他们都是些非常奇怪的陌生人。一次他跟佩妮姨妈和达力上街买东西，就有一个戴紫罗兰色大礼帽的小个子男人向他鞠躬行礼。佩妮姨妈怒冲冲地追问哈利是否认识那人，之后就把他和达力赶出商店，什么东西也没有买。另外一次在公共汽车上，一个放荡不羁、穿一身绿衣服的老太婆笑眯眯地向他招手。还有一次，一个穿紫色拖地长袍的秃头男子在大街上竟然跑过来跟他握手，之后一句活没说就走开了。而最令人感到不可思议的是，当哈利想更仔细地看他们的时候，他们便消失得无影无踪了。</p></div>	
+<div class='layout'><p>At school, Harry had no one. Everybody knew that Dudley's gang hated that odd Harry Potter in his baggy old clothes and broken glasses, and nobody liked to disagree with Dudley's gang.</p><p>在学校里，哈利没有一个朋友。大家都知道，达力一伙最恨的就是穿松松垮垮的旧衣服、戴一副破碎眼镜的怪人哈利波特。谁也不愿意去跟达力一伙作对。</p></div>	
+<div class='layout'><p> </p><p>1 马约卡岛，在西地中海，属西班牙。</p></div>	
+﻿
+</div> <!--container-->
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 100){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>
