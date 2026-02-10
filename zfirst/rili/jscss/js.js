@@ -1,4 +1,56 @@
+<!--倒计时-->
+var time_now_server,time_now_client,time_end,time_server_client,timerID;
+time_end=new Date("Feb 16, 2026 00:00:00");
+time_end=time_end.getTime();
 
+time_now_server=new Date();
+time_now_server=time_now_server.getTime();
+time_now_client=new Date();
+time_now_client=time_now_client.getTime();
+
+time_server_client=time_now_server-time_now_client;
+setTimeout("show_time()",1000);
+
+function show_time()
+{
+	timer.innerHTML =time_server_client;
+
+	var time_now,time_distance,str_time;
+	var int_day,int_hour,int_minute,int_second;
+	var time_now=new Date();
+	time_now=time_now.getTime()+time_server_client;
+	time_distance=time_end-time_now;
+	if(time_distance>0)
+	{
+		int_day=Math.floor(time_distance/86400000)
+		time_distance-=int_day*86400000;
+		int_hour=Math.floor(time_distance/3600000)
+		time_distance-=int_hour*3600000;
+		int_minute=Math.floor(time_distance/60000)
+		time_distance-=int_minute*60000;
+		int_second=Math.floor(time_distance/1000)
+	
+		if(int_hour<10)
+			int_hour="0"+int_hour;
+		if(int_minute<10)
+			int_minute="0"+int_minute;
+		if(int_second<10)
+			int_second="0"+int_second;
+		str_time="<font style='font-size:14pt;color:#28C84A;font-weight:bold;'>"+int_day+"</font><font face='黑体' style='font-size:10pt;'>天</font><br>"+int_hour+":"+int_minute+":"+int_second;
+		timer.innerHTML=str_time;
+		setTimeout("show_time()",1000);
+	}
+	else
+	{
+		timer.innerHTML ="over";
+		clearTimeout(timerID)
+	}
+}
+
+
+
+//31号有问题
+// line: 920 春节
 //在head中chrome可以使用多个script标签，IE只能使用1个
 <!--  // 日期资料 1900-2049 , 1900年1月31日农历正月初一
 var lunarInfo=new Array(
@@ -167,7 +219,7 @@ function monthDays(y,m) {
 }
 
 //====================================== 算出农历, 传入Date对象, 传回农历日期对象
-// 该Date对象属性有 .year .month .day（农历年、月、日） .isLeap 
+// 函数构造器构造的Date对象属性有 .year .month .day（农历年、月、日） .isLeap 
 // .yearCyl .monCyl .dayCyl(农历干支，以下干支月、干支日都有问题)
 <!--Lunar-->
 
@@ -891,15 +943,30 @@ function picOutput(m) {
 	var str= '<img src="' +flowers[m] + '">' // month
 	
 	flower.innerHTML = str
+	
+	var months = new Array();
+	months[1] ="端月：一月水仙清水养，秦始皇嬴政因名字与正月同音犯忌，遂改称正月为端月。端，顶也，仍是开端伊始的意思。正月银柳插瓶头，称柳月。";
+	months[2] ="杏月：二月红杏闹枝头，农历二月处于仲春时节，土地回暖、春耕开始，民间有“龙抬头”等传统节日。";
+	months[3] ="桃月：三月桃花粉面羞，三月，是养蚕的月份，所以叫“蚕月”。";
+	months[4] ="槐月：四月槐花挂满枝，槐树绽开了黄白色的花瓣儿。";
+	months[5] ="榴月：五月石榴红胜火，许多人家悬挂菖蒲、艾叶于门上，用以避邪，因此，五月又称蒲月";
+	months[6] ="荷月：六月荷花另样红，六月三伏赤日炎炎，许多植物在酷夏的灼烤下无精打采，只有荷塘中的荷花亭亭玉立，精神抖擞";
+	months[7] ="兰月：七月兰花清香溢，许多品种的兰花在七月吐芳，馨香无比故得名。七月七日是中国妇女向天上的织女星“乞巧”的月份，乞求织女使她们心灵手巧。所以，七月就叫“巧月”。";
+	months[8] ="桂月：八月桂花遍地开。";
+	months[9] ="菊月：九月菊花傲秋霜。农历九月，万木萧瑟，落叶纷纷，独有那婀娜多姿、热烈怒放的菊花给人们以活力和温暖。";
+	months[10] ="露月：十月芙蓉正上妆";
+	months[11] ="冬月：十一月山茶初开放，冬月葭草吐绿头，又称葭月，在冬三月的正中间，此时节，冬日渐深，冬寒更甚。根据农历历法，冬至节气必须出现在农历十一月，如果出现误差，则用设闰月来进行调整。因为农历十一月是二十四节气中的冬至所在的月份，所以农历十一月又被称为冬月。";
+	months[12] ="腊月：十二月梅花雪里香，因干燥少雨的气候适宜制作腊味而得名。腊月习俗包含扫尘、祭灶、写春联等，北方地区以腊月二十三为小年，南方则多以二十四为小年。腊是“猎”的通假字，“腊祭”亦为“猎祭”，指猎取禽兽祭祀先祖的意思。腊月二十五，推磨做豆腐。腊月二十六 ，杀猪割年肉。腊月二十七，宰鸡赶大集。年廿八，洗邋遢。";
+	month.innerHTML = months[m];
 }
 function initial() {
 	dStyle = detail.style;
 	CLD.SY.selectedIndex=tY-1900;
 	CLD.SM.selectedIndex=tM;
-  var d = new Date()
-   var ld = new Lunar(d);
-   var lm = ld.month;
-   picOutput(lm)	
+	var d = new Date()
+	var ld = new Lunar(d);
+	var lm = ld.month;
+	picOutput(lm)	
 	drawCld(tY,tM);
 	var Today = new Date(tY,tM,1)
 	oneday(tD+Today.getDay()-1)	
@@ -915,54 +982,7 @@ function jscss()
 	//node.style.display = "block";
 }
 
-<!--倒计时-->
-var time_now_server,time_now_client,time_end,time_server_client,timerID;
-time_end=new Date("Feb 12, 2021 00:00:00");
-time_end=time_end.getTime();
 
-time_now_server=new Date();
-time_now_server=time_now_server.getTime();
-time_now_client=new Date();
-time_now_client=time_now_client.getTime();
-
-time_server_client=time_now_server-time_now_client;
-setTimeout("show_time()",1000);
-
-function show_time()
-{
-	timer.innerHTML =time_server_client;
-
-	var time_now,time_distance,str_time;
-	var int_day,int_hour,int_minute,int_second;
-	var time_now=new Date();
-	time_now=time_now.getTime()+time_server_client;
-	time_distance=time_end-time_now;
-	if(time_distance>0)
-	{
-		int_day=Math.floor(time_distance/86400000)
-		time_distance-=int_day*86400000;
-		int_hour=Math.floor(time_distance/3600000)
-		time_distance-=int_hour*3600000;
-		int_minute=Math.floor(time_distance/60000)
-		time_distance-=int_minute*60000;
-		int_second=Math.floor(time_distance/1000)
-	
-		if(int_hour<10)
-			int_hour="0"+int_hour;
-		if(int_minute<10)
-			int_minute="0"+int_minute;
-		if(int_second<10)
-			int_second="0"+int_second;
-		str_time="<font style='font-size:14pt;color:#28C84A;font-weight:bold;'>"+int_day+"</font><font face='黑体' style='font-size:10pt;'>天</font><br>"+int_hour+":"+int_minute+":"+int_second;
-		timer.innerHTML=str_time;
-		setTimeout("show_time()",1000);
-	}
-	else
-	{
-		timer.innerHTML ="over";
-		clearTimeout(timerID)
-	}
-}
 	function goto(ao){
 		var h=document.getElementById("tab").getElementsByTagName("h3");
 		var d=document.getElementById("tab").getElementsByTagName("div");
