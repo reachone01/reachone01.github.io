@@ -1,0 +1,783 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //65.29%
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000">红色</option><option value="#006600">绿色</option><option value="#0000ff">蓝色</option><option value="#660000">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:40em;
+	line-height:1.6em;
+	//overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.lettle{
+	font-size:110%;
+	line-height:160%;
+	
+	padding:0;
+	color:#930;
+	text-indent:2em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h2{
+	font-size:1.2em;
+	font-weight:bold;
+	margin-top:0px;
+	margin-bottom:0px;
+	text-indent:0em;
+	color:#990000;
+	height:1.5em;
+}
+h3{
+	text-indent:0em;
+	font-size:1.2em;
+	height:1.5em;
+	padding:0;
+	margin:0;
+	color:#990000;
+}
+h4{
+	text-indent:0em;
+	font-size:1em;
+	height:1.5em;
+	padding:0;
+	margin:0;
+	color:#990000;
+}
+.title
+{
+	text-indent:0em; font-weight:bold;
+	font-size:120%;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+    width:115%;
+    overflow-x:auto;    
+	margin-left:2em;
+	color:blue;
+	}
+</style>
+</head>
+<body>
+<div id="container"><p>第三部</p>
+<p><p><p><p>第九卷 预审</p></p></p></p>
+<p>第五节　第三次磨难</p>
+
+
+<p>米卡虽然供述时说得没精打采，但是显然更加竭力想不忘了、也不漏掉自己所讲的事情里任何一个细节。他讲他怎样越过围墙，到父亲的花园里，怎样走到窗前，后来又讲了窗下所发生的一切事情。他确切、明白而口齿清晰地叙述了在花园里那会儿使他心中激动的情绪，当时他渴望着弄清楚：格鲁申卡究竟在不在父亲家里？但奇怪是，这回检察官和预审推事听着的神气似乎完全不动声色，目光很冷淡，提出的问题也比刚才少得多。米卡从他们脸上什么也瞧不出来。“他们不高兴了，生气了，”他想，“那就随它吧！”在他讲到他怎样决定给父亲一个暗号，表示格鲁申卡来了，让他开窗子的时候，检察官和预审推事简直毫不注意“暗号”两个字，好象完全不明白这两个字具有什么意义，这连米卡也注意到了。最后，他讲到他看见父亲探身出来，他心里不由涌起了满腔憎恨，从口袋里掏出了铜杵来，说到这里，他忽然似乎故意停住了。他坐在那里瞧着墙壁，心里知道他们的眼光正紧紧地盯在他的身上。</p>
+
+
+<p>“哎，”预审推事说，“您掏出了武器，以后……以后发生了什么事情呢？”</p>
+
+
+<p>“以后么？以后就杀死了……对准他的头顶就是一下子，砸破了他的脑壳，……就是这样，照你们说来一定就是这样！”他的眼睛忽然冒起火来。刚熄灭了的全部怒火突然又异常猛烈地在他的心里升了起来。</p>
+
+
+<p>“照我们说来是这样，”尼古拉·帕尔费诺维奇重复着他说的话，“那么照您说来呢？”</p>
+
+
+<p>米卡垂下眼皮，沉默了好大工夫。</p>
+
+
+<p>“照我说来，诸位，照我说来是这样的，”他轻声说，“也不知是由于谁的眼泪呢，还是由于我的母亲在向上帝祷告，或是由于光明的神在这时候吻了我一下，——我不知道，但是当时魔鬼被战胜了。我猛然离开窗子，向围墙那边跑去。……父亲吓了一跳，这时才看到了我，他叫了一声，急忙从窗前跳开，这是我记得很清楚的。而我这时正穿过花园，奔向围墙，……就在我已经骑在围墙上的时候，格里戈里追上了我。……”</p>
+
+
+<p>他终于抬起眼睛来看着听话的人。他们好象正十分专心地注意看着他。米卡的心里又掀起一阵愤激的波澜。</p>
+
+
+<p>“诸位，你们这时候正在那里笑我哩！”他突然打住了话头。</p>
+
+
+<p>“为什么您这样想？”尼古拉·帕尔费诺维奇问。</p>
+
+
+<p>“为什么？就因为你们一句话也不相信我！我明白现在已经谈到了要害问题上：老头子现在躺在那里，脑袋被砸破了，可是我在悲剧般地描写了怎样想杀死他，怎样已经掏出了铜杵来以后，忽然又从窗前跑开了。……简直是传奇！简直是做诗！这样一个滑头家伙能凭空口白话相信他么？哈，哈！诸位，你们都是些喜欢嘲弄的人啊！”</p>
+
+
+<p>他在椅子上剧烈地转过身去，连椅子都嘎吱吱地响了。</p>
+
+
+<p>“您有没有注意到，”检察官忽然开口说，似乎根本没有察觉到米卡的激动情绪，“您从窗边跑开的时候有没有注意到：厢房另一头的园门是不是开着？”</p>
+
+
+<p>“不，没有开。”“没开么？”</p>
+
+
+<p>“正相反，是闩着的，而且谁会去开这门呢？对了，那扇门，等一等！”他似乎忽然醒悟过来，几乎哆嗦了一下，“难道你们发现门开着么？”</p>
+
+
+<p>“开着。”</p>
+
+
+<p>“如果你们自己没开，那会是谁开的呢？”米卡忽然感到万分地惊奇。</p>
+
+
+<p>“门是开着的，杀死您的老太爷的凶手一定是从这扇门进去，在行凶之后仍旧从这扇门出来的。”检察官一字一句缓慢清晰地说。“我们看得很清楚。凶手显然是在屋内动手，并不是隔着窗子杀的，这个可以从我们所作的侦查中，从尸体的位置上，从一切情况里清清楚楚地看出来。这事是不会有任何疑问的。”</p>
+
+
+<p>米卡惊愕得什么似的。</p>
+
+
+<p>“可这是不可能的，诸位！”他嚷起来，简直完全被弄糊涂了。“我……我没有进去，……我可以肯定，确切地告诉你们，我在花园里，直到逃出花园为止的全部时间中，那扇门是关着的。我只是站在窗下，从窗里看见他，仅仅只是这样，只是这样。……一直到最后一分钟的情景我也记得的。即使不记得，也一样知道，因为暗号只有我和斯麦尔佳科夫两人知道，还有死者知道，不听见暗号他是不会给世上任何人开门的！”</p>
+
+
+<p>“暗号？什么暗号？”检察官带着贪婪的，差不多近于神经质的好奇心说，一下子把他那副冷静、威严的姿态全忘掉了。他问话时，显出一副提心吊胆的神气。他嗅到了一个他还不知道的重要事实，立即感到恐慌得要命，生怕米卡也许会不愿意完全说出来。</p>
+
+
+
+
+<p>“你们竟还不知道！”米卡对他挤了挤眼，露出嘲弄的、恶毒的微笑。“那么假如我不说出来你们怎么办？你们向谁去打听呢？知道暗号的只有死者、我和斯麦尔佳科夫，再没有别人，还有上天知道，可它决不会告诉你们。而这件小事是极有意思的，谁知道在这基础上可以构筑出什么样的鬼玩艺来呀！哈，哈！你们放心吧，诸位，我会说出来的。你们的脑子里尽是些蠢念头。你们不知道在同谁打交道！你们面前的这个被告是会自己指控自己，自己做出不利于自己的供词的！是的，因为我是捍卫荣誉的骑士，而你们不是！”</p>
+
+
+<p>检察官默默容忍着这些带刺的话，只是焦急得发抖地一心想要知道新的事实。米卡把有关费多尔·巴夫洛维奇替斯麦尔佳科夫设计的暗号的一切事实，都详尽明确地告诉了他们，讲了每一种敲窗的含意，甚至还在桌上敲出这几种暗号给他们听。尼古拉·帕尔费诺维奇问他，在他敲老人的窗子的时候，是不是敲的正是“格鲁申卡来了”那个暗号，他明确地回答他正是敲的这个暗号。</p>
+
+
+<p>“现在你们可以在这上面建造高塔了吧！”米卡收住了话头，又带着轻蔑的神气转过去背着他们。</p>
+
+
+<p>“知道这些暗号的的确只有您的去世的老太爷、您和仆人斯麦尔佳科夫么？再没有别人了么？”尼古拉·帕尔费诺维奇又问了一次。</p>
+
+
+<p>“是的，仆人斯麦尔佳科夫，还有天。把关于天的话也记录下来；记录下来不会是多此一举。连你们自己也会需要上帝的。”</p>
+
+
+<p>自然记录了下来。但在记录的时候，检察官好象完全是偶然想到了一个新念头似的，突然说道：</p>
+
+
+<p>“既然斯麦尔佳科夫知道这些暗号，而您又根本否认在您的老太爷被害这件事上的一切指控，那么会不会是他敲出了约定的暗号，使您的老太爷给他开门，然后就……干下了这桩罪行？”</p>
+
+
+<p>米卡用嘲笑而同时又极为憎恨的眼光，深沉地盯着他看。他一声不响地盯了很长时间，检察官的眼睛不由得眨了一眨。</p>
+
+
+
+
+<p>“又捉住了狐狸！”米卡终于说，“踩住了这混账东西的尾巴！哈，哈！我看透您的想法，检察官！您一定以为我马上就要跳起来，抓住您对我暗示的话，扯开嗓子大喊起来：‘哎呀，准是斯麦尔佳科夫，他就是凶手！’您承认您就是这样想的吧，您承认了，我才继续说下去。”</p>
+
+
+<p>但是检察官并没有承认。他默不作声，仍旧等待着。</p>
+
+
+<p>“您弄错了，我不会大喊大叫地指控斯麦尔佳科夫的！”米卡说。</p>
+
+
+<p>“甚至一点也不怀疑他？”</p>
+
+
+<p>“您怀疑他么？”</p>
+
+
+<p>“也怀疑他。”</p>
+
+
+<p>米卡垂下眼睛望着地板。</p>
+
+
+<p>“开玩笑归开玩笑，”他开始阴郁地说，“告诉你们吧：从一开始，差不多还在我刚从帘子后面跑出来的时候，我就有过这个念头：‘是斯麦尔佳科夫！’，等我坐在这张桌旁，大声嚷着说我没有犯杀人罪的时候，我心里也一直在想‘是斯麦尔佳科夫！’，他一直没有离开我的脑子。刚刚也忽然又想到了：‘斯麦尔佳科夫’，但是只有一秒钟的工夫，就立刻想道：‘不，这不是斯麦尔佳科夫！’这不象是他干的事情，诸位！”</p>
+
+
+<p>“那么，您还怀疑另外的什么人么？”尼古拉·帕尔费诺维奇谨慎地问。</p>
+
+
+<p>“不知道是谁，是什么人，是上天的手，还是撒旦的手，但是……这不是斯麦尔佳科夫！”米卡坚决地说。</p>
+
+
+<p>“但您为什么这样坚决断然地肯定不是他呢？”</p>
+
+
+<p>“根据我的确信。根据印象。因为斯麦尔佳科夫这人生性下贱，而且是个胆小鬼。还不单是胆小鬼，而是长着两只脚的世上全部懦怯性的总代表。他是母鸡生的。他同我说话的时候，每次总打哆嗦，怕我要杀死他，其实我连手都不曾动一动。他对我下跪，哭泣，他的的确确就吻我脚上的靴子，求我‘不要吓唬他’。你们听：‘不要吓唬他’——这简直是什么话呀？我甚至还赏他钱。他是一只有病的小鸡，害着羊癫病，脑子里不健全，八岁小孩都可以揍他一顿。这还说得上有什么性格么？诸位，这不是斯麦尔佳科夫干的。何况他也不爱钱，从来不肯收我的赏赐。……再说他干吗要杀死老头子？要知道他可能是他的儿子，他的私生子哩，你们知道吧？”</p>
+
+
+<p>“我们听到过这个传说。但是您不也是您父亲的儿子么，可您自己还对大家说过，您想杀死他哩。”</p>
+
+
+<p>“这是朝人家菜园里扔石头！而且是一块卑鄙龌龊的石头！我不怕！唉，诸位，你们当面对我说这样的话未免太卑鄙了！所以说卑鄙，是因为那是我自己对你们说出来的：我不但想杀，而且也真有可能杀了他，我还自己给自己安上罪名，说我差点儿把他杀死了！但我到底并没有杀死他，我的护身天使救了我，——可是对于这一层你们却毫不考虑。……所以你们是卑鄙的，卑鄙的！因为我并没有杀，没有杀，没有杀！检察官，您听着：我没有杀！”</p>
+
+
+<p>他说得几乎喘不过气来。在整个审讯过程中，他还从来没有这样激动过。</p>
+
+
+<p>“那么他对你们又是怎么说的呢，诸位，那个斯麦尔佳科夫？”他沉默了一会以后，忽然说，“我能问你们这个问题么？”</p>
+
+
+<p>“您可以向我们询问一切问题，”检察官用冷淡严肃的态度回答，“一切有关本案事实的问题，至于我们，容我再说一遍，甚至有责任答复您的每一个问题。我们发现您所问的仆人斯麦尔佳科夫躺在床上，失去知觉，正在发着极厉害的羊癫疯，也许已是接连第十次发作。跟我们一块去的医生检查他以后，甚至对我们说他也许活不到早晨。”</p>
+
+
+
+
+<p>“这样说来，是魔鬼杀死了父亲！”米卡忽然脱口说出了这句话，似乎直到此刻还一直在自忖着：“究竟是不是斯麦尔佳科夫呢？”</p>
+
+
+<p>“我们以后再谈这件事，”尼古拉·帕尔费诺维奇决定说，“现在请您再继续您的口供好么？”</p>
+
+
+<p>米卡请求休息一会。他们很客气地允许了他。休息以后，他又继续说下去。但是他显然感到很痛苦。他已经饱受了折磨、屈辱和精神上的打击。而检察官现在又好象故意似的，老是纠缠一些“琐碎事”来惹他生气。米卡刚说到他怎样骑在围墙上头，用铜杵打抓住他的左腿的格里戈里的头，接着又连忙跳下来去看被打倒的人，检察官立刻止住他，请他更详细点说说，他是怎样骑在围墙上的。米卡感到很奇怪。</p>
+
+
+<p>“就这样坐着，骑着，一只脚在里面，另一只脚在外面。……”</p>
+
+
+<p>“铜杵呢？”</p>
+
+
+<p>“铜杵在手里。”</p>
+
+
+<p>“不在口袋里么？这一点您记得很清楚么？好吧，那么您抡胳膊的时候用力很猛么？”</p>
+
+
+<p>“大概很猛。您这是什么意思？”</p>
+
+
+<p>“能不能请您就象那时骑在墙上那样地骑在椅子上，而且为了弄清真象，请您给我们当面表演一下，您的胳臂是怎样，朝哪里抡的，往哪个方向？”</p>
+
+
+<p>“您这不是拿我开心么？”米卡问，傲慢地望着审讯者，但对方却连眼睛也没有眨一下。米卡猛地转过身子，跨在椅子上，抡了一下手臂。</p>
+
+
+<p>“就是这样打的！就是这样杀死的！您还要什么？”</p>
+
+
+<p>“谢谢您。现在请您费神说明一下：您究竟为什么跳下来，抱着什么目的，有什么用意？”</p>
+
+
+<p>“见鬼，……跳下来看被打倒的人……我也不知道为了什么！”</p>
+
+
+<p>“这可是在十分惊惶、正想逃走的时候啊？”</p>
+
+
+<p>“是的，是在十分惊惶、正想逃走的时候。”</p>
+
+
+<p>“您想救护他么？”</p>
+
+
+<p>“什么救护……是的，也许是想救护，我记不清了。”</p>
+
+
+<p>“当时就头脑不清么？那就是说，甚至处于一种茫然的状态么？”</p>
+
+
+<p>“不，完全不是茫然状态，全都记得的，连一丝一毫的细节都记得。我跳下去看了一看，就用手帕擦他的血。”</p>
+
+
+<p>“我们看见了您的手帕。您希望让被您打倒的人活过来么？”</p>
+
+
+<p>“不知道希望不希望，只是想弄明白他活着没有。”</p>
+
+
+<p>“哦，只是想弄明白？结果怎么样呢？”</p>
+
+
+<p>“我不是医生，不能断定。我逃走了，我以为已经把他打死了，但是他竟醒了过来。”</p>
+
+
+<p>“好极了。”检察官最后说。“谢谢您。我就需要知道这一些。费心再继续下去吧。”</p>
+
+
+<p>可惜，米卡竟没有想到说出来，虽然他是完全记得的，他的跳下去是出于怜悯心，当他站在被害者跟前时，甚至还说过几句伤心的话：“老头子恰巧碰上了，有什么办法，只好让他躺着吧。”检察官却只得出了一个结论，那就是这个人“在这时候，这样惊惶地”跳下来，只是为了想确切地弄明白：他的犯罪的唯一的证人还活着没有？照这样说来，这个人甚至在这种时候竟还有这样的魄力、果断、冷静和精细的心思啊，……等等，等等。检察官很满意：“用‘琐碎事’把这病态的人惹上火来，他果然就说漏了嘴。”</p>
+
+
+<p>米卡痛苦地继续说下去。但这次尼古拉·帕尔费诺维奇又马上打断了他：</p>
+
+
+<p>“您的手上染满了血，以后发现脸上也有，怎么能跑去找费多霞·玛尔科芙娜呢？”</p>
+
+
+<p>“可我当时并没有注意到我身上有血呀！”米卡回答。</p>
+
+
+<p>“这也是可能的，常有这样的情形。”检察官对尼古拉·帕尔费诺维奇使了个眼色。</p>
+
+
+<p>“真是没有注意，您这话说得很对，检察官。”米卡也突然表示起赞许来。但以下接着说到米卡突然决定“自己让路”和“让幸运的人从自己身旁走过去”的这段经过时，他已经怎么也下不了决心再象刚才那样吐露自己的真心，讲他“心灵上的女王”了。他对这些冷漠无情，“象臭虫般叮着他不放”的人感到讨厌。因此对他们反复提出的疑问，他只是用这样几句简单而干脆的话来回复：</p>
+
+
+<p>“我就是决定自杀嘛。还继续活下去干吗？这是自然而然地提出来的问题。她的以前的那位无可争辩的旧情人来了，他曾经错待过她，但是五年以后又带着爱情跑了来，准备以正式结婚来补偿过错。我就明白一切对我来说都已经完了。……而背后又有耻辱在威胁着我，再加上这个血，格里戈里的血。……再活下去干吗？于是跑去赎出抵押的手枪，装上子弹，预备到黎明就把它打进自己的脑袋。……”</p>
+
+
+<p>“而夜里痛饮一番？”</p>
+
+
+<p>“夜里痛饮一番。唉，真见鬼，诸位，快些问完吧。我确实打算自杀，就在这村子后面不远的地方，准备在早晨五点钟了结我自己，口袋里已藏好了一张纸条，是在彼尔霍金那里装手枪的时候写的。这张纸条就在这里，你们念一下吧。我的话不是专为骗你们而编的！”他突然轻蔑地补充了一句。他从背心口袋里掏出那张纸条来，朝着他们往桌子上一扔；预审官们好奇地读了一遍，照例把它归了卷。</p>
+
+
+<p>“您甚至在走进彼尔霍金先生家里去的时候，还不想把手洗洗干净么？这么说，您并不怕嫌疑？”</p>
+
+
+<p>“什么嫌疑？有没有嫌疑还不是一样，我反正准备上这儿来，五点钟就自杀，你们什么也来不及干了。如果不是出了父亲的案子，你们一定还什么也不知道，也不会上这里来的。唉，这是魔鬼干的，魔鬼杀死了父亲，你们也一定是靠了魔鬼才那么快就知道的！你们怎么这样快就赶了来？真奇怪，真想不到！”</p>
+
+
+<p>“彼尔霍金先生告诉我们，您到他家里去的时候，手里攥着……在沾满血的手里攥着……您那些钱，……许多钱，……一大叠一百卢布的钞票，侍候他的那个小男仆也看见的！”</p>
+
+
+<p>“是的，诸位，记得是这样的。”</p>
+
+
+<p>“现在碰到了一个小问题。您能不能告诉我们，”尼古拉·帕尔费诺维奇特别温和地开始说，“您从哪里忽然弄到这许多钱？从案情看，甚至按时间计算，您中间并没有回家去过呀！”</p>
+
+
+<p>检察官对于这样直率地提出这个问题，略为皱了皱眉头，但是并没有打断尼古拉·帕尔费诺维奇的话。</p>
+
+
+<p>“对，没有回家。”米卡回答，显然很镇静，但眼睛却盯着地上。</p>
+
+
+<p>“既然这样，容我再重问一句，”尼古拉·帕尔费诺维奇继续说，好象在小心套出对方的话来，“您从哪里一下子竟弄到这样大的数目？因为根据您自己承认的话，您在那天五点钟的时候还……”</p>
+
+
+<p>“还为了缺十个卢布，向彼尔霍金抵押了手枪，以后又想向霍赫拉柯娃借三千卢布，她没有给，以及如此等等的废话。”米卡不客气地打断他说。“不错，诸位，我缺少钱，但是忽然又有了几千卢布，是不是？跟你们说，诸位，你们两人现在正在提心吊胆：万一不肯说从哪里来的，可怎么办呢？恰恰如此：我不肯说，诸位，你们猜对了，你们没法知道的。”米卡忽然用异常坚决的口气一字一句地说。</p>
+
+
+<p>预审官们沉默了一会。</p>
+
+
+<p>“您该明白，卡拉马佐夫先生，这是我们必须知道的。”尼古拉·帕尔费诺维奇温和地轻声说。</p>
+
+
+<p>“我明白，但尽管这样还是不说。”</p>
+
+
+<p>检察官又插嘴了，他再度提醒说，被审讯的人如果认为这样对自己最有利，自然也可以不回答提出的问题，但是嫌疑犯将因为沉默使自己蒙受极大的损害，特别是因为问题这么重要。……</p>
+
+
+<p>“怎么长怎么短，怎么长怎么短！够了，我已经听见过这类告诫了！”米卡又打断他说。“我自己也明白案情重大，这又是极要害的情节，但尽管这样我还是不说。”</p>
+
+
+
+
+<p>“这对我们有什么关系？这又不是我们的事，这是您的事，您会自己害了自己的。”尼古拉·帕尔费诺维奇有点沉不住气地说。</p>
+
+
+<p>“诸位，你们瞧，玩笑归玩笑，”米卡抬起目光直望着他们两人，“我一开始就预感到，我们在这个关节上会顶牛的。但是方才我刚开始提出供词的时候，一切还在遥远的雾里，一切都还模糊不清，我甚至还脑筋简单到一开头先提议‘相互间的信任’。现在我看出根本不会有这种信任，因为我们迟早要碰到这堵该死的墙的！现在果然碰到了！不成，算了吧！但是我并不责备你们，你们自然也不能只凭我的话就相信我，我很理解这一点！”</p>
+
+
+<p>他阴郁地不作声了。</p>
+
+
+<p>“您能不能一方面丝毫不违背您对主要情节保持沉默的决心，一方面仍多少给我们一点点暗示：究竟是什么强烈的动机，竟使您在供到与您本身有极大利害关系的一个问题上，竟坚决不肯讲？”</p>
+
+
+<p>米卡忧郁而似乎有点沉思地笑了一笑。</p>
+
+
+<p>“我比你们所想的要善良得多，诸位，我可以告诉你们为什么，可以给你们这个暗示，虽然你们并不值得我这样做。诸位，我所以不肯讲，是因为这是我的耻辱。在‘钱从哪里弄来的’这个问题的答案里，包含着一个对我来说极大的耻辱，甚至即使我果真做了这杀父谋财的事，也不能和这个耻辱相比。这就是我不能说的原因。我是因为耻辱而不能说的。诸位，你们也想把这话记录下来么？”</p>
+
+
+<p>“是的，我们要记录下来。”尼古拉·帕尔费诺维奇嘟囔说。</p>
+
+
+<p>“你们不应该记录关于‘耻辱’的话。我本可以不供的，只是出于好心才对你们供了出来，可以说是给你们的赠礼，可是你们立刻就抓住了。唉，你们写吧，你们随便写吧，”他轻蔑而厌恶地说，“我不怕你们，而且……对你们感到自豪。”</p>
+
+
+<p>“您能说这是什么样的耻辱吗？”尼古拉·帕尔费诺维奇低声说。</p>
+
+
+<p>检察官皱紧了眉头。</p>
+
+
+<p>“不，不，c′estfini①，你们不必瞎费劲了。不值得弄脏了自己的手。就这样我也已经为了你们弄脏了自己的手了。你们不配，你们也好，别的任何人也好都不配。……够了，诸位，我不再说下去了。”</p>
+
+
+<p class="remark">——</p>
+
+
+<p class="remark">注：<p class="remark">①法语：到此为止。</p>
+
+
+<p class="remark">——</p>
+
+
+<p>这些话说得十分决绝。尼古拉·帕尔费诺维奇不再坚持，但是从伊波利特·基里洛维奇的眼神里一下子看出他还没有失去希望。</p>
+
+
+<p>“至少能不能请您说明一下！您手里拿着那笔钱走进彼尔霍金先生家里的时候，数目有多大？是多少卢布？”</p>
+
+
+<p>“这我也不能说。”</p>
+
+
+<p>“您好象对彼尔霍金声明过您那是三千卢布，是从霍赫拉柯娃太太那里拿到的？”</p>
+
+
+<p>“也许声明过。够了，诸位，我不会告诉你们是多少。”</p>
+
+
+<p>“既然这样，就请您讲一下，您是怎样到这里来的？来到以后做了些什么？”</p>
+
+
+<p>“哦，这个你们可以问这里所有的人。但是我也可以说一说。”</p>
+
+
+<p>他讲了起来，但是我们不再复述他的话了。他讲得很枯燥，很简单。关于他爱情方面的欢欣心情根本就没有讲。却说到因为“发生了新的事实”，他自杀的念头打消了。他在供述中并没有说出理由，并没讲详情细节。预审官们这回也不大去烦扰他。显然，他们也认为现在主要的关键不在这上面。</p>
+
+
+<p>“这一切我们会加以查核。在讯问证人的时候都还要再提到，那时候您当然也会在场的。”尼古拉·帕尔费诺维奇结束这段审讯时这样说。“现在我对您有一个要求，把您身上所有的东西，主要是您现在还剩下的钱，全都取出来，放在桌子上。”</p>
+
+
+
+
+<p>“钱么，诸位？好的，我明白必须这样。我甚至奇怪，你们早怎么没有注意这点。当然，我一直当众坐在这里，也跑不了。好吧，这是我的钱，请数一数，拿去吧，大概全在这里了。”</p>
+
+
+<p>他把口袋里的钱全都掏了出来，连背心口袋里的两个二十戈比的钱币也取了出来。数了数，一共八百三十六卢布四十戈比。</p>
+
+
+<p>“就是这么些么？”预审推事问。</p>
+
+
+<p>“就是这些。”</p>
+
+
+<p>“您刚才供述的时候说，在波洛特尼科夫的小铺里留下了三百卢布。给了彼尔霍金十个卢布，马车夫二十个卢布，在这里输了二百，还有……”</p>
+
+
+<p>尼古拉·帕尔费诺维奇把全部数目核了一遍。米卡很乐意地帮他计算。每个戈比都记了起来，加在账里。尼古拉·帕尔费诺维奇草草总结了一下。</p>
+
+
+<p>“加上这八百，您最初大约有一千五，是不是？”</p>
+
+
+<p>“大概是的。”米卡干巴巴地回答说。</p>
+
+
+<p>“为什么大家都说还要多得多呢？”</p>
+
+
+<p>“让他们说去好了。”</p>
+
+
+<p>“您自己也说过。”</p>
+
+
+<p>“我自己也说过。”</p>
+
+
+<p>“这问题我们还可以根据其他尚未查问过的人的旁证来加以核对。您不必担心您的钱。这些钱将会保存在适当的地方，等结束了整个……目前发生的事……以后，如果发现，或者说证明您毫无疑问对这些钱有充分权利的话，就会如数发还给您。嗯，现在呢……”</p>
+
+
+<p>尼古拉·帕尔费诺维奇忽然站起来，断然地向米卡宣告，他“不得已必须”对他进行一次一丝不苟的详细检查，“既包括您的衣服，也包括其它一切……”。</p>
+
+
+<p>“好吧，诸位，我可以把所有的口袋都翻过来，假使你们愿意。”</p>
+
+
+<p>他真的开始翻口袋。</p>
+
+
+<p>“甚至还必须脱下衣服。”</p>
+
+
+<p>“怎么？脱衣服么？见鬼！就这样搜查好不好？不能这样么？”</p>
+
+
+<p>“无论如何不行，德米特里·费多罗维奇。必须脱下衣服。”</p>
+
+
+<p>“随你们便吧，”米卡带着阴郁的神情服从了，“不过请不要在这里，到帘子后面去。谁来检查？”</p>
+
+
+<p>“自然在帘子后面。”尼古拉·帕尔费诺维奇点头表示同意。他那张小小的脸甚至露出特别庄严的样子。</p>
+﻿
+</div>
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 1001){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>

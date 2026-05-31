@@ -1,0 +1,828 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var browser = 
+	(browser = userAgent.match(/qqbrowser\/([\d.]+)/))?"qqbrowser/"+browser[1]:
+	(browser = userAgent.match(/se\s+2.x/))?"sogou/2.x": //65.29%
+	(browser = userAgent.match(/msie\s+([\d.]+)/))?"msie/"+browser[1]: //ie
+	(browser = userAgent.match(/chrome\/([\d.]+)/))?"chrome/"+browser[1]: //chrome
+	(browser = userAgent.match(/firefox\/([\d.]+)/))?"firefox/"+browser[1]: //firefox
+	(browser = userAgent.match(/version\/([\d.]+)\s+safari\/([\d.]+)/))?"safari/"+browser[1]: //safari
+	(browser = userAgent.match(/opera\/([\d.]+)([\w\W]+)version\/([\d.]+)/))?"opera/"+browser[3]: //opera
+	"other browser";
+	var browser4 = browser.substr(0,2);
+//实现回到页面顶部  
+function goTopEx(){  
+	var obj=document.getElementById("goTopBtn"); 
+	var obj2=document.getElementById("shangy"); 
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");  
+	
+	function getScrollTop(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.documentElement.scrollTop; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.scrollTop;  
+		}  
+	}
+	function setScrollTop(value){ 
+		if(browser4=="ch"){ 
+			//谷歌浏览器  
+			document.documentElement.scrollTop=value; 
+		}else{  
+			//IE、firefox等浏览器
+			document.documentElement.scrollTop=value;  
+		} 
+	}     
+	window.onscroll=function(){getScrollTop()>50?obj.style.display="":obj.style.display="none";
+	getScrollTop()>100?obj2.style.display="":obj2.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj3.style.display="":obj3.style.display="none";
+	document.body.clientHeight-getScrollTop()>650?obj4.style.display="":obj4.style.display="none";
+	}  
+	obj.onclick=function(){  
+		var goTop=setInterval(scrollMove,10);  
+		function scrollMove(){  
+				setScrollTop(getScrollTop()/1.1);  
+				if(getScrollTop()<1)clearInterval(goTop);  
+		}  
+	}  
+}  
+function downn(){
+	if(browser4=="ch"){
+		//谷歌浏览器  
+		window.scrollBy(0,document.body.clientHeight);
+	}else{
+		//IE、firefox等浏览器  
+		window.scrollBy(0,document.documentElement.clientHeight*1000); 
+	}
+}
+</script>
+<script>
+document.write('<div style="position:fixed; right: 10px; top:20px; color:#eee;">背景颜色<br><select name=bcolor id=bcolor onchange="javascript:document.body.style.background=this.options[this.selectedIndex].value;"><option style="background-color: #ffffff" value="#ffffff">白色</option><option style="background-color: #f6f6f6" value="#f6f6f6">银灰</option><option style="background-color: #e4ebf1" value="#e4ebf1">淡蓝</option><option style="background-color: #e6f3ff" value="#e6f3ff">蓝色</option> <option style="background-color: #eeeeee" value="#eeeeee">淡灰</option><option style="background-color: #eaeaea" value="#eaeaea">灰色</option>  <option style="background-color: #e4e1d8" value="#e4e1d8">深灰</option><option style="background-color: #e6e6e6" value="#e6e6e6">暗灰</option><option style="background-color: #eefaee" value="#eefaee">绿色</option><option style="background-color: #ffffed" value="#ffffed">明黄</option><option style="background-color: #333333" value="#333333">黑色</option></select><br>字体颜色<br><select name=txtcolor id=txtcolor onchange="javascript:document.getElementById(\'container\').style.color=this.options[this.selectedIndex].value;"> <option value="#000000">黑色</option><option value="#ff0000">红色</option><option value="#006600">绿色</option><option value="#0000ff">蓝色</option><option value="#660000">棕色</option><option value="#ffffff">白色</option></select><br>字体大小<br><select name=fonttype id=fonttype onchange="javascript:document.getElementById(\'container\').style.fontSize=this.options[this.selectedIndex].value;"> <option value="12px" >小号</option> <option value="14px" >较小</option> <option value="19px" >中号</option> <option value="19px" >默认</option><option value="22px" >较大</option><option value="25px" >大号</option><option value="35px" >35px</option><option value="45px" >45px</option><option value="55px" >55px</option><option value="65px" >65px</option><option value="75px" >75px</option><option value="85px" >85px</option><option value="95px" >95px</option></select></div>');   
+</script>
+<style type="text/css">
+#tbrowser a:link，#container a:visited{
+	font-size:18px;
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;
+	}
+#container{
+	font-size:1.2em;
+	margin:auto;
+	font-family:"宋体";
+	width:40em;
+	line-height:1.6em;
+	//overflow:hidden;
+}
+P{
+	margin-top:16px;
+	margin-bottom:16px;
+	text-indent:2em;
+}
+.uls{
+	color:#CC6666;
+	font-weight:bold;
+}
+.uls>ol{
+	list-style:none;
+	font-weight:normal;
+	list-style:lower-latin;
+	color:#000000;
+	line-height:1.3em;
+}
+#goTopBtn, #goBottom, #shangy, #xiay, #menuPage, #lPage, #fPage, #ftsize1, #ftsize2, #ftsize3{
+	width: 18px;
+    line-height: 1.2;
+    padding: 5px 0;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+	right: 10px;
+    cursor: pointer;
+    filter: Alpha(opacity=30);
+	opacity=.3;
+	font-weight:bold;
+}
+#goTopBtn, #goBottom, #menuPage, #lPage, #fPage, #ftsize1, #ftsize3{
+    background-color:#999;
+    color:#000;
+}
+#shangy, #xiay, #lPage, #fPage, #ftsize, #ftsize2{
+    background-color: #bbb;
+    color: #000;
+}
+#fPage{
+	bottom: 236px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+	//writing-mode:tb-rl;
+}
+#menuPage{
+	bottom: 198px;
+	height:27px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#lPage{
+	bottom: 145px;
+	height:42px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+#ftsize1{
+	bottom:360px;
+}
+#ftsize2{
+	bottom:334px;
+}
+#ftsize3{
+	bottom:308px;
+}
+#goTopBtn{
+    bottom: 105px;
+}
+#goBottom {
+    bottom: 30px;
+}
+#shangy {
+    bottom: 80px;
+}
+#xiay {
+    bottom: 55px;
+}
+#goTopBtn:hover, #goBottom:hover, #shangy:hover, #xiay:hover, #menuPage:hover, #lPage:hover, #fPage:hover, #ftsize1:hover, #ftsize2:hover, #ftsize3:hover{
+	background-color:#ccc;
+	border:#ccc 0px solid;
+}
+#goTopBtn a:link, #goBottom a:link, #xiay a:link, #shangy a:link, #menuPage a:link, #ftsize1 a:link, #ftsize2 a:link, #ftsize3 a:link, #menuPage a:visited, #lPage a:link, #fPage a:link, #lPage a:visited, #fPage a:visited {
+	text-decoration: none;
+	color:white;
+}
+img{
+	margin-right:2em;
+	text-indent:2em;
+	border:0;
+}
+.picsay{
+	color:#930;
+	font-size:90%;
+	line-height:110%;
+	margin-top:-12px;
+	padding:0;
+}
+.remark{
+	color:#930;
+	font-size:90%;
+	line-height:140%;
+	margin-top:-12px;
+	text-indent:0em;
+	padding:0;
+}
+.ref{
+	color:#930;
+	font-size:95%;
+	line-height:150%;
+	margin-top:-12px;
+	text-indent:2em;
+	padding:0;
+}
+.lettle{
+	font-size:110%;
+	line-height:160%;
+	
+	padding:0;
+	color:#930;
+	text-indent:2em;
+}
+sub,sup{
+	font-size:80%;
+	color:red;
+}
+.layout, .layout2{
+    clear:both;
+	width:95%;
+	border:1px dotted #eee;
+	margin:auto;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.layout2 .right, .layout2 .left, .layout p{
+margin-bottom:-55px;
+padding-bottom:55px;
+text-align: justify;
+margin:0;
+padding:0;
+margin-left:1%;
+margin-right:1%;
+}
+.layout2 .left, .layout p{
+float:left;
+width:60%;
+font-size:1.0em;
+}
+.layout2 .right,  .layout p+p {
+	float: left;
+	width:34%;
+	border-left:1px dotted #cccccc;
+	font-size:0.9em;
+	padding-left:1%;
+	
+}
+.layout2 .right p, .layout2 .left p, .layout p{
+padding-bottom:5px;
+}
+h2{
+	font-size:1.2em;
+	font-weight:bold;
+	margin-top:0px;
+	margin-bottom:0px;
+	text-indent:0em;
+	color:#990000;
+	height:1.5em;
+}
+h3{
+	text-indent:0em;
+	font-size:1.2em;
+	height:1.5em;
+	padding:0;
+	margin:0;
+	color:#990000;
+}
+h4{
+	text-indent:0em;
+	font-size:1em;
+	height:1.5em;
+	padding:0;
+	margin:0;
+	color:#990000;
+}
+.title
+{
+	text-indent:0em; font-weight:bold;
+	font-size:120%;
+}
+pre{
+	font-size:120%;
+	line-height:130%;
+	padding:0;
+	//background-color:#f6f6f6;
+	//background-color:#fff5ee;
+	//background-color:#ffe;
+	background-color:#eee;
+	padding:8px;
+    width:115%;
+    overflow-x:auto;    
+	margin-left:2em;
+	color:blue;
+	}
+</style>
+</head>
+<body>
+<div id="container">
+<p>第四部</p>
+<p>第十一卷　伊凡·费多罗维奇哥哥</p>
+<p>第八节　跟斯麦尔佳科夫的第三次也是最后一次晤面</p>
+
+
+<p>走到半路上，刮起了和那天清早一样的尖利而干涩的风，撒下厚厚一层细碎而干燥的雪。雪落在地上并不粘住，风一卷，马上成了十足的暴风雪。我们城里斯麦尔佳科夫所住的那一带几乎连路灯也没有。伊凡·费多罗维奇摸黑走着，不去理会大风雪，本能地辨认着道路。他感到头疼，太阳穴拼命跳着，自己感觉得到手腕直抽筋。离玛丽亚·孔德拉奇耶芙娜的小屋不远的地方，伊凡·费多罗维奇忽然遇到一个孤独的醉鬼，这是个小个子农民，穿着打补钉的外套，一溜歪斜地走着，口中喃喃地骂人。他忽然停止了辱骂，用嘶哑的醉汉的声音唱起小曲来了：</p>
+
+
+<p>唉，万卡上了彼得堡，</p>
+
+
+<p>我不能再等他了！</p>
+
+
+<p>但他每唱到第二句上就突然打住了，重又骂起人来，接着又忽然唱起这个老调子。伊凡·费多罗维奇在脑子根本还没有转到他身上去的时候，心里就已经产生了一股无名的怒火，这时突然又注意到了他，立刻忍不住要想一拳把这家伙打倒。恰巧在这一刹那他们走到了一起，农民的身体摇晃得厉害，忽然沉重地一头正撞在伊凡的身上。伊凡狂怒地猛推了他一下。农民立即两脚离地，象块木头似的噗通一下摔在冻土地上，只是痛苦地叫了一声：“啊——啊！”就不出声了。伊凡走到他跟前。他仰面躺着，一动不动，失去了知觉。“会冻死的！”伊凡这样想了一下，就大步向斯麦尔佳科夫家走去了。</p>
+
+
+<p>拿着蜡烛跑出来开门的玛丽亚·孔德拉奇耶芙娜还在外屋里就对他悄声说，巴维尔·费多罗维奇（那就是指斯麦尔佳科夫）病得很厉害，不但卧床不起，几乎好象神智也失了常，甚至吩咐把茶也拿走，不想喝。</p>
+
+
+<p>“怎么，他还动蛮么？”伊凡·费多罗维奇粗暴地问。</p>
+
+
+<p>“哪里，正相反，完全安安静静的，不过您不要和他谈得太久呀。……”玛丽亚·孔德拉奇耶芙娜请求说。</p>
+
+
+<p>伊凡·费多罗维奇推开门，走进小屋里。</p>
+
+
+<p>象上次一样，炉火升得正旺，但是看得出屋里显出有了一点变化：旁边的一条长凳搬了出去，在原地摆了很大的一张假红木的旧皮沙发。沙发上铺好被褥，上面放着十分干净的枕头。斯麦尔佳科夫坐在沙发上，还穿着那件晨衣。桌子挪到了沙发前面，所以屋子里显得很挤。桌上放着一本黄皮面的厚书，但是斯麦尔佳科夫并没有读它，看来坐在那里，什么也没干。他用长时间沉默的注视迎着伊凡·费多罗维奇，对于他的到来显然并不惊讶。他的脸色变得很厉害，又黄又瘦。眼睛塌陷进去，下眼皮发青。</p>
+
+
+<p>“你真的病了么？”伊凡·费多罗维奇站住了。“我在你这里不多坐，甚至大衣也不用脱。什么地方可以坐一坐？”</p>
+
+
+<p>他从桌子的另一头走过去，搬一把椅子到桌子跟前，坐了下来。</p>
+
+
+<p>“你为什么瞧着我一声不吭？我只有一个问题。我对你起誓，我得不到你的回答决不走开。那位小姐，卡捷琳娜·伊凡诺芙娜，到你这里来过没有？”</p>
+
+
+<p>斯麦尔佳科夫长时间沉默着，依旧静静地看着伊凡，但是忽然挥了一下手，把脸扭开不看他了。</p>
+
+
+<p>“你怎么啦？”伊凡问。</p>
+
+
+<p>“没有什么。”</p>
+
+
+<p>“什么叫没有什么？”</p>
+
+
+<p>“她来过了。这与您有什么相干？您让我安静会儿吧。”</p>
+
+
+<p>“不，不能让你安静！你说，她什么时候来的？”</p>
+
+
+<p>“我早忘记她了，”斯麦尔佳科夫轻蔑地冷笑了一声，忽然又转脸向着伊凡，重新用一种恨得发狂的眼神盯着他，和一月以前那次会晤时盯着他的眼神一模一样。</p>
+
+
+<p>“您自己好象也有病，两腮陷了进去，简直脸无人色。”他对伊凡说。</p>
+
+
+<p>“你不要管我的健康，回答问你的话。”</p>
+
+
+<p>“为什么您的眼睛发黄，眼白全黄了。您心里感到很苦恼么？”</p>
+
+
+<p>他轻蔑地笑笑，忽然完全纵声笑了出来。</p>
+
+
+<p>“你听着，我已经说了，我得不到你的回答决不走开！”伊凡怒气冲天地嚷着。</p>
+
+
+<p>“您为什么总纠缠我？您为什么折磨我？”斯麦尔佳科夫苦恼地说。</p>
+
+
+<p>“哼，魔鬼！我不管你怎么样。你回答了问题，我立刻就走。”</p>
+
+
+<p>“我没有什么可以回答您的！”斯麦尔佳科夫垂下了眼皮。</p>
+
+
+<p>“告诉你吧，我能叫你回答！”</p>
+
+
+<p>“您为什么这样着急！”斯麦尔佳科夫突然瞧着他说，但是眼神中的轻蔑已经几乎变成了厌恶。“是因为明天法院要开审么？不会有您什么事情的，放心好了！您回家去，安安静静地躺下睡觉，一点也不用担忧。”</p>
+
+
+<p>“我不明白你的意思……明天我怕什么？”伊凡奇怪地说，忽然果真有一种恐惧象冷风似的吹进他的心里去。斯麦尔佳科夫的眼睛溜了他一下。</p>
+
+
+<p>“您不——明——白么？”他拉长声音，带着责备的口气说。“聪明的人何必装出这种演喜剧的样子来呢？”</p>
+
+
+<p>伊凡默默地瞧着他。单单他以前的这个仆人现在对他说话时所用的这种意料不到的口气，傲慢得简直难以想象的口气，就显得有些不同寻常了。甚至上次也没有过这样的口气。</p>
+
+
+<p>“我对您说，您不必害怕。我决不告发您。没有佐证。你瞧，手都发抖了。您的手指干吗一直动弹？您回家去吧。不是您杀死的。”</p>
+
+
+<p>伊凡打了个哆嗦。他想起阿辽沙来。</p>
+
+
+<p>“我知道，不是我……”他喃喃地说。</p>
+
+
+<p>“您——知——道么？”斯麦尔佳科夫又接口说。</p>
+
+
+<p>伊凡跳起身来，一把抓住他的肩膀。</p>
+
+
+<p>“你全说出来，你这毒蛇！全说出来！”</p>
+
+
+<p>斯麦尔佳科夫一点也不惧怕。他只是用疯狂的仇恨目光紧紧盯着伊凡：</p>
+
+
+<p>“要说，就是您杀死的。”他愤恨地低声说。</p>
+
+
+<p>伊凡仿佛想到了什么事情，颓然坐到椅子上。他恨恨地苦笑了一下。</p>
+
+
+<p>“你还是指那天所说的事？上次所说的事么？”</p>
+
+
+<p>“上一次您在我面前就全都明白了，现在您也是明白的。”</p>
+
+
+<p>“我只明白你是疯子。”</p>
+
+
+<p>“一个人怎么会这么不怕啰嗦？我们干吗要面对面地坐着，互相捉迷藏，演滑稽戏呢？您是不是还想把一切全推到我一个人身上，当面推给我？是您杀死的，您就是主犯，我只不过是您的走卒。我做了您的忠实的李查德，是依照您的话做了这件事的。”</p>
+
+
+<p>“‘做了’？那么难道真是你杀的？”伊凡觉得一阵浑身冰冷。</p>
+
+
+<p>他的脑子里似乎有什么东西崩溃了，他浑身哆哆嗦嗦地打着寒战。这下斯麦尔佳科夫倒望着他奇怪起来：大概是伊凡那毫不做作的张惶失措，终于使他吃惊了。</p>
+
+
+<p>“难道您果真一点不知道么？”他不信任地嘟囔说，强笑着直望着他的眼睛。</p>
+
+
+<p>伊凡一直瞪着他，他的舌头好象被拔掉了。</p>
+
+
+<p>万卡上了彼得堡，</p>
+
+
+<p>我不能再等他了。</p>
+
+
+<p>那支歌忽然在他脑子里回响。</p>
+
+
+<p>“你知道么：我怕你是一个梦，你是坐在我的面前的一个幻影。”他喃喃地说。</p>
+
+
+<p>“这儿什么幻影也没有，只有你我两个，此外还有一位第三个。这第三个人，他现在显然就在我们两人中间。”</p>
+
+
+<p>“他是谁？谁在这里？第三个人是谁？”伊凡·费多罗维奇惊惶地问道，环视着四周，眼睛匆促地向四个角落里搜寻什么人。</p>
+
+
+<p>“第三个人就是上帝，天神，它现在就在我们身边，不过不必找他，您找不到的。”</p>
+
+
+<p>“你说是你杀的，那是撒谎！”伊凡疯狂地喊了起来。“你不是疯了，就是拿我开心，象上次一样！”</p>
+
+
+<p>斯麦尔佳科夫仍象刚才那样，一点也不慌张，只是紧紧地盯着他看。他怎么也无法消除他的不信任，他总以为伊凡“全都知道”，只是装腔作势，要“当着他的面，把一切推到他一个人身上”。</p>
+
+
+<p>“您等一等。”他终于用微弱的声音说，忽然从桌子下面抽出左腿，把裤腿往上捋起。他的脚上穿着高腰白袜和拖鞋。斯麦尔佳科夫不慌不忙地摘下吊袜带，手指深深地伸进袜筒里去。伊凡·费多罗维奇望着他，忽然全身颤抖，感到一阵剧烈的恐怖。</p>
+
+
+
+
+<p>“疯子！”他大喊一声，迅速地从座位上跳起，往后倒退，背撞在墙上，全身紧张地挺得笔直，就象粘牢在墙上似的。他怀着疯狂的恐怖，瞪着斯麦尔佳科夫。斯麦尔佳科夫一点也不在乎他的惊慌，继续在袜子里面搜寻，似乎竭力想用手指在里面抓住什么东西，把它拉出来，最后终于抓住，开始往外拉。伊凡·费多罗维奇看见那是一些纸，或是一叠纸。斯麦尔佳科夫把它们拉了出来，放在桌子上。</p>
+
+
+<p>“这不是么！”他轻声说。</p>
+
+
+<p>“什么？”伊凡颤抖着问。</p>
+
+
+<p>“请你瞧瞧吧。”斯麦尔佳科夫还是轻声地说。</p>
+
+
+<p>伊凡走近桌旁，拿起那一叠东西，动手打开来，但是忽然把手一缩，好象是碰到了一条憎恶可怕的毒蛇。</p>
+
+
+<p>“您的手指不住哆嗦，抽筋似的。”斯麦尔佳科夫说，自己不慌不忙地打开纸包，原来纸包里面是三叠一百卢布的、花花绿绿的钞票。</p>
+
+
+<p>“全在这里，三千卢布，您用不着点，收下来吧。”他用头向钞票扬一扬，请伊凡收下。伊凡一屁股坐在椅子上，脸白得象一张纸。</p>
+
+
+<p>“你掏袜筒的时候……把我吓住了。……”他说了一句，古怪地笑了笑。</p>
+
+
+<p>“难道说，难道说你始终不知道么？”斯麦尔佳科夫又问。</p>
+
+
+<p>“不，我不知道。我一直以为是德米特里。唉，哥哥呀，哥哥！”他突然两手捧住了自己的头。“你对我说：是你一个人杀的么？哥哥不在内？还是和哥哥一起干的？”</p>
+
+
+<p>“只是同您在一起，同你在一起杀的，德米特里·费多罗维奇是清白无辜的。”</p>
+
+
+<p>“好的，好的……关于我以后再说。为什么我老是哆嗦……话都说不出来。”</p>
+
+
+<p>“当时您多勇敢，您说：‘什么都可以做’，但是现在竟吓成这样！”斯麦尔佳科夫诧异地嘟囔说。“你要不要喝点柠檬水？我就叫他们拿来。它很能振作精神的。不过这些东西得先遮盖一下。”</p>
+
+
+<p>他又点头指指那一叠钞票。他想站起来朝门外喊玛丽亚·孔德拉奇耶芙娜，让她弄一点柠檬水进来，但先想找点什么东西盖住钱不让她看见，他先掏出手帕来，但因为它实在太脏，就只好拿起桌上唯一的那本黄皮书，——就是伊凡走进来时看到的那本书，——压在钞票上面。这本书的名称是《圣父伊萨克·西林语录》。伊凡·费多罗维奇下意识地读了一下这个书名。</p>
+
+
+<p>“我不要喝柠檬水。”他说。“关于我以后再说。你坐下来说说：你是怎么做这件事情的？你全说出来。……”</p>
+
+
+<p>“您最好把大衣脱下来，要不然您会出一身汗的。”</p>
+
+
+<p>伊凡·费多罗维奇似乎现在才想起来，他没有离开椅子，剥下大衣，就扔在长凳上。</p>
+
+
+<p>“你说呀，请你说呀！”他似乎平静下来了。他满有把握地等着，相信斯麦尔佳科夫现在一定会把一切情况全都说出来。</p>
+
+
+<p>“您问我是怎样干的吗？”斯麦尔佳科夫叹了口气说，“用最自然的方式干的，照您的话……”</p>
+
+
+<p>“关于我的话以后再说。”伊凡又打断他，但是已经不象以前那样大喊小叫了，他说话的语气很坚定，似乎已完全恢复了自制。“不过你一定要详细讲一讲，你是怎样干的？按顺序全说出来，一点也不要遗漏。细节，最要紧的是细节。我请求你。”</p>
+
+
+<p>“你动身以后，我当时就掉进了地窖里。……”</p>
+
+
+<p>“发了羊癫疯还是假装的呢？”</p>
+
+
+<p>“自然是假装的。一切都是假装的。安安静静地沿着阶梯下来，一直走到下面，安安静静地躺下，就立刻叫喊起来。并且哆嗦挣扎着，直到人家抬我出去。”</p>
+
+
+<p>“你等一等，以后，直到进了医院，也全是假装的么？”</p>
+
+
+<p>“完全不是。第二天一早，还没进医院，一次真正的多年没见过有那么厉害的羊癫疯就发作了。整整两天完全失去了知觉。”</p>
+
+
+<p>“好的，好的。接着说下去吧。”</p>
+
+
+<p>“人家让我躺在铺板上面，我就知道是在隔板后面，因为玛尔法·伊格纳奇耶芙娜每逢我生病的时候，总是把我放在他们自己的房间的隔板后面。他们从我生下来的时候起，总是对我很亲切的。夜里呻吟着，只是声音很轻。一直在等着德米特里·费多罗维奇。”</p>
+
+
+<p>“等什么？等候他到你那里去么？”</p>
+
+
+<p>“干吗到我那里去。我等候他到宅里来，因为我毫不怀疑他当夜准会来的。因为他见不到我，得不到任何消息，就一定会自己爬墙进来的，他会这样做，而且准会干出点什么事情来。”</p>
+
+
+<p>“要是不来呢？”</p>
+
+
+<p>“那就什么事也不会有了。他不来我是不敢的。”</p>
+
+
+<p>“好，好……你说得明白些，不要忙，最要紧的是什么也不要遗漏！”</p>
+
+
+<p>“我等着他杀死费多尔·巴夫洛维奇，……这是准会发生的。因为我已经使他有了这样的思想准备，……在最近的几天以来，……主要的是他已经知道那些暗号。以他的疑心病和这几天来攒的一肚子气，他一定会用这些暗号闯进屋里去的。这准毫无疑义。我就是指望着他这样干的。”</p>
+
+
+<p>“等一等，”伊凡插嘴说，“假使他杀死了，他就会自己拿了钱逃走。你一定会想到这一点吧？这样你还能得到什么呢？我不明白。”</p>
+
+
+
+
+<p>“他决不会找到钱。钱放在被褥底下的话，是我告诉他的。但是这话不确实。以前钱是在一只小匣里，是放在那里的。但以后我，——他在世上只相信我，——劝费多尔·巴夫洛维奇把这钱包挪到角落里神像后面去，因为放在那里是完全没有人会猜到的，特别在匆忙地进来的时候。因此这钱就被放在他房间角落里神像的后面了。放在被褥底下本来是很可笑的，放在小匣里至少还能锁上。可这里这会儿大家都相信仿佛钱的确是放在被褥底下。真是愚蠢的见识。所以，要是德米特里·费多罗维奇真的杀了人，在找不到什么以后，他不是惟恐弄出什么响动来，——凶手永远是这样的，——因此匆忙地逃走，就是被人抓住。那么我完全可以在第二天上，甚至在当天夜里，随时伸手到神像后面把钱拿走，而一切事情都可以推到德米特里·费多罗维奇的身上。这是我万无一失准可以这样指望的。”</p>
+
+
+<p>“但是假如他没有杀，只是揍一顿，又怎样呢？”</p>
+
+
+<p>“假如没有杀，我自然不敢取钱，那就什么都白操心了。但也还有那样一种估计，就是打得昏了过去，那样的话，我也有机会把钱拿走，以后再报告费多尔·巴夫洛维奇说，这是德米特里·费多罗维奇在殴打了他以后，把钱偷走的。”“慢着，……我弄糊涂了。这么说，到底还是德米特里杀死的，你只是取了钱，对不对？”</p>
+
+
+<p>“不，不是他杀死的。我现在本来还可以对您说，他是凶手。……但是我不愿意在您面前撒谎，因为……因为即使您果真一直不明白，并不是在我面前装假，想把自己的明显的罪行瞪着眼睛往我身上推，那也得由您对一切过错负责，因为您心里知道这次谋杀，并且交给我去干，自己却明明知道而仍旧离开了此地。所以我今天晚上要当面向您证明，您才是这个案子里的唯一的元凶，我只不过是个小小的从犯，虽然是我杀死人的。您正是那个法律上的凶手！”</p>
+
+
+<p>“为什么，为什么我是凶手？唉，我的天呀！”伊凡终于忍不住，忘记把自己的一切放到最后再说的话。“还是指去契尔马什涅的事么？等一等，你说说，就算你把我到契尔马什涅去的事看作表示同意，但你究竟又为什么需要我的同意呢？这你现在怎么解释？”</p>
+
+
+
+
+<p>“我既然相信得了你的同意，我就知道您回来以后，对于丢失的这三千卢布，即使官厅方面为了什么原因不怀疑德米特里·费多罗维奇，而怀疑我，或者疑惑我和德米特里·费多罗维奇同谋，您也决不致叫嚷出来，相反地，是会替我向别人辩护的。……您在拿到遗产以后，会给我奖赏，一辈子会给我，因为您毕竟由于我才拿到遗产，如果一娶了阿格拉菲娜·阿历山德罗芙娜，您会落得一场空的。”</p>
+
+
+<p>“啊！您打算以后一辈子折磨我！”伊凡咬牙切齿地说。“假如我当时不离开，反而把你告发，可怎么办呢？”</p>
+
+
+<p>“当时您能告发什么呢？说我嗾使您到契尔马什涅去么？那是废话。再说在我们谈话以后，您不是离开，就是留下。假使您留了下来，就什么事也不会出，我就知道您不高兴出这种事，我也就会干脆什么都不去做了。假使您离开，那就等于告诉我您决不敢向法院告发我，对于这三千卢布也会不予追究。而且您以后也根本不能来追究我，因为那样的话，我会在法庭上全盘说出来，并不说我偷钱或杀人的事情，——这个我是不说的，——却说您自己嗾使我偷钱，杀人，而我没有答应。所以说，我当时需要您的同意，就是为了使您不能逼我，因为没有证据在您手里，而我却永远有法子逼您，因为我发现了您渴望父亲去世，老实告诉您，社会上大家都会相信的，那样您就一辈子没脸见人。”</p>
+
+
+<p>“我有，我真是有这样的渴望么？”伊凡又咬起牙来。</p>
+
+
+<p>“您当然有的，而且您表示了同意，也就等于您当时默许了我去干这件事。”斯麦尔佳科夫坚决地看了伊凡一眼。他的身体很衰弱，说得又轻又无力，但是有某种内在的，隐秘的东西在支持着他，他心里显然怀有着某种目的。伊凡预感到了这一点。</p>
+
+
+<p>“继续说下去，”他对他说，“接着说那天夜里的事情。”</p>
+
+
+<p>“往下有什么可说的！我躺在那里，听见主人似乎喊了一声。在这以前格里戈里·瓦西里耶维奇已经忽然起床走了出去，他突然大喊一声，以后就又一切静寂，一片漆黑。我躺在那里等候着，心跳得厉害，实在忍不住了。最后终于站起身来，走了出去，我看见他房间左面朝花园的窗户开着，就又朝左拐了几步，悄悄地听他是不是还活着，我听见主人踱来踱去，连连叹气，这么说是活着的。我心里叹了一声：‘唉！’就走到窗前，向主人喊了一声：‘这是我呀。’他对我说：‘来过了，来过了，又跑走了！’那就是说德米特里·费多罗维奇来过了。‘他把格里戈里杀死了！’我低声问：‘在哪儿？’他也低声回答：‘在那边角落里。’我说：‘您等一等。’我就跑到角落里去寻找，就在墙边碰到了那个躺着的格里戈里·瓦西里耶维奇。他躺在那里，浑身是血，失去了知觉。这么说，德米特里·费多罗维奇来过的话是确实的，我脑子里立刻闪过一个念头，而且当时就决定，干脆把这件事情了结了吧，因为格里戈里·瓦西里耶维奇即使还活着，也失去了知觉，完全不会看见。只有一个危险，那就是玛尔法·伊格纳奇耶芙娜会突然醒过来。这一点我当时是感到的，但是那种渴望当时控制了我的全身，使我的呼吸都紧了。我又走到主人的窗前，说道：‘她在这里，她来了，阿格拉菲娜·阿历山德罗芙娜来了，她要见您。’他象个孩子似的全身一哆嗦，说：‘在哪儿？在哪儿？’一直在那里喘气，却还不信。我说：‘她就在那儿，您开门吧！’他从窗里看了我一眼，半信半疑，还是不敢开门，我心想，他连我都怕了。说来可笑：我当时突然想到把表示格鲁申卡来到的那种暗号，就当着他的面，在窗框上敲了起来；他对说话似乎还不大相信，但一听到我敲出了暗号，却立即跑出来开门。门开了，我刚要走进去，可是他站在那里用身子挡住不放我进去。‘她在哪儿？她在哪儿？’他不住哆嗦着，瞧着我。我心想：既然这样怕我，事情可不妙！这时我甚至两腿都有点发软，生怕他不放我进屋，或者嚷了起来，或者玛尔法·伊格纳奇耶芙娜会跑了来，或者说不定还会生出什么别的事情来。我现在已经不大记得，大概当时我站在那里，脸色煞白。我对他低声说：‘她就在那里，就在窗外，您怎么没有看见？’他说：‘你领她进来，你领她进来！’我说：‘她怕，刚才的喊声吓坏了她，她躲到树丛里去了。您从书房里叫她一声就好了。’他跑到窗前，把一支蜡烛放在窗台上，叫道：‘格鲁申卡！格鲁申卡！你来了么？’他叫时还不敢探身窗外，眼睛不敢离开我，他已吓得心惊胆战，因此对我也很害怕，不敢不留神提防着我。我走近窗前，自己把身子探了出去，说道：‘那不是她么，她在树丛里对您发笑哩，您看见没有？’他忽然相信了，竟浑身哆嗦起来，他实在爱得她太厉害了。他当时也就把整个身子探出窗外。我立刻拿起那个铁镇纸，您记得不记得，这镇纸就放在他的桌子上，总有三磅重，我从身后用棱角对准他的脑袋就给了他一下。他甚至喊也没有喊一声。只是突然坐了下去，我又来一下，又来了第三下。在第三下上感到把他的脑壳砸破了。他忽然直挺挺地仰面倒了下去，脸上全是血。我检查了一下：我身上没有血，没有溅上。我就把镇纸擦干净，仍旧放在桌子上，走到神像那里，从信封里把钱掏出来，把信封扔在地板上，玫瑰色的绸带也扔在旁边。我走进园里去，全身哆嗦着。一直走到有窟窿的萍果树那里，——那个树窟窿您是知道的，我早就察看好了，在里面早就预备下了旧布和纸张；把那笔款子用纸包好，然后再用布包上，深深地塞了进去。那笔钱就在那里面整整放了两个多星期，从医院里出来以后才去掏出来。我回到自己床上，躺了下去，担心地寻思：‘要是格里戈里·瓦西里耶维奇真的死了，那事情一定会变得很糟，要是没有死，苏醒过来就好了，因为他可以做证人，证明德米特里·费多罗维奇来过，那么准是他杀了人，还抢了钱。’我当时感到疑惑不定，急不可耐，就呻吟起来，以便快点儿吵醒玛尔法·伊格纳奇耶芙娜。后来她终于起了床，先跑到我这里来，忽然发觉格里戈里·瓦西里耶维奇不在那儿，就跑了出去，接着听见她在花园里喊了一声。往下就闹了一夜，我是完全安心了。”</p>
+
+
+<p>他讲到这里停住了。伊凡一直在屏息静气地听他说话，身子动也不动，眼睛直勾勾地望着他。斯麦尔佳科夫讲述的时候，只是偶然瞧他一眼，大多数时间是斜着眼朝旁边看。他讲完以后显然自己感到心神激动，深深地喘着气。他的脸上沁出了汗珠。但却猜不出他所感到的究竟是不是忏悔。</p>
+
+
+
+
+<p>“你等一等，”伊凡沉思地接口说，“门呢？假使他只给你开了门，那么格里戈里怎么会在你以前看见门敞开着呢？格里戈里不是在你以前看见的么？”</p>
+
+
+<p>值得注意的是伊凡问的时候声调非常平和，甚至好象完全换了一种口气，完全不是恶狠狠的口气，假使现在有人开了门，从门口看看他们，一定会断定他们是坐在那里和和气气地谈论一个有趣而平常的问题。</p>
+
+
+<p>“关于那扇门，格里戈里·瓦西里耶维奇好象看见它敞开着，那全是他的幻觉。”斯麦尔佳科夫撇着嘴笑道。“我对您说，他这人不是人，简直就是头犟驴子：他没有看见，但是他觉得他看见，就无论如何也不能动摇他了。他想出了这一套来，那是你我的运气，因为这样一来最后就一定会归到德米特里·费多罗维奇的头上去。”</p>
+
+
+<p>“你听着，”伊凡·费多罗维奇说，好象心里又惶乱起来，努力在那里盘算着，“你听着，……我还想问你许多话，但是想不起来了。……我老是记性不好，颠三倒四的。……对了！比如说，你告诉我：你为什么把信封拆开，扔在地板上？为什么不干脆就连着信封拿走。……你刚才讲述的时候，我觉得你谈到这个信封，好象就应该这么办似的，……可为什么这样，我不懂。……”</p>
+
+
+<p>“我这样做自有道理。因为假使是一个深知内幕，熟悉一切的人，就象我这样的，事先看见过这笔钱，也许就是自己把钱装进信封，亲眼看见把信封封好，题上字的，那么这个人假使杀了人，在杀完以后，就是不看也明知钱一定在信封里面，他在那样匆忙的时候，又何必要拆开信封呢？相反地，假使我就是偷钱的人，一定会把那信封一点也不拆开，顺手塞进口袋里面，赶快逃走的。可德米特里·费多罗维奇就不同了：那个信封的事他只是听人家这样说，并没有看见过原物，所以比如说，假如他从被褥下面找到了它，就一定会连忙当时拆开，查看一下：里面是不是真的有那笔钱，而信封就一定会随手扔在那里，没工夫去想到它会留下来成为他的一个罪证，因为他是个不熟练的小偷，以前显然从来没有偷过东西，他是世袭的贵族，即使现在决定偷窃，那也仿佛不是偷窃，只是来取回他自己的财产，因为这事他事前早就通报了全城，甚至还预先在大家面前公开夸过口，说他要跑去向费多尔·巴夫洛维奇索回自己的财产。这意思我在审讯的时候并没有向检察官明白地说出，只是用暗示引到那上面去，装出自己并不明白，是他自己想到这里，而不是我对他提示的样子，——检察官听了我这个暗示甚至涎水都流出来了。……”</p>
+
+
+<p>“难道，难道这一切都是你当时在现场想出来的么？”伊凡·费多罗维奇叫了起来，诧异得不知说什么好。他又惊惧地看了斯麦尔佳科夫一眼。</p>
+
+
+<p>“哪里，怎么能在那样匆忙之中想得这么周全呢？这都是预先想好的。”</p>
+
+
+<p>“那么， ……那么这全是鬼帮你的忙！ ”伊凡·费多罗维奇又惊叹了一声。“不，你并不傻，你比我所料想的聪明得多。……”</p>
+
+
+<p>他站起身来，显然想在屋内走动走动。他这时心中十分烦恼。但是因为桌子挡住路，在墙壁和桌子中间很难走得过去，他只好转了一圈，又坐下了。他也许由于无法走动，忽然生了气，所以几乎又象刚才那样狂怒起来，突然叫道：</p>
+
+
+
+
+<p>“你听着，你这倒楣的下贱东西！难道你不明白，我到现在还没有杀死你，只是想留你到明天的法庭上去招供么？上帝明鉴，”伊凡举起手说，“也许我是有罪的，也许我果真怀着难以见人的愿望，希望……父亲死去，但是我可以对你起誓，我并不象你所想象的那样有罪，也许我也并没有嗾使你！不，不，我确实并没有嗾使你！但是不管怎样，我要把自己供出来，明天，在法庭上供出来，我已经决定了！我要完全说出来，完全说出来。但我要同你一起出首！你在法庭上无论说我什么话，无论你怎样作证，——我都准备接受，不怕你，我自己全承认！但是你也必须在法庭前自首！必须，必须这样，我们一块儿去！就是这样办！”</p>
+
+
+<p>伊凡用郑重而坚决的态度说出这些话来，单从他那冒着怒火的目光里就可以看出，事情确实是要这样办了。</p>
+
+
+<p>“我看您有病，病得很厉害。您的眼睛全黄了。”斯麦尔佳科夫说，但是完全没有嘲笑的意思，甚至似乎有点怜惜。</p>
+
+
+<p>“我们一块儿去！”伊凡又重说一遍，“你不去，我也会独自供出来的。”</p>
+
+
+<p>斯麦尔佳科夫沉默了一会儿，似乎在那里沉思。</p>
+
+
+<p>“这样的事一点也不会发生，您也不会去的。”他终于断然地说。</p>
+
+
+<p>“你不了解我！”伊凡带着责备的口气说。</p>
+
+
+<p>“您如果一切照直供认出来，您会感到太丢脸的。而且这也没有好处，完全没有好处，因为我会直截了当地说，我从来没有对您说过这类的话，您不是有了病，——这也实在有点象，——就是为了怜惜您的哥哥而牺牲自己，至于您所以扳出我来，那是因为您一辈子始终把我只当一只苍蝇，而不当作人看。谁能相信您？您哪儿拿得出一个证据？”</p>
+
+
+<p>“您听着，你现在把这些钱拿出来给我看，自然是为了使我相信。”</p>
+
+
+<p>斯麦尔佳科夫把伊萨克·西林的书从那叠钞票上挪开，放在一旁。</p>
+
+
+<p>“这些钱你带了走，拿了去吧。”斯麦尔佳科夫叹了一口气。</p>
+
+
+<p>“自然我要带走的！但是你既然为了它杀人，干吗要给我呢？”伊凡怀着绝大的惊异看着他。</p>
+
+
+<p>“我并不需要这个。”斯麦尔佳科夫用战栗的声音说，还摇了摇手。“我以前倒有一个念头，就是带着这些钱到莫斯科或者甚至到外国去谋生，确有过这样的理想，特别是因为‘什么都可以做’那句话。这的确是您教我的，因为您当时对我说了许多这类的话：既然没有永恒的上帝，就无所谓道德，也就根本不需要道德。这话您说得很对。我就是这样看法的。”</p>
+
+
+<p>“你是靠自己的智慧理解到的么？”伊凡做了一个强笑。</p>
+
+
+<p>“靠您的指导。”</p>
+
+
+<p>“现在你把钱交还，一定信仰上帝了吧？”</p>
+
+
+<p>“不，不信。斯麦尔佳科夫轻声说。</p>
+
+
+<p>“那么你为什么还呢？”</p>
+
+
+<p>“算了，……不必提了！”斯麦尔佳科夫又挥了挥手。“您当时一直说，什么都可以做，但是现在为什么自己又这么惊慌呢？甚至打算去自首，……不过这是不会有的事情！您不会去自首！”斯麦尔佳科夫又坚决而且确信地说。</p>
+
+
+<p>“你看着吧！”伊凡说。</p>
+
+
+<p>“不会有这事的。您很聪明。您爱钱，这是我知道的，您也爱荣誉，因为您很骄傲，您过分地爱女人的美貌，尤其爱平静舒适地过生活，对任何人都不必低头，——这一点最重要。您决不愿在法庭上遭受这样的耻辱，毁了您的一生。您最象费多尔·巴夫洛维奇，在他的几个孩子里面您最象他，和他是一个心眼的。”</p>
+
+
+<p>“你不傻。”伊凡说，似乎吃了一惊，血涌到脸上来。“我以前以为你傻。你现在是极严肃的！”他说，似乎忽然用新的眼光瞧了斯麦尔佳科夫一眼。</p>
+
+
+
+
+<p>“您因为自高自大才以为我是愚蠢的。您把钱收下来吧。”伊凡拿起三叠钞票全都塞进口袋，完全不用什么东西包裹。</p>
+
+
+<p>“明天交到法庭上去。”他说。</p>
+
+
+<p>“谁也不会相信您，您现在有的是钱，从小匣里拿了出来，就交上去了。”</p>
+
+
+<p>伊凡站起身来。</p>
+
+
+<p>“我对你再说一遍，我现在不杀死你，仅仅是因为明天我用得着你，你应该记住这层，不要忘记！”</p>
+
+
+<p>“那有什么，您杀就是了。现在就杀。”斯麦尔佳科夫忽然古怪地说，用古怪的神气看着伊凡。“您连这也不敢，”他说着，讥刺地笑了一笑，“您什么也不敢做的，你这以前的勇士！”</p>
+
+
+<p>“明天见！”伊凡说，想动身走了。</p>
+
+
+<p>“您等一等，……再给我看一眼。”</p>
+
+
+<p>伊凡掏出钞票来，给他看。斯麦尔佳科夫端详了它十秒钟。</p>
+
+
+<p>“嗯，你去吧。”他说着，挥了挥手。“伊凡·费多罗维奇！”他忽然在他身后喊道。</p>
+
+
+<p>“你有什么事？”伊凡一面走，一面回头说。</p>
+
+
+<p>“告别了吧。”</p>
+
+
+<p>“明天见！”伊凡又说了一声，从木屋里走了出来。暴风雪还在继续猖獗。最初几步他走得很猛，但是忽然似乎有点踉跄起来。“这是身体疲乏的关系。”他心里想，笑了笑。这时仿佛有一种快乐心情涌现在他的心头。他自己感到无比坚定：近来把他折磨得异常痛苦的动摇心情已经结束！已经做出了决定，“再也不会变更的了，”他高兴地想。就在这时他忽然绊在一个什么东西上面，几乎摔倒。他站住了，辨认出自己脚下横着的就是被他摔倒的那个农民，他还是躺在原来的地方，人事不知，动也不动。雪落了他一脸。伊凡忽然抓住他，拖着他走。他看见右面小屋子里有灯光，就走过去敲窗板。小屋的主人，一个小市民，应声出来。他请他帮忙把农民抬到警察局去，答应给他三个卢布。小市民穿好衣服出来了。我不再详细描写伊凡·费多罗维奇怎样达到目的，把农民安顿在警察局，还安排好马上请医生来给他瞧，而且又一点也不吝惜地花钱“打点”。我要说的是这件事情差不多花去了一小时的工夫。但是伊凡·费多罗维奇感到很满意。他头脑里漫不经心地想着，突然愉快地想到：“要是我没有对明天的行动下了坚定的决心，我是决不会去耽搁整小时的工夫来照管这个农民的，一定会从他身边走过，才不管他冻死不冻死哩。……不过话说回来， 我是多么有力量观察自己呀！ ”他同时以更愉快的心情想道：“可他们还认为我发了疯哩！”他走到自己家附近的时候，忽然站住，产生了一个突如其来的问题：“要不要现在就去见检察官，告发一切？”接着又回身向门口走去，心里决定：“明天一起解决吧！”他暗自低语说，奇怪的是所有的快乐，所有的自满情绪一刹那间几乎全都没有了。他走进屋里时，心里忽然产生一种冰冷的感觉，似乎是回忆到，说得正确些，似乎是提醒他，在这屋里有某种痛苦的、讨厌的东西，现在正存在着，而且以前也存在过。他疲乏地倒在沙发上。老妇人送来茶炊，他沏了茶，但是没有动一动；把老妇人打发走了，让她明天再来。他坐在沙发上，感到头昏脑胀。他觉得不舒服而且无力。他似乎要睡过去，但又马上不安地站起身来，在屋里踱步，以赶走睡魔。他有的时候感到自己正在陷入梦魇。但他最关心的却不是生病；他又坐下来，不时向周围环顾一下，似乎在察看什么东西。这样看了几次。后来他的眼光聚精会神地落在一点上。伊凡笑了一笑，但是脸上却布满了怒气。他久久地坐在那里，两手紧紧地捧着脑袋，眼睛仍旧溜着原先的那一点，朝着靠在对面墙上的沙发斜看着。显然好象那儿有什么招他生气，有什么东西使他不安，折磨着他。</p>
+﻿
+</div>
+<div>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.4em";' target="_self" style="color:#fff;" title="大：1.4em"><div id="ftsize1" style="color:#fff;">大</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.2em";' target="_self" style="color:#fff;" title="中：1.2em"><div id="ftsize2" style="color:#fff;">中</div></a>
+<a id="ftsizea" onclick='document.getElementById("container").style.fontSize = "1.0em";' target="_self" style="color:#fff;" title="小：1em"><div id="ftsize3" style="color:#fff;">小</div></a>
+<a id="fPagea" href="index.html" target="_self"><div id="fPage" style="color:#fff;">上<br>一<br>章</div></a>
+<a href="../index.html" target="_self"><div id="menuPage" style="color:#fff;">目<br>录</div></a>
+<a id="LPagea" href="javascript:void(null)" target="_self"><div id="lPage" style="color:#fff;">下<br>一<br>章</div></a>
+<a target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="goTopBtn">&and;</div></a>
+<a onclick="shangy()" target="_self" style="color:#fff;"><div style="display:none; color:#fff;" id="shangy">&uarr;</div></a>
+<a onclick="xiay()" target="_self" style="color:#fff;"><div id="xiay" style="color:#fff;">&darr;</div></a>
+<a onclick="downn()" target="_self" style="color:#fff;"><div id="goBottom" style="color:#fff;">&or;</div></a>
+<script type=text/javascript>
+	goTopEx();
+	function xiay(){
+		window.scrollBy(0,window.innerHeight-10);
+	}
+	function shangy(){
+		window.scrollBy(0,-window.innerHeight+10);
+	}
+	var obj3=document.getElementById("xiay");
+	var obj4=document.getElementById("goBottom");
+	function getHeight(){  
+		if(browser4=="ch"){
+			//谷歌浏览器  
+			return document.body.clientHeight; 
+		}else{
+			//IE、firefox等浏览器 
+			return document.documentElement.clientHeight;  
+		}  
+	}
+	getHeight()<window.innerHeight+50?obj3.style.display="none":obj3.style.display="";
+	getHeight()<window.innerHeight+50?obj4.style.display="none":obj4.style.display="";
+	if(browser4!="ch"){	//firefox需要尝一下才显示向下图标
+		xiay();
+		shangy();
+	}
+	//上一页、下一页按钮，需要文件名是数字
+	var strUrl=window.location.href;
+	var arrUrl=strUrl.split("/");
+	var thispage=arrUrl[arrUrl.length-1];
+	var thispage2=thispage.split(".");
+	var thispage3=thispage2[thispage2.length-2];
+	if(thispage3 == 0){
+		var obj5=document.getElementById("fPage");
+		obj5.style.display="none";
+	}else{
+		var fpage = thispage3 - 1;
+		fpage = fpage +".html";
+		document.getElementById("fPagea").href=fpage;
+	}
+	if(thispage3 == 1001){
+		var obj6=document.getElementById("lPage");
+		obj6.style.display="none";
+	}else{
+		var fpage = parseInt(thispage3) + 1;
+		fpage = fpage +".html";
+		document.getElementById("LPagea").href=fpage;
+	}
+    function myfun() 　　{ 　
+        if(thispage3 == "index"){　 
+         fpage = "1.html";
+        document.getElementById("LPagea").href=fpage;           
+            var obj5=document.getElementById("fPagea");
+            obj5.style.display="none";
+        }            　
+    } 　　
+    window.onload = myfun;
+</script>
+</div>
+</body>
+</html>
